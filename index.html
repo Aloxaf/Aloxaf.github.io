@@ -69,6 +69,229 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-pwnable.kr - Toddler&#39;s Bottle" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/05/07/pwnable.kr - Toddler's Bottle/" class="article-date">
+  <time datetime="2018-05-07T14:12:00.000Z" itemprop="datePublished">2018-05-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/writeup/">writeup</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/07/pwnable.kr - Toddler's Bottle/">pwnable.kr - Toddler&#39;s Bottle</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1. [fd]</a>
+<ul>
+<li><a href="#sec-1-1">1.1. 简介</a></li>
+<li><a href="#sec-1-2">1.2. 分析</a></li>
+</ul>
+</li>
+<li><a href="#sec-2">2. [collision]</a>
+<ul>
+<li><a href="#sec-2-1">2.1. 简介</a></li>
+<li><a href="#sec-2-2">2.2. 分析</a></li>
+</ul>
+</li>
+<li><a href="#sec-3">3. bof</a>
+<ul>
+<li><a href="#sec-3-1">3.1. 简介</a></li>
+<li><a href="#sec-3-2">3.2. 分析</a></li>
+</ul>
+</li>
+<li><a href="#sec-4">4. flag</a>
+<ul>
+<li><a href="#sec-4-1">4.1. 简介</a></li>
+<li><a href="#sec-4-2">4.2. 分析</a></li>
+</ul>
+</li>
+<li><a href="#sec-5">5. passcode</a>
+<ul>
+<li><a href="#sec-5-1">5.1. 简介</a></li>
+<li><a href="#sec-5-2">5.2. 分析</a></li>
+</ul>
+</li>
+<li><a href="#sec-6">6. random</a>
+<ul>
+<li><a href="#sec-6-1">6.1. 简介</a></li>
+<li><a href="#sec-6-2">6.2. 分析</a></li>
+</ul>
+</li>
+<li><a href="#sec-7">7. input</a>
+<ul>
+<li><a href="#sec-7-1">7.1. 简介</a></li>
+<li><a href="#sec-7-2">7.2. 分析</a>
+<ul>
+<li><a href="#sec-7-2-1">7.2.1. 第一关</a></li>
+<li><a href="#sec-7-2-2">7.2.2. 第二关</a></li>
+<li><a href="#sec-7-2-3">7.2.3. 第三关</a></li>
+<li><a href="#sec-7-2-4">7.2.4. 第四关</a></li>
+<li><a href="#sec-7-2-5">7.2.5. 第五关</a></li>
+<li><a href="#sec-7-2-6">7.2.6. 最终代码</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#sec-8">8. leg</a>
+<ul>
+<li><a href="#sec-8-1">8.1. 简介</a></li>
+<li><a href="#sec-8-2">8.2. 分析</a>
+<ul>
+<li><a href="#sec-8-2-1">8.2.1. ARM汇编简介</a></li>
+<li><a href="#sec-8-2-2">8.2.2. key1</a></li>
+<li><a href="#sec-8-2-3">8.2.3. key2</a></li>
+<li><a href="#sec-8-2-4">8.2.4. key3</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#sec-9">9. mistake</a>
+<ul>
+<li><a href="#sec-9-1">9.1. 简介</a></li>
+<li><a href="#sec-9-2">9.2. 分析</a></li>
+</ul>
+</li>
+<li><a href="#sec-10">10. shellshock</a>
+<ul>
+<li><a href="#sec-10-1">10.1. 简介</a></li>
+<li><a href="#sec-10-2">10.2. 分析</a></li>
+</ul>
+</li>
+<li><a href="#sec-11">11. coin1</a>
+<ul>
+<li><a href="#sec-11-1">11.1. 简介</a></li>
+<li><a href="#sec-11-2">11.2. 分析</a></li>
+</ul>
+</li>
+<li><a href="#sec-12">12. blackjack</a>
+<ul>
+<li><a href="#sec-12-1">12.1. 简介</a></li>
+<li><a href="#sec-12-2">12.2. 分析</a></li>
+</ul>
+</li>
+<li><a href="#sec-13">13. lotto</a>
+<ul>
+<li><a href="#sec-13-1">13.1. 简介</a></li>
+<li><a href="#sec-13-2">13.2. 分析</a></li>
+</ul>
+</li>
+<li><a href="#sec-14">14. cmd1</a>
+<ul>
+<li><a href="#sec-14-1">14.1. 简介</a></li>
+<li><a href="#sec-14-2">14.2. 分析</a></li>
+</ul>
+</li>
+<li><a href="#sec-15">15. cmd2</a>
+<ul>
+<li><a href="#sec-15-1">15.1. 简介</a></li>
+<li><a href="#sec-15-2">15.2. 分析</a></li>
+<li><a href="#sec-15-3">15.3. 大佬们的解法</a></li>
+</ul>
+</li>
+<li><a href="#sec-16">16. uaf</a>
+<ul>
+<li><a href="#sec-16-1">16.1. 简介</a></li>
+<li><a href="#sec-16-2">16.2. 分析</a></li>
+</ul>
+</li>
+<li><a href="#sec-17">17. memcpy</a>
+<ul>
+<li><a href="#sec-17-1">17.1. 简介</a></li>
+<li><a href="#sec-17-2">17.2. 分析</a></li>
+</ul>
+</li>
+<li><a href="#sec-18">18. asm</a>
+<ul>
+<li><a href="#sec-18-1">18.1. 简介</a></li>
+<li><a href="#sec-18-2">18.2. 分析</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+        
+          <p class="article-more-link">
+            <a href="/2018/05/07/pwnable.kr - Toddler's Bottle/#more">继续阅读全文 »</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yintianliang.github.io/2018/05/07/pwnable.kr - Toddler's Bottle/" data-id="cjgwexrkv0004kfwjqss67yb8" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pwnable-kr/">pwnable.kr</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/writeup/">writeup</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+ 
+
+
+  
+    <article id="post-改进hexo表格显示效果" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/05/07/改进hexo表格显示效果/" class="article-date">
+  <time datetime="2018-05-07T13:41:33.000Z" itemprop="datePublished">2018-05-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/07/改进hexo表格显示效果/">改进hexo/cafe主题表格显示效果</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>总体是根据这篇文章来的<br><a href="http://ju.outofmemory.cn/entry/130935" target="_blank" rel="noopener">http://ju.outofmemory.cn/entry/130935</a></p>
+        
+          <p class="article-more-link">
+            <a href="/2018/05/07/改进hexo表格显示效果/#more">继续阅读全文 »</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yintianliang.github.io/2018/05/07/改进hexo表格显示效果/" data-id="cjgwexrkr0002kfwjyjs2h5qv" class="article-share-link">分享</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+ 
+
+
+  
     <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/05/07/hello-world/" class="article-date">
@@ -106,7 +329,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://yintianliang.github.io/2018/05/07/hello-world/" data-id="cjgw15r0d0000s3wjy6kcy8tr" class="article-share-link">分享</a>
+      <a data-url="https://yintianliang.github.io/2018/05/07/hello-world/" data-id="cjgwexrki0000kfwj15frx1jd" class="article-share-link">分享</a>
       
       
       
@@ -145,10 +368,11 @@
         <p>卡住的原因是缺少pandoc依赖,<br>这货一声不吭地自己下载. 结果下载地址被墙</p>
 <p>解决方案(以Arch系为例)</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pacman -S pandoc</span><br></pre></td></tr></table></figure>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://yintianliang.github.io/2017/12/26/pip安装pwntools时卡住/" data-id="cjgw15r0i0001s3wj88vh46in" class="article-share-link">分享</a>
+      <a data-url="https://yintianliang.github.io/2017/12/26/pip安装pwntools时卡住/" data-id="cjgwexrko0001kfwj9sxnp7zj" class="article-share-link">分享</a>
       
       
       
@@ -174,16 +398,12 @@
      
     <div class="widget follow">
       
-              <a class="github" aria-hidden="true" href="https://github.com/giscafer" target="_blank" title="Github"></a>
+              <a class="github" aria-hidden="true" href="https://github.com/Yintianliang" target="_blank" title="Github"></a>
       
       
-            <a class="weibo" aria-hidden="true"  href="http://weibo.com/laohoubin" target="_blank" title="微博"></a>
       
       
-              <a class="zhihu" aria-hidden="true"  href="http://www.zhihu.com/people/giscafer" target="_blank" title="知乎"></a>
-      
-      
-            <a class="email" aria-hidden="true"  href="mailto:youemail@outlook.com" target="_blank" title="邮箱"></a>
+            <a class="email" aria-hidden="true"  href="mailto:bailong104@gmail.com" target="_blank" title="邮箱"></a>
       
     </div>
   </div>
@@ -193,13 +413,20 @@
     
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title categories">分类</h3>
+    <div class="widget" id="categories">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/writeup/">writeup</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
 
   
     
   <div class="widget-wrap">
     <h3 class="widget-title tagcloud">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/CTF/" style="font-size: 14px;">CTF</a> <a href="/tags/Python/" style="font-size: 14px;">Python</a>
+      <a href="/tags/CTF/" style="font-size: 14px;">CTF</a> <a href="/tags/Python/" style="font-size: 14px;">Python</a> <a href="/tags/pwnable-kr/" style="font-size: 14px;">pwnable.kr</a> <a href="/tags/writeup/" style="font-size: 14px;">writeup</a>
     </div>
   </div>
 
@@ -209,6 +436,14 @@
     <h3 class="widget-title recent-posts">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2018/05/07/pwnable.kr - Toddler's Bottle/">pwnable.kr - Toddler&#39;s Bottle</a>
+          </li>
+        
+          <li>
+            <a href="/2018/05/07/改进hexo表格显示效果/">改进hexo/cafe主题表格显示效果</a>
+          </li>
         
           <li>
             <a href="/2018/05/07/hello-world/">Hello World</a>
@@ -227,39 +462,15 @@
   <div class="widget-wrap">
     <h3 class="widget-title archive">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
 
   
     
-<div class="widget-wrap">
-    <h3 class="widget-title">Links</h3>
-    <div class="widget">
-        <ul>
-            
-            <li>
-                <a href="http://blog.giscafer.com">giscafer&#39;s blog</a>
-            </li>
-            
-            <li>
-                <a href="http://www.gis520.com">GIS520社区</a>
-            </li>
-            
-        </ul>
-    </div>
-</div>
-
   
     <!--微信公众号二维码-->
-
-  <div class="widget-wrap">
-    <h3 class="follow-title ">WeChat</h3>
-    <div class="widget wechat-widget">
-        <img src="http://blog.giscafer.com/static/images/qrcode_giscafer.jpg" alt="扫码关注" width="250"/>
-    </div>
-  </div>
 
 
   
@@ -274,7 +485,7 @@
       主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
     </div>
      <div id="footer-right">
-      联系方式&nbsp;|&nbsp;youemail@outlook.com
+      联系方式&nbsp;|&nbsp;bailong104@gmail.com
     </div>
   </div>
 </footer>
