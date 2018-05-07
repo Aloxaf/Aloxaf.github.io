@@ -69,186 +69,6 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-pwnable.kr - Toddler&#39;s Bottle" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/05/07/pwnable.kr - Toddler's Bottle/" class="article-date">
-  <time datetime="2018-05-07T14:12:00.000Z" itemprop="datePublished">2018-05-07</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/writeup/">writeup</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/07/pwnable.kr - Toddler's Bottle/">pwnable.kr - Toddler&#39;s Bottle</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <div id="table-of-contents">
-<h2>Table of Contents</h2>
-<div id="text-table-of-contents">
-<ul>
-<li><a href="#sec-1">1. [fd]</a>
-<ul>
-<li><a href="#sec-1-1">1.1. 简介</a></li>
-<li><a href="#sec-1-2">1.2. 分析</a></li>
-</ul>
-</li>
-<li><a href="#sec-2">2. [collision]</a>
-<ul>
-<li><a href="#sec-2-1">2.1. 简介</a></li>
-<li><a href="#sec-2-2">2.2. 分析</a></li>
-</ul>
-</li>
-<li><a href="#sec-3">3. bof</a>
-<ul>
-<li><a href="#sec-3-1">3.1. 简介</a></li>
-<li><a href="#sec-3-2">3.2. 分析</a></li>
-</ul>
-</li>
-<li><a href="#sec-4">4. flag</a>
-<ul>
-<li><a href="#sec-4-1">4.1. 简介</a></li>
-<li><a href="#sec-4-2">4.2. 分析</a></li>
-</ul>
-</li>
-<li><a href="#sec-5">5. passcode</a>
-<ul>
-<li><a href="#sec-5-1">5.1. 简介</a></li>
-<li><a href="#sec-5-2">5.2. 分析</a></li>
-</ul>
-</li>
-<li><a href="#sec-6">6. random</a>
-<ul>
-<li><a href="#sec-6-1">6.1. 简介</a></li>
-<li><a href="#sec-6-2">6.2. 分析</a></li>
-</ul>
-</li>
-<li><a href="#sec-7">7. input</a>
-<ul>
-<li><a href="#sec-7-1">7.1. 简介</a></li>
-<li><a href="#sec-7-2">7.2. 分析</a>
-<ul>
-<li><a href="#sec-7-2-1">7.2.1. 第一关</a></li>
-<li><a href="#sec-7-2-2">7.2.2. 第二关</a></li>
-<li><a href="#sec-7-2-3">7.2.3. 第三关</a></li>
-<li><a href="#sec-7-2-4">7.2.4. 第四关</a></li>
-<li><a href="#sec-7-2-5">7.2.5. 第五关</a></li>
-<li><a href="#sec-7-2-6">7.2.6. 最终代码</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#sec-8">8. leg</a>
-<ul>
-<li><a href="#sec-8-1">8.1. 简介</a></li>
-<li><a href="#sec-8-2">8.2. 分析</a>
-<ul>
-<li><a href="#sec-8-2-1">8.2.1. ARM汇编简介</a></li>
-<li><a href="#sec-8-2-2">8.2.2. key1</a></li>
-<li><a href="#sec-8-2-3">8.2.3. key2</a></li>
-<li><a href="#sec-8-2-4">8.2.4. key3</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#sec-9">9. mistake</a>
-<ul>
-<li><a href="#sec-9-1">9.1. 简介</a></li>
-<li><a href="#sec-9-2">9.2. 分析</a></li>
-</ul>
-</li>
-<li><a href="#sec-10">10. shellshock</a>
-<ul>
-<li><a href="#sec-10-1">10.1. 简介</a></li>
-<li><a href="#sec-10-2">10.2. 分析</a></li>
-</ul>
-</li>
-<li><a href="#sec-11">11. coin1</a>
-<ul>
-<li><a href="#sec-11-1">11.1. 简介</a></li>
-<li><a href="#sec-11-2">11.2. 分析</a></li>
-</ul>
-</li>
-<li><a href="#sec-12">12. blackjack</a>
-<ul>
-<li><a href="#sec-12-1">12.1. 简介</a></li>
-<li><a href="#sec-12-2">12.2. 分析</a></li>
-</ul>
-</li>
-<li><a href="#sec-13">13. lotto</a>
-<ul>
-<li><a href="#sec-13-1">13.1. 简介</a></li>
-<li><a href="#sec-13-2">13.2. 分析</a></li>
-</ul>
-</li>
-<li><a href="#sec-14">14. cmd1</a>
-<ul>
-<li><a href="#sec-14-1">14.1. 简介</a></li>
-<li><a href="#sec-14-2">14.2. 分析</a></li>
-</ul>
-</li>
-<li><a href="#sec-15">15. cmd2</a>
-<ul>
-<li><a href="#sec-15-1">15.1. 简介</a></li>
-<li><a href="#sec-15-2">15.2. 分析</a></li>
-<li><a href="#sec-15-3">15.3. 大佬们的解法</a></li>
-</ul>
-</li>
-<li><a href="#sec-16">16. uaf</a>
-<ul>
-<li><a href="#sec-16-1">16.1. 简介</a></li>
-<li><a href="#sec-16-2">16.2. 分析</a></li>
-</ul>
-</li>
-<li><a href="#sec-17">17. memcpy</a>
-<ul>
-<li><a href="#sec-17-1">17.1. 简介</a></li>
-<li><a href="#sec-17-2">17.2. 分析</a></li>
-</ul>
-</li>
-<li><a href="#sec-18">18. asm</a>
-<ul>
-<li><a href="#sec-18-1">18.1. 简介</a></li>
-<li><a href="#sec-18-2">18.2. 分析</a></li>
-</ul>
-</li>
-</ul>
-</div>
-</div>
-        
-          <p class="article-more-link">
-            <a href="/2018/05/07/pwnable.kr - Toddler's Bottle/#more">继续阅读全文 »</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://yintianliang.github.io/2018/05/07/pwnable.kr - Toddler's Bottle/" data-id="cjgwexrkv0004kfwjqss67yb8" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pwnable-kr/">pwnable.kr</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/writeup/">writeup</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
- 
-
-
-  
     <article id="post-改进hexo表格显示效果" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/05/07/改进hexo表格显示效果/" class="article-date">
@@ -280,7 +100,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://yintianliang.github.io/2018/05/07/改进hexo表格显示效果/" data-id="cjgwexrkr0002kfwjyjs2h5qv" class="article-share-link">分享</a>
+      <a data-url="https://yintianliang.github.io/2018/05/07/改进hexo表格显示效果/" data-id="cjgwft91u00033pwj3ow4qsa1" class="article-share-link">分享</a>
       
       
       
@@ -329,10 +149,72 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://yintianliang.github.io/2018/05/07/hello-world/" data-id="cjgwexrki0000kfwj15frx1jd" class="article-share-link">分享</a>
+      <a data-url="https://yintianliang.github.io/2018/05/07/hello-world/" data-id="cjgwft91p00013pwjtsh6umkb" class="article-share-link">分享</a>
       
       
       
+    </footer>
+  </div>
+  
+</article>
+ 
+
+
+  
+    <article id="post-pwnable.kr - Toddler&#39;s Bottle" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/05/04/pwnable.kr - Toddler's Bottle/" class="article-date">
+  <time datetime="2018-05-04T02:19:00.000Z" itemprop="datePublished">2018-05-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/writeup/">writeup</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/04/pwnable.kr - Toddler's Bottle/">pwnable.kr - Toddler&#39;s Bottle</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1">[fd]</h2>
+<div class="outline-text-2" id="text-1">
+</div><div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1">简介</h3>
+<div class="outline-text-3" id="text-1-1">
+<pre class="example">
+Mommy! what is a file descriptor in Linux?
+
+* try to play the wargame your self but if you are ABSOLUTE beginner, follow this tutorial link:
+https://youtu.be/971eZhMHQQw
+
+ssh fd@pwnable.kr -p2222 (pw:guest)
+</pre>
+        
+          <p class="article-more-link">
+            <a href="/2018/05/04/pwnable.kr - Toddler's Bottle/#more">继续阅读全文 »</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yintianliang.github.io/2018/05/04/pwnable.kr - Toddler's Bottle/" data-id="cjgwft91x00043pwjbfuny7ut" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pwnable-kr/">pwnable.kr</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/writeup/">writeup</a></li></ul>
+
     </footer>
   </div>
   
@@ -372,7 +254,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://yintianliang.github.io/2017/12/26/pip安装pwntools时卡住/" data-id="cjgwexrko0001kfwj9sxnp7zj" class="article-share-link">分享</a>
+      <a data-url="https://yintianliang.github.io/2017/12/26/pip安装pwntools时卡住/" data-id="cjgwft91j00003pwjhqvafj7e" class="article-share-link">分享</a>
       
       
       
@@ -438,15 +320,15 @@
       <ul>
         
           <li>
-            <a href="/2018/05/07/pwnable.kr - Toddler's Bottle/">pwnable.kr - Toddler&#39;s Bottle</a>
-          </li>
-        
-          <li>
             <a href="/2018/05/07/改进hexo表格显示效果/">改进hexo/cafe主题表格显示效果</a>
           </li>
         
           <li>
             <a href="/2018/05/07/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2018/05/04/pwnable.kr - Toddler's Bottle/">pwnable.kr - Toddler&#39;s Bottle</a>
           </li>
         
           <li>

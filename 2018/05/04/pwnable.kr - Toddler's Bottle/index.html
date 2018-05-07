@@ -5,18 +5,18 @@
   
   <title>pwnable.kr - Toddler&#39;s Bottle | schemr&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Table of Contents   1. [fd]  1.1. 简介 1.2. 分析   2. [collision]  2.1. 简介 2.2. 分析   3. bof  3.1. 简介 3.2. 分析   4. flag  4.1. 简介 4.2. 分析   5. passcode  5.1. 简介 5.2. 分析   6. random  6.1. 简介 6.2. 分析   7. in">
+  <meta name="description" content="[fd]   简介   Mommy! what is a file descriptor in Linux?  * try to play the wargame your self but if you are ABSOLUTE beginner, follow this tutorial link: https://youtu.be/971eZhMHQQw  ssh fd@pwnable.k">
 <meta name="keywords" content="writeup,pwnable.kr">
 <meta property="og:type" content="article">
 <meta property="og:title" content="pwnable.kr - Toddler&#39;s Bottle">
-<meta property="og:url" content="https://yintianliang.github.io/2018/05/07/pwnable.kr - Toddler's Bottle/index.html">
+<meta property="og:url" content="https://yintianliang.github.io/2018/05/04/pwnable.kr - Toddler's Bottle/index.html">
 <meta property="og:site_name" content="schemr&#39;s blog">
-<meta property="og:description" content="Table of Contents   1. [fd]  1.1. 简介 1.2. 分析   2. [collision]  2.1. 简介 2.2. 分析   3. bof  3.1. 简介 3.2. 分析   4. flag  4.1. 简介 4.2. 分析   5. passcode  5.1. 简介 5.2. 分析   6. random  6.1. 简介 6.2. 分析   7. in">
+<meta property="og:description" content="[fd]   简介   Mommy! what is a file descriptor in Linux?  * try to play the wargame your self but if you are ABSOLUTE beginner, follow this tutorial link: https://youtu.be/971eZhMHQQw  ssh fd@pwnable.k">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-05-07T15:39:27.830Z">
+<meta property="og:updated_time" content="2018-05-07T16:05:01.385Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="pwnable.kr - Toddler&#39;s Bottle">
-<meta name="twitter:description" content="Table of Contents   1. [fd]  1.1. 简介 1.2. 分析   2. [collision]  2.1. 简介 2.2. 分析   3. bof  3.1. 简介 3.2. 分析   4. flag  4.1. 简介 4.2. 分析   5. passcode  5.1. 简介 5.2. 分析   6. random  6.1. 简介 6.2. 分析   7. in">
+<meta name="twitter:description" content="[fd]   简介   Mommy! what is a file descriptor in Linux?  * try to play the wargame your self but if you are ABSOLUTE beginner, follow this tutorial link: https://youtu.be/971eZhMHQQw  ssh fd@pwnable.k">
   
     <link rel="alternate" href="/atom.xml" title="schemr&#39;s blog" type="application/atom+xml">
   
@@ -71,8 +71,8 @@
       <div class="outer">
         <section id="main"><article id="post-pwnable.kr - Toddler&#39;s Bottle" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/05/07/pwnable.kr - Toddler's Bottle/" class="article-date">
-  <time datetime="2018-05-07T14:12:00.000Z" itemprop="datePublished">2018-05-07</time>
+    <a href="/2018/05/04/pwnable.kr - Toddler's Bottle/" class="article-date">
+  <time datetime="2018-05-04T02:19:00.000Z" itemprop="datePublished">2018-05-04</time>
 </a>
     
   <div class="article-category">
@@ -99,145 +99,12 @@
         
         
 
-<div id="table-of-contents">
-<h2>Table of Contents</h2>
-<div id="text-table-of-contents">
-<ul>
-<li><a href="#sec-1">1. [fd]</a>
-<ul>
-<li><a href="#sec-1-1">1.1. 简介</a></li>
-<li><a href="#sec-1-2">1.2. 分析</a></li>
-</ul>
-</li>
-<li><a href="#sec-2">2. [collision]</a>
-<ul>
-<li><a href="#sec-2-1">2.1. 简介</a></li>
-<li><a href="#sec-2-2">2.2. 分析</a></li>
-</ul>
-</li>
-<li><a href="#sec-3">3. bof</a>
-<ul>
-<li><a href="#sec-3-1">3.1. 简介</a></li>
-<li><a href="#sec-3-2">3.2. 分析</a></li>
-</ul>
-</li>
-<li><a href="#sec-4">4. flag</a>
-<ul>
-<li><a href="#sec-4-1">4.1. 简介</a></li>
-<li><a href="#sec-4-2">4.2. 分析</a></li>
-</ul>
-</li>
-<li><a href="#sec-5">5. passcode</a>
-<ul>
-<li><a href="#sec-5-1">5.1. 简介</a></li>
-<li><a href="#sec-5-2">5.2. 分析</a></li>
-</ul>
-</li>
-<li><a href="#sec-6">6. random</a>
-<ul>
-<li><a href="#sec-6-1">6.1. 简介</a></li>
-<li><a href="#sec-6-2">6.2. 分析</a></li>
-</ul>
-</li>
-<li><a href="#sec-7">7. input</a>
-<ul>
-<li><a href="#sec-7-1">7.1. 简介</a></li>
-<li><a href="#sec-7-2">7.2. 分析</a>
-<ul>
-<li><a href="#sec-7-2-1">7.2.1. 第一关</a></li>
-<li><a href="#sec-7-2-2">7.2.2. 第二关</a></li>
-<li><a href="#sec-7-2-3">7.2.3. 第三关</a></li>
-<li><a href="#sec-7-2-4">7.2.4. 第四关</a></li>
-<li><a href="#sec-7-2-5">7.2.5. 第五关</a></li>
-<li><a href="#sec-7-2-6">7.2.6. 最终代码</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#sec-8">8. leg</a>
-<ul>
-<li><a href="#sec-8-1">8.1. 简介</a></li>
-<li><a href="#sec-8-2">8.2. 分析</a>
-<ul>
-<li><a href="#sec-8-2-1">8.2.1. ARM汇编简介</a></li>
-<li><a href="#sec-8-2-2">8.2.2. key1</a></li>
-<li><a href="#sec-8-2-3">8.2.3. key2</a></li>
-<li><a href="#sec-8-2-4">8.2.4. key3</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#sec-9">9. mistake</a>
-<ul>
-<li><a href="#sec-9-1">9.1. 简介</a></li>
-<li><a href="#sec-9-2">9.2. 分析</a></li>
-</ul>
-</li>
-<li><a href="#sec-10">10. shellshock</a>
-<ul>
-<li><a href="#sec-10-1">10.1. 简介</a></li>
-<li><a href="#sec-10-2">10.2. 分析</a></li>
-</ul>
-</li>
-<li><a href="#sec-11">11. coin1</a>
-<ul>
-<li><a href="#sec-11-1">11.1. 简介</a></li>
-<li><a href="#sec-11-2">11.2. 分析</a></li>
-</ul>
-</li>
-<li><a href="#sec-12">12. blackjack</a>
-<ul>
-<li><a href="#sec-12-1">12.1. 简介</a></li>
-<li><a href="#sec-12-2">12.2. 分析</a></li>
-</ul>
-</li>
-<li><a href="#sec-13">13. lotto</a>
-<ul>
-<li><a href="#sec-13-1">13.1. 简介</a></li>
-<li><a href="#sec-13-2">13.2. 分析</a></li>
-</ul>
-</li>
-<li><a href="#sec-14">14. cmd1</a>
-<ul>
-<li><a href="#sec-14-1">14.1. 简介</a></li>
-<li><a href="#sec-14-2">14.2. 分析</a></li>
-</ul>
-</li>
-<li><a href="#sec-15">15. cmd2</a>
-<ul>
-<li><a href="#sec-15-1">15.1. 简介</a></li>
-<li><a href="#sec-15-2">15.2. 分析</a></li>
-<li><a href="#sec-15-3">15.3. 大佬们的解法</a></li>
-</ul>
-</li>
-<li><a href="#sec-16">16. uaf</a>
-<ul>
-<li><a href="#sec-16-1">16.1. 简介</a></li>
-<li><a href="#sec-16-2">16.2. 分析</a></li>
-</ul>
-</li>
-<li><a href="#sec-17">17. memcpy</a>
-<ul>
-<li><a href="#sec-17-1">17.1. 简介</a></li>
-<li><a href="#sec-17-2">17.2. 分析</a></li>
-</ul>
-</li>
-<li><a href="#sec-18">18. asm</a>
-<ul>
-<li><a href="#sec-18-1">18.1. 简介</a></li>
-<li><a href="#sec-18-2">18.2. 分析</a></li>
-</ul>
-</li>
-</ul>
-</div>
-</div>
-<a id="more"></a>
 
 <div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1"><span class="section-number-2">1</span> [fd]</h2>
+<h2 id="sec-1">[fd]</h2>
 <div class="outline-text-2" id="text-1">
 </div><div id="outline-container-sec-1-1" class="outline-3">
-<h3 id="sec-1-1"><span class="section-number-3">1.1</span> 简介</h3>
+<h3 id="sec-1-1">简介</h3>
 <div class="outline-text-3" id="text-1-1">
 <pre class="example">
 Mommy! what is a file descriptor in Linux?
@@ -247,11 +114,12 @@ https://youtu.be/971eZhMHQQw
 
 ssh fd@pwnable.kr -p2222 (pw:guest)
 </pre>
-</div>
-</div>
 
+<a id="more"></a>
+</div>
+</div>
 <div id="outline-container-sec-1-2" class="outline-3">
-<h3 id="sec-1-2"><span class="section-number-3">1.2</span> 分析</h3>
+<h3 id="sec-1-2">分析</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 ls可以看到三个文件, 其中flag文件无法直接读取(好像是废话&#x2026;)
@@ -333,10 +201,10 @@ flag 为 <code>mommy! I think I know what a file descriptor is!!</code>
 </div>
 </div>
 <div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2"><span class="section-number-2">2</span> [collision]</h2>
+<h2 id="sec-2">[collision]</h2>
 <div class="outline-text-2" id="text-2">
 </div><div id="outline-container-sec-2-1" class="outline-3">
-<h3 id="sec-2-1"><span class="section-number-3">2.1</span> 简介</h3>
+<h3 id="sec-2-1">简介</h3>
 <div class="outline-text-3" id="text-2-1">
 <pre class="example">
 Daddy told me about cool MD5 hash collision today.
@@ -348,7 +216,7 @@ ssh col@pwnable.kr -p2222 (pw:guest)
 </div>
 
 <div id="outline-container-sec-2-2" class="outline-3">
-<h3 id="sec-2-2"><span class="section-number-3">2.2</span> 分析</h3>
+<h3 id="sec-2-2">分析</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 col.c内容如下
@@ -394,10 +262,10 @@ flag 为 <code>daddy! I just managed to create a hash collision :)</code>
 </div>
 </div>
 <div id="outline-container-sec-3" class="outline-2">
-<h2 id="sec-3"><span class="section-number-2">3</span> bof</h2>
+<h2 id="sec-3">bof</h2>
 <div class="outline-text-2" id="text-3">
 </div><div id="outline-container-sec-3-1" class="outline-3">
-<h3 id="sec-3-1"><span class="section-number-3">3.1</span> 简介</h3>
+<h3 id="sec-3-1">简介</h3>
 <div class="outline-text-3" id="text-3-1">
 <pre class="example">
 Nana told me that buffer overflow is one of the most common software vulnerability. 
@@ -412,7 +280,7 @@ Running at : nc pwnable.kr 9000
 </div>
 
 <div id="outline-container-sec-3-2" class="outline-3">
-<h3 id="sec-3-2"><span class="section-number-3">3.2</span> 分析</h3>
+<h3 id="sec-3-2">分析</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 首先看看 bof.c 内容
@@ -479,10 +347,10 @@ flag为 <code>daddy, I just pwned a buFFer :)</code>
 </div>
 </div>
 <div id="outline-container-sec-4" class="outline-2">
-<h2 id="sec-4"><span class="section-number-2">4</span> flag</h2>
+<h2 id="sec-4">flag</h2>
 <div class="outline-text-2" id="text-4">
 </div><div id="outline-container-sec-4-1" class="outline-3">
-<h3 id="sec-4-1"><span class="section-number-3">4.1</span> 简介</h3>
+<h3 id="sec-4-1">简介</h3>
 <div class="outline-text-3" id="text-4-1">
 <pre class="example">
 Papa brought me a packed present! let's open it.
@@ -499,7 +367,7 @@ This is reversing task. all you need is binary
 </div>
 
 <div id="outline-container-sec-4-2" class="outline-3">
-<h3 id="sec-4-2"><span class="section-number-3">4.2</span> 分析</h3>
+<h3 id="sec-4-2">分析</h3>
 <div class="outline-text-3" id="text-4-2">
 <p>
 file一下flag, 得知是64位ELF
@@ -549,10 +417,10 @@ I will malloc() and strcpy the flag there. take it.
 </div>
 
 <div id="outline-container-sec-5" class="outline-2">
-<h2 id="sec-5"><span class="section-number-2">5</span> passcode</h2>
+<h2 id="sec-5">passcode</h2>
 <div class="outline-text-2" id="text-5">
 </div><div id="outline-container-sec-5-1" class="outline-3">
-<h3 id="sec-5-1"><span class="section-number-3">5.1</span> 简介</h3>
+<h3 id="sec-5-1">简介</h3>
 <div class="outline-text-3" id="text-5-1">
 <pre class="example">
 Mommy told me to make a passcode based login system.
@@ -565,7 +433,7 @@ ssh passcode@pwnable.kr -p2222 (pw:guest)
 </div>
 
 <div id="outline-container-sec-5-2" class="outline-3">
-<h3 id="sec-5-2"><span class="section-number-3">5.2</span> 分析</h3>
+<h3 id="sec-5-2">分析</h3>
 <div class="outline-text-3" id="text-5-2">
 <p>
 连上去ls一下
@@ -771,10 +639,10 @@ flag为 <code>Sorry mom.. I got confused about scanf usage :(</code>
 </div>
 </div>
 <div id="outline-container-sec-6" class="outline-2">
-<h2 id="sec-6"><span class="section-number-2">6</span> random</h2>
+<h2 id="sec-6">random</h2>
 <div class="outline-text-2" id="text-6">
 </div><div id="outline-container-sec-6-1" class="outline-3">
-<h3 id="sec-6-1"><span class="section-number-3">6.1</span> 简介</h3>
+<h3 id="sec-6-1">简介</h3>
 <div class="outline-text-3" id="text-6-1">
 <pre class="example">
 Daddy, teach me how to use random value in programming!
@@ -785,7 +653,7 @@ ssh random@pwnable.kr -p2222 (pw:guest)
 </div>
 
 <div id="outline-container-sec-6-2" class="outline-3">
-<h3 id="sec-6-2"><span class="section-number-3">6.2</span> 分析</h3>
+<h3 id="sec-6-2">分析</h3>
 <div class="outline-text-3" id="text-6-2">
 <p>
 先 <code>cat random.c</code> 看内容
@@ -828,10 +696,10 @@ flag为 <code>Mommy, I thought libc random is unpredictable...</code>
 </div>
 </div>
 <div id="outline-container-sec-7" class="outline-2">
-<h2 id="sec-7"><span class="section-number-2">7</span> input</h2>
+<h2 id="sec-7">input</h2>
 <div class="outline-text-2" id="text-7">
 </div><div id="outline-container-sec-7-1" class="outline-3">
-<h3 id="sec-7-1"><span class="section-number-3">7.1</span> 简介</h3>
+<h3 id="sec-7-1">简介</h3>
 <div class="outline-text-3" id="text-7-1">
 <pre class="example">
 Mom? how can I pass my input to a computer program?
@@ -842,7 +710,7 @@ ssh input2@pwnable.kr -p2222 (pw:guest)
 </div>
 
 <div id="outline-container-sec-7-2" class="outline-3">
-<h3 id="sec-7-2"><span class="section-number-3">7.2</span> 分析</h3>
+<h3 id="sec-7-2">分析</h3>
 <div class="outline-text-3" id="text-7-2">
 <div class="org-src-container">
 
@@ -855,7 +723,7 @@ ssh input2@pwnable.kr -p2222 (pw:guest)
 </div>
 
 <div id="outline-container-sec-7-2-1" class="outline-4">
-<h4 id="sec-7-2-1"><span class="section-number-4">7.2.1</span> 第一关</h4>
+<h4 id="sec-7-2-1">第一关</h4>
 <div class="outline-text-4" id="text-7-2-1">
 <div class="org-src-container">
 
@@ -891,7 +759,7 @@ ssh input2@pwnable.kr -p2222 (pw:guest)
 </div>
 
 <div id="outline-container-sec-7-2-2" class="outline-4">
-<h4 id="sec-7-2-2"><span class="section-number-4">7.2.2</span> 第二关</h4>
+<h4 id="sec-7-2-2">第二关</h4>
 <div class="outline-text-4" id="text-7-2-2">
 <div class="org-src-container">
 
@@ -936,7 +804,7 @@ Google了一下还是找到了做法, 不过很迷为什么StringIO/BytesIO不�
 </div>
 
 <div id="outline-container-sec-7-2-3" class="outline-4">
-<h4 id="sec-7-2-3"><span class="section-number-4">7.2.3</span> 第三关</h4>
+<h4 id="sec-7-2-3">第三关</h4>
 <div class="outline-text-4" id="text-7-2-3">
 <div class="org-src-container">
 
@@ -959,7 +827,7 @@ process的env参数可以指定环境变量, 这关不难
 </div>
 
 <div id="outline-container-sec-7-2-4" class="outline-4">
-<h4 id="sec-7-2-4"><span class="section-number-4">7.2.4</span> 第四关</h4>
+<h4 id="sec-7-2-4">第四关</h4>
 <div class="outline-text-4" id="text-7-2-4">
 <div class="org-src-container">
 
@@ -982,7 +850,7 @@ process的env参数可以指定环境变量, 这关不难
 </div>
 </div>
 <div id="outline-container-sec-7-2-5" class="outline-4">
-<h4 id="sec-7-2-5"><span class="section-number-4">7.2.5</span> 第五关</h4>
+<h4 id="sec-7-2-5">第五关</h4>
 <div class="outline-text-4" id="text-7-2-5">
 <div class="org-src-container">
 
@@ -1006,10 +874,12 @@ process的env参数可以指定环境变量, 这关不难
 在写这关的时候, 我发现了几件比较悲剧的事情
 </p>
 
-<p>
-1.我用的是Python3
-2.我在题目服务器上没有权限在当前创建文件
-</p>
+<ul class="org-ul">
+<li>我用的是Python3
+</li>
+<li>我在题目服务器上没有权限在当前创建文件
+</li>
+</ul>
 
 <p>
 第一点改一改process第一个参数的生成方式, 不要用Python3的*就行了
@@ -1046,7 +916,7 @@ files under /tmp can be erased anytime. make your directory under /tmp
 </div>
 
 <div id="outline-container-sec-7-2-6" class="outline-4">
-<h4 id="sec-7-2-6"><span class="section-number-4">7.2.6</span> 最终代码</h4>
+<h4 id="sec-7-2-6">最终代码</h4>
 <div class="outline-text-4" id="text-7-2-6">
 <div class="org-src-container">
 
@@ -1066,10 +936,10 @@ flag为 <code>Mommy! I learned how to pass various input in Linux :)</code>
 </div>
 
 <div id="outline-container-sec-8" class="outline-2">
-<h2 id="sec-8"><span class="section-number-2">8</span> leg</h2>
+<h2 id="sec-8">leg</h2>
 <div class="outline-text-2" id="text-8">
 </div><div id="outline-container-sec-8-1" class="outline-3">
-<h3 id="sec-8-1"><span class="section-number-3">8.1</span> 简介</h3>
+<h3 id="sec-8-1">简介</h3>
 <div class="outline-text-3" id="text-8-1">
 <pre class="example">
 Daddy told me I should study arm.
@@ -1088,7 +958,7 @@ ssh leg@pwnable.kr -p2222 (pw:guest)
 </div>
 
 <div id="outline-container-sec-8-2" class="outline-3">
-<h3 id="sec-8-2"><span class="section-number-3">8.2</span> 分析</h3>
+<h3 id="sec-8-2">分析</h3>
 <div class="outline-text-3" id="text-8-2">
 <p>
 首先放代码
@@ -1112,7 +982,7 @@ ssh leg@pwnable.kr -p2222 (pw:guest)
 
 
 <div id="outline-container-sec-8-2-1" class="outline-4">
-<h4 id="sec-8-2-1"><span class="section-number-4">8.2.1</span> ARM汇编简介</h4>
+<h4 id="sec-8-2-1">ARM汇编简介</h4>
 <div class="outline-text-4" id="text-8-2-1">
 <p>
 先来学习一下arm汇编
@@ -1134,7 +1004,7 @@ ssh leg@pwnable.kr -p2222 (pw:guest)
 </div>
 
 <div id="outline-container-sec-8-2-2" class="outline-4">
-<h4 id="sec-8-2-2"><span class="section-number-4">8.2.2</span> key1</h4>
+<h4 id="sec-8-2-2">key1</h4>
 <div class="outline-text-4" id="text-8-2-2">
 <div class="org-src-container">
 
@@ -1153,7 +1023,7 @@ r3 的值就是 pc 的值, pc的值在执行 <code>mov r3, pc</code> 时为 0x8c
 </div>
 
 <div id="outline-container-sec-8-2-3" class="outline-4">
-<h4 id="sec-8-2-3"><span class="section-number-4">8.2.3</span> key2</h4>
+<h4 id="sec-8-2-3">key2</h4>
 <div class="outline-text-4" id="text-8-2-3">
 <div class="org-src-container">
 
@@ -1180,7 +1050,7 @@ r3 的值就是 pc 的值, pc的值在执行 <code>mov r3, pc</code> 时为 0x8c
 </div>
 
 <div id="outline-container-sec-8-2-4" class="outline-4">
-<h4 id="sec-8-2-4"><span class="section-number-4">8.2.4</span> key3</h4>
+<h4 id="sec-8-2-4">key3</h4>
 <div class="outline-text-4" id="text-8-2-4">
 <div class="org-src-container">
 
@@ -1219,10 +1089,10 @@ r3 的值就是 pc 的值, pc的值在执行 <code>mov r3, pc</code> 时为 0x8c
 </div>
 </div>
 <div id="outline-container-sec-9" class="outline-2">
-<h2 id="sec-9"><span class="section-number-2">9</span> mistake</h2>
+<h2 id="sec-9">mistake</h2>
 <div class="outline-text-2" id="text-9">
 </div><div id="outline-container-sec-9-1" class="outline-3">
-<h3 id="sec-9-1"><span class="section-number-3">9.1</span> 简介</h3>
+<h3 id="sec-9-1">简介</h3>
 <div class="outline-text-3" id="text-9-1">
 <pre class="example">
 We all make mistakes, let's move on.
@@ -1247,7 +1117,7 @@ ssh mistake@pwnable.kr -p2222 (pw:guest)
 </div>
 
 <div id="outline-container-sec-9-2" class="outline-3">
-<h3 id="sec-9-2"><span class="section-number-3">9.2</span> 分析</h3>
+<h3 id="sec-9-2">分析</h3>
 <div class="outline-text-3" id="text-9-2">
 <p>
 mistake.c
@@ -1298,10 +1168,10 @@ flag: <code>Mommy, the operator priority always confuses me :(</code>
 </div>
 </div>
 <div id="outline-container-sec-10" class="outline-2">
-<h2 id="sec-10"><span class="section-number-2">10</span> shellshock</h2>
+<h2 id="sec-10">shellshock</h2>
 <div class="outline-text-2" id="text-10">
 </div><div id="outline-container-sec-10-1" class="outline-3">
-<h3 id="sec-10-1"><span class="section-number-3">10.1</span> 简介</h3>
+<h3 id="sec-10-1">简介</h3>
 <div class="outline-text-3" id="text-10-1">
 <pre class="example">
 Mommy, there was a shocking news about bash.
@@ -1318,7 +1188,7 @@ ssh shellshock@pwnable.kr -p2222 (pw:guest)
 </div>
 
 <div id="outline-container-sec-10-2" class="outline-3">
-<h3 id="sec-10-2"><span class="section-number-3">10.2</span> 分析</h3>
+<h3 id="sec-10-2">分析</h3>
 <div class="outline-text-3" id="text-10-2">
 <pre class="example">
 shellshock@ubuntu:~$ ls -l
@@ -1372,10 +1242,10 @@ flag: <code>only if I knew CVE-2014-6271 ten years ago..!!</code>
 </div>
 </div>
 <div id="outline-container-sec-11" class="outline-2">
-<h2 id="sec-11"><span class="section-number-2">11</span> coin1</h2>
+<h2 id="sec-11">coin1</h2>
 <div class="outline-text-2" id="text-11">
 </div><div id="outline-container-sec-11-1" class="outline-3">
-<h3 id="sec-11-1"><span class="section-number-3">11.1</span> 简介</h3>
+<h3 id="sec-11-1">简介</h3>
 <div class="outline-text-3" id="text-11-1">
 <pre class="example">
 Mommy, I wanna play a game!
@@ -1391,7 +1261,7 @@ Running at : nc pwnable.kr 9007
 </div>
 
 <div id="outline-container-sec-11-2" class="outline-3">
-<h3 id="sec-11-2"><span class="section-number-3">11.2</span> 分析</h3>
+<h3 id="sec-11-2">分析</h3>
 <div class="outline-text-3" id="text-11-2">
 <pre class="example">
 ---------------------------------------------------
@@ -1455,10 +1325,10 @@ flag: <code>b1NaRy_S34rch1nG_1s_3asy_p3asy</code>
 </div>
 
 <div id="outline-container-sec-12" class="outline-2">
-<h2 id="sec-12"><span class="section-number-2">12</span> blackjack</h2>
+<h2 id="sec-12">blackjack</h2>
 <div class="outline-text-2" id="text-12">
 </div><div id="outline-container-sec-12-1" class="outline-3">
-<h3 id="sec-12-1"><span class="section-number-3">12.1</span> 简介</h3>
+<h3 id="sec-12-1">简介</h3>
 <div class="outline-text-3" id="text-12-1">
 <pre class="example">
 Hey! check out this C implementation of blackjack game!
@@ -1475,7 +1345,7 @@ Running at : nc pwnable.kr 9009
 </div>
 
 <div id="outline-container-sec-12-2" class="outline-3">
-<h3 id="sec-12-2"><span class="section-number-3">12.2</span> 分析</h3>
+<h3 id="sec-12-2">分析</h3>
 <div class="outline-text-3" id="text-12-2">
 <p>
 代码将近800行
@@ -1517,10 +1387,10 @@ P.S. 看了一下大佬们的WP, 原来还可以输入负数&#x2026;.然后故�
 </div>
 
 <div id="outline-container-sec-13" class="outline-2">
-<h2 id="sec-13"><span class="section-number-2">13</span> lotto</h2>
+<h2 id="sec-13">lotto</h2>
 <div class="outline-text-2" id="text-13">
 </div><div id="outline-container-sec-13-1" class="outline-3">
-<h3 id="sec-13-1"><span class="section-number-3">13.1</span> 简介</h3>
+<h3 id="sec-13-1">简介</h3>
 <div class="outline-text-3" id="text-13-1">
 <pre class="example">
 Mommy! I made a lotto program for my homework.
@@ -1537,7 +1407,7 @@ ssh lotto@pwnable.kr -p2222 (pw:guest)
 </div>
 
 <div id="outline-container-sec-13-2" class="outline-3">
-<h3 id="sec-13-2"><span class="section-number-3">13.2</span> 分析</h3>
+<h3 id="sec-13-2">分析</h3>
 <div class="outline-text-3" id="text-13-2">
 <p>
 lotto.c
@@ -1583,10 +1453,10 @@ flag: <code>sorry mom... I FORGOT to check duplicate numbers... :(</code>
 </div>
 
 <div id="outline-container-sec-14" class="outline-2">
-<h2 id="sec-14"><span class="section-number-2">14</span> cmd1</h2>
+<h2 id="sec-14">cmd1</h2>
 <div class="outline-text-2" id="text-14">
 </div><div id="outline-container-sec-14-1" class="outline-3">
-<h3 id="sec-14-1"><span class="section-number-3">14.1</span> 简介</h3>
+<h3 id="sec-14-1">简介</h3>
 <div class="outline-text-3" id="text-14-1">
 <pre class="example">
 Mommy! what is PATH environment in Linux?
@@ -1597,7 +1467,7 @@ ssh cmd1@pwnable.kr -p2222 (pw:guest)
 </div>
 
 <div id="outline-container-sec-14-2" class="outline-3">
-<h3 id="sec-14-2"><span class="section-number-3">14.2</span> 分析</h3>
+<h3 id="sec-14-2">分析</h3>
 <div class="outline-text-3" id="text-14-2">
 <div class="org-src-container">
 
@@ -1624,10 +1494,10 @@ flag: <code>mommy now I get what PATH environment is for :)</code>
 </div>
 
 <div id="outline-container-sec-15" class="outline-2">
-<h2 id="sec-15"><span class="section-number-2">15</span> cmd2</h2>
+<h2 id="sec-15">cmd2</h2>
 <div class="outline-text-2" id="text-15">
 </div><div id="outline-container-sec-15-1" class="outline-3">
-<h3 id="sec-15-1"><span class="section-number-3">15.1</span> 简介</h3>
+<h3 id="sec-15-1">简介</h3>
 <div class="outline-text-3" id="text-15-1">
 <pre class="example">
 Daddy bought me a system command shell.
@@ -1640,7 +1510,7 @@ ssh cmd2@pwnable.kr -p2222 (pw:flag of cmd1)
 </div>
 
 <div id="outline-container-sec-15-2" class="outline-3">
-<h3 id="sec-15-2"><span class="section-number-3">15.2</span> 分析</h3>
+<h3 id="sec-15-2">分析</h3>
 <div class="outline-text-3" id="text-15-2">
 <div class="org-src-container">
 
@@ -1666,7 +1536,7 @@ flag: <code>FuN_w1th_5h3ll_v4riabl3s_haha</code>
 </div>
 
 <div id="outline-container-sec-15-3" class="outline-3">
-<h3 id="sec-15-3"><span class="section-number-3">15.3</span> 大佬们的解法</h3>
+<h3 id="sec-15-3">大佬们的解法</h3>
 <div class="outline-text-3" id="text-15-3">
 <div class="org-src-container">
 
@@ -1676,10 +1546,10 @@ flag: <code>FuN_w1th_5h3ll_v4riabl3s_haha</code>
 </div>
 </div>
 <div id="outline-container-sec-16" class="outline-2">
-<h2 id="sec-16"><span class="section-number-2">16</span> uaf</h2>
+<h2 id="sec-16">uaf</h2>
 <div class="outline-text-2" id="text-16">
 </div><div id="outline-container-sec-16-1" class="outline-3">
-<h3 id="sec-16-1"><span class="section-number-3">16.1</span> 简介</h3>
+<h3 id="sec-16-1">简介</h3>
 <div class="outline-text-3" id="text-16-1">
 <pre class="example">
 Mommy, what is Use After Free bug?
@@ -1695,7 +1565,7 @@ ssh uaf@pwnable.kr -p2222 (pw:guest)
 </div>
 
 <div id="outline-container-sec-16-2" class="outline-3">
-<h3 id="sec-16-2"><span class="section-number-3">16.2</span> 分析</h3>
+<h3 id="sec-16-2">分析</h3>
 <div class="outline-text-3" id="text-16-2">
 <p>
 卧槽这次竟然是C++
@@ -1709,10 +1579,10 @@ ssh uaf@pwnable.kr -p2222 (pw:guest)
 </div>
 </div>
 <div id="outline-container-sec-17" class="outline-2">
-<h2 id="sec-17"><span class="section-number-2">17</span> memcpy</h2>
+<h2 id="sec-17">memcpy</h2>
 <div class="outline-text-2" id="text-17">
 </div><div id="outline-container-sec-17-1" class="outline-3">
-<h3 id="sec-17-1"><span class="section-number-3">17.1</span> 简介</h3>
+<h3 id="sec-17-1">简介</h3>
 <div class="outline-text-3" id="text-17-1">
 <pre class="example">
 Are you tired of hacking?, take some rest here.
@@ -1731,7 +1601,7 @@ ssh memcpy@pwnable.kr -p2222 (pw:guest)
 </div>
 
 <div id="outline-container-sec-17-2" class="outline-3">
-<h3 id="sec-17-2"><span class="section-number-3">17.2</span> 分析</h3>
+<h3 id="sec-17-2">分析</h3>
 <div class="outline-text-3" id="text-17-2">
 <p>
 readme
@@ -1926,10 +1796,10 @@ flag: <code>1_w4nn4_br34K_th3_m3m0ry_4lignm3nt</code>
 </div>
 
 <div id="outline-container-sec-18" class="outline-2">
-<h2 id="sec-18"><span class="section-number-2">18</span> asm</h2>
+<h2 id="sec-18">asm</h2>
 <div class="outline-text-2" id="text-18">
 </div><div id="outline-container-sec-18-1" class="outline-3">
-<h3 id="sec-18-1"><span class="section-number-3">18.1</span> 简介</h3>
+<h3 id="sec-18-1">简介</h3>
 <div class="outline-text-3" id="text-18-1">
 <pre class="example">
 Mommy! I think I know how to make shellcodes
@@ -1940,7 +1810,7 @@ ssh asm@pwnable.kr -p2222 (pw: guest)
 </div>
 
 <div id="outline-container-sec-18-2" class="outline-3">
-<h3 id="sec-18-2"><span class="section-number-3">18.2</span> 分析</h3>
+<h3 id="sec-18-2">分析</h3>
 <div class="outline-text-3" id="text-18-2">
 <pre class="example">
 asm@ubuntu:~$ ls -l
@@ -1972,16 +1842,16 @@ asm.c
 </div>
 </div>
 
-<p class="date">Date: &lt;2018-05-7 Mon 22:12&gt;</p>
+<p class="date">Date: &lt;2018-05-4 Fri 10:19&gt;</p>
 <p class="author">Author: schemr</p>
-<p class="date">Created: 2018-05-07 一 23:39</p>
+<p class="date">Created: 2018-05-08 二 00:05</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/" target="_blank" rel="noopener">Emacs</a> 25.3.1 (<a href="http://orgmode.org" target="_blank" rel="noopener">Org</a> mode 8.2.10)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer" target="_blank" rel="noopener">Validate</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://yintianliang.github.io/2018/05/07/pwnable.kr - Toddler's Bottle/" data-id="cjgwexrkv0004kfwjqss67yb8" class="article-share-link">分享</a>
+      <a data-url="https://yintianliang.github.io/2018/05/04/pwnable.kr - Toddler's Bottle/" data-id="cjgwft91x00043pwjbfuny7ut" class="article-share-link">分享</a>
       
       
       
@@ -2035,10 +1905,19 @@ asm.c
     
 <nav id="article-nav">
   
+    <a href="/2018/05/07/hello-world/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          Hello World
+        
+      </div>
+    </a>
   
-    <a href="/2018/05/07/改进hexo表格显示效果/" id="article-nav-older" class="article-nav-link-wrap">
+  
+    <a href="/2017/12/26/pip安装pwntools时卡住/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">下一篇</strong>
-      <div class="article-nav-title">改进hexo/cafe主题表格显示效果</div>
+      <div class="article-nav-title">pip安装pwntools时卡住</div>
     </a>
   
 </nav>
@@ -2074,7 +1953,7 @@ asm.c
       
         <strong class="toc-title">文章目录</strong>
         <div class="toc-widget-list">
-              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">Table of Contents</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sec-1"><span class="toc-number">2.</span> <span class="toc-text">1 [fd]</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#sec-1-1"><span class="toc-number">2.1.</span> <span class="toc-text">1.1 简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sec-1-2"><span class="toc-number">2.2.</span> <span class="toc-text">1.2 分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sec-2"><span class="toc-number">3.</span> <span class="toc-text">2 [collision]</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#sec-2-1"><span class="toc-number">3.1.</span> <span class="toc-text">2.1 简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sec-2-2"><span class="toc-number">3.2.</span> <span class="toc-text">2.2 分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sec-3"><span class="toc-number">4.</span> <span class="toc-text">3 bof</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#sec-3-1"><span class="toc-number">4.1.</span> <span class="toc-text">3.1 简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sec-3-2"><span class="toc-number">4.2.</span> <span class="toc-text">3.2 分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sec-4"><span class="toc-number">5.</span> <span class="toc-text">4 flag</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#sec-4-1"><span class="toc-number">5.1.</span> <span class="toc-text">4.1 简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sec-4-2"><span class="toc-number">5.2.</span> <span class="toc-text">4.2 分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sec-5"><span class="toc-number">6.</span> <span class="toc-text">5 passcode</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#sec-5-1"><span class="toc-number">6.1.</span> <span class="toc-text">5.1 简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sec-5-2"><span class="toc-number">6.2.</span> <span class="toc-text">5.2 分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sec-6"><span class="toc-number">7.</span> <span class="toc-text">6 random</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#sec-6-1"><span class="toc-number">7.1.</span> <span class="toc-text">6.1 简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sec-6-2"><span class="toc-number">7.2.</span> <span class="toc-text">6.2 分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sec-7"><span class="toc-number">8.</span> <span class="toc-text">7 input</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#sec-7-1"><span class="toc-number">8.1.</span> <span class="toc-text">7.1 简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sec-7-2"><span class="toc-number">8.2.</span> <span class="toc-text">7.2 分析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#sec-7-2-1"><span class="toc-number">8.2.1.</span> <span class="toc-text">7.2.1 第一关</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#sec-7-2-2"><span class="toc-number">8.2.2.</span> <span class="toc-text">7.2.2 第二关</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#sec-7-2-3"><span class="toc-number">8.2.3.</span> <span class="toc-text">7.2.3 第三关</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#sec-7-2-4"><span class="toc-number">8.2.4.</span> <span class="toc-text">7.2.4 第四关</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#sec-7-2-5"><span class="toc-number">8.2.5.</span> <span class="toc-text">7.2.5 第五关</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#sec-7-2-6"><span class="toc-number">8.2.6.</span> <span class="toc-text">7.2.6 最终代码</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sec-8"><span class="toc-number">9.</span> <span class="toc-text">8 leg</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#sec-8-1"><span class="toc-number">9.1.</span> <span class="toc-text">8.1 简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sec-8-2"><span class="toc-number">9.2.</span> <span class="toc-text">8.2 分析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#sec-8-2-1"><span class="toc-number">9.2.1.</span> <span class="toc-text">8.2.1 ARM汇编简介</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#sec-8-2-2"><span class="toc-number">9.2.2.</span> <span class="toc-text">8.2.2 key1</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#sec-8-2-3"><span class="toc-number">9.2.3.</span> <span class="toc-text">8.2.3 key2</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#sec-8-2-4"><span class="toc-number">9.2.4.</span> <span class="toc-text">8.2.4 key3</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sec-9"><span class="toc-number">10.</span> <span class="toc-text">9 mistake</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#sec-9-1"><span class="toc-number">10.1.</span> <span class="toc-text">9.1 简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sec-9-2"><span class="toc-number">10.2.</span> <span class="toc-text">9.2 分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sec-10"><span class="toc-number">11.</span> <span class="toc-text">10 shellshock</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#sec-10-1"><span class="toc-number">11.1.</span> <span class="toc-text">10.1 简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sec-10-2"><span class="toc-number">11.2.</span> <span class="toc-text">10.2 分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sec-11"><span class="toc-number">12.</span> <span class="toc-text">11 coin1</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#sec-11-1"><span class="toc-number">12.1.</span> <span class="toc-text">11.1 简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sec-11-2"><span class="toc-number">12.2.</span> <span class="toc-text">11.2 分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sec-12"><span class="toc-number">13.</span> <span class="toc-text">12 blackjack</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#sec-12-1"><span class="toc-number">13.1.</span> <span class="toc-text">12.1 简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sec-12-2"><span class="toc-number">13.2.</span> <span class="toc-text">12.2 分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sec-13"><span class="toc-number">14.</span> <span class="toc-text">13 lotto</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#sec-13-1"><span class="toc-number">14.1.</span> <span class="toc-text">13.1 简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sec-13-2"><span class="toc-number">14.2.</span> <span class="toc-text">13.2 分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sec-14"><span class="toc-number">15.</span> <span class="toc-text">14 cmd1</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#sec-14-1"><span class="toc-number">15.1.</span> <span class="toc-text">14.1 简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sec-14-2"><span class="toc-number">15.2.</span> <span class="toc-text">14.2 分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sec-15"><span class="toc-number">16.</span> <span class="toc-text">15 cmd2</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#sec-15-1"><span class="toc-number">16.1.</span> <span class="toc-text">15.1 简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sec-15-2"><span class="toc-number">16.2.</span> <span class="toc-text">15.2 分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sec-15-3"><span class="toc-number">16.3.</span> <span class="toc-text">15.3 大佬们的解法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sec-16"><span class="toc-number">17.</span> <span class="toc-text">16 uaf</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#sec-16-1"><span class="toc-number">17.1.</span> <span class="toc-text">16.1 简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sec-16-2"><span class="toc-number">17.2.</span> <span class="toc-text">16.2 分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sec-17"><span class="toc-number">18.</span> <span class="toc-text">17 memcpy</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#sec-17-1"><span class="toc-number">18.1.</span> <span class="toc-text">17.1 简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sec-17-2"><span class="toc-number">18.2.</span> <span class="toc-text">17.2 分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sec-18"><span class="toc-number">19.</span> <span class="toc-text">18 asm</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#sec-18-1"><span class="toc-number">19.1.</span> <span class="toc-text">18.1 简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sec-18-2"><span class="toc-number">19.2.</span> <span class="toc-text">18.2 分析</span></a></li></ol></li></ol>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#sec-1"><span class="toc-number">1.</span> <span class="toc-text">[fd]</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#sec-1-1"><span class="toc-number">1.1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sec-1-2"><span class="toc-number">1.2.</span> <span class="toc-text">分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sec-2"><span class="toc-number">2.</span> <span class="toc-text">[collision]</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#sec-2-1"><span class="toc-number">2.1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sec-2-2"><span class="toc-number">2.2.</span> <span class="toc-text">分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sec-3"><span class="toc-number">3.</span> <span class="toc-text">bof</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#sec-3-1"><span class="toc-number">3.1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sec-3-2"><span class="toc-number">3.2.</span> <span class="toc-text">分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sec-4"><span class="toc-number">4.</span> <span class="toc-text">flag</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#sec-4-1"><span class="toc-number">4.1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sec-4-2"><span class="toc-number">4.2.</span> <span class="toc-text">分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sec-5"><span class="toc-number">5.</span> <span class="toc-text">passcode</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#sec-5-1"><span class="toc-number">5.1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sec-5-2"><span class="toc-number">5.2.</span> <span class="toc-text">分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sec-6"><span class="toc-number">6.</span> <span class="toc-text">random</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#sec-6-1"><span class="toc-number">6.1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sec-6-2"><span class="toc-number">6.2.</span> <span class="toc-text">分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sec-7"><span class="toc-number">7.</span> <span class="toc-text">input</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#sec-7-1"><span class="toc-number">7.1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sec-7-2"><span class="toc-number">7.2.</span> <span class="toc-text">分析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#sec-7-2-1"><span class="toc-number">7.2.1.</span> <span class="toc-text">第一关</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#sec-7-2-2"><span class="toc-number">7.2.2.</span> <span class="toc-text">第二关</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#sec-7-2-3"><span class="toc-number">7.2.3.</span> <span class="toc-text">第三关</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#sec-7-2-4"><span class="toc-number">7.2.4.</span> <span class="toc-text">第四关</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#sec-7-2-5"><span class="toc-number">7.2.5.</span> <span class="toc-text">第五关</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#sec-7-2-6"><span class="toc-number">7.2.6.</span> <span class="toc-text">最终代码</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sec-8"><span class="toc-number">8.</span> <span class="toc-text">leg</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#sec-8-1"><span class="toc-number">8.1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sec-8-2"><span class="toc-number">8.2.</span> <span class="toc-text">分析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#sec-8-2-1"><span class="toc-number">8.2.1.</span> <span class="toc-text">ARM汇编简介</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#sec-8-2-2"><span class="toc-number">8.2.2.</span> <span class="toc-text">key1</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#sec-8-2-3"><span class="toc-number">8.2.3.</span> <span class="toc-text">key2</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#sec-8-2-4"><span class="toc-number">8.2.4.</span> <span class="toc-text">key3</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sec-9"><span class="toc-number">9.</span> <span class="toc-text">mistake</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#sec-9-1"><span class="toc-number">9.1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sec-9-2"><span class="toc-number">9.2.</span> <span class="toc-text">分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sec-10"><span class="toc-number">10.</span> <span class="toc-text">shellshock</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#sec-10-1"><span class="toc-number">10.1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sec-10-2"><span class="toc-number">10.2.</span> <span class="toc-text">分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sec-11"><span class="toc-number">11.</span> <span class="toc-text">coin1</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#sec-11-1"><span class="toc-number">11.1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sec-11-2"><span class="toc-number">11.2.</span> <span class="toc-text">分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sec-12"><span class="toc-number">12.</span> <span class="toc-text">blackjack</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#sec-12-1"><span class="toc-number">12.1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sec-12-2"><span class="toc-number">12.2.</span> <span class="toc-text">分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sec-13"><span class="toc-number">13.</span> <span class="toc-text">lotto</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#sec-13-1"><span class="toc-number">13.1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sec-13-2"><span class="toc-number">13.2.</span> <span class="toc-text">分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sec-14"><span class="toc-number">14.</span> <span class="toc-text">cmd1</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#sec-14-1"><span class="toc-number">14.1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sec-14-2"><span class="toc-number">14.2.</span> <span class="toc-text">分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sec-15"><span class="toc-number">15.</span> <span class="toc-text">cmd2</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#sec-15-1"><span class="toc-number">15.1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sec-15-2"><span class="toc-number">15.2.</span> <span class="toc-text">分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sec-15-3"><span class="toc-number">15.3.</span> <span class="toc-text">大佬们的解法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sec-16"><span class="toc-number">16.</span> <span class="toc-text">uaf</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#sec-16-1"><span class="toc-number">16.1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sec-16-2"><span class="toc-number">16.2.</span> <span class="toc-text">分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sec-17"><span class="toc-number">17.</span> <span class="toc-text">memcpy</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#sec-17-1"><span class="toc-number">17.1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sec-17-2"><span class="toc-number">17.2.</span> <span class="toc-text">分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sec-18"><span class="toc-number">18.</span> <span class="toc-text">asm</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#sec-18-1"><span class="toc-number">18.1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sec-18-2"><span class="toc-number">18.2.</span> <span class="toc-text">分析</span></a></li></ol></li></ol>
           </div>
       </div>
     </div>
