@@ -3,17 +3,20 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Hexo</title>
+  <title>schemr&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/index.html">
-<meta property="og:site_name" content="Hexo">
+  <meta name="description" content="schemr的博客, 记录日常">
+<meta property="og:type" content="website">
+<meta property="og:title" content="schemr&#39;s blog">
+<meta property="og:url" content="https://yintianliang.github.io/index.html">
+<meta property="og:site_name" content="schemr&#39;s blog">
+<meta property="og:description" content="schemr的博客, 记录日常">
 <meta property="og:locale" content="default">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="schemr&#39;s blog">
+<meta name="twitter:description" content="schemr的博客, 记录日常">
   
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+    <link rel="alternate" href="/atom.xml" title="schemr&#39;s blog" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
@@ -41,7 +44,7 @@
         <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://yintianliang.github.io"></form>
       </div>
       <nav id="main-nav">
         <a id="main-nav-toggle" class="nav-icon"></a>
@@ -57,7 +60,7 @@
     </div>
     <div id="header-title" class="inner">
       <h1 id="logo-wrap">
-        <a href="/" id="logo">Hexo</a>
+        <a href="/" id="logo">schemr&#39;s blog</a>
       </h1>
       
     </div>
@@ -65,47 +68,6 @@
 </header>
       <div class="outer">
         <section id="main">
-  
-    <article id="post-Hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/05/07/Hello-world/" class="article-date">
-  <time datetime="2018-05-07T08:27:14.000Z" itemprop="datePublished">2018-05-07</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/07/Hello-world/">Hello, world</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <!-- Table of Contents -->
-        
-        <h1 id="Hello-world"><a href="#Hello-world" class="headerlink" title="Hello, world"></a>Hello, world</h1><p>Hello, world</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/05/07/Hello-world/" data-id="cjgvzu2vw0000yqwjl3thl3aw" class="article-share-link">分享</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
- 
-
-
   
     <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -144,10 +106,54 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/05/07/hello-world/" data-id="cjgvzu2w10001yqwjpt81xciq" class="article-share-link">分享</a>
+      <a data-url="https://yintianliang.github.io/2018/05/07/hello-world/" data-id="cjgw15r0d0000s3wjy6kcy8tr" class="article-share-link">分享</a>
       
       
       
+    </footer>
+  </div>
+  
+</article>
+ 
+
+
+  
+    <article id="post-pip安装pwntools时卡住" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/12/26/pip安装pwntools时卡住/" class="article-date">
+  <time datetime="2017-12-25T19:14:29.000Z" itemprop="datePublished">2017-12-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/26/pip安装pwntools时卡住/">pip安装pwntools时卡住</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <p>卡住的原因是缺少pandoc依赖,<br>这货一声不吭地自己下载. 结果下载地址被墙</p>
+<p>解决方案(以Arch系为例)</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pacman -S pandoc</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yintianliang.github.io/2017/12/26/pip安装pwntools时卡住/" data-id="cjgw15r0i0001s3wj88vh46in" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/">CTF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li></ul>
+
     </footer>
   </div>
   
@@ -190,6 +196,13 @@
 
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title tagcloud">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/CTF/" style="font-size: 14px;">CTF</a> <a href="/tags/Python/" style="font-size: 14px;">Python</a>
+    </div>
+  </div>
+
   
     
   <div class="widget-wrap">
@@ -198,11 +211,11 @@
       <ul>
         
           <li>
-            <a href="/2018/05/07/Hello-world/">Hello, world</a>
+            <a href="/2018/05/07/hello-world/">Hello World</a>
           </li>
         
           <li>
-            <a href="/2018/05/07/hello-world/">Hello World</a>
+            <a href="/2017/12/26/pip安装pwntools时卡住/">pip安装pwntools时卡住</a>
           </li>
         
       </ul>
@@ -214,7 +227,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title archive">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">2</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -257,7 +270,7 @@
   
   <div class="outer">
     <div id="footer-left">
-      &copy; 2014 - 2018 John Doe&nbsp;|&nbsp;
+      &copy; 2014 - 2018 schemr&nbsp;|&nbsp;
       主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
     </div>
      <div id="footer-right">
