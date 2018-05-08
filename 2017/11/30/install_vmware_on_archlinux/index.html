@@ -3,20 +3,20 @@
 <head>
   <meta charset="utf-8">
   
-  <title>pip安装pwntools时卡住 | schemr&#39;s blog</title>
+  <title>在ArchLinux上安装VMware | schemr&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="卡住的原因是缺少pandoc依赖,这货一声不吭地自己下载. 结果下载地址被墙 解决方案(以Arch系为例) 1pacman -S pandoc">
-<meta name="keywords" content="Python,CTF">
+  <meta name="description" content="1234567891011121314# 1.建立 init.d 文件夹, 尽管对于arch 来说没有卵用sudo mkdir /etc/init.d# 2.安装内核头文件, 因为接下来需要编译内核模块, 以内核4.14为例sudo pacman -S linux414-headers# 3.安装ncurses5-compat-libs, 因为vm-tools依赖ncurses5, 而ar">
+<meta name="keywords" content="linux">
 <meta property="og:type" content="article">
-<meta property="og:title" content="pip安装pwntools时卡住">
-<meta property="og:url" content="https://yintianliang.github.io/2017/12/26/pip安装pwntools时卡住/index.html">
+<meta property="og:title" content="在ArchLinux上安装VMware">
+<meta property="og:url" content="https://yintianliang.github.io/2017/11/30/install_vmware_on_archlinux/index.html">
 <meta property="og:site_name" content="schemr&#39;s blog">
-<meta property="og:description" content="卡住的原因是缺少pandoc依赖,这货一声不吭地自己下载. 结果下载地址被墙 解决方案(以Arch系为例) 1pacman -S pandoc">
+<meta property="og:description" content="1234567891011121314# 1.建立 init.d 文件夹, 尽管对于arch 来说没有卵用sudo mkdir /etc/init.d# 2.安装内核头文件, 因为接下来需要编译内核模块, 以内核4.14为例sudo pacman -S linux414-headers# 3.安装ncurses5-compat-libs, 因为vm-tools依赖ncurses5, 而ar">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-05-07T12:46:26.198Z">
+<meta property="og:updated_time" content="2018-05-08T04:35:03.788Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="pip安装pwntools时卡住">
-<meta name="twitter:description" content="卡住的原因是缺少pandoc依赖,这货一声不吭地自己下载. 结果下载地址被墙 解决方案(以Arch系为例) 1pacman -S pandoc">
+<meta name="twitter:title" content="在ArchLinux上安装VMware">
+<meta name="twitter:description" content="1234567891011121314# 1.建立 init.d 文件夹, 尽管对于arch 来说没有卵用sudo mkdir /etc/init.d# 2.安装内核头文件, 因为接下来需要编译内核模块, 以内核4.14为例sudo pacman -S linux414-headers# 3.安装ncurses5-compat-libs, 因为vm-tools依赖ncurses5, 而ar">
   
     <link rel="alternate" href="/atom.xml" title="schemr&#39;s blog" type="application/atom+xml">
   
@@ -69,12 +69,16 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-pip安装pwntools时卡住" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-install_vmware_on_archlinux" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/12/26/pip安装pwntools时卡住/" class="article-date">
-  <time datetime="2017-12-25T19:14:29.000Z" itemprop="datePublished">2017-12-26</time>
+    <a href="/2017/11/30/install_vmware_on_archlinux/" class="article-date">
+  <time datetime="2017-11-30T00:00:00.000Z" itemprop="datePublished">2017-11-30</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/linux/">linux</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -83,7 +87,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      pip安装pwntools时卡住
+      在ArchLinux上安装VMware
     </h1>
   
 
@@ -93,18 +97,23 @@
       
         <!-- Table of Contents -->
         
-        <p>卡住的原因是缺少pandoc依赖,<br>这货一声不吭地自己下载. 结果下载地址被墙</p>
-<p>解决方案(以Arch系为例)</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pacman -S pandoc</span><br></pre></td></tr></table></figure>
+        
+
+<div class="org-src-container">
+
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1.建立 init.d 文件夹, 尽管对于arch 来说没有卵用</span></span><br><span class="line">sudo mkdir /etc/init.d</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.安装内核头文件, 因为接下来需要编译内核模块, 以内核4.14为例</span></span><br><span class="line">sudo pacman -S linux414-headers</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3.安装ncurses5-compat-libs, 因为vm-tools依赖ncurses5, 而arch只有ncurses6</span></span><br><span class="line"><span class="comment"># 这个地方如果GPG校验失败的话, 就添加 --m-arg "--skipchecksums --skippgpcheck"</span></span><br><span class="line">yaourt -S ncurses5-compat-libs</span><br><span class="line"></span><br><span class="line"><span class="comment"># 4.下载VMware Linux版, 得到一个.bundle文件</span></span><br><span class="line"><span class="comment"># 以root身份运行之</span></span><br><span class="line">sudo chmod +x xxx.bundle</span><br><span class="line">sudo ./xxx.bundle</span><br></pre></td></tr></table></figure>
+</div>
+
+Last Updated 2018-05-08 二 12:35.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="noopener">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" target="_blank" rel="noopener">Emacs</a> 25.3.1 (<a href="http://orgmode.org" target="_blank" rel="noopener">Org</a> mode 8.2.10)
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://yintianliang.github.io/2017/12/26/pip安装pwntools时卡住/" data-id="cjgwg1g150000mpwjcvn3o93n" class="article-share-link">分享</a>
+      <a data-url="https://yintianliang.github.io/2017/11/30/install_vmware_on_archlinux/" data-id="cjgx6lzv60002azwjd6hphcji" class="article-share-link">分享</a>
       
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/">CTF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li></ul>
 
     </footer>
   </div>
@@ -154,11 +163,11 @@
     
 <nav id="article-nav">
   
-    <a href="/2018/05/04/pwnable.kr - Toddler's Bottle/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/12/26/gnomre-terminal-transparency/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">上一篇</strong>
       <div class="article-nav-title">
         
-          pwnable.kr - Toddler&#39;s Bottle
+          解决Gnome终端无法设置透明度的问题
         
       </div>
     </a>
@@ -204,15 +213,23 @@
       <ul>
         
           <li>
-            <a href="/2018/05/07/改进hexo表格显示效果/">改进hexo/cafe主题表格显示效果</a>
+            <a href="/2018/05/07/improve_hexo_table/">改进hexo/cafe主题表格显示效果</a>
           </li>
         
           <li>
-            <a href="/2018/05/04/pwnable.kr - Toddler's Bottle/">pwnable.kr - Toddler&#39;s Bottle</a>
+            <a href="/2018/05/04/pwnable.kr_Toddler's Bottle/">pwnable.kr - Toddler&#39;s Bottle</a>
           </li>
         
           <li>
-            <a href="/2017/12/26/pip安装pwntools时卡住/">pip安装pwntools时卡住</a>
+            <a href="/2017/12/26/pip_fail_to_install_pwntools/">pip安装pwntools时卡住</a>
+          </li>
+        
+          <li>
+            <a href="/2017/12/26/gnomre-terminal-transparency/">解决Gnome终端无法设置透明度的问题</a>
+          </li>
+        
+          <li>
+            <a href="/2017/11/30/install_vmware_on_archlinux/">在ArchLinux上安装VMware</a>
           </li>
         
       </ul>
