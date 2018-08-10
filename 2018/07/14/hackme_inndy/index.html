@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.4.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="听奥博大佬说对新手很友好, 来试试 官方不建议直接给出 flag, 就不放 flag 了">
+<meta name="keywords" content="ctf,writeup">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hackme.inndy 部分writeup">
+<meta property="og:url" content="https://aloxaf.github.io/2018/07/14/hackme_inndy/index.html">
+<meta property="og:site_name" content="Aloxaf&#39;s blog">
+<meta property="og:description" content="听奥博大佬说对新手很友好, 来试试 官方不建议直接给出 flag, 就不放 flag 了">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-08-10T17:14:49.188Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="hackme.inndy 部分writeup">
+<meta name="twitter:description" content="听奥博大佬说对新手很友好, 来试试 官方不建议直接给出 flag, 就不放 flag 了">
+
+
+
+
+
+
+  <link rel="canonical" href="https://aloxaf.github.io/2018/07/14/hackme_inndy/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>hackme.inndy 部分writeup | Aloxaf's blog</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Aloxaf's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://aloxaf.github.io/2018/07/14/hackme_inndy/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Aloxaf">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Aloxaf's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">hackme.inndy 部分writeup
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-07-14 15:00:07" itemprop="dateCreated datePublished" datetime="2018-07-14T15:00:07+08:00">2018-07-14</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-08-11 01:14:49" itemprop="dateModified" datetime="2018-08-11T01:14:49+08:00">2018-08-11</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/writeup/" itemprop="url" rel="index"><span itemprop="name">writeup</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>听奥博大佬说对新手很友好, 来试试</p>
+<p>官方不建议直接给出 flag, 就不放 flag 了</p>
+<a id="more"></a>
+<h1 id="Misc"><a href="#Misc" class="headerlink" title="Misc"></a>Misc</h1><h2 id="flag"><a href="#flag" class="headerlink" title="flag"></a>flag</h2><blockquote>
+<p>All flags are in this format:<br>FLAG{This is flag’s format}</p>
+</blockquote>
+<p>RT</p>
+<h2 id="corgi-can-fly"><a href="#corgi-can-fly" class="headerlink" title="corgi can fly"></a>corgi can fly</h2><blockquote>
+<p>Corgi is cute, right?</p>
+<p>Pillow (Python) and Bitmap (.NET) are your friends.</p>
+<p>(Maybe you can try stegsolve)</p>
+</blockquote>
+<p><code>binwalk</code> 试试没啥玩意儿, <code>hexdump -C</code> 简单看一下,<br>发现末尾有一段可疑的base64字符串</p>
+<p><code>echo RGlkIHlvdSB0cmllZCBMU0I/Cg==|base64 -d</code> decode之, 得到<br><code>Did you tried LSB?</code></p>
+<p>然后LSB走起, 得到二维码, 扫描之</p>
+<h2 id="television"><a href="#television" class="headerlink" title="television"></a>television</h2><blockquote>
+<p>Looks like my television was broken</p>
+</blockquote>
+<p><code>binwalk</code> 试试没啥玩意儿, <code>hexdump -C</code> 简单看一下, 就发现了flag…</p>
+<h2 id="meow"><a href="#meow" class="headerlink" title="meow"></a>meow</h2><blockquote>
+<p>Pusheen is cute!</p>
+</blockquote>
+<p><code>binwalk</code> 试试好像有点玩意儿, <code>foremost meow.png</code> 提取一下, 得到一个 zip<br>和 png, 试着解压发现zip有密码, <code>unzip -v 00000094.zip</code><br>冷静地看一下这个zip</p>
+<p>发现里面除了 flag 还有一个图片, crc32与开始得到的 png 一样. 明文攻击,<br>pkcrack 走起.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">zip plain.zip ../png/00000000.png</span><br><span class="line">pkcrack -C 00000094.zip -c meow/t39.1997-6/p296x100/10173502_279586372215628_1950740854_n.png -P plain.zip -p 00000000.png -d flag.zip -a</span><br><span class="line">x flag.zip</span><br><span class="line">cat flag/meow/flag</span><br></pre></td></tr></table></figure>
+<h2 id="where-is-flag"><a href="#where-is-flag" class="headerlink" title="where is flag"></a>where is flag</h2><blockquote>
+<p>Do you know regular expression?</p>
+</blockquote>
+<p>下载得到一个 flag.xz, <code>head -c 100</code> 看看解压得到的 flag 文件</p>
+<p><code>wH3r3isFLAGc1oudyoufindit?qqajslfge7frHKFLAGcuonfsE4iJlrp9mCG[fl@g]eK4xdSgJpNuHP{z0ENPuio59R7nxpVgML</code></p>
+<p>试试 <code>cat flag|grep -oP &quot;FLAG{[^{}]+?}&quot;</code>, 完全看不出flag.</p>
+<p>选择了暴力…<br><code>cat flag|grep -oP &quot;FLAG{[^{}]+?}&quot;|xargs -P 5 -n 1 ./postflag.py</code></p>
+<p>暴力完发现其实还是有特征的 <code>FLAG{[0-9a-zA-Z]+}</code></p>
+<h2 id="encoder"><a href="#encoder" class="headerlink" title="encoder"></a>encoder</h2><blockquote>
+<p>Can you decode this?</p>
+</blockquote>
+<p>下载解压得到 encoder.py 和 flag.enc, 乍一看怀疑这题目真的没放错区吗</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python2</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">import</span> string</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">rot13</span><span class="params">(s)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> s.translate(string.maketrans(string.uppercase + string.lowercase,</span><br><span class="line">        string.uppercase[<span class="number">13</span>:] + string.uppercase[:<span class="number">13</span>] +</span><br><span class="line">        string.lowercase[<span class="number">13</span>:] + string.lowercase[:<span class="number">13</span>]))</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">base64</span><span class="params">(s)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">''</span>.join(s.encode(<span class="string">'base64'</span>).split())</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hex</span><span class="params">(s)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> s.encode(<span class="string">'hex'</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">upsidedown</span><span class="params">(s)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> s.translate(string.maketrans(string.uppercase + string.lowercase,</span><br><span class="line">        string.lowercase + string.uppercase))</span><br><span class="line"></span><br><span class="line">flag = <span class="string">'FLAG&#123;.....................&#125;'</span>  <span class="comment"># try to recover flag</span></span><br><span class="line"></span><br><span class="line">E = (rot13, base64, hex, upsidedown)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(random.randint(<span class="number">30</span>, <span class="number">50</span>)):</span><br><span class="line">    <span class="keyword">print</span> i</span><br><span class="line">    c = random.randint(<span class="number">0</span>, len(E) - <span class="number">1</span>)</span><br><span class="line">    flag = <span class="string">'%d%s'</span> % (c, E[c](flag))</span><br><span class="line"></span><br><span class="line">open(<span class="string">'flag.enc'</span>, <span class="string">'w'</span>).write(flag)</span><br></pre></td></tr></table></figure>
+<p>乍一看挺难, 但仔细点就会发现 c 的值就在密文开头</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> binascii <span class="keyword">import</span> unhexlify</span><br><span class="line"><span class="keyword">from</span> base64 <span class="keyword">import</span> b64decode</span><br><span class="line"><span class="keyword">import</span> string</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">unrot13</span><span class="params">(s)</span>:</span></span><br><span class="line">     <span class="keyword">return</span> s.translate(str.maketrans(string.ascii_uppercase[<span class="number">13</span>:] + string.ascii_uppercase[:<span class="number">13</span>] +</span><br><span class="line">                                         string.ascii_lowercase[<span class="number">13</span>:] + string.ascii_lowercase[:<span class="number">13</span>],</span><br><span class="line">                                         string.ascii_uppercase + string.ascii_lowercase))</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">unupsidedown</span><span class="params">(s)</span>:</span></span><br><span class="line">     <span class="keyword">return</span> s.translate(str.maketrans(string.ascii_lowercase + string.ascii_uppercase,</span><br><span class="line">                                         string.ascii_uppercase + string.ascii_lowercase))</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">unbase64</span><span class="params">(s)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> b64decode(s).decode()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">unhex</span><span class="params">(s)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> unhexlify(s).decode()</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> open(<span class="string">'./flag.enc'</span>) <span class="keyword">as</span> f:</span><br><span class="line">    data = f.read()</span><br><span class="line"></span><br><span class="line">E = (unrot13, unbase64, unhex, unupsidedown)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">50</span>):</span><br><span class="line">    c, data = int(data[<span class="number">0</span>]), data[<span class="number">1</span>:]</span><br><span class="line">    data = E[c](data)</span><br><span class="line">    <span class="keyword">if</span> data.startswith(<span class="string">'FLAG'</span>):</span><br><span class="line">        print(data)</span><br><span class="line">        <span class="keyword">break</span></span><br></pre></td></tr></table></figure>
+<h2 id="slow"><a href="#slow" class="headerlink" title="slow"></a>slow</h2><blockquote>
+<p>nc hackme.inndy.tw 7708<br>OMG, It’s slow.</p>
+</blockquote>
+<h2 id="pusheen-txt"><a href="#pusheen-txt" class="headerlink" title="pusheen.txt"></a>pusheen.txt</h2><blockquote>
+<p>Do you think pusheen is cute?</p>
+</blockquote>
+<p>下载解压得到 pusheen.txt, 里面是一堆不可名状</p>
+<p>总共就两张图片, 把这个序列转成二进制, 再转ASCII<br><code>grep -oP &quot;(▄▀▀▒██▒██▒)|(▄▀▀ ██ ██ )&quot; pusheen.txt|xargs echo -n|sed &#39;s/▄▀▀▒██▒██▒/1/g;s/▄▀▀ ██ ██/0/g;s/ //g&#39;|rax2 -bt</code></p>
+<h2 id="big"><a href="#big" class="headerlink" title="big"></a>big</h2><blockquote>
+<p>It’s a big file, read the flag.</p>
+</blockquote>
+<p>下载一个 big.xxz, 解压一次得到 big.xz. 里面是个 16G 的 \”big\”</p>
+<p>xzcat 看一下都是 <code>THISisNOTFLAG{}</code>, 估计在最末尾</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> lzma</span><br><span class="line"></span><br><span class="line">f = lzma.open(<span class="string">'./big.xz'</span>)</span><br><span class="line">f.seek(<span class="number">-100</span>, <span class="number">2</span>) <span class="comment">#巨慢的 seek()...</span></span><br><span class="line">print(f.read())</span><br></pre></td></tr></table></figure>
+<h1 id="Web"><a href="#Web" class="headerlink" title="Web"></a>Web</h1><h2 id="hide-and-seek"><a href="#hide-and-seek" class="headerlink" title="hide and seek"></a>hide and seek</h2><blockquote>
+<p>Can you see me? I’m so close to you but you can’t see me.</p>
+</blockquote>
+<p>在首页</p>
+<h2 id="guestbook"><a href="#guestbook" class="headerlink" title="guestbook"></a>guestbook</h2><blockquote>
+<p>This guestbook sucks. sqlmap is your friend.</p>
+</blockquote>
+<p>打开网站, 有三个选项, Home, Message List, 和 New Post. 点击 New Post<br>随便发个帖, 然后回到 Message List, 点击即可进入开始发的帖子.</p>
+<p>获得的 url 如下: <code>https://hackme.inndy.tw/gb/?mod=read&amp;id=9</code></p>
+<p>试着访问 id=8, 访问不了. 直接 <code>sqlmap -u &#39;thisurl&#39;</code> 失败, 显示被重定向</p>
+<p>首先利用 BurpSuite 抓包, 然后对截获的数据包执行 Action: Copy to file.<br>假设保存为了 <code>request.txt</code>. 然后执行 <code>sqlmap -q request.txt -p id</code>,<br>成功判断出注入类型为基于时间的盲注, 然后找flag就行.</p>
+<h2 id="LFI"><a href="#LFI" class="headerlink" title="LFI"></a>LFI</h2><blockquote>
+<p>What this admin’s password? That is not important at all, just get the flag.<br>Tips: LFI, php://filter</p>
+</blockquote>
+<p>本地文件包含漏洞. 使用<br><code>php://filter/read=convert.base64-encode/resource=pages/login</code> 读取 login.php 的源码, 得到了管理员用户名和密码的 MD5, 根据 MD5 查到 password, 登录得到flag</p>
+<h2 id="homepage"><a href="#homepage" class="headerlink" title="homepage"></a>homepage</h2><blockquote>
+<p>Where is the flag? Did you check the code?</p>
+</blockquote>
+<p>根据提示去找code, 能发现一个 aaencode 过的js, 解密以后得到如下代码</p>
+<p>(值得一提的是 chrome 似乎自带了反混淆功能? 执行混淆后的代码, 在输出中点击 VM374:3 这种, 就会得到非常清晰的代码)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">print_qrcode</span>(<span class="params">o, c, n, e</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> r = [],</span><br><span class="line">    l = [];</span><br><span class="line">  c = c || <span class="string">"22px"</span>, n = n || <span class="string">"black"</span>, e = e || <span class="string">"white"</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; o.length; i++) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> p = o[i], t = <span class="number">0</span>; t &lt; p.length; t++) l.push(<span class="string">"%c\u25a0"</span>), r.push(<span class="string">"line-height:0; font-size: "</span> + c + <span class="string">"; color:"</span> + (<span class="string">"1"</span> == p[t] ? n : e));</span><br><span class="line">    l.push(<span class="string">"\n"</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  r.unshift(l.join(<span class="string">""</span>)), <span class="built_in">console</span>.log.apply(<span class="built_in">console</span>, r)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> qrcode = [<span class="string">"11111110001000110011101111111"</span>, <span class="string">"10000010111000110100101000001"</span>, <span class="string">"10111010100000100100001011101"</span>, <span class="string">"10111010010010010001001011101"</span>, <span class="string">"10111010111010111010101011101"</span>, <span class="string">"10000010101010011001001000001"</span>, <span class="string">"11111110101010101010101111111"</span>, <span class="string">"000000001011000101101"</span>, <span class="string">"1101001100011110101000111011"</span>, <span class="string">"1111000111011010110011110001"</span>, <span class="string">"1101111000011100101100011001"</span>, <span class="string">"110111011111110110110101001"</span>, <span class="string">"01011011001100101111111101001"</span>, <span class="string">"00100101010101000101110000111"</span>, <span class="string">"00011011000101100110011001111"</span>, <span class="string">"1010110101010001111101101001"</span>, <span class="string">"00001011110011000111110001111"</span>, <span class="string">"0101100100001110100011110001"</span>, <span class="string">"10010111100110100010110111011"</span>, <span class="string">"0010110110101011011010011101"</span>, <span class="string">"10010110010000001010111110111"</span>, <span class="string">"0000000011110010110110001111"</span>, <span class="string">"1111111010100000101010101111"</span>, <span class="string">"10000010000000111000100011101"</span>, <span class="string">"10111010001010001000111110011"</span>, <span class="string">"1011101010111000001010100111"</span>, <span class="string">"10111010001010000111110010001"</span>, <span class="string">"1000001011101111111110010101"</span>, <span class="string">"1111111011010110010011001101"</span>];</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"%cI love CTF!"</span>, <span class="string">"color: pink; font-size: 64px"</span>), print_qrcode(qrcode, <span class="string">"25px"</span>, <span class="string">"#333"</span>, <span class="string">"#ccc"</span>);</span><br></pre></td></tr></table></figure>
+<p>可以看到里面有 qrcode 字样,<br>将这串01数组转成图片就能得到二维码(有个比较短的需要自己补齐),<br>扫描得到flag</p>
+<h2 id="ping"><a href="#ping" class="headerlink" title="ping"></a>ping</h2><blockquote>
+<p>Can you ping 127.0.0.1?</p>
+</blockquote>
+<p>题目给了源码, 目的是对这个命令注入 <code>ping -c 1 &quot;{$ip}&quot; 2&gt;&amp;1</code></p>
+<p>过滤了 &amp;, |, ; 等字符, 但可以用 \$(ls) 这种来替换掉原来的ip,</p>
+<p>虽然过滤了 cat, 但linux下能读取文件的命令还很多, 至于字符串 flag 被过滤就用通配符来代替即可</p>
+<h2 id="scoreboard"><a href="#scoreboard" class="headerlink" title="scoreboard"></a>scoreboard</h2><blockquote>
+<p>DO NOT ATTACK or SCAN scoreboard, you don’t need to do that.</p>
+</blockquote>
+<p>嗯….藏在post的HEADER里</p>
+<h2 id="login-as-admin-0"><a href="#login-as-admin-0" class="headerlink" title="login as admin 0"></a>login as admin 0</h2><blockquote>
+<p>SQL Injection!</p>
+</blockquote>
+<p>可以看到源码, SQL语句模板如下<br><code>&quot;SELECT * FROM `user` WHERE `user` = &#39;%s&#39; AND `password` = &#39;%s&#39;&quot;</code>.<br>并且网页会在源码中返回 debug 信息, 包含了完整的 SQL 语句.</p>
+<p>代码主要过滤了 <code>&#39;</code> , 将其替换为了 <code>\&#39;</code> , 可以用 <code>\&#39;</code> 绕过. (替换后变成了<br><code>\\&#39;</code> )</p>
+<h2 id="login-as-admin0-1"><a href="#login-as-admin0-1" class="headerlink" title="login as admin0.1"></a>login as admin0.1</h2><h2 id="dafuq-manager-1"><a href="#dafuq-manager-1" class="headerlink" title="dafuq-manager 1"></a>dafuq-manager 1</h2><blockquote>
+<p>Login as guest and find flag 1</p>
+</blockquote>
+<p>篡改cookie的题, 进去后有提示</p>
+<h2 id="dafuq-manager-2"><a href="#dafuq-manager-2" class="headerlink" title="dafuq-manager 2"></a>dafuq-manager 2</h2><blockquote>
+<p>Login as admin, code review and get flag 2</p>
+</blockquote>
+<h1 id="Reversing"><a href="#Reversing" class="headerlink" title="Reversing"></a>Reversing</h1><h2 id="helloworld"><a href="#helloworld" class="headerlink" title="helloworld"></a>helloworld</h2><blockquote>
+<p>Guess a number please :D</p>
+</blockquote>
+<p>猜数字, 没啥混淆, 直接IDA</p>
+<h2 id="simple"><a href="#simple" class="headerlink" title="simple"></a>simple</h2><blockquote>
+<p>A little bit harder</p>
+</blockquote>
+<p>确实很simple</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"></span><br><span class="line">s = <span class="string">b'UIJT.JT.ZPVS.GMBH'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> s:</span><br><span class="line">    print(chr(i - <span class="number">1</span>), end=<span class="string">''</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="pyyy"><a href="#pyyy" class="headerlink" title="pyyy"></a>pyyy</h2><blockquote>
+<p>Can you pass the challenage?</p>
+</blockquote>
+<p>uncompyle6 反编译一下就行. 传说中的Y-组合子, 可以实现匿名函数的递归.<br>举个例子</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(<span class="keyword">lambda</span> _, arg1, arg2: _(_, arg1, arg2))(</span><br><span class="line">    <span class="keyword">lambda</span> self, arg1, arg2: <span class="string">'I can call my self'</span>, arg1, arg2)</span><br></pre></td></tr></table></figure>
+<p>不过不知道也无所谓, 反正得到flag只要 <code>int(c) == l</code> 成立. c是输入,<br>l是程序计算得到的, 而且与c无关, 直接加个 print 输出 l 就行.</p>
+<h2 id="accumulator"><a href="#accumulator" class="headerlink" title="accumulator"></a>accumulator</h2><blockquote>
+<p>Reverse this for the flag</p>
+</blockquote>
+<p>程序接受一个flag, SHA512后送入某函数(姑且称之为check)检查.</p>
+<p>分析check函数可得知验证方法就是把每一位累加, 然后与一个全局数组进行比对.</p>
+<p>提取出全局数组, 然后两两作差即可得到flag</p>
+<h2 id="GCCC"><a href="#GCCC" class="headerlink" title="GCCC"></a>GCCC</h2><blockquote>
+<p>Maybe you should try some z3 magic.</p>
+</blockquote>
+<p>一个 .Net 程序, 反编译以后可以发现只要求得一个 uint32<br>变量的值就能得到flag了.</p>
+<p>验证过程并不耗时, 于是直接爆破, 秒出flag. (不过我是从2^32^ -> 1)</p>
+<h2 id="ccc"><a href="#ccc" class="headerlink" title="ccc"></a>ccc</h2><blockquote>
+<p>ccc cc</p>
+</blockquote>
+<p>程序接受一个flag, 分别计算前 3, 6, 9, … 位的crc32值然后与 hashes<br>数组中的值进行比较</p>
+<p>每次的爆破量只有三位, 直接爆破就行</p>
+<h2 id="bitx"><a href="#bitx" class="headerlink" title="bitx"></a>bitx</h2><blockquote>
+<p>bits?</p>
+</blockquote>
+<p>这道题可以不逆向直接一位一位爆破…不知道是故意的还是题目漏洞…</p>
+<h2 id="2018-rev"><a href="#2018-rev" class="headerlink" title="2018-rev"></a>2018-rev</h2><blockquote>
+<p>Happy New Year 2018! Can you execute this binary on the right time with the right argv?</p>
+</blockquote>
+<p>运行/反编译可以得知, 这个程序需要在<br><code>argc == 2018 &amp;&amp; argv[0][0] == 1 &amp;&amp; envp[0][0] == 1</code> 和时间为<br><code>2018-01-01 00:00:00 (UTC)</code> 的情况下才会输出flag.</p>
+<p>argc直接 <code>./2018.rev {1..2017}</code> 就能得到, argv[0][0] 的话可以建立一个名为 <code>\x01</code> 的文件夹 (ls 看起来是这个样子<br><code>$&#39;\001&#39;</code>, nautilus 里看到是个空白…) 然后 <code>$\&#39;\001&#39;/2018.rev {1..2017}</code></p>
+<p>envp 那个试了一下不好解决, 主要是没办法让自己的变量刚好在第一位.<br>于是我就用IDA patch掉了这里 (当然后面引用了这个地方的也要一并patch掉)</p>
+<p>时间这个一开始用 libfaketime, 一直通不过验证. 一怒之下直接也 patch<br>掉了这里, 然后发现这个时候其实已经可以看出flag了…</p>
+<p>也可以 <code>sudo date -su &#39;2018-01-01 00:00:00&#39;;$&#39;\001&#39;/2018.rev {1..2017}</code>,<br>可以得到完整的flag. (其实一开始想到了这个,<br>可是觉得改回来会很麻烦就一直没去做,<br>最后试了才发现这个时间简直是秒改回…完全不用担心弄乱</p>
+<h2 id="what-the-hell"><a href="#what-the-hell" class="headerlink" title="what-the-hell"></a>what-the-hell</h2><blockquote>
+<p>Tips: modinv, Something is slow there in my code, make it faster.</p>
+</blockquote>
+<p>这道题真是把我坑到了.</p>
+<p>首先IDA走起, 程序接受两个 uint 数字赋给两个 int 变量. 然后调用<br><code>calc_key3</code> 验证并计算下一步的key.</p>
+<p>前面四个条件用 z3 + gmpy2 轻松算出了一组结果. 接下来就是what函数,<br>真的是相当慢.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">a1, a2 = BitVecs(&apos;a1, a2&apos;, 32)</span><br><span class="line">solver = Solver()</span><br><span class="line">solver.add(a1 * a2 == -574406350)</span><br><span class="line">solver.add((a1 ^ 0x7E) * (a2 + 16) == 1931514558)</span><br><span class="line">solver.add((SignExt(16, a1) - SignExt(16, a2)) &amp; 0xFFF == 3295)</span><br><span class="line"></span><br><span class="line">while solver.check() == sat:</span><br><span class="line">    m = solver.model()</span><br><span class="line">    x = m[a1].as_long()</span><br><span class="line">    y = m[a2].as_long()</span><br><span class="line">    if is_prime(x):</span><br><span class="line">        print(x, y)</span><br><span class="line">    solver.add(Or(a1 != x, a2 != y))</span><br></pre></td></tr></table></figure>
+<p>不难看出 what is fibonacci, 第一反应是使用 gmpy2.fib 进行计算.<br>发现不对劲, 才想起这个地方会溢出.</p>
+<p>于是使用 numpy.int32 手动运算, 辅以 <code>lru_cache</code>, 然而 maxsize 太小速度过慢,<br>太大轻松爆内存, 再加上 Python 递归层数限制….最后选择用 C .</p>
+<p>C语言的实现非常高效, 然而并没有跑出我需要的key.<br>反复检查以后无奈跑到了M4x大佬的博客, 看了大佬的wp才发现这个地方a1和a2有两组解….</p>
+<p>修改程序跑出另一组解, 顺利拿到 key, 然后直接用IDA patch掉多余的部分,<br>直接令 key = xxxx.</p>
+<p>运行, 输入 key1 key2, 成功得到 flag</p>
+<h2 id="mov"><a href="#mov" class="headerlink" title="mov"></a>mov</h2><blockquote>
+<p>MOV instruction is turing complete!</p>
+</blockquote>
+<p>有了bitx那道题的经验, 这道题又直接逐位爆破搞了出来…</p>
+<h1 id="Pwn"><a href="#Pwn" class="headerlink" title="Pwn"></a>Pwn</h1><h2 id="catflag"><a href="#catflag" class="headerlink" title="catflag"></a>catflag</h2><blockquote>
+<p>nc hackme.inndy.tw 7709<br>Try using nc connect to server!</p>
+</blockquote>
+<p>签到题, nc上去cat flag</p>
+<h2 id="homework"><a href="#homework" class="headerlink" title="homework"></a>homework</h2><blockquote>
+<p>nc hackme.inndy.tw 7701<br>Source Code, Index out bound, Return Address</p>
+</blockquote>
+<p>给了二进制和源码, 题目其实很简单, 数组下标越界导致了任意位置读写,<br>就算开了canary也没用.</p>
+<p>直接把 ret 所在位置覆盖为 <code>call_memaybe</code> 函数地址就行了.</p>
+<p>(然而太久没做pwn的我竟然把偏移算错了….)</p>
+<h2 id="ROP"><a href="#ROP" class="headerlink" title="ROP"></a>ROP</h2><blockquote>
+<p>nc hackme.inndy.tw 7704<br>Tips: Buffer Overflow, ROP<br>ROP輕鬆談 by L4ys</p>
+</blockquote>
+<p>首先checksec一下, 没有canary. 一个采用静态链接的巨大程序.</p>
+<p>到题目给出的链接看了一下, 应该是使用 ROPgadget. 试了一下,<br>一行代码就找出了ROP chain, 妙啊. 然后计算好偏移把ROP chain写进去就行了.</p>
+<h2 id="ROP2"><a href="#ROP2" class="headerlink" title="ROP2"></a>ROP2</h2><blockquote>
+<p>nc hackme.inndy.tw 7703<br>ROPgadget not working anymore</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Arch:     i386-32-little</span><br><span class="line">RELRO:    Partial RELRO</span><br><span class="line">Stack:    No canary found</span><br><span class="line">NX:       NX enabled</span><br><span class="line">PIE:      No PIE (0x8048000)</span><br></pre></td></tr></table></figure>
+<h2 id="toooomuch"><a href="#toooomuch" class="headerlink" title="toooomuch"></a>toooomuch</h2><blockquote>
+<p>nc hackme.inndy.tw 7702<br>Can you pass the game?</p>
+</blockquote>
+<p>送分题, 二分法慢慢猜就猜到了</p>
+<h2 id="toooomuch-2"><a href="#toooomuch-2" class="headerlink" title="toooomuch-2"></a>toooomuch-2</h2><blockquote>
+<p>nc hackme.inndy.tw 7702<br>Get a shell, please.<br>Tips: Buffer overflow, 0x8048560, shellcode</p>
+</blockquote>
+<p>和上一道题几乎一样的二进制文件, 不过把 <code>cat flag</code> 改成了<br><code>cat fake_flag</code>.</p>
+<p>先检查一下, 发现什么保护都没开, 然后有个全局变量 password 是可控的</p>
+<p>往这里面写入 shellcode 然后跳转到这儿就能 getshell 了</p>
+<h2 id="echo"><a href="#echo" class="headerlink" title="echo"></a>echo</h2><blockquote>
+<p>nc hackme.inndy.tw 7711<br>Tips: format string vulnerability</p>
+</blockquote>
+<p>第一次做出格式化字符串的题, 看了半天CTF wiki, 终于明白原理了.</p>
+<p>利用格式化字符串可以做到任意地址读写, 基本思路是先泄露 system 地址.<br>然后把 GOT 表中 printf 的地址替换为 system 的. 这样第二步输入 <code>/bin/sh</code>就可以 getshell 了</p>
+<p>补充: 记录一下原理免得自己忘记. 首先我们的格式化字符串是在栈上的,<br>并且相对与 printf 的 ebp 的位置应该是不变的.<br>我们可以在本地调试的时候确定格式化字符串的位置,<br>然后使用%n\$p这种方式就能输出格式换字符串本身了(当然一次只有4个字节, 而且是hex形式). </p>
+<p>如果使用%n\$s的话, 就能把这个位置的数据解释为地址,<br>然后将这个地址的内容当做字符串取出. </p>
+<p>如果使用%n\$n的话,<br>就能把这个位置的数据解释为地址, 然后往这个地址写入当前已输出的字符数.</p>
+<h2 id="echo2"><a href="#echo2" class="headerlink" title="echo2"></a>echo2</h2><blockquote>
+<p>nc hackme.inndy.tw 7712<br>Tips: ASLR enabled</p>
+</blockquote>
+<p>与上一道题基本相同, 只是开启了PIE</p>
+<h1 id="Crypto"><a href="#Crypto" class="headerlink" title="Crypto"></a>Crypto</h1><h2 id="easy"><a href="#easy" class="headerlink" title="easy"></a>easy</h2><blockquote>
+<p>526b78425233745561476c7a49476c7a4947566863336b7349484a705a3268305033303d</p>
+</blockquote>
+<p>unhexlify + base64</p>
+<h2 id="r-u-kidding"><a href="#r-u-kidding" class="headerlink" title="r u kidding"></a>r u kidding</h2><blockquote>
+<p>EKZF{Hs’r snnn dzrx, itrs bzdrzq bhogdq}</p>
+</blockquote>
+<p>凯撒</p>
+<h2 id="not-harder"><a href="#not-harder" class="headerlink" title="not harder"></a>not harder</h2><blockquote>
+<p>Nm@rmLsBy{Nm5u-K{iZKPgPMzS2I<em>lPc%_SMOjQ#O;uV{MM</em>?PPFhk|Hd;hVPFhq{HaAH&lt;<br>Tips: pydoc3 base64</p>
+</blockquote>
+<p>base85 + base32</p>
+<h2 id="classic-cipher-1"><a href="#classic-cipher-1" class="headerlink" title="classic cipher 1"></a>classic cipher 1</h2><blockquote>
+<p>MTHJ{CWTNXRJCUBCGXGUGXWREXIPOYAOEYFIGXWRXCHTKHFCOHCFDUCGTXZOHIXOEOWMEHZO}<br>Solve this substitution cipher</p>
+</blockquote>
+<p>替代密码, 随便找个网站跑一下, 再冷静分析一下, 应该不成问题</p>
+<h2 id="classic-cipher-2"><a href="#classic-cipher-2" class="headerlink" title="classic cipher 2"></a>classic cipher 2</h2><blockquote>
+<p>Solve this vigenere cipher</p>
+</blockquote>
+<p>随便搜一搜找个工具就行了….</p>
+<p>开始用自己的工具解, 一直解不出,<br>后来才发现自己设的最大秘钥长度刚好比这个秘钥小了一位orz</p>
+<h2 id="easy-AES"><a href="#easy-AES" class="headerlink" title="easy AES"></a>easy AES</h2><blockquote>
+<p>Can you encrypt things with AES?<br>Tips: What is symmetric cipher?</p>
+</blockquote>
+<p>对称加密, 加解密秘钥是同一个</p>
+<h2 id="shuffle"><a href="#shuffle" class="headerlink" title="shuffle"></a>shuffle</h2><blockquote>
+<p>I have shuffled my text file, can you recover it?</p>
+</blockquote>
+<p>脚本逻辑很简单, 一段明文, 做一个随机的替代密码存起来, 再打乱存起来.</p>
+<p>统计字频可以还原出替代密码表,<br>然后就可以大致还原出明文了(个别符号的出现次数可能相等).</p>
+<h2 id="xor"><a href="#xor" class="headerlink" title="xor"></a>xor</h2><blockquote>
+<p>I’ve X0Red some file, could you recover it?</p>
+</blockquote>
+<p>以前写过工具, 利用重合指数法攻击</p>
+<h2 id="emoji"><a href="#emoji" class="headerlink" title="emoji"></a>emoji</h2><blockquote>
+<p>(´・ω・`)</p>
+</blockquote>
+<p>chrome 直接打开编码有问题, curl 看看.<br>然后复制到搜到的解密工具 <a href="https://tool.lu/js/" target="_blank" rel="noopener">https://tool.lu/js/</a> 里得到源码).</p>
+<p>代码逻辑不难, 加密部分直接爆破就行. 需要注意的是程序在 nodejs<br>环境下才能运行.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">crack</span><span class="params">(n)</span>:</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">256</span>):</span><br><span class="line">        <span class="keyword">if</span> (i * <span class="number">0xb1</span> + <span class="number">0x1b</span>) &amp; <span class="number">0xff</span> == n:</span><br><span class="line">            <span class="keyword">return</span> i</span><br><span class="line"></span><br><span class="line">print(bytes([crack(ord(i)) <span class="keyword">for</span> i <span class="keyword">in</span> crypted]).decode())</span><br></pre></td></tr></table></figure>
+<p>得到后直接放参数里运行</p>
+<h2 id="ffa"><a href="#ffa" class="headerlink" title="ffa"></a>ffa</h2><blockquote>
+<p>finite field arithmetic</p>
+</blockquote>
+<p>有限域算法? 看不懂, 无脑上z3.</p>
+<p>一开始直接用Int类型跑半天没跑出结果, 后来才知道BitVec更快orz</p>
+<p>算一算最大262位</p>
+<h1 id="Lucky"><a href="#Lucky" class="headerlink" title="Lucky"></a>Lucky</h1><h2 id="you-guess"><a href="#you-guess" class="headerlink" title="you-guess"></a>you-guess</h2><blockquote>
+<p>Can you guess my password?</p>
+</blockquote>
+<p>观察到 <code>&#39;%s really hates her ex.&#39; % password</code> , 密码应该是个女性人名.<br>随便找个字典跑就行了<br><a href="http://antirez.com/misc/female-names.txt" target="_blank" rel="noopener">female-names</a></p>
+<h1 id="Programming"><a href="#Programming" class="headerlink" title="Programming"></a>Programming</h1><h2 id="fast"><a href="#fast" class="headerlink" title="fast"></a>fast</h2><blockquote>
+<p>nc hackme.inndy.tw 7707<br>How fast could you be?</p>
+</blockquote>
+<h1 id="Forensic"><a href="#Forensic" class="headerlink" title="Forensic"></a>Forensic</h1><h2 id="easy-pdf"><a href="#easy-pdf" class="headerlink" title="easy pdf"></a>easy pdf</h2><blockquote>
+<p>Find the flag from this PDF document</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pacman -S poppler</span><br><span class="line">pdftohtml</span><br></pre></td></tr></table></figure>
+<h2 id="this-is-a-pen"><a href="#this-is-a-pen" class="headerlink" title="this is a pen"></a>this is a pen</h2><blockquote>
+<p>Find the flag from this pdf</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pacman -S poppler</span><br><span class="line">pdftohtml</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:  </strong>Aloxaf</li>
+  <li class="post-copyright-link">
+    <strong>Post link: </strong>
+    <a href="https://aloxaf.github.io/2018/07/14/hackme_inndy/" title="hackme.inndy 部分writeup">https://aloxaf.github.io/2018/07/14/hackme_inndy/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> unless stating additionally.</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ctf/" rel="tag"># ctf</a>
+          
+            <a href="/tags/writeup/" rel="tag"># writeup</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/07/improve_hexo_table/" rel="next" title="改进hexo/cafe主题表格显示效果">
+                <i class="fa fa-chevron-left"></i> 改进hexo/cafe主题表格显示效果
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/08/11/tjctf_pythonjail/" rel="prev" title="tjctf 2018 中的两道 Python Jail 的解法">
+                tjctf 2018 中的两道 Python Jail 的解法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Aloxaf</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-name">categories</span>
+                  
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-name">tags</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Misc"><span class="nav-number">1.</span> <span class="nav-text">Misc</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#flag"><span class="nav-number">1.1.</span> <span class="nav-text">flag</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#corgi-can-fly"><span class="nav-number">1.2.</span> <span class="nav-text">corgi can fly</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#television"><span class="nav-number">1.3.</span> <span class="nav-text">television</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#meow"><span class="nav-number">1.4.</span> <span class="nav-text">meow</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#where-is-flag"><span class="nav-number">1.5.</span> <span class="nav-text">where is flag</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#encoder"><span class="nav-number">1.6.</span> <span class="nav-text">encoder</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#slow"><span class="nav-number">1.7.</span> <span class="nav-text">slow</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pusheen-txt"><span class="nav-number">1.8.</span> <span class="nav-text">pusheen.txt</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#big"><span class="nav-number">1.9.</span> <span class="nav-text">big</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Web"><span class="nav-number">2.</span> <span class="nav-text">Web</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#hide-and-seek"><span class="nav-number">2.1.</span> <span class="nav-text">hide and seek</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#guestbook"><span class="nav-number">2.2.</span> <span class="nav-text">guestbook</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LFI"><span class="nav-number">2.3.</span> <span class="nav-text">LFI</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#homepage"><span class="nav-number">2.4.</span> <span class="nav-text">homepage</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ping"><span class="nav-number">2.5.</span> <span class="nav-text">ping</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#scoreboard"><span class="nav-number">2.6.</span> <span class="nav-text">scoreboard</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#login-as-admin-0"><span class="nav-number">2.7.</span> <span class="nav-text">login as admin 0</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#login-as-admin0-1"><span class="nav-number">2.8.</span> <span class="nav-text">login as admin0.1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dafuq-manager-1"><span class="nav-number">2.9.</span> <span class="nav-text">dafuq-manager 1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dafuq-manager-2"><span class="nav-number">2.10.</span> <span class="nav-text">dafuq-manager 2</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reversing"><span class="nav-number">3.</span> <span class="nav-text">Reversing</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#helloworld"><span class="nav-number">3.1.</span> <span class="nav-text">helloworld</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#simple"><span class="nav-number">3.2.</span> <span class="nav-text">simple</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pyyy"><span class="nav-number">3.3.</span> <span class="nav-text">pyyy</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#accumulator"><span class="nav-number">3.4.</span> <span class="nav-text">accumulator</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GCCC"><span class="nav-number">3.5.</span> <span class="nav-text">GCCC</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ccc"><span class="nav-number">3.6.</span> <span class="nav-text">ccc</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#bitx"><span class="nav-number">3.7.</span> <span class="nav-text">bitx</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2018-rev"><span class="nav-number">3.8.</span> <span class="nav-text">2018-rev</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#what-the-hell"><span class="nav-number">3.9.</span> <span class="nav-text">what-the-hell</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mov"><span class="nav-number">3.10.</span> <span class="nav-text">mov</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Pwn"><span class="nav-number">4.</span> <span class="nav-text">Pwn</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#catflag"><span class="nav-number">4.1.</span> <span class="nav-text">catflag</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#homework"><span class="nav-number">4.2.</span> <span class="nav-text">homework</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ROP"><span class="nav-number">4.3.</span> <span class="nav-text">ROP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ROP2"><span class="nav-number">4.4.</span> <span class="nav-text">ROP2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#toooomuch"><span class="nav-number">4.5.</span> <span class="nav-text">toooomuch</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#toooomuch-2"><span class="nav-number">4.6.</span> <span class="nav-text">toooomuch-2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#echo"><span class="nav-number">4.7.</span> <span class="nav-text">echo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#echo2"><span class="nav-number">4.8.</span> <span class="nav-text">echo2</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Crypto"><span class="nav-number">5.</span> <span class="nav-text">Crypto</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#easy"><span class="nav-number">5.1.</span> <span class="nav-text">easy</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#r-u-kidding"><span class="nav-number">5.2.</span> <span class="nav-text">r u kidding</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#not-harder"><span class="nav-number">5.3.</span> <span class="nav-text">not harder</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#classic-cipher-1"><span class="nav-number">5.4.</span> <span class="nav-text">classic cipher 1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#classic-cipher-2"><span class="nav-number">5.5.</span> <span class="nav-text">classic cipher 2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#easy-AES"><span class="nav-number">5.6.</span> <span class="nav-text">easy AES</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#shuffle"><span class="nav-number">5.7.</span> <span class="nav-text">shuffle</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#xor"><span class="nav-number">5.8.</span> <span class="nav-text">xor</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#emoji"><span class="nav-number">5.9.</span> <span class="nav-text">emoji</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ffa"><span class="nav-number">5.10.</span> <span class="nav-text">ffa</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Lucky"><span class="nav-number">6.</span> <span class="nav-text">Lucky</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#you-guess"><span class="nav-number">6.1.</span> <span class="nav-text">you-guess</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Programming"><span class="nav-number">7.</span> <span class="nav-text">Programming</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#fast"><span class="nav-number">7.1.</span> <span class="nav-text">fast</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Forensic"><span class="nav-number">8.</span> <span class="nav-text">Forensic</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#easy-pdf"><span class="nav-number">8.1.</span> <span class="nav-text">easy pdf</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#this-is-a-pen"><span class="nav-number">8.2.</span> <span class="nav-text">this is a pen</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Aloxaf</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a> v6.4.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
