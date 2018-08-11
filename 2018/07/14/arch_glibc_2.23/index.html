@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.4.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="glibc 2.26开始, 引入了 tcache 技术. 使得对 UAF 漏洞的利用非常困难.(更: 听 M4x 师傅说其实安全性下降了? thread local caching in glibc malloc)">
+<meta name="keywords" content="linux,pwn">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在 Arch Linux 下使用 glibc 2.23 调试程序&amp;使用 pwndbg">
+<meta property="og:url" content="https://aloxaf.github.io/2018/07/14/arch_glibc_2.23/index.html">
+<meta property="og:site_name" content="Aloxaf&#39;s blog">
+<meta property="og:description" content="glibc 2.26开始, 引入了 tcache 技术. 使得对 UAF 漏洞的利用非常困难.(更: 听 M4x 师傅说其实安全性下降了? thread local caching in glibc malloc)">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-08-11T00:49:52.096Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="在 Arch Linux 下使用 glibc 2.23 调试程序&amp;使用 pwndbg">
+<meta name="twitter:description" content="glibc 2.26开始, 引入了 tcache 技术. 使得对 UAF 漏洞的利用非常困难.(更: 听 M4x 师傅说其实安全性下降了? thread local caching in glibc malloc)">
+
+
+
+
+
+
+  <link rel="canonical" href="https://aloxaf.github.io/2018/07/14/arch_glibc_2.23/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>在 Arch Linux 下使用 glibc 2.23 调试程序&使用 pwndbg | Aloxaf's blog</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Aloxaf's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">记录乱七八糟的东西</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://aloxaf.github.io/2018/07/14/arch_glibc_2.23/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Aloxaf">
+      <meta itemprop="description" content="懒军, CTFer, 咸鱼王">
+      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/17017672">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Aloxaf's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">在 Arch Linux 下使用 glibc 2.23 调试程序&使用 pwndbg
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-07-14 11:16:09" itemprop="dateCreated datePublished" datetime="2018-07-14T11:16:09+08:00">2018-07-14</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-08-11 08:49:52" itemprop="dateModified" datetime="2018-08-11T08:49:52+08:00">2018-08-11</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">linux</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>glibc 2.26开始, 引入了 tcache 技术. 使得对 UAF 漏洞的利用非常困难.<br>(更: 听 M4x 师傅说其实安全性下降了? <a href="http://tukan.farm/2017/07/08/tcache/" target="_blank" rel="noopener">thread local caching in glibc malloc</a>)<br><a id="more"></a></p>
+<p>然后 Arch 的 glibc 已经到了 2.27…. 再加上 pwndbg 的作者与堆相关的一系列命令只对 Ubuntu 做了适配…</p>
+<p>pwn 的世界对 <del>Archer</del> 真是充满了恶意 = =</p>
+<p>放弃 Arch 是不可能放弃的, 这辈子都不可能放弃的. 所幸有大佬提出, <a href="https://github.com/pwndbg/pwndbg/issues/340#issuecomment-328883073" target="_blank" rel="noopener">使用带Debug Symbols的glibc可以成功运行heap等命令</a>,<br>试了一下果然如此. 可是把默认的 glibc 换成带调试符号的总觉得不好. 而且这样也没有解决 tcache 的问题. </p>
+<p>一番尝试之后, 我得到了如下的解决方案,<br>记录一下以免忘记. <del>因为已经忘了一次</del></p>
+<h1 id="编译glibc-2-23"><a href="#编译glibc-2-23" class="headerlink" title="编译glibc-2.23"></a>编译glibc-2.23</h1><h2 id="第一步"><a href="#第一步" class="headerlink" title="第一步"></a>第一步</h2><p>获取 glibc-2.23</p>
+<p><code>/tmp&gt; wget https://ftp.gnu.org/gnu/glibc/glibc-2.23.tar.xz</code><br><code>/tmp&gt; x glibc-2.23.tar.xz</code></p>
+<h2 id="第二步"><a href="#第二步" class="headerlink" title="第二步"></a>第二步</h2><p>修改源码, 防止一些奇怪的问题 <a href="https://git.busybox.net/buildroot/commit/?id=cf821efbd0b24690b52f379d4a9934a16073762e" target="_blank" rel="noopener">glibc: add patch fixing the build with binutils 2.29</a></p>
+<p>简要地讲就是把 <code>misc/regexp.c</code> 中的</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> *loc1;</span><br><span class="line"><span class="keyword">char</span> *loc2;</span><br><span class="line">...</span><br><span class="line">...</span><br><span class="line"><span class="keyword">char</span> *loc;</span><br></pre></td></tr></table></figure>
+<p>换成</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> *loc1 __attribute__ ((nocommon));</span><br><span class="line"><span class="keyword">char</span> *loc2 __attribute__ ((nocommon));</span><br><span class="line">...</span><br><span class="line">...</span><br><span class="line"><span class="keyword">char</span> *locs __attribute__ ((nocommon));</span><br></pre></td></tr></table></figure>
+<p>PS. 原链接中还多了一个 <code>compat_symbol</code>, 但是我没加也编译过了….就不管了</p>
+<h2 id="第三步"><a href="#第三步" class="headerlink" title="第三步"></a>第三步</h2><p>建立编译文件夹</p>
+<p><code>/tmp&gt;md glibc-build-32</code><br><code>/tmp&gt;md glibc-build-64</code></p>
+<p>然后随便cd进一个</p>
+<p>32位使用如下命令配置<br><code>../glibc-2.23/configure --disable-werror --prefix=/home/aloxaf/.local/lib/glibc-2.23_x86 --host=i686-linux-gnu --build=i686-linux-gnu CC=&quot;gcc -m32&quot; CXX=&quot;g++ -m32&quot; CFLAGS=&quot;-g -O2 -march=i686 -fno-stack-protector&quot; CXXFLAGS=&quot;-g -O2 -march=i686 -fno-stack-protector&quot; --enable-debug=yes</code></p>
+<p>64位使用如下命令配置<br><code>../glibc-2.23/configure --disable-werror --prefix=/home/aloxaf/.local/lib/glibc-2.23 --enable-debug=yes CFLAGS=&quot;-O2 -g&quot; CPPFLAGS=&quot;-O2 -g&quot;</code></p>
+<p>Note:</p>
+<ul>
+<li><code>--prefix</code>请自行更改, 简要地讲就是你打算把这个glibc装到哪个地方</li>
+<li>32位不加 <code>-fno-stack-protector</code> 会出现奇怪的link问题. 反正这个只是用来调试的, 就这样粗暴地解决吧.</li>
+</ul>
+<p>配置完以后分别 <code>make -j4 &amp;&amp; make install</code> 就行了</p>
+<h1 id="配置运行环境"><a href="#配置运行环境" class="headerlink" title="配置运行环境"></a>配置运行环境</h1><p>大多数 elf 编译的时候都写死了ld的路径 <code>/usr/lib/ld.so</code>, 这就比较尴尬. 就算强行让 2.26 的 ld.so 加载 2.23 的libc, 也指不定会出啥奇怪问题.</p>
+<p>幸运的是看雪大佬已经给出了方案: <a href="https://bbs.pediy.com/thread-225849.htm" target="_blank" rel="noopener">关于不同版本glibc强行加载的方法（附上代码）</a><br>虽然很暴力, 但是有效啊.</p>
+<p>不过每次都把ld.so复制到当前文件夹下 &amp;&amp; 使用 <code>LD_PRELOAD</code> 指定libc好麻烦的样子,<br>于是结合自己的经验, 修改了一下脚本.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># https://bbs.pediy.com/thread-225849.htm</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> tempfile <span class="keyword">import</span> gettempprefix</span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">change_ld</span><span class="params">(binary: str)</span>-&gt;str:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    更改ELF文件加载的libc版本</span></span><br><span class="line"><span class="string">    :param binary: ELF路径</span></span><br><span class="line"><span class="string">    :param ld:   ld.so路径</span></span><br><span class="line"><span class="string">    :param libc: lib.so路径</span></span><br><span class="line"><span class="string">    :return: 新的ELF文件路径</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line"></span><br><span class="line">    binary = ELF(binary)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> segment <span class="keyword">in</span> binary.segments:</span><br><span class="line">        <span class="keyword">if</span> segment.header[<span class="string">'p_type'</span>] == <span class="string">'PT_INTERP'</span>:</span><br><span class="line">            size = segment.header[<span class="string">'p_memsz'</span>]</span><br><span class="line">            addr = segment.header[<span class="string">'p_paddr'</span>]</span><br><span class="line">            data = segment.data()</span><br><span class="line"></span><br><span class="line">            ld = <span class="string">'/opt/ctf/ld.so'</span> <span class="keyword">if</span> binary.arch == <span class="string">'amd64'</span> <span class="keyword">else</span> <span class="string">'/opt/ctf/ld32.so'</span></span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> size &lt;= len(ld):</span><br><span class="line">                <span class="keyword">raise</span> Exception(</span><br><span class="line">                    <span class="string">"Failed to change PT_INTERP from &#123;&#125; to &#123;&#125;"</span>.format(data, ld))</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">None</span></span><br><span class="line"></span><br><span class="line">            binary.write(addr, ld.ljust(size, <span class="string">'\0'</span>).encode())</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> os.access(<span class="string">'/tmp/easypwn'</span>, os.F_OK):</span><br><span class="line">                os.mkdir(<span class="string">'/tmp/easypwn'</span>)</span><br><span class="line">            path = <span class="string">'/tmp/easypwn/&#123;&#125;_debug'</span>.format(</span><br><span class="line">                os.path.basename(binary.path))</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> os.access(path, os.F_OK):</span><br><span class="line">                os.remove(path)</span><br><span class="line">                <span class="comment"># print("Removing exist file &#123;&#125;".format(path))</span></span><br><span class="line">            binary.save(path)</span><br><span class="line">            os.chmod(path, <span class="number">0b111000000</span>)  <span class="comment"># rwx------</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># print("PT_INTERP has changed from &#123;&#125; to &#123;&#125;. Using temp file &#123;&#125;".format(data, ld, path))</span></span><br><span class="line">    <span class="keyword">return</span> ELF(path)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    change_ld(sys.argv[<span class="number">1</span>]).save(sys.argv[<span class="number">2</span>])</span><br><span class="line">    os.chmod(sys.argv[<span class="number">2</span>], <span class="number">0b111000000</span>)</span><br></pre></td></tr></table></figure>
+<p>其中 <code>/opt/ctf/ld.so</code> 是 <code>/home/aloxaf/.local/lib/glibc-2.23/lib/ld-2.23.so</code> 的硬链接,<br>32位版以此类推.</p>
+<p>建立硬链接主要是为了缩短路径长度, 保证能够替换掉原来的路径.</p>
+<p>然后给这个.py加个硬链接到 <code>~/.local/bin</code>, 就可以直接 <code>change_ld test test-debug</code> 让这个 elf 默认加载我们自己编译的glibc了.</p>
+<p>==愉快地Debug 吧少年, Arch Linux 大法好<del>折腾</del>==</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Aloxaf</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://aloxaf.github.io/2018/07/14/arch_glibc_2.23/" title="在 Arch Linux 下使用 glibc 2.23 调试程序&使用 pwndbg">https://aloxaf.github.io/2018/07/14/arch_glibc_2.23/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/linux/" rel="tag"># linux</a>
+          
+            <a href="/tags/pwn/" rel="tag"># pwn</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/07/improve_hexo_table/" rel="next" title="改进hexo/cafe主题表格显示效果">
+                <i class="fa fa-chevron-left"></i> 改进hexo/cafe主题表格显示效果
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/07/14/hackme_inndy/" rel="prev" title="hackme.inndy 部分writeup">
+                hackme.inndy 部分writeup <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://avatars2.githubusercontent.com/u/17017672"
+                alt="Aloxaf" />
+            
+              <p class="site-author-name" itemprop="name">Aloxaf</p>
+              <p class="site-description motion-element" itemprop="description">懒军, CTFer, 咸鱼王</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">9</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">8</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/Aloxaf" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#编译glibc-2-23"><span class="nav-number">1.</span> <span class="nav-text">编译glibc-2.23</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#第一步"><span class="nav-number">1.1.</span> <span class="nav-text">第一步</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二步"><span class="nav-number">1.2.</span> <span class="nav-text">第二步</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第三步"><span class="nav-number">1.3.</span> <span class="nav-text">第三步</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置运行环境"><span class="nav-number">2.</span> <span class="nav-text">配置运行环境</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Aloxaf</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Gemini</a> v6.4.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.4.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.4.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
