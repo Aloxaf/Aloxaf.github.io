@@ -31,7 +31,7 @@
     
     
   <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
-  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+  <link href="/lib/pace/pace-theme-center-simple.min.css?v=1.0.2" rel="stylesheet">
 
 
 
@@ -56,6 +56,10 @@
 
 
 
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -94,7 +98,7 @@
     scheme: 'Gemini',
     version: '6.4.0',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: false,
+    fancybox: true,
     fastclick: false,
     lazyload: false,
     tabs: true,
@@ -115,25 +119,25 @@
 
 
 
-  <meta name="description" content="参考 open-with-emacs-in-nautilus">
-<meta name="keywords" content="linux,emacs">
+  <meta name="description" content="好像很多 Java 程序都有这个毛病.查了半天 Arch Wiki, 终于找到了: Java Runtime Environment fonts 解决方案: 设置环境变量 _JAVA_OPTIONS=&amp;#39;-Dawt.useSystemAAFontSettings=on&amp;#39;(这么重要的东西怎么还要手动开启??) 直接在 /etc/environment 里加入这句然后重启即可">
+<meta name="keywords" content="linux">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Linux 下在打开方式中增加用 emacsclient">
-<meta property="og:url" content="https://www.aloxaf.com/2018/07/26/add_open_by_emacsclient/index.html">
+<meta property="og:title" content="解决 Arch Linux 下 BurpSuite 打开很丑的问题">
+<meta property="og:url" content="https://www.aloxaf.com/2018/07/java_ugly_font/index.html">
 <meta property="og:site_name" content="Aloxaf&#39;s blog">
-<meta property="og:description" content="参考 open-with-emacs-in-nautilus">
+<meta property="og:description" content="好像很多 Java 程序都有这个毛病.查了半天 Arch Wiki, 终于找到了: Java Runtime Environment fonts 解决方案: 设置环境变量 _JAVA_OPTIONS=&amp;#39;-Dawt.useSystemAAFontSettings=on&amp;#39;(这么重要的东西怎么还要手动开启??) 直接在 /etc/environment 里加入这句然后重启即可">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-08-11T10:16:43.819Z">
+<meta property="og:updated_time" content="2018-08-11T00:46:18.646Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Linux 下在打开方式中增加用 emacsclient">
-<meta name="twitter:description" content="参考 open-with-emacs-in-nautilus">
+<meta name="twitter:title" content="解决 Arch Linux 下 BurpSuite 打开很丑的问题">
+<meta name="twitter:description" content="好像很多 Java 程序都有这个毛病.查了半天 Arch Wiki, 终于找到了: Java Runtime Environment fonts 解决方案: 设置环境变量 _JAVA_OPTIONS=&amp;#39;-Dawt.useSystemAAFontSettings=on&amp;#39;(这么重要的东西怎么还要手动开启??) 直接在 /etc/environment 里加入这句然后重启即可">
 
 
 
 
 
 
-  <link rel="canonical" href="https://www.aloxaf.com/2018/07/26/add_open_by_emacsclient/"/>
+  <link rel="canonical" href="https://www.aloxaf.com/2018/07/java_ugly_font/"/>
 
 
 
@@ -143,7 +147,7 @@
   };
 </script>
 
-  <title>Linux 下在打开方式中增加用 emacsclient | Aloxaf's blog</title>
+  <title>解决 Arch Linux 下 BurpSuite 打开很丑的问题 | Aloxaf's blog</title>
   
 
 
@@ -216,7 +220,7 @@
     </div>
     
       
-        <p class="site-subtitle">记录乱七八糟的东西</p>
+        <h1 class="site-subtitle" itemprop="description">Aloxaf的个人博客, 记录一些乱七八糟的东西</h1>
       
     
   </div>
@@ -325,7 +329,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.aloxaf.com/2018/07/26/add_open_by_emacsclient/">
+    <link itemprop="mainEntityOfPage" href="https://www.aloxaf.com/2018/07/java_ugly_font/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Aloxaf">
@@ -342,10 +346,10 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Linux 下在打开方式中增加用 emacsclient
+          <h2 class="post-title" itemprop="name headline">解决 Arch Linux 下 BurpSuite 打开很丑的问题
               
             
-          </h1>
+          </h2>
         
 
         <div class="post-meta">
@@ -367,7 +371,7 @@
                 
               
 
-              <time title="创建时间：2018-07-26 08:42:30" itemprop="dateCreated datePublished" datetime="2018-07-26T08:42:30+08:00">2018-07-26</time>
+              <time title="创建时间：2018-07-30 12:34:48" itemprop="dateCreated datePublished" datetime="2018-07-30T12:34:48+08:00">2018-07-30</time>
             
 
             
@@ -384,7 +388,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-08-11 18:16:43" itemprop="dateModified" datetime="2018-08-11T18:16:43+08:00">2018-08-11</time>
+                <time title="修改时间：2018-08-11 08:46:18" itemprop="dateModified" datetime="2018-08-11T08:46:18+08:00">2018-08-11</time>
               
             
           </span>
@@ -416,8 +420,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/07/26/add_open_by_emacsclient/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/07/26/add_open_by_emacsclient/" itemprop="commentCount"></span>
+                <a href="/2018/07/java_ugly_font/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/07/java_ugly_font/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -445,14 +449,9 @@
       
 
       
-        <p>参考 <a href="http://liuyuanzhi.blogspot.com/2009/08/open-with-emacs-in-nautilus.html" target="_blank" rel="noopener">open-with-emacs-in-nautilus</a><br><a id="more"></a></p>
-<ol>
-<li><p>新建 <code>~/.local/share/applications/emacsclient.desktop</code></p>
-</li>
-<li><p>写入如下内容 </p>
-<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[Desktop Entry]</span></span><br><span class="line"><span class="attr">Name</span>=Emacs Client</span><br><span class="line"><span class="attr">GenericName</span>=Text Editor</span><br><span class="line"><span class="attr">Comment</span>=Edit text</span><br><span class="line"><span class="attr">MimeType</span>=text/english;text/plain;text/x-makefile;text/x-c++hdr;text/x-c++src;text/x-chdr;text/x-csrc;text/x-java;text/x-moc;text/x-pascal;text/x-tcl;text/x-tex;application/x-shellscript;text/x-c;text/x-c++;</span><br><span class="line"><span class="attr">Exec</span>=emacsclient -n -a <span class="string">''</span> %F</span><br><span class="line"><span class="attr">Icon</span>=emacs</span><br><span class="line"><span class="attr">Type</span>=Application</span><br><span class="line"><span class="attr">Terminal</span>=<span class="literal">false</span></span><br><span class="line"><span class="attr">Categories</span>=Development;TextEditor;</span><br><span class="line"><span class="attr">StartupWMClass</span>=Emacs</span><br><span class="line"><span class="attr">Keywords</span>=Text;Editor;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
+        <p>好像很多 Java 程序都有这个毛病.<br>查了半天 Arch Wiki, 终于找到了: <a href="https://wiki.archlinux.org/index.php/Java_Runtime_Environment_fonts#Anti-aliasing" target="_blank" rel="noopener">Java Runtime Environment fonts</a></p>
+<p>解决方案: 设置环境变量 <code>_JAVA_OPTIONS=&#39;-Dawt.useSystemAAFontSettings=on&#39;</code><br>(这么重要的东西怎么还要手动开启??)</p>
+<p>直接在 <code>/etc/environment</code> 里加入这句然后重启即可</p>
 
       
     </div>
@@ -474,7 +473,7 @@
     <strong>本文作者： </strong>aloxaf</li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://www.aloxaf.com/2018/07/26/add_open_by_emacsclient/" title="Linux 下在打开方式中增加用 emacsclient">https://www.aloxaf.com/2018/07/26/add_open_by_emacsclient/</a>
+    <a href="https://www.aloxaf.com/2018/07/java_ugly_font/" title="解决 Arch Linux 下 BurpSuite 打开很丑的问题">https://www.aloxaf.com/2018/07/java_ugly_font/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！</li>
@@ -489,8 +488,6 @@
           
             <a href="/tags/linux/" rel="tag"># linux</a>
           
-            <a href="/tags/emacs/" rel="tag"># emacs</a>
-          
         </div>
       
 
@@ -502,8 +499,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/07/14/hackme_inndy/" rel="next" title="hackme.inndy 部分writeup (2018-8-12日更新)">
-                <i class="fa fa-chevron-left"></i> hackme.inndy 部分writeup (2018-8-12日更新)
+              <a href="/2018/07/add_open_by_emacsclient/" rel="next" title="Linux 下在打开方式中增加用 emacsclient">
+                <i class="fa fa-chevron-left"></i> Linux 下在打开方式中增加用 emacsclient
               </a>
             
           </div>
@@ -512,8 +509,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/07/30/java_ugly_font/" rel="prev" title="解决 Arch Linux 下 BurpSuite 打开很丑的问题">
-                解决 Arch Linux 下 BurpSuite 打开很丑的问题 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/08/tjctf_pythonjail/" rel="prev" title="TJCTF 2018 中两道 Python Jail 的解法">
+                TJCTF 2018 中两道 Python Jail 的解法 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -642,7 +639,7 @@
             <div class="links-of-author motion-element">
               
                 <span class="links-of-author-item">
-                  <a href="https://github.com/Aloxaf" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  <a href="https://github.com/Aloxaf" target="_blank" title="GitHub" rel="external nofollow"><i class="fa fa-fw fa-github"></i>GitHub</a>
                   
                 </span>
               
@@ -689,9 +686,11 @@
 </div>
 
 
+  
 
 
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
 
 
 
@@ -699,7 +698,7 @@
 
 
 
-  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Gemini</a> v6.4.0</div>
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" rel="external nofollow" href="https://theme-next.org">NexT.Gemini</a> v6.4.0</div>
 
 
 
@@ -750,6 +749,8 @@
 
 
 
+  
+
 
 
 
@@ -777,6 +778,11 @@
   
   
     <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
   
 
 
@@ -863,6 +869,21 @@
   
 
   
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
 
   
 

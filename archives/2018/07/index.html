@@ -31,7 +31,7 @@
     
     
   <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
-  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+  <link href="/lib/pace/pace-theme-center-simple.min.css?v=1.0.2" rel="stylesheet">
 
 
 
@@ -56,6 +56,10 @@
 
 
 
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -94,7 +98,7 @@
     scheme: 'Gemini',
     version: '6.4.0',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: false,
+    fancybox: true,
     fastclick: false,
     lazyload: false,
     tabs: true,
@@ -214,7 +218,7 @@
     </div>
     
       
-        <p class="site-subtitle">记录乱七八糟的东西</p>
+        <h1 class="site-subtitle" itemprop="description">Aloxaf的个人博客, 记录一些乱七八糟的东西</h1>
       
     
   </div>
@@ -356,7 +360,7 @@
         
           
           <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2018">2018</h1>
+            <h2 class="archive-year" id="archive-year-2018">2018</h2>
           </div>
         
         
@@ -366,15 +370,15 @@
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
     <header class="post-header">
 
-      <h2 class="post-title">
+      <h3 class="post-title">
         
-            <a class="post-title-link" href="/2018/07/30/java_ugly_font/" itemprop="url">
+            <a class="post-title-link" href="/2018/07/java_ugly_font/" itemprop="url">
               
                 <span itemprop="name">解决 Arch Linux 下 BurpSuite 打开很丑的问题</span>
               
             </a>
         
-      </h2>
+      </h3>
 
       <div class="post-meta">
         <time class="post-time" itemprop="dateCreated"
@@ -403,15 +407,15 @@
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
     <header class="post-header">
 
-      <h2 class="post-title">
+      <h3 class="post-title">
         
-            <a class="post-title-link" href="/2018/07/26/add_open_by_emacsclient/" itemprop="url">
+            <a class="post-title-link" href="/2018/07/add_open_by_emacsclient/" itemprop="url">
               
                 <span itemprop="name">Linux 下在打开方式中增加用 emacsclient</span>
               
             </a>
         
-      </h2>
+      </h3>
 
       <div class="post-meta">
         <time class="post-time" itemprop="dateCreated"
@@ -440,15 +444,15 @@
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
     <header class="post-header">
 
-      <h2 class="post-title">
+      <h3 class="post-title">
         
-            <a class="post-title-link" href="/2018/07/14/hackme_inndy/" itemprop="url">
+            <a class="post-title-link" href="/2018/07/hackme_inndy/" itemprop="url">
               
                 <span itemprop="name">hackme.inndy 部分writeup (2018-8-12日更新)</span>
               
             </a>
         
-      </h2>
+      </h3>
 
       <div class="post-meta">
         <time class="post-time" itemprop="dateCreated"
@@ -477,15 +481,15 @@
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
     <header class="post-header">
 
-      <h2 class="post-title">
+      <h3 class="post-title">
         
-            <a class="post-title-link" href="/2018/07/14/arch_glibc_2.23/" itemprop="url">
+            <a class="post-title-link" href="/2018/07/arch_glibc_2.23/" itemprop="url">
               
                 <span itemprop="name">在 Arch Linux 下使用 glibc 2.23 调试程序&使用 pwndbg</span>
               
             </a>
         
-      </h2>
+      </h3>
 
       <div class="post-meta">
         <time class="post-time" itemprop="dateCreated"
@@ -614,7 +618,7 @@
             <div class="links-of-author motion-element">
               
                 <span class="links-of-author-item">
-                  <a href="https://github.com/Aloxaf" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  <a href="https://github.com/Aloxaf" target="_blank" title="GitHub" rel="external nofollow"><i class="fa fa-fw fa-github"></i>GitHub</a>
                   
                 </span>
               
@@ -661,9 +665,11 @@
 </div>
 
 
+  
 
 
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
 
 
 
@@ -671,7 +677,7 @@
 
 
 
-  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Gemini</a> v6.4.0</div>
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" rel="external nofollow" href="https://theme-next.org">NexT.Gemini</a> v6.4.0</div>
 
 
 
@@ -722,6 +728,8 @@
 
 
 
+  
+
 
 
 
@@ -749,6 +757,11 @@
   
   
     <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
   
 
 
@@ -831,6 +844,21 @@
   
 
   
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
 
   
 
