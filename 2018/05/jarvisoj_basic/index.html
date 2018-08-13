@@ -1,0 +1,1121 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-center-simple.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.4.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="握手包 给你握手包，flag是Flag_is_here这个AP的密码，自己看着办吧。 提交格式：flag{WIFI密码}  利用 hashcat 爆破, 以 Arch Linux 为例 123456# 安装必要工具sudo pacman -S hashcat hashcat-utils# 格式转换cap2hccapx wifi.cap wifi.hccapx# 用字典爆破hashcat -m 25">
+<meta name="keywords" content="ctf,writeup,misc,crypto,reverse">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Jarvis OJ BASIC 完整writeup">
+<meta property="og:url" content="https://www.aloxaf.com/2018/05/jarvisoj_basic/index.html">
+<meta property="og:site_name" content="Aloxaf&#39;s blog">
+<meta property="og:description" content="握手包 给你握手包，flag是Flag_is_here这个AP的密码，自己看着办吧。 提交格式：flag{WIFI密码}  利用 hashcat 爆破, 以 Arch Linux 为例 123456# 安装必要工具sudo pacman -S hashcat hashcat-utils# 格式转换cap2hccapx wifi.cap wifi.hccapx# 用字典爆破hashcat -m 25">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-08-13T02:04:57.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Jarvis OJ BASIC 完整writeup">
+<meta name="twitter:description" content="握手包 给你握手包，flag是Flag_is_here这个AP的密码，自己看着办吧。 提交格式：flag{WIFI密码}  利用 hashcat 爆破, 以 Arch Linux 为例 123456# 安装必要工具sudo pacman -S hashcat hashcat-utils# 格式转换cap2hccapx wifi.cap wifi.hccapx# 用字典爆破hashcat -m 25">
+
+
+
+
+
+
+  <link rel="canonical" href="https://www.aloxaf.com/2018/05/jarvisoj_basic/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Jarvis OJ BASIC 完整writeup | Aloxaf's blog</title>
+  
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-123773630-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-123773630-1');
+</script>
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Aloxaf's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">Aloxaf的个人博客, 记录一些乱七八糟的东西</h1>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.aloxaf.com/2018/05/jarvisoj_basic/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Aloxaf">
+      <meta itemprop="description" content="懒军, CTFer, 咸鱼王">
+      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/17017672">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Aloxaf's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Jarvis OJ BASIC 完整writeup
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-05-17 08:23:16" itemprop="dateCreated datePublished" datetime="2018-05-17T08:23:16+08:00">2018-05-17</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-08-13 10:04:57" itemprop="dateModified" datetime="2018-08-13T10:04:57+08:00">2018-08-13</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/ctf/" itemprop="url" rel="index"><span itemprop="name">ctf</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/05/jarvisoj_basic/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/05/jarvisoj_basic/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="握手包"><a href="#握手包" class="headerlink" title="握手包"></a>握手包</h1><blockquote>
+<p>给你握手包，flag是Flag_is_here这个AP的密码，自己看着办吧。</p>
+<p>提交格式：flag{WIFI密码}</p>
+</blockquote>
+<p>利用 hashcat 爆破, 以 Arch Linux 为例</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装必要工具</span></span><br><span class="line">sudo pacman -S hashcat hashcat-utils</span><br><span class="line"><span class="comment"># 格式转换</span></span><br><span class="line">cap2hccapx wifi.cap wifi.hccapx</span><br><span class="line"><span class="comment"># 用字典爆破</span></span><br><span class="line">hashcat -m 2500 wifi.hccapx 10k_most_common.txt</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>很快就跑出了结果<br><code>e56452df7244988624af174fa692d81d:560a64ffe917:b8ee65ac640b:Flag_is_here:11223344</code></p>
+<p>flag 为 <code>flag{11223344}</code></p>
+<h1 id="德军的密码"><a href="#德军的密码" class="headerlink" title="德军的密码"></a>德军的密码</h1><blockquote>
+<p>已知将一个flag以一种加密形式为使用密钥进行加密，使用密钥WELCOMETOCFF加密后密文为000000000000000000000000000000000000000000000000000101110000110001000000101000000001 请分析出flag。Flag为12位大写字母 题目来源：CFF2016</p>
+</blockquote>
+<p>密钥长度 12 位, 密文长度 84 位. 初步推断密文七位一组.</p>
+<p>尝试将密文七位一组转成数字以后与密钥进行各种运算, 最终试出 flag 是异或得到的 <code>WELCOMECISRG</code></p>
+<p>(查了一下这种密码其实叫 <a href="https://baike.baidu.com/item/%E8%B4%B9%E7%BA%B3%E5%A7%86%E5%AF%86%E7%A0%81" target="_blank" rel="noopener">费纳姆密码 </a>)</p>
+<h1 id="字符串"><a href="#字符串" class="headerlink" title="-.-字符串"></a>-.-字符串</h1><blockquote>
+<p>请选手观察以下密文并转换成flag形式</p>
+<p>..-. .-.. .- –. ….. ..— ..— —– .—- —.. -.. -…. -…. ….. …– —.. –… -.. .—- -.. .- —-. …– .—- —.. .—- ..— -… –… –… –… -…. …– ….- .—- —–</p>
+<p>flag形式为32位大写md5</p>
+<p>题目来源：CFF2016</p>
+</blockquote>
+<p> 摩斯密码, 解码后得到 <code>FLAG522018D665387D1DA931812B77763410</code></p>
+<h1 id="A-Piece-Of-Cake"><a href="#A-Piece-Of-Cake" class="headerlink" title="A Piece Of Cake"></a>A Piece Of Cake</h1><blockquote>
+<p>nit yqmg mqrqn bxw mtjtm nq rqni fiklvbxu mqrqnl xwg dvmnzxu lqjnyxmt xatwnl, rzn nit uxnntm xmt zlzxuuk mtjtmmtg nq xl rqnl. nitmt vl wq bqwltwlzl qw yivbi exbivwtl pzxuvjk xl mqrqnl rzn nitmt vl atwtmxu xamttetwn xeqwa tsftmnl, xwg nit fzruvb, nixn mqrqnl ntwg nq gq lqet qm xuu qj nit jquuqyvwa: xbbtfn tutbnmqwvb fmqamxeevwa, fmqbtll gxnx qm fiklvbxu ftmbtfnvqwl tutbnmqwvbxuuk, qftmxnt xznqwqeqzluk nq lqet gtamtt, eqdt xmqzwg, qftmxnt fiklvbxu fxmnl qj vnltuj qm fiklvbxu fmqbtlltl, ltwlt xwg exwvfzuxnt nitvm twdvmqwetwn, xwg tsivrvn vwntuuvatwn rtixdvqm - tlftbvxuuk rtixdvqm yivbi evevbl izexwl qm qnitm xwvexul. juxa vl lzrlnvnzntfxllvldtmktxlkkqzaqnvn. buqltuk mtuxntg nq nit bqwbtfn qj x mqrqn vl nit jvtug qj lkwnitnvb rvquqak, yivbi lnzgvtl twnvnvtl yiqlt wxnzmt vl eqmt bqefxmxrut nq rtvwal nixw nq exbivwtl.</p>
+</blockquote>
+<p>一堆看不懂的玩意儿, 可能是凯撒或者替代密码之类的</p>
+<p>找各种网站试试, 最后试出来是替代密码, 解密网站: <a href="https://quipqiup.com/" target="_blank" rel="noopener">https://quipqiup.com/</a></p>
+<p>解密结果</p>
+<blockquote>
+<p>​    the word robot can refer to both physical robots and virtual software agents, but the latter are usually referred to as bots. there is no consensus on which machines qualify as robots but there is general agreement among experts, and the public, that robots tend to do some or all of the following: accept electronic programming, process data or physical perceptions electronically, operate autonomously to some degree, move around, operate physical parts of itself or physical processes, sense and manipulate their environment, and exhibit intelligent behavior - especially behavior which mimics humans or other animals. flag is substitutepassisveryeasyyougotit. closely related to the concept of a robot is the field of synthetic biology, which studies entities whose nature is more comparable to beings than to machines.</p>
+</blockquote>
+<blockquote>
+<p>flag is substitutepassisveryeasyyougotit</p>
+</blockquote>
+<h1 id="Shellcode"><a href="#Shellcode" class="headerlink" title="Shellcode"></a>Shellcode</h1><p>啥鬼畜题目…</p>
+<p>在 Windows 用 <a href="https://github.com/inquisb/shellcodeexec" target="_blank" rel="noopener">shellcodeexec</a> 跑一下得到结果…</p>
+<h1 id="Help"><a href="#Help" class="headerlink" title="Help!!"></a>Help!!</h1><p>先是伪加密, <code>zip -FF</code> 修复一下. 再解压 .docx 找到隐藏的图片文件</p>
+<p><code>PGTF [You_Know_moR3_4boUt_woRd}</code></p>
+<h1 id="Baby’s-Crack"><a href="#Baby’s-Crack" class="headerlink" title="Baby’s Crack"></a>Baby’s Crack</h1><p>很简单的加密算法</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util <span class="keyword">import</span> number</span><br><span class="line"></span><br><span class="line">cipher = open(<span class="string">'./flag.enc'</span>, <span class="string">'rb'</span>).read()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">wtf</span><span class="params">(n)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> <span class="number">47</span> &lt; n &lt;= <span class="number">96</span>:</span><br><span class="line">        <span class="keyword">return</span> n + <span class="number">53</span></span><br><span class="line">    <span class="keyword">elif</span> n &lt;= <span class="number">46</span>:</span><br><span class="line">        <span class="keyword">return</span> n % <span class="number">11</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">61</span> * (n // <span class="number">61</span>)</span><br><span class="line"></span><br><span class="line">d = &#123;wtf(i): i <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">255</span>)&#125;</span><br><span class="line"></span><br><span class="line">p = <span class="string">''</span>.join((chr(d[i]) <span class="keyword">for</span> i <span class="keyword">in</span> cipher))</span><br><span class="line">print(number.long_to_bytes(int(p, <span class="number">16</span>)).decode())</span><br></pre></td></tr></table></figure>
+<h1 id="熟悉的声音"><a href="#熟悉的声音" class="headerlink" title="熟悉的声音"></a>熟悉的声音</h1><p>两种元素, 声音, 联想到摩斯电码, 解密得到 JBLUWEWNZ </p>
+<p>然而其实并不是最终 flag, 还套了一层凯撒……</p>
+<h1 id="取证"><a href="#取证" class="headerlink" title="取证"></a>取证</h1><p>搜吧, 最后搜到是 <code>Volatility</code></p>
+<h1 id="ROPGadget"><a href="#ROPGadget" class="headerlink" title="ROPGadget"></a>ROPGadget</h1><p>用 pwntools 的 asm 命令编译一下</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">asm(<span class="string">'xchg eax, esp;ret;mov ecx, [eax];mov [edx], ecx;pop ebx;ret'</span>).encode(<span class="string">'hex'</span>).upper()</span><br></pre></td></tr></table></figure>
+<h1 id="Easy-RSA"><a href="#Easy-RSA" class="headerlink" title="Easy RSA"></a>Easy RSA</h1><p>N 这么小, 直接用 factor 命令就能分解</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> gmpy2</span><br><span class="line"><span class="keyword">from</span> Crypto.Util <span class="keyword">import</span> number</span><br><span class="line"></span><br><span class="line">c = <span class="number">0xdc2eeeb2782c</span></span><br><span class="line">p, q = <span class="number">13574881</span>, <span class="number">23781539</span></span><br><span class="line">n = p * q</span><br><span class="line">e = <span class="number">23</span></span><br><span class="line">d = gmpy2.invert(e, (p<span class="number">-1</span>) * (q<span class="number">-1</span>))</span><br><span class="line">m = pow(c, d, n)</span><br><span class="line">print(number.long_to_bytes(m))</span><br></pre></td></tr></table></figure>
+<h1 id="爱吃培根的出题人"><a href="#爱吃培根的出题人" class="headerlink" title="爱吃培根的出题人"></a>爱吃培根的出题人</h1><p>培根密码</p>
+<h1 id="Secret"><a href="#Secret" class="headerlink" title="Secret"></a>Secret</h1><p>藏在 HEADERS 里</p>
+<h1 id="Easy-Crackme"><a href="#Easy-Crackme" class="headerlink" title="Easy Crackme"></a>Easy Crackme</h1><p>拖进 IDA F5, 整理一下以后其实是这样的</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> __<span class="function">cdecl <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> **argv, <span class="keyword">const</span> <span class="keyword">char</span> **envp)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  __int64 v3; <span class="comment">// rdi</span></span><br><span class="line">  <span class="keyword">char</span> v5[<span class="number">6</span>]; <span class="comment">// [rsp+0h] [rbp-38h]</span></span><br><span class="line">  <span class="keyword">char</span> v6[<span class="number">28</span>]; <span class="comment">// [rsp+10h] [rbp-28h]</span></span><br><span class="line"></span><br><span class="line">  v5[<span class="number">0</span>] = <span class="number">0xAB</span>u;</span><br><span class="line">  v5[<span class="number">1</span>] = <span class="number">0xDD</span>u;</span><br><span class="line">  v5[<span class="number">2</span>] = <span class="number">0x33</span>;</span><br><span class="line">  v5[<span class="number">3</span>] = <span class="number">0x54</span>;</span><br><span class="line">  v5[<span class="number">4</span>] = <span class="number">0x35</span>;</span><br><span class="line">  v5[<span class="number">5</span>] = <span class="number">0xEF</span>u;</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">"Input your password:"</span>);</span><br><span class="line">  _isoc99_scanf(<span class="string">"%s"</span>);</span><br><span class="line">  <span class="keyword">if</span> ( <span class="built_in">strlen</span>(v6) == <span class="number">26</span> )</span><br><span class="line">  &#123;</span><br><span class="line">    v3 = <span class="number">0L</span>L;</span><br><span class="line">    <span class="keyword">if</span> ( (v6[<span class="number">0</span>] ^ <span class="number">0xAB</span>) == list1[<span class="number">0</span>] )</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">while</span> ( (v6[v3 + <span class="number">1</span>] ^ v5[(v3 + <span class="number">1</span>) % <span class="number">6</span>]) == list1[v3 + <span class="number">1</span>] )</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="keyword">if</span> ( ++v3 == <span class="number">25</span> )</span><br><span class="line">        &#123;</span><br><span class="line">          <span class="built_in">printf</span>(<span class="string">"Congratulations!"</span>);</span><br><span class="line">          <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">"Password Wrong!! Please try again."</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>来尝试一下不同的解法</p>
+<h2 id="爆破"><a href="#爆破" class="headerlink" title="爆破"></a>爆破</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">char</span> list1[] = &#123;</span><br><span class="line">  <span class="number">0xFB</span>, <span class="number">0x9E</span>, <span class="number">0x67</span>, <span class="number">0x12</span>, <span class="number">0x4E</span>, <span class="number">0x9D</span>, <span class="number">0x98</span>, <span class="number">0xAB</span>, <span class="number">0x00</span>, <span class="number">0x06</span>, </span><br><span class="line">  <span class="number">0x46</span>, <span class="number">0x8A</span>, <span class="number">0xF4</span>, <span class="number">0xB4</span>, <span class="number">0x06</span>, <span class="number">0x0B</span>, <span class="number">0x43</span>, <span class="number">0xDC</span>, <span class="number">0xD9</span>, <span class="number">0xA4</span>, </span><br><span class="line">  <span class="number">0x6C</span>, <span class="number">0x31</span>, <span class="number">0x74</span>, <span class="number">0x9C</span>, <span class="number">0xD2</span>, <span class="number">0xA0</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, </span><br><span class="line">  <span class="number">0x00</span>, <span class="number">0x00</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">char</span> v5[] = &#123;</span><br><span class="line">    <span class="number">0xAB</span>, <span class="number">0xDD</span>, <span class="number">0x33</span>, <span class="number">0x54</span>, <span class="number">0x35</span>, <span class="number">0xEF</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">char</span> flag[<span class="number">27</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">26</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">char</span> c = <span class="string">' '</span>; c &lt;= <span class="string">'~'</span>; c++) &#123;</span><br><span class="line">            <span class="keyword">if</span> ((c ^ v5[i % <span class="number">6</span>]) == list1[i]) &#123;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">"%c"</span>, c);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>(<code>tcc -run -</code> 可以直接从标准输入读取代码然后执行, 妙啊妙啊)</p>
+<p>flag <code>PCTF{r3v3Rse_i5_v3ry_eAsy}</code></p>
+<h2 id="z3"><a href="#z3" class="headerlink" title="z3"></a>z3</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> z3 <span class="keyword">import</span> *</span><br><span class="line">list1 = [</span><br><span class="line">    <span class="number">0xFB</span>, <span class="number">0x9E</span>, <span class="number">0x67</span>, <span class="number">0x12</span>, <span class="number">0x4E</span>, <span class="number">0x9D</span>, <span class="number">0x98</span>, <span class="number">0xAB</span>, <span class="number">0x00</span>, <span class="number">0x06</span>, </span><br><span class="line">    <span class="number">0x46</span>, <span class="number">0x8A</span>, <span class="number">0xF4</span>, <span class="number">0xB4</span>, <span class="number">0x06</span>, <span class="number">0x0B</span>, <span class="number">0x43</span>, <span class="number">0xDC</span>, <span class="number">0xD9</span>, <span class="number">0xA4</span>, </span><br><span class="line">    <span class="number">0x6C</span>, <span class="number">0x31</span>, <span class="number">0x74</span>, <span class="number">0x9C</span>, <span class="number">0xD2</span>, <span class="number">0xA0</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, </span><br><span class="line">    <span class="number">0x00</span>, <span class="number">0x00</span></span><br><span class="line">]</span><br><span class="line">v5 = [<span class="number">0xAB</span>, <span class="number">0xDD</span>, <span class="number">0x33</span>, <span class="number">0x54</span>, <span class="number">0x35</span>, <span class="number">0xEF</span>]</span><br><span class="line">flag = [BitVec(<span class="string">f'f<span class="subst">&#123;i&#125;</span>'</span>, <span class="number">8</span>) <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">26</span>)]</span><br><span class="line"></span><br><span class="line">solver = Solver()</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">26</span>):</span><br><span class="line">    solver.add((flag[i] ^ v5[i % <span class="number">6</span>]) == list1[i])</span><br><span class="line">    </span><br><span class="line"><span class="keyword">assert</span> solver.check() == sat</span><br><span class="line">m = solver.model()</span><br><span class="line"><span class="keyword">for</span> c <span class="keyword">in</span> flag:</span><br><span class="line">    print(chr(m[c].as_long()), end=<span class="string">''</span>)</span><br></pre></td></tr></table></figure>
+<p>很快很棒棒</p>
+<h2 id="pin"><a href="#pin" class="headerlink" title="pin"></a>pin</h2><p>M4x 师傅推荐的妙妙工具. 来尝试一下.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> subprocess <span class="keyword">import</span> Popen, PIPE</span><br><span class="line"><span class="keyword">from</span> string <span class="keyword">import</span> printable</span><br><span class="line"><span class="keyword">from</span> sys <span class="keyword">import</span> argv</span><br><span class="line"></span><br><span class="line">PIN = <span class="string">'/home/aloxaf/Program/pin/pin'</span></span><br><span class="line">INSCOUNT32 = <span class="string">'/home/aloxaf/Program/pin/source/tools/ManualExamples/obj-ia32/inscount0.so'</span></span><br><span class="line">INSCOUNT64 = <span class="string">'/home/aloxaf/Program/pin/source/tools/ManualExamples/obj-intel64/inscount0.so'</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Pin</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, program, arch=<span class="number">32</span>, charset=printable, padding=<span class="string">'_'</span>)</span>:</span></span><br><span class="line">        self.program = program</span><br><span class="line">        self.inscount = INSCOUNT32 <span class="keyword">if</span> arch == <span class="number">32</span> <span class="keyword">else</span> INSCOUNT64</span><br><span class="line">        self.charset = charset</span><br><span class="line">        self.padding = padding</span><br><span class="line">        <span class="comment"># print(program)</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run_pin</span><span class="params">(self, payload)</span>:</span></span><br><span class="line">        args = [PIN, <span class="string">'-t'</span>, self.inscount, <span class="string">'--'</span>, self.program]</span><br><span class="line">        p = Popen(args, stdin=PIPE, stdout=PIPE)</span><br><span class="line">        out = p.communicate(payload.encode())</span><br><span class="line">        <span class="comment"># print(out)</span></span><br><span class="line">        <span class="keyword">return</span> int(open(<span class="string">'./inscount.out'</span>).read().split()[<span class="number">1</span>])</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">guess_length</span><span class="params">(self)</span>:</span></span><br><span class="line">        inscount = []</span><br><span class="line">        payload = <span class="string">''</span></span><br><span class="line">        <span class="keyword">for</span> _ <span class="keyword">in</span> range(<span class="number">100</span>):</span><br><span class="line">            payload += self.padding</span><br><span class="line">            inscount.append(self.run_pin(payload))</span><br><span class="line"></span><br><span class="line">            delta1 = inscount[<span class="number">-1</span>] - inscount[<span class="number">-2</span>] <span class="keyword">if</span> len(inscount) &gt;= <span class="number">2</span> <span class="keyword">else</span> <span class="keyword">None</span></span><br><span class="line">            delta2 = inscount[<span class="number">-2</span>] - inscount[<span class="number">-3</span>] <span class="keyword">if</span> len(inscount) &gt;= <span class="number">3</span> <span class="keyword">else</span> <span class="keyword">None</span></span><br><span class="line"></span><br><span class="line">            print(<span class="string">'len=&#123;&#125;\tins=&#123;&#125;\tdelta=&#123;&#125;'</span>.format(</span><br><span class="line">                len(payload), inscount[<span class="number">-1</span>], delta1))</span><br><span class="line">            <span class="keyword">if</span> delta2 <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span> <span class="keyword">and</span> delta1 != delta2:</span><br><span class="line">                self.len = len(payload)</span><br><span class="line"></span><br><span class="line">                print(<span class="string">f'key length is <span class="subst">&#123;self.len&#125;</span>? (y/n) '</span>, end=<span class="string">''</span>)</span><br><span class="line">                <span class="keyword">if</span> input().strip() == <span class="string">'y'</span>:</span><br><span class="line">                    <span class="keyword">return</span> self.len</span><br><span class="line">        print(<span class="string">"Can't guess key length!\nPlease input your guess: "</span>, end=<span class="string">''</span>)</span><br><span class="line">        self.len = int(input())</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">guess_key</span><span class="params">(self)</span>:</span></span><br><span class="line">        payload = [self.padding] * self.len</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(self.len):</span><br><span class="line">            inscount = []</span><br><span class="line">            <span class="keyword">for</span> c <span class="keyword">in</span> self.charset:</span><br><span class="line">                payload[i] = c</span><br><span class="line">                _payload = <span class="string">''</span>.join(payload)</span><br><span class="line">                inscount.append(self.run_pin(_payload))</span><br><span class="line"></span><br><span class="line">                delta1 = inscount[<span class="number">-1</span>] - inscount[<span class="number">-2</span>] <span class="keyword">if</span> len(inscount) &gt;= <span class="number">2</span> <span class="keyword">else</span> <span class="keyword">None</span></span><br><span class="line">                delta2 = inscount[<span class="number">-2</span>] - inscount[<span class="number">-3</span>] <span class="keyword">if</span> len(inscount) &gt;= <span class="number">3</span> <span class="keyword">else</span> <span class="keyword">None</span></span><br><span class="line"></span><br><span class="line">                print(<span class="string">'\rpayload:&#123;&#125;\tins=&#123;&#125;\tdelta=&#123;&#125;'</span>.format(</span><br><span class="line">                    _payload, inscount[<span class="number">-1</span>], delta1), end=<span class="string">''</span>)</span><br><span class="line">                <span class="keyword">if</span> delta2 <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span> <span class="keyword">and</span> delta1 != delta2:</span><br><span class="line">                    <span class="comment"># print(f'fount &#123;c&#125; !')</span></span><br><span class="line">                    print(<span class="string">''</span>)</span><br><span class="line">                    <span class="keyword">break</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                print(<span class="string">"Didn't find password!"</span>)</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">None</span></span><br><span class="line">        print(<span class="string">''</span>.join(payload))</span><br><span class="line">        <span class="keyword">return</span> <span class="string">''</span>.join(payload)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    <span class="keyword">if</span> len(argv) != <span class="number">1</span>:</span><br><span class="line">        p = Pin(*argv[<span class="number">1</span>:])</span><br><span class="line">        <span class="keyword">if</span> p.guess_length():</span><br><span class="line">            p.guess_key()</span><br></pre></td></tr></table></figure>
+<p>写得很长 = = , 因为进行了封装</p>
+<p>看起来好像很划不来的样子, 不过这样可以重复利用~</p>
+<h1 id="公倍数"><a href="#公倍数" class="headerlink" title="公倍数"></a>公倍数</h1><blockquote>
+<p>请计算1000000000以内3或5的倍数之和。</p>
+<p>如：10以内这样的数有3,5,6,9，和是23</p>
+<p>请提交PCTF{你的答案}</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">_3 = (<span class="number">3</span> + <span class="number">1000000000</span> // <span class="number">3</span> * <span class="number">3</span>) * (<span class="number">1000000000</span> // <span class="number">3</span>) // <span class="number">2</span></span><br><span class="line">_5 = (<span class="number">5</span> + <span class="number">1000000000</span> - <span class="number">15</span>) * (<span class="number">1000000000</span> // <span class="number">5</span> - <span class="number">1</span>) // <span class="number">2</span></span><br><span class="line">_15 = (<span class="number">15</span> + <span class="number">1000000000</span> // <span class="number">15</span> * <span class="number">15</span>) * (<span class="number">1000000000</span> // <span class="number">15</span>) // <span class="number">2</span></span><br><span class="line">print(_3 + _5 - _15)</span><br></pre></td></tr></table></figure>
+<p>注意是 1000000000 <strong>以内</strong></p>
+<h1 id="神秘的文件"><a href="#神秘的文件" class="headerlink" title="神秘的文件"></a>神秘的文件</h1><blockquote>
+<p>出题人太懒，还是就丢 了个文件就走了，你能发现里面的秘密吗？</p>
+</blockquote>
+<p>file 一下. </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">haha: Linux rev 1.0 ext2 filesystem data, UUID=8eecd08f-bae8-41ff-8497-8338f58ad15b</span><br></pre></td></tr></table></figure>
+<p>挂上去发现一堆小文件, 里面各有一个字符<br>写个 zsh 脚本跑一下</p>
+<figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mkdir loli</span><br><span class="line">sudo mount haha loli</span><br><span class="line"><span class="keyword">for</span> i (&#123;0..253&#125;) &#123;</span><br><span class="line">	  cat <span class="variable">$i</span>  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>结果</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Haha ext2 file system is easy, and I know you can easily decompress of it and find the content in it.But the content is spilted in pieces can you make the pieces together. Now this is the flag PCTF&#123;P13c3_7oghter_i7&#125;. The rest is up to you. Cheer up, boy.</span><br></pre></td></tr></table></figure>
+<h1 id="veryeasyRSA"><a href="#veryeasyRSA" class="headerlink" title="veryeasyRSA"></a>veryeasyRSA</h1><blockquote>
+<p>已知RSA公钥生成参数：</p>
+<p> p = 3487583947589437589237958723892346254777 q = 8767867843568934765983476584376578389 </p>
+<p>e = 65537 </p>
+<p>求d = </p>
+<p>请提交PCTF{d}</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> gmpy2</span><br><span class="line">p = <span class="number">3487583947589437589237958723892346254777</span></span><br><span class="line">q = <span class="number">8767867843568934765983476584376578389</span></span><br><span class="line">e = <span class="number">65537</span></span><br><span class="line">print(gmpy2.invert(e, (p<span class="number">-1</span>) * (q<span class="number">-1</span>)))</span><br></pre></td></tr></table></figure>
+<h1 id="美丽的实验室logo"><a href="#美丽的实验室logo" class="headerlink" title="美丽的实验室logo"></a>美丽的实验室logo</h1><blockquote>
+<p>出题人丢下个logo就走了，大家自己看着办吧</p>
+</blockquote>
+<p>拖到 StegSolve 里用 Frame Browser…… </p>
+<p>还行……</p>
+<h1 id="手贱"><a href="#手贱" class="headerlink" title="手贱"></a>手贱</h1><blockquote>
+<p>某天A君的网站被日，管理员密码被改，死活登不上，去数据库一看，啥，这密码md5不是和原来一样吗？为啥登不上咧？</p>
+<p>d78b6f302l25cdc811adfe8d4e7c9fd34</p>
+<p>请提交PCTF{原来的管理员密码}</p>
+</blockquote>
+<p>多了一位, 某个不属于 hexdigits  的字符混进来了</p>
+<h1 id="段子"><a href="#段子" class="headerlink" title="段子"></a>段子</h1><blockquote>
+<p>程序猿圈子里有个非常著名的段子：</p>
+<p>手持两把锟斤拷，口中疾呼烫烫烫。</p>
+<p>请提交其中”锟斤拷”的十六进制编码。(大写)</p>
+<p>FLAG: PCTF{你的答案}</p>
+</blockquote>
+<h1 id="段子-1"><a href="#段子-1" class="headerlink" title="段子"></a>段子</h1><blockquote>
+<p>程序猿圈子里有个非常著名的段子：</p>
+<p>手持两把锟斤拷，口中疾呼烫烫烫。</p>
+<p>请提交其中”锟斤拷”的十六进制编码。(大写)</p>
+<p>FLAG: PCTF{你的答案}</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">''</span>.join(<span class="string">f'<span class="subst">&#123;i:X&#125;</span>'</span> <span class="keyword">for</span> i <span class="keyword">in</span> <span class="string">'锟斤拷'</span>.encode(<span class="string">'GBK'</span>))</span><br></pre></td></tr></table></figure>
+<h1 id="veryeasy"><a href="#veryeasy" class="headerlink" title="veryeasy"></a>veryeasy</h1><blockquote>
+<p>使用基本命令获取flag</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">curl https://dn.jarvisoj.com/challengefiles/veryeasy.d944f0e9f8d5fe5b358930023da97d1a --output - | grep -aoP <span class="string">'PCTF&#123;.+?&#125;'</span></span><br><span class="line"><span class="comment"># or</span></span><br><span class="line">curl https://dn.jarvisoj.com/challengefiles/veryeasy.d944f0e9f8d5fe5b358930023da97d1a --output - | strings | rg PCTF</span><br></pre></td></tr></table></figure>
+<p>PCTF{strings_i5_3asy_isnt_i7} </p>
+<h1 id="关于USS-Lab"><a href="#关于USS-Lab" class="headerlink" title="关于USS Lab."></a>关于USS Lab.</h1><blockquote>
+<p>USS的英文全称是什么，请全部小写并使用下划线连接_，并在外面加上PCTF{}之后提交</p>
+</blockquote>
+<p><code>PCTF{ubiquitous_system_security}</code></p>
+<h1 id="base64"><a href="#base64" class="headerlink" title="base64?"></a>base64?</h1><blockquote>
+<p>GUYDIMZVGQ2DMN3CGRQTONJXGM3TINLGG42DGMZXGM3TINLGGY4DGNBXGYZTGNLGGY3DGNBWMU3WI===</p>
+</blockquote>
+<p>base32 再转 ASCII: <code>rax2 -s $(base32 -d)</code></p>
+<p>结果 <code>PCTF{Just_t3st_h4v3_f4n}</code></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Aloxaf</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://www.aloxaf.com/2018/05/jarvisoj_basic/" title="Jarvis OJ BASIC 完整writeup">https://www.aloxaf.com/2018/05/jarvisoj_basic/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ctf/" rel="tag"># ctf</a>
+          
+            <a href="/tags/writeup/" rel="tag"># writeup</a>
+          
+            <a href="/tags/misc/" rel="tag"># misc</a>
+          
+            <a href="/tags/crypto/" rel="tag"># crypto</a>
+          
+            <a href="/tags/reverse/" rel="tag"># reverse</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/improve_hexo_table/" rel="next" title="改进hexo/cafe主题表格显示效果">
+                <i class="fa fa-chevron-left"></i> 改进hexo/cafe主题表格显示效果
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/07/arch_glibc_2.23/" rel="prev" title="在 Arch Linux 下使用 glibc 2.23 调试程序&使用 pwndbg">
+                在 Arch Linux 下使用 glibc 2.23 调试程序&使用 pwndbg <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://avatars2.githubusercontent.com/u/17017672"
+                alt="Aloxaf" />
+            
+              <p class="site-author-name" itemprop="name">Aloxaf</p>
+              <p class="site-description motion-element" itemprop="description">懒军, CTFer, 咸鱼王</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">10</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/Aloxaf" target="_blank" title="GitHub" rel="external nofollow"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#握手包"><span class="nav-number">1.</span> <span class="nav-text">握手包</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#德军的密码"><span class="nav-number">2.</span> <span class="nav-text">德军的密码</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#字符串"><span class="nav-number">3.</span> <span class="nav-text">-.-字符串</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#A-Piece-Of-Cake"><span class="nav-number">4.</span> <span class="nav-text">A Piece Of Cake</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Shellcode"><span class="nav-number">5.</span> <span class="nav-text">Shellcode</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Help"><span class="nav-number">6.</span> <span class="nav-text">Help!!</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Baby’s-Crack"><span class="nav-number">7.</span> <span class="nav-text">Baby’s Crack</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#熟悉的声音"><span class="nav-number">8.</span> <span class="nav-text">熟悉的声音</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#取证"><span class="nav-number">9.</span> <span class="nav-text">取证</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ROPGadget"><span class="nav-number">10.</span> <span class="nav-text">ROPGadget</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Easy-RSA"><span class="nav-number">11.</span> <span class="nav-text">Easy RSA</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#爱吃培根的出题人"><span class="nav-number">12.</span> <span class="nav-text">爱吃培根的出题人</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Secret"><span class="nav-number">13.</span> <span class="nav-text">Secret</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Easy-Crackme"><span class="nav-number">14.</span> <span class="nav-text">Easy Crackme</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#爆破"><span class="nav-number">14.1.</span> <span class="nav-text">爆破</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#z3"><span class="nav-number">14.2.</span> <span class="nav-text">z3</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pin"><span class="nav-number">14.3.</span> <span class="nav-text">pin</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#公倍数"><span class="nav-number">15.</span> <span class="nav-text">公倍数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#神秘的文件"><span class="nav-number">16.</span> <span class="nav-text">神秘的文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#veryeasyRSA"><span class="nav-number">17.</span> <span class="nav-text">veryeasyRSA</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#美丽的实验室logo"><span class="nav-number">18.</span> <span class="nav-text">美丽的实验室logo</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#手贱"><span class="nav-number">19.</span> <span class="nav-text">手贱</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#段子"><span class="nav-number">20.</span> <span class="nav-text">段子</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#段子-1"><span class="nav-number">21.</span> <span class="nav-text">段子</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#veryeasy"><span class="nav-number">22.</span> <span class="nav-text">veryeasy</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#关于USS-Lab"><span class="nav-number">23.</span> <span class="nav-text">关于USS Lab.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#base64"><span class="nav-number">24.</span> <span class="nav-text">base64?</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Aloxaf</span>
+
+  
+
+  
+</div>
+
+
+  
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" rel="external nofollow" href="https://theme-next.org">NexT.Gemini</a> v6.4.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.4.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.4.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+  
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: true,
+        notify: false,
+        appId: 'fSbXaElXXTznggVXiWy8NFBU-gzGzoHsz',
+        appKey: 'kK3SxB14xAACgHftKrSaBRDU',
+        placeholder: '妙啊, 妙啊',
+        avatar:'mm',
+        meta:guest,
+        pageSize:'10' || 10,
+        visitor: false
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap')
+      $(e).after($wrap)
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text()
+        }).toArray().join('\n')
+        var ta = document.createElement('textarea')
+        document.body.appendChild(ta)
+        ta.style.position = 'absolute'
+        ta.style.top = '0px'
+        ta.style.left = '0px'
+        ta.value = code
+        ta.select()
+        ta.focus()
+        var result = document.execCommand('copy')
+        document.body.removeChild(ta)
+        
+          if(result)$(this).text('复制成功')
+          else $(this).text('复制失败')
+        
+        $(this).blur()
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn')
+        setTimeout(function () {
+          $b.text('复制')
+        }, 300)
+      }).append(e)
+    })
+  </script>
+
+
+</body>
+</html>

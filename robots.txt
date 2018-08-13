@@ -1,5 +1,3 @@
 User-agent: *
-Disallow: /css/
-Disallow: /js/
-Disallow: /lib/
+Allow: /
 Sitemap: https://www.aloxaf.com/sitemap.xml
