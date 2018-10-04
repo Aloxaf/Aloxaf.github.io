@@ -470,7 +470,7 @@
 </blockquote>
 <p>这个地方我们使用 rbkcrack. </p>
 <blockquote>
-<p>它的前身 bkcrack 其实也能爆破, 不过作者手写的 parser 完全没有考虑 ZIP64 格式, 只能得到第一个 flag...</p>
+<p>它的前身 bkcrack 其实也能爆破, 不过作者手写的 parser 完全没有考虑 ZIP64 格式, 在面对复杂文件时可能会跪...</p>
 </blockquote>
 <p>题目给了两个明文, libc 那个比较大, 爆破起来比较快. 于是执行如下命令开始攻击</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rbkcrack -c libc-2.23.so -p libc-2.23.so -C cipher.zip -P plain2.zip</span><br></pre></td></tr></table></figure>
@@ -636,10 +636,6 @@
                 <div class="site-state-item site-state-categories">
                   <a href="/categories/index.html">
                     
-                    
-                      
-                    
-                      
                     
                       
                     
