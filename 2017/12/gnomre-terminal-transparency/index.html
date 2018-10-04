@@ -280,6 +280,14 @@
     <a href="/archives/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
   </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-友链">
+    <a href="/friends/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />友链</a>
+  </li>
 
       
       
@@ -451,7 +459,7 @@
       
         <p>将下列代码加入到shell的初始化脚本中即可</p>
 <a id="more"></a>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> from https://gist.github.com/brickgao/beb1c5d300c26aa2be31</span><br><span class="line"><span class="meta">#</span> append it to your .zshrc</span><br><span class="line">if [ -n "$WINDOWID" ]; then</span><br><span class="line">	TRANSPARENCY_HEX=$(printf 0x%x $((0xffffffff * 90 / 100)))</span><br><span class="line">	xprop -id "$WINDOWID" -f _NET_WM_WINDOW_OPACITY 32c -set _NET_WM_WINDOW_OPACITY "$TRANSPARENCY_HEX"</span><br><span class="line">fi</span><br><span class="line"><span class="meta">#</span>+end_src</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> from https://gist.github.com/brickgao/beb1c5d300c26aa2be31</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> append it to your .zshrc</span></span><br><span class="line">if [ -n "$WINDOWID" ]; then</span><br><span class="line">	TRANSPARENCY_HEX=$(printf 0x%x $((0xffffffff * 90 / 100)))</span><br><span class="line">	xprop -id "$WINDOWID" -f _NET_WM_WINDOW_OPACITY 32c -set _NET_WM_WINDOW_OPACITY "$TRANSPARENCY_HEX"</span><br><span class="line">fi</span><br><span class="line"><span class="meta">#</span><span class="bash">+end_src</span></span><br></pre></td></tr></table></figure>
 <p>相关讨论: <a href="https://www.reddit.com/r/linux/comments/69571g/did_gnome_team_just_remove_the_transparent/" target="_blank" rel="noopener">did_gnome_team_just_remove_the_transparent</a></p>
 <p>P.S.</p>
 <p>然而随着某次更新, 这个方法也失去了作用.</p>
@@ -587,7 +595,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-count">12</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -599,6 +607,8 @@
                 <div class="site-state-item site-state-categories">
                   <a href="/categories/index.html">
                     
+                    
+                      
                     
                       
                     
@@ -651,7 +661,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">13</span>
+                      
+                    
+                    <span class="site-state-item-count">14</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

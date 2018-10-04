@@ -280,6 +280,14 @@
     <a href="/archives/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
   </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-友链">
+    <a href="/friends/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />友链</a>
+  </li>
 
       
       
@@ -452,6 +460,7 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">▶ ldd target/release/hello</span><br><span class="line">        linux-vdso.so.1 (0x00007ffe245ec000)</span><br><span class="line">        libstd-0cce0e0e34e933aa.so =&gt; not found</span><br><span class="line">        libc.so.6 =&gt; /usr/lib/libc.so.6 (0x00007fb5bc982000)</span><br><span class="line">        /lib64/ld-linux-x86-64.so.2 =&gt; /usr/lib64/ld-linux-x86-64.so.2 (0x00007fb5bcba2000)</span><br></pre></td></tr></table></figure>
 <p>Google 了一下这个问题已经有人提出了 <a href="https://github.com/rust-lang/rust/issues/45601" target="_blank" rel="noopener">Avoid the <code>proc_macro</code> crate being dynamically linked.</a><br>也已经有人着手修复了 <a href="https://github.com/rust-lang/rust/pull/49219" target="_blank" rel="noopener">Decouple proc_macro from the rest of the compiler.</a></p>
 <p>坐等</p>
+<p>P.S. <code>-C</code>开关可供把玩的选项似乎很多啊, 比如 <code>-C target-cpu=native</code>提高程序本机运行速度</p>
 
       
     </div>
@@ -508,6 +517,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/10/zip_crack/" rel="prev" title="ZIP 明文攻击工具">
+                ZIP 明文攻击工具 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -575,7 +588,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-count">12</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -587,6 +600,8 @@
                 <div class="site-state-item site-state-categories">
                   <a href="/categories/index.html">
                     
+                    
+                      
                     
                       
                     
@@ -639,7 +654,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">13</span>
+                      
+                    
+                    <span class="site-state-item-count">14</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
