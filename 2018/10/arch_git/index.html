@@ -456,7 +456,7 @@
 <p>....改成</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ! git fetch --depth=1 -p; <span class="keyword">then</span></span><br><span class="line">	<span class="keyword">if</span> ! git fetch --all -p; <span class="keyword">then</span></span><br><span class="line">		<span class="comment"># only warn on failure to allow offline builds</span></span><br><span class="line">		warning <span class="string">"<span class="variable">$(gettext "Failure while updating %s %s repo")</span>"</span> <span class="string">"<span class="variable">$&#123;repo&#125;</span>"</span> <span class="string">"git"</span></span><br><span class="line">	<span class="keyword">fi</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
 <p>这样速度就令人满意多了, 对于大部分构建脚本应该都没问题, </p>
-<p>如果遇到那种非要 clone 整个 repo 然后再 checkout 啥的 SB 构建脚本再改就行了.</p>
+<p>遇到问题再改吧 (</p>
 
       
     </div>
