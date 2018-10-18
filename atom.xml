@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.aloxaf.com/"/>
-  <updated>2018-10-04T13:47:12.000Z</updated>
+  <updated>2018-10-18T08:15:30.000Z</updated>
   <id>https://www.aloxaf.com/</id>
   
   <author>
@@ -15,6 +15,57 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>加速 AUR 软件 git clone 速度</title>
+    <link href="https://www.aloxaf.com/2018/10/arch_git/"/>
+    <id>https://www.aloxaf.com/2018/10/arch_git/</id>
+    <published>2018-10-18T08:15:30.000Z</published>
+    <updated>2018-10-18T08:15:30.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>AUR 里的构建脚本常常需要从 github 拉取源代码,<br>然而没有加 <code>--depth 1</code> 的 <code>git clone</code> 把大量流量花在了下载对于构建毫无用处的提交记录等东西上面. </p><p>尤其是安装主题这种东西的时候, clone 下来几百 MB, 结果构建完得到一个几 MB 的包...</p><a id="more"></a><p>暴力的修复方案:</p><p>打开 <code>/usr/share/makepkg/source/git.sh</code>, 其中有一段这样的代码</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ! git <span class="built_in">clone</span> --mirror <span class="string">"<span class="variable">$url</span>"</span> <span class="string">"<span class="variable">$dir</span>"</span>; <span class="keyword">then</span></span><br><span class="line">error <span class="string">"<span class="variable">$(gettext "Failure while downloading %s %s repo")</span>"</span> <span class="string">"<span class="variable">$&#123;repo&#125;</span>"</span> <span class="string">"git"</span></span><br><span class="line">plain <span class="string">"<span class="variable">$(gettext "Aborting...")</span>"</span></span><br><span class="line"><span class="built_in">exit</span> 1</span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure><p>改成这样, 也就是在外面又加了一层 if. 不直接改在原来的基础上加是因为有些网站不支持 <code>--depth</code></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ! git <span class="built_in">clone</span> --depth 1 --mirror <span class="string">"<span class="variable">$url</span>"</span> <span class="string">"<span class="variable">$dir</span>"</span>; <span class="keyword">then</span></span><br><span class="line"><span class="keyword">if</span> ! git <span class="built_in">clone</span> --mirror <span class="string">"<span class="variable">$url</span>"</span> <span class="string">"<span class="variable">$dir</span>"</span>; <span class="keyword">then</span></span><br><span class="line">error <span class="string">"<span class="variable">$(gettext "Failure while downloading %s %s repo")</span>"</span> <span class="string">"<span class="variable">$&#123;repo&#125;</span>"</span> <span class="string">"git"</span></span><br><span class="line">plain <span class="string">"<span class="variable">$(gettext "Aborting...")</span>"</span></span><br><span class="line"><span class="built_in">exit</span> 1</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;AUR 里的构建脚本常常需要从 github 拉取源代码,&lt;br&gt;然而没有加 &lt;code&gt;--depth 1&lt;/code&gt; 的 &lt;code&gt;git clone&lt;/code&gt; 把大量流量花在了下载对于构建毫无用处的提交记录等东西上面. &lt;/p&gt;
+&lt;p&gt;尤其是安装主题这种东西的时候, clone 下来几百 MB, 结果构建完得到一个几 MB 的包...&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="linux" scheme="https://www.aloxaf.com/categories/linux/"/>
+    
+    
+      <category term="linux" scheme="https://www.aloxaf.com/tags/linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>在 Linux 下使用 Blob Emoji</title>
+    <link href="https://www.aloxaf.com/2018/10/linux_emoji/"/>
+    <id>https://www.aloxaf.com/2018/10/linux_emoji/</id>
+    <published>2018-10-10T11:00:45.000Z</published>
+    <updated>2018-10-10T11:00:45.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>默认emoji太丑, 没有颜色, 看着浑身难受.</p><p>还是喜欢果冻人...</p><p>通过以下命令安装:</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pikaur -S noto-fonts-emoji-blob</span><br></pre></td></tr></table></figure><p>然后往 <code>~/.config/fontconfig/conf.d/70-emojione-color.conf</code> 写入</p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span><br><span class="line"><span class="meta">&lt;!DOCTYPE fontconfig SYSTEM "fonts.dtd"&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">fontconfig</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">match</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">test</span> <span class="attr">name</span>=<span class="string">"family"</span>&gt;</span><span class="tag">&lt;<span class="name">string</span>&gt;</span>sans-serif<span class="tag">&lt;/<span class="name">string</span>&gt;</span><span class="tag">&lt;/<span class="name">test</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">edit</span> <span class="attr">name</span>=<span class="string">"family"</span> <span class="attr">mode</span>=<span class="string">"prepend"</span> <span class="attr">binding</span>=<span class="string">"strong"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">string</span>&gt;</span>Blobmoji<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">edit</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">match</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">match</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">test</span> <span class="attr">name</span>=<span class="string">"family"</span>&gt;</span><span class="tag">&lt;<span class="name">string</span>&gt;</span>serif<span class="tag">&lt;/<span class="name">string</span>&gt;</span><span class="tag">&lt;/<span class="name">test</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">edit</span> <span class="attr">name</span>=<span class="string">"family"</span> <span class="attr">mode</span>=<span class="string">"prepend"</span> <span class="attr">binding</span>=<span class="string">"strong"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">string</span>&gt;</span>Blobmoji<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">edit</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">match</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">match</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">test</span> <span class="attr">name</span>=<span class="string">"family"</span>&gt;</span><span class="tag">&lt;<span class="name">string</span>&gt;</span>monospace<span class="tag">&lt;/<span class="name">string</span>&gt;</span><span class="tag">&lt;/<span class="name">test</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">edit</span> <span class="attr">name</span>=<span class="string">"family"</span> <span class="attr">mode</span>=<span class="string">"prepend"</span> <span class="attr">binding</span>=<span class="string">"strong"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">string</span>&gt;</span>Blobmoji<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">edit</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">match</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">match</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">test</span> <span class="attr">name</span>=<span class="string">"family"</span>&gt;</span><span class="tag">&lt;<span class="name">string</span>&gt;</span>Apple Color Emoji<span class="tag">&lt;/<span class="name">string</span>&gt;</span><span class="tag">&lt;/<span class="name">test</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">edit</span> <span class="attr">name</span>=<span class="string">"family"</span> <span class="attr">mode</span>=<span class="string">"prepend"</span> <span class="attr">binding</span>=<span class="string">"strong"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">string</span>&gt;</span>Blobmoji<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">edit</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">match</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">fontconfig</span>&gt;</span></span><br></pre></td></tr></table></figure><p>再执行 <code>fc-cache -f -v</code>, 果冻人就回来了!~</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;默认emoji太丑, 没有颜色, 看着浑身难受.&lt;/p&gt;
+&lt;p&gt;还是喜欢果冻人...&lt;/p&gt;
+&lt;p&gt;通过以下命令安装:&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span c
+      
+    
+    </summary>
+    
+      <category term="linux" scheme="https://www.aloxaf.com/categories/linux/"/>
+    
+    
+      <category term="linux" scheme="https://www.aloxaf.com/tags/linux/"/>
+    
+  </entry>
   
   <entry>
     <title>ZIP 明文攻击工具</title>
@@ -35,11 +86,11 @@
       <category term="ctf" scheme="https://www.aloxaf.com/categories/ctf/"/>
     
     
+      <category term="rust" scheme="https://www.aloxaf.com/tags/rust/"/>
+    
       <category term="ctf" scheme="https://www.aloxaf.com/tags/ctf/"/>
     
       <category term="misc" scheme="https://www.aloxaf.com/tags/misc/"/>
-    
-      <category term="rust" scheme="https://www.aloxaf.com/tags/rust/"/>
     
       <category term="zip" scheme="https://www.aloxaf.com/tags/zip/"/>
     
@@ -162,13 +213,13 @@
       <category term="writeup" scheme="https://www.aloxaf.com/categories/writeup/"/>
     
     
-      <category term="ctf" scheme="https://www.aloxaf.com/tags/ctf/"/>
+      <category term="pwn" scheme="https://www.aloxaf.com/tags/pwn/"/>
     
-      <category term="writeup" scheme="https://www.aloxaf.com/tags/writeup/"/>
+      <category term="ctf" scheme="https://www.aloxaf.com/tags/ctf/"/>
     
       <category term="misc" scheme="https://www.aloxaf.com/tags/misc/"/>
     
-      <category term="pwn" scheme="https://www.aloxaf.com/tags/pwn/"/>
+      <category term="writeup" scheme="https://www.aloxaf.com/tags/writeup/"/>
     
       <category term="crypto" scheme="https://www.aloxaf.com/tags/crypto/"/>
     
@@ -227,9 +278,9 @@
     
       <category term="ctf" scheme="https://www.aloxaf.com/tags/ctf/"/>
     
-      <category term="writeup" scheme="https://www.aloxaf.com/tags/writeup/"/>
-    
       <category term="misc" scheme="https://www.aloxaf.com/tags/misc/"/>
+    
+      <category term="writeup" scheme="https://www.aloxaf.com/tags/writeup/"/>
     
       <category term="crypto" scheme="https://www.aloxaf.com/tags/crypto/"/>
     
@@ -277,11 +328,11 @@
       <category term="writeup" scheme="https://www.aloxaf.com/categories/writeup/"/>
     
     
+      <category term="pwn" scheme="https://www.aloxaf.com/tags/pwn/"/>
+    
       <category term="ctf" scheme="https://www.aloxaf.com/tags/ctf/"/>
     
       <category term="writeup" scheme="https://www.aloxaf.com/tags/writeup/"/>
-    
-      <category term="pwn" scheme="https://www.aloxaf.com/tags/pwn/"/>
     
   </entry>
   
