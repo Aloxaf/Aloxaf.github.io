@@ -118,9 +118,9 @@
     
       <category term="misc" scheme="https://www.aloxaf.com/tags/misc/"/>
     
-      <category term="zip" scheme="https://www.aloxaf.com/tags/zip/"/>
-    
       <category term="rust" scheme="https://www.aloxaf.com/tags/rust/"/>
+    
+      <category term="zip" scheme="https://www.aloxaf.com/tags/zip/"/>
     
   </entry>
   
