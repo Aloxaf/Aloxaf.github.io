@@ -119,16 +119,18 @@
 
 
 
-  <meta name="description" content="懒军, CTFer, 咸鱼王">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Aloxaf&#39;s blog">
-<meta property="og:url" content="https://www.aloxaf.com/archives/2018/08/index.html">
+  <meta name="description" content="pwndbg 的安装: pacman -S pwndbg 然后添加 source /usr/share/pwndbg/gdbinit.py 到 ~/.gdbinit 然而要在 Arch Linux 下愉快地使用 pwndbg, 还要解决以下问题:  Arch Support - Roadmap 搁了快一年的问题, 主要是 Arch 下没有 libc6-dbg 这种包, 要调试符号只能自己编译...">
+<meta name="keywords" content="linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Arch Linux 下使用 pwndbg">
+<meta property="og:url" content="https://www.aloxaf.com/2018/10/arch_pwndbg/index.html">
 <meta property="og:site_name" content="Aloxaf&#39;s blog">
-<meta property="og:description" content="懒军, CTFer, 咸鱼王">
+<meta property="og:description" content="pwndbg 的安装: pacman -S pwndbg 然后添加 source /usr/share/pwndbg/gdbinit.py 到 ~/.gdbinit 然而要在 Arch Linux 下愉快地使用 pwndbg, 还要解决以下问题:  Arch Support - Roadmap 搁了快一年的问题, 主要是 Arch 下没有 libc6-dbg 这种包, 要调试符号只能自己编译...">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-10-19T05:47:04.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Aloxaf&#39;s blog">
-<meta name="twitter:description" content="懒军, CTFer, 咸鱼王">
+<meta name="twitter:title" content="Arch Linux 下使用 pwndbg">
+<meta name="twitter:description" content="pwndbg 的安装: pacman -S pwndbg 然后添加 source /usr/share/pwndbg/gdbinit.py 到 ~/.gdbinit 然而要在 Arch Linux 下愉快地使用 pwndbg, 还要解决以下问题:  Arch Support - Roadmap 搁了快一年的问题, 主要是 Arch 下没有 libc6-dbg 这种包, 要调试符号只能自己编译...">
 
 
 
@@ -137,7 +139,7 @@
 
 
 
-  <link rel="canonical" href="https://www.aloxaf.com/archives/2018/08/"/>
+  <link rel="canonical" href="https://www.aloxaf.com/2018/10/arch_pwndbg/"/>
 
 
 
@@ -147,7 +149,7 @@
   };
 </script>
 
-  <title>归档 | Aloxaf's blog</title>
+  <title>Arch Linux 下使用 pwndbg | Aloxaf's blog</title>
   
 
 
@@ -203,7 +205,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -276,7 +278,7 @@
         
         
           
-          <li class="menu-item menu-item-archives menu-item-active">
+          <li class="menu-item menu-item-archives">
     <a href="/archives/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
   </li>
@@ -317,109 +319,224 @@
           
             
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
           
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
 
-      
-      <span class="archive-page-counter">
-        
-        
-        
-          
-        
-        嗯..! 目前共计 15 篇日志。 继续努力。
-      </span>
-      
-
-      
-
-        
-        
-        
-
-        
-          
-          <div class="collection-title">
-            <h2 class="archive-year" id="archive-year-2018">2018</h2>
-          </div>
-        
-        
-
-        
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.aloxaf.com/2018/10/arch_pwndbg/">
 
-      <h3 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Aloxaf">
+      <meta itemprop="description" content="懒军, CTFer, 咸鱼王">
+      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/17017672">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Aloxaf's blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2018/08/tjctf_pythonjail/" itemprop="url">
-              
-                <span itemprop="name">TJCTF 2018 中两道 Python Jail 的解法</span>
-              
-            </a>
         
-      </h3>
+          <h2 class="post-title" itemprop="name headline">Arch Linux 下使用 pwndbg
+              
+            
+          </h2>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-08-11T12:23:25+08:00"
-              content="2018-08-11" >
-          08-11
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
 
-    </header>
-  </article>
+            
+            
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
 
+              
+                
+              
+
+              <time title="创建时间：2018-10-19 13:47:04" itemprop="dateCreated datePublished" datetime="2018-10-19T13:47:04+08:00">2018-10-19</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">linux</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/10/arch_pwndbg/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/10/arch_pwndbg/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
+      
 
+      
+        <p>pwndbg 的安装: <code>pacman -S pwndbg</code> 然后添加 <code>source /usr/share/pwndbg/gdbinit.py</code> 到 <code>~/.gdbinit</code></p>
+<p>然而要在 Arch Linux 下愉快地使用 pwndbg, 还要解决以下问题:</p>
+<ul>
+<li><a href="https://github.com/pwndbg/pwndbg/issues/340" target="_blank" rel="noopener">Arch Support - Roadmap</a> 搁了快一年的问题, 主要是 Arch 下没有 libc6-dbg 这种包, 要调试符号只能自己编译...</li>
+<li><a href="https://github.com/pwndbg/pwndbg/issues/535" target="_blank" rel="noopener">Heap issues</a> Arch 的 gdb 的问题, 需要重新编译 gdb</li>
+<li><a href="https://github.com/pwndbg/pwndbg/issues/523#issuecomment-425673020" target="_blank" rel="noopener">Python exception under gdb-8.2-2</a> 上游 gdb 的问题, 8.3 应该会修复, 不过可以按链接所示的方法临时 patch 一下</li>
+</ul>
+<a id="more"></a>
+<p>这里解决前两个问题, 利用棒棒的 ABS (Arch Build System)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">svn checkout --depth=empty svn://svn.archlinux.org/packages</span><br><span class="line"><span class="built_in">cd</span> packages</span><br><span class="line">svn update glibc gdb</span><br><span class="line"></span><br><span class="line"><span class="comment"># Build glibc (Fix #340)</span></span><br><span class="line"><span class="built_in">cd</span> glibc/repos/core-x86_64</span><br><span class="line"><span class="built_in">echo</span> en_US.UTF-8 UTF-8 &gt;&gt;locale.gen.txt</span><br><span class="line"><span class="comment">## For Chinese users</span></span><br><span class="line"><span class="comment">## echo zh_CN.UTF-8 UTF-8 &gt;&gt;locale.gen.txt</span></span><br><span class="line"><span class="comment">## sed -i 's#sourceware.org/git/glibc.git#gitee.com/Aloxaf/glibc.git#' PKGBUILD</span></span><br><span class="line"><span class="comment"># generate detached debugging symbols</span></span><br><span class="line">sed -i <span class="string">'s#!strip#debug#'</span> PKGBUILD</span><br><span class="line">makepkg --skipchecksums</span><br><span class="line">sudo pacman -U *.pkg.tar.xz</span><br><span class="line"></span><br><span class="line"><span class="comment"># Build gdb (Fix #535)</span></span><br><span class="line"><span class="built_in">cd</span> -</span><br><span class="line"><span class="built_in">cd</span> gdb/repos/extra-x86_64</span><br><span class="line">sed -i <span class="string">'s#--with-system-gdbinit=/etc/gdb/gdbinit#&amp; LIBS=-lpthread#'</span> PKGBUILD</span><br><span class="line"><span class="comment">## For Chinese users</span></span><br><span class="line"><span class="comment">## sed -i 's#ftp.gnu.org/gnu/#mirrors.tuna.tsinghua.edu.cn/gnu/#' PKGBUILD</span></span><br><span class="line">makepkg <span class="comment">##--skippgpcheck</span></span><br><span class="line">sudo pacman -U *.pkg.tar.xz</span><br></pre></td></tr></table></figure>
+<p>缺点是每次升级 glibc/gdb 的时候要自己重新编译一遍......</p>
+
+      
     </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>aloxaf</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://www.aloxaf.com/2018/10/arch_pwndbg/" title="Arch Linux 下使用 pwndbg">https://www.aloxaf.com/2018/10/arch_pwndbg/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/linux/" rel="tag"># linux</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/10/arch_git/" rel="next" title="加速 AUR 软件安装速度">
+                <i class="fa fa-chevron-left"></i> 加速 AUR 软件安装速度
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+  </div>
 
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
 
         </div>
         
@@ -717,6 +834,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.0"></script>
+
+
 
   
 
