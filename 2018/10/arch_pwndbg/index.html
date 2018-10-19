@@ -127,7 +127,7 @@
 <meta property="og:site_name" content="Aloxaf&#39;s blog">
 <meta property="og:description" content="pwndbg 的安装: pacman -S pwndbg 然后添加 source /usr/share/pwndbg/gdbinit.py 到 ~/.gdbinit 然而要在 Arch Linux 下愉快地使用 pwndbg, 还要解决以下问题:  Arch Support - Roadmap 搁了快一年的问题, 主要是 Arch 下没有 libc6-dbg 这种包, 要调试符号只能自己编译...">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-10-19T05:47:04.000Z">
+<meta property="og:updated_time" content="2018-10-19T10:48:02.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Arch Linux 下使用 pwndbg">
 <meta name="twitter:description" content="pwndbg 的安装: pacman -S pwndbg 然后添加 source /usr/share/pwndbg/gdbinit.py 到 ~/.gdbinit 然而要在 Arch Linux 下愉快地使用 pwndbg, 还要解决以下问题:  Arch Support - Roadmap 搁了快一年的问题, 主要是 Arch 下没有 libc6-dbg 这种包, 要调试符号只能自己编译...">
@@ -381,9 +381,13 @@
                 
               
 
-              <time title="创建时间：2018-10-19 13:47:04" itemprop="dateCreated datePublished" datetime="2018-10-19T13:47:04+08:00">2018-10-19</time>
+              <time title="创建时间：2018-10-19 13:47:04 / 修改时间：18:48:02" itemprop="dateCreated datePublished" datetime="2018-10-19T13:47:04+08:00">2018-10-19</time>
             
 
+            
+              
+
+              
             
           </span>
 
@@ -447,13 +451,12 @@
 <p>然而要在 Arch Linux 下愉快地使用 pwndbg, 还要解决以下问题:</p>
 <ul>
 <li><a href="https://github.com/pwndbg/pwndbg/issues/340" target="_blank" rel="noopener">Arch Support - Roadmap</a> 搁了快一年的问题, 主要是 Arch 下没有 libc6-dbg 这种包, 要调试符号只能自己编译...</li>
-<li><a href="https://github.com/pwndbg/pwndbg/issues/535" target="_blank" rel="noopener">Heap issues</a> Arch 的 gdb 的问题, 需要重新编译 gdb</li>
 <li><a href="https://github.com/pwndbg/pwndbg/issues/523#issuecomment-425673020" target="_blank" rel="noopener">Python exception under gdb-8.2-2</a> 上游 gdb 的问题, 8.3 应该会修复, 不过可以按链接所示的方法临时 patch 一下</li>
 </ul>
-<a id="more"></a>
-<p>这里解决前两个问题, 利用棒棒的 ABS (Arch Build System)</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">svn checkout --depth=empty svn://svn.archlinux.org/packages</span><br><span class="line"><span class="built_in">cd</span> packages</span><br><span class="line">svn update glibc gdb</span><br><span class="line"></span><br><span class="line"><span class="comment"># Build glibc (Fix #340)</span></span><br><span class="line"><span class="built_in">cd</span> glibc/repos/core-x86_64</span><br><span class="line"><span class="built_in">echo</span> en_US.UTF-8 UTF-8 &gt;&gt;locale.gen.txt</span><br><span class="line"><span class="comment">## For Chinese users</span></span><br><span class="line"><span class="comment">## echo zh_CN.UTF-8 UTF-8 &gt;&gt;locale.gen.txt</span></span><br><span class="line"><span class="comment">## sed -i 's#sourceware.org/git/glibc.git#gitee.com/Aloxaf/glibc.git#' PKGBUILD</span></span><br><span class="line"><span class="comment"># generate detached debugging symbols</span></span><br><span class="line">sed -i <span class="string">'s#!strip#debug#'</span> PKGBUILD</span><br><span class="line">makepkg --skipchecksums</span><br><span class="line">sudo pacman -U *.pkg.tar.xz</span><br><span class="line"></span><br><span class="line"><span class="comment"># Build gdb (Fix #535)</span></span><br><span class="line"><span class="built_in">cd</span> -</span><br><span class="line"><span class="built_in">cd</span> gdb/repos/extra-x86_64</span><br><span class="line">sed -i <span class="string">'s#--with-system-gdbinit=/etc/gdb/gdbinit#&amp; LIBS=-lpthread#'</span> PKGBUILD</span><br><span class="line"><span class="comment">## For Chinese users</span></span><br><span class="line"><span class="comment">## sed -i 's#ftp.gnu.org/gnu/#mirrors.tuna.tsinghua.edu.cn/gnu/#' PKGBUILD</span></span><br><span class="line">makepkg <span class="comment">##--skippgpcheck</span></span><br><span class="line">sudo pacman -U *.pkg.tar.xz</span><br></pre></td></tr></table></figure>
-<p>缺点是每次升级 glibc/gdb 的时候要自己重新编译一遍......</p>
+<p>这里解决第一个问题, 利用棒棒的 ABS (Arch Build System)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">svn checkout --depth=empty svn://svn.archlinux.org/packages</span><br><span class="line"><span class="built_in">cd</span> packages</span><br><span class="line">svn update glibc</span><br><span class="line"></span><br><span class="line"><span class="comment"># Build glibc (Fix #340)</span></span><br><span class="line"><span class="built_in">cd</span> glibc/repos/core-x86_64</span><br><span class="line"><span class="built_in">echo</span> en_US.UTF-8 UTF-8 &gt;&gt;locale.gen.txt</span><br><span class="line"><span class="comment">## For Chinese users</span></span><br><span class="line"><span class="comment">## echo zh_CN.UTF-8 UTF-8 &gt;&gt;locale.gen.txt</span></span><br><span class="line"><span class="comment">## sed -i 's#sourceware.org/git/glibc.git#gitee.com/Aloxaf/glibc.git#' PKGBUILD</span></span><br><span class="line"><span class="comment"># generate detached debugging symbols</span></span><br><span class="line">sed -i <span class="string">'s#!strip#debug#'</span> PKGBUILD</span><br><span class="line">makepkg --skipchecksums</span><br><span class="line">sudo pacman -U *.pkg.tar.xz</span><br></pre></td></tr></table></figure>
+<p>缺点是每次升级 glibc 的时候要自己重新编译一遍......</p>
+<p>(听说 Debug Symbols 的支持已经在进行中了?)</p>
 
       
     </div>
