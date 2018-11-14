@@ -471,11 +471,12 @@
 <h2 id="2-globals"><a href="#2-globals" class="headerlink" title="2. globals()"></a>2. <code>globals()</code></h2><p>既然不能直接赋值, 那试试用 <code>globals()</code> 来赋值?</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">1</span>]: globals()[<span class="string">'a'</span>] = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">2</span>]: a</span><br><span class="line">Out[<span class="number">2</span>]: <span class="number">1</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">3</span>]: globals()[<span class="string">'False'</span>] = <span class="keyword">True</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">4</span>]: <span class="keyword">False</span></span><br><span class="line">Out[<span class="number">4</span>]: <span class="keyword">False</span></span><br></pre></td></tr></table></figure>
 <p>仍然失败, 想想也是, 在 Python3 中 <code>False</code> 已经是一个关键字了, 优先级肯定高于变量. 即使有同名变量也会被遮蔽.</p>
-<h2 id="3-重载-eq"><a href="#3-重载-eq" class="headerlink" title="3. 重载 __eq__"></a>3. 重载 <code>__eq__</code></h2><p>想对身为关键字的 <code>True</code> 和 <code>False</code> 做点什么实在是太难了,<br>换个思路试试: 重载 <code>str.__eq__</code>, 让它不管三七二十一全部返回 <code>True</code> ! 妙啊妙啊, 我真是太聪明了.</p>
+<h2 id="3-重载-eq"><a href="#3-重载-eq" class="headerlink" title="3. 重载 __eq__"></a>3. 重载 <code>__eq__</code></h2><p>想对身为关键字的 <code>True</code> 和 <code>False</code> 做点什么实在是太难了,<br>换个思路试试: 重载 <code>str.__eq__</code>, 让它不管三七二十一全部返回 <code>True</code> ! 妙啊妙啊, 我真是太聪明了. </p>
+<p>虽然不能做到 <code>&#39;a&#39; is &#39;b&#39;</code> 但能实现 <code>&#39;a&#39; == &#39;b&#39;</code> 的话也是一个进步啊.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">10</span>]: int.__eq__ = <span class="keyword">lambda</span> : <span class="keyword">True</span></span><br><span class="line">---------------------------------------------------------------------------</span><br><span class="line">TypeError                                 Traceback (most recent call last)</span><br><span class="line">&lt;ipython-input<span class="number">-10</span><span class="number">-71</span>a46054a87d&gt; <span class="keyword">in</span> &lt;module&gt;()</span><br><span class="line">----&gt; 1 int.__eq__ = lambda : True</span><br><span class="line"></span><br><span class="line">TypeError: can<span class="string">'t set attributes of built-in/extension type '</span>int<span class="string">'</span></span><br></pre></td></tr></table></figure>
 <p>然而又失败了...</p>
-<h2 id="4-重载-repr"><a href="#4-重载-repr" class="headerlink" title="4. 重载 __repr__"></a>4. 重载 <code>__repr__</code></h2><p>不死心的我又想试试 <code>__repr__</code></p>
-<p>仍然失败, 嘛...毕竟是内置类型.</p>
+<h2 id="4-重载-repr"><a href="#4-重载-repr" class="headerlink" title="4. 重载 __repr__"></a>4. 重载 <code>__repr__</code></h2><p>不死心的我又想试试 <code>__repr__</code>, 让 <code>bool</code> 对象的 <code>__repr__</code> 始终返回 True</p>
+<p>仍然失败了, 嘛...毕竟是内置类型.</p>
 <p>看来内置的玩意儿通过常规方法是改不了, 那就读源码, 用 ctypes 强行改一波内存.</p>
 <blockquote>
 <p>后来我还想到一种适用于 ipython 的方法, 即自定义一个 ipython formatter, 相当于 ipython 专用的 <code>__repr__</code></p>
@@ -608,6 +609,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2018/11/kde_dark_theme/" rel="prev" title="解决 KDE 暗色主题下 WPS & 搜狗拼音设置字体颜色不正常的问题">
+                解决 KDE 暗色主题下 WPS & 搜狗拼音设置字体颜色不正常的问题 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -683,7 +688,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">16</span>
+                    <span class="site-state-item-count">17</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
