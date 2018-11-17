@@ -127,7 +127,7 @@
 <meta property="og:site_name" content="Aloxaf&#39;s blog">
 <meta property="og:description" content="pwndbg 的安装: pacman -S pwndbg 然后添加 source /usr/share/pwndbg/gdbinit.py 到 ~/.gdbinit 然而要在 Arch Linux 下愉快地使用 pwndbg, 还要解决以下问题:  Arch Support - Roadmap 搁了快一年的问题, 主要是 Arch 下没有 libc6-dbg 这种包, 要调试符号只能自己编译...">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-10-19T10:48:02.000Z">
+<meta property="og:updated_time" content="2018-11-17T12:54:57.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Arch Linux 下使用 pwndbg">
 <meta name="twitter:description" content="pwndbg 的安装: pacman -S pwndbg 然后添加 source /usr/share/pwndbg/gdbinit.py 到 ~/.gdbinit 然而要在 Arch Linux 下愉快地使用 pwndbg, 还要解决以下问题:  Arch Support - Roadmap 搁了快一年的问题, 主要是 Arch 下没有 libc6-dbg 这种包, 要调试符号只能自己编译...">
@@ -381,12 +381,24 @@
                 
               
 
-              <time title="创建时间：2018-10-19 13:47:04 / 修改时间：18:48:02" itemprop="dateCreated datePublished" datetime="2018-10-19T13:47:04+08:00">2018-10-19</time>
+              <time title="创建时间：2018-10-19 13:47:04" itemprop="dateCreated datePublished" datetime="2018-10-19T13:47:04+08:00">2018-10-19</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-11-17 20:54:57" itemprop="dateModified" datetime="2018-11-17T20:54:57+08:00">2018-11-17</time>
               
             
           </span>
@@ -454,9 +466,13 @@
 <li><a href="https://github.com/pwndbg/pwndbg/issues/523#issuecomment-425673020" target="_blank" rel="noopener">Python exception under gdb-8.2-2</a> 上游 gdb 的问题, 8.3 应该会修复, 不过可以按链接所示的方法临时 patch 一下</li>
 </ul>
 <p>这里解决第一个问题, 利用棒棒的 ABS (Arch Build System)</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">svn checkout --depth=empty svn://svn.archlinux.org/packages</span><br><span class="line"><span class="built_in">cd</span> packages</span><br><span class="line">svn update glibc</span><br><span class="line"></span><br><span class="line"><span class="comment"># Build glibc (Fix #340)</span></span><br><span class="line"><span class="built_in">cd</span> glibc/repos/core-x86_64</span><br><span class="line"><span class="built_in">echo</span> en_US.UTF-8 UTF-8 &gt;&gt;locale.gen.txt</span><br><span class="line"><span class="comment">## For Chinese users</span></span><br><span class="line"><span class="comment">## echo zh_CN.UTF-8 UTF-8 &gt;&gt;locale.gen.txt</span></span><br><span class="line"><span class="comment">## sed -i 's#sourceware.org/git/glibc.git#gitee.com/Aloxaf/glibc.git#' PKGBUILD</span></span><br><span class="line"><span class="comment"># generate detached debugging symbols</span></span><br><span class="line">sed -i <span class="string">'s#!strip#debug#'</span> PKGBUILD</span><br><span class="line">makepkg --skipchecksums</span><br><span class="line">sudo pacman -U *.pkg.tar.xz</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">svn checkout --depth=empty svn://svn.archlinux.org/packages</span><br><span class="line"><span class="built_in">cd</span> packages</span><br><span class="line">svn update glibc</span><br><span class="line"></span><br><span class="line"><span class="comment"># Build glibc (Fix #340)</span></span><br><span class="line"><span class="built_in">cd</span> glibc/repos/core-x86_64</span><br><span class="line"><span class="built_in">echo</span> en_US.UTF-8 UTF-8 &gt;&gt;locale.gen.txt</span><br><span class="line"><span class="comment">## For Chinese users</span></span><br><span class="line"><span class="comment">## echo zh_CN.UTF-8 UTF-8 &gt;&gt;locale.gen.txt</span></span><br><span class="line"><span class="comment">## sed -i 's#sourceware.org/git/glibc.git#gitee.com/Aloxaf/glibc.git#' PKGBUILD</span></span><br><span class="line"><span class="comment"># generate detached debugging symbols</span></span><br><span class="line">sed -i <span class="string">'s#!strip#debug#'</span> PKGBUILD</span><br><span class="line"><span class="comment"># skip check</span></span><br><span class="line">makepkg --skipchecksums --nocheck</span><br><span class="line">sudo pacman -U *.pkg.tar.xz</span><br></pre></td></tr></table></figure>
 <p>缺点是每次升级 glibc 的时候要自己重新编译一遍......</p>
 <p>(听说 Debug Symbols 的支持已经在进行中了?)</p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>今天学长按照这个试了一下, 编译了一个下午都没编译完(然后怒转 mint ). 然后我才想起来第一次我也遇到了这个问题: 其实编译早就完成了, 只是一直在跑测试......(大概是因为 glibc 非常重要, 所以测试很多....) (不过测试虽然慢但我当时似乎也跑完了) (可能是因为我改了 <code>BUILDDIR</code> ?)</p>
+<p>要取消测试可以简单地给 <code>makepkg</code> 添加 <code>--nocheck</code> 参数</p>
+<p>或者一劳永逸(暴力)的办法: 在 <code>/etc/makepkg.conf</code> 中将 <code>BUILDENV</code> 中的 <code>check</code> 改为 <code>!check</code> (因为我被坑了一次后就加上了, 然后就忘了这个坑...)</p>
+<p>P.S. 顺便也可以根据这篇文章 <a href="https://wiki.archlinux.org/index.php/Makepkg_%28%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87%29#%E7%BC%96%E8%AF%91%E7%BB%93%E6%9E%9C%E4%BC%98%E5%8C%96" target="_blank" rel="noopener">Makepkg_(简体中文)#编译结果优化</a> 优化一下其他参数, 主要是 <code>BUILDDIR</code> ,<code>CFLAGS</code>, <code>CXXFLAGS</code> 和 <code>MAKEFLAGS</code></p>
 
       
     </div>
@@ -564,8 +580,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -701,6 +726,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#后记"><span class="nav-number">1.</span> <span class="nav-text">后记</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
