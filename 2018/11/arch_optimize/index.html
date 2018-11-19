@@ -119,18 +119,18 @@
 
 
 
-  <meta name="description" content="AUR 里的构建脚本常常需要从 github 拉取源代码,然而没有加 --depth 1 的 git clone 把大量流量花在了下载对于构建毫无用处的提交记录等东西上面.  尤其是安装主题这种东西的时候, clone 下来几百 MB, 结果构建完得到一个几 MB 的包...">
+  <meta name="description" content="发现无聊时刷 Arch Wiki 也挺有趣的, 记录一下自己干了啥吧. 毕竟有些配置没法放到 dotfiles 里. 记录一下以后翻起来也方便.">
 <meta name="keywords" content="linux">
 <meta property="og:type" content="article">
-<meta property="og:title" content="加速 AUR 软件安装速度">
-<meta property="og:url" content="https://www.aloxaf.com/2018/10/arch_git/index.html">
+<meta property="og:title" content="Arch Linux 杂七杂八的优化">
+<meta property="og:url" content="https://www.aloxaf.com/2018/11/arch_optimize/index.html">
 <meta property="og:site_name" content="Aloxaf&#39;s blog">
-<meta property="og:description" content="AUR 里的构建脚本常常需要从 github 拉取源代码,然而没有加 --depth 1 的 git clone 把大量流量花在了下载对于构建毫无用处的提交记录等东西上面.  尤其是安装主题这种东西的时候, clone 下来几百 MB, 结果构建完得到一个几 MB 的包...">
+<meta property="og:description" content="发现无聊时刷 Arch Wiki 也挺有趣的, 记录一下自己干了啥吧. 毕竟有些配置没法放到 dotfiles 里. 记录一下以后翻起来也方便.">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-10-18T08:15:30.000Z">
+<meta property="og:updated_time" content="2018-11-19T13:05:43.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="加速 AUR 软件安装速度">
-<meta name="twitter:description" content="AUR 里的构建脚本常常需要从 github 拉取源代码,然而没有加 --depth 1 的 git clone 把大量流量花在了下载对于构建毫无用处的提交记录等东西上面.  尤其是安装主题这种东西的时候, clone 下来几百 MB, 结果构建完得到一个几 MB 的包...">
+<meta name="twitter:title" content="Arch Linux 杂七杂八的优化">
+<meta name="twitter:description" content="发现无聊时刷 Arch Wiki 也挺有趣的, 记录一下自己干了啥吧. 毕竟有些配置没法放到 dotfiles 里. 记录一下以后翻起来也方便.">
 
 
 
@@ -139,7 +139,7 @@
 
 
 
-  <link rel="canonical" href="https://www.aloxaf.com/2018/10/arch_git/"/>
+  <link rel="canonical" href="https://www.aloxaf.com/2018/11/arch_optimize/"/>
 
 
 
@@ -149,7 +149,7 @@
   };
 </script>
 
-  <title>加速 AUR 软件安装速度 | Aloxaf's blog</title>
+  <title>Arch Linux 杂七杂八的优化 | Aloxaf's blog</title>
   
 
 
@@ -339,7 +339,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.aloxaf.com/2018/10/arch_git/">
+    <link itemprop="mainEntityOfPage" href="https://www.aloxaf.com/2018/11/arch_optimize/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Aloxaf">
@@ -356,7 +356,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">加速 AUR 软件安装速度
+          <h2 class="post-title" itemprop="name headline">Arch Linux 杂七杂八的优化
               
             
           </h2>
@@ -381,9 +381,25 @@
                 
               
 
-              <time title="创建时间：2018-10-18 16:15:30" itemprop="dateCreated datePublished" datetime="2018-10-18T16:15:30+08:00">2018-10-18</time>
+              <time title="创建时间：2018-11-18 22:56:27" itemprop="dateCreated datePublished" datetime="2018-11-18T22:56:27+08:00">2018-11-18</time>
             
 
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-11-19 21:05:43" itemprop="dateModified" datetime="2018-11-19T21:05:43+08:00">2018-11-19</time>
+              
             
           </span>
 
@@ -414,8 +430,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/10/arch_git/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/10/arch_git/" itemprop="commentCount"></span>
+                <a href="/2018/11/arch_optimize/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/11/arch_optimize/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -443,20 +459,49 @@
       
 
       
-        <p>AUR 里的构建脚本常常需要从 github 拉取源代码,<br>然而没有加 <code>--depth 1</code> 的 <code>git clone</code> 把大量流量花在了下载对于构建毫无用处的提交记录等东西上面. </p>
-<p>尤其是安装主题这种东西的时候, clone 下来几百 MB, 结果构建完得到一个几 MB 的包...</p>
+        <p>发现无聊时刷 <a href="https://wiki.archlinux.org/" target="_blank" rel="noopener">Arch Wiki</a> 也挺有趣的, 记录一下自己干了啥吧. 毕竟有些配置没法放到 dotfiles 里. 记录一下以后翻起来也方便.</p>
 <a id="more"></a>
-<p>暴力的解决方案:</p>
-<p>打开 <code>/usr/share/makepkg/source/git.sh</code>, 其中有一段这样的代码</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ! git <span class="built_in">clone</span> --mirror <span class="string">"<span class="variable">$url</span>"</span> <span class="string">"<span class="variable">$dir</span>"</span>; <span class="keyword">then</span></span><br><span class="line">	error <span class="string">"<span class="variable">$(gettext "Failure while downloading %s %s repo")</span>"</span> <span class="string">"<span class="variable">$&#123;repo&#125;</span>"</span> <span class="string">"git"</span></span><br><span class="line">	plain <span class="string">"<span class="variable">$(gettext "Aborting...")</span>"</span></span><br><span class="line">	<span class="built_in">exit</span> 1</span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
-<p>改成这样, 也就是在外面又加了一层 if. 不直接改在原来的基础上加是因为有些网站不支持 <code>--depth</code></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ! git <span class="built_in">clone</span> --depth=1 --mirror <span class="string">"<span class="variable">$url</span>"</span> <span class="string">"<span class="variable">$dir</span>"</span>; <span class="keyword">then</span></span><br><span class="line">	<span class="keyword">if</span> ! git <span class="built_in">clone</span> --mirror <span class="string">"<span class="variable">$url</span>"</span> <span class="string">"<span class="variable">$dir</span>"</span>; <span class="keyword">then</span></span><br><span class="line">		error <span class="string">"<span class="variable">$(gettext "Failure while downloading %s %s repo")</span>"</span> <span class="string">"<span class="variable">$&#123;repo&#125;</span>"</span> <span class="string">"git"</span></span><br><span class="line">		plain <span class="string">"<span class="variable">$(gettext "Aborting...")</span>"</span></span><br><span class="line">		<span class="built_in">exit</span> 1</span><br><span class="line">	<span class="keyword">fi</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
-<p>同理, 还有如下代码</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ! git fetch --all -p; <span class="keyword">then</span></span><br><span class="line">	<span class="comment"># only warn on failure to allow offline builds</span></span><br><span class="line">	warning <span class="string">"<span class="variable">$(gettext "Failure while updating %s %s repo")</span>"</span> <span class="string">"<span class="variable">$&#123;repo&#125;</span>"</span> <span class="string">"git"</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
-<p>....改成</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ! git fetch --depth=1 -p; <span class="keyword">then</span></span><br><span class="line">	<span class="keyword">if</span> ! git fetch --all -p; <span class="keyword">then</span></span><br><span class="line">		<span class="comment"># only warn on failure to allow offline builds</span></span><br><span class="line">		warning <span class="string">"<span class="variable">$(gettext "Failure while updating %s %s repo")</span>"</span> <span class="string">"<span class="variable">$&#123;repo&#125;</span>"</span> <span class="string">"git"</span></span><br><span class="line">	<span class="keyword">fi</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
-<p>这样速度就令人满意多了, 对于大部分构建脚本应该都没问题, </p>
-<p><del>遇到问题再改吧 (</del></p>
+<h1 id="内核"><a href="#内核" class="headerlink" title="内核"></a>内核</h1><h2 id="nopti"><a href="#nopti" class="headerlink" title="nopti"></a>nopti</h2><p>参考: <a href="https://bbs.archlinux.org/viewtopic.php?pid=1759527#p1759527" target="_blank" rel="noopener">Performance degradation after Meltdown mitigation?</a></p>
+<p>打开 <code>/etc/default/grub</code>, 给 <code>GRUB_CMDLINE_LINUX_DEFAULT</code>添加<code>nopti</code>参数, 禁用上次 intel Meltdown 漏洞的补丁. </p>
+<p>这个补丁实测严重影响<strong>系统调用</strong>性能, 大约下降 70%. 虽然实际上应该没啥程序会疯狂 syscall ....但我还是要关掉它!</p>
+<h1 id="硬盘"><a href="#硬盘" class="headerlink" title="硬盘"></a>硬盘</h1><h2 id="SSD"><a href="#SSD" class="headerlink" title="SSD"></a>SSD</h2><p>参考: <a href="https://wiki.archlinux.org/index.php/Solid_state_drive" target="_blank" rel="noopener">Solid state drive</a></p>
+<h3 id="TRIM"><a href="#TRIM" class="headerlink" title="TRIM"></a>TRIM</h3><p>通过 <code>hdparm -I /dev/sda | grep TRIM</code> 检验是否支持, 挂载参数添加 <code>discard</code> 以启用.</p>
+<h3 id="调度器"><a href="#调度器" class="headerlink" title="调度器"></a>调度器</h3><p>可以通过 <code>cat /sys/block/sda/queue/scheduler</code>查看当前调度器和可用调度器, 默认应该是 <code>bfq</code>.</p>
+<p>据 wiki 所说, SSD 性能强劲, 因此简单的调度算法反而适合 SSD, 如 <code>noop</code>, <code>deadline</code></p>
+<p>往 <code>/etc/udev/rules.d/60-ioschedulers.rules</code> 里写入如下规则, 为 SSD 启用 <code>mq-deadline</code> 调度器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ACTION==&quot;add|change&quot;, KERNEL==&quot;sd[a-z]|mmcblk[0-9]*|nvme[0-9]*&quot;, ATTR&#123;queue/rotational&#125;==&quot;0&quot;, ATTR&#123;queue/scheduler&#125;=&quot;mq-deadline&quot;</span><br></pre></td></tr></table></figure>
+<h2 id="Ext4-性能优化"><a href="#Ext4-性能优化" class="headerlink" title="Ext4 性能优化"></a>Ext4 性能优化</h2><p>参考: <a href="https://wiki.archlinux.org/index.php/Ext4#Improving_performance" target="_blank" rel="noopener">Ext4#Improving_performance</a></p>
+<h3 id="禁止更新访问时间戳"><a href="#禁止更新访问时间戳" class="headerlink" title="禁止更新访问时间戳"></a>禁止更新访问时间戳</h3><p>想了想我似乎没有需要知道某个文件上次被访问是啥时候的需求, 于是 fstab 添加<code>noatime</code> 参数禁用之.</p>
+<p>如果有这个需求的话, 也可以用 <code>relatime</code>/<code>strictatime</code>搭配<code>lazytime</code>来减小写入硬盘的次数. 虽然系统崩溃时可能导致访问时间未更新, 不过这显然不是什么大事......</p>
+<h3 id="关闭屏障"><a href="#关闭屏障" class="headerlink" title="关闭屏障"></a>关闭屏障</h3><p>虽然没懂到底是什么鬼(保证写入的正确性?), 不过wiki上说有备用电源就可以安全关闭. </p>
+<p>笔记本, 不怕断电, 果断添加参数<code>barrier=0</code>禁用.</p>
+<h3 id="禁用日志"><a href="#禁用日志" class="headerlink" title="禁用日志"></a>禁用日志</h3><p>首先卸载磁盘, 然后 <code>tune2fs -O &quot;^has_journal&quot; /dev/sdXN</code></p>
+<p>以前关掉过, 后来想了想还是打开了...为了我能够安心地强制关机......</p>
+<h3 id="加速日志"><a href="#加速日志" class="headerlink" title="加速日志"></a>加速日志</h3><p>根据这篇文章, 最棒的方法应该是单独使用一个分区作为日志分区然后启用 <code>journal_async_commit</code>:<a href="https://raid6.com.au/posts/fs_ext4_external_journal/" target="_blank" rel="noopener">ext4: using external journal to optimise performance</a>. 速度最多能提升到原来的三倍, 妙啊妙啊!</p>
+<p>Mark 一下, 暂时不打算弄.</p>
+<h2 id="fstab"><a href="#fstab" class="headerlink" title="fstab"></a>fstab</h2><p>参考: <a href="https://wiki.archlinux.org/index.php/Fstab" target="_blank" rel="noopener">fstab</a></p>
+<h3 id="使用-LABEL"><a href="#使用-LABEL" class="headerlink" title="使用 LABEL"></a>使用 LABEL</h3><p>fstab 默认使用的是内核名称描述符(eg. /dev/sda1)来指示挂载设备. 这通常问题不大.</p>
+<p>然而当你加了一块硬盘(包括移动硬盘), 就可能会导致描述符的改变, 从而出现无法启动的状况. 到群里问了大佬们, 大佬们有推荐用 UUID, 有推荐用 LABEL 的. 个人感觉 LABEL 比较好懂 (</p>
+<p>创建 LABEL 的方法见: <a href="https://wiki.archlinux.org/index.php/Persistent_block_device_naming#by-label" target="_blank" rel="noopener">Persistent_block_device_naming#by-label</a></p>
+<p>以 ext4 为例, 使用 <code>e2label /dev/XXX &lt;label&gt;</code>创建 LABEL, 然后就可以在 fstab 里使用 <code>LABEL=xxx</code> 的方式来指示挂载设备了, 不用担心因为插拔硬盘导致奇怪的问题.</p>
+<h3 id="自动挂载移动硬盘"><a href="#自动挂载移动硬盘" class="headerlink" title="自动挂载移动硬盘"></a>自动挂载移动硬盘</h3><p>每次手动挂载很麻烦, 直接添加到 fstab 的话没插移动硬盘就会 error, 这时就要使用 <code>nofail</code> 参数, 像这样</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LABEL=backup    /mnt/backup     ext4    defaults,noatime,nofail         0 2</span><br></pre></td></tr></table></figure>
+<p>第一次用貌似会遇到无法写入的问题, 使用 <code>sudo chown -R $USER:$USER /mnt/backup</code> 更改一次所有权就行了</p>
+<h3 id="自动挂载大分区"><a href="#自动挂载大分区" class="headerlink" title="自动挂载大分区"></a>自动挂载大分区</h3><p>因为一直以来都以 Linux 作为主力系统. 然后觉得 ntfs-3g 实在不可靠......于是把原来 NTFS 的资料盘转成 ext4 了.</p>
+<p>不过资料盘用得比较少, 可以用 <code>noauto,x-systemd.automount</code> 参数使得在访问时才挂载</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LABEL=storage   /mnt/storage    ext4    defaults,noatime,noauto,x-systemd.automount             0 2</span><br></pre></td></tr></table></figure>
+<p>(第一次用还是需要 chown 好像....)</p>
+<h1 id="pacman"><a href="#pacman" class="headerlink" title="pacman"></a>pacman</h1><p>参考: <a href="https://wiki.archlinux.org/index.php/Pacman" target="_blank" rel="noopener">pacman</a></p>
+<h2 id="pacman-conf"><a href="#pacman-conf" class="headerlink" title="pacman.conf"></a>pacman.conf</h2><p><code># Misc options</code>开启 <code>Color</code> 和 <code>VerbosePkgLists</code></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Misc options</span></span><br><span class="line"><span class="comment">#UseSyslog</span></span><br><span class="line">Color</span><br><span class="line"><span class="comment">#TotalDownload</span></span><br><span class="line">CheckSpace</span><br><span class="line">VerbosePkgLists</span><br></pre></td></tr></table></figure>
+<p>作用: pacman 彩色输出 &amp;&amp; 升级时使用三栏显示</p>
+<h2 id="自动清理软件包缓存"><a href="#自动清理软件包缓存" class="headerlink" title="自动清理软件包缓存"></a>自动清理软件包缓存</h2><p>创建 <code>/usr/share/libalpm/hooks/clean-cache.hook</code>, 内容如下</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[Trigger]</span></span><br><span class="line"><span class="attr">Operation</span> = Remove</span><br><span class="line"><span class="attr">Operation</span> = Install</span><br><span class="line"><span class="attr">Operation</span> = Upgrade</span><br><span class="line"><span class="attr">Type</span> = Package</span><br><span class="line"><span class="attr">Target</span> = *</span><br><span class="line"></span><br><span class="line"><span class="section">[Action]</span></span><br><span class="line"><span class="attr">Description</span> = Cleaning up old packages...</span><br><span class="line"><span class="attr">When</span> = PostTransaction</span><br><span class="line"><span class="attr">Exec</span> = /usr/bin/paccache -rvk3</span><br></pre></td></tr></table></figure>
+<p>作用: 每次升级软件包后清理最近三次以前的软件包</p>
+<h1 id="makepkg"><a href="#makepkg" class="headerlink" title="makepkg"></a>makepkg</h1><p>参考: <a href="https://wiki.archlinux.org/index.php/Makepkg" target="_blank" rel="noopener">makepkg</a></p>
+<h2 id="makepkg-conf"><a href="#makepkg-conf" class="headerlink" title=".makepkg.conf"></a>.makepkg.conf</h2><p>新建 <code>~/.makepkg.conf</code>, 写入如下内容pacman</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">CFLAGS</span>=<span class="string">"-march=native -O2 -pipe -fno-plt"</span></span><br><span class="line"><span class="attr">CXXFLAGS</span>=<span class="string">"-march=native -O2 -pipe -fno-plt"</span></span><br><span class="line"></span><br><span class="line"><span class="attr">MAKEFLAGS</span>=<span class="string">"-j$(nproc)"</span></span><br><span class="line"></span><br><span class="line"><span class="attr">BUILDENV</span>=(!distcc color ccache !check !sign)</span><br><span class="line"><span class="attr">BUILDDIR</span>=/tmp/makepkg</span><br><span class="line"></span><br><span class="line"><span class="attr">COMPRESSXZ</span>=(xz -c -z - --threads=<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+<p>作用: 优化生成的二进制文件 &amp;&amp;  加快编译速度 &amp;&amp; 加快软件包生成速度</p>
 
       
     </div>
@@ -475,10 +520,10 @@
       <div>
         <ul class="post-copyright">
   <li class="post-copyright-author">
-    <strong>本文作者： </strong>aloxaf</li>
+    <strong>本文作者： </strong>Aloxaf</li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://www.aloxaf.com/2018/10/arch_git/" title="加速 AUR 软件安装速度">https://www.aloxaf.com/2018/10/arch_git/</a>
+    <a href="https://www.aloxaf.com/2018/11/arch_optimize/" title="Arch Linux 杂七杂八的优化">https://www.aloxaf.com/2018/11/arch_optimize/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！</li>
@@ -504,8 +549,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/10/linux_emoji/" rel="next" title="在 Linux 下使用 Blob Emoji">
-                <i class="fa fa-chevron-left"></i> 在 Linux 下使用 Blob Emoji
+              <a href="/2018/11/kde_dark_theme/" rel="next" title="解决 KDE 暗色主题下 WPS & 搜狗拼音设置字体颜色不正常的问题">
+                <i class="fa fa-chevron-left"></i> 解决 KDE 暗色主题下 WPS & 搜狗拼音设置字体颜色不正常的问题
               </a>
             
           </div>
@@ -513,10 +558,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/10/arch_pwndbg/" rel="prev" title="Arch Linux 下使用 pwndbg">
-                Arch Linux 下使用 pwndbg <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -564,8 +605,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -701,6 +751,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#内核"><span class="nav-number">1.</span> <span class="nav-text">内核</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#nopti"><span class="nav-number">1.1.</span> <span class="nav-text">nopti</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#硬盘"><span class="nav-number">2.</span> <span class="nav-text">硬盘</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#SSD"><span class="nav-number">2.1.</span> <span class="nav-text">SSD</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#TRIM"><span class="nav-number">2.1.1.</span> <span class="nav-text">TRIM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#调度器"><span class="nav-number">2.1.2.</span> <span class="nav-text">调度器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ext4-性能优化"><span class="nav-number">2.2.</span> <span class="nav-text">Ext4 性能优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#禁止更新访问时间戳"><span class="nav-number">2.2.1.</span> <span class="nav-text">禁止更新访问时间戳</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关闭屏障"><span class="nav-number">2.2.2.</span> <span class="nav-text">关闭屏障</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#禁用日志"><span class="nav-number">2.2.3.</span> <span class="nav-text">禁用日志</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#加速日志"><span class="nav-number">2.2.4.</span> <span class="nav-text">加速日志</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#fstab"><span class="nav-number">2.3.</span> <span class="nav-text">fstab</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用-LABEL"><span class="nav-number">2.3.1.</span> <span class="nav-text">使用 LABEL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自动挂载移动硬盘"><span class="nav-number">2.3.2.</span> <span class="nav-text">自动挂载移动硬盘</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自动挂载大分区"><span class="nav-number">2.3.3.</span> <span class="nav-text">自动挂载大分区</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#pacman"><span class="nav-number">3.</span> <span class="nav-text">pacman</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#pacman-conf"><span class="nav-number">3.1.</span> <span class="nav-text">pacman.conf</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自动清理软件包缓存"><span class="nav-number">3.2.</span> <span class="nav-text">自动清理软件包缓存</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#makepkg"><span class="nav-number">4.</span> <span class="nav-text">makepkg</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#makepkg-conf"><span class="nav-number">4.1.</span> <span class="nav-text">.makepkg.conf</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

@@ -466,6 +466,7 @@
 <li><a href="https://github.com/pwndbg/pwndbg/issues/523#issuecomment-425673020" target="_blank" rel="noopener">Python exception under gdb-8.2-2</a> 上游 gdb 的问题, 8.3 应该会修复, 不过可以按链接所示的方法临时 patch 一下</li>
 </ul>
 <p>这里解决第一个问题, 利用棒棒的 ABS (Arch Build System)</p>
+<a id="more"></a>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">svn checkout --depth=empty svn://svn.archlinux.org/packages</span><br><span class="line"><span class="built_in">cd</span> packages</span><br><span class="line">svn update glibc</span><br><span class="line"></span><br><span class="line"><span class="comment"># Build glibc (Fix #340)</span></span><br><span class="line"><span class="built_in">cd</span> glibc/repos/core-x86_64</span><br><span class="line"><span class="built_in">echo</span> en_US.UTF-8 UTF-8 &gt;&gt;locale.gen.txt</span><br><span class="line"><span class="comment">## For Chinese users</span></span><br><span class="line"><span class="comment">## echo zh_CN.UTF-8 UTF-8 &gt;&gt;locale.gen.txt</span></span><br><span class="line"><span class="comment">## sed -i 's#sourceware.org/git/glibc.git#gitee.com/Aloxaf/glibc.git#' PKGBUILD</span></span><br><span class="line"><span class="comment"># generate detached debugging symbols</span></span><br><span class="line">sed -i <span class="string">'s#!strip#debug#'</span> PKGBUILD</span><br><span class="line"><span class="comment"># skip check</span></span><br><span class="line">makepkg --skipchecksums --nocheck</span><br><span class="line">sudo pacman -U *.pkg.tar.xz</span><br></pre></td></tr></table></figure>
 <p>缺点是每次升级 glibc 的时候要自己重新编译一遍......</p>
 <p>(听说 Debug Symbols 的支持已经在进行中了?)</p>
@@ -609,7 +610,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-count">18</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>

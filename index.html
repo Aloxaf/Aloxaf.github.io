@@ -338,6 +338,192 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.aloxaf.com/2018/11/arch_optimize/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Aloxaf">
+      <meta itemprop="description" content="懒军, CTFer, 咸鱼王">
+      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/17017672">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Aloxaf's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/11/arch_optimize/" itemprop="url">
+                  Arch Linux 杂七杂八的优化
+                </a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-11-18 22:56:27" itemprop="dateCreated datePublished" datetime="2018-11-18T22:56:27+08:00">2018-11-18</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-11-19 21:05:43" itemprop="dateModified" datetime="2018-11-19T21:05:43+08:00">2018-11-19</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">linux</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/11/arch_optimize/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/11/arch_optimize/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>发现无聊时刷 <a href="https://wiki.archlinux.org/" target="_blank" rel="noopener">Arch Wiki</a> 也挺有趣的, 记录一下自己干了啥吧. 毕竟有些配置没法放到 dotfiles 里. 记录一下以后翻起来也方便.</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/11/arch_optimize/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+         
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://www.aloxaf.com/2018/11/kde_dark_theme/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -447,8 +633,7 @@
 
       
         
-          
-            <p>这是一个比较迷的 bug, 困扰了我很久, 然而又不知道为什么.</p>
+          <p>这是一个比较迷的 bug, 困扰了我很久, 然而又不知道为什么.</p>
 <p>今天在群里看到有人提到了这个问题, 简单地讲就是程序只有一部分跟随系统主题, 然后就会产生各种诡异的效果.</p>
 <p>比如</p>
 <ul>
@@ -456,16 +641,15 @@
 <li>WPS 表格, 表格背景是黑的....究极の难看</li>
 <li>WPS 文字, 字体也变浅色了, 不仅亮瞎眼. 如果强行调成黑色的话, 在 Windows 上就会变亮瞎眼...</li>
 </ul>
-<p>记录一下解决方案:</p>
-<p>首先在 设置-应用程序风格-GNOME程序风格 里设置一个亮色主题</p>
-<p>然后修改 <code>/usr/share/applications/wps-office-{wps,wpp,et}.desktop</code> 和 <code>fcitx-ui-sogou-qimpanel.desktop</code> , 给 <code>Exec</code> 项添加参数 <code>-style gtk+</code> </p>
-<p>以 WPS 为例, Before</p>
-<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">Exec</span>=/usr/bin/wps %f</span><br></pre></td></tr></table></figure>
-<p>After</p>
-<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">Exec</span>=/usr/bin/wps -style gtk+ %f</span><br></pre></td></tr></table></figure>
-<p>原理: 把这堆不守规矩的程序踢给 GTK+</p>
-
+          <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/11/kde_dark_theme/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+         
+          <!--/noindex-->
         
       
     </div>
@@ -818,23 +1002,22 @@
 
       
         
-          
-            <p>pwndbg 的安装: <code>pacman -S pwndbg</code> 然后添加 <code>source /usr/share/pwndbg/gdbinit.py</code> 到 <code>~/.gdbinit</code></p>
+          <p>pwndbg 的安装: <code>pacman -S pwndbg</code> 然后添加 <code>source /usr/share/pwndbg/gdbinit.py</code> 到 <code>~/.gdbinit</code></p>
 <p>然而要在 Arch Linux 下愉快地使用 pwndbg, 还要解决以下问题:</p>
 <ul>
 <li><a href="https://github.com/pwndbg/pwndbg/issues/340" target="_blank" rel="noopener">Arch Support - Roadmap</a> 搁了快一年的问题, 主要是 Arch 下没有 libc6-dbg 这种包, 要调试符号只能自己编译...</li>
 <li><a href="https://github.com/pwndbg/pwndbg/issues/523#issuecomment-425673020" target="_blank" rel="noopener">Python exception under gdb-8.2-2</a> 上游 gdb 的问题, 8.3 应该会修复, 不过可以按链接所示的方法临时 patch 一下</li>
 </ul>
 <p>这里解决第一个问题, 利用棒棒的 ABS (Arch Build System)</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">svn checkout --depth=empty svn://svn.archlinux.org/packages</span><br><span class="line"><span class="built_in">cd</span> packages</span><br><span class="line">svn update glibc</span><br><span class="line"></span><br><span class="line"><span class="comment"># Build glibc (Fix #340)</span></span><br><span class="line"><span class="built_in">cd</span> glibc/repos/core-x86_64</span><br><span class="line"><span class="built_in">echo</span> en_US.UTF-8 UTF-8 &gt;&gt;locale.gen.txt</span><br><span class="line"><span class="comment">## For Chinese users</span></span><br><span class="line"><span class="comment">## echo zh_CN.UTF-8 UTF-8 &gt;&gt;locale.gen.txt</span></span><br><span class="line"><span class="comment">## sed -i 's#sourceware.org/git/glibc.git#gitee.com/Aloxaf/glibc.git#' PKGBUILD</span></span><br><span class="line"><span class="comment"># generate detached debugging symbols</span></span><br><span class="line">sed -i <span class="string">'s#!strip#debug#'</span> PKGBUILD</span><br><span class="line"><span class="comment"># skip check</span></span><br><span class="line">makepkg --skipchecksums --nocheck</span><br><span class="line">sudo pacman -U *.pkg.tar.xz</span><br></pre></td></tr></table></figure>
-<p>缺点是每次升级 glibc 的时候要自己重新编译一遍......</p>
-<p>(听说 Debug Symbols 的支持已经在进行中了?)</p>
-<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>今天学长按照这个试了一下, 编译了一个下午都没编译完(然后怒转 mint ). 然后我才想起来第一次我也遇到了这个问题: 其实编译早就完成了, 只是一直在跑测试......(大概是因为 glibc 非常重要, 所以测试很多....) (不过测试虽然慢但我当时似乎也跑完了) (可能是因为我改了 <code>BUILDDIR</code> ?)</p>
-<p>要取消测试可以简单地给 <code>makepkg</code> 添加 <code>--nocheck</code> 参数</p>
-<p>或者一劳永逸(暴力)的办法: 在 <code>/etc/makepkg.conf</code> 中将 <code>BUILDENV</code> 中的 <code>check</code> 改为 <code>!check</code> (因为我被坑了一次后就加上了, 然后就忘了这个坑...)</p>
-<p>P.S. 顺便也可以根据这篇文章 <a href="https://wiki.archlinux.org/index.php/Makepkg_%28%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87%29#%E7%BC%96%E8%AF%91%E7%BB%93%E6%9E%9C%E4%BC%98%E5%8C%96" target="_blank" rel="noopener">Makepkg_(简体中文)#编译结果优化</a> 优化一下其他参数, 主要是 <code>BUILDDIR</code> ,<code>CFLAGS</code>, <code>CXXFLAGS</code> 和 <code>MAKEFLAGS</code></p>
-
+          <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/10/arch_pwndbg/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+         
+          <!--/noindex-->
         
       
     </div>
@@ -1166,16 +1349,17 @@
 
       
         
-          
-            <p>默认emoji太丑, 没有颜色, 看着浑身难受.</p>
+          <p>默认emoji太丑, 没有颜色, 看着浑身难受.</p>
 <p>还是喜欢果冻人...</p>
-<p>通过以下命令安装:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pikaur -S noto-fonts-emoji-blob</span><br></pre></td></tr></table></figure>
-<p>然后往 <code>~/.config/fontconfig/conf.d/70-emojione-color.conf</code> 写入</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span><br><span class="line"><span class="meta">&lt;!DOCTYPE fontconfig SYSTEM "fonts.dtd"&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">fontconfig</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">match</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">test</span> <span class="attr">name</span>=<span class="string">"family"</span>&gt;</span><span class="tag">&lt;<span class="name">string</span>&gt;</span>sans-serif<span class="tag">&lt;/<span class="name">string</span>&gt;</span><span class="tag">&lt;/<span class="name">test</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">edit</span> <span class="attr">name</span>=<span class="string">"family"</span> <span class="attr">mode</span>=<span class="string">"prepend"</span> <span class="attr">binding</span>=<span class="string">"strong"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">string</span>&gt;</span>Blobmoji<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">edit</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">match</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">match</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">test</span> <span class="attr">name</span>=<span class="string">"family"</span>&gt;</span><span class="tag">&lt;<span class="name">string</span>&gt;</span>serif<span class="tag">&lt;/<span class="name">string</span>&gt;</span><span class="tag">&lt;/<span class="name">test</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">edit</span> <span class="attr">name</span>=<span class="string">"family"</span> <span class="attr">mode</span>=<span class="string">"prepend"</span> <span class="attr">binding</span>=<span class="string">"strong"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">string</span>&gt;</span>Blobmoji<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">edit</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">match</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">match</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">test</span> <span class="attr">name</span>=<span class="string">"family"</span>&gt;</span><span class="tag">&lt;<span class="name">string</span>&gt;</span>monospace<span class="tag">&lt;/<span class="name">string</span>&gt;</span><span class="tag">&lt;/<span class="name">test</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">edit</span> <span class="attr">name</span>=<span class="string">"family"</span> <span class="attr">mode</span>=<span class="string">"prepend"</span> <span class="attr">binding</span>=<span class="string">"strong"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">string</span>&gt;</span>Blobmoji<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">edit</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">match</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">match</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">test</span> <span class="attr">name</span>=<span class="string">"family"</span>&gt;</span><span class="tag">&lt;<span class="name">string</span>&gt;</span>Apple Color Emoji<span class="tag">&lt;/<span class="name">string</span>&gt;</span><span class="tag">&lt;/<span class="name">test</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">edit</span> <span class="attr">name</span>=<span class="string">"family"</span> <span class="attr">mode</span>=<span class="string">"prepend"</span> <span class="attr">binding</span>=<span class="string">"strong"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">string</span>&gt;</span>Blobmoji<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">edit</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">match</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">fontconfig</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>再执行 <code>fc-cache -f -v</code>, 果冻人就回来了!~</p>
-
+          <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/10/linux_emoji/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+         
+          <!--/noindex-->
         
       
     </div>
@@ -1890,176 +2074,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.aloxaf.com/2018/07/add_open_by_emacsclient/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Aloxaf">
-      <meta itemprop="description" content="懒军, CTFer, 咸鱼王">
-      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/17017672">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Aloxaf's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/add_open_by_emacsclient/" itemprop="url">
-                  Linux 下在打开方式中增加用 emacsclient
-                </a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-07-26 08:42:30" itemprop="dateCreated datePublished" datetime="2018-07-26T08:42:30+08:00">2018-07-26</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">linux</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/07/add_open_by_emacsclient/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/07/add_open_by_emacsclient/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>参考 <a href="http://liuyuanzhi.blogspot.com/2009/08/open-with-emacs-in-nautilus.html" target="_blank" rel="noopener">open-with-emacs-in-nautilus</a><br>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2018/07/add_open_by_emacsclient/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-         
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2111,7 +2125,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-count">18</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>

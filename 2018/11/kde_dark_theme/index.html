@@ -451,6 +451,7 @@
 <li>WPS 表格, 表格背景是黑的....究极の难看</li>
 <li>WPS 文字, 字体也变浅色了, 不仅亮瞎眼. 如果强行调成黑色的话, 在 Windows 上就会变亮瞎眼...</li>
 </ul>
+<a id="more"></a>
 <p>记录一下解决方案:</p>
 <p>首先在 设置-应用程序风格-GNOME程序风格 里设置一个亮色主题</p>
 <p>然后修改 <code>/usr/share/applications/wps-office-{wps,wpp,et}.desktop</code> 和 <code>fcitx-ui-sogou-qimpanel.desktop</code> , 给 <code>Exec</code> 项添加参数 <code>-style gtk+</code> </p>
@@ -515,6 +516,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/11/arch_optimize/" rel="prev" title="Arch Linux 杂七杂八的优化">
+                Arch Linux 杂七杂八的优化 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -582,7 +587,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-count">18</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
