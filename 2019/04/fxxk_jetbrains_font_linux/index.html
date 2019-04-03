@@ -119,21 +119,18 @@
 
 
 
-  <meta name="description" content="施工中的友链我也来搞一个友链                                                        人称魔法少女 Byaidu 酱      主任好           密码学扛把子">
-<meta property="og:type" content="website">
-<meta property="og:title" content="友链">
-<meta property="og:url" content="https://www.aloxaf.com/friends/index.html">
+  <meta name="description" content="JetBrains 家的 IDE 在 Linux 下会有一些奇怪的问题: 如字体很丑(没开抗锯齿一样), 字体过小(目测是 HiDPI 下的问题), 最近更新了一下 PyCharm 2019 又出现了这个问题, 解决问题以后记录一下方案, 造福广大 JetBrains 信徒 长话短说——统统是 jre 的问题 解决方案换用 IntelliJ patch 过的 jre 具体方法有很多, 因为我在用">
+<meta name="keywords" content="linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JetBrains 家 IDE 在 Linux 下的奇怪字体问题(锯齿, 字体过小)">
+<meta property="og:url" content="https://www.aloxaf.com/2019/04/fxxk_jetbrains_font_linux/index.html">
 <meta property="og:site_name" content="Aloxaf&#39;s blog">
-<meta property="og:description" content="施工中的友链我也来搞一个友链                                                        人称魔法少女 Byaidu 酱      主任好           密码学扛把子">
+<meta property="og:description" content="JetBrains 家的 IDE 在 Linux 下会有一些奇怪的问题: 如字体很丑(没开抗锯齿一样), 字体过小(目测是 HiDPI 下的问题), 最近更新了一下 PyCharm 2019 又出现了这个问题, 解决问题以后记录一下方案, 造福广大 JetBrains 信徒 长话短说——统统是 jre 的问题 解决方案换用 IntelliJ patch 过的 jre 具体方法有很多, 因为我在用">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://avatars0.githubusercontent.com/u/21212051">
-<meta property="og:image" content="https://l1b0.github.io/images/first-headpic.jpg">
-<meta property="og:image" content="https://avatars3.githubusercontent.com/u/23295345">
-<meta property="og:updated_time" content="2018-11-19T05:24:30.344Z">
+<meta property="og:updated_time" content="2018-04-03T09:44:44.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="友链">
-<meta name="twitter:description" content="施工中的友链我也来搞一个友链                                                        人称魔法少女 Byaidu 酱      主任好           密码学扛把子">
-<meta name="twitter:image" content="https://avatars0.githubusercontent.com/u/21212051">
+<meta name="twitter:title" content="JetBrains 家 IDE 在 Linux 下的奇怪字体问题(锯齿, 字体过小)">
+<meta name="twitter:description" content="JetBrains 家的 IDE 在 Linux 下会有一些奇怪的问题: 如字体很丑(没开抗锯齿一样), 字体过小(目测是 HiDPI 下的问题), 最近更新了一下 PyCharm 2019 又出现了这个问题, 解决问题以后记录一下方案, 造福广大 JetBrains 信徒 长话短说——统统是 jre 的问题 解决方案换用 IntelliJ patch 过的 jre 具体方法有很多, 因为我在用">
 
 
 
@@ -142,7 +139,7 @@
 
 
 
-  <link rel="canonical" href="https://www.aloxaf.com/friends/">
+  <link rel="canonical" href="https://www.aloxaf.com/2019/04/fxxk_jetbrains_font_linux/">
 
 
 
@@ -152,7 +149,7 @@
   };
 </script>
 
-  <title>友链 | Aloxaf's blog</title>
+  <title>JetBrains 家 IDE 在 Linux 下的奇怪字体问题(锯齿, 字体过小) | Aloxaf's blog</title>
   
 
 
@@ -289,7 +286,7 @@
         
         
           
-          <li class="menu-item menu-item-友链 menu-item-active">
+          <li class="menu-item menu-item-友链">
     <a href="/friends/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>友链</a>
   </li>
@@ -322,97 +319,226 @@
           
             
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
           
           <div id="content" class="content">
             
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.aloxaf.com/2019/04/fxxk_jetbrains_font_linux/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Aloxaf">
+      <meta itemprop="description" content="懒军, CTFer, 咸鱼王">
+      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/17017672">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Aloxaf's blog">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-<h2 class="post-title" itemprop="name headline">友链</h2>
-
-<div class="post-meta">
-  
-  
-
-
-
-</div>
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <h1 id="施工中的友链"><a href="#施工中的友链" class="headerlink" title="施工中的友链"></a>施工中的友链</h1><p>我也来搞一个友链</p>
-<table>
-<thead>
-<tr>
-<th><br></th>
-<th><br>                                            </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td> <img src="https://avatars0.githubusercontent.com/u/21212051" alt="Byaidu" title="Byaidu" width="64" height="64"></td>
-<td><a href="https://www.cnblogs.com/algonote" target="_blank" rel="noopener">人称魔法少女 Byaidu 酱</a> </td>
-</tr>
-<tr>
-<td> <img src="https://l1b0.github.io/images/first-headpic.jpg" alt="L1b0师傅" title="L1b0师傅" width="64" height="64"></td>
-<td><a href="https://l1b0.github.io" target="_blank" rel="noopener">主任好</a>       </td>
-</tr>
-<tr>
-<td><img src="https://avatars3.githubusercontent.com/u/23295345" alt="唐老板" title="唐老板" width="64" height="64"></td>
-<td><a href="https://code.felinae98.cn" target="_blank" rel="noopener">密码学扛把子</a></td>
-</tr>
-</tbody>
-</table>
-
+          <h2 class="post-title" itemprop="name headline">JetBrains 家 IDE 在 Linux 下的奇怪字体问题(锯齿, 字体过小)
+              
+            
+          </h2>
         
-      </div>
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-04-03 17:44:44" itemprop="dateCreated datePublished" datetime="2019-04-03T17:44:44+08:00">2019-04-03</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-04-03 17:44:44" itemprop="dateModified" datetime="2018-04-03T17:44:44+08:00">2018-04-03</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">linux</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/04/fxxk_jetbrains_font_linux/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2019/04/fxxk_jetbrains_font_linux/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <p>JetBrains 家的 IDE 在 Linux 下会有一些奇怪的问题: 如字体很丑(没开抗锯齿一样), 字体过小(目测是 HiDPI 下的问题), 最近更新了一下 PyCharm 2019 又出现了这个问题, 解决问题以后记录一下方案, 造福广大 JetBrains 信徒</p>
+<p>长话短说——统统是 jre 的问题</p>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>换用 IntelliJ patch 过的 jre</p>
+<h2 id="具体方法"><a href="#具体方法" class="headerlink" title="具体方法"></a>具体方法</h2><p>有很多, 因为我在用 Arch Linux 就用 Arch Linux 下比较方便的方法了:</p>
+<ol>
+<li>安装 clion-jre (Archlinuxcn 源有二进制包) (从 AUR 安装 intellij-jdk 应该也行, 可能还更方便? 不过懒得试了, 因为我用 clion 时已经装了这个)</li>
+<li>如果是 clion 可以无视这条步骤.  <code>Esc-x</code>, 输入 <code>Switch Boot JDK</code>, 改用 <code>/opt/clion/jre64</code> ( 没有这个的话自己浏览路径选</li>
+<li>没了, 重新启动你的 IDE, 问题应该解决了</li>
+</ol>
+
       
     </div>
-    
-
-
 
     
+
     
     
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Aloxaf</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://www.aloxaf.com/2019/04/fxxk_jetbrains_font_linux/" title="JetBrains 家 IDE 在 Linux 下的奇怪字体问题(锯齿, 字体过小)">https://www.aloxaf.com/2019/04/fxxk_jetbrains_font_linux/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/linux/" rel="tag"># linux</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/alacritty_hidpi/" rel="next" title="Alacritty HiDPI 下的坑">
+                <i class="fa fa-chevron-left"></i> Alacritty HiDPI 下的坑
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
   </div>
 
 
@@ -601,7 +727,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#施工中的友链"><span class="nav-number">1.</span> <span class="nav-text">施工中的友链</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#解决方案"><span class="nav-number">1.</span> <span class="nav-text">解决方案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#具体方法"><span class="nav-number">2.</span> <span class="nav-text">具体方法</span></a></li></ol></div>
             
 
           </div>
