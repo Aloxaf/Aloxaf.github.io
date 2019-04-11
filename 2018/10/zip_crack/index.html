@@ -120,14 +120,14 @@
 
 
   <meta name="description" content="这个国庆假期抽了点风...... 写了一个假期的代码......">
-<meta name="keywords" content="ctf,misc,rust,zip">
+<meta name="keywords" content="rust,ctf,misc,zip">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ZIP 明文攻击工具">
 <meta property="og:url" content="https://www.aloxaf.com/2018/10/zip_crack/index.html">
 <meta property="og:site_name" content="Aloxaf&#39;s blog">
 <meta property="og:description" content="这个国庆假期抽了点风...... 写了一个假期的代码......">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-10-04T13:47:12.000Z">
+<meta property="og:updated_time" content="2019-04-11T09:33:03.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ZIP 明文攻击工具">
 <meta name="twitter:description" content="这个国庆假期抽了点风...... 写了一个假期的代码......">
@@ -385,6 +385,22 @@
             
 
             
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-04-11 17:33:03" itemprop="dateModified" datetime="2019-04-11T17:33:03+08:00">2019-04-11</time>
+              
+            
           </span>
 
           
@@ -477,7 +493,16 @@
 <p>题目给了两个明文, libc 那个比较大, 爆破起来比较快. 于是执行如下命令开始攻击</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rbkcrack -c libc-2.23.so -p libc-2.23.so -C cipher.zip -P plain2.zip</span><br></pre></td></tr></table></figure>
 <p>只花费了五秒钟就得到了keys.</p>
+<blockquote>
+<p>2019.04.11 更新:</p>
+<p>rbkcrack 0.2.0 增加了自动根据 CRC32 寻找合适文件的功能,<br>于是上面的代码可以简写成 <code>rbkcrack -C cipher.zip -P plain2.zip -a</code></p>
+<p>PS. 这个功能最大的用处其实是对付某些 GBK 编码的 zip 文件...</p>
+</blockquote>
 <p>PS. 重写完 bkcrack 后我拿一个文件测试了一下, 发现 Rust 版竟然比 C++ 版还快了 15%...... (改用 sort_unstabe 以后快了 25%......)</p>
+<blockquote>
+<p>2019.04.11 更新:</p>
+<p>现在一样快了</p>
+</blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Generated 4194304 Z values.</span><br><span class="line">[22:11:22] Z reduction using 4512917 extra bytes of known plaintext</span><br><span class="line">0.11 % (4855 / 4512917)</span><br><span class="line">240 values remaining.</span><br><span class="line">[22:11:26] Attack on 240 Z values at index 4509032</span><br><span class="line">5.00 % (12 / 240)</span><br><span class="line">[22:11:27] Keys</span><br><span class="line">d4f34b9d a6ba3461 dcd97451</span><br></pre></td></tr></table></figure>
 <p>得到 keys 以后直接使用如下代码可以从 cipher.zip 中解压 flag.txt.<br>(这个地方没有加 -u 开关, 因为 flag.txt 的压缩方式是 store)</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rbkcrack -c flag.txt -C cipher.zip -k d4f34b9d a6ba3461 dcd97451 -d ./flag.txt</span><br></pre></td></tr></table></figure>
@@ -522,11 +547,11 @@
       
         <div class="post-tags">
           
+            <a href="/tags/rust/" rel="tag"># rust</a>
+          
             <a href="/tags/ctf/" rel="tag"># ctf</a>
           
             <a href="/tags/misc/" rel="tag"># misc</a>
-          
-            <a href="/tags/rust/" rel="tag"># rust</a>
           
             <a href="/tags/zip/" rel="tag"># zip</a>
           
