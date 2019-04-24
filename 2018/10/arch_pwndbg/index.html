@@ -16,7 +16,7 @@
 
 <html class="theme-next gemini use-motion" lang="zh-CN">
 <head><meta name="generator" content="Hexo 3.8.0">
-  <meta charset="UTF-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
@@ -194,7 +194,7 @@
       .logo-line-after i { right: initial; }
     }
   </style>
-</noscript>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 </head>
 
@@ -205,7 +205,7 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -467,7 +467,7 @@
 </ul>
 <p>这里解决第一个问题, 利用棒棒的 ABS (Arch Build System)</p>
 <a id="more"></a>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">svn checkout --depth=empty svn://svn.archlinux.org/packages</span><br><span class="line"><span class="built_in">cd</span> packages</span><br><span class="line">svn update glibc</span><br><span class="line"></span><br><span class="line"><span class="comment"># Build glibc (Fix #340)</span></span><br><span class="line"><span class="built_in">cd</span> glibc/repos/core-x86_64</span><br><span class="line"><span class="built_in">echo</span> en_US.UTF-8 UTF-8 &gt;&gt;locale.gen.txt</span><br><span class="line"><span class="comment">## For Chinese users</span></span><br><span class="line"><span class="comment">## echo zh_CN.UTF-8 UTF-8 &gt;&gt;locale.gen.txt</span></span><br><span class="line"><span class="comment">## sed -i 's#sourceware.org/git/glibc.git#gitee.com/Aloxaf/glibc.git#' PKGBUILD</span></span><br><span class="line"><span class="comment"># generate detached debugging symbols</span></span><br><span class="line">sed -i <span class="string">'s#!strip#debug#'</span> PKGBUILD</span><br><span class="line"><span class="comment"># skip check</span></span><br><span class="line">makepkg --skipchecksums --nocheck</span><br><span class="line">sudo pacman -U *.pkg.tar.xz</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">svn checkout --depth=empty svn://svn.archlinux.org/packages</span><br><span class="line"><span class="built_in">cd</span> packages</span><br><span class="line">svn update glibc</span><br><span class="line"></span><br><span class="line"><span class="comment"># Build glibc (Fix #340)</span></span><br><span class="line"><span class="built_in">cd</span> glibc/repos/core-x86_64</span><br><span class="line"><span class="comment">## For Chinese users</span></span><br><span class="line"><span class="comment">## sed -i 's#ftp.gnu.org#mirrors.tuna.tsinghua.edu.cn#' PKGBUILD</span></span><br><span class="line"><span class="comment"># generate detached debugging symbols</span></span><br><span class="line">sed -i <span class="string">'s#!strip#debug#'</span> PKGBUILD</span><br><span class="line"><span class="comment"># skip check</span></span><br><span class="line">makepkg --skipchecksums --nocheck --skippgpcheck</span><br><span class="line">sudo pacman -U *.pkg.tar.xz</span><br></pre></td></tr></table></figure>
 <p>缺点是每次升级 glibc 的时候要自己重新编译一遍......</p>
 <p>(听说 Debug Symbols 的支持已经在进行中了?)</p>
 <h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>今天学长按照这个试了一下, 编译了一个下午都没编译完(然后怒转 mint ). 然后我才想起来第一次我也遇到了这个问题: 其实编译早就完成了, 只是一直在跑测试......(大概是因为 glibc 非常重要, 所以测试很多....) (不过测试虽然慢但我当时似乎也跑完了) (可能是因为我改了 <code>BUILDDIR</code> ?)</p>
@@ -954,6 +954,13 @@
   
 
   
+  
+
+  
+  
+
+  
+
 
   
   
@@ -1034,7 +1041,7 @@
         }, 300)
       }).append(e)
     })
-  </script>
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 
 </body>
