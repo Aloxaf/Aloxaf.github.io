@@ -462,7 +462,7 @@
         <p>发现无聊时刷 <a href="https://wiki.archlinux.org/" target="_blank" rel="noopener">Arch Wiki</a> 也挺有趣的, 记录一下自己干了啥吧. 毕竟有些配置没法放到 dotfiles 里. 记录一下以后翻起来也方便.</p>
 <a id="more"></a>
 <h1 id="内核"><a href="#内核" class="headerlink" title="内核"></a>内核</h1><h2 id="nopti"><a href="#nopti" class="headerlink" title="nopti"></a>nopti</h2><p>参考: <a href="https://bbs.archlinux.org/viewtopic.php?pid=1759527#p1759527" target="_blank" rel="noopener">Performance degradation after Meltdown mitigation?</a></p>
-<p>打开 <code>/etc/default/grub</code>, 给 <code>GRUB_CMDLINE_LINUX_DEFAULT</code>添加<code>nopti</code>参数, 禁用上次 intel Meltdown 漏洞的补丁. </p>
+<p>打开 <code>/etc/default/grub</code>, 给 <code>GRUB_CMDLINE_LINUX_DEFAULT</code>添加<code>nopti mitigations=off</code>参数, 禁用上次 intel Meltdown 漏洞的补丁. </p>
 <p>这个补丁实测严重影响<strong>系统调用</strong>性能, 大约下降 70%. 虽然实际上应该没啥程序会疯狂 syscall ....但我还是要关掉它!</p>
 <h1 id="硬盘"><a href="#硬盘" class="headerlink" title="硬盘"></a>硬盘</h1><h2 id="SSD"><a href="#SSD" class="headerlink" title="SSD"></a>SSD</h2><p>参考: <a href="https://wiki.archlinux.org/index.php/Solid_state_drive" target="_blank" rel="noopener">Solid state drive</a></p>
 <h3 id="TRIM"><a href="#TRIM" class="headerlink" title="TRIM"></a>TRIM</h3><p>通过 <code>hdparm -I /dev/sda | grep TRIM</code> 检验是否支持, 挂载参数添加 <code>discard</code> 以启用.</p>
