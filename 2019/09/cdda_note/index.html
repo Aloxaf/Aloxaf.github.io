@@ -1,0 +1,1278 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-center-simple.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.4.2" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-me.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-me.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-me.png?v=6.4.2">
+
+
+  <link rel="mask-icon" href="/images/me.svg?v=6.4.2" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.4.2',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="CDDA 幸存者笔记是幸存者笔记，绝不是开发者笔记">
+<meta name="keywords" content="cdda">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CDDA 幸存者笔记">
+<meta property="og:url" content="https://www.aloxaf.com/2019/09/cdda_note/index.html">
+<meta property="og:site_name" content="Aloxaf&#39;s blog">
+<meta property="og:description" content="CDDA 幸存者笔记是幸存者笔记，绝不是开发者笔记">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-10-13T10:30:07.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CDDA 幸存者笔记">
+<meta name="twitter:description" content="CDDA 幸存者笔记是幸存者笔记，绝不是开发者笔记">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Aloxaf's blog" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="https://www.aloxaf.com/2019/09/cdda_note/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>CDDA 幸存者笔记 | Aloxaf's blog</title>
+  
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-123773630-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-123773630-1');
+</script>
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Aloxaf's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">Aloxaf的个人博客, 记录一些乱七八糟的东西</h1>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-友链">
+    <a href="/friends/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>友链</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.aloxaf.com/2019/09/cdda_note/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Aloxaf">
+      <meta itemprop="description" content="懒军, CTFer, 咸鱼王">
+      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/17017672">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Aloxaf's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">CDDA 幸存者笔记
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-09-15 12:16:01" itemprop="dateCreated datePublished" datetime="2019-09-15T12:16:01+08:00">2019-09-15</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-10-13 18:30:07" itemprop="dateModified" datetime="2019-10-13T18:30:07+08:00">2019-10-13</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/game/" itemprop="url" rel="index"><span itemprop="name">game</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/09/cdda_note/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2019/09/cdda_note/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="CDDA-幸存者笔记"><a href="#CDDA-幸存者笔记" class="headerlink" title="CDDA 幸存者笔记"></a>CDDA 幸存者笔记</h1><p>是幸存者笔记，绝不是开发者笔记</p>
+<a id="more"></a>
+<h2 id="破解保险箱"><a href="#破解保险箱" class="headerlink" title="破解保险箱"></a>破解保险箱</h2><h3 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h3><ul>
+<li><p>听力正常</p>
+</li>
+<li><p>听诊器 或 听力增强CBM </p>
+</li>
+</ul>
+<h3 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h3><ol>
+<li><p>如果不满足需求, 只能直接拨动刻度盘, 每次花费 10s, 有 $\frac{1}{30^3}$ 的几率成功</p>
+</li>
+<li><p>满足要求, 则开始计算破解耗时</p>
+</li>
+<li><p><code>耗时 = MAX(150 - 20 * (机械学 - 3) - 10 * (感知 - 8), 30) 分钟</code></p>
+</li>
+<li><p><code>行动点数 = 耗时(秒) * 100</code></p>
+</li>
+</ol>
+<h2 id="安装生化插件"><a href="#安装生化插件" class="headerlink" title="安装生化插件"></a>安装生化插件</h2><h3 id="需求-1"><a href="#需求-1" class="headerlink" title="需求"></a>需求</h3><ul>
+<li>无故障的无菌生化插件</li>
+</ul>
+<h3 id="算法-1"><a href="#算法-1" class="headerlink" title="算法"></a>算法</h3><h4 id="计算生化操作技能"><a href="#计算生化操作技能" class="headerlink" title="计算生化操作技能"></a>计算生化操作技能</h4><ol>
+<li><code>等级 = 智力 * 4 + 主技能 * 4 + 次技能 * 3 + 最次技能 * 1</code></li>
+<li>若职业为住院医师/生化外科医生, <code>等级 += 3</code></li>
+<li>若职业为人体强化协会会员/全自动医疗仪专家, <code>等级 += 7</code></li>
+<li><code>等级 = 等级 - MIN(40, 等级 - 等级 / 10)</code></li>
+</ol>
+<h4 id="计算安装成功率"><a href="#计算安装成功率" class="headerlink" title="计算安装成功率"></a>计算安装成功率</h4><ol>
+<li>若开启 MOD &quot;完全可靠的医疗仪&quot;, 并且使用全自动医疗仪安装, 则成功率 100%</li>
+<li>计算生化操作技能等级: 若有全自动医疗仪, 则技能主次顺序为: 急救, 计算机学, 电子学. 反之顺序为: 电子学, 急救, 机械学.</li>
+<li>计算协助智力点数，增加到生化操作技能上</li>
+<li><code>难度参数 = 生化操作技能 / (4 * 生化插件安装难度)</code></li>
+<li><code>成功率 = (100 * 难度参数) / 难度参数 + sqrt(难度参数)</code> </li>
+<li><code>耗时 = 难度参数 * 20分钟</code></li>
+</ol>
+<h3 id="备注"><a href="#备注" class="headerlink" title="备注"></a>备注</h3><p>生化插件安装难度可查询: <a href="https://cdda-trunk.aloxaf.cn" target="_blank" rel="noopener">https://cdda-trunk.aloxaf.cn</a></p>
+<h2 id="回血速率"><a href="#回血速率" class="headerlink" title="回血速率"></a>回血速率</h2><h3 id="自然回血（无视吧，太少了）"><a href="#自然回血（无视吧，太少了）" class="headerlink" title="自然回血（无视吧，太少了）"></a>自然回血（无视吧，太少了）</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">at_rest_quality = <span class="keyword">if</span> sleep <span class="number">1</span> <span class="keyword">else</span> <span class="number">0</span></span><br><span class="line"></span><br><span class="line">// 基本恢复速率, 曾经是 <span class="number">0.01</span></span><br><span class="line">heal_rate = <span class="number">0.0001</span></span><br><span class="line">// 最终恢复速率</span><br><span class="line">final_rate = <span class="number">0.0</span></span><br><span class="line"></span><br><span class="line">// healing_awake 参考</span><br><span class="line">// 急速自愈 <span class="number">2.0</span>    高速自愈 <span class="number">0.66</span>   快速自愈 <span class="number">0.2</span>   高速新陈代谢 <span class="number">0.2</span></span><br><span class="line">// 虚弱   <span class="number">-0.002</span>   衰退   <span class="number">-0.02</span>   解体   <span class="number">-0.08</span></span><br><span class="line">awake_rate = heal_rate * mutation_value(<span class="string">"healing_awake"</span>)</span><br><span class="line"><span class="keyword">if</span> awake_rate &gt; <span class="number">0</span>:</span><br><span class="line">    final_rate += awake_rate</span><br><span class="line"><span class="keyword">elif</span> at_rest_quality &lt; <span class="number">1</span>:</span><br><span class="line">	final_rate += (<span class="number">1</span> - at_rest_quality) * awake_rate</span><br><span class="line"></span><br><span class="line">// healing_rest 参考</span><br><span class="line">// 急速自愈 <span class="number">1.5</span>    高速自愈   <span class="number">0.5</span>    快速自愈  <span class="number">0.5</span>   高速新陈代谢 <span class="number">0.5</span></span><br><span class="line">// 虚弱   <span class="number">-0.25</span>   慢速自愈  <span class="number">-0.25</span>   自愈弱化 <span class="number">-0.66</span>   自愈无效   <span class="number">-0.9</span></span><br><span class="line">asleep_rate = <span class="number">0.0</span></span><br><span class="line"><span class="keyword">if</span> at_rest_quality &gt; <span class="number">0</span>:</span><br><span class="line">	alseep_rate = at_rest_quality * heal_rate * (<span class="number">1</span> + mutation_value(<span class="string">"healing_rest"</span>))</span><br><span class="line"><span class="keyword">if</span> alseep_rate &gt; <span class="number">0.0</span>:</span><br><span class="line">	final_rate += asleep_rate * (<span class="number">1</span> + healthy / <span class="number">200</span>)</span><br><span class="line"></span><br><span class="line">// 身强力壮 <span class="number">0.2</span> 钢筋铁骨 <span class="number">0.3</span>   不可战胜 <span class="number">0.4</span></span><br><span class="line">// 小个子 <span class="number">-0.05</span> 毫不起眼 <span class="number">-0.25</span> 瘦弱 <span class="number">-0.25</span>  体型细小 <span class="number">-0.3</span>  弱不禁风 <span class="number">-0.5</span> 柴毁骨立 <span class="number">-0.75</span></span><br><span class="line">primary_hp_mod = mutation_value( <span class="string">"hp_modifier"</span> );</span><br><span class="line"><span class="keyword">if</span> primary_hp_mod &lt; <span class="number">0.0</span>:</span><br><span class="line">	// HP mod can<span class="string">'t get below -1.0</span></span><br><span class="line"><span class="string">	final_rate *= 1.0f + primary_hp_mod;</span></span><br></pre></td></tr></table></figure>
+<h4 id="TL-DR"><a href="#TL-DR" class="headerlink" title="TL;DR"></a>TL;DR</h4><p>首先基本回血速率 0.0001（以前是 0.01）。</p>
+<p>清醒回血速率为基本回血速率<strong>乘上</strong>特性加成，默认为 0（也就是不回血），最高可以由急速自愈提供 2.0 的加成。<br>睡眠回血速率为基本回血速率<strong>乘上</strong>特性加成，默认为 1（也就是只提供基本回血），最高急速自愈提供 2.5，最低自愈无效提提供 0.1（不增反减）。然后睡眠回血速率还会受到健康（-200~200）影响，最高翻倍，最低归 0（完全不回血）。</p>
+<p>最终回血速率：白天就是清醒回血速率，晚上为两个相加，然后这个值再<strong>乘上</strong>特性加成，最高不可战胜提供 1.4，最低柴毁骨立提供 0.25。</p>
+<p>这个数值非常小……一个没有任何特性健康为 0 的正常人睡 8 个小时大概能自然回血 3 点……</p>
+<h3 id="科学回血"><a href="#科学回血" class="headerlink" title="科学回血"></a>科学回血</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">rate_medicine = <span class="number">0.0</span></span><br><span class="line">bandaged_rate = <span class="number">0.0</span></span><br><span class="line">disinfected_rate = <span class="number">0.0</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// HEAL_RATE  base_mods=<span class="number">2</span>  scaling_mods=<span class="number">2</span></span><br><span class="line">// HEAL_TORSO base_mods=<span class="number">50</span></span><br><span class="line">// HEAL_TORSO base_mods=<span class="number">150</span></span><br><span class="line">// level  <span class="number">1</span><span class="number">-2</span>(极差) <span class="number">3</span><span class="number">-4</span>(不佳) <span class="number">5</span><span class="number">-6</span>(普通) <span class="number">7</span><span class="number">-8</span>(好)</span><br><span class="line">// <span class="number">9</span><span class="number">-10</span>(良好) <span class="number">11</span>~<span class="number">12</span>(优秀) <span class="number">13</span><span class="number">-14</span>(出色) <span class="number">15</span><span class="number">-16</span>(完美)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">effect</span>:</span>:get_amount(arg):</span><br><span class="line">    ret = get(<span class="string">"base_mods"</span>) + get(<span class="string">"scaling_mods"</span>) * (min(<span class="number">8</span>, level) - <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> bandaged:</span><br><span class="line">    bandaged_rate += bandaged.get_amount(<span class="string">"HEAL_RATE"</span>) / <span class="number">24</span>hours</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> body_part = head:</span><br><span class="line">    	bandaged_rate *= bandaged.get_amount(<span class="string">"HEAL_HEAD"</span>) / <span class="number">100</span></span><br><span class="line">    <span class="keyword">if</span> body_part = torso:</span><br><span class="line">        bandaged_rate *= bandaged.get_amount(<span class="string">"HEAL_TORSO"</span>) / <span class="number">100</span></span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line"><span class="keyword">if</span> disinfected:</span><br><span class="line">    disinfected_rate += disinfected.get_amount(<span class="string">"HEAL_RATE"</span>) / <span class="number">24</span>hours</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> body_part = head:</span><br><span class="line">    	disinfected_rate *= disinfected.get_amount(<span class="string">"HEAL_HEAD"</span>) / <span class="number">100</span></span><br><span class="line">    <span class="keyword">if</span> body_part = torso:</span><br><span class="line">        disinfected_rate *= disinfected.get_amount(<span class="string">"HEAL_TORSO"</span>) / <span class="number">100</span></span><br><span class="line"></span><br><span class="line">rate_medicine += bandaged_rate + disinfected_rate</span><br><span class="line">rate_medicine *= <span class="number">1.0</span> + mutation_value(<span class="string">"healing_resting"</span>)</span><br><span class="line">rate_medicine *= <span class="number">1.0</span> + at_rest_quality</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> bandaged <span class="keyword">and</span> disinfected:</span><br><span class="line">    rate_medicine *= <span class="number">2</span></span><br><span class="line">    </span><br><span class="line"><span class="keyword">if</span> healthy &gt; <span class="number">0</span>:</span><br><span class="line">    rate_medicine *= <span class="number">1.0</span> + healthy / <span class="number">200</span></span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    rate_medicine *= <span class="number">1.0</span> + healthy / <span class="number">400</span></span><br><span class="line">    </span><br><span class="line">primary_hp_mod = mutation_value( <span class="string">"hp_modifier"</span> );</span><br><span class="line"><span class="keyword">if</span> primary_hp_mod &lt; <span class="number">0.0</span>:</span><br><span class="line">	// HP mod can<span class="string">'t get below -1.0</span></span><br><span class="line"><span class="string">	rate_medicine *= 1.0f + primary_hp_mod;</span></span><br></pre></td></tr></table></figure>
+<h4 id="TL-DR-1"><a href="#TL-DR-1" class="headerlink" title="TL;DR"></a>TL;DR</h4><p>运用医学手段后的回血，分为包扎回血和消毒回血，两者算法一致，主要受包扎/消毒效果影响。“极差”没有加成，“好”及以上可以翻八倍。其中头部和身体会再乘上特殊加成，头部 0.5，身体 1.5。</p>
+<p>最终回血数值等于包扎回血加上消毒回血，再乘上特性加成（默认 1，最高急速自愈 2.5，最低自愈无效 0.1），如果在睡觉的话再翻倍，如果同时包扎&amp;消毒就再翻倍，然后再乘上健康（取值 -200~200）加成（满值翻倍，负满值减半），然后如果有改变HP上限的特性（身强力壮、弱不禁风等等），也等比例应用到回血数值上。</p>
+<p>一个没有特性健康为 0 正常人极差包扎+极差消毒，睡 8 个小时，四肢能回血 5 点。看起来很少，毕竟是“极差”的处理，如果是“良好”的话，这个数字就可以达到 40。所以提升急救学等级 &amp; 使用更高级的包扎/消毒材料就很有必要了。</p>
+<h3 id="关于健康"><a href="#关于健康" class="headerlink" title="关于健康"></a>关于健康</h3><p>虽然表面上说健康值范围是 -200~200，但通过饮食能达到的健康值上限基本为 10。同时因为辐射等原因健康值可能暴跌到负三四百甚至五六百。这个时候回血就会变成负值。。。</p>
+<h2 id="生化插件能耗改动"><a href="#生化插件能耗改动" class="headerlink" title="生化插件能耗改动"></a>生化插件能耗改动</h2><p>9702 以后，生化能量使用了焦耳热单位，最小单位为 mJ，同时由于数据类型的限制带来了一个上限：2147483647mJ，大约是 2100 kJ。因为是数据类型本身带来的限制，这个上限不大可能改变了。</p>
+<p>当然这样生化插件就被削地不成样子了，于是 9748 后，生化插件的耗能也开始进行改动，究竟是强了还是弱了并不好说，把数据列举出来各位自行判断。（不过值得吐槽的是 CBM 界面的耗能显示没有调整，导致很多插件耗能显示为 0……）</p>
+<p>注：1 W 即 1 J/s，也就是 1 J/回合。“1 J; 1 W”表示启动耗能 1 J，功率 1W</p>
+<table>
+<thead>
+<tr>
+<th>插件名</th>
+<th>旧版耗能</th>
+<th>新版耗能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>肾上腺素泵</td>
+<td>50 kJ</td>
+<td>5 J</td>
+</tr>
+<tr>
+<td>警报系统</td>
+<td>1 / 600 kW</td>
+<td>1 W</td>
+</tr>
+<tr>
+<td>单分子刀刃</td>
+<td>200 kJ</td>
+<td>50 J</td>
+</tr>
+<tr>
+<td>霰弹枪臂</td>
+<td>5 kJ</td>
+<td>50 J</td>
+</tr>
+<tr>
+<td>血液分析</td>
+<td>25 kJ</td>
+<td>100 J</td>
+</tr>
+<tr>
+<td>血液过滤</td>
+<td>75 kJ</td>
+<td>600 J</td>
+</tr>
+<tr>
+<td>连锁闪电</td>
+<td>125 kJ</td>
+<td>100 kJ</td>
+</tr>
+<tr>
+<td>生化合金爪</td>
+<td>100 kJ</td>
+<td>25 J</td>
+</tr>
+<tr>
+<td>恒温机</td>
+<td>1 kJ ; 1 / 24 kW</td>
+<td>100 J ; 100 W</td>
+</tr>
+<tr>
+<td>隐身系统</td>
+<td>50 kJ ; 50 kW</td>
+<td>30 kJ ; 30 kW</td>
+</tr>
+<tr>
+<td>近身格斗强化</td>
+<td>1 kJ ; 1 kW</td>
+<td>20 J / 20 W</td>
+</tr>
+<tr>
+<td>定向 EMP</td>
+<td>100 kJ</td>
+<td>50 kJ</td>
+</tr>
+<tr>
+<td>EMP 发射器</td>
+<td>20 kJ</td>
+<td>50 kJ</td>
+</tr>
+<tr>
+<td>湿气凝水器</td>
+<td>200 kJ</td>
+<td>720 kJ</td>
+</tr>
+<tr>
+<td>绝缘电容系统</td>
+<td>1 J ; 1 / 2 kW</td>
+<td>5 J ; 5 W</td>
+</tr>
+<tr>
+<td>闪光弹生成器</td>
+<td>125 kJ</td>
+<td>10 kJ</td>
+</tr>
+<tr>
+<td>脑壳手电</td>
+<td>1 kJ ; 1 / 150 kW</td>
+<td>3 J ; 3 W</td>
+</tr>
+<tr>
+<td>LED纹身</td>
+<td>1 kJ ; 1 / 300 kW</td>
+<td>1 J ; 1 W</td>
+</tr>
+<tr>
+<td>内置辐射计</td>
+<td>25 kJ</td>
+<td>100 J</td>
+</tr>
+<tr>
+<td>声纳之足</td>
+<td>5 kJ ; 1 kW</td>
+<td>200 J ; 200 W</td>
+</tr>
+<tr>
+<td>热能防护</td>
+<td>4 kJ ; 4 kW</td>
+<td>1 kJ ; 1 kW</td>
+</tr>
+<tr>
+<td>液压肌肉</td>
+<td>17 kJ ; 17 kW</td>
+<td>10 kJ ; 10 kW</td>
+</tr>
+<tr>
+<td>红外视觉</td>
+<td>5 kJ ; 1 kW</td>
+<td>5 J / 5 W</td>
+</tr>
+<tr>
+<td>指端激光枪</td>
+<td>50 kJ</td>
+<td>30 kJ</td>
+</tr>
+<tr>
+<td>白细胞培育系统</td>
+<td>10 kJ ; 1 / 3600  kW</td>
+<td>5 J ; 5 W</td>
+</tr>
+<tr>
+<td>指端开锁器</td>
+<td>25 kJ</td>
+<td>50 J</td>
+</tr>
+<tr>
+<td>掌心电磁铁</td>
+<td>50 kJ</td>
+<td>10 kJ</td>
+</tr>
+<tr>
+<td>记忆增强</td>
+<td>10 kJ ; 1 / 600 kW</td>
+<td>2 J ; 2 W</td>
+</tr>
+<tr>
+<td>气象识别</td>
+<td>10 kJ</td>
+<td>10 J</td>
+</tr>
+<tr>
+<td>人工黑夜制造机(注：范围从 15 缩小到 2 ）</td>
+<td>15 kJ ; 15 kW</td>
+<td>9 kJ ; 9 kW</td>
+</tr>
+<tr>
+<td>植入式夜视仪</td>
+<td>1 kJ ; 1 / 1000 kW</td>
+<td>10 J ; 10 W</td>
+</tr>
+<tr>
+<td>量子移动（待机）</td>
+<td>1 kJ ; 1 kW</td>
+<td>3 J ; 3 W</td>
+</tr>
+<tr>
+<td>辐射清洗系统</td>
+<td>50 kJ</td>
+<td>4.5 kJ</td>
+</tr>
+<tr>
+<td>远程控制（未改动）</td>
+<td>1 / 24 kW</td>
+<td>10 W</td>
+</tr>
+<tr>
+<td>形象化嗅觉</td>
+<td>1 kJ ; 1 / 6 kW</td>
+<td>2 J ; 2 W</td>
+</tr>
+<tr>
+<td>神奇闪避</td>
+<td>1 kJ ; 1 / 10 kW</td>
+<td>6 J ; 6 W</td>
+</tr>
+<tr>
+<td>体液萃取</td>
+<td>50 kJ</td>
+<td>20 kJ</td>
+</tr>
+</tbody>
+</table>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>aloxaf</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://www.aloxaf.com/2019/09/cdda_note/" title="CDDA 幸存者笔记">https://www.aloxaf.com/2019/09/cdda_note/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/cdda/" rel="tag"># cdda</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/fxxk_jetbrains_font_linux/" rel="next" title="JetBrains 家 IDE 在 Linux 下的奇怪字体问题(锯齿, 字体过小)">
+                <i class="fa fa-chevron-left"></i> JetBrains 家 IDE 在 Linux 下的奇怪字体问题(锯齿, 字体过小)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://avatars2.githubusercontent.com/u/17017672" alt="Aloxaf">
+            
+              <p class="site-author-name" itemprop="name">Aloxaf</p>
+              <p class="site-description motion-element" itemprop="description">懒军, CTFer, 咸鱼王</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">22</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/Aloxaf" target="_blank" title="GitHub" rel="external nofollow"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:aloxafx@gmail.com" target="_blank" title="E-Mail" rel="external nofollow"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#CDDA-幸存者笔记"><span class="nav-number">1.</span> <span class="nav-text">CDDA 幸存者笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#破解保险箱"><span class="nav-number">1.1.</span> <span class="nav-text">破解保险箱</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#需求"><span class="nav-number">1.1.1.</span> <span class="nav-text">需求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#算法"><span class="nav-number">1.1.2.</span> <span class="nav-text">算法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装生化插件"><span class="nav-number">1.2.</span> <span class="nav-text">安装生化插件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#需求-1"><span class="nav-number">1.2.1.</span> <span class="nav-text">需求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#算法-1"><span class="nav-number">1.2.2.</span> <span class="nav-text">算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#计算生化操作技能"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">计算生化操作技能</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#计算安装成功率"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">计算安装成功率</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#备注"><span class="nav-number">1.2.3.</span> <span class="nav-text">备注</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#回血速率"><span class="nav-number">1.3.</span> <span class="nav-text">回血速率</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#自然回血（无视吧，太少了）"><span class="nav-number">1.3.1.</span> <span class="nav-text">自然回血（无视吧，太少了）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#TL-DR"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">TL;DR</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#科学回血"><span class="nav-number">1.3.2.</span> <span class="nav-text">科学回血</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#TL-DR-1"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">TL;DR</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关于健康"><span class="nav-number">1.3.3.</span> <span class="nav-text">关于健康</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#生化插件能耗改动"><span class="nav-number">1.4.</span> <span class="nav-text">生化插件能耗改动</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Aloxaf</span>
+
+  
+
+  
+</div>
+
+
+  
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" rel="external nofollow" href="https://theme-next.org">NexT.Gemini</a> v6.4.2</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.4.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.4.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+  
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: true,
+        notify: false,
+        appId: 'fSbXaElXXTznggVXiWy8NFBU-gzGzoHsz',
+        appKey: 'kK3SxB14xAACgHftKrSaBRDU',
+        placeholder: '妙啊, 妙啊',
+        avatar:'mm',
+        meta:guest,
+        pageSize:'10' || 10,
+        visitor: false
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap')
+      $(e).after($wrap)
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text()
+        }).toArray().join('\n')
+        var ta = document.createElement('textarea')
+        document.body.appendChild(ta)
+        ta.style.position = 'absolute'
+        ta.style.top = '0px'
+        ta.style.left = '0px'
+        ta.value = code
+        ta.select()
+        ta.focus()
+        var result = document.execCommand('copy')
+        document.body.removeChild(ta)
+        
+          if(result)$(this).text('复制成功')
+          else $(this).text('复制失败')
+        
+        $(this).blur()
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn')
+        setTimeout(function () {
+          $b.text('复制')
+        }, 300)
+      }).append(e)
+    })
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</body>
+</html>
