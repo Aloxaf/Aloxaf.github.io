@@ -2,6 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://www.aloxaf.com/friends/index.html</loc>
+    
+    <lastmod>2019-11-10T12:03:53.838Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.aloxaf.com/tags/index.html</loc>
+    
+    <lastmod>2019-11-10T11:56:56.961Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.aloxaf.com/categories/index.html</loc>
+    
+    <lastmod>2019-11-10T11:56:17.188Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://www.aloxaf.com/2019/11/zplugin_tutorial/</loc>
     
     <lastmod>2019-11-10T05:43:26.000Z</lastmod>
@@ -68,13 +89,6 @@
     <loc>https://www.aloxaf.com/2018/11/arch_optimize/</loc>
     
     <lastmod>2018-11-19T13:05:43.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://www.aloxaf.com/friends/index.html</loc>
-    
-    <lastmod>2018-11-19T05:24:30.344Z</lastmod>
     
   </url>
   
@@ -159,20 +173,6 @@
     <loc>https://www.aloxaf.com/2018/08/tjctf_pythonjail/</loc>
     
     <lastmod>2018-08-11T04:23:25.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://www.aloxaf.com/tags/index.html</loc>
-    
-    <lastmod>2018-08-11T01:10:10.232Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://www.aloxaf.com/categories/index.html</loc>
-    
-    <lastmod>2018-08-11T01:06:39.181Z</lastmod>
     
   </url>
   

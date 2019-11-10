@@ -1,465 +1,132 @@
 <!DOCTYPE html>
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-<html class="theme-next gemini use-motion" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.8.0">
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-
-
-
-
-
-
-  
-  
-    
-    
-  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
-  <link href="/lib/pace/pace-theme-center-simple.min.css?v=1.0.2" rel="stylesheet">
-
-
-
-
-
+<html lang="zh-CN">
+  <head><meta name="generator" content="Hexo 3.8.0"><meta charset="UTF-8">
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 <meta http-equiv="Cache-Control" content="no-transform">
 <meta http-equiv="Cache-Control" content="no-siteapp">
 
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
+<meta name="description" content="hackme.inndy 部分writeup"><meta name="keywords" content="ctf, writeup, misc, pwn, web, crypto, reverse, Aloxaf's blog"><link rel="alternate" href="/atom.xml" title="Aloxaf's blog"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.11.0">
+<link rel="canonical" href="https://www.aloxaf.com/2018/07/hackme_inndy/">
 
+<link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css"><script type="text/x-mathjax-config">
+    MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });
+  </script>
+  <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.11.0">
 
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
-
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
-
-<link href="/css/main.css?v=6.4.2" rel="stylesheet" type="text/css">
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-me.png?v=6.4.2">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-me.png?v=6.4.2">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-me.png?v=6.4.2">
-
-
-  <link rel="mask-icon" href="/images/me.svg?v=6.4.2" color="#222">
-
-
-
-
-
-
-
-
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Gemini',
-    version: '6.4.2',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    fastclick: false,
-    lazyload: false,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+<script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
     }
-  };
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
 </script>
-
-
-  
-
-
-
-
-  <meta name="description" content="听奥博大佬说对新手很友好, 来试试 官方不建议直接给出 flag, 就不放 flag 了">
-<meta name="keywords" content="ctf,writeup,misc,pwn,crypto,reverse,web">
-<meta property="og:type" content="article">
-<meta property="og:title" content="hackme.inndy 部分writeup">
-<meta property="og:url" content="https://www.aloxaf.com/2018/07/hackme_inndy/index.html">
-<meta property="og:site_name" content="Aloxaf&#39;s blog">
-<meta property="og:description" content="听奥博大佬说对新手很友好, 来试试 官方不建议直接给出 flag, 就不放 flag 了">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-08-20T13:37:00.000Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="hackme.inndy 部分writeup">
-<meta name="twitter:description" content="听奥博大佬说对新手很友好, 来试试 官方不建议直接给出 flag, 就不放 flag 了">
-
-
-
-  <link rel="alternate" href="/atom.xml" title="Aloxaf's blog" type="application/atom+xml">
-
-
-
-
-  <link rel="canonical" href="https://www.aloxaf.com/2018/07/hackme_inndy/">
-
-
-
-<script type="text/javascript" id="page.configurations">
-  CONFIG.page = {
-    sidebar: "",
-  };
-</script>
-
-  <title>hackme.inndy 部分writeup | Aloxaf's blog</title>
-  
-
-
-
-
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-123773630-1"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-123773630-1');
+  window.config = {"leancloud":{"app_id":null,"app_key":null},"toc":true,"fancybox":true,"pjax":"","latex":true};
 </script>
 
+    <title>hackme.inndy 部分writeup - Aloxaf's blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </head>
 
-
-
-
-
-  <noscript>
-  <style type="text/css">
-    .use-motion .motion-element,
-    .use-motion .brand,
-    .use-motion .menu-item,
-    .sidebar-inner,
-    .use-motion .post-block,
-    .use-motion .pagination,
-    .use-motion .comments,
-    .use-motion .post-header,
-    .use-motion .post-body,
-    .use-motion .collection-title { opacity: initial; }
-
-    .use-motion .logo,
-    .use-motion .site-title,
-    .use-motion .site-subtitle {
-      opacity: initial;
-      top: initial;
-    }
-
-    .use-motion {
-      .logo-line-before i { left: initial; }
-      .logo-line-after i { right: initial; }
-    }
-  </style>
-</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-
-</head>
-
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
-
-  
-  
-    
-  
-
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Aloxaf's blog</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-    
-      
-        <h1 class="site-subtitle" itemprop="description">Aloxaf的个人博客, 记录一些乱七八糟的东西</h1>
-      
-    
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="mobile-header-logo">
+    <a href="/." class="logo">Aloxaf's blog</a>
   </div>
-
-  <div class="site-nav-toggle">
-    <button aria-label="切换导航栏">
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
   </div>
 </div>
 
-
-
-<nav class="site-nav">
-  
-    <ul id="menu" class="menu">
-      
-        
-        
-        
-          
-          <li class="menu-item menu-item-home">
-    <a href="/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-about">
-    <a href="/about/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-tags">
-    <a href="/tags/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-categories">
-    <a href="/categories/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-archives">
-    <a href="/archives/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-友链">
-    <a href="/friends/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>友链</a>
-  </li>
-
-      
-      
-    </ul>
-  
-
-  
-
-  
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list"><a href="/">
+        <li class="mobile-menu-item">Home
+          </li>
+      </a><a href="/archives/">
+        <li class="mobile-menu-item">Archives
+          </li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags
+          </li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About
+          </li>
+      </a><a href="/friends/">
+        <li class="mobile-menu-item">Friends
+          </li>
+      </a></ul>
 </nav>
-
-
-
-  
-
-
-
+<div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Aloxaf's blog</a>
 </div>
+
+<nav class="site-navbar"><ul id="menu" class="menu"><li class="menu-item">
+          <a class="menu-item-link" href="/">
+            Home
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            Archives
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/tags/">
+            Tags
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/about/">
+            About
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/friends/">
+            Friends
+            </a>
+        </li>
+      </ul></nav>
+</header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content"><article class="post">
+    <header class="post-header">
+      <h1 class="post-title">hackme.inndy 部分writeup
+        </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2018-07-14
+        </span><span class="post-category">
+            <a href="/categories/writeup/">writeup</a>
+            </span>
+        </div>
     </header>
 
-    
-
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-            
-
-          
-          <div id="content" class="content">
-            
-
-  <div id="posts" class="posts-expand">
-    
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.aloxaf.com/2018/07/hackme_inndy/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Aloxaf">
-      <meta itemprop="description" content="懒军, CTFer, 咸鱼王">
-      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/17017672">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Aloxaf's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">hackme.inndy 部分writeup
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-07-14 15:00:07" itemprop="dateCreated datePublished" datetime="2018-07-14T15:00:07+08:00">2018-07-14</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2018-08-20 21:37:00" itemprop="dateModified" datetime="2018-08-20T21:37:00+08:00">2018-08-20</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/writeup/" itemprop="url" rel="index"><span itemprop="name">writeup</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/07/hackme_inndy/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/07/hackme_inndy/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <p>听奥博大佬说对新手很友好, 来试试</p>
+    <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">Contents</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Misc"><span class="toc-text">Misc</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#flag"><span class="toc-text">flag</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#corgi-can-fly"><span class="toc-text">corgi can fly</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#television"><span class="toc-text">television</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#meow"><span class="toc-text">meow</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#where-is-flag"><span class="toc-text">where is flag</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#encoder"><span class="toc-text">encoder</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#slow"><span class="toc-text">slow</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pusheen-txt"><span class="toc-text">pusheen.txt</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#big"><span class="toc-text">big</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Web"><span class="toc-text">Web</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#hide-and-seek"><span class="toc-text">hide and seek</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#guestbook"><span class="toc-text">guestbook</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LFI"><span class="toc-text">LFI</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#homepage"><span class="toc-text">homepage</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ping"><span class="toc-text">ping</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#scoreboard"><span class="toc-text">scoreboard</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#login-as-admin-0"><span class="toc-text">login as admin 0</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#login-as-admin-3"><span class="toc-text">login as admin 3</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#login-as-admin-4"><span class="toc-text">login as admin 4</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#login-as-admin-6"><span class="toc-text">login as admin 6</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#login-as-admin-7"><span class="toc-text">login as admin 7</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#dafuq-manager-1"><span class="toc-text">dafuq-manager 1</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Reversing"><span class="toc-text">Reversing</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#helloworld"><span class="toc-text">helloworld</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#simple"><span class="toc-text">simple</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pyyy"><span class="toc-text">pyyy</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#accumulator"><span class="toc-text">accumulator</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GCCC"><span class="toc-text">GCCC</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ccc"><span class="toc-text">ccc</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#bitx"><span class="toc-text">bitx</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2018-rev"><span class="toc-text">2018-rev</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#what-the-hell"><span class="toc-text">what-the-hell</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mov"><span class="toc-text">mov</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Pwn"><span class="toc-text">Pwn</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#catflag"><span class="toc-text">catflag</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#homework"><span class="toc-text">homework</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ROP"><span class="toc-text">ROP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ROP2"><span class="toc-text">ROP2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#toooomuch"><span class="toc-text">toooomuch</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#toooomuch-2"><span class="toc-text">toooomuch-2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#echo"><span class="toc-text">echo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#echo2"><span class="toc-text">echo2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#echo3"><span class="toc-text">echo3</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#smashthestack"><span class="toc-text">smashthestack</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Crypto"><span class="toc-text">Crypto</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#easy"><span class="toc-text">easy</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#r-u-kidding"><span class="toc-text">r u kidding</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#not-harder"><span class="toc-text">not harder</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#classic-cipher-1"><span class="toc-text">classic cipher 1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#classic-cipher-2"><span class="toc-text">classic cipher 2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#easy-AES"><span class="toc-text">easy AES</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#one-time-padding"><span class="toc-text">one time padding</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#shuffle"><span class="toc-text">shuffle</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#login-as-admin-2"><span class="toc-text">login as admin 2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#xor"><span class="toc-text">xor</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#emoji"><span class="toc-text">emoji</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ffa"><span class="toc-text">ffa</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Programming"><span class="toc-text">Programming</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#fast"><span class="toc-text">fast</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Lucky"><span class="toc-text">Lucky</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#you-guess"><span class="toc-text">you-guess</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Forensic"><span class="toc-text">Forensic</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#easy-pdf"><span class="toc-text">easy pdf</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#this-is-a-pen"><span class="toc-text">this is a pen</span></a></li></ol></li></ol>
+    </div>
+  </div><div class="post-content"><p>听奥博大佬说对新手很友好, 来试试</p>
 <p>官方不建议直接给出 flag, 就不放 flag 了</p>
 <a id="more"></a>
 <h1 id="Misc"><a href="#Misc" class="headerlink" title="Misc"></a>Misc</h1><h2 id="flag"><a href="#flag" class="headerlink" title="flag"></a>flag</h2><blockquote>
@@ -825,596 +492,89 @@
 </blockquote>
 <p>和上一题一样</p>
 
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-      <div>
-        <ul class="post-copyright">
-  <li class="post-copyright-author">
-    <strong>本文作者： </strong>Aloxaf</li>
-  <li class="post-copyright-link">
-    <strong>本文链接：</strong>
-    <a href="https://www.aloxaf.com/2018/07/hackme_inndy/" title="hackme.inndy 部分writeup">https://www.aloxaf.com/2018/07/hackme_inndy/</a>
-  </li>
-  <li class="post-copyright-license">
-    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！</li>
-</ul>
-
       </div>
-    
-
-    <footer class="post-footer">
-      
+      <div class="post-copyright">
+    <p class="copyright-item">
+      <span>Author: </span>
+      <a href="https://www.aloxaf.com">Aloxaf</a>
+    </p>
+    <p class="copyright-item">
+      <span>Link: </span>
+      <a href="https://www.aloxaf.com/2018/07/hackme_inndy/">https://www.aloxaf.com/2018/07/hackme_inndy/</a>
+    </p>
+    <p class="copyright-item">
+      <span>License: </span><a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+      <footer class="post-footer">
         <div class="post-tags">
-          
-            <a href="/tags/ctf/" rel="tag"># ctf</a>
-          
-            <a href="/tags/writeup/" rel="tag"># writeup</a>
-          
-            <a href="/tags/misc/" rel="tag"># misc</a>
-          
-            <a href="/tags/pwn/" rel="tag"># pwn</a>
-          
-            <a href="/tags/crypto/" rel="tag"># crypto</a>
-          
-            <a href="/tags/reverse/" rel="tag"># reverse</a>
-          
-            <a href="/tags/web/" rel="tag"># web</a>
-          
-        </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2018/07/arch_glibc_2.23/" rel="next" title="在 Arch Linux 下使用 glibc 2.23 调试程序&使用 pwndbg">
-                <i class="fa fa-chevron-left"></i> 在 Arch Linux 下使用 glibc 2.23 调试程序&使用 pwndbg
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/07/add_open_by_emacsclient/" rel="prev" title="Linux 下在打开方式中增加用 emacsclient">
-                Linux 下在打开方式中增加用 emacsclient <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-  </div>
-
-
-          </div>
-          
-
-  
-    <div class="comments" id="comments">
-    </div>
-  
-
-
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    
-    <div class="sidebar-inner">
-
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
-
-      <section class="site-overview-wrap sidebar-panel">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-            
-              <img class="site-author-image" itemprop="image" src="https://avatars2.githubusercontent.com/u/17017672" alt="Aloxaf">
-            
-              <p class="site-author-name" itemprop="name">Aloxaf</p>
-              <p class="site-description motion-element" itemprop="description">懒军, CTFer, 咸鱼王</p>
-          </div>
-
-          
-            <nav class="site-state motion-element">
-              
-                <div class="site-state-item site-state-posts">
-                
-                  <a href="/archives/">
-                
-                    <span class="site-state-item-count">25</span>
-                    <span class="site-state-item-name">日志</span>
-                  </a>
-                </div>
-              
-
-              
-                
-                
-                <div class="site-state-item site-state-categories">
-                  <a href="/categories/index.html">
-                    
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">6</span>
-                    <span class="site-state-item-name">分类</span>
-                  </a>
-                </div>
-              
-
-              
-                
-                
-                <div class="site-state-item site-state-tags">
-                  <a href="/tags/index.html">
-                    
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">18</span>
-                    <span class="site-state-item-name">标签</span>
-                  </a>
-                </div>
-              
-            </nav>
-          
-
-          
-            <div class="feed-link motion-element">
-              <a href="/atom.xml" rel="alternate">
-                <i class="fa fa-rss"></i>
-                RSS
-              </a>
+            <a href="/tags/ctf/">ctf</a>
+            <a href="/tags/writeup/">writeup</a>
+            <a href="/tags/misc/">misc</a>
+            <a href="/tags/pwn/">pwn</a>
+            <a href="/tags/web/">web</a>
+            <a href="/tags/crypto/">crypto</a>
+            <a href="/tags/reverse/">reverse</a>
             </div>
-          
-
-          
-            <div class="links-of-author motion-element">
-              
-                <span class="links-of-author-item">
-                  <a href="https://github.com/Aloxaf" target="_blank" title="GitHub" rel="external nofollow"><i class="fa fa-fw fa-github"></i>GitHub</a>
-                  
-                </span>
-              
-                <span class="links-of-author-item">
-                  <a href="mailto:aloxafx@gmail.com" target="_blank" title="E-Mail" rel="external nofollow"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-                  
-                </span>
-              
-            </div>
-          
-
-          
-          
-
-          
-          
-
-          
-            
-          
-          
-
-        </div>
-      </section>
-
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Misc"><span class="nav-number">1.</span> <span class="nav-text">Misc</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#flag"><span class="nav-number">1.1.</span> <span class="nav-text">flag</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#corgi-can-fly"><span class="nav-number">1.2.</span> <span class="nav-text">corgi can fly</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#television"><span class="nav-number">1.3.</span> <span class="nav-text">television</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#meow"><span class="nav-number">1.4.</span> <span class="nav-text">meow</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#where-is-flag"><span class="nav-number">1.5.</span> <span class="nav-text">where is flag</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#encoder"><span class="nav-number">1.6.</span> <span class="nav-text">encoder</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#slow"><span class="nav-number">1.7.</span> <span class="nav-text">slow</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pusheen-txt"><span class="nav-number">1.8.</span> <span class="nav-text">pusheen.txt</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#big"><span class="nav-number">1.9.</span> <span class="nav-text">big</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Web"><span class="nav-number">2.</span> <span class="nav-text">Web</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#hide-and-seek"><span class="nav-number">2.1.</span> <span class="nav-text">hide and seek</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#guestbook"><span class="nav-number">2.2.</span> <span class="nav-text">guestbook</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LFI"><span class="nav-number">2.3.</span> <span class="nav-text">LFI</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#homepage"><span class="nav-number">2.4.</span> <span class="nav-text">homepage</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ping"><span class="nav-number">2.5.</span> <span class="nav-text">ping</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#scoreboard"><span class="nav-number">2.6.</span> <span class="nav-text">scoreboard</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#login-as-admin-0"><span class="nav-number">2.7.</span> <span class="nav-text">login as admin 0</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#login-as-admin-3"><span class="nav-number">2.8.</span> <span class="nav-text">login as admin 3</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#login-as-admin-4"><span class="nav-number">2.9.</span> <span class="nav-text">login as admin 4</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#login-as-admin-6"><span class="nav-number">2.10.</span> <span class="nav-text">login as admin 6</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#login-as-admin-7"><span class="nav-number">2.11.</span> <span class="nav-text">login as admin 7</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dafuq-manager-1"><span class="nav-number">2.12.</span> <span class="nav-text">dafuq-manager 1</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reversing"><span class="nav-number">3.</span> <span class="nav-text">Reversing</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#helloworld"><span class="nav-number">3.1.</span> <span class="nav-text">helloworld</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#simple"><span class="nav-number">3.2.</span> <span class="nav-text">simple</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pyyy"><span class="nav-number">3.3.</span> <span class="nav-text">pyyy</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#accumulator"><span class="nav-number">3.4.</span> <span class="nav-text">accumulator</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GCCC"><span class="nav-number">3.5.</span> <span class="nav-text">GCCC</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ccc"><span class="nav-number">3.6.</span> <span class="nav-text">ccc</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#bitx"><span class="nav-number">3.7.</span> <span class="nav-text">bitx</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2018-rev"><span class="nav-number">3.8.</span> <span class="nav-text">2018-rev</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#what-the-hell"><span class="nav-number">3.9.</span> <span class="nav-text">what-the-hell</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mov"><span class="nav-number">3.10.</span> <span class="nav-text">mov</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Pwn"><span class="nav-number">4.</span> <span class="nav-text">Pwn</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#catflag"><span class="nav-number">4.1.</span> <span class="nav-text">catflag</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#homework"><span class="nav-number">4.2.</span> <span class="nav-text">homework</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ROP"><span class="nav-number">4.3.</span> <span class="nav-text">ROP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ROP2"><span class="nav-number">4.4.</span> <span class="nav-text">ROP2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#toooomuch"><span class="nav-number">4.5.</span> <span class="nav-text">toooomuch</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#toooomuch-2"><span class="nav-number">4.6.</span> <span class="nav-text">toooomuch-2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#echo"><span class="nav-number">4.7.</span> <span class="nav-text">echo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#echo2"><span class="nav-number">4.8.</span> <span class="nav-text">echo2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#echo3"><span class="nav-number">4.9.</span> <span class="nav-text">echo3</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#smashthestack"><span class="nav-number">4.10.</span> <span class="nav-text">smashthestack</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Crypto"><span class="nav-number">5.</span> <span class="nav-text">Crypto</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#easy"><span class="nav-number">5.1.</span> <span class="nav-text">easy</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#r-u-kidding"><span class="nav-number">5.2.</span> <span class="nav-text">r u kidding</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#not-harder"><span class="nav-number">5.3.</span> <span class="nav-text">not harder</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#classic-cipher-1"><span class="nav-number">5.4.</span> <span class="nav-text">classic cipher 1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#classic-cipher-2"><span class="nav-number">5.5.</span> <span class="nav-text">classic cipher 2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#easy-AES"><span class="nav-number">5.6.</span> <span class="nav-text">easy AES</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#one-time-padding"><span class="nav-number">5.7.</span> <span class="nav-text">one time padding</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#shuffle"><span class="nav-number">5.8.</span> <span class="nav-text">shuffle</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#login-as-admin-2"><span class="nav-number">5.9.</span> <span class="nav-text">login as admin 2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#xor"><span class="nav-number">5.10.</span> <span class="nav-text">xor</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#emoji"><span class="nav-number">5.11.</span> <span class="nav-text">emoji</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ffa"><span class="nav-number">5.12.</span> <span class="nav-text">ffa</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Programming"><span class="nav-number">6.</span> <span class="nav-text">Programming</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#fast"><span class="nav-number">6.1.</span> <span class="nav-text">fast</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Lucky"><span class="nav-number">7.</span> <span class="nav-text">Lucky</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#you-guess"><span class="nav-number">7.1.</span> <span class="nav-text">you-guess</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Forensic"><span class="nav-number">8.</span> <span class="nav-text">Forensic</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#easy-pdf"><span class="nav-number">8.1.</span> <span class="nav-text">easy pdf</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#this-is-a-pen"><span class="nav-number">8.2.</span> <span class="nav-text">this is a pen</span></a></li></ol></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
-      
-
-      
-
-    </div>
-  </aside>
-
-
         
-      </div>
-    </main>
+        <nav class="post-nav"><a class="prev" href="/2018/07/add_open_by_emacsclient/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">Linux 下在打开方式中增加用 emacsclient</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    <a class="next" href="/2018/07/arch_glibc_2.23/">
+        <span class="next-text nav-default">在 Arch Linux 下使用 glibc 2.23 调试程序&使用 pwndbg</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    </nav></footer>
+    </article></div><div class="comments" id="comments"></div></div>
+      </main>
 
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">&copy; 2017 – <span itemprop="copyrightYear">2019</span>
-  <span class="with-love" id="animate">
-    <i class="fa fa-user"></i>
+      <footer id="footer" class="footer"><div class="social-links"><a href="mailto:aloxafx@gmail.com" class="iconfont icon-email" title="email"></a>
+        <a href="https://github.com/Aloxaf" class="iconfont icon-github" title="github"></a>
+        <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    </div><div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
   </span>
-  <span class="author" itemprop="copyrightHolder">Aloxaf</span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
 
-  
-
-  
+  <span class="copyright-year">&copy;2017 - 2019<span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Aloxaf</span>
+  </span>
 </div>
+</footer>
 
-
-  
-
-
-
-  <div class="powered-by">由 <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> 强力驱动 v3.8.0</div>
-
-
-
-  <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">主题 – <a class="theme-link" target="_blank" rel="external nofollow" href="https://theme-next.org">NexT.Gemini</a> v6.4.2</div>
-
-
-
-
-        
-
-
-
-
-
-
-
-
-        
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
       </div>
-    </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
-    
-	
-    
-
-    
-  </div>
-
-  
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
+    </div><script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/src/even.js?v=2.11.0"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
 </script>
 
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=6.4.2"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=6.4.2"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=6.4.2"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.4.2"></script>
-
-
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.2"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=6.4.2"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.2"></script>
-
-
-
-  
-
-
-
-  
-
-
-
-
-
-
-
-
-  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-  
-  
-  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
-  
-  <script type="text/javascript">
-    var GUEST = ['nick','mail','link'];
-    var guest = 'nick,mail,link';
-    guest = guest.split(',').filter(function (item) {
-      return GUEST.indexOf(item)>-1;
-    });
-    new Valine({
-        el: '#comments' ,
-        verify: true,
-        notify: false,
-        appId: 'fSbXaElXXTznggVXiWy8NFBU-gzGzoHsz',
-        appKey: 'kK3SxB14xAACgHftKrSaBRDU',
-        placeholder: '妙啊, 妙啊',
-        avatar:'mm',
-        meta:guest,
-        pageSize:'10' || 10,
-        visitor: false
-    });
-  </script>
-
-
-
-  
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-  
-
-  
-  
-
-  
-
-
-  
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  <style>
-    .copy-btn {
-      display: inline-block;
-      padding: 6px 12px;
-      font-size: 13px;
-      font-weight: 700;
-      line-height: 20px;
-      color: #333;
-      white-space: nowrap;
-      vertical-align: middle;
-      cursor: pointer;
-      background-color: #eee;
-      background-image: linear-gradient(#fcfcfc, #eee);
-      border: 1px solid #d5d5d5;
-      border-radius: 3px;
-      user-select: none;
-      outline: 0;
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
     }
+  });
+</script>
 
-    .highlight-wrap .copy-btn {
-      transition: opacity .3s ease-in-out;
-      opacity: 0;
-      padding: 2px 6px;
-      position: absolute;
-      right: 4px;
-      top: 8px;
-    }
-
-    .highlight-wrap:hover .copy-btn,
-    .highlight-wrap .copy-btn:focus {
-      opacity: 1
-    }
-
-    .highlight-wrap {
-      position: relative;
-    }
-  </style>
-  <script>
-    $('.highlight').each(function (i, e) {
-      var $wrap = $('<div>').addClass('highlight-wrap')
-      $(e).after($wrap)
-      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
-        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
-          return $(e).text()
-        }).toArray().join('\n')
-        var ta = document.createElement('textarea')
-        document.body.appendChild(ta)
-        ta.style.position = 'absolute'
-        ta.style.top = '0px'
-        ta.style.left = '0px'
-        ta.value = code
-        ta.select()
-        ta.focus()
-        var result = document.execCommand('copy')
-        document.body.removeChild(ta)
-        
-          if(result)$(this).text('复制成功')
-          else $(this).text('复制失败')
-        
-        $(this).blur()
-      })).on('mouseleave', function (e) {
-        var $b = $(this).find('.copy-btn')
-        setTimeout(function () {
-          $b.text('复制')
-        }, 300)
-      }).append(e)
-    })
-  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-
-
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 </body>
 </html>
