@@ -128,7 +128,7 @@
 <meta property="og:description" content="前言Zplugin 是个冷门但是却强大无比的 zsh 插件管理器，它拥有一个 killer feature —— Turbo mode，可以让插件在后台加载。这意味这你可以先加载最重要的插件，比如语法高亮和自动建议，剩下的可以统统放到后台加载，让你的 zsh 尽快进入可用状态。 利用这个机制，zplugin 可以将 zsh 的启动时间缩短到几十毫秒——以我的配置为例，只需要 35 毫秒左右。而使用">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/vintersnow/zsh_plugin_manager_speed/master/result.png">
-<meta property="og:image" content="http://zdharma.org/zplugin/wiki/img/csearch.png">
+<meta property="og:image" content="https://zdharma.org/zplugin/wiki/img/csearch.png">
 <meta property="og:updated_time" content="2019-11-10T05:43:26.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="加速你的 zsh —— 最强 zsh 插件管理器 zplugin 简介">
@@ -452,7 +452,7 @@
 <p><img src="https://raw.githubusercontent.com/vintersnow/zsh_plugin_manager_speed/master/result.png" alt=""></p>
 <p>可以看到 zplugin 在插件数目变多时速度……似乎更快了？？？<br>什么鬼，这个大概是实验误差吧，也有可能是第一次启动时编译了自身所以后面变快了。不过 zplugin 的速度是毋庸置疑的，哪怕这个插件需要数十秒来加载，只要放在后台加载，一样不影响你的 zsh 启动。</p>
 <p>然而！！这个工具虽然强大，却没多少名气，让人倍感惋惜。</p>
-<p>所以写下这篇文章，希望能有更多人了解到这个工具。<br>不过本文只涉及了它强大功能的冰山一角，深入研究推荐阅读 <a href="http://zdharma.org/zplugin/wiki/INTRODUCTION/" target="_blank" rel="noopener">Zplugin Wiki</a> 和 Zplugin 的 <a href="https://github.com/zdharma/zplugin/blob/master/README.md" target="_blank" rel="noopener">README</a></p>
+<p>所以写下这篇文章，希望能有更多人了解到这个工具。<br>不过本文只涉及了它强大功能的冰山一角，深入研究推荐阅读 <a href="https://zdharma.org/zplugin/wiki/INTRODUCTION/" target="_blank" rel="noopener">Zplugin Wiki</a> 和 Zplugin 的 <a href="https://github.com/zdharma/zplugin/blob/master/README.md" target="_blank" rel="noopener">README</a></p>
 <p>（如果你很懒不想研究的话，文末有一份完整的示例配置，安装完成后可以直接使用）</p>
 <a id="more"></a>
 <h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><h2 id="自动安装"><a href="#自动安装" class="headerlink" title="自动安装"></a>自动安装</h2><p>官方推荐的安装方式，一键完成。不过让我很没有安全感，我倾向于手动安装。</p>
@@ -521,7 +521,7 @@
 <h2 id="启用和禁用补全"><a href="#启用和禁用补全" class="headerlink" title="启用和禁用补全"></a>启用和禁用补全</h2><p>补全可以被禁用，这样就可以调用 zsh 的原始补全。这个命令非常简单，它只需要补全的名称</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> zplg cdisable cmake</span></span><br><span class="line">Disabled cmake completion belonging to zsh-users/zsh-completions</span><br><span class="line"><span class="meta">$</span><span class="bash"> zplg cenable cmake</span></span><br><span class="line">Enabled cmake completion belonging to zsh-users/zsh-completions</span><br></pre></td></tr></table></figure>
 <p>就这么简单。还有一个命令 <code>zplugin csearch</code>，可以搜索所有的插件目录列出所有可用的补全并且展示它们是否被启用。</p>
-<p><img src="http://zdharma.org/zplugin/wiki/img/csearch.png" alt="#csearch screenshot"></p>
+<p><img src="https://zdharma.org/zplugin/wiki/img/csearch.png" alt="#csearch screenshot"></p>
 <p>这就实现了对补全的完全控制。</p>
 <h2 id="子目录的-SVN-支持"><a href="#子目录的-SVN-支持" class="headerlink" title="子目录的 SVN 支持"></a>子目录的 SVN 支持</h2><p>通常，为了使用 GitHub 项目的子目录作为 snippet，需要在 URL中添加 <code>/trunk/{path-to-dir}</code>，比如</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">zplugin ice svn</span><br><span class="line">zplugin snippet https://github.com/zsh-users/zsh-completions/trunk/src</span><br><span class="line"></span><br><span class="line"><span class="comment"># 对于 Oh My Zsh 和 Prezto, 可以直接使用 OMZ:: 和 PZT:: 前缀</span></span><br><span class="line"><span class="comment"># 不需要添加 `/trunk/`， （不过路径需要指向一个目录而不是文件）</span></span><br><span class="line">zplugin ice svn; zplugin snippet PZT::modules/docker</span><br></pre></td></tr></table></figure>
@@ -539,13 +539,13 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">zplugin ice wait lucid atload'_zsh_autosuggest_start'</span><br><span class="line">zplugin light zsh-users/zsh-autosuggestions</span><br></pre></td></tr></table></figure>
 <p>解释：Autosuggesstions 使用了 <code>precmd</code> 钩子，它会在处理完 <code>zshrc</code> 之后（刚好在第一个命令提示符出现之前）被调用。然而 Turbo mode <code>zshrc</code> 加载完成 1s 后再加载它，使得在第一个命令提示符下 <code>precmd</code> 将不会被安装并调用。这就会让 autosuggesstions 在第一个命令提示符下处于不可用状态。然而，<code>atload</code> ice 可以修复这个问题，它可以在插件加载完成后调用同样的函数，就像 <code>precmd</code> 做的那样，这样就可以获得一致的体验。</p>
 <p><code>lucid</code> ice 可以隐藏 Turbo mode 下插件加载完成的提示，类似 <code>Loaded zsh-users/zsh-autosuggestions</code></p>
-<h3 id="Turbo-Mode-加载复杂的命令提示符"><a href="#Turbo-Mode-加载复杂的命令提示符" class="headerlink" title="Turbo Mode 加载复杂的命令提示符"></a>Turbo Mode 加载复杂的命令提示符</h3><p>某些高级主题的初始化过程是通过 <code>precmd</code> 钩子中完成的（一些需要在每个命令提示符出现之前被调用的函数）。这个钩子被通过 zsh 函数 <a href="http://zdharma.org/zplugin/wiki/zsh-plugin-standard/#use_of_add-zsh-hook_to_install_hooks" target="_blank" rel="noopener">add-zsh-hook</a> 以将函数名添加到 <code>$precmd_functions</code> 数组中的方式被安装。</p>
+<h3 id="Turbo-Mode-加载复杂的命令提示符"><a href="#Turbo-Mode-加载复杂的命令提示符" class="headerlink" title="Turbo Mode 加载复杂的命令提示符"></a>Turbo Mode 加载复杂的命令提示符</h3><p>某些高级主题的初始化过程是通过 <code>precmd</code> 钩子中完成的（一些需要在每个命令提示符出现之前被调用的函数）。这个钩子被通过 zsh 函数 <a href="https://zdharma.org/zplugin/wiki/zsh-plugin-standard/#use_of_add-zsh-hook_to_install_hooks" target="_blank" rel="noopener">add-zsh-hook</a> 以将函数名添加到 <code>$precmd_functions</code> 数组中的方式被安装。</p>
 <p>为了使命令提示符在用 Turbo mode 半路加载完主题后被完全初始化，需要使用 <code>atload&#39;&#39;</code> ice 调用这个 hook。</p>
 <p>首先，检查 <code>$precmd_function</code> 数字来获取钩子函数的名称。举例来说，在 <code>robobenklein/zinc</code> 主题中，将会有两个函数：<code>prompt_zinc_setup</code> 和 <code>prompt_zinc_precmd</code>:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">root@sg &gt; ~ &gt; print $precmd_functions                       &lt; ✔ &lt; 22:21:33</span><br><span class="line">_zsh_autosuggest_start prompt_zinc_setup prompt_zinc_precmd</span><br></pre></td></tr></table></figure>
 <p>然后，把他们添加到 <code>atload&#39;&#39;</code> ice 中</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">zplugin ice wait'!' lucid nocd \</span><br><span class="line">    atload'!prompt_zinc_setup; prompt_zinc_precmd'</span><br><span class="line">zplugin load robobenklein/zinc</span><br></pre></td></tr></table></figure>
-<p><code>atload&#39;!...&#39;</code> 中的感叹号会让 Zplugin 跟踪这个函数以便卸载插件，详见 <a href="http://zdharma.org/zplugin/wiki/atload-and-other-at-ices/" target="_blank" rel="noopener">这儿</a>。这个对于接下来会提到的设置多个命令提示符会有用。</p>
+<p><code>atload&#39;!...&#39;</code> 中的感叹号会让 Zplugin 跟踪这个函数以便卸载插件，详见 <a href="https://zdharma.org/zplugin/wiki/atload-and-other-at-ices/" target="_blank" rel="noopener">这儿</a>。这个对于接下来会提到的设置多个命令提示符会有用。</p>
 <h2 id="按条件自动加载-卸载"><a href="#按条件自动加载-卸载" class="headerlink" title="按条件自动加载/卸载"></a>按条件自动加载/卸载</h2><p><code>load</code> 和 <code>unload</code> ice 允许你定义插件什么时候需要被激活或者禁用。举例：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 处于 ~/tmp 时加载</span></span><br><span class="line"></span><br><span class="line">zplugin ice load<span class="string">'![[ $PWD = */tmp* ]]'</span> unload<span class="string">'![[ $PWD != */tmp* ]]'</span> \</span><br><span class="line">    atload<span class="string">"!promptinit; prompt sprint3"</span></span><br><span class="line">zplugin load psprint/zprompts</span><br><span class="line"></span><br><span class="line"><span class="comment"># 不在 ~/tmp 时加载</span></span><br><span class="line"></span><br><span class="line">zplugin ice load<span class="string">'![[ $PWD != */tmp* ]]'</span> unload<span class="string">'![[ $PWD = */tmp* ]]'</span></span><br><span class="line">zplugin load russjohnson/angry-fly-zsh</span><br></pre></td></tr></table></figure>
 <p>两个命令提示符，每个都在不同的目录下生效，这个技术可以用来定义不同的插件组，比如定义一个 <code>$PLUGINS</code> 和可能的值比如 <code>cpp</code>, <code>web</code>, <code>admin</code>，并且设置 <code>load</code>/<code>unload</code> 条件来在激活 <code>cpp</code>， <code>web</code> 中不同的插件。</p>
@@ -553,7 +553,7 @@
 <p><code>load</code>/<code>unload</code>和 <code>wait</code> 的不同之处是它始处于激活状态，而不是只在第一次激活之前。</p>
 </blockquote>
 <p>需要注意的是，要使卸载插件功能正常工作，你需要跟踪插件的加载过程（所以需要使用 <code>zplugin load ...</code> 而不是 <code>zplugin light ...</code>）。跟踪过程有轻微的性能损耗，不能在开启了 Turbo mode 后并不后影响 zsh 的启动时间。</p>
-<p>可以参见 WIki 的 <a href="http://zdharma.org/zplugin/wiki/Multiple-prompts/" target="_blank" rel="noopener">multi prompts</a> 一节，它包含了一个更真实的多个命令提示符的例子，类似作者自己所使用的。</p>
+<p>可以参见 WIki 的 <a href="https://zdharma.org/zplugin/wiki/Multiple-prompts/" target="_blank" rel="noopener">multi prompts</a> 一节，它包含了一个更真实的多个命令提示符的例子，类似作者自己所使用的。</p>
 <h1 id="Zplugin-Module"><a href="#Zplugin-Module" class="headerlink" title="Zplugin Module"></a>Zplugin Module</h1><p>这也是一个强力功能，不过在 Turbo Mode 的光环下就黯然失色了。</p>
 <p>它的功能是自动编译被 source 的脚本，虽然我并没有观察到这个功能起效。。。</p>
 <p>但是它还有一个功能——查看每个被 source 过的脚本的执行时间，这个功能十分强大，可以迅速找出拖慢你 zsh 启动的元凶。</p>
