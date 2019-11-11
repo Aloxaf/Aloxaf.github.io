@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh_CN">
   <head><meta charset="UTF-8"/>
-<!-- hexo-inject:begin --><!-- hexo-inject:end --><meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
 
@@ -41,11 +41,11 @@
 </script>
 
     <title>xkeysnail 使用指南 - Aloxaf's blog</title>
-  <link rel="alternate" href="/atom.xml" title="Aloxaf's blog" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <link rel="alternate" href="/atom.xml" title="Aloxaf's blog" type="application/atom+xml">
 </head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="mobile-header-logo">
+  <div class="mobile-header-logo">
     <a href="/." class="logo">Aloxaf's blog</a>
   </div>
   <div class="mobile-navbar-icon">
@@ -128,7 +128,7 @@
       <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Emacs-keybings-Everywhere"><span class="toc-text">Emacs keybings Everywhere!</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#简介"><span class="toc-text">简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装"><span class="toc-text">安装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Arch-Linux"><span class="toc-text">Arch Linux</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Other"><span class="toc-text">Other</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#用法"><span class="toc-text">用法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#编写-config-py"><span class="toc-text">编写 config.py</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#自动启动"><span class="toc-text">自动启动</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#赋予当前用户必要权限"><span class="toc-text">赋予当前用户必要权限</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#编写-service"><span class="toc-text">编写 service</span></a></li></ol></li></ol></li></ol>
     </div>
   </div><div class="post-content"><h1 id="Emacs-keybings-Everywhere"><a href="#Emacs-keybings-Everywhere" class="headerlink" title="Emacs keybings Everywhere!"></a>Emacs keybings Everywhere!</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>xkeysnail 是一个非常强大的 keyboard remapping 工具, 它类似于 xmodmap, 但更为灵活. 不仅能重映射键位, 还能重映射快捷键, 甚至能在不同的程序下使用不同的映射!</p>
-<p>再也不用两套快捷键换来换去了!! ( 早点知道这个东西, 我就不至于练就一身无缝切换快捷键的毫无卵用的本领了...</p>
+<p>再也不用两套快捷键换来换去了!! ( 早点知道这个东西, 我就不至于练就一身无缝切换快捷键的毫无卵用的本领了…</p>
 <p>项目地址: <a href="https://github.com/mooz/xkeysnail" target="_blank" rel="noopener">https://github.com/mooz/xkeysnail</a></p>
 <a id="more"></a>
 
@@ -146,12 +146,12 @@
 
 <p>其中 xhost 命令需要通过 <code>pacman -S xorg-xhost</code> 安装</p>
 <p>如果你有热插拔键盘的需求, 还需要加上 <code>-watch</code> 开关</p>
-<h2 id="编写-config-py"><a href="#编写-config-py" class="headerlink" title="编写 config.py"></a>编写 config.py</h2><p>如果你是 Emacs user 的话, 基本上直接使用官方配置就行了...最多加一下白名单, 比如我的 Alacritty 和 JB 家的 IDE 都是 Emacs 风格快捷键, 就可以排除它们了.</p>
+<h2 id="编写-config-py"><a href="#编写-config-py" class="headerlink" title="编写 config.py"></a>编写 config.py</h2><p>如果你是 Emacs user 的话, 基本上直接使用官方配置就行了…最多加一下白名单, 比如我的 Alacritty 和 JB 家的 IDE 都是 Emacs 风格快捷键, 就可以排除它们了.</p>
 <blockquote>
 <p>运行 <code>xprop WM_CLASS</code>, 然后点击目标窗口, 就可以获得这个窗口的 wm_class</p>
 </blockquote>
 <p>如果打算自己编写的话也非常容易, 官方示例有详细的注释, 可以照着示例来写. </p>
-<p>我遇到的唯一一个坑是我的 Compose 键占用了右 Ctrl, 然后导致有些快捷键不起作用 ( 我也不知道为什么这些快捷键会使用右 Ctrl...)<br>所以如果你配置了其他键盘映射程序建议暂时关掉, 免得出现莫名其妙的错误.</p>
+<p>我遇到的唯一一个坑是我的 Compose 键占用了右 Ctrl, 然后导致有些快捷键不起作用 ( 我也不知道为什么这些快捷键会使用右 Ctrl…)<br>所以如果你配置了其他键盘映射程序建议暂时关掉, 免得出现莫名其妙的错误.</p>
 <h2 id="自动启动"><a href="#自动启动" class="headerlink" title="自动启动"></a>自动启动</h2><p>启动 xkeysnail 后, 我们基本上可以在每个应用里都愉快地使用 Emacs 风格的快捷键了.<br>但是还缺一个自动启动, 推荐编写一个 systemd 服务来完成. ( systemd 是个好东西, 应该多多使用 )</p>
 <h3 id="赋予当前用户必要权限"><a href="#赋予当前用户必要权限" class="headerlink" title="赋予当前用户必要权限"></a>赋予当前用户必要权限</h3><p>这个步骤的目的是让 xkeysnail 不需要 root 权限也能执行.</p>
 <p>首先我们增加一个 uinput 组</p>
@@ -244,23 +244,6 @@
     </div><script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
   <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
   <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
-  <script type="text/javascript" src="/js/src/even.js?v=2.11.0"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+  <script type="text/javascript" src="/js/src/even.js?v=2.11.0"></script>
 </body>
 </html>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh_CN">
   <head><meta charset="UTF-8"/>
-<!-- hexo-inject:begin --><!-- hexo-inject:end --><meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
 
@@ -41,11 +41,11 @@
 </script>
 
     <title>ZIP 明文攻击原理（上） - Aloxaf's blog</title>
-  <link rel="alternate" href="/atom.xml" title="Aloxaf's blog" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <link rel="alternate" href="/atom.xml" title="Aloxaf's blog" type="application/atom+xml">
 </head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="mobile-header-logo">
+  <div class="mobile-header-logo">
     <a href="/." class="logo">Aloxaf's blog</a>
   </div>
   <div class="mobile-navbar-icon">
@@ -265,7 +265,7 @@
 <figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">reduce</span></span>() &#123;</span><br><span class="line">    <span class="comment">// step2 -- 利用多余的明文缩小可能值的范围</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 利用 k_list 中其他的值缩小 z 候选值范围</span></span><br><span class="line">    <span class="comment">// 前 12 个用作后续攻击用, 最后一个上一轮生成 z_2_32_tab 已经用过了</span></span><br><span class="line">    <span class="keyword">for</span> &amp;k <span class="keyword">in</span> k_list[<span class="number">13</span>..].iter().rev().skip(<span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">let</span> <span class="keyword">mut</span> zp_2_32_tab = <span class="built_in">Vec</span>::with_capacity(<span class="number">1</span> &lt;&lt; <span class="number">22</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 通过 z 的可能的值倒推上一个 z （以下称 zp）的可能的值</span></span><br><span class="line">        <span class="keyword">for</span> &amp;z_2_32 <span class="keyword">in</span> &amp;z_2_32_tab &#123;</span><br><span class="line">            <span class="comment">// 计算 zp 的 [10, 32) 位</span></span><br><span class="line">            <span class="comment">// 第二个参数原本是 MSB(key1[i+1])， 但这个地方却置 0 了</span></span><br><span class="line">            <span class="comment">// 因为这个式子展开可以写成 (crc &lt;&lt; 8) ^ CRCINVTAB[msb(crc)] ^ b</span></span><br><span class="line">            <span class="comment">// 由于我们只要这个式子的 [10, 32) 位，而 b 只有八位，刚好无法影响 [10, 32) 位的值</span></span><br><span class="line">            <span class="comment">// 因此置 0 也无所谓</span></span><br><span class="line">            <span class="keyword">let</span> zp_10_32 = crc32inv(z_2_32, <span class="number">0</span>) &amp; <span class="number">0xffff_fc00</span>;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 计算 zp 的 [2, 16) 位</span></span><br><span class="line">            <span class="keyword">for</span> &amp;zp_2_16 <span class="keyword">in</span> kinv2(k, z_2_32).iter() &#123;</span><br><span class="line">                <span class="comment">// 按位或，得到 zp 的 [2, 32) 位的可能值</span></span><br><span class="line">                zp_2_32_tab.push(zp_2_16 | zp_10_32);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 倒推完成，现在从这里去掉所有重复的值</span></span><br><span class="line">        <span class="comment">// <span class="doctag">TODO:</span> 此处在筛选到后期的时候一次去重能去掉的值可能只有几个，可否过几轮再筛选一次</span></span><br><span class="line">        <span class="built_in">print!</span>(<span class="string">"&#123;&#125; -&gt; "</span>, zp_2_32_tab.len());</span><br><span class="line">        zp_2_32_tab.sort_unstable();</span><br><span class="line">        zp_2_32_tab.dedup();</span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">"&#123;&#125;"</span>, zp_2_32_tab.len());</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 更新 z 候选列表, 继续下一轮筛选</span></span><br><span class="line">        std::mem::replace(&amp;<span class="keyword">mut</span> z_2_32_tab, zp_2_32_tab);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/// 给定 k 和下一个 z 的值（上一步算出来的），返回可能的 z 的值</span></span><br><span class="line"><span class="comment">/// 与 kinv 不同的是可以利用上一次推出的 z 充分缩小可能的 z 的值的范围</span></span><br><span class="line"><span class="comment">/// 平均来讲可以确定唯一一个 z</span></span><br><span class="line"><span class="keyword">pub</span> <span class="function"><span class="keyword">fn</span> <span class="title">kinv2</span></span>(k: <span class="built_in">u8</span>, zp: <span class="built_in">u32</span>) -&gt; <span class="built_in">Vec</span>&lt;<span class="built_in">u32</span>&gt; &#123;</span><br><span class="line">    <span class="keyword">let</span> z = kinv(k);</span><br><span class="line">    <span class="comment">// 利用 z 与 crc32inv(zp, 0) 的 [10, 16) 位相同的性质筛选 z</span></span><br><span class="line">    <span class="keyword">let</span> right_side = crc32inv(zp, <span class="number">0</span>);</span><br><span class="line">    z.iter()</span><br><span class="line">        .filter(|&amp;&amp;n| (n &amp; <span class="number">0x0000_fc00</span>) == (right_side &amp; <span class="number">0x0000_fc00</span>))</span><br><span class="line">        .cloned()</span><br><span class="line">        .collect()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h3 id="step4-Attacking"><a href="#step4-Attacking" class="headerlink" title="step4 - Attacking!"></a>step4 - Attacking!</h3><p>(在念这个的时候我脑子里其实是美国大兵的语音)</p>
-<h4 id="从-Z-到-Y"><a href="#从-Z-到-Y" class="headerlink" title="从 Z 到 Y"></a>从 Z 到 Y</h4><p>根据 update_keys 函数，我们得到得到以下推论（这也是显而易见的，可以参照 step3 里的那个式子<br>$$<br>\mathrm { MSB(Y_{i+1})=(Z_{i+1} \ll 8) \oplus crcinvtab[MSB(Z_{i+1})] \oplus Z_i  }<br>$$<br>很显然，给定一个 Z（$\mathrm {Z_n}$，$\mathrm {Z_{n -1}}$，...，$\mathrm {Z_{2}}$） 列表，我们可以得出对应的 MSB(Y) （$\mathrm {MSB(Y_{n})}$，$\mathrm {MSB(Y_{n-1})}$，...，$\mathrm {MSB(Y_{2})}$）列表。全然不够啊，还有 $2^{24}$ 位是未知的。</p>
+<h4 id="从-Z-到-Y"><a href="#从-Z-到-Y" class="headerlink" title="从 Z 到 Y"></a>从 Z 到 Y</h4><p>根据 update_keys 函数，我们得到得到以下推论（这也是显而易见的，可以参照 step3 里的那个式子<br>$$<br>\mathrm { MSB(Y_{i+1})=(Z_{i+1} \ll 8) \oplus crcinvtab[MSB(Z_{i+1})] \oplus Z_i  }<br>$$<br>很显然，给定一个 Z（$\mathrm {Z_n}$，$\mathrm {Z_{n -1}}$，…，$\mathrm {Z_{2}}$） 列表，我们可以得出对应的 MSB(Y) （$\mathrm {MSB(Y_{n})}$，$\mathrm {MSB(Y_{n-1})}$，…，$\mathrm {MSB(Y_{2})}$）列表。全然不够啊，还有 $2^{24}$ 位是未知的。</p>
 <p>冷静分析一下，首先我们从 update_keys 函数可以得知<br>$$<br>\mathrm {Y_i = (Y_{i-1} + LSB(X_i)) \times 08088405h + 1 \ \ \ (mod 2^{32})}<br>$$</p>
 <p>即<br>$$<br>\mathrm {(Y_i - 1) * 08088405h^{-1} = Y_{i-1}+LSB(X_i)}<br>$$</p>
 <p>然后两边取 MSB，就（<strong>很可能</strong>）可以得到以下表达式<br>$$<br>\mathrm {MSB((Y_i - 1) * 08088405h^{-1})=MSB(Y_{i-1})}<br>$$<br>诶，$\mathrm {LSB(X_i)}$ 咋没了。。。因为它太小了。。。才 8 位，而我们这里只保留高 8 位。去掉它绝大多数情况下都不会影响表达式成立。</p>
@@ -350,23 +350,6 @@
     </div><script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
   <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
   <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
-  <script type="text/javascript" src="/js/src/even.js?v=2.11.0"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+  <script type="text/javascript" src="/js/src/even.js?v=2.11.0"></script>
 </body>
 </html>

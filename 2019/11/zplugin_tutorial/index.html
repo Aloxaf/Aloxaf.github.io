@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh_CN">
   <head><meta charset="UTF-8"/>
-<!-- hexo-inject:begin --><!-- hexo-inject:end --><meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
 
@@ -41,11 +41,11 @@
 </script>
 
     <title>加速你的 zsh —— 最强 zsh 插件管理器 zplugin 简介 - Aloxaf's blog</title>
-  <link rel="alternate" href="/atom.xml" title="Aloxaf's blog" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <link rel="alternate" href="/atom.xml" title="Aloxaf's blog" type="application/atom+xml">
 </head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="mobile-header-logo">
+  <div class="mobile-header-logo">
     <a href="/." class="logo">Aloxaf's blog</a>
   </div>
   <div class="mobile-navbar-icon">
@@ -125,7 +125,7 @@
     <div class="post-toc" id="post-toc">
     <h2 class="post-toc-title">Contents</h2>
     <div class="post-toc-content">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#前言"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#安装"><span class="toc-text">安装</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#自动安装"><span class="toc-text">自动安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#手动安装"><span class="toc-text">手动安装</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#配置"><span class="toc-text">配置</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#基本插件加载"><span class="toc-text">基本插件加载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用-Oh-My-Zsh-amp-Prezto"><span class="toc-text">使用 Oh My Zsh &amp; Prezto</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码片段和性能"><span class="toc-text">代码片段和性能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一些-Ice-修饰词"><span class="toc-text">一些 Ice 修饰词</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#as-quot-program-quot"><span class="toc-text">as&quot;program&quot;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#atpull-quot-quot"><span class="toc-text">atpull&quot;...&quot;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#通过-snippet-安装命令"><span class="toc-text">通过 snippet 安装命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#通过-snippet-安装补全"><span class="toc-text">通过 snippet 安装补全</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#补全管理"><span class="toc-text">补全管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#列出补全"><span class="toc-text">列出补全</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#启用和禁用补全"><span class="toc-text">启用和禁用补全</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#子目录的-SVN-支持"><span class="toc-text">子目录的 SVN 支持</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Turbo-Mode-Zsh-gt-5-3"><span class="toc-text">Turbo Mode (Zsh &gt;= 5.3)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Turbo-Mode-加载复杂的命令提示符"><span class="toc-text">Turbo Mode 加载复杂的命令提示符</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#按条件自动加载-卸载"><span class="toc-text">按条件自动加载/卸载</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Zplugin-Module"><span class="toc-text">Zplugin Module</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装方式"><span class="toc-text">安装方式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#未安装-Zplugin"><span class="toc-text">未安装 Zplugin</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#已安装-Zplugin"><span class="toc-text">已安装 Zplugin</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#用法"><span class="toc-text">用法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#关于-Oh-My-Zsh-碎碎念"><span class="toc-text">关于 Oh My Zsh 碎碎念</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-粘贴代码太慢"><span class="toc-text">1. 粘贴代码太慢</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-命令提示符响应太慢"><span class="toc-text">2. 命令提示符响应太慢</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-启动速度太慢"><span class="toc-text">3. 启动速度太慢</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Zplugin-很强，但是我不想抛弃-OMZ-怎么办"><span class="toc-text">Zplugin 很强，但是我不想抛弃 OMZ 怎么办</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#一份示例配置"><span class="toc-text">一份示例配置</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#前言"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#安装"><span class="toc-text">安装</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#自动安装"><span class="toc-text">自动安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#手动安装"><span class="toc-text">手动安装</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#配置"><span class="toc-text">配置</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#基本插件加载"><span class="toc-text">基本插件加载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用-Oh-My-Zsh-amp-Prezto"><span class="toc-text">使用 Oh My Zsh &amp; Prezto</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码片段和性能"><span class="toc-text">代码片段和性能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一些-Ice-修饰词"><span class="toc-text">一些 Ice 修饰词</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#as”program”"><span class="toc-text">as”program”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#atpull”…”"><span class="toc-text">atpull”…”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#通过-snippet-安装命令"><span class="toc-text">通过 snippet 安装命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#通过-snippet-安装补全"><span class="toc-text">通过 snippet 安装补全</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#补全管理"><span class="toc-text">补全管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#列出补全"><span class="toc-text">列出补全</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#启用和禁用补全"><span class="toc-text">启用和禁用补全</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#子目录的-SVN-支持"><span class="toc-text">子目录的 SVN 支持</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Turbo-Mode-Zsh-gt-5-3"><span class="toc-text">Turbo Mode (Zsh &gt;= 5.3)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Turbo-Mode-加载复杂的命令提示符"><span class="toc-text">Turbo Mode 加载复杂的命令提示符</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#按条件自动加载-卸载"><span class="toc-text">按条件自动加载/卸载</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Zplugin-Module"><span class="toc-text">Zplugin Module</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装方式"><span class="toc-text">安装方式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#未安装-Zplugin"><span class="toc-text">未安装 Zplugin</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#已安装-Zplugin"><span class="toc-text">已安装 Zplugin</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#用法"><span class="toc-text">用法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#关于-Oh-My-Zsh-碎碎念"><span class="toc-text">关于 Oh My Zsh 碎碎念</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-粘贴代码太慢"><span class="toc-text">1. 粘贴代码太慢</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-命令提示符响应太慢"><span class="toc-text">2. 命令提示符响应太慢</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-启动速度太慢"><span class="toc-text">3. 启动速度太慢</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Zplugin-很强，但是我不想抛弃-OMZ-怎么办"><span class="toc-text">Zplugin 很强，但是我不想抛弃 OMZ 怎么办</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#一份示例配置"><span class="toc-text">一份示例配置</span></a></li></ol>
     </div>
   </div><div class="post-content"><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><a href="https://github.com/zdharma/zplugin" target="_blank" rel="noopener">Zplugin</a> 是个冷门但是却强大无比的 zsh 插件管理器，它拥有一个 killer feature —— Turbo mode，可以让插件在后台加载。这意味这你可以先加载最重要的插件，比如语法高亮和自动建议，剩下的可以统统放到后台加载，让你的 zsh 尽快进入可用状态。</p>
 <p>利用这个机制，zplugin 可以将 zsh 的启动时间缩短到几十毫秒——以我的配置为例，只需要 35 毫秒左右。而使用传统的插件管理器比如 antigen，需要近 200 毫秒才能加载完成。</p>
@@ -182,14 +182,14 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">zplugin ice svn pick"init.zsh"</span><br><span class="line">zplugin snippet PZT::modules/git</span><br></pre></td></tr></table></figure>
 
 <p>ice 修饰词的内容可以简单地放在 <code>&quot;...&quot;</code>, <code>&#39;...&#39;</code> 或 <code>$&#39;...&#39;</code> 中。不需要在 ice 修饰词名称的后面加上 <code>&quot;:&quot;</code> （尽管你这么做也没问题，而且加 <code>=</code> 也是可以的。比如 <code>pick=&quot;init.zsh&quot;</code> 或 <code>pick=init.zsh</code> 都是可行的）。<br>这样可以让 <code>vim</code>，<code>emacs</code> 之类的编辑器和 <code>zsh-users/zsh-syntax-highlighting</code> 或 <code>zdharma/fast-syntax-highlighting</code> 能够高亮 ice 修饰词的内容。</p>
-<h2 id="as-quot-program-quot"><a href="#as-quot-program-quot" class="headerlink" title="as&quot;program&quot;"></a>as&quot;program&quot;</h2><p>插件并不一定是需要被 source 的脚本，也可以是需要添加到 <code>$PATH</code> 中的命令。为了实现这种效果，需要以 <code>program</code> 为参数调用 <code>as</code> ice （或者以 <code>command</code> 为参数也可以）</p>
+<h2 id="as”program”"><a href="#as”program”" class="headerlink" title="as”program”"></a>as”program”</h2><p>插件并不一定是需要被 source 的脚本，也可以是需要添加到 <code>$PATH</code> 中的命令。为了实现这种效果，需要以 <code>program</code> 为参数调用 <code>as</code> ice （或者以 <code>command</code> 为参数也可以）</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">zplugin ice as"program" cp"httpstat.sh -&gt; httpstat" pick"httpstat"</span><br><span class="line">zplugin light b4b4r07/httpstat</span><br></pre></td></tr></table></figure>
 
 <p>上面的代码会将插件目录添加到 <code>$PATH</code> 中，并复制文件 <code>httpstat.sh</code> 为 <code>httpstat</code> ，并为 <code>pick</code> 选中的文件（本例中为 <code>httpstat</code>） 添加正确的可执行权限（<code>+x</code>）。还有一个修饰词 <code>mv</code>，它和 <code>cp</code> 的工作方式类似，只不过是移动文件而不是复制。<code>mv</code>的优先级比<code>cp</code>低。</p>
 <blockquote>
 <p><code>cp</code> 和 <code>mv</code> ice （还有其它的比如 <code>atclone</code>）只会在插件(或代码片段)被安装的时候运行。要想再次运行它们的话需要先使用 <code>zplugin delete PZT::modules/osx</code> 这类命令来删除插件）</p>
 </blockquote>
-<h2 id="atpull-quot-quot"><a href="#atpull-quot-quot" class="headerlink" title="atpull&quot;...&quot;"></a>atpull&quot;...&quot;</h2><p>复制文件相比移动来说是个更佳选择，它便于进行后续更新——因为 repo 中的原始文件并不会被修改，所以 <code>git</code> 不会报告冲突。不过，要想使用 <code>mv</code> 也是可以的，只要你正确使用了 <code>atpull</code> （一个在插件更新（update）的时候被调用的 ice）：</p>
+<h2 id="atpull”…”"><a href="#atpull”…”" class="headerlink" title="atpull”…”"></a>atpull”…”</h2><p>复制文件相比移动来说是个更佳选择，它便于进行后续更新——因为 repo 中的原始文件并不会被修改，所以 <code>git</code> 不会报告冲突。不过，要想使用 <code>mv</code> 也是可以的，只要你正确使用了 <code>atpull</code> （一个在插件更新（update）的时候被调用的 ice）：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">zplugin ice as<span class="string">"program"</span> mv<span class="string">"httpstat.sh -&gt; httpstat"</span> \</span><br><span class="line">      pick<span class="string">"httpstat"</span> atpull<span class="string">'!git reset --hard'</span></span><br><span class="line">zplugin light b4b4r07/httpstat</span><br></pre></td></tr></table></figure>
 
 <p><code>atpull</code> 后面的命令以感叹号开头，意味着它会在 <code>git pull</code> 和 <code>mv</code> 之前被执行。此外 <code>atpull</code>, <code>mv</code>, <code>cp</code> 都只会在获取到新的提交的时候被执行。</p>
@@ -361,23 +361,6 @@
     </div><script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
   <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
   <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
-  <script type="text/javascript" src="/js/src/even.js?v=2.11.0"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+  <script type="text/javascript" src="/js/src/even.js?v=2.11.0"></script>
 </body>
 </html>

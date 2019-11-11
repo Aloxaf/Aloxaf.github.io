@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh_CN">
   <head><meta charset="UTF-8"/>
-<!-- hexo-inject:begin --><!-- hexo-inject:end --><meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
 
@@ -41,11 +41,11 @@
 </script>
 
     <title>优化 Rust 程序编译体积 - Aloxaf's blog</title>
-  <link rel="alternate" href="/atom.xml" title="Aloxaf's blog" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <link rel="alternate" href="/atom.xml" title="Aloxaf's blog" type="application/atom+xml">
 </head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="mobile-header-logo">
+  <div class="mobile-header-logo">
     <a href="/." class="logo">Aloxaf's blog</a>
   </div>
   <div class="mobile-navbar-icon">
@@ -154,10 +154,10 @@
 <p>Google 了一下这个问题已经有人提出了 <a href="https://github.com/rust-lang/rust/issues/45601" target="_blank" rel="noopener">Avoid the <code>proc_macro</code> crate being dynamically linked.</a><br>也已经有人着手修复了 <a href="https://github.com/rust-lang/rust/pull/49219" target="_blank" rel="noopener">Decouple proc_macro from the rest of the compiler.</a></p>
 <p>坐等</p>
 <p>P.S. <code>-C</code>开关可供把玩的选项似乎很多啊, 比如 <code>-C target-cpu=native</code>提高程序本机运行速度</p>
-<p>[2018.12.20] 那个 PR 已经合并了, 然而问题还是没有解决...我又探究了一下, 发现我其实可以运行这个 bin</p>
+<p>[2018.12.20] 那个 PR 已经合并了, 然而问题还是没有解决…我又探究了一下, 发现我其实可以运行这个 bin</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">➤ LD_LIBRARY_PATH=~/.rustup/toolchains/beta-x86_64-unknown-linux-gnu/lib:. ./target/release/hello</span><br><span class="line">Hello, world!</span><br></pre></td></tr></table></figure>
 
-<p>这玩意儿原来是 runtime...我早该想到的orz</p>
+<p>这玩意儿原来是 runtime…我早该想到的orz</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">➤ du -h /home/aloxaf/.rustup/toolchains/beta-x86_64-unknown-linux-gnu/lib/libstd-affa4edaee4ff43e.so</span><br><span class="line">5.4M    /home/aloxaf/.rustup/toolchains/beta-x86_64-unknown-linux-gnu/lib/libstd-affa4edaee4ff43e.so</span><br></pre></td></tr></table></figure>
 
 <p>然后, 由于 Rust 还没有稳定的 ABI (<a href="https://github.com/rust-lang/rfcs/issues/600" target="_blank" rel="noopener">RFC#600</a>), 所以这个问题暂时还是无解状态. 如果有稳定 ABI 了, 咱就可以 <code>pacman -S rust-common</code> 啥的, 然后就可以享受超小体积的二进制了!  </p>
@@ -222,23 +222,6 @@
     </div><script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
   <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
   <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
-  <script type="text/javascript" src="/js/src/even.js?v=2.11.0"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+  <script type="text/javascript" src="/js/src/even.js?v=2.11.0"></script>
 </body>
 </html>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh_CN">
   <head><meta charset="UTF-8"/>
-<!-- hexo-inject:begin --><!-- hexo-inject:end --><meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
 
@@ -41,11 +41,11 @@
 </script>
 
     <title>加速 AUR 软件安装速度 - Aloxaf's blog</title>
-  <link rel="alternate" href="/atom.xml" title="Aloxaf's blog" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <link rel="alternate" href="/atom.xml" title="Aloxaf's blog" type="application/atom+xml">
 </head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="mobile-header-logo">
+  <div class="mobile-header-logo">
     <a href="/." class="logo">Aloxaf's blog</a>
   </div>
   <div class="mobile-navbar-icon">
@@ -123,7 +123,7 @@
     </header>
 
     <div class="post-content"><p>AUR 里的构建脚本常常需要从 github 拉取源代码,<br>然而没有加 <code>--depth 1</code> 的 <code>git clone</code> 把大量流量花在了下载对于构建毫无用处的提交记录等东西上面. </p>
-<p>尤其是安装主题这种东西的时候, clone 下来几百 MB, 结果构建完得到一个几 MB 的包...</p>
+<p>尤其是安装主题这种东西的时候, clone 下来几百 MB, 结果构建完得到一个几 MB 的包…</p>
 <a id="more"></a>
 
 <p>暴力的解决方案:</p>
@@ -138,7 +138,7 @@
 <p>同理, 还有如下代码</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ! git fetch --all -p; <span class="keyword">then</span></span><br><span class="line">	<span class="comment"># only warn on failure to allow offline builds</span></span><br><span class="line">	warning <span class="string">"<span class="variable">$(gettext "Failure while updating %s %s repo")</span>"</span> <span class="string">"<span class="variable">$&#123;repo&#125;</span>"</span> <span class="string">"git"</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
 
-<p>....改成</p>
+<p>….改成</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ! git fetch --depth=1 -p; <span class="keyword">then</span></span><br><span class="line">	<span class="keyword">if</span> ! git fetch --all -p; <span class="keyword">then</span></span><br><span class="line">		<span class="comment"># only warn on failure to allow offline builds</span></span><br><span class="line">		warning <span class="string">"<span class="variable">$(gettext "Failure while updating %s %s repo")</span>"</span> <span class="string">"<span class="variable">$&#123;repo&#125;</span>"</span> <span class="string">"git"</span></span><br><span class="line">	<span class="keyword">fi</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
 
 
@@ -206,23 +206,6 @@
     </div><script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
   <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
   <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
-  <script type="text/javascript" src="/js/src/even.js?v=2.11.0"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+  <script type="text/javascript" src="/js/src/even.js?v=2.11.0"></script>
 </body>
 </html>

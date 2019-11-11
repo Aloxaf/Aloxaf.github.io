@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh_CN">
   <head><meta charset="UTF-8"/>
-<!-- hexo-inject:begin --><!-- hexo-inject:end --><meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
 
@@ -41,11 +41,11 @@
 </script>
 
     <title>Aloxaf's blog</title>
-  <link rel="alternate" href="/atom.xml" title="Aloxaf's blog" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <link rel="alternate" href="/atom.xml" title="Aloxaf's blog" type="application/atom+xml">
 </head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="mobile-header-logo">
+  <div class="mobile-header-logo">
     <a href="/." class="logo">Aloxaf's blog</a>
   </div>
   <div class="mobile-navbar-icon">
@@ -125,7 +125,7 @@
     <div class="post-content"><p>pwndbg 的安装: <code>pacman -S pwndbg</code> 然后添加 <code>source /usr/share/pwndbg/gdbinit.py</code> 到 <code>~/.gdbinit</code></p>
 <p>然而要在 Arch Linux 下愉快地使用 pwndbg, 还要解决以下问题:</p>
 <ul>
-<li><a href="https://github.com/pwndbg/pwndbg/issues/340" target="_blank" rel="noopener">Arch Support - Roadmap</a> 搁了快一年的问题, 主要是 Arch 下没有 libc6-dbg 这种包, 要调试符号只能自己编译...</li>
+<li><a href="https://github.com/pwndbg/pwndbg/issues/340" target="_blank" rel="noopener">Arch Support - Roadmap</a> 搁了快一年的问题, 主要是 Arch 下没有 libc6-dbg 这种包, 要调试符号只能自己编译…</li>
 <li><s><a href="https://github.com/pwndbg/pwndbg/issues/523#issuecomment-425673020" target="_blank" rel="noopener">Python exception under gdb-8.2-2</a> 上游 gdb 的问题, 8.3 应该会修复, 不过可以按链接所示的方法临时 patch 一下</s> gdb 8.2.1 已 fix</li>
 </ul>
 <p>这里解决第一个问题, 利用棒棒的 ABS (Arch Build System)</p>
@@ -148,7 +148,7 @@
     </header>
 
     <div class="post-content"><p>AUR 里的构建脚本常常需要从 github 拉取源代码,<br>然而没有加 <code>--depth 1</code> 的 <code>git clone</code> 把大量流量花在了下载对于构建毫无用处的提交记录等东西上面. </p>
-<p>尤其是安装主题这种东西的时候, clone 下来几百 MB, 结果构建完得到一个几 MB 的包...</p>
+<p>尤其是安装主题这种东西的时候, clone 下来几百 MB, 结果构建完得到一个几 MB 的包…</p>
           <div class="read-more">
             <a href="/2018/10/arch_git/" class="read-more-link">Read more..</a>
           </div>
@@ -168,7 +168,7 @@
     </header>
 
     <div class="post-content"><p>默认emoji太丑, 没有颜色, 看着浑身难受.</p>
-<p>还是喜欢果冻人...</p>
+<p>还是喜欢果冻人…</p>
           <div class="read-more">
             <a href="/2018/10/linux_emoji/" class="read-more-link">Read more..</a>
           </div>
@@ -187,8 +187,8 @@
         </div>
     </header>
 
-    <div class="post-content"><p>这个国庆假期抽了点风......</p>
-<p>写了一个假期的代码......</p>
+    <div class="post-content"><p>这个国庆假期抽了点风……</p>
+<p>写了一个假期的代码……</p>
           <div class="read-more">
             <a href="/2018/10/zip_crack/" class="read-more-link">Read more..</a>
           </div>
@@ -349,23 +349,6 @@
     </div><script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
   <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
   <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
-  <script type="text/javascript" src="/js/src/even.js?v=2.11.0"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+  <script type="text/javascript" src="/js/src/even.js?v=2.11.0"></script>
 </body>
 </html>

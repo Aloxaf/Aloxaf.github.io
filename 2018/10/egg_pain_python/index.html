@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh_CN">
   <head><meta charset="UTF-8"/>
-<!-- hexo-inject:begin --><!-- hexo-inject:end --><meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
 
@@ -41,11 +41,11 @@
 </script>
 
     <title>如何在 Python3 中让 'a' is 'b' 为 True - Aloxaf's blog</title>
-  <link rel="alternate" href="/atom.xml" title="Aloxaf's blog" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <link rel="alternate" href="/atom.xml" title="Aloxaf's blog" type="application/atom+xml">
 </head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="mobile-header-logo">
+  <div class="mobile-header-logo">
     <a href="/." class="logo">Aloxaf's blog</a>
   </div>
   <div class="mobile-navbar-icon">
@@ -138,7 +138,7 @@
 <li><a href="https://www.zhihu.com/question/27376156/answer/103135969" target="_blank" rel="noopener">Python 有什么奇技淫巧？</a> </li>
 </ul>
 <p>然后我想, 那能不能来个 <code>&#39;God&#39; is &#39;girl&#39; -&gt; True</code> 之类的. </p>
-<p>当时也尝试了一下, xjb读了一下源码, 尝试使用 &#39;a&#39; 的内存覆盖 &#39;b&#39; 的内存, 然而最终只做到了 <code>hash(&#39;a&#39;) == hash(&#39;b&#39;)</code>. </p>
+<p>当时也尝试了一下, xjb读了一下源码, 尝试使用 ‘a’ 的内存覆盖 ‘b’ 的内存, 然而最终只做到了 <code>hash(&#39;a&#39;) == hash(&#39;b&#39;)</code>. </p>
 <p>而且读完 <code>is</code> 的源码后, 觉得这不大可能实现, 于是就放弃了. (因为发现 <code>is</code> 比较的是两个对象的指针, 而不是内容, 所以两个不同的对象进行比较是无论如何都不可能 True 的, 即使 hash 什么的都一模一样)</p>
 <p>四个月后我又回想起了这个问题, 我觉得我应该有能力再次挑战了, 然后果然挑战成功了!</p>
 <p>于是写下这篇文章, 记录一下自己在这个过程中学到的东西. </p>
@@ -160,14 +160,14 @@
 <p>虽然不能做到 <code>&#39;a&#39; is &#39;b&#39;</code> 但能实现 <code>&#39;a&#39; == &#39;b&#39;</code> 的话也是一个进步啊.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">10</span>]: int.__eq__ = <span class="keyword">lambda</span> : <span class="literal">True</span></span><br><span class="line">---------------------------------------------------------------------------</span><br><span class="line">TypeError                                 Traceback (most recent call last)</span><br><span class="line">&lt;ipython-input<span class="number">-10</span><span class="number">-71</span>a46054a87d&gt; <span class="keyword">in</span> &lt;module&gt;()</span><br><span class="line">----&gt; 1 int.__eq__ = lambda : True</span><br><span class="line"></span><br><span class="line">TypeError: can<span class="string">'t set attributes of built-in/extension type '</span>int<span class="string">'</span></span><br></pre></td></tr></table></figure>
 
-<p>然而又失败了...</p>
+<p>然而又失败了…</p>
 <h2 id="4-重载-repr"><a href="#4-重载-repr" class="headerlink" title="4. 重载 __repr__"></a>4. 重载 <code>__repr__</code></h2><p>不死心的我又想试试 <code>__repr__</code>, 让 <code>bool</code> 对象的 <code>__repr__</code> 始终返回 True</p>
-<p>仍然失败了, 嘛...毕竟是内置类型.</p>
+<p>仍然失败了, 嘛…毕竟是内置类型.</p>
 <p>看来内置的玩意儿通过常规方法是改不了, 那就读源码, 用 ctypes 强行改一波内存.</p>
 <blockquote>
 <p>后来我还想到一种适用于 ipython 的方法, 即自定义一个 ipython formatter, 相当于 ipython 专用的 <code>__repr__</code></p>
 <p>比如我曾经实现过的一个小插件, 可以让一个 bytes 不管是否包含可见字符, 都以十六进制的形式输出<br><a href="https://gist.github.com/Aloxaf/de3de8e7c0b8913335847afd3ff76cc7" target="_blank" rel="noopener">https://gist.github.com/Aloxaf/de3de8e7c0b8913335847afd3ff76cc7</a></p>
-<p>然而还是没有什么卵用...bool类型跟开挂一样无视了 ipython formatter</p>
+<p>然而还是没有什么卵用…bool类型跟开挂一样无视了 ipython formatter</p>
 <p>这个很奇怪, 不过原因以后再找</p>
 </blockquote>
 <h1 id="还是老老实实读源码吧"><a href="#还是老老实实读源码吧" class="headerlink" title="还是老老实实读源码吧"></a>还是老老实实读源码吧</h1><h2 id="0-搭建调试环境"><a href="#0-搭建调试环境" class="headerlink" title="0. 搭建调试环境"></a>0. 搭建调试环境</h2><p>这几个月熟悉了一下棒棒的 gdb, 这次要利用起来</p>
@@ -179,15 +179,15 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> time <span class="keyword">import</span> sleep</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    print(<span class="number">1</span> == <span class="number">1</span>, <span class="number">1</span> == <span class="number">2</span>)</span><br><span class="line">    sleep(<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
 
 <p>然后 <code>./python test.py&amp;</code> 执行, 记录 pid 并用 <code>gdb ./python $PID</code> attach 到 Python 进程上.</p>
-<p><del>阅读源码我没找到啥好软件(有棒棒的&quot;跳转到定义&quot;的那种), ~</del><br><del>我用的 clion, 然而跳转太残废了, 也有可能是我不会配吧 (一般拿 clion 写的是 rust 233</del> </p>
-<p><del>所以我采用了 <code>ripgrep</code> 来搜索定义...然后在 clion 里手动定位....</del></p>
+<p><del>阅读源码我没找到啥好软件(有棒棒的”跳转到定义”的那种), ~</del><br><del>我用的 clion, 然而跳转太残废了, 也有可能是我不会配吧 (一般拿 clion 写的是 rust 233</del> </p>
+<p><del>所以我采用了 <code>ripgrep</code> 来搜索定义…然后在 clion 里手动定位….</del></p>
 <p><del>(这个效率太感人了, 如果谁有什么好的方式还望不啬赐教.)</del></p>
 <p>Google了一下这个问题, <a href="https://stackoverflow.com/questions/35297120/viewing-cpython-code-in-clion" target="_blank" rel="noopener">Viewing CPython Code in CLion</a></p>
 <p>只需要创建一个小小的 CMakeLists.txt, 就能使用自动跳转了!!</p>
 <figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">make_minimum_required(VERSION <span class="number">3.0</span>)</span><br><span class="line"><span class="keyword">project</span>(cpython)</span><br><span class="line"></span><br><span class="line"><span class="keyword">file</span>(GLOB SOURCE_FILES</span><br><span class="line">    Python/*.c</span><br><span class="line">    Parser/*.c</span><br><span class="line">    Objects/*.c</span><br><span class="line">    Modules/*.c)</span><br><span class="line"></span><br><span class="line"><span class="keyword">include_directories</span>(<span class="keyword">Include</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">add_executable</span>(cpython <span class="variable">$&#123;SOURCE_FILES&#125;</span>)</span><br></pre></td></tr></table></figure>
 
 <h2 id="1-PyObject"><a href="#1-PyObject" class="headerlink" title="1. PyObject *"></a>1. <code>PyObject *</code></h2><p>因为有了先前的经验, 这里直接 <code>b Python/ceval.c:2585</code> 就可以断在 <code>COMPARE_OP</code> 的地方.</p>
-<p>(先前是不断单步走到这儿的...)</p>
+<p>(先前是不断单步走到这儿的…)</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">────────────────────────────[ SOURCE (CODE) ]─────────────────────────────</span><br><span class="line">   <span class="number">2580</span>         TARGET(COMPARE_OP) &#123;</span><br><span class="line">   <span class="number">2581</span>             PyObject *right = POP();</span><br><span class="line">   <span class="number">2582</span>             PyObject *left = TOP();</span><br><span class="line">   <span class="number">2583</span>             PyObject *res = cmp_outcome(oparg, left, right);</span><br><span class="line">   <span class="number">2584</span>             Py_DECREF(left);</span><br><span class="line"> ► <span class="number">2585</span>             Py_DECREF(right);</span><br><span class="line">   <span class="number">2586</span>             SET_TOP(res);</span><br><span class="line">   <span class="number">2587</span>             <span class="keyword">if</span> (res == <span class="literal">NULL</span>)</span><br><span class="line">   <span class="number">2588</span>                 <span class="keyword">goto</span> error;</span><br><span class="line">   <span class="number">2589</span>             PREDICT(POP_JUMP_IF_FALSE);</span><br><span class="line">   <span class="number">2590</span>             PREDICT(POP_JUMP_IF_TRUE);</span><br></pre></td></tr></table></figure>
 
 <p>通过 <code>py-list</code>可以查看当前执行到 .py 文件的哪一行.</p>
@@ -201,7 +201,7 @@
 <p>大概意思就是不管什么对象大家都可以是 <code>PyObject *</code>, Python 内部也以这个指针来传递各种对象, 显得统一. 要取这个对象内容的时候再根据 <code>ob_type</code> 特事特办</p>
 <blockquote>
 <p>第一次调试到这里的时候我没认真看注释,<br>天真地以为通过 <code>memmove(id(True), id(False), sizeof(PyObject))</code> 就能用 True 的内容覆盖掉 False, 事实上 <code>sizeof(PyObject)</code> 根本根本不是 True Object 的真实大小.</p>
-<p>那么, 把 <code>sizeof(PyObject)</code> 改大一点行不行? 其实还是不行, 原因在下面...</p>
+<p>那么, 把 <code>sizeof(PyObject)</code> 改大一点行不行? 其实还是不行, 原因在下面…</p>
 </blockquote>
 <h2 id="2-Py-False-和-Py-FalseStruct"><a href="#2-Py-False-和-Py-FalseStruct" class="headerlink" title="2. Py_False 和 _Py_FalseStruct"></a>2. <code>Py_False</code> 和 <code>_Py_FalseStruct</code></h2><p>那么问题来了, <code>False</code> 这玩意儿真实的(C)类型是什么? </p>
 <p>在 <code>Python/ceval:4686</code> 行可以找到 <code>cmp_outcome</code> 的定义, 结尾是这么写的.</p>
@@ -218,12 +218,12 @@
 <h2 id="3-bool-repr"><a href="#3-bool-repr" class="headerlink" title="3. bool_repr"></a>3. <code>bool_repr</code></h2><p>在 <code>Python/boolobject.c:12</code> 可以看到 <code>bool_repr</code> 的实现, </p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> PyObject *false_str = <span class="literal">NULL</span>;</span><br><span class="line"><span class="keyword">static</span> PyObject *true_str = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> PyObject *</span><br><span class="line">bool_repr(PyObject *self)</span><br><span class="line">&#123;</span><br><span class="line">    PyObject *s;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (self == Py_True)</span><br><span class="line">        s = true_str ? true_str :</span><br><span class="line">            (true_str = PyUnicode_InternFromString(<span class="string">"True"</span>));</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        s = false_str ? false_str :</span><br><span class="line">            (false_str = PyUnicode_InternFromString(<span class="string">"False"</span>));</span><br><span class="line">    Py_XINCREF(s);</span><br><span class="line">    <span class="keyword">return</span> s;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>第一反应: 能不能改掉这个函数, 比如把这个 <code>==</code> 改成 <code>!=</code> 啥的? --不可能的 .text 段的东西哪儿能说改就改.</p>
-<p>那有没有可能 hook 这个函数呢? <code>read -s ./python</code> 看一下, 真的有 <code>bool_repr</code> 这个函数, 可以 hook 的样子! --想多了这是 Debug 版才保留了这些符号...</p>
+<p>第一反应: 能不能改掉这个函数, 比如把这个 <code>==</code> 改成 <code>!=</code> 啥的? –不可能的 .text 段的东西哪儿能说改就改.</p>
+<p>那有没有可能 hook 这个函数呢? <code>read -s ./python</code> 看一下, 真的有 <code>bool_repr</code> 这个函数, 可以 hook 的样子! –想多了这是 Debug 版才保留了这些符号…</p>
 <p>有没有其他办法? 注意到这个函数中为了提高速度缓存了 <code>true_str</code> 和 <code>false_str</code>, 那直接 <code>false_str=true_str</code> 不就行了吗? 在 gdb 中执行 <code>p false_str=true_str</code> 然后继续执行, 可以在命令行里看到后面的输出都变成了 <code>True True</code>!</p>
-<p>这个方法真是绝妙啊, 唯一的问题就是在 Python 中没有办法获得 <code>false_str</code> 和 <code>true_str</code> 的地址, 修改也就无从谈起了...</p>
+<p>这个方法真是绝妙啊, 唯一的问题就是在 Python 中没有办法获得 <code>false_str</code> 和 <code>true_str</code> 的地址, 修改也就无从谈起了…</p>
 <h2 id="4-PyUnicode-Type"><a href="#4-PyUnicode-Type" class="headerlink" title="4. PyUnicode_Type"></a>4. <code>PyUnicode_Type</code></h2><p>不要慌, 还没走到绝路.</p>
-<p><code>false_str</code> 的真实类型是什么?  这玩意儿一定有某个地方存着 &quot;False&quot; 这个字符串吧, 而且这个对象是动态生成的, 我肯定有权限修改.</p>
+<p><code>false_str</code> 的真实类型是什么?  这玩意儿一定有某个地方存着 “False” 这个字符串吧, 而且这个对象是动态生成的, 我肯定有权限修改.</p>
 <p><code>p *false_str</code> 看一下, 发现是 PyUnicode_Type</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$<span class="number">41</span> = &#123;</span><br><span class="line">  _ob_next = <span class="number">0x6b2ba0</span> &lt;_Py_FalseStruct&gt;, </span><br><span class="line">  _ob_prev = <span class="number">0x6b2b60</span> &lt;_Py_TrueStruct&gt;, </span><br><span class="line">  ob_refcnt = <span class="number">6</span>, </span><br><span class="line">  ob_type = <span class="number">0x6cf020</span> &lt;PyUnicode_Type&gt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -323,23 +323,6 @@
     </div><script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
   <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
   <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
-  <script type="text/javascript" src="/js/src/even.js?v=2.11.0"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+  <script type="text/javascript" src="/js/src/even.js?v=2.11.0"></script>
 </body>
 </html>

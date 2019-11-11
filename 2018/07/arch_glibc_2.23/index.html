@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh_CN">
   <head><meta charset="UTF-8"/>
-<!-- hexo-inject:begin --><!-- hexo-inject:end --><meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
 
@@ -41,11 +41,11 @@
 </script>
 
     <title>在 Arch Linux 下使用 glibc 2.23 调试程序&使用 pwndbg - Aloxaf's blog</title>
-  <link rel="alternate" href="/atom.xml" title="Aloxaf's blog" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <link rel="alternate" href="/atom.xml" title="Aloxaf's blog" type="application/atom+xml">
 </head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="mobile-header-logo">
+  <div class="mobile-header-logo">
     <a href="/." class="logo">Aloxaf's blog</a>
   </div>
   <div class="mobile-navbar-icon">
@@ -130,7 +130,7 @@
   </div><div class="post-content"><p>glibc 2.26开始, 引入了 tcache 技术. 使得对 UAF 漏洞的利用非常困难.<br>(更: 听 M4x 师傅说其实安全性下降了? <a href="http://tukan.farm/2017/07/08/tcache/" target="_blank" rel="noopener">thread local caching in glibc malloc</a>)</p>
 <a id="more"></a>
 
-<p>然后 Arch 的 glibc 已经到了 2.27.... 再加上 pwndbg 的作者与堆相关的一系列命令只对 Ubuntu 做了适配...</p>
+<p>然后 Arch 的 glibc 已经到了 2.27…. 再加上 pwndbg 的作者与堆相关的一系列命令只对 Ubuntu 做了适配…</p>
 <p>pwn 的世界对 <del>Archer</del> 真是充满了恶意 = =</p>
 <p>放弃 Arch 是不可能放弃的, 这辈子都不可能放弃的. 所幸有大佬提出, <a href="https://github.com/pwndbg/pwndbg/issues/340#issuecomment-328883073" target="_blank" rel="noopener">使用带Debug Symbols的glibc可以成功运行heap等命令</a>,<br>试了一下果然如此. 可是把默认的 glibc 换成带调试符号的总觉得不好. 而且这样也没有解决 tcache 的问题. </p>
 <p>一番尝试之后, 我得到了如下的解决方案,<br>记录一下以免忘记. <del>因为已经忘了一次</del></p>
@@ -143,7 +143,7 @@
 <p>换成</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> *loc1 __attribute__ ((nocommon));</span><br><span class="line"><span class="keyword">char</span> *loc2 __attribute__ ((nocommon));</span><br><span class="line">...</span><br><span class="line">...</span><br><span class="line"><span class="keyword">char</span> *locs __attribute__ ((nocommon));</span><br></pre></td></tr></table></figure>
 
-<p>PS. 原链接中还多了一个 <code>compat_symbol</code>, 但是我没加也编译过了....就不管了</p>
+<p>PS. 原链接中还多了一个 <code>compat_symbol</code>, 但是我没加也编译过了….就不管了</p>
 <h2 id="第三步"><a href="#第三步" class="headerlink" title="第三步"></a>第三步</h2><p>建立编译文件夹</p>
 <p><code>/tmp&gt;md glibc-build-32</code><br><code>/tmp&gt;md glibc-build-64</code></p>
 <p>然后随便cd进一个</p>
@@ -229,23 +229,6 @@
     </div><script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
   <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
   <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
-  <script type="text/javascript" src="/js/src/even.js?v=2.11.0"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+  <script type="text/javascript" src="/js/src/even.js?v=2.11.0"></script>
 </body>
 </html>
