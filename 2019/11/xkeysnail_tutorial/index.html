@@ -1,26 +1,26 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-  <head><meta name="generator" content="Hexo 3.8.0"><meta charset="UTF-8">
-<!-- hexo-inject:begin --><!-- hexo-inject:end --><meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <head><meta charset="UTF-8"/>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
 
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
 
-<meta name="theme-color" content="#f8f5ec">
+<meta name="theme-color" content="#f8f5ec" />
 <meta name="msapplication-navbutton-color" content="#f8f5ec">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
-<meta name="description" content="xkeysnail 使用指南"><meta name="keywords" content="linux, emacs, Aloxaf's blog"><link rel="alternate" href="/atom.xml" title="Aloxaf's blog"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.11.0">
-<link rel="canonical" href="https://www.aloxaf.com/2019/11/xkeysnail_tutorial/">
+<meta name="description" content="xkeysnail 使用指南"/><meta name="keywords" content="linux, emacs, Aloxaf's blog" /><link rel="alternate" href="/atom.xml" title="Aloxaf's blog"><link rel="shortcut icon" type="image/x-icon" href="/favicon.svg?v=2.11.0" />
+<link rel="canonical" href="https://www.aloxaf.com/2019/11/xkeysnail_tutorial/"/>
 
-<link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css"><script type="text/x-mathjax-config">
+<link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" /><script type="text/x-mathjax-config">
     MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });
   </script>
   <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.11.0">
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.11.0" />
 
 <script id="baidu_push">
 (function(){
@@ -40,8 +40,9 @@
   window.config = {"leancloud":{"app_id":null,"app_key":null},"toc":true,"fancybox":true,"pjax":"","latex":true};
 </script>
 
-    <title>xkeysnail 使用指南 - Aloxaf's blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-  </head>
+    <title>xkeysnail 使用指南 - Aloxaf's blog</title>
+  <link rel="alternate" href="/atom.xml" title="Aloxaf's blog" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="mobile-header-logo">
@@ -130,14 +131,19 @@
 <p>再也不用两套快捷键换来换去了!! ( 早点知道这个东西, 我就不至于练就一身无缝切换快捷键的毫无卵用的本领了...</p>
 <p>项目地址: <a href="https://github.com/mooz/xkeysnail" target="_blank" rel="noopener">https://github.com/mooz/xkeysnail</a></p>
 <a id="more"></a>
+
 <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><h3 id="Arch-Linux"><a href="#Arch-Linux" class="headerlink" title="Arch Linux"></a>Arch Linux</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pikaur -S xkeysnail</span><br></pre></td></tr></table></figure>
+
 <h3 id="Other"><a href="#Other" class="headerlink" title="Other"></a>Other</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install xkeysnail --user</span><br></pre></td></tr></table></figure>
+
 <p>注: 官方文档里使用的是 <code>sudo pip</code> 来安装, 但不推荐这样做. 尤其是 pip 这种辣鸡包管理器, 很容易把系统的包管理搞乱.</p>
 <h2 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h2><p>首先下载 <a href="https://github.com/mooz/xkeysnail/blob/master/example/config.py" target="_blank" rel="noopener">官方示例</a>, 然后用以下命令执行</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo xkeysnail config.py</span><br></pre></td></tr></table></figure>
+
 <p>不出意外地话应该没有报错, 然可以切换到一个不支持 Emacs 快捷键的环境, 比如浏览器. 试一下 C-a, C-e 等基本的快捷键是否能工作.</p>
 <p>如果遇到 <code>Xlib.error.DisplayConnectionError: Can&#39;t connect to display &quot;:0.0&quot;: b&#39;No protocol specified\n&#39;</code> 这样的错误, 可以尝试</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">xhost +SI:localuser:root</span><br><span class="line">sudo xkeysnail config.py</span><br></pre></td></tr></table></figure>
+
 <p>其中 xhost 命令需要通过 <code>pacman -S xorg-xhost</code> 安装</p>
 <p>如果你有热插拔键盘的需求, 还需要加上 <code>-watch</code> 开关</p>
 <h2 id="编写-config-py"><a href="#编写-config-py" class="headerlink" title="编写 config.py"></a>编写 config.py</h2><p>如果你是 Emacs user 的话, 基本上直接使用官方配置就行了...最多加一下白名单, 比如我的 Alacritty 和 JB 家的 IDE 都是 Emacs 风格快捷键, 就可以排除它们了.</p>
@@ -150,16 +156,22 @@
 <h3 id="赋予当前用户必要权限"><a href="#赋予当前用户必要权限" class="headerlink" title="赋予当前用户必要权限"></a>赋予当前用户必要权限</h3><p>这个步骤的目的是让 xkeysnail 不需要 root 权限也能执行.</p>
 <p>首先我们增加一个 uinput 组</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo groupadd uinput</span><br></pre></td></tr></table></figure>
+
 <p>然后将当前用户添加到 input 和 uinput 组中<br>( 这个步骤似乎并不是即时生效的, 执行完这条命令可以用 <code>groups</code> 查看一下当前用户所属的组, 如果没有 input &amp; uinput 的话可以重启或者重新登录试试 )</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo usermod -a -G input,uinput $USER</span><br></pre></td></tr></table></figure>
+
 <p>然后编写两个 udev 规则, 放在 <code>/etc/udev/rules.d/</code> 下</p>
 <p>input.rules</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">KERNEL=="event*", NAME="input/%k", MODE="660", GROUP="input"</span><br></pre></td></tr></table></figure>
+
 <p>uinput.rules</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">KERNEL=="uinput", GROUP="uinput"</span><br></pre></td></tr></table></figure>
+
 <p>接着应用这两条规则</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo udevadm control --reload-rules &amp;&amp; udevadm trigger</span><br></pre></td></tr></table></figure>
+
 <h3 id="编写-service"><a href="#编写-service" class="headerlink" title="编写 service"></a>编写 service</h3><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># https://qiita.com/samurai20000@github/items/2e1d779e806a7e8543d6</span></span><br><span class="line"></span><br><span class="line"><span class="section">[Unit]</span></span><br><span class="line"><span class="attr">Description</span>=xkeysnail</span><br><span class="line"></span><br><span class="line"><span class="section">[Service]</span></span><br><span class="line"><span class="comment"># DISPLAY 的值应该和 `echo $DISPLAY` 的值相同</span></span><br><span class="line"><span class="attr">Environment</span>=DISPLAY=:<span class="number">0</span></span><br><span class="line"><span class="attr">ExecStartPre</span>=-xhost +SI:localuser:root</span><br><span class="line"><span class="comment"># 此处禁用了按键状态的输出, 因为我不想要一大堆毫无卵用的日志...</span></span><br><span class="line"><span class="attr">ExecStart</span>=xkeysnail -q /home/aloxaf/.config/xkeysnail/config.py</span><br><span class="line"><span class="attr">Type</span>=simple</span><br><span class="line"><span class="attr">Restart</span>=always</span><br><span class="line"><span class="attr">RestartSec</span>=<span class="number">2</span></span><br><span class="line"></span><br><span class="line"><span class="section">[Install]</span></span><br><span class="line"><span class="attr">WantedBy</span>=default.target</span><br></pre></td></tr></table></figure>
+
 <p>将以上代码保存为 <code>~/.config/systemd/user/xkeysnail.service</code>,<br>然后执行 <code>systemctl --user --now enable xkeysnail.service</code>.</p>
 <p>完成了! 享受到处都能使用 Emacs 风格快捷键的快感吧!</p>
 <p>顺便列举下 systemd 的常用操作 ( 推荐 <code>alias userctl=&#39;systemctl --user&#39;</code>)</p>
@@ -205,17 +217,17 @@
     </article></div><div class="comments" id="comments"></div></div>
       </main>
 
-      <footer id="footer" class="footer"><div class="social-links"><a href="mailto:aloxafx@gmail.com" class="iconfont icon-email" title="email"></a>
-        <a href="https://github.com/Aloxaf" class="iconfont icon-github" title="github"></a>
+      <footer id="footer" class="footer"><div class="social-links"><a href="mailto:aloxafx@gmail.com" target="_blank" rel="noopener" class="iconfont icon-email" title="email"></a>
+        <a href="https://github.com/Aloxaf" target="_blank" rel="noopener" class="iconfont icon-github" title="github"></a>
         <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
     </div><div class="copyright">
   <span class="power-by">
-    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
+    Powered by <a class="hexo-link" href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>
   </span>
   <span class="division">|</span>
   <span class="theme-info">
     Theme - 
-    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even" target="_blank" rel="noopener">Even</a>
   </span>
 
   <span class="copyright-year">&copy;2017 - 2019<span class="heart">

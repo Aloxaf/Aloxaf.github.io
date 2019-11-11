@@ -1,26 +1,26 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-  <head><meta name="generator" content="Hexo 3.8.0"><meta charset="UTF-8">
-<!-- hexo-inject:begin --><!-- hexo-inject:end --><meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <head><meta charset="UTF-8"/>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
 
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
 
-<meta name="theme-color" content="#f8f5ec">
+<meta name="theme-color" content="#f8f5ec" />
 <meta name="msapplication-navbutton-color" content="#f8f5ec">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
-<meta name="description" content="Arch Linux 杂七杂八的优化"><meta name="keywords" content="linux, Aloxaf's blog"><link rel="alternate" href="/atom.xml" title="Aloxaf's blog"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.11.0">
-<link rel="canonical" href="https://www.aloxaf.com/2018/11/arch_optimize/">
+<meta name="description" content="Arch Linux 杂七杂八的优化"/><meta name="keywords" content="linux, Aloxaf's blog" /><link rel="alternate" href="/atom.xml" title="Aloxaf's blog"><link rel="shortcut icon" type="image/x-icon" href="/favicon.svg?v=2.11.0" />
+<link rel="canonical" href="https://www.aloxaf.com/2018/11/arch_optimize/"/>
 
-<link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css"><script type="text/x-mathjax-config">
+<link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" /><script type="text/x-mathjax-config">
     MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });
   </script>
   <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.11.0">
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.11.0" />
 
 <script id="baidu_push">
 (function(){
@@ -40,8 +40,9 @@
   window.config = {"leancloud":{"app_id":null,"app_key":null},"toc":true,"fancybox":true,"pjax":"","latex":true};
 </script>
 
-    <title>Arch Linux 杂七杂八的优化 - Aloxaf's blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-  </head>
+    <title>Arch Linux 杂七杂八的优化 - Aloxaf's blog</title>
+  <link rel="alternate" href="/atom.xml" title="Aloxaf's blog" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="mobile-header-logo">
@@ -128,6 +129,7 @@
     </div>
   </div><div class="post-content"><p>发现无聊时刷 <a href="https://wiki.archlinux.org/" target="_blank" rel="noopener">Arch Wiki</a> 也挺有趣的, 记录一下自己干了啥吧. 毕竟有些配置没法放到 dotfiles 里. 记录一下以后翻起来也方便.</p>
 <a id="more"></a>
+
 <h1 id="内核"><a href="#内核" class="headerlink" title="内核"></a>内核</h1><h2 id="nopti"><a href="#nopti" class="headerlink" title="nopti"></a>nopti</h2><p>参考: <a href="https://bbs.archlinux.org/viewtopic.php?pid=1759527#p1759527" target="_blank" rel="noopener">Performance degradation after Meltdown mitigation?</a></p>
 <p>打开 <code>/etc/default/grub</code>, 给 <code>GRUB_CMDLINE_LINUX_DEFAULT</code>添加<code>nopti mitigations=off</code>参数, 禁用上次 intel Meltdown 漏洞的补丁. </p>
 <p>这个补丁实测严重影响<strong>系统调用</strong>性能, 大约下降 70%. 虽然实际上应该没啥程序会疯狂 syscall ....但我还是要关掉它!</p>
@@ -137,6 +139,9 @@
 <p>据 wiki 所说, SSD 性能强劲, 因此简单的调度算法反而适合 SSD, 如 <code>noop</code>, <code>deadline</code></p>
 <p>往 <code>/etc/udev/rules.d/60-ioschedulers.rules</code> 里写入如下规则, 为 SSD 启用 <code>mq-deadline</code> 调度器</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ACTION==&quot;add|change&quot;, KERNEL==&quot;sd[a-z]|mmcblk[0-9]*|nvme[0-9]*&quot;, ATTR&#123;queue/rotational&#125;==&quot;0&quot;, ATTR&#123;queue/scheduler&#125;=&quot;mq-deadline&quot;</span><br></pre></td></tr></table></figure>
+
+
+
 <h2 id="Ext4-性能优化"><a href="#Ext4-性能优化" class="headerlink" title="Ext4 性能优化"></a>Ext4 性能优化</h2><p>参考: <a href="https://wiki.archlinux.org/index.php/Ext4#Improving_performance" target="_blank" rel="noopener">Ext4#Improving_performance</a></p>
 <h3 id="禁止更新访问时间戳"><a href="#禁止更新访问时间戳" class="headerlink" title="禁止更新访问时间戳"></a>禁止更新访问时间戳</h3><p>想了想我似乎没有需要知道某个文件上次被访问是啥时候的需求, 于是 fstab 添加<code>noatime</code> 参数禁用之.</p>
 <p>如果有这个需求的话, 也可以用 <code>relatime</code>/<code>strictatime</code>搭配<code>lazytime</code>来减小写入硬盘的次数. 虽然系统崩溃时可能导致访问时间未更新, 不过这显然不是什么大事......</p>
@@ -153,21 +158,26 @@
 <p>以 ext4 为例, 使用 <code>e2label /dev/XXX &lt;label&gt;</code>创建 LABEL, 然后就可以在 fstab 里使用 <code>LABEL=xxx</code> 的方式来指示挂载设备了, 不用担心因为插拔硬盘导致奇怪的问题.</p>
 <h3 id="自动挂载移动硬盘"><a href="#自动挂载移动硬盘" class="headerlink" title="自动挂载移动硬盘"></a>自动挂载移动硬盘</h3><p>每次手动挂载很麻烦, 直接添加到 fstab 的话没插移动硬盘就会 error, 这时就要使用 <code>nofail</code> 参数, 像这样</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LABEL=backup    /mnt/backup     ext4    defaults,noatime,nofail         0 2</span><br></pre></td></tr></table></figure>
+
 <p>第一次用貌似会遇到无法写入的问题, 使用 <code>sudo chown -R $USER:$USER /mnt/backup</code> 更改一次所有权就行了</p>
 <h3 id="自动挂载大分区"><a href="#自动挂载大分区" class="headerlink" title="自动挂载大分区"></a>自动挂载大分区</h3><p>因为一直以来都以 Linux 作为主力系统. 然后觉得 ntfs-3g 实在不可靠......于是把原来 NTFS 的资料盘转成 ext4 了.</p>
 <p>不过资料盘用得比较少, 可以用 <code>noauto,x-systemd.automount</code> 参数使得在访问时才挂载</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LABEL=storage   /mnt/storage    ext4    defaults,noatime,noauto,x-systemd.automount             0 2</span><br></pre></td></tr></table></figure>
+
 <p>(第一次用还是需要 chown 好像....)</p>
 <h1 id="pacman"><a href="#pacman" class="headerlink" title="pacman"></a>pacman</h1><p>参考: <a href="https://wiki.archlinux.org/index.php/Pacman" target="_blank" rel="noopener">pacman</a></p>
 <h2 id="pacman-conf"><a href="#pacman-conf" class="headerlink" title="pacman.conf"></a>pacman.conf</h2><p><code># Misc options</code>开启 <code>Color</code> 和 <code>VerbosePkgLists</code></p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Misc options</span></span><br><span class="line"><span class="comment">#UseSyslog</span></span><br><span class="line">Color</span><br><span class="line"><span class="comment">#TotalDownload</span></span><br><span class="line">CheckSpace</span><br><span class="line">VerbosePkgLists</span><br></pre></td></tr></table></figure>
+
 <p>作用: pacman 彩色输出 &amp;&amp; 升级时使用三栏显示</p>
 <h2 id="自动清理软件包缓存"><a href="#自动清理软件包缓存" class="headerlink" title="自动清理软件包缓存"></a>自动清理软件包缓存</h2><p>创建 <code>/usr/share/libalpm/hooks/clean-cache.hook</code>, 内容如下</p>
 <figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[Trigger]</span></span><br><span class="line"><span class="attr">Operation</span> = Remove</span><br><span class="line"><span class="attr">Operation</span> = Install</span><br><span class="line"><span class="attr">Operation</span> = Upgrade</span><br><span class="line"><span class="attr">Type</span> = Package</span><br><span class="line"><span class="attr">Target</span> = *</span><br><span class="line"></span><br><span class="line"><span class="section">[Action]</span></span><br><span class="line"><span class="attr">Description</span> = Cleaning up old packages...</span><br><span class="line"><span class="attr">When</span> = PostTransaction</span><br><span class="line"><span class="attr">Exec</span> = /usr/bin/paccache -rvk3</span><br></pre></td></tr></table></figure>
+
 <p>作用: 每次升级软件包后清理最近三次以前的软件包</p>
 <h1 id="makepkg"><a href="#makepkg" class="headerlink" title="makepkg"></a>makepkg</h1><p>参考: <a href="https://wiki.archlinux.org/index.php/Makepkg" target="_blank" rel="noopener">makepkg</a></p>
 <h2 id="makepkg-conf"><a href="#makepkg-conf" class="headerlink" title=".makepkg.conf"></a>.makepkg.conf</h2><p>新建 <code>~/.makepkg.conf</code>, 写入如下内容pacman</p>
 <figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">CFLAGS</span>=<span class="string">"-march=native -O2 -pipe -fno-plt"</span></span><br><span class="line"><span class="attr">CXXFLAGS</span>=<span class="string">"-march=native -O2 -pipe -fno-plt"</span></span><br><span class="line"></span><br><span class="line"><span class="attr">MAKEFLAGS</span>=<span class="string">"-j$(nproc)"</span></span><br><span class="line"></span><br><span class="line"><span class="attr">BUILDENV</span>=(!distcc color ccache !check !sign)</span><br><span class="line"><span class="attr">BUILDDIR</span>=/tmp/makepkg</span><br><span class="line"></span><br><span class="line"><span class="attr">COMPRESSXZ</span>=(xz -c -z - --threads=<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+
 <p>作用: 优化生成的二进制文件 &amp;&amp;  加快编译速度 &amp;&amp; 加快软件包生成速度</p>
 
       </div>
@@ -203,17 +213,17 @@
     </article></div><div class="comments" id="comments"></div></div>
       </main>
 
-      <footer id="footer" class="footer"><div class="social-links"><a href="mailto:aloxafx@gmail.com" class="iconfont icon-email" title="email"></a>
-        <a href="https://github.com/Aloxaf" class="iconfont icon-github" title="github"></a>
+      <footer id="footer" class="footer"><div class="social-links"><a href="mailto:aloxafx@gmail.com" target="_blank" rel="noopener" class="iconfont icon-email" title="email"></a>
+        <a href="https://github.com/Aloxaf" target="_blank" rel="noopener" class="iconfont icon-github" title="github"></a>
         <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
     </div><div class="copyright">
   <span class="power-by">
-    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
+    Powered by <a class="hexo-link" href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>
   </span>
   <span class="division">|</span>
   <span class="theme-info">
     Theme - 
-    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even" target="_blank" rel="noopener">Even</a>
   </span>
 
   <span class="copyright-year">&copy;2017 - 2019<span class="heart">

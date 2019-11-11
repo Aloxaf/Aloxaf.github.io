@@ -1,26 +1,26 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-  <head><meta name="generator" content="Hexo 3.8.0"><meta charset="UTF-8">
-<!-- hexo-inject:begin --><!-- hexo-inject:end --><meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <head><meta charset="UTF-8"/>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
 
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
 
-<meta name="theme-color" content="#f8f5ec">
+<meta name="theme-color" content="#f8f5ec" />
 <meta name="msapplication-navbutton-color" content="#f8f5ec">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
-<meta name="description" content="PowerShell 真香"><meta name="keywords" content="linux, powershell, Aloxaf's blog"><link rel="alternate" href="/atom.xml" title="Aloxaf's blog"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.11.0">
-<link rel="canonical" href="https://www.aloxaf.com/2019/03/powershell_miaoa/">
+<meta name="description" content="PowerShell 真香"/><meta name="keywords" content="linux, powershell, Aloxaf's blog" /><link rel="alternate" href="/atom.xml" title="Aloxaf's blog"><link rel="shortcut icon" type="image/x-icon" href="/favicon.svg?v=2.11.0" />
+<link rel="canonical" href="https://www.aloxaf.com/2019/03/powershell_miaoa/"/>
 
-<link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css"><script type="text/x-mathjax-config">
+<link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" /><script type="text/x-mathjax-config">
     MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });
   </script>
   <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.11.0">
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.11.0" />
 
 <script id="baidu_push">
 (function(){
@@ -40,8 +40,9 @@
   window.config = {"leancloud":{"app_id":null,"app_key":null},"toc":true,"fancybox":true,"pjax":"","latex":true};
 </script>
 
-    <title>PowerShell 真香 - Aloxaf's blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-  </head>
+    <title>PowerShell 真香 - Aloxaf's blog</title>
+  <link rel="alternate" href="/atom.xml" title="Aloxaf's blog" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="mobile-header-logo">
@@ -133,6 +134,7 @@
 </blockquote>
 <p><strong>NOTE: 这是一篇黑 bash 吹 PowerShell(以下简称 pwsh) 的文章, bash 死忠粉以及软黑请退散.</strong></p>
 <a id="more"></a>
+
 <h1 id="起因-为什么要使用-pwsh"><a href="#起因-为什么要使用-pwsh" class="headerlink" title="起因 (为什么要使用 pwsh)"></a>起因 (为什么要使用 pwsh)</h1><p>因为用 bash 写脚本太痛苦了!</p>
 <p>语法诡异, 内置功能弱地1B. zsh 好了那么一点, 然而还是很痛苦, 而且那惜字如金的命名风格导致我的脚本过段时间自己都不认得写的是啥了.</p>
 <p>什么? 为什么不用 Python ? Python 倒是过段时间也能认得自己写的是啥, 可是写起来太麻烦了.</p>
@@ -142,6 +144,7 @@
 <h1 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h1><h2 id="语法简单"><a href="#语法简单" class="headerlink" title="语法简单"></a>语法简单</h2><p>比 bash 不知道高到哪里去了</p>
 <p>多么直观的语法啊, 麻麻再也不用担心我几个星期没写就忘记语法了</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># if 语句</span></span><br><span class="line"><span class="variable">$n</span> = <span class="built_in">Read-Host</span> <span class="string">"请输入你的年龄"</span></span><br><span class="line"><span class="keyword">if</span> (<span class="variable">$n</span> <span class="nomarkup">-ge</span> <span class="number">18</span>) &#123;</span><br><span class="line">    echo <span class="string">"是成年人"</span></span><br><span class="line">&#125; <span class="keyword">elseif</span> (<span class="variable">$n</span> <span class="nomarkup">-ge</span> <span class="number">13</span>) &#123;</span><br><span class="line">    echo <span class="string">"是青少年"</span></span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    echo <span class="string">"是小屁孩"</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># switch 语句</span></span><br><span class="line"><span class="keyword">switch</span> (<span class="variable">$n</span>) &#123;</span><br><span class="line">    &#123;<span class="variable">$_</span> <span class="nomarkup">-gt</span> <span class="number">18</span>&#125; &#123; echo <span class="string">"是成年人"</span>; <span class="keyword">break</span> &#125;</span><br><span class="line">    <span class="number">18</span> &#123; echo <span class="string">"是半步成年"</span>; <span class="keyword">break</span> &#125;</span><br><span class="line">    Default &#123; echo <span class="string">"不是成年人"</span>; <span class="keyword">break</span> &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># for 语句</span></span><br><span class="line"><span class="variable">$sum</span> = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> (<span class="variable">$i</span> = <span class="number">0</span>; <span class="variable">$i</span> <span class="nomarkup">-le</span> <span class="number">100</span>; <span class="variable">$i</span>++) &#123;</span><br><span class="line">    <span class="variable">$sum</span> += <span class="variable">$i</span></span><br><span class="line">&#125;</span><br><span class="line">echo <span class="variable">$sum</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># while 循环, do while 差不多</span></span><br><span class="line"><span class="variable">$sum</span> = <span class="number">0</span></span><br><span class="line"><span class="variable">$i</span> = <span class="number">0</span></span><br><span class="line"><span class="keyword">while</span> (<span class="variable">$i</span> <span class="nomarkup">-le</span> <span class="number">100</span>) &#123;</span><br><span class="line">    <span class="variable">$sum</span> += <span class="variable">$i</span></span><br><span class="line">    <span class="variable">$i</span>++</span><br><span class="line">&#125;</span><br><span class="line">echo <span class="variable">$sum</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Hash 表</span></span><br><span class="line"><span class="variable">$language</span> = @&#123;</span><br><span class="line">    Name = <span class="string">"PowerShell"</span></span><br><span class="line">    Company = <span class="string">"Microsoft"</span></span><br><span class="line">&#125;</span><br><span class="line">echo <span class="string">"$(<span class="variable">$language</span>.Name)"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义函数</span></span><br><span class="line"><span class="keyword">function</span> pow(<span class="variable">$x</span>, <span class="variable">$y</span>=<span class="number">2</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> [Math]::Pow(<span class="variable">$x</span>, <span class="variable">$y</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <h2 id="内置功能强大"><a href="#内置功能强大" class="headerlink" title="内置功能强大"></a>内置功能强大</h2><p>pwsh 不需要借助外部命令就能完成大量操作. </p>
 <blockquote>
 <p>此处应强调一下, 你愿意的话也可以在 pwsh 里 sed, grep, awk 走起, 写成 bash 味的 pwsh.<br>因为这些玩意儿不是 bash 的一部分, 是个 shell 都能调用.</p>
@@ -156,10 +159,12 @@
 </blockquote>
 <p>比如说以空格为分隔符, 截取第 3 列</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">:: batch</span><br><span class="line"><span class="keyword">for</span> /f <span class="string">"tokens=3"</span> %i <span class="keyword">in</span> (<span class="string">"1 2 3 4 5"</span>) <span class="keyword">do</span> echo %i</span><br><span class="line"></span><br><span class="line"><span class="comment"># bash</span></span><br><span class="line">echo <span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">4</span> <span class="number">5</span> | cut -d<span class="string">' '</span> -f3</span><br><span class="line">echo <span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">4</span> <span class="number">5</span> | awk <span class="string">'&#123;print $3&#125;'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># pwsh</span></span><br><span class="line"><span class="comment"># 首先 bash 的方法 pwsh 也能用</span></span><br><span class="line">(<span class="string">'1 2 3 4 5'</span> -split <span class="string">' '</span>)[<span class="number">2</span>]</span><br></pre></td></tr></table></figure>
+
 <p>你说 bash 你丢不丢人, 连 cmd 都能不借助外部命令自己处理</p>
 <p>再来看正则表达式, bash 不用说了大家都知道的, cmd 也不用说了, findstr 那垃圾正则有和没有都一样</p>
 <p>我们来看看 pwsh</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="string">'&lt;p&gt;WOWOWOWO&lt;/p&gt;'</span> <span class="nomarkup">-match</span> <span class="string">'&lt;p&gt;.*&lt;/p&gt;'</span></span><br><span class="line">True</span><br><span class="line">&gt; <span class="string">'&lt;p&gt;WOWOWOWO&lt;/p&gt;'</span> <span class="nomarkup">-replace</span> <span class="string">'&lt;p&gt;(.*)&lt;/p&gt;'</span>,<span class="string">'$1'</span></span><br><span class="line">WOWOWOWO</span><br><span class="line">&gt; <span class="string">'&lt;div&gt;&lt;div&gt;&lt;/div&gt;'</span> <span class="nomarkup">-match</span> <span class="string">"&lt;div[^&gt;]*&gt;[^&lt;&gt;]*(((?'Open'&lt;div[^&gt;]*&gt;)[^&lt;&gt;]*)+((?'-Open'&lt;/div&gt;)[^&lt;&gt;]*)+)*(?(Open)(?!))&lt;/div&gt;"</span></span><br><span class="line">&gt; <span class="variable">$Matches</span>.Values</span><br><span class="line">&lt;div&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
 <p>真是妙啊!</p>
 <h2 id="符合直觉的通配符"><a href="#符合直觉的通配符" class="headerlink" title="符合直觉的通配符"></a>符合直觉的通配符</h2><p>我曾遇到过一个需求, 根据通配符判断文件是否存在</p>
 <p>判断文件是否存在我还是会的, bash 的写法 <code>[ -f ~/.zshrc ]</code>,  pwsh 的写法 <code>Test-Path ~/.zshrc</code></p>
@@ -170,6 +175,7 @@
 <p>这里又需要点名批评一下  bash, bash 里的通配符是由 shell 展开的. 是的, 是由 shell 展开的!! </p>
 <p>乍一看好像也没什么问题? 让我来为你演示一下这个神奇特性</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[/tmp]$ mkdir <span class="built_in">test</span></span><br><span class="line">[/tmp]$ <span class="built_in">cd</span> <span class="built_in">test</span></span><br><span class="line">[/tmp/<span class="built_in">test</span>]$ touch -- -f</span><br><span class="line">[/tmp/<span class="built_in">test</span>]$ *</span><br><span class="line">bash: -f：未找到命令</span><br><span class="line">[/tmp/<span class="built_in">test</span>]$ [ * ~/.zshrc ] &amp;&amp; <span class="built_in">echo</span> 1</span><br><span class="line">1</span><br></pre></td></tr></table></figure>
+
 <p>看懂了吗! 竟然 TM 有这种操作!! (想象一下你<code>rm *</code> 的时候目录下有个叫 <code>-rf</code>的文件). (我记得好像有一道 CTF 题就是用了这种神奇操作.)</p>
 <p>了解这个神奇特性以后, 你应该知道, <code>[ -f ~/*.c ]</code> 这个代码是肯定行不通的.</p>
 <p>该怎么办呢? 问了G娘以后得知是 <code>compgen -G &quot;&lt;glob-pattern&gt;&quot;</code>, 这个命令在有匹配时会输出匹配, 这样就能判断啦 ~<br>当然缺点就是你得 <code>&gt;/dev/null</code> 屏蔽掉输出. </p>
@@ -183,8 +189,10 @@
 <p>而且 pwsh 还有一个很棒的功能, 就是类型标注. 当然不是 Python 那样纯粹标一下给人看 (逃, 当然现在很多 IDE &amp; lint 工具都能识别 type hint </p>
 <p>pwsh 的类型标注可以固定某个变量的类型. 比如</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[int]<span class="variable">$n</span> = <span class="number">2233</span></span><br><span class="line"><span class="variable">$n</span> = <span class="number">233</span>   <span class="comment"># OK</span></span><br><span class="line"><span class="variable">$n</span> = <span class="string">"asd"</span> <span class="comment"># ERROR!</span></span><br><span class="line"><span class="variable">$n</span> = <span class="string">"233"</span> <span class="comment"># 比较艹蛋的一点是这样又可以, 隐式类型转换坑爹啊</span></span><br><span class="line"></span><br><span class="line">[int[]]<span class="variable">$list</span> = @()</span><br><span class="line"><span class="variable">$list</span> += <span class="number">1</span>   <span class="comment"># OK</span></span><br><span class="line"><span class="variable">$list</span> += <span class="string">"a"</span> <span class="comment"># ERROR!</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> add([int]<span class="variable">$a</span>, [int]<span class="variable">$b</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable">$a</span> + <span class="variable">$b</span></span><br><span class="line">&#125;</span><br><span class="line">add <span class="number">1</span> <span class="number">2</span>     <span class="comment"># OK</span></span><br><span class="line">add <span class="string">"a"</span> <span class="string">"b"</span> <span class="comment"># ERROR!</span></span><br></pre></td></tr></table></figure>
+
 <p>注意到上面指定了函数参数的类型, 其实这还可以更棒</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> add() &#123;</span><br><span class="line">    <span class="keyword">param</span>(</span><br><span class="line">    	[ValidateNotNull]</span><br><span class="line">    	[int]</span><br><span class="line">    	<span class="variable">$a</span>,</span><br><span class="line">        [ValidateNotNull]</span><br><span class="line">    	[int]</span><br><span class="line">    	<span class="variable">$b</span></span><br><span class="line">    )</span><br><span class="line">    <span class="keyword">process</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="variable">$a</span> + <span class="variable">$b</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">add <span class="literal">$null</span> <span class="number">2</span> <span class="comment"># ERROR!</span></span><br></pre></td></tr></table></figure>
+
 <p>这就是 pwsh 的 <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_advanced_parameters?view=powershell-6" target="_blank" rel="noopener">advanced_parameters</a></p>
 <h2 id="可读性高"><a href="#可读性高" class="headerlink" title="可读性高"></a>可读性高</h2><p>这个其实和内置功能那一节的内容紧密相关, 正是因为很多功能都内置了, 语法才会统一.<br>不过我还是想单独拆一个标题出来. 因为 bash 脚本的可读性是真 tm 糟糕.</p>
 <p>Linux 上的这些 shell, 充斥着大量匪夷所思的缩写&amp;符号.</p>
@@ -195,8 +203,7 @@
 <th>pwsh</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td><code>[[ &quot;$string&quot; == *&quot;$substring&quot;* ]]</code></td>
 <td><code>&quot;$string&quot;.Contains(&quot;$substring&quot;)</code></td>
 </tr>
@@ -216,8 +223,7 @@
 <td><code>$@</code> OR <code>$*</code></td>
 <td><code>$args</code></td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 <p>可能以前存储空间很宝贵吧, 然而现在机械硬盘起步1T, 省这几个字符有啥用啊!!</p>
 <p>而且 pwsh 的内部命令(一般称为 cmdlet), 非常有规律. 都是 动词+名词 的组合, 而且常用命令都有别名(alias), 允许你少打几个字</p>
 <table>
@@ -227,8 +233,7 @@
 <th>pwsh</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>rm</td>
 <td>Remove-Item</td>
 </tr>
@@ -248,19 +253,20 @@
 <td>mv</td>
 <td>Move-Item</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 <p>看, pwsh 的命令是何等的规律! 总有人说啥 pwsh 的学习成本高, 不如学 xxx. 这我是不信的, pwsh 的这种一致性加上流行度, 学习 pwsh 远比你去学一个没多少人用的&quot;用户友好&quot;的 shell 要好.</p>
 <p>而且 pwsh 对内部命令的补全非常棒棒, 像补全函数名, 补全参数什么的都是小 case, pwsh 甚至能根据管道前的命令来补全</p>
 <p>举例来说,   <code>xxx | ForEach-Object { $_. }</code> 这样的命令, 在<code>.</code>处按 TAB, pwsh 就会根据 XXX 的返回值类型来补全. (类型系统万岁!) </p>
 <h2 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h2><p>这是一个非常棒的特点, pwsh 是一个面向对象的 shell. cmdlets 的输出是对象, 而不是字符串.</p>
 <p>举例来说, 我想获得当前系统中内存占用超过 200 mb 的进程 (这里我又要点名批评一下 C++ 写的 telegram-desktop <a href="https://github.com/telegramdesktop/tdesktop/issues/2464" target="_blank" rel="noopener">telegramdesktop/tdesktop#2464</a>, <s>请立即使用 Rust</s></p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="built_in">Get-Process</span> | <span class="built_in">Where-Object</span> &#123; <span class="variable">$_</span>.WS <span class="nomarkup">-gt</span> <span class="number">200</span>mb &#125;</span><br><span class="line"><span class="comment"># 使用别名的话可以写成 gps | ? &#123; $_.WS -ge 200mb &#125;</span></span><br><span class="line"></span><br><span class="line"> NPM(K)    PM(M)      WS(M)     CPU(s)      Id  SI ProcessName</span><br><span class="line"> ------    -----      -----     ------      --  -- -----------</span><br><span class="line">      <span class="number">0</span>     <span class="number">0.00</span>     <span class="number">206.59</span>     <span class="number">334.50</span>    <span class="number">1033</span> <span class="number">032</span> plasmashell</span><br><span class="line">      <span class="number">0</span>     <span class="number">0.00</span>     <span class="number">226.43</span>     <span class="number">773.39</span>    <span class="number">1027</span> <span class="number">977</span> kwin_x11</span><br><span class="line">      <span class="number">0</span>     <span class="number">0.00</span>     <span class="number">226.46</span>     <span class="number">135.83</span>    <span class="number">8116</span> <span class="number">058</span> chromium</span><br><span class="line">      <span class="number">0</span>     <span class="number">0.00</span>     <span class="number">236.60</span>      <span class="number">97.72</span>   <span class="number">14990</span> <span class="number">977</span> Typora</span><br><span class="line">      <span class="number">0</span>     <span class="number">0.00</span>     <span class="number">392.42</span>     <span class="number">394.97</span>    <span class="number">6366</span> <span class="number">030</span> telegram-deskto</span><br><span class="line">      <span class="number">0</span>     <span class="number">0.00</span>     <span class="number">402.94</span>     <span class="number">878.92</span>    <span class="number">1381</span> <span class="number">058</span> chromium</span><br></pre></td></tr></table></figure>
+
 <blockquote>
 <p>眼尖的小朋友可能会发现, &quot;telegram-deskto&quot; 好像有点奇怪......默默甩 issue <a href="https://github.com/dotnet/corefx/issues/34437" target="_blank" rel="noopener">dotnet/corefx#34437</a></p>
 </blockquote>
 <p>反观 bash, 这个时候只能上 awk 了</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">➤ ps aux | awk <span class="string">'$4 * 8192 / 100 &gt; 200'</span> <span class="comment"># 为了让输出好看点我删掉了命令行参数</span></span><br><span class="line">aloxaf    1027  4.9  2.9 3279432 232108 ?      Sl   11:04  14:04 /usr/bin/kwin_x11</span><br><span class="line">aloxaf    1033  2.1  2.6 1395968 212200 ?      Sl   11:04   6:06 /usr/bin/plasmashell</span><br><span class="line">aloxaf    1381  5.3  5.2 1423580 414932 ?      Sl   11:06  15:05 /usr/lib/chromium/chromium</span><br><span class="line">aloxaf    6366  3.0  5.0 1956732 404088 ?      Sl   11:50   7:09 /usr/bin/telegram-desktop</span><br><span class="line">aloxaf    8116  1.0  2.8 883064 225856 ?       Sl   11:59   2:28 /usr/lib/chromium/chromium</span><br><span class="line">aloxaf   14990  5.2  3.1 1792528 249992 ?      Sl   14:46   3:11 /usr/share/typora/Typora</span><br></pre></td></tr></table></figure>
+
 <p>如果再按照内存使用量从大到小排序呢? pwsh 再接个 <code>Sort-Object -Descending -Property WS</code> 就行了, bash 的话接个 <code>sort -rk 4</code></p>
 <p>有没有发现什么. bash 的可读性太 TM 糟糕了——充斥着魔术数字. 这个 4 究竟代表了什么? 从代码中看不出来, 输出以后更是 van 全看不出来!</p>
 <p>为啥 bash 需要 sed, awk, grep 等工具? 因为它太 TM 弱了, 也因为大家都只输出字符串.<br>这玩意儿对人倒是友好, 但是对机器一点都不友好.<br>这设计实在是太糟糕了, 一旦想让机器来处理这些给人看的格式, 代码就会变成不是给人看的.<br>我也不是说大家一定要面向对象, 好歹大家一起定义一个数据交换格式, 这样岂不美哉? </p>
@@ -271,8 +277,10 @@
 <p>那该怎么办呢? 内部命令好说, 一般有参数可以让你直接传对象过去, 然而都是外部命令就呵呵了.</p>
 <p>距离来说 <code>seq 12345 | rg 12345</code>这样一个简单的命令竟然花了 0.76 s</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="built_in">Measure-Command</span> -Expression &#123;seq <span class="number">12345</span> | rg <span class="number">12345</span>&#125; | select TotalMilliseconds</span><br><span class="line"></span><br><span class="line">TotalMilliseconds</span><br><span class="line">-----------------</span><br><span class="line">         <span class="number">759.6631</span></span><br></pre></td></tr></table></figure>
+
 <p>反观 bash , 简直就是吊打!</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">➤ time seq 12345 | rg 12345</span><br><span class="line">12345</span><br><span class="line">seq 12345  0.00s user 0.00s system 84% cpu 0.002 total</span><br><span class="line">rg 12345  0.00s user 0.00s system 92% cpu 0.005 total</span><br></pre></td></tr></table></figure>
+
 <p>心累啊, 大概 M$ 一开始觉得反正 Windows 上又没啥工具给你调用...结果怎么突然就跨平台了呢?</p>
 <h2 id="与-native-程序交互"><a href="#与-native-程序交互" class="headerlink" title="与 native 程序交互"></a>与 native 程序交互</h2><p>pwsh 是面向对象的, 这是好的. cmdlets 的返回值是一个对象, 这是 pwsh 自己可以保证的. 然而外部命令呢?</p>
 <p>显然, 外部命令的输出只能当成字符串来处理了...</p>
@@ -288,6 +296,7 @@
 </ol>
 <h2 id="启动斯必得"><a href="#启动斯必得" class="headerlink" title="启动斯必得"></a>启动斯必得</h2><p>pwsh 的启动速度真的太慢了, 和 zsh 差 20 倍啊.</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">➤ time zsh -c <span class="string">'exit'</span></span><br><span class="line">zsh -c <span class="string">'exit'</span>  0.01s user 0.00s system 94% cpu 0.018 total</span><br><span class="line">➤ time pwsh -nop -c <span class="string">'exit'</span></span><br><span class="line">pwsh -nop -c <span class="string">'exit'</span>  0.38s user 0.05s system 118% cpu 0.360 total</span><br></pre></td></tr></table></figure>
+
 <p>而且这可是没有任何配置的 pwsh 啊!! </p>
 <p>我本来试了试 oh-my-posh, 发现颜值还真挺高的, 然而这样一来启动速度就到了秒级. 吓得我赶紧卸载掉了.<br>所以虽然我大赞了一通 pwsh, 我日常交互式的话应该还是不会使用它, 只是写脚本用用.</p>
 <p>对了, 此处还要强调一下, pwsh 即使是执行脚本也会加载 $PROFILE 里的内容, 除非指定了 <code>-nop</code>(-NoProfile) 参数. 所以如果你的 pwsh 用了重量级配置, 脚本的 shebang 最好加上 -nop 参数</p>
@@ -326,17 +335,17 @@
     </article></div><div class="comments" id="comments"></div></div>
       </main>
 
-      <footer id="footer" class="footer"><div class="social-links"><a href="mailto:aloxafx@gmail.com" class="iconfont icon-email" title="email"></a>
-        <a href="https://github.com/Aloxaf" class="iconfont icon-github" title="github"></a>
+      <footer id="footer" class="footer"><div class="social-links"><a href="mailto:aloxafx@gmail.com" target="_blank" rel="noopener" class="iconfont icon-email" title="email"></a>
+        <a href="https://github.com/Aloxaf" target="_blank" rel="noopener" class="iconfont icon-github" title="github"></a>
         <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
     </div><div class="copyright">
   <span class="power-by">
-    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
+    Powered by <a class="hexo-link" href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>
   </span>
   <span class="division">|</span>
   <span class="theme-info">
     Theme - 
-    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even" target="_blank" rel="noopener">Even</a>
   </span>
 
   <span class="copyright-year">&copy;2017 - 2019<span class="heart">
