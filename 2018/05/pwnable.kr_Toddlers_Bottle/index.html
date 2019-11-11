@@ -45,7 +45,7 @@
 })();
 </script>
 <script>
-  window.config = {"leancloud":{"app_id":null,"app_key":null},"toc":true,"fancybox":true,"pjax":"","latex":true};
+  window.config = {"leancloud":{"app_id":null,"app_key":null},"toc":false,"fancybox":true,"pjax":"","latex":true};
 </script>
 
     <title>pwnable.kr - Toddler's Bottle 部分writeup - Aloxaf's blog</title>
@@ -130,12 +130,7 @@
         </div>
     </header>
 
-    <div class="post-toc" id="post-toc">
-    <h2 class="post-toc-title">Contents</h2>
-    <div class="post-toc-content">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#fd"><span class="toc-text">[fd]</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#collision"><span class="toc-text">[collision]</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#bof"><span class="toc-text">bof</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#flag"><span class="toc-text">flag</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#passcode"><span class="toc-text">passcode</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#random"><span class="toc-text">random</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#input"><span class="toc-text">input</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#第一关"><span class="toc-text">第一关</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第二关"><span class="toc-text">第二关</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第三关"><span class="toc-text">第三关</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第四关"><span class="toc-text">第四关</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第五关"><span class="toc-text">第五关</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#最终代码"><span class="toc-text">最终代码</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#leg"><span class="toc-text">leg</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#ARM汇编简介"><span class="toc-text">ARM汇编简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#key1"><span class="toc-text">key1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#key2"><span class="toc-text">key2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#key3"><span class="toc-text">key3</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#mistake"><span class="toc-text">mistake</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#shellshock"><span class="toc-text">shellshock</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#coin1"><span class="toc-text">coin1</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#blackjack"><span class="toc-text">blackjack</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#lotto"><span class="toc-text">lotto</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#cmd1"><span class="toc-text">cmd1</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#cmd2"><span class="toc-text">cmd2</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#大佬们的解法"><span class="toc-text">大佬们的解法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#uaf-TODO"><span class="toc-text">uaf (TODO)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#memcpy"><span class="toc-text">memcpy</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#asm"><span class="toc-text">asm</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#unlink-TODO"><span class="toc-text">unlink (TODO)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#blukat-TODO"><span class="toc-text">blukat (TODO)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#horcruses-TODO"><span class="toc-text">horcruses (TODO)</span></a></li></ol>
-    </div>
-  </div><div class="post-content"><p>Toddler’s Bottle vey</p>
+    <div class="post-content"><p>Toddler’s Bottle vey</p>
 <p>包含了 Toddler’s Bottle 这一节的除了 UAF 和 unlink 以外的 writeup.<br>(一看就知道还不会利用堆漏洞)</p>
 <p>更: 又多了 blukat 和 horcruses……</p>
 <a id="more"></a>

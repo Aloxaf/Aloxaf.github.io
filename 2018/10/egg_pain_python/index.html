@@ -45,7 +45,7 @@
 })();
 </script>
 <script>
-  window.config = {"leancloud":{"app_id":null,"app_key":null},"toc":true,"fancybox":true,"pjax":"","latex":true};
+  window.config = {"leancloud":{"app_id":null,"app_key":null},"toc":false,"fancybox":true,"pjax":"","latex":true};
 </script>
 
     <title>如何在 Python3 中让 'a' is 'b' 为 True - Aloxaf's blog</title>
@@ -130,12 +130,7 @@
         </div>
     </header>
 
-    <div class="post-toc" id="post-toc">
-    <h2 class="post-toc-title">Contents</h2>
-    <div class="post-toc-content">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#前言"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#动机"><span class="toc-text">动机</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#先试试常规手段"><span class="toc-text">先试试常规手段</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-直接交换"><span class="toc-text">1. 直接交换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-globals"><span class="toc-text">2. globals()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-重载-eq"><span class="toc-text">3. 重载 __eq__</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-重载-repr"><span class="toc-text">4. 重载 __repr__</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#还是老老实实读源码吧"><span class="toc-text">还是老老实实读源码吧</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#0-搭建调试环境"><span class="toc-text">0. 搭建调试环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-PyObject"><span class="toc-text">1. PyObject *</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Py-False-和-Py-FalseStruct"><span class="toc-text">2. Py_False 和 _Py_FalseStruct</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-bool-repr"><span class="toc-text">3. bool_repr</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-PyUnicode-Type"><span class="toc-text">4. PyUnicode_Type</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#最终代码-互换-True-False"><span class="toc-text">最终代码: 互换 True False</span></a></li></ol>
-    </div>
-  </div><div class="post-content"><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这是一篇闲蛋疼的文章, 讲述了闲蛋疼的我是如何<del>历经千辛万苦终于</del>在 Python 中让 <code>&#39;a&#39; is &#39;b&#39;</code> 得到 <code>True</code>.</p>
+    <div class="post-content"><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这是一篇闲蛋疼的文章, 讲述了闲蛋疼的我是如何<del>历经千辛万苦终于</del>在 Python 中让 <code>&#39;a&#39; is &#39;b&#39;</code> 得到 <code>True</code>.</p>
 <p><del>(虽然这件事情毫无意义)</del></p>
 <p><del>(不过拿来坑下一任或许是个好主意呢)</del></p>
 <a id="more"></a>

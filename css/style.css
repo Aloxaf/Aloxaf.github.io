@@ -1,9 +1,8 @@
 @charset "UTF-8";
 @font-face {
-  font-family: 'Chancery';
-  src: url("../fonts/chancery/apple-chancery-webfont.eot");
-  src: local("Apple Chancery"), url("../fonts/chancery/apple-chancery-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/chancery/apple-chancery-webfont.woff2") format("woff2"), url("../fonts/chancery/apple-chancery-webfont.woff") format("woff"), url("../fonts/chancery/apple-chancery-webfont.ttf") format("truetype"), url("../fonts/chancery/apple-chancery-webfont.svg#apple-chancery") format("svg");
-  font-weight: lighter;
+  font-family: 'Fira Code';
+  src: url("../fonts/FiraCode/FiraCode-Regular.woff2") format("woff2"), url("../fonts/FiraCode/FiraCode-Regular.woff") format("woff");
+  font-weight: 400;
   font-style: normal; }
 
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
@@ -377,7 +376,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   line-height: 1.5;
   color: #34495e;
-  background: #fefefe;
+  background: #f5f5d5;
   scroll-behavior: smooth;
   border-top: 3px solid #c05b4d; }
   body.hide-top {
@@ -461,8 +460,8 @@ h6 {
   .header .logo-wrapper {
     float: left; }
     .header .logo-wrapper .logo {
-      font-size: 48px;
-      font-family: "Chancery", cursive, LiSu, sans-serif; }
+      font-size: 40px;
+      font-family: sans-serif; }
   @media screen and (max-width: 800px) {
     .header .logo-wrapper {
       display: none; } }
@@ -588,10 +587,12 @@ h6 {
       font-weight: 400;
       text-transform: uppercase; }
     .post .post-toc .post-toc-content {
-      font-size: 15px; }
+      font-size: 15px;
+      max-height: 70vh;
+      overflow: auto; }
       .post .post-toc .post-toc-content .toc,
       .post .post-toc .post-toc-content .toc-child {
-        list-style: square; }
+        list-style: inside; }
       .post .post-toc .post-toc-content .toc {
         margin: 10px 0;
         padding-left: 20px; }
@@ -665,7 +666,7 @@ h6 {
   .post .post-content code, .post .post-content pre {
     padding: 7px;
     font-size: 13px;
-    font-family: Consolas, Monaco, Menlo, Consolas, monospace;
+    font-family: "Fira Code", Consolas, Monaco, Menlo, Consolas, monospace;
     background: #f8f5ec; }
   .post .post-content code {
     padding: 3px 5px;
@@ -927,7 +928,7 @@ h6 {
       border-radius: 5px;
       cursor: pointer; }
       .post .post-reward .reward-button:hover {
-        color: #fefefe;
+        color: #f5f5d5;
         background-color: #c05b4d;
         transition: 0.5s; }
     .post .post-reward #reward:checked ~ .qr-code {
@@ -1256,7 +1257,7 @@ h6 {
 .slideout-panel {
   position: relative;
   z-index: 1;
-  background-color: #fefefe;
+  background-color: #f5f5d5;
   min-height: 100vh; }
 
 .slideout-open,
@@ -1274,7 +1275,7 @@ h6 {
   left: 0;
   width: 100%;
   height: 50px;
-  background: #fefefe;
+  background: #f5f5d5;
   box-shadow: 0px 2px 2px #cacaca;
   text-align: center;
   transition: transform 300ms ease;
@@ -1287,7 +1288,7 @@ h6 {
     .mobile-navbar .mobile-header-logo .logo {
       font-size: 22px;
       line-height: 50px;
-      font-family: "Chancery", cursive, LiSu, sans-serif; }
+      font-family: sans-serif; }
   .mobile-navbar .mobile-navbar-icon {
     color: #c05b4d;
     height: 50px;

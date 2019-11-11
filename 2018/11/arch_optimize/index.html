@@ -45,7 +45,7 @@
 })();
 </script>
 <script>
-  window.config = {"leancloud":{"app_id":null,"app_key":null},"toc":true,"fancybox":true,"pjax":"","latex":true};
+  window.config = {"leancloud":{"app_id":null,"app_key":null},"toc":false,"fancybox":true,"pjax":"","latex":true};
 </script>
 
     <title>Arch Linux 杂七杂八的优化 - Aloxaf's blog</title>
@@ -130,12 +130,7 @@
         </div>
     </header>
 
-    <div class="post-toc" id="post-toc">
-    <h2 class="post-toc-title">Contents</h2>
-    <div class="post-toc-content">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#内核"><span class="toc-text">内核</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#nopti"><span class="toc-text">nopti</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#硬盘"><span class="toc-text">硬盘</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#SSD"><span class="toc-text">SSD</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#TRIM"><span class="toc-text">TRIM</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#调度器"><span class="toc-text">调度器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ext4-性能优化"><span class="toc-text">Ext4 性能优化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#禁止更新访问时间戳"><span class="toc-text">禁止更新访问时间戳</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#关闭屏障"><span class="toc-text">关闭屏障</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#禁用日志"><span class="toc-text">禁用日志</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#加速日志"><span class="toc-text">加速日志</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#fstab"><span class="toc-text">fstab</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#使用-LABEL"><span class="toc-text">使用 LABEL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自动挂载移动硬盘"><span class="toc-text">自动挂载移动硬盘</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自动挂载大分区"><span class="toc-text">自动挂载大分区</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#pacman"><span class="toc-text">pacman</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#pacman-conf"><span class="toc-text">pacman.conf</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#自动清理软件包缓存"><span class="toc-text">自动清理软件包缓存</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#makepkg"><span class="toc-text">makepkg</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#makepkg-conf"><span class="toc-text">.makepkg.conf</span></a></li></ol></li></ol>
-    </div>
-  </div><div class="post-content"><p>发现无聊时刷 <a href="https://wiki.archlinux.org/" target="_blank" rel="noopener">Arch Wiki</a> 也挺有趣的, 记录一下自己干了啥吧. 毕竟有些配置没法放到 dotfiles 里. 记录一下以后翻起来也方便.</p>
+    <div class="post-content"><p>发现无聊时刷 <a href="https://wiki.archlinux.org/" target="_blank" rel="noopener">Arch Wiki</a> 也挺有趣的, 记录一下自己干了啥吧. 毕竟有些配置没法放到 dotfiles 里. 记录一下以后翻起来也方便.</p>
 <a id="more"></a>
 
 <h1 id="内核"><a href="#内核" class="headerlink" title="内核"></a>内核</h1><h2 id="nopti"><a href="#nopti" class="headerlink" title="nopti"></a>nopti</h2><p>参考: <a href="https://bbs.archlinux.org/viewtopic.php?pid=1759527#p1759527" target="_blank" rel="noopener">Performance degradation after Meltdown mitigation?</a></p>

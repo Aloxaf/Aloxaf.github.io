@@ -119,6 +119,7 @@
 
         if (currentTop < scrollTop && scrollTop <= nextTop) {
           $($toclink[i]).addClass('active');
+          $($toclink[i])[0].scrollIntoView({ behavior: 'auto', block: 'nearest'});
         } else {
           $($toclink[i]).removeClass('active');
         }

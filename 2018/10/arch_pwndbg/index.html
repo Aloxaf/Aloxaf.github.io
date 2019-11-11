@@ -45,7 +45,7 @@
 })();
 </script>
 <script>
-  window.config = {"leancloud":{"app_id":null,"app_key":null},"toc":true,"fancybox":true,"pjax":"","latex":true};
+  window.config = {"leancloud":{"app_id":null,"app_key":null},"toc":false,"fancybox":true,"pjax":"","latex":true};
 </script>
 
     <title>Arch Linux 下使用 pwndbg - Aloxaf's blog</title>
@@ -130,12 +130,7 @@
         </div>
     </header>
 
-    <div class="post-toc" id="post-toc">
-    <h2 class="post-toc-title">Contents</h2>
-    <div class="post-toc-content">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#后记"><span class="toc-text">后记</span></a></li></ol>
-    </div>
-  </div><div class="post-content"><p>pwndbg 的安装: <code>pacman -S pwndbg</code> 然后添加 <code>source /usr/share/pwndbg/gdbinit.py</code> 到 <code>~/.gdbinit</code></p>
+    <div class="post-content"><p>pwndbg 的安装: <code>pacman -S pwndbg</code> 然后添加 <code>source /usr/share/pwndbg/gdbinit.py</code> 到 <code>~/.gdbinit</code></p>
 <p>然而要在 Arch Linux 下愉快地使用 pwndbg, 还要解决以下问题:</p>
 <ul>
 <li><a href="https://github.com/pwndbg/pwndbg/issues/340" target="_blank" rel="noopener">Arch Support - Roadmap</a> 搁了快一年的问题, 主要是 Arch 下没有 libc6-dbg 这种包, 要调试符号只能自己编译…</li>
