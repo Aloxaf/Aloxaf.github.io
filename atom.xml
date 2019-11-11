@@ -386,9 +386,9 @@
     
       <category term="misc" scheme="https://www.aloxaf.com/tags/misc/"/>
     
-      <category term="zip" scheme="https://www.aloxaf.com/tags/zip/"/>
-    
       <category term="rust" scheme="https://www.aloxaf.com/tags/rust/"/>
+    
+      <category term="zip" scheme="https://www.aloxaf.com/tags/zip/"/>
     
   </entry>
   
@@ -524,11 +524,11 @@
     
       <category term="pwn" scheme="https://www.aloxaf.com/tags/pwn/"/>
     
-      <category term="web" scheme="https://www.aloxaf.com/tags/web/"/>
-    
       <category term="crypto" scheme="https://www.aloxaf.com/tags/crypto/"/>
     
       <category term="reverse" scheme="https://www.aloxaf.com/tags/reverse/"/>
+    
+      <category term="web" scheme="https://www.aloxaf.com/tags/web/"/>
     
   </entry>
   
