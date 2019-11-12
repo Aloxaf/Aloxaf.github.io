@@ -45,7 +45,7 @@
 })();
 </script>
 <script>
-  window.config = {"leancloud":{"app_id":null,"app_key":null},"toc":false,"fancybox":true,"pjax":"","latex":true};
+  window.config = {"leancloud":{"app_id":null,"app_key":null},"toc":true,"fancybox":true,"pjax":"","latex":true};
 </script>
 
     <title>Jarvis OJ BASIC 完整writeup - Aloxaf's blog</title>
@@ -130,7 +130,12 @@
         </div>
     </header>
 
-    <div class="post-content"><h1 id="握手包"><a href="#握手包" class="headerlink" title="握手包"></a>握手包</h1><blockquote>
+    <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">Contents</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#握手包"><span class="toc-text">握手包</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#德军的密码"><span class="toc-text">德军的密码</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#字符串"><span class="toc-text">-.-字符串</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#A-Piece-Of-Cake"><span class="toc-text">A Piece Of Cake</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Shellcode"><span class="toc-text">Shellcode</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Help"><span class="toc-text">Help!!</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Baby’s-Crack"><span class="toc-text">Baby’s Crack</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#熟悉的声音"><span class="toc-text">熟悉的声音</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#取证"><span class="toc-text">取证</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ROPGadget"><span class="toc-text">ROPGadget</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Easy-RSA"><span class="toc-text">Easy RSA</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#爱吃培根的出题人"><span class="toc-text">爱吃培根的出题人</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Secret"><span class="toc-text">Secret</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Easy-Crackme"><span class="toc-text">Easy Crackme</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#爆破"><span class="toc-text">爆破</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#z3"><span class="toc-text">z3</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pin"><span class="toc-text">pin</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#公倍数"><span class="toc-text">公倍数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#神秘的文件"><span class="toc-text">神秘的文件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#veryeasyRSA"><span class="toc-text">veryeasyRSA</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#美丽的实验室logo"><span class="toc-text">美丽的实验室logo</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#手贱"><span class="toc-text">手贱</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#段子"><span class="toc-text">段子</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#段子-1"><span class="toc-text">段子</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#veryeasy"><span class="toc-text">veryeasy</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#关于USS-Lab"><span class="toc-text">关于USS Lab.</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#base64"><span class="toc-text">base64?</span></a></li></ol>
+    </div>
+  </div><div class="post-content"><h1 id="握手包"><a href="#握手包" class="headerlink" title="握手包"></a>握手包</h1><blockquote>
 <p>给你握手包，flag是Flag_is_here这个AP的密码，自己看着办吧。</p>
 <p>提交格式：flag{WIFI密码}</p>
 </blockquote>

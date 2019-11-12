@@ -105,6 +105,7 @@
     var HEADERFIX = 30;
     var $toclink = $('.toc-link'),
       $headerlink = $('.headerlink');
+    const toptocs = $('.toc-item');
 
     $(window).scroll(function () {
       var headerlinkTop = $.map($headerlink, function (link) {
@@ -119,9 +120,18 @@
 
         if (currentTop < scrollTop && scrollTop <= nextTop) {
           $($toclink[i]).addClass('active');
-          $($toclink[i])[0].scrollIntoView({ behavior: 'auto', block: 'nearest'});
+          //$($toclink[i])[0].scrollIntoView({ behavior: 'smooth', block: 'center'});
         } else {
           $($toclink[i]).removeClass('active');
+        }
+      }
+
+      for (let i = 0; i < toptocs.length; i++) {
+        let target = $(toptocs[i]);
+        if (target.find('.active').length != 0) {
+          target.addClass('has-active');
+        } else {
+          target.removeClass('has-active');
         }
       }
     });

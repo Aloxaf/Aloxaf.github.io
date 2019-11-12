@@ -461,7 +461,7 @@ h6 {
     float: left; }
     .header .logo-wrapper .logo {
       font-size: 40px;
-      font-family: sans-serif; }
+      font-family: sans, sans-serif; }
   @media screen and (max-width: 800px) {
     .header .logo-wrapper {
       display: none; } }
@@ -623,6 +623,11 @@ h6 {
     font-family: Athelas, STHeiti, Microsoft Yahei, serif; }
   .post .post-content .headerlink:hover {
     border-bottom: 0; }
+  .post .post-content .headerlink::before {
+    content: "¶";
+    margin-right: 5px;
+    font-size: 1.1em;
+    color: #c05b4d; }
   .post .post-content a {
     color: #c05b4d;
     word-break: break-all; }
@@ -1288,7 +1293,7 @@ h6 {
     .mobile-navbar .mobile-header-logo .logo {
       font-size: 22px;
       line-height: 50px;
-      font-family: sans-serif; }
+      font-family: sans, sans-serif; }
   .mobile-navbar .mobile-navbar-icon {
     color: #c05b4d;
     height: 50px;

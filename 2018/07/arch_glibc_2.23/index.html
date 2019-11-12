@@ -45,7 +45,7 @@
 })();
 </script>
 <script>
-  window.config = {"leancloud":{"app_id":null,"app_key":null},"toc":false,"fancybox":true,"pjax":"","latex":true};
+  window.config = {"leancloud":{"app_id":null,"app_key":null},"toc":true,"fancybox":true,"pjax":"","latex":true};
 </script>
 
     <title>在 Arch Linux 下使用 glibc 2.23 调试程序&使用 pwndbg - Aloxaf's blog</title>
@@ -130,7 +130,12 @@
         </div>
     </header>
 
-    <div class="post-content"><p>glibc 2.26开始, 引入了 tcache 技术. 使得对 UAF 漏洞的利用非常困难.<br>(更: 听 M4x 师傅说其实安全性下降了? <a href="http://tukan.farm/2017/07/08/tcache/" target="_blank" rel="noopener">thread local caching in glibc malloc</a>)</p>
+    <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">Contents</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#编译glibc-2-23"><span class="toc-text">编译glibc-2.23</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#第一步"><span class="toc-text">第一步</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第二步"><span class="toc-text">第二步</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第三步"><span class="toc-text">第三步</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#配置运行环境"><span class="toc-text">配置运行环境</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#愉快地Debug-吧少年-Arch-Linux-大法好折腾"><span class="toc-text">愉快地Debug 吧少年, Arch Linux 大法好折腾</span></a></li></ol></li></ol>
+    </div>
+  </div><div class="post-content"><p>glibc 2.26开始, 引入了 tcache 技术. 使得对 UAF 漏洞的利用非常困难.<br>(更: 听 M4x 师傅说其实安全性下降了? <a href="http://tukan.farm/2017/07/08/tcache/" target="_blank" rel="noopener">thread local caching in glibc malloc</a>)</p>
 <a id="more"></a>
 
 <p>然后 Arch 的 glibc 已经到了 2.27…. 再加上 pwndbg 的作者与堆相关的一系列命令只对 Ubuntu 做了适配…</p>
