@@ -520,15 +520,15 @@
     
       <category term="writeup" scheme="https://www.aloxaf.com/tags/writeup/"/>
     
-      <category term="pwn" scheme="https://www.aloxaf.com/tags/pwn/"/>
-    
       <category term="misc" scheme="https://www.aloxaf.com/tags/misc/"/>
     
-      <category term="web" scheme="https://www.aloxaf.com/tags/web/"/>
+      <category term="pwn" scheme="https://www.aloxaf.com/tags/pwn/"/>
     
       <category term="crypto" scheme="https://www.aloxaf.com/tags/crypto/"/>
     
       <category term="reverse" scheme="https://www.aloxaf.com/tags/reverse/"/>
+    
+      <category term="web" scheme="https://www.aloxaf.com/tags/web/"/>
     
   </entry>
   
