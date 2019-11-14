@@ -520,9 +520,9 @@
     
       <category term="writeup" scheme="https://www.aloxaf.com/tags/writeup/"/>
     
-      <category term="misc" scheme="https://www.aloxaf.com/tags/misc/"/>
-    
       <category term="pwn" scheme="https://www.aloxaf.com/tags/pwn/"/>
+    
+      <category term="misc" scheme="https://www.aloxaf.com/tags/misc/"/>
     
       <category term="web" scheme="https://www.aloxaf.com/tags/web/"/>
     
@@ -551,9 +551,9 @@
       <category term="linux" scheme="https://www.aloxaf.com/categories/linux/"/>
     
     
-      <category term="linux" scheme="https://www.aloxaf.com/tags/linux/"/>
-    
       <category term="pwn" scheme="https://www.aloxaf.com/tags/pwn/"/>
+    
+      <category term="linux" scheme="https://www.aloxaf.com/tags/linux/"/>
     
   </entry>
   

@@ -645,7 +645,8 @@ h6 {
     color: rgba(52, 73, 94, 0.8);
     background-color: rgba(192, 91, 77, 0.05);
     border-left: 3px solid rgba(192, 91, 77, 0.3);
-    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.125); }
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.125);
+    word-wrap: break-word; }
     .post .post-content blockquote p {
       margin: 0; }
   .post .post-content img {
@@ -674,7 +675,8 @@ h6 {
   .post .post-content code {
     padding: 3px 5px;
     border-radius: 4px;
-    color: #c7254e; }
+    color: #c7254e;
+    word-wrap: break-word; }
   .post .post-content .highlight {
     margin: 1em 0;
     border-radius: 5px;
