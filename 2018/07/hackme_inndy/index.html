@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh_CN">
+<html lang="zh-cn">
   <head><meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
@@ -13,7 +13,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
-<meta name="description" content="hackme.inndy 部分writeup"/><meta name="keywords" content="ctf, writeup, misc, pwn, web, crypto, reverse, Aloxaf's blog" /><link rel="alternate" href="/atom.xml" title="Aloxaf's blog"><link rel="shortcut icon" type="image/x-icon" href="/favicon.svg?v=2.11.0" />
+<meta name="description" content="hackme.inndy 部分writeup"/><meta name="keywords" content="ctf, writeup, pwn, misc, web, crypto, reverse, Aloxaf's blog" /><link rel="alternate" href="/atom.xml" title="Aloxaf's blog"><link rel="shortcut icon" type="image/x-icon" href="/favicon.svg?v=2.11.0" />
 <link rel="canonical" href="https://www.aloxaf.com/2018/07/hackme_inndy/"/>
 
 <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" /><script type="text/x-mathjax-config">
@@ -65,19 +65,19 @@
 
 <nav id="mobile-menu" class="mobile-menu slideout-menu">
   <ul class="mobile-menu-list"><a href="/">
-        <li class="mobile-menu-item">Home
+        <li class="mobile-menu-item">首页
           </li>
       </a><a href="/archives/">
-        <li class="mobile-menu-item">Archives
+        <li class="mobile-menu-item">归档
           </li>
       </a><a href="/tags/">
-        <li class="mobile-menu-item">Tags
+        <li class="mobile-menu-item">标签
           </li>
       </a><a href="/about/">
-        <li class="mobile-menu-item">About
+        <li class="mobile-menu-item">关于
           </li>
       </a><a href="/friends/">
-        <li class="mobile-menu-item">Friends
+        <li class="mobile-menu-item">友链
           </li>
       </a></ul>
 </nav>
@@ -88,27 +88,27 @@
 
 <nav class="site-navbar"><ul id="menu" class="menu"><li class="menu-item">
           <a class="menu-item-link" href="/">
-            Home
+            首页
             </a>
         </li>
       <li class="menu-item">
           <a class="menu-item-link" href="/archives/">
-            Archives
+            归档
             </a>
         </li>
       <li class="menu-item">
           <a class="menu-item-link" href="/tags/">
-            Tags
+            标签
             </a>
         </li>
       <li class="menu-item">
           <a class="menu-item-link" href="/about/">
-            About
+            关于
             </a>
         </li>
       <li class="menu-item">
           <a class="menu-item-link" href="/friends/">
-            Friends
+            友链
             </a>
         </li>
       </ul></nav>
@@ -131,7 +131,7 @@
     </header>
 
     <div class="post-toc" id="post-toc">
-    <h2 class="post-toc-title">Contents</h2>
+    <h2 class="post-toc-title">文章目录</h2>
     <div class="post-toc-content">
       <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Misc"><span class="toc-text">Misc</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#flag"><span class="toc-text">flag</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#corgi-can-fly"><span class="toc-text">corgi can fly</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#television"><span class="toc-text">television</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#meow"><span class="toc-text">meow</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#where-is-flag"><span class="toc-text">where is flag</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#encoder"><span class="toc-text">encoder</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#slow"><span class="toc-text">slow</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pusheen-txt"><span class="toc-text">pusheen.txt</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#big"><span class="toc-text">big</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Web"><span class="toc-text">Web</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#hide-and-seek"><span class="toc-text">hide and seek</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#guestbook"><span class="toc-text">guestbook</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LFI"><span class="toc-text">LFI</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#homepage"><span class="toc-text">homepage</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ping"><span class="toc-text">ping</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#scoreboard"><span class="toc-text">scoreboard</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#login-as-admin-0"><span class="toc-text">login as admin 0</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#login-as-admin-3"><span class="toc-text">login as admin 3</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#login-as-admin-4"><span class="toc-text">login as admin 4</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#login-as-admin-6"><span class="toc-text">login as admin 6</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#login-as-admin-7"><span class="toc-text">login as admin 7</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#dafuq-manager-1"><span class="toc-text">dafuq-manager 1</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Reversing"><span class="toc-text">Reversing</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#helloworld"><span class="toc-text">helloworld</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#simple"><span class="toc-text">simple</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pyyy"><span class="toc-text">pyyy</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#accumulator"><span class="toc-text">accumulator</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GCCC"><span class="toc-text">GCCC</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ccc"><span class="toc-text">ccc</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#bitx"><span class="toc-text">bitx</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2018-rev"><span class="toc-text">2018-rev</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#what-the-hell"><span class="toc-text">what-the-hell</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mov"><span class="toc-text">mov</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Pwn"><span class="toc-text">Pwn</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#catflag"><span class="toc-text">catflag</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#homework"><span class="toc-text">homework</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ROP"><span class="toc-text">ROP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ROP2"><span class="toc-text">ROP2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#toooomuch"><span class="toc-text">toooomuch</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#toooomuch-2"><span class="toc-text">toooomuch-2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#echo"><span class="toc-text">echo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#echo2"><span class="toc-text">echo2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#echo3"><span class="toc-text">echo3</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#smashthestack"><span class="toc-text">smashthestack</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Crypto"><span class="toc-text">Crypto</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#easy"><span class="toc-text">easy</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#r-u-kidding"><span class="toc-text">r u kidding</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#not-harder"><span class="toc-text">not harder</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#classic-cipher-1"><span class="toc-text">classic cipher 1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#classic-cipher-2"><span class="toc-text">classic cipher 2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#easy-AES"><span class="toc-text">easy AES</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#one-time-padding"><span class="toc-text">one time padding</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#shuffle"><span class="toc-text">shuffle</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#login-as-admin-2"><span class="toc-text">login as admin 2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#xor"><span class="toc-text">xor</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#emoji"><span class="toc-text">emoji</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ffa"><span class="toc-text">ffa</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Programming"><span class="toc-text">Programming</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#fast"><span class="toc-text">fast</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Lucky"><span class="toc-text">Lucky</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#you-guess"><span class="toc-text">you-guess</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Forensic"><span class="toc-text">Forensic</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#easy-pdf"><span class="toc-text">easy pdf</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#this-is-a-pen"><span class="toc-text">this is a pen</span></a></li></ol></li></ol>
     </div>
@@ -545,23 +545,23 @@
       </div>
       <div class="post-copyright">
     <p class="copyright-item">
-      <span>Author: </span>
+      <span>原文作者: </span>
       <a href="https://www.aloxaf.com">Aloxaf</a>
     </p>
     <p class="copyright-item">
-      <span>Link: </span>
+      <span>原文链接: </span>
       <a href="https://www.aloxaf.com/2018/07/hackme_inndy/">https://www.aloxaf.com/2018/07/hackme_inndy/</a>
     </p>
     <p class="copyright-item">
-      <span>License: </span><a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+      <span>许可协议: </span><a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
     </p>
   </div>
       <footer class="post-footer">
         <div class="post-tags">
             <a href="/tags/ctf/">ctf</a>
             <a href="/tags/writeup/">writeup</a>
-            <a href="/tags/misc/">misc</a>
             <a href="/tags/pwn/">pwn</a>
+            <a href="/tags/misc/">misc</a>
             <a href="/tags/web/">web</a>
             <a href="/tags/crypto/">crypto</a>
             <a href="/tags/reverse/">reverse</a>
@@ -570,11 +570,11 @@
         <nav class="post-nav"><a class="prev" href="/2018/07/add_open_by_emacsclient/">
         <i class="iconfont icon-left"></i>
         <span class="prev-text nav-default">Linux 下在打开方式中增加用 emacsclient</span>
-        <span class="prev-text nav-mobile">Prev</span>
+        <span class="prev-text nav-mobile">上一篇</span>
       </a>
     <a class="next" href="/2018/07/arch_glibc_2.23/">
         <span class="next-text nav-default">在 Arch Linux 下使用 glibc 2.23 调试程序&使用 pwndbg</span>
-        <span class="prev-text nav-mobile">Next</span>
+        <span class="prev-text nav-mobile">下一篇</span>
         <i class="iconfont icon-right"></i>
       </a>
     </nav></footer>
@@ -586,11 +586,11 @@
         <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
     </div><div class="copyright">
   <span class="power-by">
-    Powered by <a class="hexo-link" href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>
+    由 <a class="hexo-link" href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> 强力驱动
   </span>
   <span class="division">|</span>
   <span class="theme-info">
-    Theme - 
+    主题 - 
     <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even" target="_blank" rel="noopener">Even</a>
   </span>
 
