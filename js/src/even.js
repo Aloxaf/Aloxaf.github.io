@@ -120,7 +120,6 @@
 
         if (currentTop < scrollTop && scrollTop <= nextTop) {
           $($toclink[i]).addClass('active');
-          //$($toclink[i])[0].scrollIntoView({ behavior: 'smooth', block: 'center'});
         } else {
           $($toclink[i]).removeClass('active');
         }
