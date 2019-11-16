@@ -656,7 +656,7 @@ h6 {
     width: 100%;
     margin-bottom: 20px;
     overflow: auto;
-    border: 3px double #f4efe1; }
+    border: 3px double #eee7d2; }
   .post .post-content table {
     width: 100%;
     max-width: 100%;
@@ -666,7 +666,7 @@ h6 {
       background: #f8f5ec; }
     .post .post-content table th, .post .post-content table td {
       padding: 5px 15px;
-      border: 1px double #f4efe1; }
+      border: 1px double #eee7d2; }
   .post .post-content code, .post .post-content pre {
     padding: 7px;
     font-size: 13px;
@@ -697,77 +697,11 @@ h6 {
         color: #b1b1b1;
         background: #f4efe1;
         content: 'Code'; }
-    .post .post-content .highlight.html > table::after {
-      content: "HTML"; }
-    .post .post-content .highlight.html > figcaption > span::after {
-      content: " · HTML"; }
-    .post .post-content .highlight.html figcaption + table::after {
-      display: none; }
-    .post .post-content .highlight.js > table::after {
-      content: "JavaScript"; }
-    .post .post-content .highlight.js > figcaption > span::after {
-      content: " · JavaScript"; }
-    .post .post-content .highlight.js figcaption + table::after {
-      display: none; }
     .post .post-content .highlight.bash > table::after {
       content: "Bash"; }
     .post .post-content .highlight.bash > figcaption > span::after {
       content: " · Bash"; }
     .post .post-content .highlight.bash figcaption + table::after {
-      display: none; }
-    .post .post-content .highlight.css > table::after {
-      content: "CSS"; }
-    .post .post-content .highlight.css > figcaption > span::after {
-      content: " · CSS"; }
-    .post .post-content .highlight.css figcaption + table::after {
-      display: none; }
-    .post .post-content .highlight.scss > table::after {
-      content: "Scss"; }
-    .post .post-content .highlight.scss > figcaption > span::after {
-      content: " · Scss"; }
-    .post .post-content .highlight.scss figcaption + table::after {
-      display: none; }
-    .post .post-content .highlight.java > table::after {
-      content: "Java"; }
-    .post .post-content .highlight.java > figcaption > span::after {
-      content: " · Java"; }
-    .post .post-content .highlight.java figcaption + table::after {
-      display: none; }
-    .post .post-content .highlight.xml > table::after {
-      content: "XML"; }
-    .post .post-content .highlight.xml > figcaption > span::after {
-      content: " · XML"; }
-    .post .post-content .highlight.xml figcaption + table::after {
-      display: none; }
-    .post .post-content .highlight.python > table::after {
-      content: "Python"; }
-    .post .post-content .highlight.python > figcaption > span::after {
-      content: " · Python"; }
-    .post .post-content .highlight.python figcaption + table::after {
-      display: none; }
-    .post .post-content .highlight.json > table::after {
-      content: "JSON"; }
-    .post .post-content .highlight.json > figcaption > span::after {
-      content: " · JSON"; }
-    .post .post-content .highlight.json figcaption + table::after {
-      display: none; }
-    .post .post-content .highlight.swift > table::after {
-      content: "Swift"; }
-    .post .post-content .highlight.swift > figcaption > span::after {
-      content: " · Swift"; }
-    .post .post-content .highlight.swift figcaption + table::after {
-      display: none; }
-    .post .post-content .highlight.ruby > table::after {
-      content: "Ruby"; }
-    .post .post-content .highlight.ruby > figcaption > span::after {
-      content: " · Ruby"; }
-    .post .post-content .highlight.ruby figcaption + table::after {
-      display: none; }
-    .post .post-content .highlight.php > table::after {
-      content: "PHP"; }
-    .post .post-content .highlight.php > figcaption > span::after {
-      content: " · PHP"; }
-    .post .post-content .highlight.php figcaption + table::after {
       display: none; }
     .post .post-content .highlight.c > table::after {
       content: "C"; }
@@ -781,11 +715,59 @@ h6 {
       content: " · C++"; }
     .post .post-content .highlight.cpp figcaption + table::after {
       display: none; }
-    .post .post-content .highlight.scheme > table::after {
-      content: "Scheme"; }
-    .post .post-content .highlight.scheme > figcaption > span::after {
-      content: " · Scheme"; }
-    .post .post-content .highlight.scheme figcaption + table::after {
+    .post .post-content .highlight.css > table::after {
+      content: "CSS"; }
+    .post .post-content .highlight.css > figcaption > span::after {
+      content: " · CSS"; }
+    .post .post-content .highlight.css figcaption + table::after {
+      display: none; }
+    .post .post-content .highlight.go > table::after {
+      content: "Go"; }
+    .post .post-content .highlight.go > figcaption > span::after {
+      content: " · Go"; }
+    .post .post-content .highlight.go figcaption + table::after {
+      display: none; }
+    .post .post-content .highlight.html > table::after {
+      content: "HTML"; }
+    .post .post-content .highlight.html > figcaption > span::after {
+      content: " · HTML"; }
+    .post .post-content .highlight.html figcaption + table::after {
+      display: none; }
+    .post .post-content .highlight.http > table::after {
+      content: "HTTP"; }
+    .post .post-content .highlight.http > figcaption > span::after {
+      content: " · HTTP"; }
+    .post .post-content .highlight.http figcaption + table::after {
+      display: none; }
+    .post .post-content .highlight.ini > table::after {
+      content: "INI"; }
+    .post .post-content .highlight.ini > figcaption > span::after {
+      content: " · INI"; }
+    .post .post-content .highlight.ini figcaption + table::after {
+      display: none; }
+    .post .post-content .highlight.java > table::after {
+      content: "Java"; }
+    .post .post-content .highlight.java > figcaption > span::after {
+      content: " · Java"; }
+    .post .post-content .highlight.java figcaption + table::after {
+      display: none; }
+    .post .post-content .highlight.js > table::after {
+      content: "JavaScript"; }
+    .post .post-content .highlight.js > figcaption > span::after {
+      content: " · JavaScript"; }
+    .post .post-content .highlight.js figcaption + table::after {
+      display: none; }
+    .post .post-content .highlight.json > table::after {
+      content: "JSON"; }
+    .post .post-content .highlight.json > figcaption > span::after {
+      content: " · JSON"; }
+    .post .post-content .highlight.json figcaption + table::after {
+      display: none; }
+    .post .post-content .highlight.kotlin > table::after {
+      content: "Kotlin"; }
+    .post .post-content .highlight.kotlin > figcaption > span::after {
+      content: " · Kotlin"; }
+    .post .post-content .highlight.kotlin figcaption + table::after {
       display: none; }
     .post .post-content .highlight.objectivec > table::after {
       content: "Objective-C"; }
@@ -793,11 +775,47 @@ h6 {
       content: " · Objective-C"; }
     .post .post-content .highlight.objectivec figcaption + table::after {
       display: none; }
-    .post .post-content .highlight.yml > table::after {
-      content: "YAML"; }
-    .post .post-content .highlight.yml > figcaption > span::after {
-      content: " · YAML"; }
-    .post .post-content .highlight.yml figcaption + table::after {
+    .post .post-content .highlight.php > table::after {
+      content: "PHP"; }
+    .post .post-content .highlight.php > figcaption > span::after {
+      content: " · PHP"; }
+    .post .post-content .highlight.php figcaption + table::after {
+      display: none; }
+    .post .post-content .highlight.powershell > table::after {
+      content: "PowerShell"; }
+    .post .post-content .highlight.powershell > figcaption > span::after {
+      content: " · PowerShell"; }
+    .post .post-content .highlight.powershell figcaption + table::after {
+      display: none; }
+    .post .post-content .highlight.python > table::after {
+      content: "Python"; }
+    .post .post-content .highlight.python > figcaption > span::after {
+      content: " · Python"; }
+    .post .post-content .highlight.python figcaption + table::after {
+      display: none; }
+    .post .post-content .highlight.ruby > table::after {
+      content: "Ruby"; }
+    .post .post-content .highlight.ruby > figcaption > span::after {
+      content: " · Ruby"; }
+    .post .post-content .highlight.ruby figcaption + table::after {
+      display: none; }
+    .post .post-content .highlight.rust > table::after {
+      content: "Rust"; }
+    .post .post-content .highlight.rust > figcaption > span::after {
+      content: " · Rust"; }
+    .post .post-content .highlight.rust figcaption + table::after {
+      display: none; }
+    .post .post-content .highlight.scheme > table::after {
+      content: "Scheme"; }
+    .post .post-content .highlight.scheme > figcaption > span::after {
+      content: " · Scheme"; }
+    .post .post-content .highlight.scheme figcaption + table::after {
+      display: none; }
+    .post .post-content .highlight.scss > table::after {
+      content: "Scss"; }
+    .post .post-content .highlight.scss > figcaption > span::after {
+      content: " · Scss"; }
+    .post .post-content .highlight.scss figcaption + table::after {
       display: none; }
     .post .post-content .highlight.stylus > table::after {
       content: "Stylus"; }
@@ -811,23 +829,29 @@ h6 {
       content: " · SQL"; }
     .post .post-content .highlight.sql figcaption + table::after {
       display: none; }
-    .post .post-content .highlight.http > table::after {
-      content: "HTTP"; }
-    .post .post-content .highlight.http > figcaption > span::after {
-      content: " · HTTP"; }
-    .post .post-content .highlight.http figcaption + table::after {
+    .post .post-content .highlight.swift > table::after {
+      content: "Swift"; }
+    .post .post-content .highlight.swift > figcaption > span::after {
+      content: " · Swift"; }
+    .post .post-content .highlight.swift figcaption + table::after {
       display: none; }
-    .post .post-content .highlight.go > table::after {
-      content: "Go"; }
-    .post .post-content .highlight.go > figcaption > span::after {
-      content: " · Go"; }
-    .post .post-content .highlight.go figcaption + table::after {
+    .post .post-content .highlight.toml > table::after {
+      content: "TOML"; }
+    .post .post-content .highlight.toml > figcaption > span::after {
+      content: " · TOML"; }
+    .post .post-content .highlight.toml figcaption + table::after {
       display: none; }
-    .post .post-content .highlight.kotlin > table::after {
-      content: "Kotlin"; }
-    .post .post-content .highlight.kotlin > figcaption > span::after {
-      content: " · Kotlin"; }
-    .post .post-content .highlight.kotlin figcaption + table::after {
+    .post .post-content .highlight.xml > table::after {
+      content: "XML"; }
+    .post .post-content .highlight.xml > figcaption > span::after {
+      content: " · XML"; }
+    .post .post-content .highlight.xml figcaption + table::after {
+      display: none; }
+    .post .post-content .highlight.yml > table::after {
+      content: "YAML"; }
+    .post .post-content .highlight.yml > figcaption > span::after {
+      content: " · YAML"; }
+    .post .post-content .highlight.yml figcaption + table::after {
       display: none; }
     .post .post-content .highlight figcaption {
       position: absolute;
@@ -1048,7 +1072,7 @@ h6 {
 
 .archive {
   margin: 2em 0px;
-  max-width: 550px; }
+  max-width: 600px; }
   .archive .archive-title {
     font-family: Athelas, STHeiti, Microsoft Yahei, serif; }
     .archive .archive-title.tag, .archive .archive-title.category {
