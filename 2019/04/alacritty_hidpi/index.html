@@ -133,12 +133,14 @@
       <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#问题表现"><span class="toc-text">问题表现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解决方案-临时"><span class="toc-text">解决方案(临时)</span></a></li></ol>
     </div>
   </div><div class="post-content"><p>为啥要折腾 Alacritty 呢, 因为 Konsole 有点小问题: <a href="https://bugs.kde.org/show_bug.cgi?id=401298" target="_blank" rel="noopener">https://bugs.kde.org/show_bug.cgi?id=401298</a> (不过这个问题已经 fix 了, 下个版本应该就没有了, 我大概又会滚回 Konsole, 毕竟有 blur 和 ligatures), 阻碍我使用棒棒的 <a href="https://github.com/Peltoche/lsd/issues/118" target="_blank" rel="noopener">lsd</a>.</p>
-<h2 id="问题表现"><a href="#问题表现" class="headerlink" title="问题表现"></a>问题表现</h2><p>具体表现为布局问题, 无视配置文件, 如</p>
+<h2 id="问题表现"><a class="headerlink" href="#问题表现"></a>问题表现</h2>
+<p>具体表现为布局问题, 无视配置文件, 如</p>
 <ul>
 <li>总是最大化窗口</li>
 <li>总是最大化高度</li>
 </ul>
-<h2 id="解决方案-临时"><a href="#解决方案-临时" class="headerlink" title="解决方案(临时)"></a>解决方案(临时)</h2><p>为 Alacritty 设置环境变量 <code>WINIT_HIDPI_FACTOR=1</code> </p>
+<h2 id="解决方案-临时"><a class="headerlink" href="#解决方案-临时"></a>解决方案(临时)</h2>
+<p>为 Alacritty 设置环境变量 <code>WINIT_HIDPI_FACTOR=1</code></p>
 <p>参考: <a href="https://github.com/tomaka/winit/issues/745" target="_blank" rel="noopener">tomaka/winit#745</a></p>
 
       </div>
@@ -171,7 +173,8 @@
         <i class="iconfont icon-right"></i>
       </a>
     </nav></footer>
-    </article></div><div class="comments" id="comments"></div></div>
+    </article></div><div class="comments" id="comments"><div id="vcomments"></div>
+    </div></div>
       </main>
 
       <footer id="footer" class="footer"><div class="social-links"><a href="mailto:aloxafx@gmail.com" target="_blank" rel="noopener" class="iconfont icon-email" title="email"></a>
@@ -198,7 +201,22 @@
       <div class="back-to-top" id="back-to-top">
         <i class="iconfont icon-up"></i>
       </div>
-    </div><script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+    </div>
+<!-- valine Comments -->
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/xcss/valine@v1.1.7/dist/Valine.min.js"></script>
+<script type="text/javascript">
+    new Valine({
+        el: '#vcomments',
+        notify: false,
+        verify: true,
+        app_id: "fSbXaElXXTznggVXiWy8NFBU-gzGzoHsz",
+        app_key: "kK3SxB14xAACgHftKrSaBRDU",
+        placeholder: "妙啊，妙啊",
+        avatar: 'mm'
+    });
+</script>
+<script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
   <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
   <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/src/even.js?v=2.11.0"></script>

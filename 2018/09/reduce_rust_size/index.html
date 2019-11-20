@@ -130,42 +130,31 @@
     <div class="post-content"><p>体积狂魔の执念, 记录一下以免忘记.</p>
 <p>[2018.12.20] 今天测了一下发现体积大幅减小了, 回忆了一下也许是把内存分配器换成了系统自带的原因. 这也提醒了我要记录一下 Rust 版本</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">➤ rustc --version</span><br><span class="line">rustc 1.32.0-beta.2 (a01e4761a 2018-12-08)</span><br></pre></td></tr></table></figure>
-
-
-
 <a id="more"></a>
-
 <p>新建一个项目, 直接编译</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">▶ cargo new --bin hello</span><br><span class="line">     Created binary (application) `hello` project</span><br><span class="line">▶ cd hello</span><br><span class="line">▶ cargo build --release</span><br><span class="line">   Compiling hello v0.1.0 (file:///tmp/hello)</span><br><span class="line">    Finished release [optimized] target(s) in 0.45s</span><br><span class="line">▶ du -h target/release/hello </span><br><span class="line">2.3M    target/release/hello</span><br></pre></td></tr></table></figure>
-
 <p>一个 hello world 2.3M, 太大了. // 原来是 3.9M</p>
 <p>strip 一下.</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">▶ strip -s target/release/hello</span><br><span class="line">▶ du -h target/release/hello</span><br><span class="line">196K    target/release/hello</span><br></pre></td></tr></table></figure>
-
 <p>196K, 这个体积已经可以接受了, 不过我还是想知道还可以有多小. // 原来是 420K</p>
 <p>在Cargo.toml中添加</p>
 <figure class="highlight toml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[profile.release]</span></span><br><span class="line"><span class="attr">panic</span> = <span class="string">'abort'</span></span><br><span class="line"><span class="attr">lto</span> = <span class="literal">true</span></span><br><span class="line"><span class="attr">opt-level</span> = <span class="string">"z"</span></span><br></pre></td></tr></table></figure>
-
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">▶ cargo build --release &amp;&amp; strip -s target/release/hello &amp;&amp; du -h target/release/hello</span><br><span class="line">   Compiling hello v0.1.0 (file:///tmp/hello)</span><br><span class="line">    Finished release [optimized] target(s) in 1.73s</span><br><span class="line">164K    target/release/hello</span><br></pre></td></tr></table></figure>
-
 <p>164K, 再次进步. 不过这还不够! // 原来是 180K</p>
 <p><strong>超必杀技</strong>: 注释掉 panic 和 lto 两行, 然后使用动态链接.</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">▶ RUSTFLAGS='-C prefer-dynamic' cargo build --release </span><br><span class="line">   Compiling hello v0.1.0 (file:///tmp/hello)</span><br><span class="line">    Finished release [optimized] target(s) in 0.14s</span><br><span class="line">▶ du -h target/release/hello</span><br><span class="line">20K     target/release/hello</span><br><span class="line">▶ strip -s target/release/hello</span><br><span class="line">▶ du -h target/release/hello</span><br><span class="line">16K     target/release/hello</span><br></pre></td></tr></table></figure>
-
-<p>16K!! <strong>非常满意</strong>. <del>除了无法运行之外</del></p>
-<p>(可以看到链接了一个莫名其妙的 libstd-affa4edaee4ff43e.so)</p>
+<p>16K!! <strong>非常满意</strong>. <s>除了无法运行之外</s></p>
+<p>(可以看到链接了一个莫名其妙的 <a href="http://libstd-affa4edaee4ff43e.so" target="_blank" rel="noopener">libstd-affa4edaee4ff43e.so</a>)</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">▶ ldd target/release/hello</span><br><span class="line">        linux-vdso.so.1 (0x00007ffd6f4b4000)</span><br><span class="line">        libstd-affa4edaee4ff43e.so =&gt; not found</span><br><span class="line">        libc.so.6 =&gt; /usr/lib/libc.so.6 (0x00007f02e5e5a000)</span><br><span class="line">        /lib64/ld-linux-x86-64.so.2 =&gt; /usr/lib64/ld-linux-x86-64.so.2 (0x00007f02e6077000)</span><br></pre></td></tr></table></figure>
-
-<p>Google 了一下这个问题已经有人提出了 <a href="https://github.com/rust-lang/rust/issues/45601" target="_blank" rel="noopener">Avoid the <code>proc_macro</code> crate being dynamically linked.</a><br>也已经有人着手修复了 <a href="https://github.com/rust-lang/rust/pull/49219" target="_blank" rel="noopener">Decouple proc_macro from the rest of the compiler.</a></p>
+<p>Google 了一下这个问题已经有人提出了 <a href="https://github.com/rust-lang/rust/issues/45601" target="_blank" rel="noopener">Avoid the <code>proc_macro</code> crate being dynamically linked.</a><br>
+也已经有人着手修复了 <a href="https://github.com/rust-lang/rust/pull/49219" target="_blank" rel="noopener">Decouple proc_macro from the rest of the compiler.</a></p>
 <p>坐等</p>
 <p>P.S. <code>-C</code>开关可供把玩的选项似乎很多啊, 比如 <code>-C target-cpu=native</code>提高程序本机运行速度</p>
-<p>[2018.12.20] 那个 PR 已经合并了, 然而问题还是没有解决…我又探究了一下, 发现我其实可以运行这个 bin</p>
+<p>[2018.12.20] 那个 PR 已经合并了, 然而问题还是没有解决...我又探究了一下, 发现我其实可以运行这个 bin</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">➤ LD_LIBRARY_PATH=~/.rustup/toolchains/beta-x86_64-unknown-linux-gnu/lib:. ./target/release/hello</span><br><span class="line">Hello, world!</span><br></pre></td></tr></table></figure>
-
-<p>这玩意儿原来是 runtime…我早该想到的orz</p>
+<p>这玩意儿原来是 runtime...我早该想到的orz</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">➤ du -h /home/aloxaf/.rustup/toolchains/beta-x86_64-unknown-linux-gnu/lib/libstd-affa4edaee4ff43e.so</span><br><span class="line">5.4M    /home/aloxaf/.rustup/toolchains/beta-x86_64-unknown-linux-gnu/lib/libstd-affa4edaee4ff43e.so</span><br></pre></td></tr></table></figure>
-
-<p>然后, 由于 Rust 还没有稳定的 ABI (<a href="https://github.com/rust-lang/rfcs/issues/600" target="_blank" rel="noopener">RFC#600</a>), 所以这个问题暂时还是无解状态. 如果有稳定 ABI 了, 咱就可以 <code>pacman -S rust-common</code> 啥的, 然后就可以享受超小体积的二进制了!  </p>
+<p>然后, 由于 Rust 还没有稳定的 ABI (<a href="https://github.com/rust-lang/rfcs/issues/600" target="_blank" rel="noopener">RFC#600</a>), 所以这个问题暂时还是无解状态. 如果有稳定 ABI 了, 咱就可以 <code>pacman -S rust-common</code> 啥的, 然后就可以享受超小体积的二进制了!</p>
 
       </div>
       <div class="post-copyright">
@@ -197,7 +186,8 @@
         <i class="iconfont icon-right"></i>
       </a>
     </nav></footer>
-    </article></div><div class="comments" id="comments"></div></div>
+    </article></div><div class="comments" id="comments"><div id="vcomments"></div>
+    </div></div>
       </main>
 
       <footer id="footer" class="footer"><div class="social-links"><a href="mailto:aloxafx@gmail.com" target="_blank" rel="noopener" class="iconfont icon-email" title="email"></a>
@@ -224,7 +214,22 @@
       <div class="back-to-top" id="back-to-top">
         <i class="iconfont icon-up"></i>
       </div>
-    </div><script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+    </div>
+<!-- valine Comments -->
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/xcss/valine@v1.1.7/dist/Valine.min.js"></script>
+<script type="text/javascript">
+    new Valine({
+        el: '#vcomments',
+        notify: false,
+        verify: true,
+        app_id: "fSbXaElXXTznggVXiWy8NFBU-gzGzoHsz",
+        app_key: "kK3SxB14xAACgHftKrSaBRDU",
+        placeholder: "妙啊，妙啊",
+        avatar: 'mm'
+    });
+</script>
+<script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
   <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
   <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/src/even.js?v=2.11.0"></script>

@@ -132,20 +132,17 @@
 <p>比如</p>
 <ul>
 <li>搜狗, 字体跟随系统变成浅色, 背景没有变, 变成浅色背景+浅色字体, 亮瞎眼组合</li>
-<li>WPS 表格, 表格背景是黑的….究极の难看</li>
-<li>WPS 文字, 字体也变浅色了, 不仅亮瞎眼. 如果强行调成黑色的话, 在 Windows 上就会变亮瞎眼…</li>
+<li>WPS 表格, 表格背景是黑的....究极の难看</li>
+<li>WPS 文字, 字体也变浅色了, 不仅亮瞎眼. 如果强行调成黑色的话, 在 Windows 上就会变亮瞎眼...</li>
 </ul>
 <a id="more"></a>
-
 <p>记录一下解决方案:</p>
 <p>首先在 设置-应用程序风格-GNOME程序风格 里设置一个亮色主题</p>
-<p>然后修改 <code>/usr/share/applications/wps-office-{wps,wpp,et}.desktop</code> 和 <code>fcitx-ui-sogou-qimpanel.desktop</code> , 给 <code>Exec</code> 项添加参数 <code>-style gtk+</code> </p>
+<p>然后修改 <code>/usr/share/applications/wps-office-{wps,wpp,et}.desktop</code> 和 <code>fcitx-ui-sogou-qimpanel.desktop</code> , 给 <code>Exec</code> 项添加参数 <code>-style gtk+</code></p>
 <p>以 WPS 为例, Before</p>
 <figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">Exec</span>=/usr/bin/wps %f</span><br></pre></td></tr></table></figure>
-
 <p>After</p>
 <figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">Exec</span>=/usr/bin/wps -style gtk+ %f</span><br></pre></td></tr></table></figure>
-
 <p>原理: 把这堆不守规矩的程序踢给 GTK+</p>
 
       </div>
@@ -178,7 +175,8 @@
         <i class="iconfont icon-right"></i>
       </a>
     </nav></footer>
-    </article></div><div class="comments" id="comments"></div></div>
+    </article></div><div class="comments" id="comments"><div id="vcomments"></div>
+    </div></div>
       </main>
 
       <footer id="footer" class="footer"><div class="social-links"><a href="mailto:aloxafx@gmail.com" target="_blank" rel="noopener" class="iconfont icon-email" title="email"></a>
@@ -205,7 +203,22 @@
       <div class="back-to-top" id="back-to-top">
         <i class="iconfont icon-up"></i>
       </div>
-    </div><script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+    </div>
+<!-- valine Comments -->
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/xcss/valine@v1.1.7/dist/Valine.min.js"></script>
+<script type="text/javascript">
+    new Valine({
+        el: '#vcomments',
+        notify: false,
+        verify: true,
+        app_id: "fSbXaElXXTznggVXiWy8NFBU-gzGzoHsz",
+        app_key: "kK3SxB14xAACgHftKrSaBRDU",
+        placeholder: "妙啊，妙啊",
+        avatar: 'mm'
+    });
+</script>
+<script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
   <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
   <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/src/even.js?v=2.11.0"></script>

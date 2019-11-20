@@ -115,6 +115,28 @@
         <div class="content-wrapper">
           <div id="content" class="content"><section id="posts" class="posts"><article class="post">
     <header class="post-header">
+      <h1 class="post-title"><a class="post-link" href="/2018/10/egg_pain_python/">如何在 Python3 中让 'a' is 'b' 为 True</a>
+        </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2018-10-28
+        </span><span class="post-category">
+            <a href="/categories/egg-pain/">egg_pain</a>
+            </span>
+        </div>
+    </header>
+
+    <div class="post-content"><h1 id="前言"><a class="headerlink" href="#前言"></a>前言</h1>
+<p>这是一篇闲蛋疼的文章, 讲述了闲蛋疼的我是如何<s>历经千辛万苦终于</s>在 Python 中让 <code>'a' is 'b'</code> 得到 <code>True</code>.</p>
+<p><s>(虽然这件事情毫无意义)</s></p>
+<p><s>(不过拿来坑下一任或许是个好主意呢)</s></p>
+          <div class="read-more">
+            <a href="/2018/10/egg_pain_python/" class="read-more-link">阅读更多</a>
+          </div>
+        </div></article>
+      <article class="post">
+    <header class="post-header">
       <h1 class="post-title"><a class="post-link" href="/2018/10/arch_pwndbg/">Arch Linux 下使用 pwndbg</a>
         </h1>
 
@@ -130,7 +152,7 @@
     <div class="post-content"><p>pwndbg 的安装: <code>pacman -S pwndbg</code> 然后添加 <code>source /usr/share/pwndbg/gdbinit.py</code> 到 <code>~/.gdbinit</code></p>
 <p>然而要在 Arch Linux 下愉快地使用 pwndbg, 还要解决以下问题:</p>
 <ul>
-<li><a href="https://github.com/pwndbg/pwndbg/issues/340" target="_blank" rel="noopener">Arch Support - Roadmap</a> 搁了快一年的问题, 主要是 Arch 下没有 libc6-dbg 这种包, 要调试符号只能自己编译…</li>
+<li><a href="https://github.com/pwndbg/pwndbg/issues/340" target="_blank" rel="noopener">Arch Support - Roadmap</a> 搁了快一年的问题, 主要是 Arch 下没有 libc6-dbg 这种包, 要调试符号只能自己编译...</li>
 <li><s><a href="https://github.com/pwndbg/pwndbg/issues/523#issuecomment-425673020" target="_blank" rel="noopener">Python exception under gdb-8.2-2</a> 上游 gdb 的问题, 8.3 应该会修复, 不过可以按链接所示的方法临时 patch 一下</s> gdb 8.2.1 已 fix</li>
 </ul>
 <p>这里解决第一个问题, 利用棒棒的 ABS (Arch Build System)</p>
@@ -152,8 +174,9 @@
         </div>
     </header>
 
-    <div class="post-content"><p>AUR 里的构建脚本常常需要从 github 拉取源代码,<br>然而没有加 <code>--depth 1</code> 的 <code>git clone</code> 把大量流量花在了下载对于构建毫无用处的提交记录等东西上面. </p>
-<p>尤其是安装主题这种东西的时候, clone 下来几百 MB, 结果构建完得到一个几 MB 的包…</p>
+    <div class="post-content"><p>AUR 里的构建脚本常常需要从 github 拉取源代码,<br>
+然而没有加 <code>--depth 1</code> 的 <code>git clone</code> 把大量流量花在了下载对于构建毫无用处的提交记录等东西上面.</p>
+<p>尤其是安装主题这种东西的时候, clone 下来几百 MB, 结果构建完得到一个几 MB 的包...</p>
           <div class="read-more">
             <a href="/2018/10/arch_git/" class="read-more-link">阅读更多</a>
           </div>
@@ -173,7 +196,7 @@
     </header>
 
     <div class="post-content"><p>默认emoji太丑, 没有颜色, 看着浑身难受.</p>
-<p>还是喜欢果冻人…</p>
+<p>还是喜欢果冻人...</p>
           <div class="read-more">
             <a href="/2018/10/linux_emoji/" class="read-more-link">阅读更多</a>
           </div>
@@ -192,8 +215,8 @@
         </div>
     </header>
 
-    <div class="post-content"><p>这个国庆假期抽了点风……</p>
-<p>写了一个假期的代码……</p>
+    <div class="post-content"><p>这个国庆假期抽了点风......</p>
+<p>写了一个假期的代码......</p>
           <div class="read-more">
             <a href="/2018/10/zip_crack/" class="read-more-link">阅读更多</a>
           </div>
@@ -233,8 +256,10 @@
         </div>
     </header>
 
-    <div class="post-content"><p>感谢 M4x 师傅推荐了这个比赛, 虽然是面向美国高中生, 不过打了以后还是有点收获的.<br><del>同时内心受到一万点暴击伤害</del> </p>
-<p>尤其是两道 Python jail, 非常硬却失挺.<br>(下载地址在文末)</p>
+    <div class="post-content"><p>感谢 M4x 师傅推荐了这个比赛, 虽然是面向美国高中生, 不过打了以后还是有点收获的.<br>
+<s>同时内心受到一万点暴击伤害</s></p>
+<p>尤其是两道 Python jail, 非常硬却失挺.<br>
+(下载地址在文末)</p>
           <div class="read-more">
             <a href="/2018/08/tjctf_pythonjail/" class="read-more-link">阅读更多</a>
           </div>
@@ -253,8 +278,10 @@
         </div>
     </header>
 
-    <div class="post-content"><p>好像很多 Java 程序都有这个毛病.<br>查了半天 Arch Wiki, 终于找到了: <a href="https://wiki.archlinux.org/index.php/Java_Runtime_Environment_fonts#Anti-aliasing" target="_blank" rel="noopener">Java Runtime Environment fonts</a></p>
-<p>解决方案: 设置环境变量 <code>_JAVA_OPTIONS=&#39;-Dawt.useSystemAAFontSettings=on&#39;</code><br>(这么重要的东西怎么还要手动开启??)</p>
+    <div class="post-content"><p>好像很多 Java 程序都有这个毛病.<br>
+查了半天 Arch Wiki, 终于找到了: <a href="https://wiki.archlinux.org/index.php/Java_Runtime_Environment_fonts#Anti-aliasing" target="_blank" rel="noopener">Java Runtime Environment fonts</a></p>
+<p>解决方案: 设置环境变量 <code>_JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on'</code><br>
+(这么重要的东西怎么还要手动开启??)</p>
 <p>直接在 <code>/etc/environment</code> 里加入这句然后重启即可</p>
 
         </div></article>
@@ -295,25 +322,6 @@
 <p>官方不建议直接给出 flag, 就不放 flag 了</p>
           <div class="read-more">
             <a href="/2018/07/hackme_inndy/" class="read-more-link">阅读更多</a>
-          </div>
-        </div></article>
-      <article class="post">
-    <header class="post-header">
-      <h1 class="post-title"><a class="post-link" href="/2018/07/arch_glibc_2.23/">在 Arch Linux 下使用 glibc 2.23 调试程序&使用 pwndbg</a>
-        </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2018-07-14
-        </span><span class="post-category">
-            <a href="/categories/linux/">linux</a>
-            </span>
-        </div>
-    </header>
-
-    <div class="post-content"><p>glibc 2.26开始, 引入了 tcache 技术. 使得对 UAF 漏洞的利用非常困难.<br>(更: 听 M4x 师傅说其实安全性下降了? <a href="http://tukan.farm/2017/07/08/tcache/" target="_blank" rel="noopener">thread local caching in glibc malloc</a>)</p>
-          <div class="read-more">
-            <a href="/2018/07/arch_glibc_2.23/" class="read-more-link">阅读更多</a>
           </div>
         </div></article>
       <nav class="pagination"><a class="prev" href="/">

@@ -130,59 +130,70 @@
     <div class="post-toc" id="post-toc">
     <h2 class="post-toc-title">文章目录</h2>
     <div class="post-toc-content">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#内核"><span class="toc-text">内核</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#nopti"><span class="toc-text">nopti</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#硬盘"><span class="toc-text">硬盘</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#SSD"><span class="toc-text">SSD</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#TRIM"><span class="toc-text">TRIM</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#调度器"><span class="toc-text">调度器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ext4-性能优化"><span class="toc-text">Ext4 性能优化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#禁止更新访问时间戳"><span class="toc-text">禁止更新访问时间戳</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#关闭屏障"><span class="toc-text">关闭屏障</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#禁用日志"><span class="toc-text">禁用日志</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#加速日志"><span class="toc-text">加速日志</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#fstab"><span class="toc-text">fstab</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#使用-LABEL"><span class="toc-text">使用 LABEL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自动挂载移动硬盘"><span class="toc-text">自动挂载移动硬盘</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自动挂载大分区"><span class="toc-text">自动挂载大分区</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#pacman"><span class="toc-text">pacman</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#pacman-conf"><span class="toc-text">pacman.conf</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#自动清理软件包缓存"><span class="toc-text">自动清理软件包缓存</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#makepkg"><span class="toc-text">makepkg</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#makepkg-conf"><span class="toc-text">.makepkg.conf</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#内核"><span class="toc-text">内核</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#nopti"><span class="toc-text">nopti</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#硬盘"><span class="toc-text">硬盘</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#ssd"><span class="toc-text">SSD</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#trim"><span class="toc-text">TRIM</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#调度器"><span class="toc-text">调度器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ext4-性能优化"><span class="toc-text">Ext4 性能优化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#禁止更新访问时间戳"><span class="toc-text">禁止更新访问时间戳</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#关闭屏障"><span class="toc-text">关闭屏障</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#禁用日志"><span class="toc-text">禁用日志</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#加速日志"><span class="toc-text">加速日志</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#fstab"><span class="toc-text">fstab</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#使用-label"><span class="toc-text">使用 LABEL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自动挂载移动硬盘"><span class="toc-text">自动挂载移动硬盘</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自动挂载大分区"><span class="toc-text">自动挂载大分区</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#pacman"><span class="toc-text">pacman</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#pacman-conf"><span class="toc-text">pacman.conf</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#自动清理软件包缓存"><span class="toc-text">自动清理软件包缓存</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#makepkg"><span class="toc-text">makepkg</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#makepkg-conf"><span class="toc-text">.makepkg.conf</span></a></li></ol></li></ol>
     </div>
   </div><div class="post-content"><p>发现无聊时刷 <a href="https://wiki.archlinux.org/" target="_blank" rel="noopener">Arch Wiki</a> 也挺有趣的, 记录一下自己干了啥吧. 毕竟有些配置没法放到 dotfiles 里. 记录一下以后翻起来也方便.</p>
 <a id="more"></a>
-
-<h1 id="内核"><a href="#内核" class="headerlink" title="内核"></a>内核</h1><h2 id="nopti"><a href="#nopti" class="headerlink" title="nopti"></a>nopti</h2><p>参考: <a href="https://bbs.archlinux.org/viewtopic.php?pid=1759527#p1759527" target="_blank" rel="noopener">Performance degradation after Meltdown mitigation?</a></p>
-<p>打开 <code>/etc/default/grub</code>, 给 <code>GRUB_CMDLINE_LINUX_DEFAULT</code>添加<code>nopti mitigations=off</code>参数, 禁用上次 intel Meltdown 漏洞的补丁. </p>
-<p>这个补丁实测严重影响<strong>系统调用</strong>性能, 大约下降 70%. 虽然实际上应该没啥程序会疯狂 syscall ….但我还是要关掉它!</p>
-<h1 id="硬盘"><a href="#硬盘" class="headerlink" title="硬盘"></a>硬盘</h1><h2 id="SSD"><a href="#SSD" class="headerlink" title="SSD"></a>SSD</h2><p>参考: <a href="https://wiki.archlinux.org/index.php/Solid_state_drive" target="_blank" rel="noopener">Solid state drive</a></p>
-<h3 id="TRIM"><a href="#TRIM" class="headerlink" title="TRIM"></a>TRIM</h3><p>通过 <code>hdparm -I /dev/sda | grep TRIM</code> 检验是否支持, 挂载参数添加 <code>discard</code> 以启用.</p>
-<h3 id="调度器"><a href="#调度器" class="headerlink" title="调度器"></a>调度器</h3><p>可以通过 <code>cat /sys/block/sda/queue/scheduler</code>查看当前调度器和可用调度器, 默认应该是 <code>bfq</code>.</p>
+<h1 id="内核"><a class="headerlink" href="#内核"></a>内核</h1>
+<h2 id="nopti"><a class="headerlink" href="#nopti"></a>nopti</h2>
+<p>参考: <a href="https://bbs.archlinux.org/viewtopic.php?pid=1759527#p1759527" target="_blank" rel="noopener">Performance degradation after Meltdown mitigation?</a></p>
+<p>打开 <code>/etc/default/grub</code>, 给 <code>GRUB_CMDLINE_LINUX_DEFAULT</code>添加<code>nopti mitigations=off</code>参数, 禁用上次 intel Meltdown 漏洞的补丁.</p>
+<p>这个补丁实测严重影响<strong>系统调用</strong>性能, 大约下降 70%. 虽然实际上应该没啥程序会疯狂 syscall ....但我还是要关掉它!</p>
+<h1 id="硬盘"><a class="headerlink" href="#硬盘"></a>硬盘</h1>
+<h2 id="ssd"><a class="headerlink" href="#ssd"></a>SSD</h2>
+<p>参考: <a href="https://wiki.archlinux.org/index.php/Solid_state_drive" target="_blank" rel="noopener">Solid state drive</a></p>
+<h3 id="trim"><a class="headerlink" href="#trim"></a>TRIM</h3>
+<p>通过 <code>hdparm -I /dev/sda | grep TRIM</code> 检验是否支持, 挂载参数添加 <code>discard</code> 以启用.</p>
+<h3 id="调度器"><a class="headerlink" href="#调度器"></a>调度器</h3>
+<p>可以通过 <code>cat /sys/block/sda/queue/scheduler</code>查看当前调度器和可用调度器, 默认应该是 <code>bfq</code>.</p>
 <p>据 wiki 所说, SSD 性能强劲, 因此简单的调度算法反而适合 SSD, 如 <code>noop</code>, <code>deadline</code></p>
 <p>往 <code>/etc/udev/rules.d/60-ioschedulers.rules</code> 里写入如下规则, 为 SSD 启用 <code>mq-deadline</code> 调度器</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ACTION==&quot;add|change&quot;, KERNEL==&quot;sd[a-z]|mmcblk[0-9]*|nvme[0-9]*&quot;, ATTR&#123;queue/rotational&#125;==&quot;0&quot;, ATTR&#123;queue/scheduler&#125;=&quot;mq-deadline&quot;</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="Ext4-性能优化"><a href="#Ext4-性能优化" class="headerlink" title="Ext4 性能优化"></a>Ext4 性能优化</h2><p>参考: <a href="https://wiki.archlinux.org/index.php/Ext4#Improving_performance" target="_blank" rel="noopener">Ext4#Improving_performance</a></p>
-<h3 id="禁止更新访问时间戳"><a href="#禁止更新访问时间戳" class="headerlink" title="禁止更新访问时间戳"></a>禁止更新访问时间戳</h3><p>想了想我似乎没有需要知道某个文件上次被访问是啥时候的需求, 于是 fstab 添加<code>noatime</code> 参数禁用之.</p>
-<p>如果有这个需求的话, 也可以用 <code>relatime</code>/<code>strictatime</code>搭配<code>lazytime</code>来减小写入硬盘的次数. 虽然系统崩溃时可能导致访问时间未更新, 不过这显然不是什么大事……</p>
-<h3 id="关闭屏障"><a href="#关闭屏障" class="headerlink" title="关闭屏障"></a>关闭屏障</h3><p>虽然没懂到底是什么鬼(保证写入的正确性?), 不过wiki上说有备用电源就可以安全关闭. </p>
+<h2 id="ext4-性能优化"><a class="headerlink" href="#ext4-性能优化"></a>Ext4 性能优化</h2>
+<p>参考: <a href="https://wiki.archlinux.org/index.php/Ext4#Improving_performance" target="_blank" rel="noopener">Ext4#Improving_performance</a></p>
+<h3 id="禁止更新访问时间戳"><a class="headerlink" href="#禁止更新访问时间戳"></a>禁止更新访问时间戳</h3>
+<p>想了想我似乎没有需要知道某个文件上次被访问是啥时候的需求, 于是 fstab 添加<code>noatime</code> 参数禁用之.</p>
+<p>如果有这个需求的话, 也可以用 <code>relatime</code>/<code>strictatime</code>搭配<code>lazytime</code>来减小写入硬盘的次数. 虽然系统崩溃时可能导致访问时间未更新, 不过这显然不是什么大事......</p>
+<h3 id="关闭屏障"><a class="headerlink" href="#关闭屏障"></a>关闭屏障</h3>
+<p>虽然没懂到底是什么鬼(保证写入的正确性?), 不过wiki上说有备用电源就可以安全关闭.</p>
 <p>笔记本, 不怕断电, 果断添加参数<code>barrier=0</code>禁用.</p>
-<h3 id="禁用日志"><a href="#禁用日志" class="headerlink" title="禁用日志"></a>禁用日志</h3><p>首先卸载磁盘, 然后 <code>tune2fs -O &quot;^has_journal&quot; /dev/sdXN</code></p>
-<p>以前关掉过, 后来想了想还是打开了…为了我能够安心地强制关机……</p>
-<h3 id="加速日志"><a href="#加速日志" class="headerlink" title="加速日志"></a>加速日志</h3><p>根据这篇文章, 最棒的方法应该是单独使用一个分区作为日志分区然后启用 <code>journal_async_commit</code>:<a href="https://raid6.com.au/posts/fs_ext4_external_journal/" target="_blank" rel="noopener">ext4: using external journal to optimise performance</a>. 速度最多能提升到原来的三倍, 妙啊妙啊!</p>
+<h3 id="禁用日志"><a class="headerlink" href="#禁用日志"></a>禁用日志</h3>
+<p>首先卸载磁盘, 然后 <code>tune2fs -O &quot;^has_journal&quot; /dev/sdXN</code></p>
+<p>以前关掉过, 后来想了想还是打开了...为了我能够安心地强制关机......</p>
+<h3 id="加速日志"><a class="headerlink" href="#加速日志"></a>加速日志</h3>
+<p>根据这篇文章, 最棒的方法应该是单独使用一个分区作为日志分区然后启用 <code>journal_async_commit</code>:<a href="https://raid6.com.au/posts/fs_ext4_external_journal/" target="_blank" rel="noopener">ext4: using external journal to optimise performance</a>. 速度最多能提升到原来的三倍, 妙啊妙啊!</p>
 <p>Mark 一下, 暂时不打算弄.</p>
-<h2 id="fstab"><a href="#fstab" class="headerlink" title="fstab"></a>fstab</h2><p>参考: <a href="https://wiki.archlinux.org/index.php/Fstab" target="_blank" rel="noopener">fstab</a></p>
-<h3 id="使用-LABEL"><a href="#使用-LABEL" class="headerlink" title="使用 LABEL"></a>使用 LABEL</h3><p>fstab 默认使用的是内核名称描述符(eg. /dev/sda1)来指示挂载设备. 这通常问题不大.</p>
+<h2 id="fstab"><a class="headerlink" href="#fstab"></a>fstab</h2>
+<p>参考: <a href="https://wiki.archlinux.org/index.php/Fstab" target="_blank" rel="noopener">fstab</a></p>
+<h3 id="使用-label"><a class="headerlink" href="#使用-label"></a>使用 LABEL</h3>
+<p>fstab 默认使用的是内核名称描述符(eg. /dev/sda1)来指示挂载设备. 这通常问题不大.</p>
 <p>然而当你加了一块硬盘(包括移动硬盘), 就可能会导致描述符的改变, 从而出现无法启动的状况. 到群里问了大佬们, 大佬们有推荐用 UUID, 有推荐用 LABEL 的. 个人感觉 LABEL 比较好懂 (</p>
 <p>创建 LABEL 的方法见: <a href="https://wiki.archlinux.org/index.php/Persistent_block_device_naming#by-label" target="_blank" rel="noopener">Persistent_block_device_naming#by-label</a></p>
 <p>以 ext4 为例, 使用 <code>e2label /dev/XXX &lt;label&gt;</code>创建 LABEL, 然后就可以在 fstab 里使用 <code>LABEL=xxx</code> 的方式来指示挂载设备了, 不用担心因为插拔硬盘导致奇怪的问题.</p>
-<h3 id="自动挂载移动硬盘"><a href="#自动挂载移动硬盘" class="headerlink" title="自动挂载移动硬盘"></a>自动挂载移动硬盘</h3><p>每次手动挂载很麻烦, 直接添加到 fstab 的话没插移动硬盘就会 error, 这时就要使用 <code>nofail</code> 参数, 像这样</p>
+<h3 id="自动挂载移动硬盘"><a class="headerlink" href="#自动挂载移动硬盘"></a>自动挂载移动硬盘</h3>
+<p>每次手动挂载很麻烦, 直接添加到 fstab 的话没插移动硬盘就会 error, 这时就要使用 <code>nofail</code> 参数, 像这样</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LABEL=backup    /mnt/backup     ext4    defaults,noatime,nofail         0 2</span><br></pre></td></tr></table></figure>
-
 <p>第一次用貌似会遇到无法写入的问题, 使用 <code>sudo chown -R $USER:$USER /mnt/backup</code> 更改一次所有权就行了</p>
-<h3 id="自动挂载大分区"><a href="#自动挂载大分区" class="headerlink" title="自动挂载大分区"></a>自动挂载大分区</h3><p>因为一直以来都以 Linux 作为主力系统. 然后觉得 ntfs-3g 实在不可靠……于是把原来 NTFS 的资料盘转成 ext4 了.</p>
+<h3 id="自动挂载大分区"><a class="headerlink" href="#自动挂载大分区"></a>自动挂载大分区</h3>
+<p>因为一直以来都以 Linux 作为主力系统. 然后觉得 ntfs-3g 实在不可靠......于是把原来 NTFS 的资料盘转成 ext4 了.</p>
 <p>不过资料盘用得比较少, 可以用 <code>noauto,x-systemd.automount</code> 参数使得在访问时才挂载</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LABEL=storage   /mnt/storage    ext4    defaults,noatime,noauto,x-systemd.automount             0 2</span><br></pre></td></tr></table></figure>
-
-<p>(第一次用还是需要 chown 好像….)</p>
-<h1 id="pacman"><a href="#pacman" class="headerlink" title="pacman"></a>pacman</h1><p>参考: <a href="https://wiki.archlinux.org/index.php/Pacman" target="_blank" rel="noopener">pacman</a></p>
-<h2 id="pacman-conf"><a href="#pacman-conf" class="headerlink" title="pacman.conf"></a>pacman.conf</h2><p><code># Misc options</code>开启 <code>Color</code> 和 <code>VerbosePkgLists</code></p>
+<p>(第一次用还是需要 chown 好像....)</p>
+<h1 id="pacman"><a class="headerlink" href="#pacman"></a>pacman</h1>
+<p>参考: <a href="https://wiki.archlinux.org/index.php/Pacman" target="_blank" rel="noopener">pacman</a></p>
+<h2 id="pacman-conf"><a class="headerlink" href="#pacman-conf"></a>pacman.conf</h2>
+<p><code># Misc options</code>开启 <code>Color</code> 和 <code>VerbosePkgLists</code></p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Misc options</span></span><br><span class="line"><span class="comment">#UseSyslog</span></span><br><span class="line">Color</span><br><span class="line"><span class="comment">#TotalDownload</span></span><br><span class="line">CheckSpace</span><br><span class="line">VerbosePkgLists</span><br></pre></td></tr></table></figure>
-
 <p>作用: pacman 彩色输出 &amp;&amp; 升级时使用三栏显示</p>
-<h2 id="自动清理软件包缓存"><a href="#自动清理软件包缓存" class="headerlink" title="自动清理软件包缓存"></a>自动清理软件包缓存</h2><p>创建 <code>/usr/share/libalpm/hooks/clean-cache.hook</code>, 内容如下</p>
+<h2 id="自动清理软件包缓存"><a class="headerlink" href="#自动清理软件包缓存"></a>自动清理软件包缓存</h2>
+<p>创建 <code>/usr/share/libalpm/hooks/clean-cache.hook</code>, 内容如下</p>
 <figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[Trigger]</span></span><br><span class="line"><span class="attr">Operation</span> = Remove</span><br><span class="line"><span class="attr">Operation</span> = Install</span><br><span class="line"><span class="attr">Operation</span> = Upgrade</span><br><span class="line"><span class="attr">Type</span> = Package</span><br><span class="line"><span class="attr">Target</span> = *</span><br><span class="line"></span><br><span class="line"><span class="section">[Action]</span></span><br><span class="line"><span class="attr">Description</span> = Cleaning up old packages...</span><br><span class="line"><span class="attr">When</span> = PostTransaction</span><br><span class="line"><span class="attr">Exec</span> = /usr/bin/paccache -rvk3</span><br></pre></td></tr></table></figure>
-
 <p>作用: 每次升级软件包后清理最近三次以前的软件包</p>
-<h1 id="makepkg"><a href="#makepkg" class="headerlink" title="makepkg"></a>makepkg</h1><p>参考: <a href="https://wiki.archlinux.org/index.php/Makepkg" target="_blank" rel="noopener">makepkg</a></p>
-<h2 id="makepkg-conf"><a href="#makepkg-conf" class="headerlink" title=".makepkg.conf"></a>.makepkg.conf</h2><p>新建 <code>~/.makepkg.conf</code>, 写入如下内容pacman</p>
+<h1 id="makepkg"><a class="headerlink" href="#makepkg"></a>makepkg</h1>
+<p>参考: <a href="https://wiki.archlinux.org/index.php/Makepkg" target="_blank" rel="noopener">makepkg</a></p>
+<h2 id="makepkg-conf"><a class="headerlink" href="#makepkg-conf"></a>.makepkg.conf</h2>
+<p>新建 <code>~/.makepkg.conf</code>, 写入如下内容pacman</p>
 <figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">CFLAGS</span>=<span class="string">"-march=native -O2 -pipe -fno-plt"</span></span><br><span class="line"><span class="attr">CXXFLAGS</span>=<span class="string">"-march=native -O2 -pipe -fno-plt"</span></span><br><span class="line"></span><br><span class="line"><span class="attr">MAKEFLAGS</span>=<span class="string">"-j$(nproc)"</span></span><br><span class="line"></span><br><span class="line"><span class="attr">BUILDENV</span>=(!distcc color ccache !check !sign)</span><br><span class="line"><span class="attr">BUILDDIR</span>=/tmp/makepkg</span><br><span class="line"></span><br><span class="line"><span class="attr">COMPRESSXZ</span>=(xz -c -z - --threads=<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
-
 <p>作用: 优化生成的二进制文件 &amp;&amp;  加快编译速度 &amp;&amp; 加快软件包生成速度</p>
 
       </div>
@@ -215,7 +226,8 @@
         <i class="iconfont icon-right"></i>
       </a>
     </nav></footer>
-    </article></div><div class="comments" id="comments"></div></div>
+    </article></div><div class="comments" id="comments"><div id="vcomments"></div>
+    </div></div>
       </main>
 
       <footer id="footer" class="footer"><div class="social-links"><a href="mailto:aloxafx@gmail.com" target="_blank" rel="noopener" class="iconfont icon-email" title="email"></a>
@@ -242,7 +254,22 @@
       <div class="back-to-top" id="back-to-top">
         <i class="iconfont icon-up"></i>
       </div>
-    </div><script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+    </div>
+<!-- valine Comments -->
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/xcss/valine@v1.1.7/dist/Valine.min.js"></script>
+<script type="text/javascript">
+    new Valine({
+        el: '#vcomments',
+        notify: false,
+        verify: true,
+        app_id: "fSbXaElXXTznggVXiWy8NFBU-gzGzoHsz",
+        app_key: "kK3SxB14xAACgHftKrSaBRDU",
+        placeholder: "妙啊，妙啊",
+        avatar: 'mm'
+    });
+</script>
+<script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
   <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
   <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/src/even.js?v=2.11.0"></script>

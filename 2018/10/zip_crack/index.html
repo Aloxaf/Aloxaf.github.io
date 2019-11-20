@@ -132,69 +132,64 @@
     <div class="post-toc-content">
       <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#简介"><span class="toc-text">简介</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#示例"><span class="toc-text">示例</span></a></li></ol>
     </div>
-  </div><div class="post-content"><p>这个国庆假期抽了点风……</p>
-<p>写了一个假期的代码……</p>
+  </div><div class="post-content"><p>这个国庆假期抽了点风......</p>
+<p>写了一个假期的代码......</p>
 <a id="more"></a>
-
-<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>前两天自己也不记得受了啥刺激写了个 <a href="https://github.com/Aloxaf/ren3/" target="_blank" rel="noopener">ren3</a>. </p>
+<h1 id="简介"><a class="headerlink" href="#简介"></a>简介</h1>
+<p>前两天自己也不记得受了啥刺激写了个 <a href="https://github.com/Aloxaf/ren3/" target="_blank" rel="noopener">ren3</a>.</p>
 <p>写完以后大概是处于亢奋状态, 突然又想开坑, 然后又花了四天完成了</p>
 <ul>
 <li><a href="https://github.com/Aloxaf/rbkcrack" target="_blank" rel="noopener">rbkcrack</a> fork 了 bkcrack, 然后用 Rust 重(zhao)写(chao), 再然后用 <code>zip-rs·改</code> 替换掉手写的 parser, 实现了对 ZIP64 的一定程度上的兼容, 再顺便加上解压. 实测成功破解了 20+GB 的zip文件.</li>
-<li><a href="https://github.com/Aloxaf/p7zip" target="_blank" rel="noopener">p7zip</a> 稍微改了一下计算秘钥的部分, 允许使用 <code>-p[key1_key2_key3]</code> 这种格式来直接指定三个 key.  (世界上最遥远的距离, 不是生与死, 而是我都拿到 keys 了,  却找不到工具解压……)</li>
+<li><a href="https://github.com/Aloxaf/p7zip" target="_blank" rel="noopener">p7zip</a> 稍微改了一下计算秘钥的部分, 允许使用 <code>-p[key1_key2_key3]</code> 这种格式来直接指定三个 key.  (世界上最遥远的距离, 不是生与死, 而是我都拿到 keys 了,  却找不到工具解压......)</li>
 </ul>
-<h1 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h1><p>就拿以前测试时出的一道题为例, 下载地址文末</p>
+<h1 id="示例"><a class="headerlink" href="#示例"></a>示例</h1>
+<p>就拿以前测试时出的一道题为例, 下载地址文末</p>
 <blockquote>
 <p>两个flag, 一个在flag.txt里, 一个在big_file开头</p>
 <p>big_file里的那个我自己也弄不出来, 就又加了一个flag.txt</p>
 <p>给了两个已知明文</p>
 <p>hashcat是一开始随手加进来的, libc是后来为了测试工具随手加进来的</p>
 <p>所以这里没有坑</p>
-<p>PS. 17位大小写数字混合密码, 不用试图爆破…</p>
+<p>PS. 17位大小写数字混合密码, 不用试图爆破...</p>
 </blockquote>
 <p>cipher.zip 里有4个文件, big_file 和 flag.txt 是等待破解的.</p>
-<p>其中 big_file 压缩前大小高达 4.8 GiB, 使得这个 ZIP 文件包含了 ZIP64 格式. </p>
+<p>其中 big_file 压缩前大小高达 4.8 GiB, 使得这个 ZIP 文件包含了 ZIP64 格式.</p>
 <blockquote>
-<p>这个地方没有说这个文件是 ZIP64 格式, 而是说它包含了 ZIP64 格式.<br>因为一个 ZIP 文件理论上是可以包含多种压缩算法&amp;格式(好像是这样的), 所以我们可以选择其中的原始 ZIP 格式进行破解.</p>
+<p>这个地方没有说这个文件是 ZIP64 格式, 而是说它包含了 ZIP64 格式.<br>
+因为一个 ZIP 文件理论上是可以包含多种压缩算法&amp;格式(好像是这样的), 所以我们可以选择其中的原始 ZIP 格式进行破解.</p>
 </blockquote>
-<p>然而面对这样的一个文件 pkcrack 和 AZPR 都会给出 <code>unknown signature</code> 一类的报错. 直接把路堵死了… </p>
+<p>然而面对这样的一个文件 pkcrack 和 AZPR 都会给出 <code>unknown signature</code> 一类的报错. 直接把路堵死了...</p>
 <blockquote>
 <p>其实 pkcrack 把报错代码注释掉就能跑了</p>
 </blockquote>
-<p>这个地方我们使用 rbkcrack. </p>
+<p>这个地方我们使用 rbkcrack.</p>
 <blockquote>
-<p>它的前身 bkcrack 其实也能爆破, 不过作者手写的 parser 完全没有考虑 ZIP64 格式, 在面对复杂文件时可能会跪…</p>
+<p>它的前身 bkcrack 其实也能爆破, 不过作者手写的 parser 完全没有考虑 ZIP64 格式, 在面对复杂文件时可能会跪...</p>
 </blockquote>
 <p>题目给了两个明文, libc 那个比较大, 爆破起来比较快. 于是执行如下命令开始攻击</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rbkcrack -c libc-2.23.so -p libc-2.23.so -C cipher.zip -P plain2.zip</span><br></pre></td></tr></table></figure>
-
 <p>只花费了五秒钟就得到了keys.</p>
 <blockquote>
 <p>2019.04.11 更新:</p>
-<p>rbkcrack 0.2.0 增加了自动根据 CRC32 寻找合适文件的功能,<br>于是上面的代码可以简写成 <code>rbkcrack -C cipher.zip -P plain2.zip -a</code></p>
-<p>PS. 这个功能最大的用处其实是对付某些 GBK 编码的 zip 文件…</p>
+<p>rbkcrack 0.2.0 增加了自动根据 CRC32 寻找合适文件的功能,<br>
+于是上面的代码可以简写成 <code>rbkcrack -C cipher.zip -P plain2.zip -a</code></p>
+<p>PS. 这个功能最大的用处其实是对付某些 GBK 编码的 zip 文件...</p>
 </blockquote>
-<p>PS. 重写完 bkcrack 后我拿一个文件测试了一下, 发现 Rust 版竟然比 C++ 版还快了 15%…… (改用 sort_unstabe 以后快了 25%……)</p>
+<p>PS. 重写完 bkcrack 后我拿一个文件测试了一下, 发现 Rust 版竟然比 C++ 版还快了 15%...... (改用 sort_unstabe 以后快了 25%......)</p>
 <blockquote>
 <p>2019.04.11 更新:</p>
 <p>现在一样快了</p>
 </blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Generated 4194304 Z values.</span><br><span class="line">[22:11:22] Z reduction using 4512917 extra bytes of known plaintext</span><br><span class="line">0.11 % (4855 / 4512917)</span><br><span class="line">240 values remaining.</span><br><span class="line">[22:11:26] Attack on 240 Z values at index 4509032</span><br><span class="line">5.00 % (12 / 240)</span><br><span class="line">[22:11:27] Keys</span><br><span class="line">d4f34b9d a6ba3461 dcd97451</span><br></pre></td></tr></table></figure>
-
-
-
-<p>得到 keys 以后直接使用如下代码可以从 cipher.zip 中解压 flag.txt.<br>(这个地方没有加 -u 开关, 因为 flag.txt 的压缩方式是 store)</p>
+<p>得到 keys 以后直接使用如下代码可以从 cipher.zip 中解压 flag.txt.<br>
+(这个地方没有加 -u 开关, 因为 flag.txt 的压缩方式是 store)</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rbkcrack -c flag.txt -C cipher.zip -k d4f34b9d a6ba3461 dcd97451 -d ./flag.txt</span><br></pre></td></tr></table></figure>
-
 <p>然后得到了第一个 flag: <code>flag{Th3Re_1s_Ano1h3r_f1ag_in_big_file}</code></p>
 <p>big_file 是实打实的压缩过的, 需要加上 -u 开关提取. 由于文件非常大, 而且我们只要前面的一部分, 所以当看到 big_file 大小差不多了就可以 Ctrl+C 了.</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rbkcrack -c big_file -C cipher.zip -k d4f34b9d a6ba3461 dcd97451 -d ./big_file -u</span><br></pre></td></tr></table></figure>
-
 <p>head 一下然后就得到了第二个 flag: <code>flag{Th1s_i3_A_tE5t}</code></p>
 <p>最后强行给 p7zip 一个出场机会, 虽然做题的时候不大可能用到, 但是真要用来干大事儿还是它靠谱.</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">7za e cipher.zip <span class="string">'-p[d4f34b9d_a6ba3461_dcd97451]'</span></span><br></pre></td></tr></table></figure>
-
-
-
 <p>下载地址: <a href="http://storage.aloxaf.cn/storage/fucking_problem.zip" target="_blank" rel="noopener nofollow">fucking_problem.zip</a></p>
 
       </div>
@@ -230,7 +225,8 @@
         <i class="iconfont icon-right"></i>
       </a>
     </nav></footer>
-    </article></div><div class="comments" id="comments"></div></div>
+    </article></div><div class="comments" id="comments"><div id="vcomments"></div>
+    </div></div>
       </main>
 
       <footer id="footer" class="footer"><div class="social-links"><a href="mailto:aloxafx@gmail.com" target="_blank" rel="noopener" class="iconfont icon-email" title="email"></a>
@@ -257,7 +253,22 @@
       <div class="back-to-top" id="back-to-top">
         <i class="iconfont icon-up"></i>
       </div>
-    </div><script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+    </div>
+<!-- valine Comments -->
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/xcss/valine@v1.1.7/dist/Valine.min.js"></script>
+<script type="text/javascript">
+    new Valine({
+        el: '#vcomments',
+        notify: false,
+        verify: true,
+        app_id: "fSbXaElXXTznggVXiWy8NFBU-gzGzoHsz",
+        app_key: "kK3SxB14xAACgHftKrSaBRDU",
+        placeholder: "妙啊，妙啊",
+        avatar: 'mm'
+    });
+</script>
+<script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
   <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
   <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/src/even.js?v=2.11.0"></script>

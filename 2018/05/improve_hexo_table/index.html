@@ -124,18 +124,16 @@
         </span></div>
     </header>
 
-    <div class="post-content"><p>总体是根据这篇文章来的<br><a href="http://ju.outofmemory.cn/entry/130935" target="_blank" rel="noopener">http://ju.outofmemory.cn/entry/130935</a></p>
+    <div class="post-content"><p>总体是根据这篇文章来的<br>
+<a href="http://ju.outofmemory.cn/entry/130935" target="_blank" rel="noopener">http://ju.outofmemory.cn/entry/130935</a></p>
 <a id="more"></a>
-
-<p>进入 themes/cafe/source/css/_partial<br>编辑article.styl, 将原来.article-entry下的table部分替换成如下代码</p>
+<p>进入 themes/cafe/source/css/_partial<br>
+编辑article.styl, 将原来.article-entry下的table部分替换成如下代码</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">table</span></span><br><span class="line">  <span class="selector-tag">border</span> 1<span class="selector-tag">px</span> <span class="selector-tag">solid</span> <span class="selector-tag">black</span></span><br><span class="line">  <span class="selector-tag">border-collapse</span> <span class="selector-tag">collapse</span></span><br><span class="line"><span class="selector-tag">th</span></span><br><span class="line">  <span class="selector-tag">border-collapse</span> <span class="selector-tag">collapse</span></span><br><span class="line"><span class="selector-tag">td</span></span><br><span class="line">  <span class="selector-tag">border-collapse</span> <span class="selector-tag">collapse</span></span><br><span class="line">  <span class="selector-tag">padding</span> 1<span class="selector-tag">px</span> 8<span class="selector-tag">px</span> 1<span class="selector-tag">px</span></span><br></pre></td></tr></table></figure>
-
 <p>编辑hightlight.styl, 在.hight.table下增加border 0px</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">table</span></span><br><span class="line">  <span class="selector-tag">margin</span>: 0</span><br><span class="line">  <span class="selector-tag">width</span>: <span class="selector-tag">auto</span></span><br><span class="line">  <span class="selector-tag">border</span> 0<span class="selector-tag">px</span></span><br><span class="line">  ...</span><br></pre></td></tr></table></figure>
-
 <p>顺便可以将字体一块儿改了</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.article-entry</span></span><br><span class="line">  <span class="selector-tag">pre</span>, <span class="selector-tag">code</span></span><br><span class="line">    <span class="selector-tag">font-family</span>: "<span class="selector-tag">Droid</span> <span class="selector-tag">Sans</span> <span class="selector-tag">Mono</span>", <span class="selector-tag">monospace</span>, <span class="selector-tag">font-mono</span>, <span class="selector-tag">Consolas</span>, "<span class="selector-tag">Source</span> <span class="selector-tag">Code</span> <span class="selector-tag">Pro</span>", "<span class="selector-tag">Microsoft</span> <span class="selector-tag">YaHei</span>"</span><br></pre></td></tr></table></figure>
-
 <p>进入 themes/cafe/source/css</p>
 <p>将下面代码注释掉</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.left</span>, <span class="selector-class">.alignleft</span></span><br><span class="line">  <span class="selector-tag">float</span>: <span class="selector-tag">left</span></span><br><span class="line"></span><br><span class="line"><span class="selector-class">.right</span>, <span class="selector-class">.alignright</span></span><br><span class="line">  <span class="selector-tag">float</span>: <span class="selector-tag">right</span></span><br></pre></td></tr></table></figure>
@@ -170,7 +168,8 @@
         <i class="iconfont icon-right"></i>
       </a>
     </nav></footer>
-    </article></div><div class="comments" id="comments"></div></div>
+    </article></div><div class="comments" id="comments"><div id="vcomments"></div>
+    </div></div>
       </main>
 
       <footer id="footer" class="footer"><div class="social-links"><a href="mailto:aloxafx@gmail.com" target="_blank" rel="noopener" class="iconfont icon-email" title="email"></a>
@@ -197,7 +196,22 @@
       <div class="back-to-top" id="back-to-top">
         <i class="iconfont icon-up"></i>
       </div>
-    </div><script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+    </div>
+<!-- valine Comments -->
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/xcss/valine@v1.1.7/dist/Valine.min.js"></script>
+<script type="text/javascript">
+    new Valine({
+        el: '#vcomments',
+        notify: false,
+        verify: true,
+        app_id: "fSbXaElXXTznggVXiWy8NFBU-gzGzoHsz",
+        app_key: "kK3SxB14xAACgHftKrSaBRDU",
+        placeholder: "妙啊，妙啊",
+        avatar: 'mm'
+    });
+</script>
+<script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
   <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
   <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/src/even.js?v=2.11.0"></script>

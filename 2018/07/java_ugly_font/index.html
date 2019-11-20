@@ -127,8 +127,10 @@
         </div>
     </header>
 
-    <div class="post-content"><p>好像很多 Java 程序都有这个毛病.<br>查了半天 Arch Wiki, 终于找到了: <a href="https://wiki.archlinux.org/index.php/Java_Runtime_Environment_fonts#Anti-aliasing" target="_blank" rel="noopener">Java Runtime Environment fonts</a></p>
-<p>解决方案: 设置环境变量 <code>_JAVA_OPTIONS=&#39;-Dawt.useSystemAAFontSettings=on&#39;</code><br>(这么重要的东西怎么还要手动开启??)</p>
+    <div class="post-content"><p>好像很多 Java 程序都有这个毛病.<br>
+查了半天 Arch Wiki, 终于找到了: <a href="https://wiki.archlinux.org/index.php/Java_Runtime_Environment_fonts#Anti-aliasing" target="_blank" rel="noopener">Java Runtime Environment fonts</a></p>
+<p>解决方案: 设置环境变量 <code>_JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on'</code><br>
+(这么重要的东西怎么还要手动开启??)</p>
 <p>直接在 <code>/etc/environment</code> 里加入这句然后重启即可</p>
 
       </div>
@@ -161,7 +163,8 @@
         <i class="iconfont icon-right"></i>
       </a>
     </nav></footer>
-    </article></div><div class="comments" id="comments"></div></div>
+    </article></div><div class="comments" id="comments"><div id="vcomments"></div>
+    </div></div>
       </main>
 
       <footer id="footer" class="footer"><div class="social-links"><a href="mailto:aloxafx@gmail.com" target="_blank" rel="noopener" class="iconfont icon-email" title="email"></a>
@@ -188,7 +191,22 @@
       <div class="back-to-top" id="back-to-top">
         <i class="iconfont icon-up"></i>
       </div>
-    </div><script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+    </div>
+<!-- valine Comments -->
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/xcss/valine@v1.1.7/dist/Valine.min.js"></script>
+<script type="text/javascript">
+    new Valine({
+        el: '#vcomments',
+        notify: false,
+        verify: true,
+        app_id: "fSbXaElXXTznggVXiWy8NFBU-gzGzoHsz",
+        app_key: "kK3SxB14xAACgHftKrSaBRDU",
+        placeholder: "妙啊，妙啊",
+        avatar: 'mm'
+    });
+</script>
+<script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
   <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
   <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/src/even.js?v=2.11.0"></script>

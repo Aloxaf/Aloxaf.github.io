@@ -115,6 +115,26 @@
         <div class="content-wrapper">
           <div id="content" class="content"><section id="posts" class="posts"><article class="post">
     <header class="post-header">
+      <h1 class="post-title"><a class="post-link" href="/2019/11/elegant_apis_in_rust/">【译】优雅的 Rust 库 API 设计</a>
+        </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2019-11-19
+        </span><span class="post-category">
+            <a href="/categories/%E8%AF%91%E6%96%87/">译文</a>
+            </span>
+        </div>
+    </header>
+
+    <div class="post-content"><p>一篇讲述 Rust API 设计原则的经典老文，虽然老但仍然值得阅读。前几天有事情把它从旮旯里翻出来了，虽然是经典老文但我估计很多人都没有读过，最近闲着没事干脆用我的辣鸡英语水平翻译一下，也算为 Rust 中文社区做一点贡献。</p>
+<p>原文见：<a href="https://deterministic.space/elegant-apis-in-rust.html#case-studies" target="_blank" rel="noopener">https://deterministic.space/elegant-apis-in-rust.html#case-studies</a></p>
+          <div class="read-more">
+            <a href="/2019/11/elegant_apis_in_rust/" class="read-more-link">阅读更多</a>
+          </div>
+        </div></article>
+      <article class="post">
+    <header class="post-header">
       <h1 class="post-title"><a class="post-link" href="/2019/11/zplugin_tutorial/">加速你的 zsh —— 最强 zsh 插件管理器 zplugin 教程</a>
         </h1>
 
@@ -127,13 +147,16 @@
         </div>
     </header>
 
-    <div class="post-content"><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><a href="https://github.com/zdharma/zplugin" target="_blank" rel="noopener">Zplugin</a> 是个冷门但是却强大无比的 zsh 插件管理器，它拥有一个 killer feature —— Turbo mode，可以让插件在后台加载。这意味这你可以先加载最重要的插件，比如语法高亮和自动建议，剩下的可以统统放到后台加载，让你的 zsh 尽快进入可用状态。</p>
+    <div class="post-content"><h1 id="前言"><a class="headerlink" href="#前言"></a>前言</h1>
+<p><a href="https://github.com/zdharma/zplugin" target="_blank" rel="noopener">Zplugin</a> 是个冷门但是却强大无比的 zsh 插件管理器，它拥有一个 killer feature —— Turbo mode，可以让插件在后台加载。这意味这你可以先加载最重要的插件，比如语法高亮和自动建议，剩下的可以统统放到后台加载，让你的 zsh 尽快进入可用状态。</p>
 <p>利用这个机制，zplugin 可以将 zsh 的启动时间缩短到几十毫秒——以我的配置为例，只需要 35 毫秒左右。而使用传统的插件管理器比如 antigen，需要近 200 毫秒才能加载完成。</p>
 <p>这里有一张图，对比了不同插件管理器的速度（来源：<a href="https://gist.github.com/laggardkernel/4a4c4986ccdcaf47b91e8227f9868ded" target="_blank" rel="noopener">Comparison of ZSH frameworks and plugin managers</a>）</p>
 <p><img src="https://raw.githubusercontent.com/vintersnow/zsh_plugin_manager_speed/master/result.png" alt=""></p>
-<p>可以看到 zplugin 在插件数目变多时速度……似乎更快了？？？<br>什么鬼，这个大概是实验误差吧，也有可能是第一次启动时编译了自身所以后面变快了。不过 zplugin 的速度是毋庸置疑的，哪怕这个插件需要数十秒来加载，只要放在后台加载，一样不影响你的 zsh 启动。</p>
+<p>可以看到 zplugin 在插件数目变多时速度……似乎更快了？？？<br>
+什么鬼，这个大概是实验误差吧，也有可能是第一次启动时编译了自身所以后面变快了。不过 zplugin 的速度是毋庸置疑的，哪怕这个插件需要数十秒来加载，只要放在后台加载，一样不影响你的 zsh 启动。</p>
 <p>然而！！这个工具虽然强大，却没多少名气，让人倍感惋惜。</p>
-<p>所以写下这篇文章，希望能有更多人了解到这个工具。<br>不过本文只涉及了它强大功能的冰山一角，深入研究推荐阅读 <a href="https://zdharma.org/zplugin/wiki/INTRODUCTION/" target="_blank" rel="noopener">Zplugin Wiki</a> 和 Zplugin 的 <a href="https://github.com/zdharma/zplugin/blob/master/README.md" target="_blank" rel="noopener">README</a></p>
+<p>所以写下这篇文章，希望能有更多人了解到这个工具。<br>
+不过本文只涉及了它强大功能的冰山一角，深入研究推荐阅读 <a href="https://zdharma.org/zplugin/wiki/INTRODUCTION/" target="_blank" rel="noopener">Zplugin Wiki</a> 和 Zplugin 的 <a href="https://github.com/zdharma/zplugin/blob/master/README.md" target="_blank" rel="noopener">README</a></p>
 <p>（如果你很懒不想研究的话，文末有一份完整的示例配置，安装完成后可以直接使用）</p>
           <div class="read-more">
             <a href="/2019/11/zplugin_tutorial/" class="read-more-link">阅读更多</a>
@@ -153,8 +176,10 @@
         </div>
     </header>
 
-    <div class="post-content"><h1 id="Emacs-keybings-Everywhere"><a href="#Emacs-keybings-Everywhere" class="headerlink" title="Emacs keybings Everywhere!"></a>Emacs keybings Everywhere!</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>xkeysnail 是一个非常强大的 keyboard remapping 工具, 它类似于 xmodmap, 但更为灵活. 不仅能重映射键位, 还能重映射快捷键, 甚至能在不同的程序下使用不同的映射!</p>
-<p>再也不用两套快捷键换来换去了!! ( 早点知道这个东西, 我就不至于练就一身无缝切换快捷键的毫无卵用的本领了…</p>
+    <div class="post-content"><h1 id="emacs-keybings-everywhere"><a class="headerlink" href="#emacs-keybings-everywhere"></a>Emacs keybings Everywhere!</h1>
+<h2 id="简介"><a class="headerlink" href="#简介"></a>简介</h2>
+<p>xkeysnail 是一个非常强大的 keyboard remapping 工具, 它类似于 xmodmap, 但更为灵活. 不仅能重映射键位, 还能重映射快捷键, 甚至能在不同的程序下使用不同的映射!</p>
+<p>再也不用两套快捷键换来换去了!! ( 早点知道这个东西, 我就不至于练就一身无缝切换快捷键的毫无卵用的本领了...</p>
 <p>项目地址: <a href="https://github.com/mooz/xkeysnail" target="_blank" rel="noopener">https://github.com/mooz/xkeysnail</a></p>
           <div class="read-more">
             <a href="/2019/11/xkeysnail_tutorial/" class="read-more-link">阅读更多</a>
@@ -213,8 +238,10 @@
 
     <div class="post-content"><p>JetBrains 家的 IDE 在 Linux 下会有一些奇怪的问题: 如字体很丑(没开抗锯齿一样), 字体过小(目测是 HiDPI 下的问题), 最近更新了一下 PyCharm 2019 又出现了这个问题, 解决问题以后记录一下方案, 造福广大 JetBrains 信徒</p>
 <p>长话短说——统统是 jre 的问题</p>
-<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>换用 IntelliJ patch 过的 jre</p>
-<h2 id="具体方法"><a href="#具体方法" class="headerlink" title="具体方法"></a>具体方法</h2><p>有很多, 因为我在用 Arch Linux 就用 Arch Linux 下比较方便的方法了:</p>
+<h2 id="解决方案"><a class="headerlink" href="#解决方案"></a>解决方案</h2>
+<p>换用 IntelliJ patch 过的 jre</p>
+<h2 id="具体方法"><a class="headerlink" href="#具体方法"></a>具体方法</h2>
+<p>有很多, 因为我在用 Arch Linux 就用 Arch Linux 下比较方便的方法了:</p>
 <ol>
 <li>安装 clion-jre (Archlinuxcn 源有二进制包) (从 AUR 安装 intellij-jdk 应该也行, 可能还更方便? 不过懒得试了, 因为我用 clion 时已经装了这个)</li>
 <li>如果是 clion 可以无视这条步骤.  <code>Esc-x</code>, 输入 <code>Switch Boot JDK</code>, 改用 <code>/opt/clion/jre64</code> ( 没有这个的话自己浏览路径选</li>
@@ -237,12 +264,14 @@
     </header>
 
     <div class="post-content"><p>为啥要折腾 Alacritty 呢, 因为 Konsole 有点小问题: <a href="https://bugs.kde.org/show_bug.cgi?id=401298" target="_blank" rel="noopener">https://bugs.kde.org/show_bug.cgi?id=401298</a> (不过这个问题已经 fix 了, 下个版本应该就没有了, 我大概又会滚回 Konsole, 毕竟有 blur 和 ligatures), 阻碍我使用棒棒的 <a href="https://github.com/Peltoche/lsd/issues/118" target="_blank" rel="noopener">lsd</a>.</p>
-<h2 id="问题表现"><a href="#问题表现" class="headerlink" title="问题表现"></a>问题表现</h2><p>具体表现为布局问题, 无视配置文件, 如</p>
+<h2 id="问题表现"><a class="headerlink" href="#问题表现"></a>问题表现</h2>
+<p>具体表现为布局问题, 无视配置文件, 如</p>
 <ul>
 <li>总是最大化窗口</li>
 <li>总是最大化高度</li>
 </ul>
-<h2 id="解决方案-临时"><a href="#解决方案-临时" class="headerlink" title="解决方案(临时)"></a>解决方案(临时)</h2><p>为 Alacritty 设置环境变量 <code>WINIT_HIDPI_FACTOR=1</code> </p>
+<h2 id="解决方案-临时"><a class="headerlink" href="#解决方案-临时"></a>解决方案(临时)</h2>
+<p>为 Alacritty 设置环境变量 <code>WINIT_HIDPI_FACTOR=1</code></p>
 <p>参考: <a href="https://github.com/tomaka/winit/issues/745" target="_blank" rel="noopener">tomaka/winit#745</a></p>
 
         </div></article>
@@ -262,7 +291,7 @@
 
     <div class="post-content"><blockquote>
 <p>我就是饿死, 死外面, 从外面跳下去, 也不会用 M$ 的垃圾 PowerShell !</p>
-<p>…</p>
+<p>...</p>
 <p>真香!</p>
 </blockquote>
 <p><strong>NOTE: 这是一篇黑 bash 吹 PowerShell(以下简称 pwsh) 的文章, bash 死忠粉以及软黑请退散.</strong></p>
@@ -308,32 +337,11 @@
 <p>比如</p>
 <ul>
 <li>搜狗, 字体跟随系统变成浅色, 背景没有变, 变成浅色背景+浅色字体, 亮瞎眼组合</li>
-<li>WPS 表格, 表格背景是黑的….究极の难看</li>
-<li>WPS 文字, 字体也变浅色了, 不仅亮瞎眼. 如果强行调成黑色的话, 在 Windows 上就会变亮瞎眼…</li>
+<li>WPS 表格, 表格背景是黑的....究极の难看</li>
+<li>WPS 文字, 字体也变浅色了, 不仅亮瞎眼. 如果强行调成黑色的话, 在 Windows 上就会变亮瞎眼...</li>
 </ul>
           <div class="read-more">
             <a href="/2018/11/kde_dark_theme/" class="read-more-link">阅读更多</a>
-          </div>
-        </div></article>
-      <article class="post">
-    <header class="post-header">
-      <h1 class="post-title"><a class="post-link" href="/2018/10/egg_pain_python/">如何在 Python3 中让 'a' is 'b' 为 True</a>
-        </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2018-10-28
-        </span><span class="post-category">
-            <a href="/categories/egg-pain/">egg_pain</a>
-            </span>
-        </div>
-    </header>
-
-    <div class="post-content"><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这是一篇闲蛋疼的文章, 讲述了闲蛋疼的我是如何<del>历经千辛万苦终于</del>在 Python 中让 <code>&#39;a&#39; is &#39;b&#39;</code> 得到 <code>True</code>.</p>
-<p><del>(虽然这件事情毫无意义)</del></p>
-<p><del>(不过拿来坑下一任或许是个好主意呢)</del></p>
-          <div class="read-more">
-            <a href="/2018/10/egg_pain_python/" class="read-more-link">阅读更多</a>
           </div>
         </div></article>
       <nav class="pagination"><a class="next" href="/page/2/">

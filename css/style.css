@@ -410,19 +410,19 @@ h2 {
   font-family: Athelas, STHeiti, Microsoft Yahei, serif; }
 
 h3 {
-  font-size: 20px;
+  font-size: 22px;
   font-family: Athelas, STHeiti, Microsoft Yahei, serif; }
 
 h4 {
-  font-size: 16px;
+  font-size: 20px;
   font-family: Athelas, STHeiti, Microsoft Yahei, serif; }
 
 h5 {
-  font-size: 14px;
+  font-size: 18px;
   font-family: Athelas, STHeiti, Microsoft Yahei, serif; }
 
 h6 {
-  font-size: 14px;
+  font-size: 16px;
   font-family: Athelas, STHeiti, Microsoft Yahei, serif; }
 
 .container {
@@ -523,7 +523,7 @@ h6 {
     .post .post-header .post-title {
       margin: 0;
       font-size: 27px;
-      font-weight: 400;
+      font-weight: 500;
       font-family: Athelas, STHeiti, Microsoft Yahei, serif; }
     .post .post-header .post-link {
       display: inline-block;
@@ -591,7 +591,7 @@ h6 {
       font-size: 14px; }
       .post .post-toc .post-toc-content .toc,
       .post .post-toc .post-toc-content .toc-child {
-        list-style: inside; }
+        list-style: initial; }
       .post .post-toc .post-toc-content .toc {
         margin: 10px 0;
         padding-left: 20px; }
@@ -607,22 +607,22 @@ h6 {
     .post .post-toc {
       display: none; } }
   .post .post-content h1 {
-    font-weight: 400;
+    font-weight: 550;
     font-family: Athelas, STHeiti, Microsoft Yahei, serif; }
   .post .post-content h2 {
-    font-weight: 400;
+    font-weight: 550;
     font-family: Athelas, STHeiti, Microsoft Yahei, serif; }
   .post .post-content h3 {
-    font-weight: 400;
+    font-weight: 550;
     font-family: Athelas, STHeiti, Microsoft Yahei, serif; }
   .post .post-content h4 {
-    font-weight: 400;
+    font-weight: 550;
     font-family: Athelas, STHeiti, Microsoft Yahei, serif; }
   .post .post-content h5 {
-    font-weight: 400;
+    font-weight: 550;
     font-family: Athelas, STHeiti, Microsoft Yahei, serif; }
   .post .post-content h6 {
-    font-weight: 400;
+    font-weight: 550;
     font-family: Athelas, STHeiti, Microsoft Yahei, serif; }
   .post .post-content .headerlink:hover {
     border-bottom: 0; }
@@ -636,8 +636,10 @@ h6 {
   .post .post-content ul {
     padding-left: 0;
     list-style: inside; }
-    .post .post-content ul li input[type="checkbox"] {
-      margin-right: 5px; }
+    .post .post-content ul li {
+      margin-left: 20px; }
+      .post .post-content ul li input[type="checkbox"] {
+        margin-right: 5px; }
   .post .post-content blockquote {
     margin: 2em 0;
     padding: 10px 20px;
@@ -663,10 +665,12 @@ h6 {
     border-spacing: 0;
     box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.125); }
     .post .post-content table thead {
-      background: #f8f5ec; }
+      background: #f4efe1; }
     .post .post-content table th, .post .post-content table td {
       padding: 5px 15px;
       border: 1px double #eee7d2; }
+    .post .post-content table tbody {
+      background: #f8f5ec; }
   .post .post-content code, .post .post-content pre {
     padding: 7px;
     font-size: 13px;
@@ -1020,6 +1024,13 @@ h6 {
       display: none; }
     .post .post-footer .post-nav .nav-mobile {
       display: inline; } }
+  .post .footnotes {
+    color: #666; }
+    .post .footnotes .footnote-backref {
+      font-family: "Fira Code", Consolas, Monaco, Menlo, Consolas, monospace; }
+
+.comments {
+  background: #f8f5ec; }
 
 .pagination {
   margin: 2em 0; }
