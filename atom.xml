@@ -75,9 +75,9 @@
     
       <category term="linux" scheme="https://www.aloxaf.com/tags/linux/"/>
     
-      <category term="教程" scheme="https://www.aloxaf.com/tags/%E6%95%99%E7%A8%8B/"/>
-    
       <category term="zsh" scheme="https://www.aloxaf.com/tags/zsh/"/>
+    
+      <category term="教程" scheme="https://www.aloxaf.com/tags/%E6%95%99%E7%A8%8B/"/>
     
   </entry>
   
@@ -558,19 +558,19 @@
       <category term="writeup" scheme="https://www.aloxaf.com/categories/writeup/"/>
     
     
-      <category term="pwn" scheme="https://www.aloxaf.com/tags/pwn/"/>
-    
       <category term="ctf" scheme="https://www.aloxaf.com/tags/ctf/"/>
     
       <category term="writeup" scheme="https://www.aloxaf.com/tags/writeup/"/>
     
       <category term="misc" scheme="https://www.aloxaf.com/tags/misc/"/>
     
+      <category term="pwn" scheme="https://www.aloxaf.com/tags/pwn/"/>
+    
+      <category term="web" scheme="https://www.aloxaf.com/tags/web/"/>
+    
       <category term="crypto" scheme="https://www.aloxaf.com/tags/crypto/"/>
     
       <category term="reverse" scheme="https://www.aloxaf.com/tags/reverse/"/>
-    
-      <category term="web" scheme="https://www.aloxaf.com/tags/web/"/>
     
   </entry>
   
