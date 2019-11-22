@@ -127,34 +127,513 @@
         </div>
     </header>
 
-    <div class="post-content"><p>体积狂魔の执念, 记录一下以免忘记.</p>
-<p>[2018.12.20] 今天测了一下发现体积大幅减小了, 回忆了一下也许是把内存分配器换成了系统自带的原因. 这也提醒了我要记录一下 Rust 版本</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">➤ rustc --version</span><br><span class="line">rustc 1.32.0-beta.2 (a01e4761a 2018-12-08)</span><br></pre></td></tr></table></figure>
+    <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#使用-release-构建"><span class="toc-text">使用 Release 构建</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#使用-strip"><span class="toc-text">使用 strip</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#调整优化等级"><span class="toc-text">调整优化等级</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#开启-lto"><span class="toc-text">开启 LTO</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#调整并行代码生成单元数量"><span class="toc-text">调整并行代码生成单元数量</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#panic-时立刻终止"><span class="toc-text">Panic 时立刻终止</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#最小化依赖"><span class="toc-text">最小化依赖</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#去除不必要的依赖"><span class="toc-text">去除不必要的依赖</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#禁用不必要的-feature"><span class="toc-text">禁用不必要的 feature</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#libstd-优化"><span class="toc-text">libstd 优化</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#移除-panic-相关字符串"><span class="toc-text">移除 panic 相关字符串</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#upx-压缩"><span class="toc-text">UPX 压缩</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#结尾"><span class="toc-text">结尾</span></a></li></ol>
+    </div>
+  </div><div class="post-content"><p>体积狂魔の执念，记录一下以免忘记。</p>
+<p><strong>2019-11-12 更新：</strong> 自这篇文章发表后已经过了一年，Rust 发生了许多变化，比如不再自带 Jemalloc 作为内存分配器。因此更新一下文章，参考了一个新项目 <a href="https://github.com/johnthagen/min-sized-rust" target="_blank" rel="noopener">min-sized-rust</a> 进行了更多的优化。</p>
 <a id="more"></a>
-<p>新建一个项目, 直接编译</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">▶ cargo new --bin hello</span><br><span class="line">     Created binary (application) `hello` project</span><br><span class="line">▶ cd hello</span><br><span class="line">▶ cargo build --release</span><br><span class="line">   Compiling hello v0.1.0 (file:///tmp/hello)</span><br><span class="line">    Finished release [optimized] target(s) in 0.45s</span><br><span class="line">▶ du -h target/release/hello </span><br><span class="line">2.3M    target/release/hello</span><br></pre></td></tr></table></figure>
-<p>一个 hello world 2.3M, 太大了. // 原来是 3.9M</p>
-<p>strip 一下.</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">▶ strip -s target/release/hello</span><br><span class="line">▶ du -h target/release/hello</span><br><span class="line">196K    target/release/hello</span><br></pre></td></tr></table></figure>
-<p>196K, 这个体积已经可以接受了, 不过我还是想知道还可以有多小. // 原来是 420K</p>
-<p>在Cargo.toml中添加</p>
-<figure class="highlight toml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[profile.release]</span></span><br><span class="line"><span class="attr">panic</span> = <span class="string">'abort'</span></span><br><span class="line"><span class="attr">lto</span> = <span class="literal">true</span></span><br><span class="line"><span class="attr">opt-level</span> = <span class="string">"z"</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">▶ cargo build --release &amp;&amp; strip -s target/release/hello &amp;&amp; du -h target/release/hello</span><br><span class="line">   Compiling hello v0.1.0 (file:///tmp/hello)</span><br><span class="line">    Finished release [optimized] target(s) in 1.73s</span><br><span class="line">164K    target/release/hello</span><br></pre></td></tr></table></figure>
-<p>164K, 再次进步. 不过这还不够! // 原来是 180K</p>
-<p><strong>超必杀技</strong>: 注释掉 panic 和 lto 两行, 然后使用动态链接.</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">▶ RUSTFLAGS='-C prefer-dynamic' cargo build --release </span><br><span class="line">   Compiling hello v0.1.0 (file:///tmp/hello)</span><br><span class="line">    Finished release [optimized] target(s) in 0.14s</span><br><span class="line">▶ du -h target/release/hello</span><br><span class="line">20K     target/release/hello</span><br><span class="line">▶ strip -s target/release/hello</span><br><span class="line">▶ du -h target/release/hello</span><br><span class="line">16K     target/release/hello</span><br></pre></td></tr></table></figure>
-<p>16K!! <strong>非常满意</strong>. <s>除了无法运行之外</s></p>
-<p>(可以看到链接了一个莫名其妙的 <a href="http://libstd-affa4edaee4ff43e.so" target="_blank" rel="noopener">libstd-affa4edaee4ff43e.so</a>)</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">▶ ldd target/release/hello</span><br><span class="line">        linux-vdso.so.1 (0x00007ffd6f4b4000)</span><br><span class="line">        libstd-affa4edaee4ff43e.so =&gt; not found</span><br><span class="line">        libc.so.6 =&gt; /usr/lib/libc.so.6 (0x00007f02e5e5a000)</span><br><span class="line">        /lib64/ld-linux-x86-64.so.2 =&gt; /usr/lib64/ld-linux-x86-64.so.2 (0x00007f02e6077000)</span><br></pre></td></tr></table></figure>
-<p>Google 了一下这个问题已经有人提出了 <a href="https://github.com/rust-lang/rust/issues/45601" target="_blank" rel="noopener">Avoid the <code>proc_macro</code> crate being dynamically linked.</a><br>
-也已经有人着手修复了 <a href="https://github.com/rust-lang/rust/pull/49219" target="_blank" rel="noopener">Decouple proc_macro from the rest of the compiler.</a></p>
-<p>坐等</p>
-<p>P.S. <code>-C</code>开关可供把玩的选项似乎很多啊, 比如 <code>-C target-cpu=native</code>提高程序本机运行速度</p>
-<p>[2018.12.20] 那个 PR 已经合并了, 然而问题还是没有解决...我又探究了一下, 发现我其实可以运行这个 bin</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">➤ LD_LIBRARY_PATH=~/.rustup/toolchains/beta-x86_64-unknown-linux-gnu/lib:. ./target/release/hello</span><br><span class="line">Hello, world!</span><br></pre></td></tr></table></figure>
-<p>这玩意儿原来是 runtime...我早该想到的orz</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">➤ du -h /home/aloxaf/.rustup/toolchains/beta-x86_64-unknown-linux-gnu/lib/libstd-affa4edaee4ff43e.so</span><br><span class="line">5.4M    /home/aloxaf/.rustup/toolchains/beta-x86_64-unknown-linux-gnu/lib/libstd-affa4edaee4ff43e.so</span><br></pre></td></tr></table></figure>
-<p>然后, 由于 Rust 还没有稳定的 ABI (<a href="https://github.com/rust-lang/rfcs/issues/600" target="_blank" rel="noopener">RFC#600</a>), 所以这个问题暂时还是无解状态. 如果有稳定 ABI 了, 咱就可以 <code>pacman -S rust-common</code> 啥的, 然后就可以享受超小体积的二进制了!</p>
+<p>首先记录一下编译器版本</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">❯ rustc --version</span><br><span class="line">rustc 1.41.0-nightly (5c5b8afd8 2019-11-16)</span><br></pre></td></tr></table></figure>
+<p>这次不再采用 Hello，world 作为演示了，因为本身就没多少代码参考意义不大，本文的目的不是探究一个 Rust 程序能做到多小，而是一个<strong>实际的</strong> Rust 项目可以优化到多小。</p>
+<p>翻了一下以前的项目，决定使用 <a href="https://github.com/Aloxaf/ren3/" target="_blank" rel="noopener">ren3</a> 作为优化对象：规模恰到好处，有足够的代码，又没有太多依赖。</p>
+<p><em>那么，开始我们的 Optimization 吧！</em></p>
+<h1 id="使用-release-构建"><a class="headerlink" href="#使用-release-构建"></a>使用 Release 构建</h1>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cargo build --release</span><br></pre></td></tr></table></figure>
+<p>最基本的优化体积方式之一，大家都懂的。Cargo 默认的编译模式是 dev ，该下没有进行任何优化，而且附带了大量调试信息。dev 模式下的程序别说几十兆，上百兆都是有可能的……</p>
+<table>
+<thead>
+<tr>
+<th>编译模式</th>
+<th>体积</th>
+<th>减少量</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dev</td>
+<td>26.5M</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>release</td>
+<td>4.70M</td>
+<td>17.7%</td>
+</tr>
+</tbody>
+</table>
+<p>可以看到 dev 和 release 两者差距非常大，没有特殊说明的话，后文就采用 release 模式下的 4.70M 作为基准来进行对比了</p>
+<h1 id="使用-strip"><a class="headerlink" href="#使用-strip"></a>使用 strip</h1>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">strip -s target/release/ren3</span><br></pre></td></tr></table></figure>
+<p>最基本的优化体积方式之二，可以去除（对正常运行）无用的符号信息</p>
+<table>
+<thead>
+<tr>
+<th>优化方式</th>
+<th>体积</th>
+<th>减少量</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>无</td>
+<td>4.70M</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>strip</td>
+<td>2.11M</td>
+<td>44.9%</td>
+</tr>
+</tbody>
+</table>
+<p>效果同样非常明显，直接减少了一半。</p>
+<h1 id="调整优化等级"><a class="headerlink" href="#调整优化等级"></a>调整优化等级</h1>
+<p><a href="https://doc.rust-lang.org/cargo/reference/manifest.html#the-profile-sections" target="_blank" rel="noopener">默认的 release 优化等级为 3</a>，这个等级下编译器会进行循环展开之类的操作以体积膨胀为代价提高程序运行速度。不过这次我们在优化体积，我们不需要以体积为代价的优化。因为我们调整优化等级为 <code>z</code>，意为最小二进制体积：</p>
+<figure class="highlight toml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[profile.release]</span></span><br><span class="line"><span class="attr">opt-level</span> = <span class="string">'z'</span></span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>优化方式</th>
+<th>体积</th>
+<th>变化</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>无</td>
+<td>4.70M</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>strip</td>
+<td>2.11M</td>
+<td>44.9%</td>
+</tr>
+<tr>
+<td><code>opt-level = 'z'</code></td>
+<td>4.84M</td>
+<td>103%</td>
+</tr>
+<tr>
+<td><code>opt-level = 'z'</code> + strip</td>
+<td>1.96M</td>
+<td>41.7%</td>
+</tr>
+</tbody>
+</table>
+<p>emmm 非常尴尬的是未 strip 时的体积竟然略有增加，不过 strip 后体积确实再次减少了一点点，聊胜于无吧。</p>
+<h1 id="开启-lto"><a class="headerlink" href="#开启-lto"></a>开启 LTO</h1>
+<p>LTO（Link Time Optimization），意为链接时优化。可以消除大量冗余代码，减小二进制体积——代价是更长的链接时间</p>
+<figure class="highlight toml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[profile.release]</span></span><br><span class="line"><span class="attr">lto</span> = <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>优化方式</th>
+<th>体积</th>
+<th>变化</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>无</td>
+<td>4.70M</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>strip</td>
+<td>2.11M</td>
+<td>44.9%</td>
+</tr>
+<tr>
+<td><code>opt-level = 'z'</code></td>
+<td>4.84M</td>
+<td>103%</td>
+</tr>
+<tr>
+<td><code>opt-level = 'z'</code> + strip</td>
+<td>1.96M</td>
+<td>41.7%</td>
+</tr>
+<tr>
+<td><code>opt-level = 'z'</code> + LTO</td>
+<td>2.79M</td>
+<td>59.4%</td>
+</tr>
+<tr>
+<td><code>opt-level = 'z'</code> + LTO + strip</td>
+<td>1.56M</td>
+<td>33.2%</td>
+</tr>
+</tbody>
+</table>
+<p>体积减小非常明显！</p>
+<h1 id="调整并行代码生成单元数量"><a class="headerlink" href="#调整并行代码生成单元数量"></a>调整并行代码生成单元数量</h1>
+<p>Cargo 默认会启用 16 个并行代码生成单元，对编译速度有提升，但是会妨碍某些优化的进行。我们限制到 1：</p>
+<figure class="highlight toml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[profile.release]</span></span><br><span class="line"><span class="attr">codegen-units</span> = <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>优化方式</th>
+<th>体积</th>
+<th>变化</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>无</td>
+<td>4.70M</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>strip</td>
+<td>2.11M</td>
+<td>44.9%</td>
+</tr>
+<tr>
+<td>前文步骤</td>
+<td>2.79M</td>
+<td>59.4%</td>
+</tr>
+<tr>
+<td>前文步骤 + strip</td>
+<td>1.56M</td>
+<td>33.2%</td>
+</tr>
+<tr>
+<td>前文步骤 + <code>codegen-units = 1</code></td>
+<td>2.62M</td>
+<td>55.7%</td>
+</tr>
+<tr>
+<td>前文步骤 + <code>codegen-units = 1</code> + strip</td>
+<td>1.49M</td>
+<td>31.7%</td>
+</tr>
+</tbody>
+</table>
+<h1 id="panic-时立刻终止"><a class="headerlink" href="#panic-时立刻终止"></a>Panic 时立刻终止</h1>
+<blockquote>
+<p><strong>前面的优化对程序的行为都不会产生任何影响，然而这个优化会。</strong></p>
+</blockquote>
+<p>众所周知，Rust 程序在 panic 时会生成栈回溯，方便定位问题。而这个 flag 会禁用这种行为——请自行权衡使用。</p>
+<figure class="highlight toml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[profile.release]</span></span><br><span class="line"><span class="attr">panic</span> = <span class="string">'abort'</span></span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>编译方式</th>
+<th>优化方式</th>
+<th>体积</th>
+<th>变化</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>release</td>
+<td>无</td>
+<td>4.70M</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>release</td>
+<td>strip</td>
+<td>2.11M</td>
+<td>44.9%</td>
+</tr>
+<tr>
+<td>release</td>
+<td>前文步骤</td>
+<td>2.62M</td>
+<td>55.7%</td>
+</tr>
+<tr>
+<td>release</td>
+<td>前文步骤 + strip</td>
+<td>1.49M</td>
+<td>31.7%</td>
+</tr>
+<tr>
+<td>release</td>
+<td>前文步骤 + <code>panic = 'abort'</code></td>
+<td>2.44M</td>
+<td>52.0%</td>
+</tr>
+<tr>
+<td>release</td>
+<td>前文步骤 + <code>panic = 'abort'</code> + strip</td>
+<td>1.40M</td>
+<td>29.8%</td>
+</tr>
+</tbody>
+</table>
+<p>又减小了一点点</p>
+<h1 id="最小化依赖"><a class="headerlink" href="#最小化依赖"></a>最小化依赖</h1>
+<blockquote>
+<p>上面的优化都是只用调整参数就能完成的优化，然而这个优化可能需要你改动源码<br>
+但是，如果做方法得当的话，这个可能会是<strong>效果最明显的方式</strong></p>
+</blockquote>
+<p>Rust 的中心化包管理系统用起来爽到不行，但是用外部库用起来太方便也带来了一个问题：一个小程序动不动就会带上上百个依赖……这体积怎么可能不大嘛</p>
+<p>所以最小化你的依赖也是一个减小体积的重要方式</p>
+<p>先看一下这个项目当前的依赖：</p>
+<figure class="highlight toml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[dependencies]</span></span><br><span class="line"><span class="attr">regex</span> = <span class="string">"1.3.1"</span></span><br><span class="line"><span class="attr">clap</span> = &#123; version = <span class="string">"2.33.0"</span>, features = [<span class="string">"yaml"</span>] &#125;</span><br><span class="line"><span class="attr">colored</span> = <span class="string">"1.9.0"</span></span><br></pre></td></tr></table></figure>
+<p>很少，只有三个，但是仍然有优化空间。</p>
+<h2 id="去除不必要的依赖"><a class="headerlink" href="#去除不必要的依赖"></a>去除不必要的依赖</h2>
+<p>首先使用命令 <code>cargo deps | dot -Tpng &gt; dep.png</code>，可以将当前依赖关系绘制成一张图。（需要用到 <a href="https://github.com/m-cat/cargo-deps" target="_blank" rel="noopener"><code>cargo-deps</code></a>和 <a href="https://graphviz.gitlab.io/download/" target="_blank" rel="noopener"><code>graphviz</code></a>）</p>
+<p><img src="http://storage.aloxaf.cn/storage/img/dep.png?v=1" alt=""></p>
+<p>这里面看起来最 “庞大” 的是 clap。</p>
+<p>不过这个图也未必准确，因为 Rust 拥有条件编译，这里列出的依赖并不一定会全部用到。比如 <code>winconsole</code> 就只会在 Windows 上被编译。所以我们还要使用另一个工具 <a href="https://github.com/RazrFalcon/cargo-bloat" target="_blank" rel="noopener"><code>cargo-bloat</code></a>（为了方便看出结果，这里没有启用前面的优化）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">❯ cargo bloat --release --crates</span><br><span class="line">...</span><br><span class="line">    Finished release [optimized] target(s) <span class="keyword">in</span> 1m 06s</span><br><span class="line">    Analyzing /home/aloxaf/.cache/cargo-build/release/ren3</span><br><span class="line"></span><br><span class="line"> File  .text     Size Crate</span><br><span class="line"> 7.3%  27.3% 351.7KiB clap</span><br><span class="line"> 4.8%  17.8% 229.2KiB regex</span><br><span class="line"> 4.7%  17.6% 226.4KiB regex_syntax</span><br><span class="line"> 4.1%  15.2% 195.3KiB std</span><br><span class="line"> 2.4%   9.1% 116.5KiB yaml_rust</span><br><span class="line"> 1.5%   5.5%  70.9KiB aho_corasick</span><br><span class="line"> 0.7%   2.8%  35.5KiB [Unknown]</span><br><span class="line"> 0.4%   1.4%  17.5KiB ren3</span><br><span class="line"> 0.2%   0.7%   8.8KiB colored</span><br><span class="line"> 0.1%   0.3%   3.6KiB thread_local</span><br><span class="line"> 0.1%   0.2%   3.2KiB ansi_term</span><br><span class="line"> 0.1%   0.2%   3.2KiB memchr</span><br><span class="line"> 0.0%   0.2%   2.4KiB strsim</span><br><span class="line"> 0.0%   0.1%   1.5KiB textwrap</span><br><span class="line"> 0.0%   0.0%      28B atty</span><br><span class="line">26.7% 100.0%   1.3MiB .text section size, the file size is 4.7MiB</span><br><span class="line"></span><br><span class="line">Note: numbers above are a result of guesswork. They are not 100% correct and never will be.</span><br></pre></td></tr></table></figure>
+<p>使用 cargo-bloat 查看各个 crate 所占体积，可以看到 clap 和 regex 加起来占了一半。</p>
+<p>考虑到这个工具的命令行参数并不复杂，并不需要使用 clap 这种庞大的命令行参数解析库。所以要做的首先就是将 clap 去掉，换成更基础的 <a href="https://crates.io/crates/getopts" target="_blank" rel="noopener">getopts</a>。</p>
+<p>换成 getopts 后再编译，体积再次小幅减小！</p>
+<table>
+<thead>
+<tr>
+<th>编译方式</th>
+<th>优化方式</th>
+<th>体积</th>
+<th>变化</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>release</td>
+<td>无</td>
+<td>4.70M</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>release</td>
+<td>前文步骤</td>
+<td>2.44M</td>
+<td>52.0%</td>
+</tr>
+<tr>
+<td>release</td>
+<td>前文步骤 + strip</td>
+<td>1.40M</td>
+<td>29.8%</td>
+</tr>
+<tr>
+<td>release</td>
+<td>前文步骤 + 去掉 clap</td>
+<td>1.96M</td>
+<td>41.8%</td>
+</tr>
+<tr>
+<td>release</td>
+<td>前文步骤 + 去掉 clap + strip</td>
+<td>1.06M</td>
+<td>22.6%</td>
+</tr>
+</tbody>
+</table>
+<h2 id="禁用不必要的-feature"><a class="headerlink" href="#禁用不必要的-feature"></a>禁用不必要的 feature</h2>
+<p>这是不少人都会忽略的一点，很多 crate 默认会启用不少 feature。有些功能可能你根本没有用到，却被引入了。（这也是 cargo-deps 存在的意义）</p>
+<p>如果这个 crate 是项目的直接依赖还好，可以在 Cargo.toml 里禁用不需要的 feature。就怕这个 crate 并不是项目的直接依赖。</p>
+<p>举一个例子，<a href="https://github.com/image-rs/imageproc/issues/344" target="_blank" rel="noopener">imageproc#344</a>：imageproc 依赖 image，并且没有禁用默认 feature，而 image 默认启用了对所有图片格式的支持。这就导致了任何使用了 imageproc 的项目都会附带一个开启了所有 feature 的 image。即使你在自己的 Cargo.toml 中禁用这些 feature 也无济于事，因为 feature 是取<strong>并集</strong>的。<br>
+如果你也遇到了这种情况建议给直接库作者提 issue 或者 PR。</p>
+<p>回到我们的项目中来，getopts 和 colored 都十分精简，没有多余的 feature，但 regex 还是有可优化之处的。阅读 regex 的<a href="https://github.com/rust-lang/regex/blob/master/Cargo.toml#L37-L105" target="_blank" rel="noopener">features 列表</a>，发现默认启用了 <code>[&quot;std&quot;, &quot;perf&quot;, &quot;unicode&quot;]</code></p>
+<ul>
+<li>std，暂且不谈，而且看描述这和 feature 目前对于 regex 来说是必需的</li>
+<li>perf，提供性能优化</li>
+<li>unicode，顾名思义，提供完整的 Unicode 支持比如 <code>\p{Letter}</code>、<code>\p{Emoji}</code></li>
+</ul>
+<p>作为一个简单的文件夹改名工具，并不会用到复杂的正则，也不需要匹配奇怪的 Unicode 字符。所以我们可以禁用这两个 feature</p>
+<figure class="highlight toml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[dependencies]</span></span><br><span class="line"><span class="attr">regex</span> = &#123; version = <span class="string">"1.3.1"</span>, default-features = <span class="literal">false</span>, features = [<span class="string">"std"</span>] &#125;</span><br></pre></td></tr></table></figure>
+<p>此时再编译</p>
+<table>
+<thead>
+<tr>
+<th>编译方式</th>
+<th>优化方式</th>
+<th>体积</th>
+<th>变化</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>release</td>
+<td>无</td>
+<td>4.70M</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>release</td>
+<td>前文步骤</td>
+<td>1.96M</td>
+<td>41.8%</td>
+</tr>
+<tr>
+<td>release</td>
+<td>前文步骤  + strip</td>
+<td>1.06M</td>
+<td>22.6%</td>
+</tr>
+<tr>
+<td>release</td>
+<td>前文步骤 + 禁用 feature</td>
+<td>1.26M</td>
+<td>26.8%</td>
+</tr>
+<tr>
+<td>release</td>
+<td>前文步骤 + 禁用 feature + strip</td>
+<td>0.42M</td>
+<td>8.94%</td>
+</tr>
+</tbody>
+</table>
+<p>巨大进步！strip 后的程序体积终于降低到了 KB 级别！！</p>
+<h1 id="libstd-优化"><a class="headerlink" href="#libstd-优化"></a>libstd 优化</h1>
+<blockquote>
+<p>终于要对 libstd 下手了</p>
+</blockquote>
+<p>Rust 的工具链自带了预编译的标准库（libstd)，这样开发者就不用在每次编译 Rust 程序的时候都编译一遍 libstd，而是直接把 libstd 静态链接进去就行。</p>
+<p>好处是很明显的，然而坏处也是很明显的：</p>
+<ol>
+<li>预编译的 libstd 着重优化速度而不是体积</li>
+<li>即使是 LTO 也无法移除 libstd 中的某些我们用不到的代码</li>
+</ol>
+<p>这时就轮到 <a href="https://github.com/japaric/xargo" target="_blank" rel="noopener">Xargo</a> 出场了——一个可以方便地为你的程序单独编译 libstd 的工具。</p>
+<p>在项目根目录下创建 <code>Xargo.toml</code>（不需要删掉原来的 <code>Cargo.toml</code>），写入：</p>
+<figure class="highlight toml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[dependencies]</span></span><br><span class="line"><span class="attr">std</span> = &#123; default-features = <span class="literal">false</span> &#125;</span><br></pre></td></tr></table></figure>
+<p>然后编译（target 请自行调整）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xargo build --target x86_64-unknown-linux-gnu --release</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>编译方式</th>
+<th>优化方式</th>
+<th>体积</th>
+<th>变化</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>release</td>
+<td>无</td>
+<td>4.70M</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>release</td>
+<td>前文步骤</td>
+<td>1.26M</td>
+<td>26.8%</td>
+</tr>
+<tr>
+<td>release</td>
+<td>前文步骤  + strip</td>
+<td>0.42M</td>
+<td>8.94%</td>
+</tr>
+<tr>
+<td>release</td>
+<td>前文步骤 + 裁剪 std</td>
+<td>378KB</td>
+<td>7.85%</td>
+</tr>
+<tr>
+<td>release</td>
+<td>前文步骤 + 裁剪 std  + strip</td>
+<td>266KB</td>
+<td>5.53%</td>
+</tr>
+</tbody>
+</table>
+<p>再次获得了不小的进步</p>
+<h2 id="移除-panic-相关字符串"><a class="headerlink" href="#移除-panic-相关字符串"></a>移除 <code>panic</code> 相关字符串</h2>
+<p>即使已经在 <code>Cargo.toml</code> 指定了 <code>panic = 'abort'</code>，<code>rustc</code> 默认还是会生成相关的格式化字符串。我们可以通过 feature <code>panic_immediate_abort</code> 来禁止这个行为</p>
+<figure class="highlight toml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[dependencies]</span></span><br><span class="line"><span class="attr">std</span> = &#123; default-features = <span class="literal">false</span>, features=[ <span class="string">"panic_immediate_abort"</span> ] &#125;</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>编译方式</th>
+<th>优化方式</th>
+<th>体积</th>
+<th>变化</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>release</td>
+<td>无</td>
+<td>4.70M</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>release</td>
+<td>前文步骤</td>
+<td>378KB</td>
+<td>7.85%</td>
+</tr>
+<tr>
+<td>release</td>
+<td>前文步骤 + strip</td>
+<td>266KB</td>
+<td>5.53%</td>
+</tr>
+<tr>
+<td>release</td>
+<td>前文步骤 + <code>panic_immediate_abort</code></td>
+<td>293KB</td>
+<td>6.09%</td>
+</tr>
+<tr>
+<td>release</td>
+<td>前文步骤 + <code>panic_immediate_abort</code>+ strip</td>
+<td>210KB</td>
+<td>4.36%</td>
+</tr>
+</tbody>
+</table>
+<p>再次进步了一点点</p>
+<h1 id="upx-压缩"><a class="headerlink" href="#upx-压缩"></a>UPX 压缩</h1>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">upx -9 target/x86_64-unknown-linux-gnu/release/ren3</span><br></pre></td></tr></table></figure>
+<p>都懂的 XD</p>
+<table>
+<thead>
+<tr>
+<th>编译方式</th>
+<th>优化方式</th>
+<th>体积</th>
+<th>变化</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>release</td>
+<td>无</td>
+<td>4.70M</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>release</td>
+<td>前文步骤</td>
+<td>293KB</td>
+<td>6.09%</td>
+</tr>
+<tr>
+<td>release</td>
+<td>前文步骤 + strip</td>
+<td>210KB</td>
+<td>4.36%</td>
+</tr>
+<tr>
+<td>release</td>
+<td>前文步骤 + strip + upx</td>
+<td>98.8KB</td>
+<td>2.06%</td>
+</tr>
+</tbody>
+</table>
+<p>体积再次大幅减小！</p>
+<h1 id="结尾"><a class="headerlink" href="#结尾"></a>结尾</h1>
+<p>从 4.70MB 到 98.8 KB，非常可以了。我已经没有遗憾了（</p>
+<p>虽然再往后还可以使用 <code>#![no_std]</code> 直接去除 libstd，不过这个限制太大，只有你使用的所有的 crate 都支持 nostd 时才能这样做，而且限制了大量 feature。一般只有嵌入式项目或者 wasm 项目中才会用到，而我想要的是对与大部分 Rust 项目来说都能使用的技巧，所以就不谈这个了。</p>
 
       </div>
       <div class="post-copyright">
@@ -226,7 +705,8 @@
         app_id: "fSbXaElXXTznggVXiWy8NFBU-gzGzoHsz",
         app_key: "kK3SxB14xAACgHftKrSaBRDU",
         placeholder: "妙啊，妙啊",
-        avatar: 'mm'
+        avatar: 'mm',
+        visitor: false,
     });
 </script>
 <script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
