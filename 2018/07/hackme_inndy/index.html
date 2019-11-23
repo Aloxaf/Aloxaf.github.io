@@ -13,7 +13,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
-<meta name="description" content="hackme.inndy 部分writeup"/><meta name="keywords" content="pwn, ctf, writeup, misc, web, crypto, reverse, Aloxaf's blog" /><link rel="alternate" href="/atom.xml" title="Aloxaf's blog"><link rel="shortcut icon" type="image/x-icon" href="/favicon.svg?v=2.11.0" />
+<meta name="description" content="hackme.inndy 部分writeup"/><meta name="keywords" content="ctf, writeup, pwn, misc, web, crypto, reverse, Aloxaf's blog" /><link rel="alternate" href="/atom.xml" title="Aloxaf's blog"><link rel="shortcut icon" type="image/x-icon" href="/favicon.svg?v=2.11.0" />
 <link rel="canonical" href="https://www.aloxaf.com/2018/07/hackme_inndy/"/>
 
 <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
@@ -125,7 +125,7 @@
             <a href="/categories/writeup/">writeup</a>
             </span>
         <span id="2018/07/hackme_inndy/" class="leancloud_visitors" data-flag-title="hackme.inndy 部分writeup">
-            <div class="leancloud-visitors-count" style="display: none;">0</div>
+            <i class="leancloud-visitors-count" style="display: none;">0</i>
           </span>
         </div>
     </header>
@@ -626,9 +626,9 @@ Tips: What is symmetric cipher?</p>
   </div>
       <footer class="post-footer">
         <div class="post-tags">
-            <a href="/tags/pwn/">pwn</a>
             <a href="/tags/ctf/">ctf</a>
             <a href="/tags/writeup/">writeup</a>
+            <a href="/tags/pwn/">pwn</a>
             <a href="/tags/misc/">misc</a>
             <a href="/tags/web/">web</a>
             <a href="/tags/crypto/">crypto</a>
@@ -676,11 +676,11 @@ Tips: What is symmetric cipher?</p>
       </div>
     </div>
 <!-- valine Comments -->
-<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-<script src="//cdn.jsdelivr.net/gh/xcss/valine@v1.3.10/dist/Valine.min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
 <script type="text/javascript">
     new Valine({
         el: '#vcomments',
+        serverURLs: "https://lcd.aloxaf.cn,",
         notify: false,
         verify: false,
         app_id: "fSbXaElXXTznggVXiWy8NFBU-gzGzoHsz",
