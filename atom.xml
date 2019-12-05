@@ -165,9 +165,9 @@
     <link href="https://www.aloxaf.com/2019/04/fxxk_jetbrains_font_linux/"/>
     <id>https://www.aloxaf.com/2019/04/fxxk_jetbrains_font_linux/</id>
     <published>2019-04-03T09:44:44.000Z</published>
-    <updated>2018-04-03T09:44:44.000Z</updated>
+    <updated>2019-12-05T04:00:00.000Z</updated>
     
-    <content type="html"><![CDATA[<p>JetBrains 家的 IDE 在 Linux 下会有一些奇怪的问题: 如字体很丑(没开抗锯齿一样), 字体过小(目测是 HiDPI 下的问题), 最近更新了一下 PyCharm 2019 又出现了这个问题, 解决问题以后记录一下方案, 造福广大 JetBrains 信徒</p><p>长话短说——统统是 jre 的问题</p><h2 id="解决方案"><a class="headerlink" href="#解决方案"></a>解决方案</h2><p>换用 IntelliJ patch 过的 jre</p><h2 id="具体方法"><a class="headerlink" href="#具体方法"></a>具体方法</h2><p>有很多, 因为我在用 Arch Linux 就用 Arch Linux 下比较方便的方法了:</p><ol><li>安装 clion-jre (Archlinuxcn 源有二进制包) (从 AUR 安装 intellij-jdk 应该也行, 可能还更方便? 不过懒得试了, 因为我用 clion 时已经装了这个)</li><li>如果是 clion 可以无视这条步骤.  <code>Esc-x</code>, 输入 <code>Switch Boot JDK</code>, 改用 <code>/opt/clion/jre64</code> ( 没有这个的话自己浏览路径选</li><li>没了, 重新启动你的 IDE, 问题应该解决了</li></ol>]]></content>
+    <content type="html"><![CDATA[<p>JetBrains 家的 IDE 在 Linux 下会有一些奇怪的问题: 如字体很丑(没开抗锯齿一样), 字体过小(目测是 HiDPI 下的问题), 最近更新了一下 PyCharm 2019 又出现了这个问题, 解决问题以后记录一下方案, 造福广大 JetBrains 信徒</p><p>长话短说——统统是 jre 的问题</p><h2 id="解决方案"><a class="headerlink" href="#解决方案"></a>解决方案</h2><p>换用 IntelliJ patch 过的 jre</p><h2 id="具体方法"><a class="headerlink" href="#具体方法"></a>具体方法</h2><p>有很多, 因为我在用 Arch Linux 就用 Arch Linux 下比较方便的方法了:</p><ol><li>安装 clion-jre (Archlinuxcn 源有二进制包) (从 AUR 安装 intellij-jdk 应该也行, 可能还更方便? 不过懒得试了, 因为我用 clion 时已经装了这个)</li><li>如果是 clion 可以无视这条步骤.  <code>Esc-x</code>, 输入 <code>Switch Boot JDK</code>, 改用 <code>/opt/clion/jre64</code> ( 没有这个的话自己浏览路径选</li><li>没了, 重新启动你的 IDE, 问题应该解决了</li></ol><p>注：2019.1 版本以后，如果需要更换 JDK 需要安装 <a href="https://plugins.jetbrains.com/plugin/12836-choose-runtime" target="_blank" rel="noopener">Choose Runtime</a> 插件，然后使用 Choose Runtime 来更换 Runtime。</p>]]></content>
     
     <summary type="html">
     
@@ -425,9 +425,9 @@
     
       <category term="misc" scheme="https://www.aloxaf.com/tags/misc/"/>
     
-      <category term="rust" scheme="https://www.aloxaf.com/tags/rust/"/>
-    
       <category term="zip" scheme="https://www.aloxaf.com/tags/zip/"/>
+    
+      <category term="rust" scheme="https://www.aloxaf.com/tags/rust/"/>
     
   </entry>
   
@@ -561,9 +561,9 @@
     
       <category term="writeup" scheme="https://www.aloxaf.com/tags/writeup/"/>
     
-      <category term="misc" scheme="https://www.aloxaf.com/tags/misc/"/>
-    
       <category term="pwn" scheme="https://www.aloxaf.com/tags/pwn/"/>
+    
+      <category term="misc" scheme="https://www.aloxaf.com/tags/misc/"/>
     
       <category term="web" scheme="https://www.aloxaf.com/tags/web/"/>
     
