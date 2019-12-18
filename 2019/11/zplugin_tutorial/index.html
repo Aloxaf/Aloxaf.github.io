@@ -144,8 +144,9 @@
 什么鬼，这个大概是实验误差吧，也有可能是第一次启动时编译了自身所以后面变快了。不过 zplugin 的速度是毋庸置疑的，哪怕这个插件需要数十秒来加载，只要放在后台加载，一样不影响你的 zsh 启动。</p>
 <p>然而！！这个工具虽然强大，却没多少名气，让人倍感惋惜。</p>
 <p>所以写下这篇文章，希望能有更多人了解到这个工具。<br>
-不过本文只涉及了它强大功能的冰山一角，深入研究推荐阅读 <a href="https://zdharma.org/zplugin/wiki/INTRODUCTION/" target="_blank" rel="noopener">Zplugin Wiki</a> 和 Zplugin 的 <a href="https://github.com/zdharma/zplugin/blob/master/README.md" target="_blank" rel="noopener">README</a></p>
-<p>（如果你很懒不想研究的话，文末有一份完整的示例配置，安装完成后可以直接使用）</p>
+不过本文只涉及了它强大功能的冰山一角，深入研究推荐阅读 <a href="https://zdharma.org/zplugin/wiki/INTRODUCTION/" target="_blank" rel="noopener">Zplugin Wiki</a> 和 Zplugin 的 <a href="https://github.com/zdharma/zplugin/blob/master/README.md" target="_blank" rel="noopener">README</a>。</p>
+<p>（虽然说是冰山一角，本文的内容也足以覆盖绝大多数情况了）</p>
+<p>（如果你很懒不想研究的话，文末还有一份完整的示例配置，安装完成后可以直接使用）</p>
 <a id="more"></a>
 <h1 id="安装"><a class="headerlink" href="#安装"></a>安装</h1>
 <h2 id="自动安装"><a class="headerlink" href="#自动安装"></a>自动安装</h2>
@@ -161,9 +162,9 @@
 <blockquote>
 <p>我本打算从头写一篇教程，但是感觉自己要么讲得太多了，要么又讲得太少了。干脆直接翻译一下文档的 Introduction 部分吧（</p>
 </blockquote>
-<p>在本篇文档中，你将会学会如何：</p>
+<p>在本篇文档中，你将学会如何：</p>
 <ul>
-<li>使用 Oh My Zsh 和 Prezto</li>
+<li>在 Zplugin 中使用 Oh My Zsh 和 Prezto 框架</li>
 <li>管理补全</li>
 <li>使用 Turbo mode</li>
 <li>使用 ice 修饰词比如 <code>as&quot;program&quot;</code></li>
@@ -173,8 +174,8 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">zplugin load zdharma/<span class="built_in">history</span>-search-multi-word</span><br><span class="line">zplugin light zsh-users/zsh-syntax-highlighting</span><br></pre></td></tr></table></figure>
 <p>以上命令展示了两种最基本的加载插件的方式。</p>
 <ul>
-<li><code>load</code> 会启用报告功能——你可以通过 <code>zplugin report {plugin-spec}</code> 跟踪插件具体做了什么，也可以使用 <code>zplugin unload {plugin-spec}</code> 卸载插件。</li>
-<li><code>light</code>无需跟踪和报告，可以提升加载速度，但是会导致失去查看插件报告和动态卸载插件的能力。</li>
+<li><code>load</code> 会启用分析功能——你可以通过 <code>zplugin report {plugin-spec}</code> 跟踪插件具体做了什么，也可以使用 <code>zplugin unload {plugin-spec}</code> 卸载插件。</li>
+<li><code>light</code>不会跟踪加载过程，可以提升加载速度，但是会导致失去查看插件报告和动态卸载插件的能力。</li>
 </ul>
 <blockquote>
 <p>开启 Turbo mode 后跟踪插件所耗费的时间可以忽略不计</p>
@@ -189,7 +190,7 @@
 <h2 id="代码片段和性能"><a class="headerlink" href="#代码片段和性能"></a>代码片段和性能</h2>
 <p>通过 <code>curl</code>，<code>wget</code> 等工具和 SVN ，你可以几乎完全避免加载 Oh My Zsh 和 Prezto 或者是其他框架的代码。这可以提高 <code>Zplugin</code> 的性能，而且更快更紧凑（指占用内存更小并且加载时间更短）。</p>
 <h2 id="一些-ice-修饰词"><a class="headerlink" href="#一些-ice-修饰词"></a>一些 Ice 修饰词</h2>
-<p>命令 <code>zplugin ice</code> 为下一条命令提供了 Ice 修饰词（详见 README <a href="https://github.com/zdharma/zplugin#ice-modifiers" target="_blank" rel="noopener">ice-modifiers</a> 一节）。啥意思呢：“ice” 是指一些被添加物（就像被添加到饮料或者咖啡里面的冰块）——在 Zplugin 中这意味着 ice 是被添加到下一条命令中的修饰词，冰块会融化（所以不会持续起作用）——在 Zplugin 中这意味着修饰词只对下一条命令起效。举例来说使用 <code>pick</code> ice 可以显示地选择被执行的文件：（译注：绕半天，其实就是可选参数）</p>
+<p>命令 <code>zplugin ice</code> 为下一条命令提供了 Ice 修饰词（详见 README <a href="https://github.com/zdharma/zplugin#ice-modifiers" target="_blank" rel="noopener">ice-modifiers</a> 一节）。啥意思呢：“ice” 是指一些被添加物（就像被添加到饮料或者咖啡里面的冰块）——在 Zplugin 中这意味着 ice 是被添加到下一条命令中的修饰词，冰块会融化（所以不会持续起作用）——在 Zplugin 中这意味着修饰词只对下一条命令起效。举例来说使用 <code>pick</code> ice 可以显示地选择被执行的文件：（译注：绕半天，其实就是一种实现可选参数的方法）</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">zplugin ice svn pick<span class="string">"init.zsh"</span></span><br><span class="line">zplugin snippet PZT::modules/git</span><br></pre></td></tr></table></figure>
 <p>ice 修饰词的内容可以简单地放在 <code>&quot;...&quot;</code>, <code>'...'</code> 或 <code>$'...'</code> 中。不需要在 ice 修饰词名称的后面加上 <code>&quot;:&quot;</code> （尽管你这么做也没问题，而且加 <code>=</code> 也是可以的。比如 <code>pick=&quot;init.zsh&quot;</code> 或 <code>pick=init.zsh</code> 都是可行的）。<br>
 这样可以让 <code>vim</code>，<code>emacs</code> 之类的编辑器和 <code>zsh-users/zsh-syntax-highlighting</code> 或 <code>zdharma/fast-syntax-highlighting</code> 能够高亮 ice 修饰词的内容。</p>
@@ -198,7 +199,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">zplugin ice as<span class="string">"program"</span> cp<span class="string">"httpstat.sh -&gt; httpstat"</span> pick<span class="string">"httpstat"</span></span><br><span class="line">zplugin light b4b4r07/httpstat</span><br></pre></td></tr></table></figure>
 <p>上面的代码会将插件目录添加到 <code>$PATH</code> 中，并复制文件 <code>httpstat.sh</code> 为 <code>httpstat</code> ，并为 <code>pick</code> 选中的文件（本例中为 <code>httpstat</code>） 添加正确的可执行权限（<code>+x</code>）。还有一个修饰词 <code>mv</code>，它和 <code>cp</code> 的工作方式类似，只不过是移动文件而不是复制。<code>mv</code>的优先级比<code>cp</code>低。</p>
 <blockquote>
-<p><code>cp</code> 和 <code>mv</code> ice （还有其它的比如 <code>atclone</code>）只会在插件(或代码片段)被安装的时候运行。要想再次运行它们的话需要先使用 <code>zplugin delete PZT::modules/osx</code> 这类命令来删除插件）</p>
+<p><code>cp</code> 和 <code>mv</code> ice （还有其它的比如 <code>atclone</code>）只会在插件（或代码片段）被安装的时候运行。要想再次运行它们的话需要先使用 <code>zplugin delete PZT::modules/osx</code> 这类命令来删除插件）</p>
 </blockquote>
 <h2 id="atpull"><a class="headerlink" href="#atpull"></a>atpull&quot;...&quot;</h2>
 <p>复制文件相比移动来说是个更佳选择，它便于进行后续更新——因为 repo 中的原始文件并不会被修改，所以 <code>git</code> 不会报告冲突。不过，要想使用 <code>mv</code> 也是可以的，只要你正确使用了 <code>atpull</code> （一个在插件更新（update）的时候被调用的 ice）：</p>
@@ -248,7 +249,7 @@
 </blockquote>
 <p>这个功能需要 Zsh 5.3 及以上版本。为了使用 Turbo mode，可以参照以下方式为你的插件添加 <code>wait</code> ice：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">PS1=<span class="string">"READY &gt; "</span></span><br><span class="line">zplugin ice <span class="built_in">wait</span><span class="string">'!0'</span> </span><br><span class="line">zplugin load halfo/lambda-mod-zsh-theme</span><br></pre></td></tr></table></figure>
-<p>上面的代码让 <code>psprint/zprompts</code> 插件在 <code>zshrc</code> 处理完毕后的 <code>0</code> 秒后启动。它会在基本的命令提示符 <code>READY &gt;</code> 出现后的大概 1ms 后启动。我已经使用这种方式来设置我的命令提示符两年多了，没有丝毫问题。 只提供 <code>wait</code> 一个词也是可以的，它的效果等同于 <code>wait'0'</code>（同样 <code>wait'!'</code>等同于 <code>wait'!0'</code>）</p>
+<p>上面的代码让 <code>psprint/zprompts</code> 插件在 <code>zshrc</code> 处理完毕后的 <code>0</code> 秒后启动。实际它会在基本的命令提示符 <code>READY &gt;</code> 出现后的大概 1ms 后启动。我已经使用这种方式来设置我的命令提示符两年多了，没有丝毫问题。 只提供 <code>wait</code> 一个词也是可以的，它的效果等同于 <code>wait'0'</code>（同样 <code>wait'!'</code>等同于 <code>wait'!0'</code>）</p>
 <p>感叹号让 Zplugin 在插件加载完毕后重设命令提示符，对于延迟加载主题来说是很有必要的。Prezto 主题也是一样，下面的例子使用了更长的延迟</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">zplg ice svn silent <span class="built_in">wait</span><span class="string">'!1'</span> atload<span class="string">'prompt smiley'</span></span><br><span class="line">zplg snippet PZT::modules/prompt</span><br></pre></td></tr></table></figure>
 <p>延迟加载 <code>zsh-users/zsh-autosuggestions</code></p>
@@ -290,7 +291,7 @@
 <p>有不少 zsh 用户都嫌弃 Oh My Zsh（以下简称 OMZ），主要嫌弃它的速度太慢。（还有很蛋疼的一点就是想找点 zsh 语法的教程看看，结果搜索结果清一色的 OMZ 配置教程，只有<a href="https://github.com/goreliu/zshguide" target="_blank" rel="noopener">一篇文章</a>是在讲 zsh 本身的。行吧，我去 RTFM 了。）</p>
 <p>这个慢主要体现在三点：</p>
 <h2 id="1-粘贴代码太慢"><a class="headerlink" href="#1-粘贴代码太慢"></a>1. 粘贴代码太慢</h2>
-<p>这个确实没得洗，OMZ 默认启用了一个非常烦人的自动 URL 转义的功能。这个功能会<strong>极大</strong>拖慢粘贴的速度，而且这个功能在长达数年的时间里都是<strong>无法被除了修改源码以外的方式</strong>关闭的(<a href="https://github.com/robbyrussell/oh-my-zsh/issues/5569" target="_blank" rel="noopener">oh-my-zsh#5569</a>)，直到今年五月份才终于加入了一个用于控制这个功能开关的变量，然而似乎还是默认开启的。这个功能不知道劝退了多少 OMZ 的用户……</p>
+<p>这个确实没得洗，OMZ 默认启用了一个非常烦人的自动 URL 转义的功能。这个功能会<strong>极大</strong>拖慢粘贴的速度，而且这个功能在长达数年的时间里都是<strong>无法被除了修改源码以外的方式</strong>关闭的（<a href="https://github.com/robbyrussell/oh-my-zsh/issues/5569" target="_blank" rel="noopener">oh-my-zsh#5569</a>），直到今年五月份才终于加入了一个用于控制这个功能开关的变量，然而似乎还是默认开启的。这个功能不知道劝退了多少 OMZ 的用户……</p>
 <p>总之，如果你是 OMZ 的忠实粉丝，看完本文后依然坚持使用 OMZ，建议立即更新并使用 <code>DISABLE_MAGIC_FUNCTIONS=true</code> 关闭这个功能。</p>
 <h2 id="2-命令提示符响应太慢"><a class="headerlink" href="#2-命令提示符响应太慢"></a>2. 命令提示符响应太慢</h2>
 <p>这个其实是可以洗的——你别选那么花哨的主题就行了啊。</p>
@@ -302,7 +303,7 @@
 <p>答案是可以！一个著名主题 <a href="https://github.com/sindresorhus/pure" target="_blank" rel="noopener">Pure</a> 就是这么做的，兼顾了美观与实用性，即使再大的 repo 也能够秒进。</p>
 <h2 id="3-启动速度太慢"><a class="headerlink" href="#3-启动速度太慢"></a>3. 启动速度太慢</h2>
 <p>这个和 OMZ 没啥关系，主要是你插件太多了。除了 Zplugin 外，其他插件管理器/框架都存在这个问题。</p>
-<p>解决方案就是换 Zplugin（其实还有一个实现了多线程加载的 Zplug，就是文章开头那张图中最慢的那一个……想法很好，但实现很挫）</p>
+<p>解决方案就是换 Zplugin（其实还有一个实现了多线程加载的 Zplug，就是文章开头那张图中最慢的那一个……Zplug 的想法很好，但实现很挫）</p>
 <h2 id="zplugin-很强-但是我不想抛弃-omz-怎么办"><a class="headerlink" href="#zplugin-很强-但是我不想抛弃-omz-怎么办"></a>Zplugin 很强，但是我不想抛弃 OMZ 怎么办</h2>
 <p>前面已经说了，Zplugin 可以直接加载 OMZ 的插件，所以 OMZ 的好处你都能享受到。</p>
 <p>当然，你会发现即使加载了 OMZ 插件，使用体验还是和 OMZ 不一致。<br>
