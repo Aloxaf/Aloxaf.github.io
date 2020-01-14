@@ -153,7 +153,14 @@
         </div>
     </header>
 
-    <div class="post-content"><h1 id="前言"><a class="headerlink" href="#前言"></a>前言</h1>
+    <div class="post-content"><p><strong>2020-01-14 更新：</strong></p>
+<p>博主已经叛逃 powerlevel10k 了（注意是 10k 不是 9k）。<br>
+p10k 的 Instant Prompt 功能非常好用，它可以在其他插件的加载过程中提供一个精简的 prompt 供使用，相当于后台加载。</p>
+<p>这个功能并不能加快实际的加载速度， 比如 <code>time zsh -ic 'exit'</code> 的结果仍然不会变，但是使用体验提升巨大（体验上几乎是瞬间加载）！</p>
+<p>读到这里的读者建议先尝试一下 p10k（<s>如果很满意就不用往下看了</s>）。</p>
+<p>我已经去掉了配置文件中所有的 zplugin 延迟加载语句，不过 zplugin 即使去掉延迟加载功能仍然十分强大，我还是选择继续使用 zplugin。<br>
+而且如果加载了特别耗时的插件的话，zplugin 仍然是有用的。</p>
+<h1 id="前言"><a class="headerlink" href="#前言"></a>前言</h1>
 <p><a href="https://github.com/zdharma/zplugin" target="_blank" rel="noopener">Zplugin</a> 是个冷门但是却强大无比的 zsh 插件管理器，它拥有一个 killer feature —— Turbo mode，可以让插件在后台加载。这意味这你可以先加载最重要的插件，比如语法高亮和自动建议，剩下的可以统统放到后台加载，让你的 zsh 尽快进入可用状态。</p>
 <p>利用这个机制，zplugin 可以将 zsh 的启动时间缩短到几十毫秒——以我的配置为例，只需要 35 毫秒左右。而使用传统的插件管理器比如 antigen，需要近 200 毫秒才能加载完成。</p>
 <p>这里有一张图，对比了不同插件管理器的速度（来源：<a href="https://gist.github.com/laggardkernel/4a4c4986ccdcaf47b91e8227f9868ded" target="_blank" rel="noopener">Comparison of ZSH frameworks and plugin managers</a>）</p>
@@ -396,7 +403,7 @@
     <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even" target="_blank" rel="noopener">Even</a>
   </span>
 
-  <span class="copyright-year">&copy;2017 - 2019<span class="heart">
+  <span class="copyright-year">&copy;2017 - 2020<span class="heart">
       <i class="iconfont icon-heart"></i>
     </span>
     <span class="author">Aloxaf</span>
