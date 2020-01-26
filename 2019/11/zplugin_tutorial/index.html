@@ -13,7 +13,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
-<meta name="description" content="加速你的 zsh —— 最强 zsh 插件管理器 zplugin 教程"/><meta name="keywords" content="linux, zsh, 教程, Aloxaf's blog" /><link rel="alternate" href="/atom.xml" title="Aloxaf's blog"><link rel="shortcut icon" type="image/x-icon" href="/favicon.svg?v=2.11.0" />
+<meta name="description" content="加速你的 zsh —— 最强 zsh 插件管理器 zplugin/zinit 教程"/><meta name="keywords" content="linux, zsh, 教程, Aloxaf's blog" /><link rel="alternate" href="/atom.xml" title="Aloxaf's blog"><link rel="shortcut icon" type="image/x-icon" href="/favicon.svg?v=2.11.0" />
 <link rel="canonical" href="https://www.aloxaf.com/2019/11/zplugin_tutorial/"/>
 
 <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
@@ -45,7 +45,7 @@
   window.config = {"leancloud":{"app_id":null,"app_key":null},"toc":true,"fancybox":true,"pjax":"","latex":true};
 </script>
 
-    <title>加速你的 zsh —— 最强 zsh 插件管理器 zplugin 教程 - Aloxaf's blog</title>
+    <title>加速你的 zsh —— 最强 zsh 插件管理器 zplugin/zinit 教程 - Aloxaf's blog</title>
   <link rel="alternate" href="/atom.xml" title="Aloxaf's blog" type="application/atom+xml">
 </head>
 
@@ -115,7 +115,7 @@
         <div class="content-wrapper">
           <div id="content" class="content"><article class="post">
     <header class="post-header">
-      <h1 class="post-title">加速你的 zsh —— 最强 zsh 插件管理器 zplugin 教程
+      <h1 class="post-title">加速你的 zsh —— 最强 zsh 插件管理器 zplugin/zinit 教程
         </h1>
 
       <div class="post-meta">
@@ -124,7 +124,7 @@
         </span><span class="post-category">
             <a href="/categories/%E6%95%99%E7%A8%8B/">教程</a>
             </span>
-        <span id="/2019/11/zplugin_tutorial/" class="leancloud_visitors" data-flag-title="加速你的 zsh —— 最强 zsh 插件管理器 zplugin 教程">
+        <span id="/2019/11/zplugin_tutorial/" class="leancloud_visitors" data-flag-title="加速你的 zsh —— 最强 zsh 插件管理器 zplugin/zinit 教程">
             <span class="leancloud-visitors-count" style="display: none;">0</span>
           </span>
         </div>
@@ -135,7 +135,10 @@
     <div class="post-toc-content">
       <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#前言"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#安装"><span class="toc-text">安装</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#自动安装"><span class="toc-text">自动安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#手动安装"><span class="toc-text">手动安装</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#配置"><span class="toc-text">配置</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#基本插件加载"><span class="toc-text">基本插件加载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用-oh-my-zsh-prezto"><span class="toc-text">使用 Oh My Zsh &amp; Prezto</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码片段和性能"><span class="toc-text">代码片段和性能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一些-ice-修饰词"><span class="toc-text">一些 Ice 修饰词</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#as-program"><span class="toc-text">as&quot;program&quot;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#atpull"><span class="toc-text">atpull&quot;...&quot;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#通过-snippet-安装命令"><span class="toc-text">通过 snippet 安装命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#通过-snippet-安装补全"><span class="toc-text">通过 snippet 安装补全</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#补全管理"><span class="toc-text">补全管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#列出补全"><span class="toc-text">列出补全</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#启用和禁用补全"><span class="toc-text">启用和禁用补全</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#子目录的-svn-支持"><span class="toc-text">子目录的 SVN 支持</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#turbo-mode-zsh-5-3"><span class="toc-text">Turbo Mode (Zsh &gt;= 5.3)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#turbo-mode-加载复杂的命令提示符"><span class="toc-text">Turbo Mode 加载复杂的命令提示符</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#按条件自动加载-卸载"><span class="toc-text">按条件自动加载/卸载</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#常见问题"><span class="toc-text">常见问题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#如何升级"><span class="toc-text">如何升级</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何使用-omz-主题"><span class="toc-text">如何使用 OMZ 主题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#为什么我的键位绑定失效了"><span class="toc-text">为什么我的键位绑定失效了</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#为什么我的补全失效了"><span class="toc-text">为什么我的补全失效了</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#zplugin-module"><span class="toc-text">Zplugin Module</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装方式"><span class="toc-text">安装方式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#未安装-zplugin"><span class="toc-text">未安装 Zplugin</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#已安装-zplugin"><span class="toc-text">已安装 Zplugin</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#用法"><span class="toc-text">用法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#关于-oh-my-zsh-碎碎念"><span class="toc-text">关于 Oh My Zsh 碎碎念</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-粘贴代码太慢"><span class="toc-text">1. 粘贴代码太慢</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-命令提示符响应太慢"><span class="toc-text">2. 命令提示符响应太慢</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-启动速度太慢"><span class="toc-text">3. 启动速度太慢</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#zplugin-很强-但是我不想抛弃-omz-怎么办"><span class="toc-text">Zplugin 很强，但是我不想抛弃 OMZ 怎么办</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#一份示例配置"><span class="toc-text">一份示例配置</span></a></li></ol>
     </div>
-  </div><div class="post-content"><p><strong>2020-01-14 更新：</strong></p>
+  </div><div class="post-content"><p><strong>2020-01-26 更新：</strong></p>
+<p>Zplugin 已改名 Zinit，不过教程中的内容仍然适用。<br>
+阅读时请自行在脑中替换 （</p>
+<p><strong>2020-01-14 更新：</strong></p>
 <p>博主已经叛逃 powerlevel10k 了（注意是 10k 不是 9k）。<br>
 p10k 的 Instant Prompt 功能非常好用，它可以在其他插件的加载过程中提供一个精简的 prompt 供使用，相当于后台加载。</p>
 <p>这个功能并不能加快实际的加载速度， 比如 <code>time zsh -ic 'exit'</code> 的结果仍然不会变，但是使用体验提升巨大（体验上几乎是瞬间加载）！</p>
