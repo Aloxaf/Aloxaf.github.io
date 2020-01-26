@@ -436,9 +436,9 @@ p10k 的 Instant Prompt 功能非常好用，它可以在其他插件的加载�
     
       <category term="misc" scheme="https://www.aloxaf.com/tags/misc/"/>
     
-      <category term="zip" scheme="https://www.aloxaf.com/tags/zip/"/>
-    
       <category term="rust" scheme="https://www.aloxaf.com/tags/rust/"/>
+    
+      <category term="zip" scheme="https://www.aloxaf.com/tags/zip/"/>
     
   </entry>
   
@@ -572,9 +572,9 @@ p10k 的 Instant Prompt 功能非常好用，它可以在其他插件的加载�
     
       <category term="writeup" scheme="https://www.aloxaf.com/tags/writeup/"/>
     
-      <category term="pwn" scheme="https://www.aloxaf.com/tags/pwn/"/>
-    
       <category term="misc" scheme="https://www.aloxaf.com/tags/misc/"/>
+    
+      <category term="pwn" scheme="https://www.aloxaf.com/tags/pwn/"/>
     
       <category term="web" scheme="https://www.aloxaf.com/tags/web/"/>
     
