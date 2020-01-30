@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://www.aloxaf.com/friends/index.html</loc>
+    
+    <lastmod>2020-01-30T03:58:46.626Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.aloxaf.com/about/index.html</loc>
+    
+    <lastmod>2020-01-30T03:42:11.429Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://www.aloxaf.com/2019/11/zplugin_tutorial/</loc>
     
     <lastmod>2020-01-26T10:50:36.000Z</lastmod>
@@ -26,20 +40,6 @@
     <loc>https://www.aloxaf.com/2019/11/elegant_apis_in_rust/</loc>
     
     <lastmod>2019-11-20T13:55:09.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://www.aloxaf.com/friends/index.html</loc>
-    
-    <lastmod>2019-11-20T12:33:53.370Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://www.aloxaf.com/about/index.html</loc>
-    
-    <lastmod>2019-11-12T11:23:38.760Z</lastmod>
     
   </url>
   
