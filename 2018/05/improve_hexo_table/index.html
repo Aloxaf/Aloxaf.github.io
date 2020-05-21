@@ -46,8 +46,7 @@
 </script>
 
     <title>改进hexo/cafe主题表格显示效果 - Aloxaf's blog</title>
-  <link rel="alternate" href="/atom.xml" title="Aloxaf's blog" type="application/atom+xml">
-</head>
+  <meta name="generator" content="Hexo 4.2.1"></head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
   <div class="mobile-header-logo">
@@ -127,16 +126,18 @@
         </div>
     </header>
 
-    <div class="post-content"><p>总体是根据这篇文章来的<br>
-<a href="http://ju.outofmemory.cn/entry/130935" target="_blank" rel="noopener">http://ju.outofmemory.cn/entry/130935</a></p>
+    <div class="post-content"><p>总体是根据这篇文章来的<br><a href="http://ju.outofmemory.cn/entry/130935" target="_blank" rel="noopener">http://ju.outofmemory.cn/entry/130935</a></p>
 <a id="more"></a>
-<p>进入 themes/cafe/source/css/_partial<br>
-编辑article.styl, 将原来.article-entry下的table部分替换成如下代码</p>
+
+<p>进入 themes/cafe/source/css/_partial<br>编辑article.styl, 将原来.article-entry下的table部分替换成如下代码</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">table</span></span><br><span class="line">  <span class="selector-tag">border</span> 1<span class="selector-tag">px</span> <span class="selector-tag">solid</span> <span class="selector-tag">black</span></span><br><span class="line">  <span class="selector-tag">border-collapse</span> <span class="selector-tag">collapse</span></span><br><span class="line"><span class="selector-tag">th</span></span><br><span class="line">  <span class="selector-tag">border-collapse</span> <span class="selector-tag">collapse</span></span><br><span class="line"><span class="selector-tag">td</span></span><br><span class="line">  <span class="selector-tag">border-collapse</span> <span class="selector-tag">collapse</span></span><br><span class="line">  <span class="selector-tag">padding</span> 1<span class="selector-tag">px</span> 8<span class="selector-tag">px</span> 1<span class="selector-tag">px</span></span><br></pre></td></tr></table></figure>
+
 <p>编辑hightlight.styl, 在.hight.table下增加border 0px</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">table</span></span><br><span class="line">  <span class="selector-tag">margin</span>: 0</span><br><span class="line">  <span class="selector-tag">width</span>: <span class="selector-tag">auto</span></span><br><span class="line">  <span class="selector-tag">border</span> 0<span class="selector-tag">px</span></span><br><span class="line">  ...</span><br></pre></td></tr></table></figure>
+
 <p>顺便可以将字体一块儿改了</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.article-entry</span></span><br><span class="line">  <span class="selector-tag">pre</span>, <span class="selector-tag">code</span></span><br><span class="line">    <span class="selector-tag">font-family</span>: "<span class="selector-tag">Droid</span> <span class="selector-tag">Sans</span> <span class="selector-tag">Mono</span>", <span class="selector-tag">monospace</span>, <span class="selector-tag">font-mono</span>, <span class="selector-tag">Consolas</span>, "<span class="selector-tag">Source</span> <span class="selector-tag">Code</span> <span class="selector-tag">Pro</span>", "<span class="selector-tag">Microsoft</span> <span class="selector-tag">YaHei</span>"</span><br></pre></td></tr></table></figure>
+
 <p>进入 themes/cafe/source/css</p>
 <p>将下面代码注释掉</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.left</span>, <span class="selector-class">.alignleft</span></span><br><span class="line">  <span class="selector-tag">float</span>: <span class="selector-tag">left</span></span><br><span class="line"></span><br><span class="line"><span class="selector-class">.right</span>, <span class="selector-class">.alignright</span></span><br><span class="line">  <span class="selector-tag">float</span>: <span class="selector-tag">right</span></span><br></pre></td></tr></table></figure>
@@ -175,7 +176,7 @@
     </div></div>
       </main>
 
-      <footer id="footer" class="footer"><div class="social-links"><a href="mailto:aloxafx@gmail.com" target="_blank" rel="noopener" class="iconfont icon-email" title="email"></a>
+      <footer id="footer" class="footer"><div class="social-links"><a href="mailto:aloxafx@gmail.com" class="iconfont icon-email" title="email"></a>
         <a href="https://github.com/Aloxaf" target="_blank" rel="noopener" class="iconfont icon-github" title="github"></a>
         <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
     </div><div class="copyright">

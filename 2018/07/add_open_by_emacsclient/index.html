@@ -46,8 +46,7 @@
 </script>
 
     <title>Linux 下在打开方式中增加用 emacsclient - Aloxaf's blog</title>
-  <link rel="alternate" href="/atom.xml" title="Aloxaf's blog" type="application/atom+xml">
-</head>
+  <meta name="generator" content="Hexo 4.2.1"></head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
   <div class="mobile-header-logo">
@@ -132,13 +131,14 @@
 
     <div class="post-content"><p>参考 <a href="http://liuyuanzhi.blogspot.com/2009/08/open-with-emacs-in-nautilus.html" target="_blank" rel="noopener">open-with-emacs-in-nautilus</a></p>
 <a id="more"></a>
+
 <ol>
-<li>
-<p>新建 <code>~/.local/share/applications/emacsclient.desktop</code></p>
+<li><p>新建 <code>~/.local/share/applications/emacsclient.desktop</code></p>
 </li>
-<li>
-<p>写入如下内容</p>
+<li><p>写入如下内容 </p>
 <figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[Desktop Entry]</span></span><br><span class="line"><span class="attr">Name</span>=Emacs Client</span><br><span class="line"><span class="attr">GenericName</span>=Text Editor</span><br><span class="line"><span class="attr">Comment</span>=Edit text</span><br><span class="line"><span class="attr">MimeType</span>=text/english<span class="comment">;text/plain;text/x-makefile;text/x-c++hdr;text/x-c++src;text/x-chdr;text/x-csrc;text/x-java;text/x-moc;text/x-pascal;text/x-tcl;text/x-tex;application/x-shellscript;text/x-c;text/x-c++;</span></span><br><span class="line"><span class="attr">Exec</span>=emacsclient -n -a <span class="string">''</span> %F</span><br><span class="line"><span class="attr">Icon</span>=emacs</span><br><span class="line"><span class="attr">Type</span>=Application</span><br><span class="line"><span class="attr">Terminal</span>=<span class="literal">false</span></span><br><span class="line"><span class="attr">Categories</span>=Development<span class="comment">;TextEditor;</span></span><br><span class="line"><span class="attr">StartupWMClass</span>=Emacs</span><br><span class="line"><span class="attr">Keywords</span>=Text<span class="comment">;Editor;</span></span><br></pre></td></tr></table></figure>
+
+
 </li>
 </ol>
 
@@ -177,7 +177,7 @@
     </div></div>
       </main>
 
-      <footer id="footer" class="footer"><div class="social-links"><a href="mailto:aloxafx@gmail.com" target="_blank" rel="noopener" class="iconfont icon-email" title="email"></a>
+      <footer id="footer" class="footer"><div class="social-links"><a href="mailto:aloxafx@gmail.com" class="iconfont icon-email" title="email"></a>
         <a href="https://github.com/Aloxaf" target="_blank" rel="noopener" class="iconfont icon-github" title="github"></a>
         <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
     </div><div class="copyright">

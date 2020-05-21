@@ -46,8 +46,7 @@
 </script>
 
     <title>解决 Arch Linux 下 BurpSuite 打开很丑的问题 - Aloxaf's blog</title>
-  <link rel="alternate" href="/atom.xml" title="Aloxaf's blog" type="application/atom+xml">
-</head>
+  <meta name="generator" content="Hexo 4.2.1"></head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
   <div class="mobile-header-logo">
@@ -130,10 +129,8 @@
         </div>
     </header>
 
-    <div class="post-content"><p>好像很多 Java 程序都有这个毛病.<br>
-查了半天 Arch Wiki, 终于找到了: <a href="https://wiki.archlinux.org/index.php/Java_Runtime_Environment_fonts#Anti-aliasing" target="_blank" rel="noopener">Java Runtime Environment fonts</a></p>
-<p>解决方案: 设置环境变量 <code>_JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on'</code><br>
-(这么重要的东西怎么还要手动开启??)</p>
+    <div class="post-content"><p>好像很多 Java 程序都有这个毛病.<br>查了半天 Arch Wiki, 终于找到了: <a href="https://wiki.archlinux.org/index.php/Java_Runtime_Environment_fonts#Anti-aliasing" target="_blank" rel="noopener">Java Runtime Environment fonts</a></p>
+<p>解决方案: 设置环境变量 <code>_JAVA_OPTIONS=&#39;-Dawt.useSystemAAFontSettings=on&#39;</code><br>(这么重要的东西怎么还要手动开启??)</p>
 <p>直接在 <code>/etc/environment</code> 里加入这句然后重启即可</p>
 
       </div>
@@ -170,7 +167,7 @@
     </div></div>
       </main>
 
-      <footer id="footer" class="footer"><div class="social-links"><a href="mailto:aloxafx@gmail.com" target="_blank" rel="noopener" class="iconfont icon-email" title="email"></a>
+      <footer id="footer" class="footer"><div class="social-links"><a href="mailto:aloxafx@gmail.com" class="iconfont icon-email" title="email"></a>
         <a href="https://github.com/Aloxaf" target="_blank" rel="noopener" class="iconfont icon-github" title="github"></a>
         <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
     </div><div class="copyright">

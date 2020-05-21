@@ -46,8 +46,7 @@
 </script>
 
     <title>fzf-tab —— 使用 fzf 进行 zsh 补全 - Aloxaf's blog</title>
-  <link rel="alternate" href="/atom.xml" title="Aloxaf's blog" type="application/atom+xml">
-</head>
+  <meta name="generator" content="Hexo 4.2.1"></head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
   <div class="mobile-header-logo">
@@ -137,12 +136,14 @@
     </div>
   </div><div class="post-content"><p><a href="https://asciinema.org/a/293849" target="_blank" rel="noopener"><img src="https://asciinema.org/a/293849.svg" alt="asciicast"></a></p>
 <a id="more"></a>
-<h1 id="碎碎念"><a class="headerlink" href="#碎碎念"></a>碎碎念</h1>
-<p>这是一个我念叨了很久的想法，自从了解到 fzf 以后，我就一直在思考这个问题：能不用使用 fzf 作为 zsh 的补全选择菜单？</p>
+
+<h1 id="碎碎念"><a href="#碎碎念" class="headerlink" title="碎碎念"></a>碎碎念</h1><p>这是一个我念叨了很久的想法，自从了解到 fzf 以后，我就一直在思考这个问题：能不用使用 fzf 作为 zsh 的补全选择菜单？</p>
 <p>zsh 默认的补全选择菜单非常难用，当然一般人都会进行配置。比较常用的配置是：</p>
 <figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">zstyle</span> <span class="string">':completion:*'</span> menu yes select</span><br></pre></td></tr></table></figure>
+
 <p>这样可以使用 <kbd>Tab</kbd> 来滚动选择补全。然而它其实还可以更强：</p>
 <figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">zstyle</span> <span class="string">':completion:*'</span> menu yes select search</span><br></pre></td></tr></table></figure>
+
 <p>这会允许你在列表中搜索。相对来说更好用了一点，但是不支持模糊搜索，而且反应有点慢，仍然不够完美。</p>
 <p>要想追求（我眼中的）完美的补全体验，还是得上 fzf。基本思路应该是：截获补全列表、用 fzf 展示并选择、将选择项传回去。但这就面临这一个很严肃的问题：如何截获本该传给 zsh compsys 的补全候选项呢？</p>
 <p>作为一个 zsh 萌新，我完全无从下手。不过几经搜索之后我幸运地找到了 <a href="https://github.com/Valodim/zsh-capture-completion" target="_blank" rel="noopener">https://github.com/Valodim/zsh-capture-completion</a> 这个可以捕获 zsh 补全列表的项目，它的思路非常有趣——用 zpty 开启一个新的 shell，然后在这个 shell 里面替换掉一个关键内置函数 <code>compadd</code>，捕获本来应该传给 zsh 的补全候选项并输出它们，再 zpty 捕获这些输出。</p>
@@ -156,10 +157,10 @@
 </ol>
 <p>结合 fzf 的 <code>--preview</code> 开关，还能实现更丰富的功能：</p>
 <figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># kill 结束进程时时提供预览</span></span><br><span class="line"><span class="built_in">zstyle</span> <span class="string">':completion:*:*:*:*:processes'</span> <span class="built_in">command</span> <span class="string">"ps -u <span class="variable">$USER</span> -o pid,user,comm,cmd -w -w"</span></span><br><span class="line"><span class="built_in">zstyle</span> <span class="string">':fzf-tab:complete:kill:argument-rest'</span> extra-opts --preview=<span class="string">'echo $(&lt;&#123;f&#125;)'</span> --preview-window=down:3:wrap</span><br><span class="line"></span><br><span class="line"><span class="comment"># （实验性功能）cd 时在右侧预览目录内容</span></span><br><span class="line"><span class="built_in">local</span> extract=<span class="string">"</span></span><br><span class="line"><span class="string"># 提取输入</span></span><br><span class="line"><span class="string">in=\$&#123;\$&#123;\"\$(&lt;&#123;f&#125;)\"%\$'\0'*&#125;#*\$'\0'&#125;</span></span><br><span class="line"><span class="string"># 获取相关信息</span></span><br><span class="line"><span class="string">local -A ctxt=(\"\$&#123;(@ps:\2:)CTXT&#125;\")</span></span><br><span class="line"><span class="string">"</span></span><br><span class="line"><span class="built_in">zstyle</span> <span class="string">':fzf-tab:complete:cd*'</span> extra-opts --preview=<span class="variable">$extract</span><span class="string">"exa -1 --color=always \$&#123;~ctxt[hpre]&#125;\$in"</span></span><br></pre></td></tr></table></figure>
+
 <p>当然，这玩意儿也有不完美的地方。比如：尚不支持 <code>_approximate</code> completer、基于 compctl（zsh 的旧补全系统） 的补全也不支持、作为一个外来的“前端”与 zsh 本身的结合仍然不是很理想……</p>
 <p>不过以绝大多数人对 zsh 的配置程度，我觉得 fzf-tab 应该能满足至少 95% 的用户的需求。</p>
-<h1 id="学到的一些知识"><a class="headerlink" href="#学到的一些知识"></a>学到的一些知识</h1>
-<p>由于是第一次编写 zsh 插件，比较生疏。所幸得到了 powerlevel10k 的作者 romkatv 的帮助，学到了不少知识：</p>
+<h1 id="学到的一些知识"><a href="#学到的一些知识" class="headerlink" title="学到的一些知识"></a>学到的一些知识</h1><p>由于是第一次编写 zsh 插件，比较生疏。所幸得到了 powerlevel10k 的作者 romkatv 的帮助，学到了不少知识：</p>
 <ol>
 <li>写 zsh 插件和写 zsh 脚本的思路是不同的。虽然两者并没有本质上的区别……</li>
 </ol>
@@ -179,8 +180,7 @@
 <p>前几天就遇到了一个因为全局变量名太普通而导致冲突的真实例子：<a href="https://github.com/agkozak/zsh-z/issues/17" target="_blank" rel="noopener">https://github.com/agkozak/zsh-z/issues/17</a></p>
 <p>学姐的 zsh-z 出现了一个莫名奇妙的报错，经过排查，原因是 <code>zpm-zsh/colors</code> 定义了一个名为 <code>c</code> 的全局变量。然后 <code>zsh-z</code> 里有这么一段代码 <code>if (( $+ops[-c] ))</code>，这里出现了一个拼写错误（opts -&gt; ops），所以 ops 会是一个未定义变量、而不是关联数组。zsh 尝试将 ops 理解为普通数组、 <code>-c</code> 解释为一个表达式并进行求值，然而 <code>c</code> 里面包含了特殊字符，于是求值显然失败了，导致了奇怪的报错……</p>
 <p>总而言之，要想写一个完美的 zsh 插件是非常心累的……要么写一堆样板代码来创造一个确定的环境、要么祈祷遇到的用户是正常人。</p>
-<h1 id="另外一些有趣项目"><a class="headerlink" href="#另外一些有趣项目"></a>另外一些有趣项目</h1>
-<ul>
+<h1 id="另外一些有趣项目"><a href="#另外一些有趣项目" class="headerlink" title="另外一些有趣项目"></a>另外一些有趣项目</h1><ul>
 <li><a href="https://github.com/lincheney/fzf-tab-completion" target="_blank" rel="noopener">https://github.com/lincheney/fzf-tab-completion</a> 和 fzf-tab 的功能相似，不过我写 fzf-tab 时没有搜到这个项目，不然我就不会写了……</li>
 <li><a href="https://github.com/relastle/pmy" target="_blank" rel="noopener">https://github.com/relastle/pmy</a> 尝试基于 fzf 打造另一个补全后端</li>
 </ul>
@@ -205,7 +205,12 @@
             <a href="/tags/zsh/">zsh</a>
             </div>
         
-        <nav class="post-nav"><a class="next" href="/2019/11/elegant_apis_in_rust/">
+        <nav class="post-nav"><a class="prev" href="/2020/05/tyrano_browser_save/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">基于 tyrano 的游戏如何在浏览器中存档</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    <a class="next" href="/2019/11/elegant_apis_in_rust/">
         <span class="next-text nav-default">【译】设计优雅的 Rust 库 API</span>
         <span class="prev-text nav-mobile">下一篇</span>
         <i class="iconfont icon-right"></i>
@@ -215,7 +220,7 @@
     </div></div>
       </main>
 
-      <footer id="footer" class="footer"><div class="social-links"><a href="mailto:aloxafx@gmail.com" target="_blank" rel="noopener" class="iconfont icon-email" title="email"></a>
+      <footer id="footer" class="footer"><div class="social-links"><a href="mailto:aloxafx@gmail.com" class="iconfont icon-email" title="email"></a>
         <a href="https://github.com/Aloxaf" target="_blank" rel="noopener" class="iconfont icon-github" title="github"></a>
         <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
     </div><div class="copyright">

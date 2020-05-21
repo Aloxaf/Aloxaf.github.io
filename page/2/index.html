@@ -46,8 +46,7 @@
 </script>
 
     <title>Aloxaf's blog</title>
-  <link rel="alternate" href="/atom.xml" title="Aloxaf's blog" type="application/atom+xml">
-</head>
+  <meta name="generator" content="Hexo 4.2.1"></head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
   <div class="mobile-header-logo">
@@ -115,6 +114,28 @@
         <div class="content-wrapper">
           <div id="content" class="content"><section id="posts" class="posts"><article class="post">
     <header class="post-header">
+      <h1 class="post-title"><a class="post-link" href="/2018/11/arch_optimize/">Arch Linux 杂七杂八的优化</a>
+        </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2018-11-18
+        </span><span class="post-category">
+            <a href="/categories/linux/">linux</a>
+            </span>
+        <span id="/2018/11/arch_optimize/" class="leancloud_visitors" data-flag-title="Arch Linux 杂七杂八的优化">
+            <span class="leancloud-visitors-count" style="display: none;">0</span>
+          </span>
+        </div>
+    </header>
+
+    <div class="post-content"><p>发现无聊时刷 <a href="https://wiki.archlinux.org/" target="_blank" rel="noopener">Arch Wiki</a> 也挺有趣的, 记录一下自己干了啥吧. 毕竟有些配置没法放到 dotfiles 里. 记录一下以后翻起来也方便.</p>
+          <div class="read-more">
+            <a href="/2018/11/arch_optimize/" class="read-more-link">阅读更多</a>
+          </div>
+        </div></article>
+      <article class="post">
+    <header class="post-header">
       <h1 class="post-title"><a class="post-link" href="/2018/11/kde_dark_theme/">解决 KDE 暗色主题下 WPS & 搜狗拼音设置字体颜色不正常的问题</a>
         </h1>
 
@@ -135,8 +156,8 @@
 <p>比如</p>
 <ul>
 <li>搜狗, 字体跟随系统变成浅色, 背景没有变, 变成浅色背景+浅色字体, 亮瞎眼组合</li>
-<li>WPS 表格, 表格背景是黑的....究极の难看</li>
-<li>WPS 文字, 字体也变浅色了, 不仅亮瞎眼. 如果强行调成黑色的话, 在 Windows 上就会变亮瞎眼...</li>
+<li>WPS 表格, 表格背景是黑的….究极の难看</li>
+<li>WPS 文字, 字体也变浅色了, 不仅亮瞎眼. 如果强行调成黑色的话, 在 Windows 上就会变亮瞎眼…</li>
 </ul>
           <div class="read-more">
             <a href="/2018/11/kde_dark_theme/" class="read-more-link">阅读更多</a>
@@ -159,10 +180,9 @@
         </div>
     </header>
 
-    <div class="post-content"><h1 id="前言"><a class="headerlink" href="#前言"></a>前言</h1>
-<p>这是一篇闲蛋疼的文章, 讲述了闲蛋疼的我是如何<s>历经千辛万苦终于</s>在 Python 中让 <code>'a' is 'b'</code> 得到 <code>True</code>.</p>
-<p><s>(虽然这件事情毫无意义)</s></p>
-<p><s>(不过拿来坑下一任或许是个好主意呢)</s></p>
+    <div class="post-content"><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这是一篇闲蛋疼的文章, 讲述了闲蛋疼的我是如何<del>历经千辛万苦终于</del>在 Python 中让 <code>&#39;a&#39; is &#39;b&#39;</code> 得到 <code>True</code>.</p>
+<p><del>(虽然这件事情毫无意义)</del></p>
+<p><del>(不过拿来坑下一任或许是个好主意呢)</del></p>
           <div class="read-more">
             <a href="/2018/10/egg_pain_python/" class="read-more-link">阅读更多</a>
           </div>
@@ -187,7 +207,7 @@
     <div class="post-content"><p>pwndbg 的安装: <code>pacman -S pwndbg</code> 然后添加 <code>source /usr/share/pwndbg/gdbinit.py</code> 到 <code>~/.gdbinit</code></p>
 <p>然而要在 Arch Linux 下愉快地使用 pwndbg, 还要解决以下问题:</p>
 <ul>
-<li><a href="https://github.com/pwndbg/pwndbg/issues/340" target="_blank" rel="noopener">Arch Support - Roadmap</a> 搁了快一年的问题, 主要是 Arch 下没有 libc6-dbg 这种包, 要调试符号只能自己编译...</li>
+<li><a href="https://github.com/pwndbg/pwndbg/issues/340" target="_blank" rel="noopener">Arch Support - Roadmap</a> 搁了快一年的问题, 主要是 Arch 下没有 libc6-dbg 这种包, 要调试符号只能自己编译…</li>
 <li><s><a href="https://github.com/pwndbg/pwndbg/issues/523#issuecomment-425673020" target="_blank" rel="noopener">Python exception under gdb-8.2-2</a> 上游 gdb 的问题, 8.3 应该会修复, 不过可以按链接所示的方法临时 patch 一下</s> gdb 8.2.1 已 fix</li>
 </ul>
 <p>这里解决第一个问题, 利用棒棒的 ABS (Arch Build System)</p>
@@ -212,9 +232,8 @@
         </div>
     </header>
 
-    <div class="post-content"><p>AUR 里的构建脚本常常需要从 github 拉取源代码,<br>
-然而没有加 <code>--depth 1</code> 的 <code>git clone</code> 把大量流量花在了下载对于构建毫无用处的提交记录等东西上面.</p>
-<p>尤其是安装主题这种东西的时候, clone 下来几百 MB, 结果构建完得到一个几 MB 的包...</p>
+    <div class="post-content"><p>AUR 里的构建脚本常常需要从 github 拉取源代码,<br>然而没有加 <code>--depth 1</code> 的 <code>git clone</code> 把大量流量花在了下载对于构建毫无用处的提交记录等东西上面. </p>
+<p>尤其是安装主题这种东西的时候, clone 下来几百 MB, 结果构建完得到一个几 MB 的包…</p>
           <div class="read-more">
             <a href="/2018/10/arch_git/" class="read-more-link">阅读更多</a>
           </div>
@@ -237,7 +256,7 @@
     </header>
 
     <div class="post-content"><p>默认emoji太丑, 没有颜色, 看着浑身难受.</p>
-<p>还是喜欢果冻人...</p>
+<p>还是喜欢果冻人…</p>
           <div class="read-more">
             <a href="/2018/10/linux_emoji/" class="read-more-link">阅读更多</a>
           </div>
@@ -259,8 +278,8 @@
         </div>
     </header>
 
-    <div class="post-content"><p>这个国庆假期抽了点风......</p>
-<p>写了一个假期的代码......</p>
+    <div class="post-content"><p>这个国庆假期抽了点风……</p>
+<p>写了一个假期的代码……</p>
           <div class="read-more">
             <a href="/2018/10/zip_crack/" class="read-more-link">阅读更多</a>
           </div>
@@ -305,10 +324,8 @@
         </div>
     </header>
 
-    <div class="post-content"><p>感谢 M4x 师傅推荐了这个比赛, 虽然是面向美国高中生, 不过打了以后还是有点收获的.<br>
-<s>同时内心受到一万点暴击伤害</s></p>
-<p>尤其是两道 Python jail, 非常硬却失挺.<br>
-(下载地址在文末)</p>
+    <div class="post-content"><p>感谢 M4x 师傅推荐了这个比赛, 虽然是面向美国高中生, 不过打了以后还是有点收获的.<br><del>同时内心受到一万点暴击伤害</del> </p>
+<p>尤其是两道 Python jail, 非常硬却失挺.<br>(下载地址在文末)</p>
           <div class="read-more">
             <a href="/2018/08/tjctf_pythonjail/" class="read-more-link">阅读更多</a>
           </div>
@@ -330,34 +347,10 @@
         </div>
     </header>
 
-    <div class="post-content"><p>好像很多 Java 程序都有这个毛病.<br>
-查了半天 Arch Wiki, 终于找到了: <a href="https://wiki.archlinux.org/index.php/Java_Runtime_Environment_fonts#Anti-aliasing" target="_blank" rel="noopener">Java Runtime Environment fonts</a></p>
-<p>解决方案: 设置环境变量 <code>_JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on'</code><br>
-(这么重要的东西怎么还要手动开启??)</p>
+    <div class="post-content"><p>好像很多 Java 程序都有这个毛病.<br>查了半天 Arch Wiki, 终于找到了: <a href="https://wiki.archlinux.org/index.php/Java_Runtime_Environment_fonts#Anti-aliasing" target="_blank" rel="noopener">Java Runtime Environment fonts</a></p>
+<p>解决方案: 设置环境变量 <code>_JAVA_OPTIONS=&#39;-Dawt.useSystemAAFontSettings=on&#39;</code><br>(这么重要的东西怎么还要手动开启??)</p>
 <p>直接在 <code>/etc/environment</code> 里加入这句然后重启即可</p>
 
-        </div></article>
-      <article class="post">
-    <header class="post-header">
-      <h1 class="post-title"><a class="post-link" href="/2018/07/add_open_by_emacsclient/">Linux 下在打开方式中增加用 emacsclient</a>
-        </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2018-07-26
-        </span><span class="post-category">
-            <a href="/categories/linux/">linux</a>
-            </span>
-        <span id="/2018/07/add_open_by_emacsclient/" class="leancloud_visitors" data-flag-title="Linux 下在打开方式中增加用 emacsclient">
-            <span class="leancloud-visitors-count" style="display: none;">0</span>
-          </span>
-        </div>
-    </header>
-
-    <div class="post-content"><p>参考 <a href="http://liuyuanzhi.blogspot.com/2009/08/open-with-emacs-in-nautilus.html" target="_blank" rel="noopener">open-with-emacs-in-nautilus</a></p>
-          <div class="read-more">
-            <a href="/2018/07/add_open_by_emacsclient/" class="read-more-link">阅读更多</a>
-          </div>
         </div></article>
       <nav class="pagination"><a class="prev" href="/">
         <i class="iconfont icon-left"></i>
@@ -370,7 +363,7 @@
     </nav></section></div></div>
       </main>
 
-      <footer id="footer" class="footer"><div class="social-links"><a href="mailto:aloxafx@gmail.com" target="_blank" rel="noopener" class="iconfont icon-email" title="email"></a>
+      <footer id="footer" class="footer"><div class="social-links"><a href="mailto:aloxafx@gmail.com" class="iconfont icon-email" title="email"></a>
         <a href="https://github.com/Aloxaf" target="_blank" rel="noopener" class="iconfont icon-github" title="github"></a>
         <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
     </div><div class="copyright">

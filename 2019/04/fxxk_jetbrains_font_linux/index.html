@@ -46,8 +46,7 @@
 </script>
 
     <title>JetBrains 家 IDE 在 Linux 下的奇怪字体问题(锯齿, 字体过小) - Aloxaf's blog</title>
-  <link rel="alternate" href="/atom.xml" title="Aloxaf's blog" type="application/atom+xml">
-</head>
+  <meta name="generator" content="Hexo 4.2.1"></head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
   <div class="mobile-header-logo">
@@ -137,10 +136,8 @@
     </div>
   </div><div class="post-content"><p>JetBrains 家的 IDE 在 Linux 下会有一些奇怪的问题: 如字体很丑(没开抗锯齿一样), 字体过小(目测是 HiDPI 下的问题), 最近更新了一下 PyCharm 2019 又出现了这个问题, 解决问题以后记录一下方案, 造福广大 JetBrains 信徒</p>
 <p>长话短说——统统是 jre 的问题</p>
-<h2 id="解决方案"><a class="headerlink" href="#解决方案"></a>解决方案</h2>
-<p>换用 IntelliJ patch 过的 jre</p>
-<h2 id="具体方法"><a class="headerlink" href="#具体方法"></a>具体方法</h2>
-<p>有很多, 因为我在用 Arch Linux 就用 Arch Linux 下比较方便的方法了:</p>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>换用 IntelliJ patch 过的 jre</p>
+<h2 id="具体方法"><a href="#具体方法" class="headerlink" title="具体方法"></a>具体方法</h2><p>有很多, 因为我在用 Arch Linux 就用 Arch Linux 下比较方便的方法了:</p>
 <ol>
 <li>安装 clion-jre (Archlinuxcn 源有二进制包) (从 AUR 安装 intellij-jdk 应该也行, 可能还更方便? 不过懒得试了, 因为我用 clion 时已经装了这个)</li>
 <li>如果是 clion 可以无视这条步骤.  <code>Esc-x</code>, 输入 <code>Switch Boot JDK</code>, 改用 <code>/opt/clion/jre64</code> ( 没有这个的话自己浏览路径选</li>
@@ -182,7 +179,7 @@
     </div></div>
       </main>
 
-      <footer id="footer" class="footer"><div class="social-links"><a href="mailto:aloxafx@gmail.com" target="_blank" rel="noopener" class="iconfont icon-email" title="email"></a>
+      <footer id="footer" class="footer"><div class="social-links"><a href="mailto:aloxafx@gmail.com" class="iconfont icon-email" title="email"></a>
         <a href="https://github.com/Aloxaf" target="_blank" rel="noopener" class="iconfont icon-github" title="github"></a>
         <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
     </div><div class="copyright">

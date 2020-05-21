@@ -46,8 +46,7 @@
 </script>
 
     <title>解决Gnome终端无法设置透明度的问题 - Aloxaf's blog</title>
-  <link rel="alternate" href="/atom.xml" title="Aloxaf's blog" type="application/atom+xml">
-</head>
+  <meta name="generator" content="Hexo 4.2.1"></head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
   <div class="mobile-header-logo">
@@ -132,12 +131,13 @@
 
     <div class="post-content"><p>将下列代码加入到shell的初始化脚本中即可</p>
 <a id="more"></a>
+
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> from https://gist.github.com/brickgao/beb1c5d300c26aa2be31</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> append it to your .zshrc</span></span><br><span class="line">if [ -n "$WINDOWID" ]; then</span><br><span class="line">	TRANSPARENCY_HEX=$(printf 0x%x $((0xffffffff * 90 / 100)))</span><br><span class="line">	xprop -id "$WINDOWID" -f _NET_WM_WINDOW_OPACITY 32c -set _NET_WM_WINDOW_OPACITY "$TRANSPARENCY_HEX"</span><br><span class="line">fi</span><br><span class="line"><span class="meta">#</span><span class="bash">+end_src</span></span><br></pre></td></tr></table></figure>
+
 <p>相关讨论: <a href="https://www.reddit.com/r/linux/comments/69571g/did_gnome_team_just_remove_the_transparent/" target="_blank" rel="noopener">did_gnome_team_just_remove_the_transparent</a></p>
 <p>P.S.</p>
 <p>然而随着某次更新, 这个方法也失去了作用.</p>
-<p>经测试是 <code>$WINDOWID</code> 不能获取到当前窗口的 PID 了, 换个方法获取 PID 的话还是能透明, 不过我懒 (<s>正宗懒军</s>),<br>
-索性换用 gnome-terminal-fedora</p>
+<p>经测试是 <code>$WINDOWID</code> 不能获取到当前窗口的 PID 了, 换个方法获取 PID 的话还是能透明, 不过我懒 (<del>正宗懒军</del>),<br>索性换用 gnome-terminal-fedora </p>
 <p>PSS.</p>
 <p>换了 KDE, 感觉良好. [2018-8]</p>
 
@@ -176,7 +176,7 @@
     </div></div>
       </main>
 
-      <footer id="footer" class="footer"><div class="social-links"><a href="mailto:aloxafx@gmail.com" target="_blank" rel="noopener" class="iconfont icon-email" title="email"></a>
+      <footer id="footer" class="footer"><div class="social-links"><a href="mailto:aloxafx@gmail.com" class="iconfont icon-email" title="email"></a>
         <a href="https://github.com/Aloxaf" target="_blank" rel="noopener" class="iconfont icon-github" title="github"></a>
         <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
     </div><div class="copyright">

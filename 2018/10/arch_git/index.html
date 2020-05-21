@@ -46,8 +46,7 @@
 </script>
 
     <title>加速 AUR 软件安装速度 - Aloxaf's blog</title>
-  <link rel="alternate" href="/atom.xml" title="Aloxaf's blog" type="application/atom+xml">
-</head>
+  <meta name="generator" content="Hexo 4.2.1"></head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
   <div class="mobile-header-logo">
@@ -130,21 +129,29 @@
         </div>
     </header>
 
-    <div class="post-content"><p>AUR 里的构建脚本常常需要从 github 拉取源代码,<br>
-然而没有加 <code>--depth 1</code> 的 <code>git clone</code> 把大量流量花在了下载对于构建毫无用处的提交记录等东西上面.</p>
-<p>尤其是安装主题这种东西的时候, clone 下来几百 MB, 结果构建完得到一个几 MB 的包...</p>
+    <div class="post-content"><p>AUR 里的构建脚本常常需要从 github 拉取源代码,<br>然而没有加 <code>--depth 1</code> 的 <code>git clone</code> 把大量流量花在了下载对于构建毫无用处的提交记录等东西上面. </p>
+<p>尤其是安装主题这种东西的时候, clone 下来几百 MB, 结果构建完得到一个几 MB 的包…</p>
 <a id="more"></a>
+
 <p>暴力的解决方案:</p>
 <p>打开 <code>/usr/share/makepkg/source/git.sh</code>, 其中有一段这样的代码</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ! git <span class="built_in">clone</span> --mirror <span class="string">"<span class="variable">$url</span>"</span> <span class="string">"<span class="variable">$dir</span>"</span>; <span class="keyword">then</span></span><br><span class="line">	error <span class="string">"<span class="variable">$(gettext "Failure while downloading %s %s repo")</span>"</span> <span class="string">"<span class="variable">$&#123;repo&#125;</span>"</span> <span class="string">"git"</span></span><br><span class="line">	plain <span class="string">"<span class="variable">$(gettext "Aborting...")</span>"</span></span><br><span class="line">	<span class="built_in">exit</span> 1</span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+
 <p>改成这样, 也就是在外面又加了一层 if. 不直接改在原来的基础上加是因为有些网站不支持 <code>--depth</code></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ! git <span class="built_in">clone</span> --depth=1 --mirror <span class="string">"<span class="variable">$url</span>"</span> <span class="string">"<span class="variable">$dir</span>"</span>; <span class="keyword">then</span></span><br><span class="line">	<span class="keyword">if</span> ! git <span class="built_in">clone</span> --mirror <span class="string">"<span class="variable">$url</span>"</span> <span class="string">"<span class="variable">$dir</span>"</span>; <span class="keyword">then</span></span><br><span class="line">		error <span class="string">"<span class="variable">$(gettext "Failure while downloading %s %s repo")</span>"</span> <span class="string">"<span class="variable">$&#123;repo&#125;</span>"</span> <span class="string">"git"</span></span><br><span class="line">		plain <span class="string">"<span class="variable">$(gettext "Aborting...")</span>"</span></span><br><span class="line">		<span class="built_in">exit</span> 1</span><br><span class="line">	<span class="keyword">fi</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+
+
+
 <p>同理, 还有如下代码</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ! git fetch --all -p; <span class="keyword">then</span></span><br><span class="line">	<span class="comment"># only warn on failure to allow offline builds</span></span><br><span class="line">	warning <span class="string">"<span class="variable">$(gettext "Failure while updating %s %s repo")</span>"</span> <span class="string">"<span class="variable">$&#123;repo&#125;</span>"</span> <span class="string">"git"</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
-<p>....改成</p>
+
+<p>….改成</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ! git fetch --depth=1 -p; <span class="keyword">then</span></span><br><span class="line">	<span class="keyword">if</span> ! git fetch --all -p; <span class="keyword">then</span></span><br><span class="line">		<span class="comment"># only warn on failure to allow offline builds</span></span><br><span class="line">		warning <span class="string">"<span class="variable">$(gettext "Failure while updating %s %s repo")</span>"</span> <span class="string">"<span class="variable">$&#123;repo&#125;</span>"</span> <span class="string">"git"</span></span><br><span class="line">	<span class="keyword">fi</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
-<p>这样速度就令人满意多了, 对于大部分构建脚本应该都没问题,</p>
-<p><s>遇到问题再改吧 (</s></p>
+
+
+
+<p>这样速度就令人满意多了, 对于大部分构建脚本应该都没问题, </p>
+<p><del>遇到问题再改吧 (</del></p>
 
       </div>
       <div class="post-copyright">
@@ -180,7 +187,7 @@
     </div></div>
       </main>
 
-      <footer id="footer" class="footer"><div class="social-links"><a href="mailto:aloxafx@gmail.com" target="_blank" rel="noopener" class="iconfont icon-email" title="email"></a>
+      <footer id="footer" class="footer"><div class="social-links"><a href="mailto:aloxafx@gmail.com" class="iconfont icon-email" title="email"></a>
         <a href="https://github.com/Aloxaf" target="_blank" rel="noopener" class="iconfont icon-github" title="github"></a>
         <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
     </div><div class="copyright">

@@ -46,8 +46,7 @@
 </script>
 
     <title>解决 KDE 暗色主题下 WPS & 搜狗拼音设置字体颜色不正常的问题 - Aloxaf's blog</title>
-  <link rel="alternate" href="/atom.xml" title="Aloxaf's blog" type="application/atom+xml">
-</head>
+  <meta name="generator" content="Hexo 4.2.1"></head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
   <div class="mobile-header-logo">
@@ -135,17 +134,20 @@
 <p>比如</p>
 <ul>
 <li>搜狗, 字体跟随系统变成浅色, 背景没有变, 变成浅色背景+浅色字体, 亮瞎眼组合</li>
-<li>WPS 表格, 表格背景是黑的....究极の难看</li>
-<li>WPS 文字, 字体也变浅色了, 不仅亮瞎眼. 如果强行调成黑色的话, 在 Windows 上就会变亮瞎眼...</li>
+<li>WPS 表格, 表格背景是黑的….究极の难看</li>
+<li>WPS 文字, 字体也变浅色了, 不仅亮瞎眼. 如果强行调成黑色的话, 在 Windows 上就会变亮瞎眼…</li>
 </ul>
 <a id="more"></a>
+
 <p>记录一下解决方案:</p>
 <p>首先在 设置-应用程序风格-GNOME程序风格 里设置一个亮色主题</p>
-<p>然后修改 <code>/usr/share/applications/wps-office-{wps,wpp,et}.desktop</code> 和 <code>fcitx-ui-sogou-qimpanel.desktop</code> , 给 <code>Exec</code> 项添加参数 <code>-style gtk+</code></p>
+<p>然后修改 <code>/usr/share/applications/wps-office-{wps,wpp,et}.desktop</code> 和 <code>fcitx-ui-sogou-qimpanel.desktop</code> , 给 <code>Exec</code> 项添加参数 <code>-style gtk+</code> </p>
 <p>以 WPS 为例, Before</p>
 <figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">Exec</span>=/usr/bin/wps %f</span><br></pre></td></tr></table></figure>
+
 <p>After</p>
 <figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">Exec</span>=/usr/bin/wps -style gtk+ %f</span><br></pre></td></tr></table></figure>
+
 <p>原理: 把这堆不守规矩的程序踢给 GTK+</p>
 
       </div>
@@ -182,7 +184,7 @@
     </div></div>
       </main>
 
-      <footer id="footer" class="footer"><div class="social-links"><a href="mailto:aloxafx@gmail.com" target="_blank" rel="noopener" class="iconfont icon-email" title="email"></a>
+      <footer id="footer" class="footer"><div class="social-links"><a href="mailto:aloxafx@gmail.com" class="iconfont icon-email" title="email"></a>
         <a href="https://github.com/Aloxaf" target="_blank" rel="noopener" class="iconfont icon-github" title="github"></a>
         <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
     </div><div class="copyright">

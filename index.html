@@ -46,8 +46,7 @@
 </script>
 
     <title>Aloxaf's blog</title>
-  <link rel="alternate" href="/atom.xml" title="Aloxaf's blog" type="application/atom+xml">
-</head>
+  <meta name="generator" content="Hexo 4.2.1"></head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
   <div class="mobile-header-logo">
@@ -115,6 +114,27 @@
         <div class="content-wrapper">
           <div id="content" class="content"><section id="posts" class="posts"><article class="post">
     <header class="post-header">
+      <h1 class="post-title"><a class="post-link" href="/2020/05/tyrano_browser_save/">基于 tyrano 的游戏如何在浏览器中存档</a>
+        </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2020-05-21
+        </span><span id="/2020/05/tyrano_browser_save/" class="leancloud_visitors" data-flag-title="基于 tyrano 的游戏如何在浏览器中存档">
+            <span class="leancloud-visitors-count" style="display: none;">0</span>
+          </span>
+        </div>
+    </header>
+
+    <div class="post-content"><p>现在有挺多视觉小说（比如希x薇，与钴糊的日常）都基于 <a href="https://tyranobuilder.com/" target="_blank" rel="noopener">TyranoBuilder</a> 进行开发——一个基于 Web 的视觉小说引擎。</p>
+<p>虽然平常挺讨厌电子之类的玩意儿，但这个时候还是不得不说真香。因为用 tyrano 编写的游戏都是跨平台的！在 Linux 下我只要简单地起一个 http server，然后打开目录中的 index.html，就能在浏览器中进行游戏了！再也不需要 wine 了！！</p>
+<p>但是有一个问题困扰了我很久，那就是在浏览器中虽然可以玩，但无法存档，会报一个“この環境はセーブ機能を利用できません。ローカルで実行している場合などに発生します”，“セーブデータが壊れている可能性があります。セーブデータを初期化しますか？” 的错误。由于我不会日语看不懂报错也懒得谷歌就一直以来都没有去管这个错误，但是今天看到一个看起来不错的游戏，想试一试但 wine 果不其然地挂掉了，在浏览器里的话虽然能运行但不能存档太难受了。于是试着调试了一下这个问题，发现其实非常简单……</p>
+<p>tyrano 内部提供了三种存档方式，分别是 webstorage、webstorage_compress 和 file。前面两个很好理解，一看就是直接存在浏览器里的，也是通用性最强的；而最后一个则是以大家最熟悉的 .sav 文件形式存储的，只能用在 PC 游戏上。</p>
+<p>修复方案呼之欲出了：把存档方式改为 webstorage/webstorage_compress  即可（推荐后者），相应代码在 <code>./data/system/Config.tjs</code> 中，将 <code>;configSave     = file</code> 改为 <code>;configSave     = webstorage_compress</code> 就能存档了。</p>
+
+        </div></article>
+      <article class="post">
+    <header class="post-header">
       <h1 class="post-title"><a class="post-link" href="/2020/03/fzf-tab/">fzf-tab —— 使用 fzf 进行 zsh 补全</a>
         </h1>
 
@@ -176,25 +196,19 @@
     </header>
 
     <div class="post-content"><p><strong>2020-01-26 更新：</strong></p>
-<p>Zplugin 已改名 Zinit，不过教程中的内容仍然适用。<br>
-阅读时请自行在脑中替换 （</p>
+<p>Zplugin 已改名 Zinit，不过教程中的内容仍然适用。<br>阅读时请自行在脑中替换 （</p>
 <p><strong>2020-01-14 更新：</strong></p>
-<p>博主已经叛逃 powerlevel10k 了（注意是 10k 不是 9k）。<br>
-p10k 的 Instant Prompt 功能非常好用，它可以在其他插件的加载过程中提供一个精简的 prompt 供使用，相当于后台加载。</p>
-<p>这个功能并不能加快实际的加载速度， 比如 <code>time zsh -ic 'exit'</code> 的结果仍然不会变，但是使用体验提升巨大（体验上几乎是瞬间加载）！</p>
-<p>读到这里的读者建议先尝试一下 p10k（<s>如果很满意就不用往下看了</s>）。</p>
-<p>我已经去掉了配置文件中所有的 zinit 延迟加载语句，不过 zinit 即使去掉延迟加载功能仍然十分强大，我还是选择继续使用 zinit。<br>
-而且如果加载了特别耗时的插件的话，zinit 仍然是有用的。</p>
-<h1 id="前言"><a class="headerlink" href="#前言"></a>前言</h1>
-<p><a href="https://github.com/zdharma/zinit" target="_blank" rel="noopener">Zinit</a> 是个冷门但是却强大无比的 zsh 插件管理器，它拥有一个 killer feature —— Turbo mode，可以让插件在后台加载。这意味这你可以先加载最重要的插件，比如语法高亮和自动建议，剩下的可以统统放到后台加载，让你的 zsh 尽快进入可用状态。</p>
+<p>博主已经叛逃 powerlevel10k 了（注意是 10k 不是 9k）。<br>p10k 的 Instant Prompt 功能非常好用，它可以在其他插件的加载过程中提供一个精简的 prompt 供使用，相当于后台加载。</p>
+<p>这个功能并不能加快实际的加载速度， 比如 <code>time zsh -ic &#39;exit&#39;</code> 的结果仍然不会变，但是使用体验提升巨大（体验上几乎是瞬间加载）！</p>
+<p>读到这里的读者建议先尝试一下 p10k（<del>如果很满意就不用往下看了</del>）。</p>
+<p>我已经去掉了配置文件中所有的 zinit 延迟加载语句，不过 zinit 即使去掉延迟加载功能仍然十分强大，我还是选择继续使用 zinit。<br>而且如果加载了特别耗时的插件的话，zinit 仍然是有用的。</p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><a href="https://github.com/zdharma/zinit" target="_blank" rel="noopener">Zinit</a> 是个冷门但是却强大无比的 zsh 插件管理器，它拥有一个 killer feature —— Turbo mode，可以让插件在后台加载。这意味这你可以先加载最重要的插件，比如语法高亮和自动建议，剩下的可以统统放到后台加载，让你的 zsh 尽快进入可用状态。</p>
 <p>利用这个机制，zinit 可以将 zsh 的启动时间缩短到几十毫秒——以我的配置为例，只需要 35 毫秒左右。而使用传统的插件管理器比如 antigen，需要近 200 毫秒才能加载完成。</p>
 <p>这里有一张图，对比了不同插件管理器的速度（来源：<a href="https://gist.github.com/laggardkernel/4a4c4986ccdcaf47b91e8227f9868ded" target="_blank" rel="noopener">Comparison of ZSH frameworks and plugin managers</a>）</p>
 <p><img src="https://raw.githubusercontent.com/vintersnow/zsh_plugin_manager_speed/master/result.png" alt=""></p>
-<p>可以看到 zinit 在插件数目变多时速度……似乎更快了？？？<br>
-什么鬼，这个大概是实验误差吧，也有可能是第一次启动时编译了自身所以后面变快了。不过 zinit 的速度是毋庸置疑的，哪怕这个插件需要数十秒来加载，只要放在后台加载，一样不影响你的 zsh 启动。</p>
+<p>可以看到 zinit 在插件数目变多时速度……似乎更快了？？？<br>什么鬼，这个大概是实验误差吧，也有可能是第一次启动时编译了自身所以后面变快了。不过 zinit 的速度是毋庸置疑的，哪怕这个插件需要数十秒来加载，只要放在后台加载，一样不影响你的 zsh 启动。</p>
 <p>然而！！这个工具虽然强大，却没多少名气，让人倍感惋惜。</p>
-<p>所以写下这篇文章，希望能有更多人了解到这个工具。<br>
-不过本文只涉及了它强大功能的冰山一角，深入研究推荐阅读 <a href="https://zdharma.org/zinit/wiki/INTRODUCTION/" target="_blank" rel="noopener">Zinit Wiki</a> 和 Zinit 的 <a href="https://github.com/zdharma/zinit/blob/master/README.md" target="_blank" rel="noopener">README</a>。</p>
+<p>所以写下这篇文章，希望能有更多人了解到这个工具。<br>不过本文只涉及了它强大功能的冰山一角，深入研究推荐阅读 <a href="https://zdharma.org/zinit/wiki/INTRODUCTION/" target="_blank" rel="noopener">Zinit Wiki</a> 和 Zinit 的 <a href="https://github.com/zdharma/zinit/blob/master/README.md" target="_blank" rel="noopener">README</a>。</p>
 <p>（虽然说是冰山一角，本文的内容也足以覆盖绝大多数情况了）</p>
 <p>（如果你很懒不想研究的话，文末还有一份完整的示例配置，安装完成后可以直接使用）</p>
           <div class="read-more">
@@ -218,10 +232,8 @@ p10k 的 Instant Prompt 功能非常好用，它可以在其他插件的加载�
         </div>
     </header>
 
-    <div class="post-content"><h1 id="emacs-keybings-everywhere"><a class="headerlink" href="#emacs-keybings-everywhere"></a>Emacs keybings Everywhere!</h1>
-<h2 id="简介"><a class="headerlink" href="#简介"></a>简介</h2>
-<p>xkeysnail 是一个非常强大的 keyboard remapping 工具, 它类似于 xmodmap, 但更为灵活. 不仅能重映射键位, 还能重映射快捷键, 甚至能在不同的程序下使用不同的映射!</p>
-<p>再也不用两套快捷键换来换去了!! ( 早点知道这个东西, 我就不至于练就一身无缝切换快捷键的毫无卵用的本领了...</p>
+    <div class="post-content"><h1 id="Emacs-keybings-Everywhere"><a href="#Emacs-keybings-Everywhere" class="headerlink" title="Emacs keybings Everywhere!"></a>Emacs keybings Everywhere!</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>xkeysnail 是一个非常强大的 keyboard remapping 工具, 它类似于 xmodmap, 但更为灵活. 不仅能重映射键位, 还能重映射快捷键, 甚至能在不同的程序下使用不同的映射!</p>
+<p>再也不用两套快捷键换来换去了!! ( 早点知道这个东西, 我就不至于练就一身无缝切换快捷键的毫无卵用的本领了…</p>
 <p>项目地址: <a href="https://github.com/mooz/xkeysnail" target="_blank" rel="noopener">https://github.com/mooz/xkeysnail</a></p>
           <div class="read-more">
             <a href="/2019/11/xkeysnail_tutorial/" class="read-more-link">阅读更多</a>
@@ -289,10 +301,8 @@ p10k 的 Instant Prompt 功能非常好用，它可以在其他插件的加载�
 
     <div class="post-content"><p>JetBrains 家的 IDE 在 Linux 下会有一些奇怪的问题: 如字体很丑(没开抗锯齿一样), 字体过小(目测是 HiDPI 下的问题), 最近更新了一下 PyCharm 2019 又出现了这个问题, 解决问题以后记录一下方案, 造福广大 JetBrains 信徒</p>
 <p>长话短说——统统是 jre 的问题</p>
-<h2 id="解决方案"><a class="headerlink" href="#解决方案"></a>解决方案</h2>
-<p>换用 IntelliJ patch 过的 jre</p>
-<h2 id="具体方法"><a class="headerlink" href="#具体方法"></a>具体方法</h2>
-<p>有很多, 因为我在用 Arch Linux 就用 Arch Linux 下比较方便的方法了:</p>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>换用 IntelliJ patch 过的 jre</p>
+<h2 id="具体方法"><a href="#具体方法" class="headerlink" title="具体方法"></a>具体方法</h2><p>有很多, 因为我在用 Arch Linux 就用 Arch Linux 下比较方便的方法了:</p>
 <ol>
 <li>安装 clion-jre (Archlinuxcn 源有二进制包) (从 AUR 安装 intellij-jdk 应该也行, 可能还更方便? 不过懒得试了, 因为我用 clion 时已经装了这个)</li>
 <li>如果是 clion 可以无视这条步骤.  <code>Esc-x</code>, 输入 <code>Switch Boot JDK</code>, 改用 <code>/opt/clion/jre64</code> ( 没有这个的话自己浏览路径选</li>
@@ -319,14 +329,12 @@ p10k 的 Instant Prompt 功能非常好用，它可以在其他插件的加载�
     </header>
 
     <div class="post-content"><p>为啥要折腾 Alacritty 呢, 因为 Konsole 有点小问题: <a href="https://bugs.kde.org/show_bug.cgi?id=401298" target="_blank" rel="noopener">https://bugs.kde.org/show_bug.cgi?id=401298</a> (不过这个问题已经 fix 了, 下个版本应该就没有了, 我大概又会滚回 Konsole, 毕竟有 blur 和 ligatures), 阻碍我使用棒棒的 <a href="https://github.com/Peltoche/lsd/issues/118" target="_blank" rel="noopener">lsd</a>.</p>
-<h2 id="问题表现"><a class="headerlink" href="#问题表现"></a>问题表现</h2>
-<p>具体表现为布局问题, 无视配置文件, 如</p>
+<h2 id="问题表现"><a href="#问题表现" class="headerlink" title="问题表现"></a>问题表现</h2><p>具体表现为布局问题, 无视配置文件, 如</p>
 <ul>
 <li>总是最大化窗口</li>
 <li>总是最大化高度</li>
 </ul>
-<h2 id="解决方案-临时"><a class="headerlink" href="#解决方案-临时"></a>解决方案(临时)</h2>
-<p>为 Alacritty 设置环境变量 <code>WINIT_HIDPI_FACTOR=1</code></p>
+<h2 id="解决方案-临时"><a href="#解决方案-临时" class="headerlink" title="解决方案(临时)"></a>解决方案(临时)</h2><p>为 Alacritty 设置环境变量 <code>WINIT_HIDPI_FACTOR=1</code> </p>
 <p>参考: <a href="https://github.com/tomaka/winit/issues/745" target="_blank" rel="noopener">tomaka/winit#745</a></p>
 
         </div></article>
@@ -349,34 +357,12 @@ p10k 的 Instant Prompt 功能非常好用，它可以在其他插件的加载�
 
     <div class="post-content"><blockquote>
 <p>我就是饿死, 死外面, 从外面跳下去, 也不会用 M$ 的垃圾 PowerShell !</p>
-<p>...</p>
+<p>…</p>
 <p>真香!</p>
 </blockquote>
 <p><strong>NOTE: 这是一篇黑 bash 吹 PowerShell(以下简称 pwsh) 的文章, bash 死忠粉以及软黑请退散.</strong></p>
           <div class="read-more">
             <a href="/2019/03/powershell_miaoa/" class="read-more-link">阅读更多</a>
-          </div>
-        </div></article>
-      <article class="post">
-    <header class="post-header">
-      <h1 class="post-title"><a class="post-link" href="/2018/11/arch_optimize/">Arch Linux 杂七杂八的优化</a>
-        </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2018-11-18
-        </span><span class="post-category">
-            <a href="/categories/linux/">linux</a>
-            </span>
-        <span id="/2018/11/arch_optimize/" class="leancloud_visitors" data-flag-title="Arch Linux 杂七杂八的优化">
-            <span class="leancloud-visitors-count" style="display: none;">0</span>
-          </span>
-        </div>
-    </header>
-
-    <div class="post-content"><p>发现无聊时刷 <a href="https://wiki.archlinux.org/" target="_blank" rel="noopener">Arch Wiki</a> 也挺有趣的, 记录一下自己干了啥吧. 毕竟有些配置没法放到 dotfiles 里. 记录一下以后翻起来也方便.</p>
-          <div class="read-more">
-            <a href="/2018/11/arch_optimize/" class="read-more-link">阅读更多</a>
           </div>
         </div></article>
       <nav class="pagination"><a class="next" href="/page/2/">
@@ -386,7 +372,7 @@ p10k 的 Instant Prompt 功能非常好用，它可以在其他插件的加载�
     </nav></section></div></div>
       </main>
 
-      <footer id="footer" class="footer"><div class="social-links"><a href="mailto:aloxafx@gmail.com" target="_blank" rel="noopener" class="iconfont icon-email" title="email"></a>
+      <footer id="footer" class="footer"><div class="social-links"><a href="mailto:aloxafx@gmail.com" class="iconfont icon-email" title="email"></a>
         <a href="https://github.com/Aloxaf" target="_blank" rel="noopener" class="iconfont icon-github" title="github"></a>
         <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
     </div><div class="copyright">
