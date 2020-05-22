@@ -127,12 +127,10 @@
         </div>
     </header>
 
-    <div class="post-content"><p>现在有挺多视觉小说（比如希x薇，与钴糊的日常）都基于 <a href="https://tyranobuilder.com/" target="_blank" rel="noopener">TyranoBuilder</a> 进行开发——一个基于 Web 的视觉小说引擎。</p>
-<p>虽然平常挺讨厌电子之类的玩意儿，但这个时候还是不得不说真香。因为用 tyrano 编写的游戏都是跨平台的！在 Linux 下我只要简单地起一个 http server，然后打开目录中的 index.html，就能在浏览器中进行游戏了！再也不需要 wine 了！！</p>
-<p>但是有一个问题困扰了我很久，那就是在浏览器中虽然可以玩，但无法存档，会报一个“この環境はセーブ機能を利用できません。ローカルで実行している場合などに発生します”，“セーブデータが壊れている可能性があります。セーブデータを初期化しますか？” 的错误。由于我不会日语看不懂报错也懒得谷歌就一直以来都没有去管这个错误，但是今天看到一个看起来不错的游戏，想试一试但 wine 果不其然地挂掉了，在浏览器里的话虽然能运行但不能存档太难受了。于是试着调试了一下这个问题，发现其实非常简单……</p>
-<p>tyrano 内部提供了三种存档方式，分别是 webstorage、webstorage_compress 和 file。前面两个很好理解，一看就是直接存在浏览器里的，也是通用性最强的；而最后一个则是以大家最熟悉的 .sav 文件形式存储的，只能用在 PC 游戏上。</p>
-<p>修复方案呼之欲出了：把存档方式改为 webstorage/webstorage_compress  即可（推荐后者），相应代码在 <code>./data/system/Config.tjs</code> 中，将 <code>;configSave     = file</code> 改为 <code>;configSave     = webstorage_compress</code> 就能存档了。</p>
-
+    <div class="post-content"><p>:D</p>
+          <div class="read-more">
+            <a href="/2020/05/tyrano_browser_save/" class="read-more-link">阅读更多</a>
+          </div>
         </div></article>
       <article class="post">
     <header class="post-header">
