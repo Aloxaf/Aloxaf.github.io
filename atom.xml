@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.aloxaf.com/"/>
-  <updated>2020-05-21T13:07:00.000Z</updated>
+  <updated>2020-06-08T06:10:00.000Z</updated>
   <id>https://www.aloxaf.com/</id>
   
   <author>
@@ -17,13 +17,34 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>使用 wine 运行基于 tyrano 的游戏</title>
+    <link href="https://www.aloxaf.com/2020/06/wine_tyrano/"/>
+    <id>https://www.aloxaf.com/2020/06/wine_tyrano/</id>
+    <published>2020-06-08T06:10:00.000Z</published>
+    <updated>2020-06-08T06:10:00.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>∠( ᐛ 」∠)＿</p><a id="more"></a><p>上一篇文章我帮那位朋友解决了在浏览器中玩基于 tyrano 的游戏时的存档问题，为他 Linux 下玩视觉小说游戏扫除了一大障碍。然而对于某些将所有资源都打包了的游戏来说，还是只能用 wine 来运行（拆包太麻烦了……）。</p><p>不过直接运行的话，大多数情况下都会直接得到一个 crash，这让我的这位朋友对 wine 非常失望（竟然这么辣鸡，连个视觉小说都玩不了！）。不过今天闲着无聊看了下，发现其实是有解决方法的（基于<a href="https://forum.winehq.org/viewtopic.php?t=32470" target="_blank" rel="noopener">这个帖子</a>）：</p><ol><li>运行 winetricks</li><li>选择默认容器</li><li>选择安装字体</li><li>选择安装全部字体</li></ol><p>关于第四步，其实不需要全部字体就能运行，但是我也不清楚它到底是需要哪个字体……干脆全部装上算了。这个过程需要从网上下载字体文件，而天朝的网络环境……你知道需要什么的。并且安装字体之前请将所有 wine 进程退出，否则会卡住。</p><p>安装完字体之后，直接 wine 应该就不会 crash 了，然而有很大概率会黑屏……</p><p>这似乎是 wine 显卡方面<a href="https://forum.winehq.org/viewtopic.php?t=14410" target="_blank" rel="noopener">古老 bug</a>，对此你可以使用 <code>--disable-gpu</code> 禁用 GPU 加速，然后就能成功运行了！</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;∠( ᐛ 」∠)＿&lt;/p&gt;
+    
+    </summary>
+    
+    
+    
+      <category term="game" scheme="https://www.aloxaf.com/tags/game/"/>
+    
+  </entry>
+  
+  <entry>
     <title>基于 tyrano 的游戏如何在浏览器中存档</title>
     <link href="https://www.aloxaf.com/2020/05/tyrano_browser_save/"/>
     <id>https://www.aloxaf.com/2020/05/tyrano_browser_save/</id>
     <published>2020-05-21T13:07:00.000Z</published>
     <updated>2020-05-21T13:07:00.000Z</updated>
     
-    <content type="html"><![CDATA[<p>:D</p><a id="more"></a><p>现在有挺多视觉小说（比如希x薇，与钴糊的日常）都基于 <a href="https://tyranobuilder.com/" target="_blank" rel="noopener">TyranoBuilder</a> 进行开发——一个基于 Web 的视觉小说引擎。</p><p>虽然平常挺讨厌电子之类的玩意儿，但这个时候还是不得不说真香。因为用 tyrano 编写的游戏都是跨平台的！在 Linux 下我只要简单地起一个 http server，然后打开目录中的 index.html，就能在浏览器中进行游戏了！再也不需要 wine 了！！</p><p>但是有一个问题困扰了我很久，那就是在浏览器中虽然可以玩，但无法存档，会报一个“この環境はセーブ機能を利用できません。ローカルで実行している場合などに発生します”，“セーブデータが壊れている可能性があります。セーブデータを初期化しますか？” 的错误。由于我不会日语看不懂报错也懒得谷歌就一直以来都没有去管这个错误，但是今天看到一个看起来不错的游戏，想试一试但 wine 果不其然地挂掉了，在浏览器里的话虽然能运行但不能存档太难受了。于是试着调试了一下这个问题，发现其实非常简单……</p><p>tyrano 内部提供了三种存档方式，分别是 webstorage、webstorage_compress 和 file。前面两个很好理解，一看就是直接存在浏览器里的，也是通用性最强的；而最后一个则是以大家最熟悉的 .sav 文件形式存储的，只能用在 PC 游戏上。</p><p>修复方案呼之欲出了：把存档方式改为 webstorage/webstorage_compress  即可（推荐前者，后者似乎偶尔会解压失败导致存档失效），相应代码在 <code>./data/system/Config.tjs</code> 中，将 <code>;configSave     = file</code> 改为 <code>;configSave     = webstorage</code> 就能存档了。</p><p>不过如果要在挂在服务器上玩的话还推荐改一个地方，在 <code>tyrano/lib.js</code> 里，搜索 <code>cache: false</code>，然后去掉 url 后的随机字符串并将 cache 改为 true，改完以后大概这个样子。</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(&#123;</span><br><span class="line">    url: file_path,</span><br><span class="line">    cache: <span class="literal">true</span>,</span><br><span class="line">    success: <span class="function"><span class="keyword">function</span>(<span class="params">text</span>)</span>&#123;</span><br><span class="line">        order_str = text;</span><br><span class="line">        callback(order_str);</span><br><span class="line">    &#125;,</span><br><span class="line">    error:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        alert(<span class="string">"file not found:"</span>+file_path);</span><br><span class="line">        callback(<span class="string">""</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><p>（解释：因为这个辣鸡引擎每次加载一段对话时都会请求整个对话文件，还带了时间戳导致浏览器缓存无效，影响速度（</p>]]></content>
+    <content type="html"><![CDATA[<p>:D</p><a id="more"></a><p>我有一个朋友问我在 Linux 下如何玩基于 typrano 的游戏，typrano 是一个基于 Web 的游戏引擎。现在有挺多视觉小说（比如希x薇，与钴糊的日常）都基于 <a href="https://tyranobuilder.com/" target="_blank" rel="noopener">TyranoBuilder</a> 进行开发。</p><p>那么该怎么玩呢，我说你找找游戏根目录应该有个叫 www 的目录，里面包含了一个 index.html，你在这里面起一个 server 然后用浏览器访问就能玩了。</p><p>我这朋友虽然平常挺讨厌电子之类的玩意儿，但这个时候还是不得不说真香。因为用 tyrano 编写的游戏都是跨平台的！在 Linux 下只要简单地起一个 http server，然后打开目录中的 index.html，竟然就能玩了！再也不需要 wine 了！！</p><p>但是有一个问题困扰了我这朋友很久，那就是在浏览器中虽然可以玩，但无法存档，会报一个“この環境はセーブ機能を利用できません。ローカルで実行している場合などに発生します”，“セーブデータが壊れている可能性があります。セーブデータを初期化しますか？” 的错误。由于他不会日语看不懂报错也懒得谷歌就一直以来都没有去管这个错误，但是他今天看到一个看起来不错的游戏，想试一试但 wine 果不其然地挂掉了，在浏览器里的话虽然能运行但不能存档太难受了。于是他向我请教，我试着调试了一下这个问题，发现其实非常简单……</p><p>tyrano 内部提供了三种存档方式，分别是 webstorage、webstorage_compress 和 file。前面两个很好理解，一看就是直接存在浏览器里的，也是通用性最强的；而最后一个则是以大家最熟悉的 .sav 文件形式存储的，只能用在 PC 游戏上。</p><p>修复方案呼之欲出了：把存档方式改为 webstorage/webstorage_compress  即可（推荐前者，后者似乎偶尔会解压失败导致存档失效），相应代码在 <code>./data/system/Config.tjs</code> 中，将 <code>;configSave     = file</code> 改为 <code>;configSave     = webstorage</code> 就能存档了。</p><p>你甚至可以挂在服务器上玩（</p><p>不过如果要在挂在服务器上玩的话还推荐改一个地方，在 <code>tyrano/lib.js</code> 里，搜索 <code>cache: false</code>，然后去掉 url 后的随机字符串并将 cache 改为 true，改完以后大概这个样子。</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(&#123;</span><br><span class="line">    url: file_path,</span><br><span class="line">    cache: <span class="literal">true</span>,</span><br><span class="line">    success: <span class="function"><span class="keyword">function</span>(<span class="params">text</span>)</span>&#123;</span><br><span class="line">        order_str = text;</span><br><span class="line">        callback(order_str);</span><br><span class="line">    &#125;,</span><br><span class="line">    error:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        alert(<span class="string">"file not found:"</span>+file_path);</span><br><span class="line">        callback(<span class="string">""</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><p>（解释：因为这个辣鸡引擎每次加载一段对话时都会请求整个对话文件，还带了时间戳导致浏览器缓存无效，如果你的服务器是小水管的话非常影响速度</p>]]></content>
     
     <summary type="html">
     
@@ -527,32 +548,6 @@
       <category term="writeup" scheme="https://www.aloxaf.com/tags/writeup/"/>
     
       <category term="python" scheme="https://www.aloxaf.com/tags/python/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>解决 Arch Linux 下 BurpSuite 打开很丑的问题</title>
-    <link href="https://www.aloxaf.com/2018/07/java_ugly_font/"/>
-    <id>https://www.aloxaf.com/2018/07/java_ugly_font/</id>
-    <published>2018-07-30T04:34:48.000Z</published>
-    <updated>2018-07-30T04:34:48.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>好像很多 Java 程序都有这个毛病.<br>查了半天 Arch Wiki, 终于找到了: <a href="https://wiki.archlinux.org/index.php/Java_Runtime_Environment_fonts#Anti-aliasing" target="_blank" rel="noopener">Java Runtime Environment fonts</a></p><p>解决方案: 设置环境变量 <code>_JAVA_OPTIONS=&#39;-Dawt.useSystemAAFontSettings=on&#39;</code><br>(这么重要的东西怎么还要手动开启??)</p><p>直接在 <code>/etc/environment</code> 里加入这句然后重启即可</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;好像很多 Java 程序都有这个毛病.&lt;br&gt;查了半天 Arch Wiki, 终于找到了: &lt;a href=&quot;https://wiki.archlinux.org/index.php/Java_Runtime_Environment_fonts#Anti-aliasing&quot;
-      
-    
-    </summary>
-    
-    
-      <category term="linux" scheme="https://www.aloxaf.com/categories/linux/"/>
-    
-    
-      <category term="linux" scheme="https://www.aloxaf.com/tags/linux/"/>
     
   </entry>
   

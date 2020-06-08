@@ -115,6 +115,28 @@
         <div class="content-wrapper">
           <div id="content" class="content"><section id="posts" class="posts"><article class="post">
     <header class="post-header">
+      <h1 class="post-title"><a class="post-link" href="/2018/07/java_ugly_font/">解决 Arch Linux 下 BurpSuite 打开很丑的问题</a>
+        </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2018-07-30
+        </span><span class="post-category">
+            <a href="/categories/linux/">linux</a>
+            </span>
+        <span id="/2018/07/java_ugly_font/" class="leancloud_visitors" data-flag-title="解决 Arch Linux 下 BurpSuite 打开很丑的问题">
+            <span class="leancloud-visitors-count" style="display: none;">0</span>
+          </span>
+        </div>
+    </header>
+
+    <div class="post-content"><p>好像很多 Java 程序都有这个毛病.<br>查了半天 Arch Wiki, 终于找到了: <a href="https://wiki.archlinux.org/index.php/Java_Runtime_Environment_fonts#Anti-aliasing" target="_blank" rel="noopener">Java Runtime Environment fonts</a></p>
+<p>解决方案: 设置环境变量 <code>_JAVA_OPTIONS=&#39;-Dawt.useSystemAAFontSettings=on&#39;</code><br>(这么重要的东西怎么还要手动开启??)</p>
+<p>直接在 <code>/etc/environment</code> 里加入这句然后重启即可</p>
+
+        </div></article>
+      <article class="post">
+    <header class="post-header">
       <h1 class="post-title"><a class="post-link" href="/2018/07/add_open_by_emacsclient/">Linux 下在打开方式中增加用 emacsclient</a>
         </h1>
 

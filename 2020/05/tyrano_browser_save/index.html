@@ -130,15 +130,17 @@
     <div class="post-content"><p>:D</p>
 <a id="more"></a>
 
-<p>现在有挺多视觉小说（比如希x薇，与钴糊的日常）都基于 <a href="https://tyranobuilder.com/" target="_blank" rel="noopener">TyranoBuilder</a> 进行开发——一个基于 Web 的视觉小说引擎。</p>
-<p>虽然平常挺讨厌电子之类的玩意儿，但这个时候还是不得不说真香。因为用 tyrano 编写的游戏都是跨平台的！在 Linux 下我只要简单地起一个 http server，然后打开目录中的 index.html，就能在浏览器中进行游戏了！再也不需要 wine 了！！</p>
-<p>但是有一个问题困扰了我很久，那就是在浏览器中虽然可以玩，但无法存档，会报一个“この環境はセーブ機能を利用できません。ローカルで実行している場合などに発生します”，“セーブデータが壊れている可能性があります。セーブデータを初期化しますか？” 的错误。由于我不会日语看不懂报错也懒得谷歌就一直以来都没有去管这个错误，但是今天看到一个看起来不错的游戏，想试一试但 wine 果不其然地挂掉了，在浏览器里的话虽然能运行但不能存档太难受了。于是试着调试了一下这个问题，发现其实非常简单……</p>
+<p>我有一个朋友问我在 Linux 下如何玩基于 typrano 的游戏，typrano 是一个基于 Web 的游戏引擎。现在有挺多视觉小说（比如希x薇，与钴糊的日常）都基于 <a href="https://tyranobuilder.com/" target="_blank" rel="noopener">TyranoBuilder</a> 进行开发。</p>
+<p>那么该怎么玩呢，我说你找找游戏根目录应该有个叫 www 的目录，里面包含了一个 index.html，你在这里面起一个 server 然后用浏览器访问就能玩了。</p>
+<p>我这朋友虽然平常挺讨厌电子之类的玩意儿，但这个时候还是不得不说真香。因为用 tyrano 编写的游戏都是跨平台的！在 Linux 下只要简单地起一个 http server，然后打开目录中的 index.html，竟然就能玩了！再也不需要 wine 了！！</p>
+<p>但是有一个问题困扰了我这朋友很久，那就是在浏览器中虽然可以玩，但无法存档，会报一个“この環境はセーブ機能を利用できません。ローカルで実行している場合などに発生します”，“セーブデータが壊れている可能性があります。セーブデータを初期化しますか？” 的错误。由于他不会日语看不懂报错也懒得谷歌就一直以来都没有去管这个错误，但是他今天看到一个看起来不错的游戏，想试一试但 wine 果不其然地挂掉了，在浏览器里的话虽然能运行但不能存档太难受了。于是他向我请教，我试着调试了一下这个问题，发现其实非常简单……</p>
 <p>tyrano 内部提供了三种存档方式，分别是 webstorage、webstorage_compress 和 file。前面两个很好理解，一看就是直接存在浏览器里的，也是通用性最强的；而最后一个则是以大家最熟悉的 .sav 文件形式存储的，只能用在 PC 游戏上。</p>
 <p>修复方案呼之欲出了：把存档方式改为 webstorage/webstorage_compress  即可（推荐前者，后者似乎偶尔会解压失败导致存档失效），相应代码在 <code>./data/system/Config.tjs</code> 中，将 <code>;configSave     = file</code> 改为 <code>;configSave     = webstorage</code> 就能存档了。</p>
+<p>你甚至可以挂在服务器上玩（</p>
 <p>不过如果要在挂在服务器上玩的话还推荐改一个地方，在 <code>tyrano/lib.js</code> 里，搜索 <code>cache: false</code>，然后去掉 url 后的随机字符串并将 cache 改为 true，改完以后大概这个样子。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(&#123;</span><br><span class="line">    url: file_path,</span><br><span class="line">    cache: <span class="literal">true</span>,</span><br><span class="line">    success: <span class="function"><span class="keyword">function</span>(<span class="params">text</span>)</span>&#123;</span><br><span class="line">        order_str = text;</span><br><span class="line">        callback(order_str);</span><br><span class="line">    &#125;,</span><br><span class="line">    error:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        alert(<span class="string">"file not found:"</span>+file_path);</span><br><span class="line">        callback(<span class="string">""</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
-<p>（解释：因为这个辣鸡引擎每次加载一段对话时都会请求整个对话文件，还带了时间戳导致浏览器缓存无效，影响速度（</p>
+<p>（解释：因为这个辣鸡引擎每次加载一段对话时都会请求整个对话文件，还带了时间戳导致浏览器缓存无效，如果你的服务器是小水管的话非常影响速度</p>
 
       </div>
       <div class="post-copyright">
@@ -159,7 +161,12 @@
             <a href="/tags/game/">game</a>
             </div>
         
-        <nav class="post-nav"><a class="next" href="/2020/03/fzf-tab/">
+        <nav class="post-nav"><a class="prev" href="/2020/06/wine_tyrano/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">使用 wine 运行基于 tyrano 的游戏</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    <a class="next" href="/2020/03/fzf-tab/">
         <span class="next-text nav-default">fzf-tab —— 使用 fzf 进行 zsh 补全</span>
         <span class="prev-text nav-mobile">下一篇</span>
         <i class="iconfont icon-right"></i>
