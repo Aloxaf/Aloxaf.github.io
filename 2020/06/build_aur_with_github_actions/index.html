@@ -120,7 +120,7 @@
 
       <div class="post-meta">
         <span class="post-time">
-          2020-06-19
+          2020-06-24
         </span><span class="post-category">
             <a href="/categories/linux/">linux</a>
             </span>
@@ -140,20 +140,19 @@
 <a id="more"></a>
 
 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>起因是有人在群里发了一篇<a href="https://viflythink.com/Use_GitHubActions_to_build_AUR/" target="_blank" rel="noopener">利用 GitHub Actions 打包 AUR 并建立本地软件源的文章</a>。</p>
-<p>我看了看，觉得是好的，因为在本地编译 AUR 包的体验并不好：</p>
+<p>我看了看，觉得是好的，因为在本地编译 AUR 包的体验并不咋样：</p>
 <ul>
 <li>需要下载大量外网的资源，尤其是打 git 包的时候因为 makepkg 不支持 shallow clone 所以不得不将整个 repo 拉下，下载几百兆的东西最后打出一个两三兆的包是常有的事。</li>
 <li>某些包真的是很难编译，从几十分钟到数小时，感觉自己都变成 Gentoo 用户了……</li>
 </ul>
 <p>这篇文章给了我很大的启发，但是文章中的方法并不能满足我的需求：</p>
-<ol>
+<ul>
 <li>我需要打的包还依赖了其它的 AUR 包，所以仅仅 makepkg 是不够的，我需要一个完整的 AUR Helper。</li>
 <li>我需要对部分包的  PKGBUILD 进行修改</li>
 <li>我还想重打某些官方源里的包</li>
 <li>本地源不够好用，我想直接建立一个个人源。</li>
-</ol>
+</ul>
 <p>于是我又自己整了一个项目：<a href="https://github.com/Aloxaf/aur-build" target="_blank" rel="noopener">https://github.com/Aloxaf/aur-build</a></p>
-<p>来来回回改了几次，最终终于稳定了下来。</p>
 <p>效果如下：<a href="https://repo.aloxaf.com/" target="_blank" rel="noopener">https://repo.aloxaf.com/</a></p>
 <p>使用方法，将下列文本追加到 <code>/etc/pacman.conf</code> 中，</p>
 <figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[aloxaf]</span></span><br><span class="line"><span class="attr">Server</span> = http://repo.aloxaf.com/<span class="variable">$arch</span></span><br></pre></td></tr></table></figure>
@@ -164,11 +163,12 @@
 <p>就可以愉快地使用了。</p>
 <p>过程中踩的各种坑就不说了反正你们也不想听，直接说用法吧。</p>
 <h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><h2 id="服务器-x-1"><a href="#服务器-x-1" class="headerlink" title="服务器 x 1"></a>服务器 x 1</h2><p>用来建立你的个人源，以及存放加密后的构建脚本。</p>
-<p>服务器上只用装好 nginx ，打开 autoindex 并启动就行了，你很懒的话直接跑一个 <a href="https://github.com/TheWaWaR/simple-http-server" target="_blank" rel="noopener">simple-http-server</a> 甚至都可以。因为全部工作都是在 GitHub Actions 上完成的，包括建源。所以理论上放到支持直链的网盘或者云存储上也可以，但是我懒，既然有服务器何必闲着。</p>
-<p>如果你打算传到云上的话可以使用 <a href="https://github.com/marketplace/actions/uptoc-action" target="_blank" rel="noopener">uptoc-action</a>，目录设定为 <code>/home/aur-build/.cache/pikaur/pkg</code> 即可。或者也可以像我开始介绍的那篇文章一样传到 GitHub releases 上。</p>
+<p>服务器上只用装好 nginx ，打开 autoindex 并启动即可，你很懒的话直接跑一个 <a href="https://github.com/TheWaWaR/simple-http-server" target="_blank" rel="noopener">simple-http-server</a> 甚至都可以。因为全部工作都是在 GitHub Actions 上完成的，包括建源。所以理论上放到支持直链的网盘或者云存储上都行。但是我懒，既然有服务器何必闲着。</p>
+<p>如果你打算传到云上的话可以使用 <a href="https://github.com/marketplace/actions/uptoc-action" target="_blank" rel="noopener">uptoc-action</a>，上传目录为 <code>/home/aur-build/.cache/pikaur/pkg</code>。或者也可以像我开始介绍的那篇文章一样传到 GitHub releases 上。</p>
 <h2 id="SSH-密钥-x-1"><a href="#SSH-密钥-x-1" class="headerlink" title="SSH 密钥 x 1"></a>SSH 密钥 x 1</h2><p>用于将打好的包部署到服务器上。</p>
 <p>由于这个密钥需要上传到 GitHub Actions 上，为了防止可能存在的泄露，建议单独生成一个：执行 <code>ssh-keygen -f ~/.ssh/aur_build</code> 生成密钥，然后将 <code>~/.ssh/aur_build.pub</code> 中的内容追加到你服务器对应用户的 <code>~/.ssh/authorized_keys</code> 文件中。</p>
-<h2 id="GPG-密钥-x-1"><a href="#GPG-密钥-x-1" class="headerlink" title="GPG 密钥 x 1"></a>GPG 密钥 x 1</h2><p>用于签名包，出于同样的理由建议生成一个单独的子密钥，没有的话参照<a href="https://mogeko.me/2019/068/" target="_blank" rel="noopener">这篇文章</a>自己生成一个并上传到公钥服务器上。</p>
+<h2 id="GPG-密钥-x-1"><a href="#GPG-密钥-x-1" class="headerlink" title="GPG 密钥 x 1"></a>GPG 密钥 x 1</h2><p>用于签名包，虽然不是必需的但是有这个显得很正规（</p>
+<p>出于同样的理由建议生成一个单独的子密钥，没有的话参照<a href="https://mogeko.me/2019/068/" target="_blank" rel="noopener">这篇文章</a>自己生成一个并上传到公钥服务器上。</p>
 <h2 id="GitHub-Repo-x-1"><a href="#GitHub-Repo-x-1" class="headerlink" title="GitHub Repo x 1"></a>GitHub Repo x 1</h2><p>可以直接 fork <a href="https://github.com/Aloxaf/aur-build" target="_blank" rel="noopener">我的 Repo</a>。然后把它 clone 到本地进行修改</p>
 <h1 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h1><h2 id="塞密钥"><a href="#塞密钥" class="headerlink" title="塞密钥"></a>塞密钥</h2><p>全塞到  <code>./script/data</code> 目录下即可。整个脚本会被加密压缩然后传到服务器上，一般情况下不会泄露。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 导出 GPG 私钥</span></span><br><span class="line">gpg --<span class="built_in">export</span>-secret-keys-subkeys YOUR_GPG_KEY_ID &gt; ./script/data/private.key</span><br><span class="line"><span class="comment"># 还有 GPG 私钥的密码</span></span><br><span class="line"><span class="built_in">echo</span> -n <span class="string">'YOUR_GPG_KEY_PASSPHARSE'</span> &gt; ./script/data/private.passpharse</span><br><span class="line"><span class="comment"># 还有你的 SSH 私钥</span></span><br><span class="line">cp ~/.ssh/aur_build ./script/data/private.passpharse</span><br></pre></td></tr></table></figure>
@@ -185,14 +185,14 @@
 <li><code>SCRIPT_URL</code>：你的构建脚本的下载地址</li>
 <li><code>PASSWORD</code>：构建脚本的密码（就是上一节的 PASSWORD）</li>
 </ul>
-<h2 id="放入你想要打包的包"><a href="#放入你想要打包的包" class="headerlink" title="放入你想要打包的包"></a>放入你想要打包的包</h2><p>在 <code>./script/packages</code> 下建一个目录为包名的目录即可，根据目录内容的不同有三种包：</p>
+<h2 id="放入你想要打包的包"><a href="#放入你想要打包的包" class="headerlink" title="放入你想要打包的包"></a>放入你想要打包的包</h2><p>在 <code>./script/packages</code> 下建立对应目录，根据目录内容的不同有三种包：</p>
 <ol>
-<li>目录为空，则为普通的 AUR 包，构建时会去 AUR 上寻找这个包。</li>
+<li>目录为空，则为普通的 AUR 包，构建时会去 AUR 上寻找同名包。</li>
 <li>目录下有一个 PKGBUILD，则直接用这个 PKGBUILD 打包。</li>
 <li>目录下有一个 build.zsh，则执行这个 build.zsh 打包</li>
 </ol>
 <p>绝大多数情况下都是第一种。</p>
-<h2 id="打包上传你的构建脚本"><a href="#打包上传你的构建脚本" class="headerlink" title="打包上传你的构建脚本"></a>打包上传你的构建脚本</h2><p>直接运行 <code>./script/upload_script.zsh</code> 即可，构建脚本会被压缩加密并上传到服务器上。然后 GitHub Actions 在执行时会下载这个压缩包并解密再执行里面的脚本。</p>
+<h2 id="打包上传你的构建脚本"><a href="#打包上传你的构建脚本" class="headerlink" title="打包上传你的构建脚本"></a>打包上传你的构建脚本</h2><p>运行 <code>./script/upload_script.zsh</code> ，构建脚本会被压缩加密并上传到服务器上。然后 GitHub Actions 在执行时会下载这个压缩包并解密再执行里面的脚本。</p>
 <p>什么？你问我为什么不直接 push 到 GitHub 上，而要多此一举呢？</p>
 <p>其实是为了方便，采用这种方式构建的话，不用每次修改文件都重新 push 一次，只要重新触发 workflow 就行了，尤其是初期测试的时候常常改来改去……这个方法为我省下了大量无意义的 commit。</p>
 <h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><p>Push 到 GitHub 上，以触发 GitHub Actions。或者你也可以手动触发，然后就能坐等打包结果了。</p>

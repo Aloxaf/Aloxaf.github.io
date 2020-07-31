@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://www.aloxaf.com/2019/09/cdda_note/</loc>
+    
+    <lastmod>2020-07-31T03:24:07.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://www.aloxaf.com/2020/06/build_aur_with_github_actions/</loc>
     
-    <lastmod>2020-06-19T00:43:00.000Z</lastmod>
+    <lastmod>2020-06-24T00:43:00.000Z</lastmod>
     
   </url>
   
@@ -19,13 +26,6 @@
     <loc>https://www.aloxaf.com/2020/05/tyrano_browser_save/</loc>
     
     <lastmod>2020-05-21T13:07:00.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://www.aloxaf.com/2019/09/cdda_note/</loc>
-    
-    <lastmod>2020-03-31T03:24:07.000Z</lastmod>
     
   </url>
   
