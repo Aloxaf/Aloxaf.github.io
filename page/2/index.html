@@ -115,6 +115,35 @@
         <div class="content-wrapper">
           <div id="content" class="content"><section id="posts" class="posts"><article class="post">
     <header class="post-header">
+      <h1 class="post-title"><a class="post-link" href="/2019/04/fxxk_jetbrains_font_linux/">JetBrains 家 IDE 在 Linux 下的奇怪字体问题(锯齿, 字体过小)</a>
+        </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2019-04-03
+        </span><span class="post-category">
+            <a href="/categories/linux/">linux</a>
+            </span>
+        <span id="/2019/04/fxxk_jetbrains_font_linux/" class="leancloud_visitors" data-flag-title="JetBrains 家 IDE 在 Linux 下的奇怪字体问题(锯齿, 字体过小)">
+            <span class="leancloud-visitors-count" style="display: none;">0</span>
+          </span>
+        </div>
+    </header>
+
+    <div class="post-content"><p>JetBrains 家的 IDE 在 Linux 下会有一些奇怪的问题: 如字体很丑(没开抗锯齿一样), 字体过小(目测是 HiDPI 下的问题), 最近更新了一下 PyCharm 2019 又出现了这个问题, 解决问题以后记录一下方案, 造福广大 JetBrains 信徒</p>
+<p>长话短说——统统是 jre 的问题</p>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>换用 IntelliJ patch 过的 jre</p>
+<h2 id="具体方法"><a href="#具体方法" class="headerlink" title="具体方法"></a>具体方法</h2><p>有很多, 因为我在用 Arch Linux 就用 Arch Linux 下比较方便的方法了:</p>
+<ol>
+<li>安装 clion-jre (Archlinuxcn 源有二进制包) (从 AUR 安装 intellij-jdk 应该也行, 可能还更方便? 不过懒得试了, 因为我用 clion 时已经装了这个)</li>
+<li>如果是 clion 可以无视这条步骤.  <code>Esc-x</code>, 输入 <code>Switch Boot JDK</code>, 改用 <code>/opt/clion/jre64</code> ( 没有这个的话自己浏览路径选</li>
+<li>没了, 重新启动你的 IDE, 问题应该解决了</li>
+</ol>
+<p>注：2019.1 版本以后，如果需要更换 JDK 需要安装 <a href="https://plugins.jetbrains.com/plugin/12836-choose-runtime" target="_blank" rel="noopener">Choose Runtime</a> 插件，然后使用 Choose Runtime 来更换 Runtime。</p>
+
+        </div></article>
+      <article class="post">
+    <header class="post-header">
       <h1 class="post-title"><a class="post-link" href="/2019/04/alacritty_hidpi/">Alacritty HiDPI 下的坑</a>
         </h1>
 
@@ -337,29 +366,6 @@
 <p>写了一个假期的代码……</p>
           <div class="read-more">
             <a href="/2018/10/zip_crack/" class="read-more-link">阅读更多</a>
-          </div>
-        </div></article>
-      <article class="post">
-    <header class="post-header">
-      <h1 class="post-title"><a class="post-link" href="/2018/09/reduce_rust_size/">优化 Rust 程序编译体积</a>
-        </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2018-09-07
-        </span><span class="post-category">
-            <a href="/categories/rust/">rust</a>
-            </span>
-        <span id="/2018/09/reduce_rust_size/" class="leancloud_visitors" data-flag-title="优化 Rust 程序编译体积">
-            <span class="leancloud-visitors-count" style="display: none;">0</span>
-          </span>
-        </div>
-    </header>
-
-    <div class="post-content"><p>体积狂魔の执念，记录一下以免忘记。</p>
-<p><strong>2019-11-12 更新：</strong> 自这篇文章发表后已经过了一年，Rust 发生了许多变化，比如不再自带 Jemalloc 作为内存分配器。因此更新一下文章，参考了一个新项目 <a href="https://github.com/johnthagen/min-sized-rust" target="_blank" rel="noopener">min-sized-rust</a> 进行了更多的优化。</p>
-          <div class="read-more">
-            <a href="/2018/09/reduce_rust_size/" class="read-more-link">阅读更多</a>
           </div>
         </div></article>
       <nav class="pagination"><a class="prev" href="/">
