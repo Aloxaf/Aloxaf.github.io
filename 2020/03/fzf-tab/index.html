@@ -45,11 +45,11 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://www.aloxaf.com/2020/03/fzf-tab/" />
 <meta property="article:published_time" content="2020-03-13T17:27:22+00:00" />
-<meta property="article:modified_time" content="2020-03-13T17:27:22+00:00" />
+<meta property="article:modified_time" content="2020-11-07T21:06:00+00:00" />
 <meta itemprop="name" content="fzf-tab —— 使用 fzf 进行 zsh 补全">
 <meta itemprop="description" content="">
 <meta itemprop="datePublished" content="2020-03-13T17:27:22+00:00" />
-<meta itemprop="dateModified" content="2020-03-13T17:27:22+00:00" />
+<meta itemprop="dateModified" content="2020-11-07T21:06:00+00:00" />
 <meta itemprop="wordCount" content="2062">
 
 
@@ -147,11 +147,6 @@
 </nav>
   </div>
 </div>
-  <div class="post-outdated">
-    <div class="hint">
-      <p>【注】本文最后更新于 <span class="timeago" datetime="2020-03-13T17:27:22" title="March 13, 2020">March 13, 2020</span>，文中内容可能已经过时。</p>
-    </div>
-  </div>
     <div class="post-content">
       <p><a href="https://asciinema.org/a/293849"><img src="https://asciinema.org/a/293849.svg" alt="asciicast"></a></p>
 <h1 id="碎碎念">碎碎念</h1>
@@ -184,36 +179,27 @@
 <li>最基本的：使用 fzf 来模糊搜索补全候选项，而且几乎适用所有场景的补全</li>
 <li>还可以使用 <kbd>Ctrl+Space</kbd> 来一次选择多个候选项</li>
 <li>在补全目录时，还可以使用 <kbd>/</kbd> 来快速激活下一次补全。在补全长路径时这个功能尤其有用。</li>
+<li>在 tmux 3.2 及以上版本运行时，可以<a href="https://asciinema.org/a/367471">使用 popup 来展示补全结果</a></li>
 </ol>
 <p>结合 fzf 的 <code>--preview</code> 开关，还能实现更丰富的功能：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-zsh" data-lang="zsh"><span class="c1"># kill 结束进程时时提供预览</span>
 zstyle <span class="s1">&#39;:completion:*:*:*:*:processes&#39;</span> <span class="nb">command</span> <span class="s2">&#34;ps -u </span><span class="nv">$USER</span><span class="s2"> -o pid,user,comm,cmd -w -w&#34;</span>
-zstyle <span class="s1">&#39;:fzf-tab:complete:kill:argument-rest&#39;</span> extra-opts --preview<span class="o">=</span><span class="s1">&#39;echo $(&lt;{f})&#39;</span> --preview-window<span class="o">=</span>down:3:wrap
+zstyle <span class="s1">&#39;:fzf-tab:complete:kill:argument-rest&#39;</span> fzf-preview <span class="s1">&#39;ps --pid=$word -o cmd --no-headers -w -w&#39;</span>
+zstyle <span class="s1">&#39;:fzf-tab:complete:kill:argument-rest&#39;</span> fzf-flags <span class="s1">&#39;--preview-window=down:3:wrap&#39;</span>
 
-<span class="c1"># （实验性功能）cd 时在右侧预览目录内容</span>
-<span class="nb">local</span> <span class="nv">extract</span><span class="o">=</span><span class="s2">&#34;
-</span><span class="s2"># 提取输入
-</span><span class="s2">in=\${\${\&#34;\$(&lt;{f})\&#34;%\$&#39;\0&#39;*}#*\$&#39;\0&#39;}
-</span><span class="s2"># 获取相关信息
-</span><span class="s2">local -A ctxt=(\&#34;\${(@ps:\2:)CTXT}\&#34;)
-</span><span class="s2">&#34;</span>
-zstyle <span class="s1">&#39;:fzf-tab:complete:cd*&#39;</span> extra-opts --preview<span class="o">=</span><span class="nv">$extract</span><span class="s2">&#34;exa -1 --color=always \${~ctxt[hpre]}\$in&#34;</span>
+<span class="c1"># cd 时在右侧预览目录内容</span>
+zstyle <span class="s1">&#39;:fzf-tab:complete:cd:*&#39;</span> fzf-preview <span class="s1">&#39;exa -1 --color=always $realpath&#39;</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>当然，这玩意儿也有不完美的地方。比如：尚不支持 <code>_approximate</code> completer、基于 compctl（zsh 的旧补全系统） 的补全也不支持、作为一个外来的“前端”与 zsh 本身的结合仍然不是很理想……</p>
@@ -254,7 +240,7 @@ zstyle <span class="s1">&#39;:fzf-tab:complete:cd*&#39;</span> extra-opts --prev
   <p class="copyright-item">
     <span class="item-title">上次更新</span>
     <span class="item-content">
-        2020-03-13
+        2020-11-07
         
     </span>
   </p>
