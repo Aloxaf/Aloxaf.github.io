@@ -2,26 +2,26 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>zsh on Aloxaf&#39;s Blog</title>
-    <link>http://www.aloxaf.com/tags/zsh/</link>
+    <link>https://www.aloxaf.com/tags/zsh/</link>
     <description>Recent content in zsh on Aloxaf&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Fri, 13 Mar 2020 17:27:22 +0000</lastBuildDate><atom:link href="http://www.aloxaf.com/tags/zsh/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 13 Mar 2020 17:27:22 +0000</lastBuildDate><atom:link href="https://www.aloxaf.com/tags/zsh/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>fzf-tab —— 使用 fzf 进行 zsh 补全</title>
-      <link>http://www.aloxaf.com/2020/03/fzf-tab/</link>
+      <link>https://www.aloxaf.com/2020/03/fzf-tab/</link>
       <pubDate>Fri, 13 Mar 2020 17:27:22 +0000</pubDate>
       
-      <guid>http://www.aloxaf.com/2020/03/fzf-tab/</guid>
+      <guid>https://www.aloxaf.com/2020/03/fzf-tab/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;https://asciinema.org/a/293849&#34;&gt;&lt;img src=&#34;https://asciinema.org/a/293849.svg&#34; alt=&#34;asciicast&#34;&gt;&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>加速你的 zsh —— 最强 zsh 插件管理器 zplugin/zinit 教程</title>
-      <link>http://www.aloxaf.com/2019/11/zplugin_tutorial/</link>
+      <link>https://www.aloxaf.com/2019/11/zplugin_tutorial/</link>
       <pubDate>Sun, 10 Nov 2019 13:43:26 +0000</pubDate>
       
-      <guid>http://www.aloxaf.com/2019/11/zplugin_tutorial/</guid>
+      <guid>https://www.aloxaf.com/2019/11/zplugin_tutorial/</guid>
       <description>&lt;p&gt;&lt;strong&gt;2020-01-26 更新：&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Zplugin 已改名 Zinit，不过教程中的内容仍然适用。
 阅读时请自行在脑中替换 （&lt;/p&gt;

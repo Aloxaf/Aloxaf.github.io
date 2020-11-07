@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>misc on Aloxaf&#39;s Blog</title>
-    <link>http://www.aloxaf.com/tags/misc/</link>
+    <link>https://www.aloxaf.com/tags/misc/</link>
     <description>Recent content in misc on Aloxaf&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Sat, 13 Apr 2019 14:39:02 +0000</lastBuildDate><atom:link href="http://www.aloxaf.com/tags/misc/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 13 Apr 2019 14:39:02 +0000</lastBuildDate><atom:link href="https://www.aloxaf.com/tags/misc/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>ZIP 明文攻击原理（上）</title>
-      <link>http://www.aloxaf.com/2019/04/zip_plaintext_attack/</link>
+      <link>https://www.aloxaf.com/2019/04/zip_plaintext_attack/</link>
       <pubDate>Sat, 13 Apr 2019 14:39:02 +0000</pubDate>
       
-      <guid>http://www.aloxaf.com/2019/04/zip_plaintext_attack/</guid>
+      <guid>https://www.aloxaf.com/2019/04/zip_plaintext_attack/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;不会有下了&lt;/p&gt;
 &lt;/blockquote&gt;</description>
@@ -20,30 +20,30 @@
     
     <item>
       <title>ZIP 明文攻击工具</title>
-      <link>http://www.aloxaf.com/2018/10/zip_crack/</link>
+      <link>https://www.aloxaf.com/2018/10/zip_crack/</link>
       <pubDate>Thu, 04 Oct 2018 21:47:12 +0000</pubDate>
       
-      <guid>http://www.aloxaf.com/2018/10/zip_crack/</guid>
+      <guid>https://www.aloxaf.com/2018/10/zip_crack/</guid>
       <description>&lt;p&gt;这个国庆假期抽了点风&amp;hellip;&amp;hellip;&lt;/p&gt;
 &lt;p&gt;写了一个假期的代码&amp;hellip;&amp;hellip;&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>hackme.inndy 部分writeup</title>
-      <link>http://www.aloxaf.com/2018/08/hackme_inndy/</link>
+      <link>https://www.aloxaf.com/2018/08/hackme_inndy/</link>
       <pubDate>Mon, 20 Aug 2018 21:37:00 +0000</pubDate>
       
-      <guid>http://www.aloxaf.com/2018/08/hackme_inndy/</guid>
+      <guid>https://www.aloxaf.com/2018/08/hackme_inndy/</guid>
       <description>&lt;p&gt;听奥博大佬说对新手很友好, 来试试&lt;/p&gt;
 &lt;p&gt;官方不建议直接给出 flag, 就不放 flag 了&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Jarvis OJ BASIC 完整writeup</title>
-      <link>http://www.aloxaf.com/2018/05/jarvisoj_basic/</link>
+      <link>https://www.aloxaf.com/2018/05/jarvisoj_basic/</link>
       <pubDate>Thu, 17 May 2018 08:23:16 +0000</pubDate>
       
-      <guid>http://www.aloxaf.com/2018/05/jarvisoj_basic/</guid>
+      <guid>https://www.aloxaf.com/2018/05/jarvisoj_basic/</guid>
       <description>&lt;h1 id=&#34;握手包&#34;&gt;握手包&lt;/h1&gt;
 &lt;blockquote&gt;
 &lt;p&gt;给你握手包，flag是Flag_is_here这个AP的密码，自己看着办吧。&lt;/p&gt;

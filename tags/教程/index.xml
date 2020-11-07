@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>教程 on Aloxaf&#39;s Blog</title>
-    <link>http://www.aloxaf.com/tags/%E6%95%99%E7%A8%8B/</link>
+    <link>https://www.aloxaf.com/tags/%E6%95%99%E7%A8%8B/</link>
     <description>Recent content in 教程 on Aloxaf&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Sun, 10 Nov 2019 13:43:26 +0000</lastBuildDate><atom:link href="http://www.aloxaf.com/tags/%E6%95%99%E7%A8%8B/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 10 Nov 2019 13:43:26 +0000</lastBuildDate><atom:link href="https://www.aloxaf.com/tags/%E6%95%99%E7%A8%8B/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>加速你的 zsh —— 最强 zsh 插件管理器 zplugin/zinit 教程</title>
-      <link>http://www.aloxaf.com/2019/11/zplugin_tutorial/</link>
+      <link>https://www.aloxaf.com/2019/11/zplugin_tutorial/</link>
       <pubDate>Sun, 10 Nov 2019 13:43:26 +0000</pubDate>
       
-      <guid>http://www.aloxaf.com/2019/11/zplugin_tutorial/</guid>
+      <guid>https://www.aloxaf.com/2019/11/zplugin_tutorial/</guid>
       <description>&lt;p&gt;&lt;strong&gt;2020-01-26 更新：&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Zplugin 已改名 Zinit，不过教程中的内容仍然适用。
 阅读时请自行在脑中替换 （&lt;/p&gt;
@@ -39,10 +39,10 @@ p10k 的 Instant Prompt 功能非常好用，它可以在其他插件的加载�
     
     <item>
       <title>xkeysnail 使用指南</title>
-      <link>http://www.aloxaf.com/2019/11/xkeysnail_tutorial/</link>
+      <link>https://www.aloxaf.com/2019/11/xkeysnail_tutorial/</link>
       <pubDate>Sun, 03 Nov 2019 15:33:49 +0000</pubDate>
       
-      <guid>http://www.aloxaf.com/2019/11/xkeysnail_tutorial/</guid>
+      <guid>https://www.aloxaf.com/2019/11/xkeysnail_tutorial/</guid>
       <description>&lt;h1 id=&#34;emacs-keybings-everywhere&#34;&gt;Emacs keybings Everywhere!&lt;/h1&gt;
 &lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
 &lt;p&gt;xkeysnail 是一个非常强大的 keyboard remapping 工具, 它类似于 xmodmap, 但更为灵活. 不仅能重映射键位, 还能重映射快捷键, 甚至能在不同的程序下使用不同的映射!&lt;/p&gt;

@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Aloxaf&#39;s Blog</title>
-    <link>http://www.aloxaf.com/post/</link>
+    <link>https://www.aloxaf.com/post/</link>
     <description>Recent content in Posts on Aloxaf&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Thu, 24 Sep 2020 21:53:09 +0000</lastBuildDate><atom:link href="http://www.aloxaf.com/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 24 Sep 2020 21:53:09 +0000</lastBuildDate><atom:link href="https://www.aloxaf.com/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>使用 fcitx5-lua 编写 lua 插件</title>
-      <link>http://www.aloxaf.com/2020/09/fcitx5_plugin/</link>
+      <link>https://www.aloxaf.com/2020/09/fcitx5_plugin/</link>
       <pubDate>Thu, 24 Sep 2020 21:53:09 +0000</pubDate>
       
-      <guid>http://www.aloxaf.com/2020/09/fcitx5_plugin/</guid>
+      <guid>https://www.aloxaf.com/2020/09/fcitx5_plugin/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;突然发现五个月前自己写过一篇 fcitx5-lua 的教程，刚好拿来水一篇&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -21,57 +21,57 @@
     
     <item>
       <title>利用 GitHub Actions 编译 AUR 包并建立自己的软件源</title>
-      <link>http://www.aloxaf.com/2020/06/build_aur_with_github_actions/</link>
+      <link>https://www.aloxaf.com/2020/06/build_aur_with_github_actions/</link>
       <pubDate>Wed, 24 Jun 2020 08:43:00 +0000</pubDate>
       
-      <guid>http://www.aloxaf.com/2020/06/build_aur_with_github_actions/</guid>
+      <guid>https://www.aloxaf.com/2020/06/build_aur_with_github_actions/</guid>
       <description>&lt;p&gt;Arch 用户当然要有自己的软件源！&lt;/p&gt;
 &lt;p&gt;&lt;s&gt;白嫖真香！&lt;/s&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>使用 wine 运行基于 tyrano 的游戏</title>
-      <link>http://www.aloxaf.com/2020/06/wine_tyrano/</link>
+      <link>https://www.aloxaf.com/2020/06/wine_tyrano/</link>
       <pubDate>Mon, 08 Jun 2020 14:10:00 +0000</pubDate>
       
-      <guid>http://www.aloxaf.com/2020/06/wine_tyrano/</guid>
+      <guid>https://www.aloxaf.com/2020/06/wine_tyrano/</guid>
       <description>&lt;p&gt;∠( ᐛ 」∠)＿&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>基于 tyrano 的游戏如何在浏览器中存档</title>
-      <link>http://www.aloxaf.com/2020/05/tyrano_browser_save/</link>
+      <link>https://www.aloxaf.com/2020/05/tyrano_browser_save/</link>
       <pubDate>Thu, 21 May 2020 21:07:00 +0000</pubDate>
       
-      <guid>http://www.aloxaf.com/2020/05/tyrano_browser_save/</guid>
+      <guid>https://www.aloxaf.com/2020/05/tyrano_browser_save/</guid>
       <description>&lt;p&gt;:D&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>fzf-tab —— 使用 fzf 进行 zsh 补全</title>
-      <link>http://www.aloxaf.com/2020/03/fzf-tab/</link>
+      <link>https://www.aloxaf.com/2020/03/fzf-tab/</link>
       <pubDate>Fri, 13 Mar 2020 17:27:22 +0000</pubDate>
       
-      <guid>http://www.aloxaf.com/2020/03/fzf-tab/</guid>
+      <guid>https://www.aloxaf.com/2020/03/fzf-tab/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;https://asciinema.org/a/293849&#34;&gt;&lt;img src=&#34;https://asciinema.org/a/293849.svg&#34; alt=&#34;asciicast&#34;&gt;&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>【译】设计优雅的 Rust 库 API</title>
-      <link>http://www.aloxaf.com/2019/11/elegant_apis_in_rust/</link>
+      <link>https://www.aloxaf.com/2019/11/elegant_apis_in_rust/</link>
       <pubDate>Wed, 20 Nov 2019 21:55:09 +0000</pubDate>
       
-      <guid>http://www.aloxaf.com/2019/11/elegant_apis_in_rust/</guid>
+      <guid>https://www.aloxaf.com/2019/11/elegant_apis_in_rust/</guid>
       <description>&lt;p&gt;一篇讲述 Rust API 设计原则的经典老文，虽然老但仍然值得阅读。前几天有事情把它从旮旯里翻出来了，虽然是经典老文但我估计很多人都没有读过，最近闲着没事干脆用我的辣鸡英语水平翻译一下，也算为 Rust 中文社区做一点贡献。&lt;/p&gt;
 &lt;p&gt;原文见：https://deterministic.space/elegant-apis-in-rust.html&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>加速你的 zsh —— 最强 zsh 插件管理器 zplugin/zinit 教程</title>
-      <link>http://www.aloxaf.com/2019/11/zplugin_tutorial/</link>
+      <link>https://www.aloxaf.com/2019/11/zplugin_tutorial/</link>
       <pubDate>Sun, 10 Nov 2019 13:43:26 +0000</pubDate>
       
-      <guid>http://www.aloxaf.com/2019/11/zplugin_tutorial/</guid>
+      <guid>https://www.aloxaf.com/2019/11/zplugin_tutorial/</guid>
       <description>&lt;p&gt;&lt;strong&gt;2020-01-26 更新：&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Zplugin 已改名 Zinit，不过教程中的内容仍然适用。
 阅读时请自行在脑中替换 （&lt;/p&gt;
@@ -98,10 +98,10 @@ p10k 的 Instant Prompt 功能非常好用，它可以在其他插件的加载�
     
     <item>
       <title>xkeysnail 使用指南</title>
-      <link>http://www.aloxaf.com/2019/11/xkeysnail_tutorial/</link>
+      <link>https://www.aloxaf.com/2019/11/xkeysnail_tutorial/</link>
       <pubDate>Sun, 03 Nov 2019 15:33:49 +0000</pubDate>
       
-      <guid>http://www.aloxaf.com/2019/11/xkeysnail_tutorial/</guid>
+      <guid>https://www.aloxaf.com/2019/11/xkeysnail_tutorial/</guid>
       <description>&lt;h1 id=&#34;emacs-keybings-everywhere&#34;&gt;Emacs keybings Everywhere!&lt;/h1&gt;
 &lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
 &lt;p&gt;xkeysnail 是一个非常强大的 keyboard remapping 工具, 它类似于 xmodmap, 但更为灵活. 不仅能重映射键位, 还能重映射快捷键, 甚至能在不同的程序下使用不同的映射!&lt;/p&gt;
@@ -111,19 +111,19 @@ p10k 的 Instant Prompt 功能非常好用，它可以在其他插件的加载�
     
     <item>
       <title>CDDA 幸存者笔记</title>
-      <link>http://www.aloxaf.com/2019/09/cdda_note/</link>
+      <link>https://www.aloxaf.com/2019/09/cdda_note/</link>
       <pubDate>Sun, 15 Sep 2019 12:16:01 +0000</pubDate>
       
-      <guid>http://www.aloxaf.com/2019/09/cdda_note/</guid>
+      <guid>https://www.aloxaf.com/2019/09/cdda_note/</guid>
       <description>&lt;p&gt;是幸存者笔记，绝不是开发者笔记&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>ZIP 明文攻击原理（上）</title>
-      <link>http://www.aloxaf.com/2019/04/zip_plaintext_attack/</link>
+      <link>https://www.aloxaf.com/2019/04/zip_plaintext_attack/</link>
       <pubDate>Sat, 13 Apr 2019 14:39:02 +0000</pubDate>
       
-      <guid>http://www.aloxaf.com/2019/04/zip_plaintext_attack/</guid>
+      <guid>https://www.aloxaf.com/2019/04/zip_plaintext_attack/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;不会有下了&lt;/p&gt;
 &lt;/blockquote&gt;</description>
@@ -131,46 +131,46 @@ p10k 的 Instant Prompt 功能非常好用，它可以在其他插件的加载�
     
     <item>
       <title>JetBrains 家 IDE 在 Linux 下的奇怪字体问题(锯齿, 字体过小)</title>
-      <link>http://www.aloxaf.com/2019/04/fxxk_jetbrains_font_linux/</link>
+      <link>https://www.aloxaf.com/2019/04/fxxk_jetbrains_font_linux/</link>
       <pubDate>Wed, 03 Apr 2019 17:44:44 +0000</pubDate>
       
-      <guid>http://www.aloxaf.com/2019/04/fxxk_jetbrains_font_linux/</guid>
+      <guid>https://www.aloxaf.com/2019/04/fxxk_jetbrains_font_linux/</guid>
       <description>JetBrains 家的 IDE 在 Linux 下会有一些奇怪的问题: 如字体很丑(没开抗锯齿一样), 字体过小(目测是 HiDPI 下的问题), 最近更新了一下 PyCharm 2019 又出现了这个问题, 解决问题以</description>
     </item>
     
     <item>
       <title>Alacritty HiDPI 下的坑</title>
-      <link>http://www.aloxaf.com/2019/04/alacritty_hidpi/</link>
+      <link>https://www.aloxaf.com/2019/04/alacritty_hidpi/</link>
       <pubDate>Wed, 03 Apr 2019 17:31:49 +0000</pubDate>
       
-      <guid>http://www.aloxaf.com/2019/04/alacritty_hidpi/</guid>
+      <guid>https://www.aloxaf.com/2019/04/alacritty_hidpi/</guid>
       <description>为啥要折腾 Alacritty 呢, 因为 Konsole 有点小问题: https://bugs.kde.org/show_bug.cgi?id=401298 (不过这个问题已经 fix 了, 下个版本应该就没有了, 我大概又会滚回 Konsole, 毕竟有 blur 和 ligatures), 阻碍我使用棒棒的 lsd. 问题表现 具体</description>
     </item>
     
     <item>
       <title>PowerShell 真香</title>
-      <link>http://www.aloxaf.com/2019/03/powershell_miaoa/</link>
+      <link>https://www.aloxaf.com/2019/03/powershell_miaoa/</link>
       <pubDate>Sat, 02 Mar 2019 00:02:05 +0000</pubDate>
       
-      <guid>http://www.aloxaf.com/2019/03/powershell_miaoa/</guid>
+      <guid>https://www.aloxaf.com/2019/03/powershell_miaoa/</guid>
       <description>我就是饿死, 死外面, 从外面跳下去, 也不会用 M$ 的垃圾 PowerShell ! &amp;hellip; 真香! NOTE: 这是一篇黑 bash 吹 PowerShell(以下简称 pwsh) 的文章, bash 死忠粉以及软黑请退散</description>
     </item>
     
     <item>
       <title>Arch Linux 杂七杂八的优化</title>
-      <link>http://www.aloxaf.com/2018/11/arch_optimize/</link>
+      <link>https://www.aloxaf.com/2018/11/arch_optimize/</link>
       <pubDate>Sun, 18 Nov 2018 22:56:27 +0000</pubDate>
       
-      <guid>http://www.aloxaf.com/2018/11/arch_optimize/</guid>
+      <guid>https://www.aloxaf.com/2018/11/arch_optimize/</guid>
       <description>&lt;p&gt;发现无聊时刷 &lt;a href=&#34;https://wiki.archlinux.org/&#34;&gt;Arch Wiki&lt;/a&gt; 也挺有趣的, 记录一下自己干了啥吧. 毕竟有些配置没法放到 dotfiles 里. 记录一下以后翻起来也方便.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>解决 KDE 暗色主题下 WPS &amp; 搜狗拼音设置字体颜色不正常的问题</title>
-      <link>http://www.aloxaf.com/2018/11/kde_dark_theme/</link>
+      <link>https://www.aloxaf.com/2018/11/kde_dark_theme/</link>
       <pubDate>Wed, 14 Nov 2018 20:58:52 +0000</pubDate>
       
-      <guid>http://www.aloxaf.com/2018/11/kde_dark_theme/</guid>
+      <guid>https://www.aloxaf.com/2018/11/kde_dark_theme/</guid>
       <description>&lt;p&gt;这是一个比较迷的 bug, 困扰了我很久, 然而又不知道为什么.&lt;/p&gt;
 &lt;p&gt;今天在群里看到有人提到了这个问题, 简单地讲就是程序只有一部分跟随系统主题, 然后就会产生各种诡异的效果.&lt;/p&gt;
 &lt;p&gt;比如&lt;/p&gt;
@@ -183,10 +183,10 @@ p10k 的 Instant Prompt 功能非常好用，它可以在其他插件的加载�
     
     <item>
       <title>如何在 Python3 中让 &#39;a&#39; is &#39;b&#39; 为 True</title>
-      <link>http://www.aloxaf.com/2018/10/egg_pain_python/</link>
+      <link>https://www.aloxaf.com/2018/10/egg_pain_python/</link>
       <pubDate>Sun, 28 Oct 2018 14:24:05 +0000</pubDate>
       
-      <guid>http://www.aloxaf.com/2018/10/egg_pain_python/</guid>
+      <guid>https://www.aloxaf.com/2018/10/egg_pain_python/</guid>
       <description>&lt;h1 id=&#34;前言&#34;&gt;前言&lt;/h1&gt;
 &lt;p&gt;这是一篇闲蛋疼的文章, 讲述了闲蛋疼的我是如何&lt;del&gt;历经千辛万苦终于&lt;/del&gt;在 Python 中让 &lt;code&gt;&#39;a&#39; is &#39;b&#39;&lt;/code&gt; 得到 &lt;code&gt;True&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;del&gt;(虽然这件事情毫无意义)&lt;/del&gt;&lt;/p&gt;
@@ -195,10 +195,10 @@ p10k 的 Instant Prompt 功能非常好用，它可以在其他插件的加载�
     
     <item>
       <title>Arch Linux 下使用 pwndbg</title>
-      <link>http://www.aloxaf.com/2018/10/arch_pwndbg/</link>
+      <link>https://www.aloxaf.com/2018/10/arch_pwndbg/</link>
       <pubDate>Fri, 19 Oct 2018 13:47:04 +0000</pubDate>
       
-      <guid>http://www.aloxaf.com/2018/10/arch_pwndbg/</guid>
+      <guid>https://www.aloxaf.com/2018/10/arch_pwndbg/</guid>
       <description>&lt;p&gt;pwndbg 的安装: &lt;code&gt;pacman -S pwndbg&lt;/code&gt; 然后添加 &lt;code&gt;source /usr/share/pwndbg/gdbinit.py&lt;/code&gt; 到 &lt;code&gt;~/.gdbinit&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;然而要在 Arch Linux 下愉快地使用 pwndbg, 还要解决以下问题:&lt;/p&gt;
 &lt;ul&gt;
@@ -210,10 +210,10 @@ p10k 的 Instant Prompt 功能非常好用，它可以在其他插件的加载�
     
     <item>
       <title>加速 AUR 软件安装速度</title>
-      <link>http://www.aloxaf.com/2018/10/arch_git/</link>
+      <link>https://www.aloxaf.com/2018/10/arch_git/</link>
       <pubDate>Thu, 18 Oct 2018 16:15:30 +0000</pubDate>
       
-      <guid>http://www.aloxaf.com/2018/10/arch_git/</guid>
+      <guid>https://www.aloxaf.com/2018/10/arch_git/</guid>
       <description>&lt;p&gt;AUR 里的构建脚本常常需要从 github 拉取源代码,
 然而没有加 &lt;code&gt;--depth 1&lt;/code&gt; 的 &lt;code&gt;git clone&lt;/code&gt; 把大量流量花在了下载对于构建毫无用处的提交记录等东西上面.&lt;/p&gt;
 &lt;p&gt;尤其是安装主题这种东西的时候, clone 下来几百 MB, 结果构建完得到一个几 MB 的包&amp;hellip;&lt;/p&gt;</description>
@@ -221,50 +221,50 @@ p10k 的 Instant Prompt 功能非常好用，它可以在其他插件的加载�
     
     <item>
       <title>在 Linux 下使用 Blob Emoji</title>
-      <link>http://www.aloxaf.com/2018/10/linux_emoji/</link>
+      <link>https://www.aloxaf.com/2018/10/linux_emoji/</link>
       <pubDate>Wed, 10 Oct 2018 19:00:45 +0000</pubDate>
       
-      <guid>http://www.aloxaf.com/2018/10/linux_emoji/</guid>
+      <guid>https://www.aloxaf.com/2018/10/linux_emoji/</guid>
       <description>&lt;p&gt;默认emoji太丑, 没有颜色, 看着浑身难受.&lt;/p&gt;
 &lt;p&gt;还是喜欢果冻人&amp;hellip;&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>ZIP 明文攻击工具</title>
-      <link>http://www.aloxaf.com/2018/10/zip_crack/</link>
+      <link>https://www.aloxaf.com/2018/10/zip_crack/</link>
       <pubDate>Thu, 04 Oct 2018 21:47:12 +0000</pubDate>
       
-      <guid>http://www.aloxaf.com/2018/10/zip_crack/</guid>
+      <guid>https://www.aloxaf.com/2018/10/zip_crack/</guid>
       <description>&lt;p&gt;这个国庆假期抽了点风&amp;hellip;&amp;hellip;&lt;/p&gt;
 &lt;p&gt;写了一个假期的代码&amp;hellip;&amp;hellip;&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>优化 Rust 程序编译体积</title>
-      <link>http://www.aloxaf.com/2018/09/reduce_rust_size/</link>
+      <link>https://www.aloxaf.com/2018/09/reduce_rust_size/</link>
       <pubDate>Fri, 07 Sep 2018 12:27:05 +0000</pubDate>
       
-      <guid>http://www.aloxaf.com/2018/09/reduce_rust_size/</guid>
+      <guid>https://www.aloxaf.com/2018/09/reduce_rust_size/</guid>
       <description>&lt;p&gt;体积狂魔の执念，记录一下以免忘记。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;2019-11-12 更新：&lt;/strong&gt; 自这篇文章发表后已经过了一年，Rust 发生了许多变化，比如不再自带 Jemalloc 作为内存分配器。因此更新一下文章，参考了一个新项目 &lt;a href=&#34;https://github.com/johnthagen/min-sized-rust&#34;&gt;min-sized-rust&lt;/a&gt; 进行了更多的优化。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>hackme.inndy 部分writeup</title>
-      <link>http://www.aloxaf.com/2018/08/hackme_inndy/</link>
+      <link>https://www.aloxaf.com/2018/08/hackme_inndy/</link>
       <pubDate>Mon, 20 Aug 2018 21:37:00 +0000</pubDate>
       
-      <guid>http://www.aloxaf.com/2018/08/hackme_inndy/</guid>
+      <guid>https://www.aloxaf.com/2018/08/hackme_inndy/</guid>
       <description>&lt;p&gt;听奥博大佬说对新手很友好, 来试试&lt;/p&gt;
 &lt;p&gt;官方不建议直接给出 flag, 就不放 flag 了&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>TJCTF 2018 中两道 Python Jail 的解法</title>
-      <link>http://www.aloxaf.com/2018/08/tjctf_pythonjail/</link>
+      <link>https://www.aloxaf.com/2018/08/tjctf_pythonjail/</link>
       <pubDate>Sat, 11 Aug 2018 12:23:25 +0000</pubDate>
       
-      <guid>http://www.aloxaf.com/2018/08/tjctf_pythonjail/</guid>
+      <guid>https://www.aloxaf.com/2018/08/tjctf_pythonjail/</guid>
       <description>&lt;p&gt;感谢 M4x 师傅推荐了这个比赛, 虽然是面向美国高中生, 不过打了以后还是有点收获的.
 &lt;del&gt;同时内心受到一万点暴击伤害&lt;/del&gt;&lt;/p&gt;
 &lt;p&gt;尤其是两道 Python jail, 非常硬却失挺.
@@ -273,38 +273,38 @@ p10k 的 Instant Prompt 功能非常好用，它可以在其他插件的加载�
     
     <item>
       <title>解决 Arch Linux 下 BurpSuite 打开很丑的问题</title>
-      <link>http://www.aloxaf.com/2018/07/java_ugly_font/</link>
+      <link>https://www.aloxaf.com/2018/07/java_ugly_font/</link>
       <pubDate>Mon, 30 Jul 2018 12:34:48 +0000</pubDate>
       
-      <guid>http://www.aloxaf.com/2018/07/java_ugly_font/</guid>
+      <guid>https://www.aloxaf.com/2018/07/java_ugly_font/</guid>
       <description>好像很多 Java 程序都有这个毛病. 查了半天 Arch Wiki, 终于找到了: Java Runtime Environment fonts 解决方案: 设置环境变量 _JAVA_OPTIONS=&#39;-Dawt.useSystemAAFontSettings=on&#39; (这么重要的东西怎么还要手动开启??) 直接在 /etc/environment 里加入这句</description>
     </item>
     
     <item>
       <title>Linux 下在打开方式中增加用 emacsclient</title>
-      <link>http://www.aloxaf.com/2018/07/add_open_by_emacsclient/</link>
+      <link>https://www.aloxaf.com/2018/07/add_open_by_emacsclient/</link>
       <pubDate>Thu, 26 Jul 2018 08:42:30 +0000</pubDate>
       
-      <guid>http://www.aloxaf.com/2018/07/add_open_by_emacsclient/</guid>
+      <guid>https://www.aloxaf.com/2018/07/add_open_by_emacsclient/</guid>
       <description>&lt;p&gt;参考 &lt;a href=&#34;http://liuyuanzhi.blogspot.com/2009/08/open-with-emacs-in-nautilus.html&#34;&gt;open-with-emacs-in-nautilus&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>在 Arch Linux 下使用 glibc 2.23 调试程序&amp;使用 pwndbg</title>
-      <link>http://www.aloxaf.com/2018/07/arch_glibc_2.23/</link>
+      <link>https://www.aloxaf.com/2018/07/arch_glibc_2.23/</link>
       <pubDate>Sat, 14 Jul 2018 11:16:09 +0000</pubDate>
       
-      <guid>http://www.aloxaf.com/2018/07/arch_glibc_2.23/</guid>
+      <guid>https://www.aloxaf.com/2018/07/arch_glibc_2.23/</guid>
       <description>&lt;p&gt;glibc 2.26开始, 引入了 tcache 技术. 使得对 UAF 漏洞的利用非常困难.
 (更: 听 M4x 师傅说其实安全性下降了? &lt;a href=&#34;http://tukan.farm/2017/07/08/tcache/&#34;&gt;thread local caching in glibc malloc&lt;/a&gt;)&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Jarvis OJ BASIC 完整writeup</title>
-      <link>http://www.aloxaf.com/2018/05/jarvisoj_basic/</link>
+      <link>https://www.aloxaf.com/2018/05/jarvisoj_basic/</link>
       <pubDate>Thu, 17 May 2018 08:23:16 +0000</pubDate>
       
-      <guid>http://www.aloxaf.com/2018/05/jarvisoj_basic/</guid>
+      <guid>https://www.aloxaf.com/2018/05/jarvisoj_basic/</guid>
       <description>&lt;h1 id=&#34;握手包&#34;&gt;握手包&lt;/h1&gt;
 &lt;blockquote&gt;
 &lt;p&gt;给你握手包，flag是Flag_is_here这个AP的密码，自己看着办吧。&lt;/p&gt;
@@ -334,20 +334,20 @@ hashcat -m &lt;span class=&#34;m&#34;&gt;2500&lt;/span&gt; wifi.hccapx 10k_most_
     
     <item>
       <title>改进hexo/cafe主题表格显示效果</title>
-      <link>http://www.aloxaf.com/2018/05/improve_hexo_table/</link>
+      <link>https://www.aloxaf.com/2018/05/improve_hexo_table/</link>
       <pubDate>Mon, 07 May 2018 21:41:33 +0000</pubDate>
       
-      <guid>http://www.aloxaf.com/2018/05/improve_hexo_table/</guid>
+      <guid>https://www.aloxaf.com/2018/05/improve_hexo_table/</guid>
       <description>&lt;p&gt;总体是根据这篇文章来的
 &lt;a href=&#34;http://ju.outofmemory.cn/entry/130935&#34;&gt;http://ju.outofmemory.cn/entry/130935&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>pwnable.kr - Toddler&#39;s Bottle 部分writeup</title>
-      <link>http://www.aloxaf.com/2018/05/pwnable.kr_toddlers_bottle/</link>
+      <link>https://www.aloxaf.com/2018/05/pwnable.kr_toddlers_bottle/</link>
       <pubDate>Fri, 04 May 2018 10:19:12 +0000</pubDate>
       
-      <guid>http://www.aloxaf.com/2018/05/pwnable.kr_toddlers_bottle/</guid>
+      <guid>https://www.aloxaf.com/2018/05/pwnable.kr_toddlers_bottle/</guid>
       <description>&lt;p&gt;Toddler&amp;rsquo;s Bottle vey&lt;/p&gt;
 &lt;p&gt;包含了 Toddler&amp;rsquo;s Bottle 这一节的除了 UAF 和 unlink 以外的 writeup.
 (一看就知道还不会利用堆漏洞)&lt;/p&gt;
@@ -356,19 +356,19 @@ hashcat -m &lt;span class=&#34;m&#34;&gt;2500&lt;/span&gt; wifi.hccapx 10k_most_
     
     <item>
       <title>解决Gnome终端无法设置透明度的问题</title>
-      <link>http://www.aloxaf.com/2017/12/gnomre-terminal-transparency/</link>
+      <link>https://www.aloxaf.com/2017/12/gnomre-terminal-transparency/</link>
       <pubDate>Tue, 26 Dec 2017 10:47:23 +0000</pubDate>
       
-      <guid>http://www.aloxaf.com/2017/12/gnomre-terminal-transparency/</guid>
+      <guid>https://www.aloxaf.com/2017/12/gnomre-terminal-transparency/</guid>
       <description>&lt;p&gt;将下列代码加入到shell的初始化脚本中即可&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>在ArchLinux上安装VMware</title>
-      <link>http://www.aloxaf.com/2017/11/install_vmware_on_archlinux/</link>
+      <link>https://www.aloxaf.com/2017/11/install_vmware_on_archlinux/</link>
       <pubDate>Thu, 30 Nov 2017 08:00:12 +0000</pubDate>
       
-      <guid>http://www.aloxaf.com/2017/11/install_vmware_on_archlinux/</guid>
+      <guid>https://www.aloxaf.com/2017/11/install_vmware_on_archlinux/</guid>
       <description>1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 # 1.建立 init.d 文件夹, 尽管对于arch 来说没有卵用 sudo mkdir /etc/init.d # 2.安装内核头文件, 因为接下来需要编译内核模块,</description>
     </item>
     
