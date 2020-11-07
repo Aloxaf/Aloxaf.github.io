@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
-  <head><meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>如何在 Python3 中让 &#39;a&#39; is &#39;b&#39; 为 True - Aloxaf&#39;s Blog</title>
+  <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
 
 <meta http-equiv="Cache-Control" content="no-transform" />
 <meta http-equiv="Cache-Control" content="no-siteapp" />
@@ -13,45 +15,75 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
-<meta name="description" content="如何在 Python3 中让 'a' is 'b' 为 True"/><meta name="keywords" content="python, egg_pain, Aloxaf's blog" /><link rel="alternate" href="/atom.xml" title="Aloxaf's blog"><link rel="shortcut icon" type="image/x-icon" href="/favicon.svg?v=2.11.0" />
-<link rel="canonical" href="https://www.aloxaf.com/2018/10/egg_pain_python/"/>
 
-<link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
-<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.11.0" />
+<meta name="author" content="Aloxaf" /><meta name="description" content="前言 这是一篇闲蛋疼的文章, 讲述了闲蛋疼的我是如何历经千辛万苦终于在 Python 中让 &#39;a&#39; is &#39;b&#39; 得到 True.
+(虽然这件事情毫无意义)
+(不过拿来坑下一任或许是个好主意呢)
+" /><meta name="keywords" content="aloxaf, ctf, linux, zsh" />
 
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-123773630-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'UA-123773630-1');
-</script><script id="baidu_push">
-(function(){
-    var bp = document.createElement('script');
-    var curProtocol = window.location.protocol.split(':')[0];
-    if (curProtocol === 'https') {
-        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
-    }
-    else {
-        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-    }
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(bp, s);
-})();
-</script>
-<script>
-  window.config = {"leancloud":{"app_id":null,"app_key":null},"toc":true,"fancybox":true,"pjax":"","latex":true};
-</script>
 
-    <title>如何在 Python3 中让 'a' is 'b' 为 True - Aloxaf's blog</title>
-  <meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Aloxaf's blog" type="application/atom+xml">
+
+
+
+<meta name="generator" content="Hugo 0.78.1 with theme even" />
+
+
+<link rel="canonical" href="http://www.aloxaf.com/2018/10/egg_pain_python/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.65ccf00eb040f87c6c85a4206ef3520967b49eb3940b6b6f15c2e84bc94782d7.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="如何在 Python3 中让 &#39;a&#39; is &#39;b&#39; 为 True" />
+<meta property="og:description" content="前言
+这是一篇闲蛋疼的文章, 讲述了闲蛋疼的我是如何历经千辛万苦终于在 Python 中让 &#39;a&#39; is &#39;b&#39; 得到 True.
+(虽然这件事情毫无意义)
+(不过拿来坑下一任或许是个好主意呢)" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://www.aloxaf.com/2018/10/egg_pain_python/" />
+<meta property="article:published_time" content="2018-10-28T14:24:05+00:00" />
+<meta property="article:modified_time" content="2018-10-28T21:08:33+00:00" />
+<meta itemprop="name" content="如何在 Python3 中让 &#39;a&#39; is &#39;b&#39; 为 True">
+<meta itemprop="description" content="前言
+这是一篇闲蛋疼的文章, 讲述了闲蛋疼的我是如何历经千辛万苦终于在 Python 中让 &#39;a&#39; is &#39;b&#39; 得到 True.
+(虽然这件事情毫无意义)
+(不过拿来坑下一任或许是个好主意呢)">
+<meta itemprop="datePublished" content="2018-10-28T14:24:05+00:00" />
+<meta itemprop="dateModified" content="2018-10-28T21:08:33+00:00" />
+<meta itemprop="wordCount" content="3287">
+
+
+
+<meta itemprop="keywords" content="python,egg_pain," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="如何在 Python3 中让 &#39;a&#39; is &#39;b&#39; 为 True"/>
+<meta name="twitter:description" content="前言
+这是一篇闲蛋疼的文章, 讲述了闲蛋疼的我是如何历经千辛万苦终于在 Python 中让 &#39;a&#39; is &#39;b&#39; 得到 True.
+(虽然这件事情毫无意义)
+(不过拿来坑下一任或许是个好主意呢)"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
 </head>
-
-  <body><div id="mobile-navbar" class="mobile-navbar">
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
   <div class="mobile-header-logo">
-    <a href="/." class="logo">Aloxaf's blog</a>
+    <a href="/" class="logo">Aloxaf&#39;s Blog</a>
   </div>
   <div class="mobile-navbar-icon">
     <span></span>
@@ -59,295 +91,895 @@
     <span></span>
   </div>
 </div>
-
 <nav id="mobile-menu" class="mobile-menu slideout-menu">
-  <ul class="mobile-menu-list"><a href="/">
-        <li class="mobile-menu-item">首页
-          </li>
-      </a><a href="/archives/">
-        <li class="mobile-menu-item">归档
-          </li>
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
       </a><a href="/tags/">
-        <li class="mobile-menu-item">标签
-          </li>
+        <li class="mobile-menu-item">标签</li>
       </a><a href="/about/">
-        <li class="mobile-menu-item">关于
-          </li>
-      </a><a href="/friends/">
-        <li class="mobile-menu-item">友链
-          </li>
-      </a></ul>
+        <li class="mobile-menu-item">关于</li>
+      </a><a href="/friend/">
+        <li class="mobile-menu-item">友链</li>
+      </a>
+  </ul>
 </nav>
-<div class="container" id="mobile-panel">
-      <header id="header" class="header"><div class="logo-wrapper">
-  <a href="/." class="logo">Aloxaf's blog</a>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Aloxaf&#39;s Blog</a>
 </div>
 
-<nav class="site-navbar"><ul id="menu" class="menu"><li class="menu-item">
-          <a class="menu-item-link" href="/">
-            首页
-            </a>
-        </li>
-      <li class="menu-item">
-          <a class="menu-item-link" href="/archives/">
-            归档
-            </a>
-        </li>
-      <li class="menu-item">
-          <a class="menu-item-link" href="/tags/">
-            标签
-            </a>
-        </li>
-      <li class="menu-item">
-          <a class="menu-item-link" href="/about/">
-            关于
-            </a>
-        </li>
-      <li class="menu-item">
-          <a class="menu-item-link" href="/friends/">
-            友链
-            </a>
-        </li>
-      </ul></nav>
-</header>
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">关于</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/friend/">友链</a>
+      </li>
+  </ul>
+</nav>
+    </header>
 
-      <main id="main" class="main">
-        <div class="content-wrapper">
-          <div id="content" class="content"><article class="post">
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
     <header class="post-header">
-      <h1 class="post-title">如何在 Python3 中让 'a' is 'b' 为 True
-        </h1>
+      <h1 class="post-title">如何在 Python3 中让 &#39;a&#39; is &#39;b&#39; 为 True</h1>
 
       <div class="post-meta">
-        <span class="post-time">
-          2018-10-28
-        </span><span class="post-category">
-            <a href="/categories/egg-pain/">egg_pain</a>
-            </span>
-        <span id="/2018/10/egg_pain_python/" class="leancloud_visitors" data-flag-title="如何在 Python3 中让 'a' is 'b' 为 True">
-            <span class="leancloud-visitors-count" style="display: none;">0</span>
-          </span>
-        </div>
+        <span class="post-time"> 2018-10-28 </span>
+        <div class="post-category">
+            <a href="/categories/egg_pain/"> egg_pain </a>
+            </div>
+        
+      </div>
     </header>
 
     <div class="post-toc" id="post-toc">
-    <h2 class="post-toc-title">文章目录</h2>
-    <div class="post-toc-content">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#前言"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#动机"><span class="toc-text">动机</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#先试试常规手段"><span class="toc-text">先试试常规手段</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-直接交换"><span class="toc-text">1. 直接交换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-globals"><span class="toc-text">2. globals()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-重载-eq"><span class="toc-text">3. 重载 __eq__</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-重载-repr"><span class="toc-text">4. 重载 __repr__</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#还是老老实实读源码吧"><span class="toc-text">还是老老实实读源码吧</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#0-搭建调试环境"><span class="toc-text">0. 搭建调试环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-PyObject"><span class="toc-text">1. PyObject *</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Py-False-和-Py-FalseStruct"><span class="toc-text">2. Py_False 和 _Py_FalseStruct</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-bool-repr"><span class="toc-text">3. bool_repr</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-PyUnicode-Type"><span class="toc-text">4. PyUnicode_Type</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#最终代码-互换-True-False"><span class="toc-text">最终代码: 互换 True False</span></a></li></ol>
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#前言">前言</a></li>
+    <li><a href="#动机">动机</a></li>
+    <li><a href="#先试试常规手段">先试试常规手段</a>
+      <ul>
+        <li><a href="#1-直接交换">1. 直接交换</a></li>
+        <li><a href="#2-globals">2. <code>globals()</code></a></li>
+        <li><a href="#3-重载-__eq__">3. 重载 <code>__eq__</code></a></li>
+        <li><a href="#4-重载-__repr__">4. 重载 <code>__repr__</code></a></li>
+      </ul>
+    </li>
+    <li><a href="#还是老老实实读源码吧">还是老老实实读源码吧</a>
+      <ul>
+        <li><a href="#0-搭建调试环境">0. 搭建调试环境</a></li>
+        <li><a href="#1-pyobject-">1. <code>PyObject *</code></a></li>
+        <li><a href="#2-py_false-和-_py_falsestruct">2. <code>Py_False</code> 和 <code>_Py_FalseStruct</code></a></li>
+        <li><a href="#3-bool_repr">3. <code>bool_repr</code></a></li>
+        <li><a href="#4-pyunicode_type">4. <code>PyUnicode_Type</code></a></li>
+      </ul>
+    </li>
+    <li><a href="#最终代码-互换-true-false">最终代码: 互换 True False</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+  <div class="post-outdated">
+    <div class="warn">
+      <p>【注】本文最后更新于 <span class="timeago" datetime="2018-10-28T21:08:33" title="October 28, 2018">October 28, 2018</span>，文中内容可能已经过时。</p>
     </div>
-  </div><div class="post-content"><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这是一篇闲蛋疼的文章, 讲述了闲蛋疼的我是如何<del>历经千辛万苦终于</del>在 Python 中让 <code>&#39;a&#39; is &#39;b&#39;</code> 得到 <code>True</code>.</p>
+  </div>
+    <div class="post-content">
+      <h1 id="前言">前言</h1>
+<p>这是一篇闲蛋疼的文章, 讲述了闲蛋疼的我是如何<del>历经千辛万苦终于</del>在 Python 中让 <code>'a' is 'b'</code> 得到 <code>True</code>.</p>
 <p><del>(虽然这件事情毫无意义)</del></p>
 <p><del>(不过拿来坑下一任或许是个好主意呢)</del></p>
-<a id="more"></a>
-
-<h1 id="动机"><a href="#动机" class="headerlink" title="动机"></a>动机</h1><p>这个想法最早在六月中旬就产生了, 主要是看了知乎上的两个回答, </p>
+<h1 id="动机">动机</h1>
+<p>这个想法最早在六月中旬就产生了, 主要是看了知乎上的两个回答,</p>
 <ul>
-<li><a href="https://www.zhihu.com/question/39021759/answer/81901936" target="_blank" rel="noopener">如何用一段简单的代码讲述一个悲伤的故事？</a> </li>
-<li><a href="https://www.zhihu.com/question/27376156/answer/103135969" target="_blank" rel="noopener">Python 有什么奇技淫巧？</a> </li>
+<li><a href="https://www.zhihu.com/question/39021759/answer/81901936">如何用一段简单的代码讲述一个悲伤的故事？</a></li>
+<li><a href="https://www.zhihu.com/question/27376156/answer/103135969">Python 有什么奇技淫巧？</a></li>
 </ul>
-<p>然后我想, 那能不能来个 <code>&#39;God&#39; is &#39;girl&#39; -&gt; True</code> 之类的. </p>
-<p>当时也尝试了一下, xjb读了一下源码, 尝试使用 ‘a’ 的内存覆盖 ‘b’ 的内存, 然而最终只做到了 <code>hash(&#39;a&#39;) == hash(&#39;b&#39;)</code>. </p>
+<p>然后我想, 那能不能来个 <code>'God' is 'girl' -&gt; True</code> 之类的.</p>
+<p>当时也尝试了一下, xjb读了一下源码, 尝试使用 &lsquo;a&rsquo; 的内存覆盖 &lsquo;b&rsquo; 的内存, 然而最终只做到了 <code>hash('a') == hash('b')</code>.</p>
 <p>而且读完 <code>is</code> 的源码后, 觉得这不大可能实现, 于是就放弃了. (因为发现 <code>is</code> 比较的是两个对象的指针, 而不是内容, 所以两个不同的对象进行比较是无论如何都不可能 True 的, 即使 hash 什么的都一模一样)</p>
 <p>四个月后我又回想起了这个问题, 我觉得我应该有能力再次挑战了, 然后果然挑战成功了!</p>
-<p>于是写下这篇文章, 记录一下自己在这个过程中学到的东西. </p>
-<h1 id="先试试常规手段"><a href="#先试试常规手段" class="headerlink" title="先试试常规手段"></a>先试试常规手段</h1><h2 id="1-直接交换"><a href="#1-直接交换" class="headerlink" title="1. 直接交换"></a>1. 直接交换</h2><p><code>False = True</code></p>
+<p>于是写下这篇文章, 记录一下自己在这个过程中学到的东西.</p>
+<h1 id="先试试常规手段">先试试常规手段</h1>
+<h2 id="1-直接交换">1. 直接交换</h2>
+<p><code>False = True</code></p>
 <p>很简单粗暴的想法, 然而 python 的回应也很简单粗暴: 关键字不能赋值.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">1</span>]: <span class="literal">False</span> = <span class="literal">True</span></span><br><span class="line">  File <span class="string">"&lt;ipython-input-1-e3c38088f793&gt;"</span>, line <span class="number">1</span></span><br><span class="line">    <span class="literal">False</span> = <span class="literal">True</span></span><br><span class="line">                ^</span><br><span class="line">SyntaxError: can<span class="string">'t assign to keyword</span></span><br></pre></td></tr></table></figure>
-
-
-
-<blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="bp">False</span> <span class="o">=</span> <span class="bp">True</span>
+  <span class="n">File</span> <span class="s2">&#34;&lt;ipython-input-1-e3c38088f793&gt;&#34;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span>
+    <span class="bp">False</span> <span class="o">=</span> <span class="bp">True</span>
+                <span class="o">^</span>
+<span class="ne">SyntaxError</span><span class="p">:</span> <span class="n">can</span><span class="s1">&#39;t assign to keyword</span>
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
 <p>在 Python2 中, 这行代码其实是可以执行的, 不过这只是改变了字面量 <code>False</code> 的值,  并没有达到我的要求.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">1</span>]: <span class="literal">False</span> = <span class="literal">True</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">2</span>]: <span class="number">1</span> == <span class="number">2</span></span><br><span class="line">Out[<span class="number">2</span>]: <span class="literal">False</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">3</span>]: <span class="literal">False</span></span><br><span class="line">Out[<span class="number">2</span>]: <span class="literal">True</span></span><br></pre></td></tr></table></figure>
-</blockquote>
-<h2 id="2-globals"><a href="#2-globals" class="headerlink" title="2. globals()"></a>2. <code>globals()</code></h2><p>既然不能直接赋值, 那试试用 <code>globals()</code> 来赋值?</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">1</span>]: globals()[<span class="string">'a'</span>] = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">2</span>]: a</span><br><span class="line">Out[<span class="number">2</span>]: <span class="number">1</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">3</span>]: globals()[<span class="string">'False'</span>] = <span class="literal">True</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">4</span>]: <span class="literal">False</span></span><br><span class="line">Out[<span class="number">4</span>]: <span class="literal">False</span></span><br></pre></td></tr></table></figure>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="bp">False</span> <span class="o">=</span> <span class="bp">True</span>
 
-<p>仍然失败, 想想也是, 在 Python3 中 <code>False</code> 已经是一个关键字了, 优先级肯定高于变量. 即使有同名变量也会被遮蔽.</p>
-<h2 id="3-重载-eq"><a href="#3-重载-eq" class="headerlink" title="3. 重载 __eq__"></a>3. 重载 <code>__eq__</code></h2><p>想对身为关键字的 <code>True</code> 和 <code>False</code> 做点什么实在是太难了,<br>换个思路试试: 重载 <code>str.__eq__</code>, 让它不管三七二十一全部返回 <code>True</code> ! 妙啊妙啊, 我真是太聪明了. </p>
-<p>虽然不能做到 <code>&#39;a&#39; is &#39;b&#39;</code> 但能实现 <code>&#39;a&#39; == &#39;b&#39;</code> 的话也是一个进步啊.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">10</span>]: int.__eq__ = <span class="keyword">lambda</span> : <span class="literal">True</span></span><br><span class="line">---------------------------------------------------------------------------</span><br><span class="line">TypeError                                 Traceback (most recent call last)</span><br><span class="line">&lt;ipython-input<span class="number">-10</span><span class="number">-71</span>a46054a87d&gt; <span class="keyword">in</span> &lt;module&gt;()</span><br><span class="line">----&gt; 1 int.__eq__ = lambda : True</span><br><span class="line"></span><br><span class="line">TypeError: can<span class="string">'t set attributes of built-in/extension type '</span>int<span class="string">'</span></span><br></pre></td></tr></table></figure>
+<span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="mi">1</span> <span class="o">==</span> <span class="mi">2</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="bp">False</span>
 
-<p>然而又失败了…</p>
-<h2 id="4-重载-repr"><a href="#4-重载-repr" class="headerlink" title="4. 重载 __repr__"></a>4. 重载 <code>__repr__</code></h2><p>不死心的我又想试试 <code>__repr__</code>, 让 <code>bool</code> 对象的 <code>__repr__</code> 始终返回 True</p>
-<p>仍然失败了, 嘛…毕竟是内置类型.</p>
+<span class="n">In</span> <span class="p">[</span><span class="mi">3</span><span class="p">]:</span> <span class="bp">False</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="bp">True</span>
+</code></pre></td></tr></table>
+</div>
+</div></blockquote>
+<h2 id="2-globals">2. <code>globals()</code></h2>
+<p>既然不能直接赋值, 那试试用 <code>globals()</code> 来赋值?</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="nb">globals</span><span class="p">()[</span><span class="s1">&#39;a&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="n">a</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="mi">1</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">3</span><span class="p">]:</span> <span class="nb">globals</span><span class="p">()[</span><span class="s1">&#39;False&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">True</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">4</span><span class="p">]:</span> <span class="bp">False</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">4</span><span class="p">]:</span> <span class="bp">False</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>仍然失败, 想想也是, 在 Python3 中 <code>False</code> 已经是一个关键字了, 优先级肯定高于变量. 即使有同名变量也会被遮蔽.</p>
+<h2 id="3-重载-__eq__">3. 重载 <code>__eq__</code></h2>
+<p>想对身为关键字的 <code>True</code> 和 <code>False</code> 做点什么实在是太难了,
+换个思路试试: 重载 <code>str.__eq__</code>, 让它不管三七二十一全部返回 <code>True</code> ! 妙啊妙啊, 我真是太聪明了.</p>
+<p>虽然不能做到 <code>'a' is 'b'</code> 但能实现 <code>'a' == 'b'</code> 的话也是一个进步啊.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">In</span> <span class="p">[</span><span class="mi">10</span><span class="p">]:</span> <span class="nb">int</span><span class="o">.</span><span class="fm">__eq__</span> <span class="o">=</span> <span class="k">lambda</span> <span class="p">:</span> <span class="bp">True</span>
+<span class="o">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span>                                 <span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">)</span>
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">71</span><span class="n">a46054a87d</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span><span class="p">()</span>
+<span class="o">----&gt;</span> <span class="mi">1</span> <span class="nb">int</span><span class="o">.</span><span class="fm">__eq__</span> <span class="o">=</span> <span class="k">lambda</span> <span class="p">:</span> <span class="bp">True</span>
+
+<span class="ne">TypeError</span><span class="p">:</span> <span class="n">can</span><span class="s1">&#39;t set attributes of built-in/extension type &#39;</span><span class="nb">int</span><span class="s1">&#39;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>然而又失败了&hellip;</p>
+<h2 id="4-重载-__repr__">4. 重载 <code>__repr__</code></h2>
+<p>不死心的我又想试试 <code>__repr__</code>, 让 <code>bool</code> 对象的 <code>__repr__ </code> 始终返回 True</p>
+<p>仍然失败了, 嘛&hellip;毕竟是内置类型.</p>
 <p>看来内置的玩意儿通过常规方法是改不了, 那就读源码, 用 ctypes 强行改一波内存.</p>
 <blockquote>
 <p>后来我还想到一种适用于 ipython 的方法, 即自定义一个 ipython formatter, 相当于 ipython 专用的 <code>__repr__</code></p>
-<p>比如我曾经实现过的一个小插件, 可以让一个 bytes 不管是否包含可见字符, 都以十六进制的形式输出<br><a href="https://gist.github.com/Aloxaf/de3de8e7c0b8913335847afd3ff76cc7" target="_blank" rel="noopener">https://gist.github.com/Aloxaf/de3de8e7c0b8913335847afd3ff76cc7</a></p>
-<p>然而还是没有什么卵用…bool类型跟开挂一样无视了 ipython formatter</p>
+<p>比如我曾经实现过的一个小插件, 可以让一个 bytes 不管是否包含可见字符, 都以十六进制的形式输出
+<a href="https://gist.github.com/Aloxaf/de3de8e7c0b8913335847afd3ff76cc7">https://gist.github.com/Aloxaf/de3de8e7c0b8913335847afd3ff76cc7</a></p>
+<p>然而还是没有什么卵用&hellip;bool类型跟开挂一样无视了 ipython formatter</p>
 <p>这个很奇怪, 不过原因以后再找</p>
 </blockquote>
-<h1 id="还是老老实实读源码吧"><a href="#还是老老实实读源码吧" class="headerlink" title="还是老老实实读源码吧"></a>还是老老实实读源码吧</h1><h2 id="0-搭建调试环境"><a href="#0-搭建调试环境" class="headerlink" title="0. 搭建调试环境"></a>0. 搭建调试环境</h2><p>这几个月熟悉了一下棒棒的 gdb, 这次要利用起来</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># gitee 的唯一用处</span></span><br><span class="line">wget https://gitee.com/Aloxaf/cpython/repository/archive/v3.7.1.zip</span><br><span class="line">unzip v3.7.1.zip</span><br><span class="line"><span class="built_in">cd</span> cpython</span><br><span class="line">./configure --with-pydebug</span><br><span class="line">make -j4</span><br></pre></td></tr></table></figure>
-
-<p>非常迅速地编译完了, 接下来运行 <code>gdb ./python</code>.<br>不出意外的话会提示你给 <code>python-gdb.py</code> 添加一个啥 <code>add-auto-load-safe-path</code> 到 <code>~/.gdbinit</code>, 照它说的添加就行. 可以提升调试体验.<br>(如果你的 gdb 什么插件都没装的话, 建议安装一个 pwndbg, <del>能让你从此爱上 gdb</del>)</p>
+<h1 id="还是老老实实读源码吧">还是老老实实读源码吧</h1>
+<h2 id="0-搭建调试环境">0. 搭建调试环境</h2>
+<p>这几个月熟悉了一下棒棒的 gdb, 这次要利用起来</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># gitee 的唯一用处</span>
+wget https://gitee.com/Aloxaf/cpython/repository/archive/v3.7.1.zip
+unzip v3.7.1.zip
+<span class="nb">cd</span> cpython
+./configure --with-pydebug
+make -j4
+</code></pre></td></tr></table>
+</div>
+</div><p>非常迅速地编译完了, 接下来运行 <code>gdb ./python</code>.
+不出意外的话会提示你给 <code>python-gdb.py</code> 添加一个啥 <code>add-auto-load-safe-path</code> 到 <code>~/.gdbinit</code>, 照它说的添加就行. 可以提升调试体验.
+(如果你的 gdb 什么插件都没装的话, 建议安装一个 pwndbg, <del>能让你从此爱上 gdb</del>)</p>
 <p>然后运行 <code>echo 0 | sudo tee /proc/sys/kernel/yama/ptrace_scope</code> 允许 attach 进程</p>
 <p>接着创建一个 Python 文件, 写入如下内容</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> time <span class="keyword">import</span> sleep</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    print(<span class="number">1</span> == <span class="number">1</span>, <span class="number">1</span> == <span class="number">2</span>)</span><br><span class="line">    sleep(<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span>
 
-<p>然后 <code>./python test.py&amp;</code> 执行, 记录 pid 并用 <code>gdb ./python $PID</code> attach 到 Python 进程上.</p>
-<p><del>阅读源码我没找到啥好软件(有棒棒的”跳转到定义”的那种), ~</del><br><del>我用的 clion, 然而跳转太残废了, 也有可能是我不会配吧 (一般拿 clion 写的是 rust 233</del> </p>
-<p><del>所以我采用了 <code>ripgrep</code> 来搜索定义…然后在 clion 里手动定位….</del></p>
+<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="mi">1</span> <span class="o">==</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>然后 <code>./python test.py&amp;</code> 执行, 记录 pid 并用 <code>gdb ./python $PID</code> attach 到 Python 进程上.</p>
+<p>~~阅读源码我没找到啥好软件(有棒棒的&quot;跳转到定义&quot;的那种), ~~
+<del>我用的 clion, 然而跳转太残废了, 也有可能是我不会配吧 (一般拿 clion 写的是 rust 233</del></p>
+<p><del>所以我采用了 <code>ripgrep</code> 来搜索定义&hellip;然后在 clion 里手动定位&hellip;.</del></p>
 <p><del>(这个效率太感人了, 如果谁有什么好的方式还望不啬赐教.)</del></p>
-<p>Google了一下这个问题, <a href="https://stackoverflow.com/questions/35297120/viewing-cpython-code-in-clion" target="_blank" rel="noopener">Viewing CPython Code in CLion</a></p>
+<p>Google了一下这个问题, <a href="https://stackoverflow.com/questions/35297120/viewing-cpython-code-in-clion">Viewing CPython Code in CLion</a></p>
 <p>只需要创建一个小小的 CMakeLists.txt, 就能使用自动跳转了!!</p>
-<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">make_minimum_required(VERSION <span class="number">3.0</span>)</span><br><span class="line"><span class="keyword">project</span>(cpython)</span><br><span class="line"></span><br><span class="line"><span class="keyword">file</span>(GLOB SOURCE_FILES</span><br><span class="line">    Python/*.c</span><br><span class="line">    Parser/*.c</span><br><span class="line">    Objects/*.c</span><br><span class="line">    Modules/*.c)</span><br><span class="line"></span><br><span class="line"><span class="keyword">include_directories</span>(<span class="keyword">Include</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">add_executable</span>(cpython <span class="variable">$&#123;SOURCE_FILES&#125;</span>)</span><br></pre></td></tr></table></figure>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cmake" data-lang="cmake"><span class="nb">make_minimum_required</span><span class="p">(</span><span class="s">VERSION</span> <span class="s">3.0</span><span class="p">)</span><span class="err">
+</span><span class="err"></span><span class="nb">project</span><span class="p">(</span><span class="s">cpython</span><span class="p">)</span><span class="err">
+</span><span class="err">
+</span><span class="err"></span><span class="nb">file</span><span class="p">(</span><span class="s">GLOB</span> <span class="s">SOURCE_FILES</span>
+    <span class="s">Python/*.c</span>
+    <span class="s">Parser/*.c</span>
+    <span class="s">Objects/*.c</span>
+    <span class="s">Modules/*.c</span><span class="p">)</span><span class="err">
+</span><span class="err">
+</span><span class="err"></span><span class="nb">include_directories</span><span class="p">(</span><span class="s">Include</span><span class="p">)</span><span class="err">
+</span><span class="err">
+</span><span class="err"></span><span class="nb">add_executable</span><span class="p">(</span><span class="s">cpython</span> <span class="o">${</span><span class="nv">SOURCE_FILES</span><span class="o">}</span><span class="p">)</span><span class="err">
+</span></code></pre></td></tr></table>
+</div>
+</div><h2 id="1-pyobject-">1. <code>PyObject *</code></h2>
+<p>因为有了先前的经验, 这里直接 <code>b Python/ceval.c:2585</code> 就可以断在 <code>COMPARE_OP</code> 的地方.</p>
+<p>(先前是不断单步走到这儿的&hellip;)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="err">────────────────────────────</span><span class="p">[</span> <span class="n">SOURCE</span> <span class="p">(</span><span class="n">CODE</span><span class="p">)</span> <span class="p">]</span><span class="err">─────────────────────────────</span>
+   <span class="mi">2580</span>         <span class="n">TARGET</span><span class="p">(</span><span class="n">COMPARE_OP</span><span class="p">)</span> <span class="p">{</span>
+   <span class="mi">2581</span>             <span class="n">PyObject</span> <span class="o">*</span><span class="n">right</span> <span class="o">=</span> <span class="n">POP</span><span class="p">();</span>
+   <span class="mi">2582</span>             <span class="n">PyObject</span> <span class="o">*</span><span class="n">left</span> <span class="o">=</span> <span class="n">TOP</span><span class="p">();</span>
+   <span class="mi">2583</span>             <span class="n">PyObject</span> <span class="o">*</span><span class="n">res</span> <span class="o">=</span> <span class="n">cmp_outcome</span><span class="p">(</span><span class="n">oparg</span><span class="p">,</span> <span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">);</span>
+   <span class="mi">2584</span>             <span class="nf">Py_DECREF</span><span class="p">(</span><span class="n">left</span><span class="p">);</span>
+ <span class="err">►</span> <span class="mi">2585</span>             <span class="n">Py_DECREF</span><span class="p">(</span><span class="n">right</span><span class="p">);</span>
+   <span class="mi">2586</span>             <span class="nf">SET_TOP</span><span class="p">(</span><span class="n">res</span><span class="p">);</span>
+   <span class="mi">2587</span>             <span class="nf">if</span> <span class="p">(</span><span class="n">res</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
+   <span class="mi">2588</span>                 <span class="k">goto</span> <span class="n">error</span><span class="p">;</span>
+   <span class="mi">2589</span>             <span class="nf">PREDICT</span><span class="p">(</span><span class="n">POP_JUMP_IF_FALSE</span><span class="p">);</span>
+   <span class="mi">2590</span>             <span class="nf">PREDICT</span><span class="p">(</span><span class="n">POP_JUMP_IF_TRUE</span><span class="p">);</span>
 
-<h2 id="1-PyObject"><a href="#1-PyObject" class="headerlink" title="1. PyObject *"></a>1. <code>PyObject *</code></h2><p>因为有了先前的经验, 这里直接 <code>b Python/ceval.c:2585</code> 就可以断在 <code>COMPARE_OP</code> 的地方.</p>
-<p>(先前是不断单步走到这儿的…)</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">────────────────────────────[ SOURCE (CODE) ]─────────────────────────────</span><br><span class="line">   <span class="number">2580</span>         TARGET(COMPARE_OP) &#123;</span><br><span class="line">   <span class="number">2581</span>             PyObject *right = POP();</span><br><span class="line">   <span class="number">2582</span>             PyObject *left = TOP();</span><br><span class="line">   <span class="number">2583</span>             PyObject *res = cmp_outcome(oparg, left, right);</span><br><span class="line">   <span class="number">2584</span>             Py_DECREF(left);</span><br><span class="line"> ► <span class="number">2585</span>             Py_DECREF(right);</span><br><span class="line">   <span class="number">2586</span>             SET_TOP(res);</span><br><span class="line">   <span class="number">2587</span>             <span class="keyword">if</span> (res == <span class="literal">NULL</span>)</span><br><span class="line">   <span class="number">2588</span>                 <span class="keyword">goto</span> error;</span><br><span class="line">   <span class="number">2589</span>             PREDICT(POP_JUMP_IF_FALSE);</span><br><span class="line">   <span class="number">2590</span>             PREDICT(POP_JUMP_IF_TRUE);</span><br></pre></td></tr></table></figure>
-
-<p>通过 <code>py-list</code>可以查看当前执行到 .py 文件的哪一行.</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>通过 <code>py-list</code>可以查看当前执行到 .py 文件的哪一行.</p>
 <p><code>p res</code>输出了 <code>$1 = False</code>, res 明明是 <code>PyObject *</code>类型, 却直接输出了内容, 这就是开始那个 <code>python-gdb.py</code> 的作用.</p>
 <p><code>p *res</code> 解引用看一下这个结构体, 发现看不懂</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$<span class="number">2</span> = &#123;</span><br><span class="line">  _ob_next = <span class="number">0x7fd80d9afba0</span>, </span><br><span class="line">  _ob_prev = <span class="number">0x7fd80d9afc08</span>, </span><br><span class="line">  ob_refcnt = <span class="number">138</span>, </span><br><span class="line">  ob_type = <span class="number">0x6b2d00</span> &lt;PyBool_Type&gt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><code>rg &#39;} PyObject&#39;</code> 搜索一下定义, 在 <code>Include/object.h:110</code></p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> _PyObject_HEAD_EXTRA            \</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> _<span class="title">object</span> *_<span class="title">ob_next</span>;</span>           \</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> _<span class="title">object</span> *_<span class="title">ob_prev</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* Nothing is actually declared to be a PyObject, but every pointer to</span></span><br><span class="line"><span class="comment"> * a Python object can be cast to a PyObject*.  This is inheritance built</span></span><br><span class="line"><span class="comment"> * by hand.  Similarly every pointer to a variable-size Python object can,</span></span><br><span class="line"><span class="comment"> * in addition, be cast to PyVarObject*.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> _<span class="title">object</span> &#123;</span></span><br><span class="line">    _PyObject_HEAD_EXTRA</span><br><span class="line">    Py_ssize_t ob_refcnt;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> _<span class="title">typeobject</span> *<span class="title">ob_type</span>;</span></span><br><span class="line">&#125; PyObject;</span><br></pre></td></tr></table></figure>
-
-<p>大概意思就是不管什么对象大家都可以是 <code>PyObject *</code>, Python 内部也以这个指针来传递各种对象, 显得统一. 要取这个对象内容的时候再根据 <code>ob_type</code> 特事特办</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="err">$</span><span class="mi">2</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="n">_ob_next</span> <span class="o">=</span> <span class="mh">0x7fd80d9afba0</span><span class="p">,</span> 
+  <span class="n">_ob_prev</span> <span class="o">=</span> <span class="mh">0x7fd80d9afc08</span><span class="p">,</span> 
+  <span class="n">ob_refcnt</span> <span class="o">=</span> <span class="mi">138</span><span class="p">,</span> 
+  <span class="n">ob_type</span> <span class="o">=</span> <span class="mh">0x6b2d00</span> <span class="o">&lt;</span><span class="n">PyBool_Type</span><span class="o">&gt;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><code>rg '} PyObject'</code> 搜索一下定义, 在 <code>Include/object.h:110</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#define _PyObject_HEAD_EXTRA            \
+</span><span class="cp">    struct _object *_ob_next;           \
+</span><span class="cp">    struct _object *_ob_prev;
+</span><span class="cp"></span>
+<span class="cm">/* Nothing is actually declared to be a PyObject, but every pointer to
+</span><span class="cm"> * a Python object can be cast to a PyObject*.  This is inheritance built
+</span><span class="cm"> * by hand.  Similarly every pointer to a variable-size Python object can,
+</span><span class="cm"> * in addition, be cast to PyVarObject*.
+</span><span class="cm"> */</span>
+<span class="k">typedef</span> <span class="k">struct</span> <span class="n">_object</span> <span class="p">{</span>
+    <span class="n">_PyObject_HEAD_EXTRA</span>
+    <span class="n">Py_ssize_t</span> <span class="n">ob_refcnt</span><span class="p">;</span>
+    <span class="k">struct</span> <span class="n">_typeobject</span> <span class="o">*</span><span class="n">ob_type</span><span class="p">;</span>
+<span class="p">}</span> <span class="n">PyObject</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>大概意思就是不管什么对象大家都可以是 <code>PyObject *</code>, Python 内部也以这个指针来传递各种对象, 显得统一. 要取这个对象内容的时候再根据 <code>ob_type</code> 特事特办</p>
 <blockquote>
-<p>第一次调试到这里的时候我没认真看注释,<br>天真地以为通过 <code>memmove(id(True), id(False), sizeof(PyObject))</code> 就能用 True 的内容覆盖掉 False, 事实上 <code>sizeof(PyObject)</code> 根本根本不是 True Object 的真实大小.</p>
-<p>那么, 把 <code>sizeof(PyObject)</code> 改大一点行不行? 其实还是不行, 原因在下面…</p>
+<p>第一次调试到这里的时候我没认真看注释,
+天真地以为通过 <code>memmove(id(True), id(False), sizeof(PyObject))</code> 就能用 True 的内容覆盖掉 False, 事实上 <code>sizeof(PyObject)</code> 根本根本不是 True Object 的真实大小.</p>
+<p>那么, 把 <code>sizeof(PyObject)</code> 改大一点行不行? 其实还是不行, 原因在下面&hellip;</p>
 </blockquote>
-<h2 id="2-Py-False-和-Py-FalseStruct"><a href="#2-Py-False-和-Py-FalseStruct" class="headerlink" title="2. Py_False 和 _Py_FalseStruct"></a>2. <code>Py_False</code> 和 <code>_Py_FalseStruct</code></h2><p>那么问题来了, <code>False</code> 这玩意儿真实的(C)类型是什么? </p>
+<h2 id="2-py_false-和-_py_falsestruct">2. <code>Py_False</code> 和 <code>_Py_FalseStruct</code></h2>
+<p>那么问题来了, <code>False</code> 这玩意儿真实的(C)类型是什么?</p>
 <p>在 <code>Python/ceval:4686</code> 行可以找到 <code>cmp_outcome</code> 的定义, 结尾是这么写的.</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">    v = res ? Py_True : Py_False;</span><br><span class="line">    Py_INCREF(v);</span><br><span class="line">    <span class="keyword">return</span> v;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c">    <span class="n">v</span> <span class="o">=</span> <span class="n">res</span> <span class="o">?</span> <span class="nl">Py_True</span> <span class="p">:</span> <span class="n">Py_False</span><span class="p">;</span>
+    <span class="n">Py_INCREF</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">v</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>也就是说 (上一个)res 的值是 <code>Py_True</code> 或 <code>Py_False</code>, 而它俩的定义在 <code>Include/boolobject.h:21</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="cm">/* Py_False and Py_True are the only two bools in existence.
+</span><span class="cm">Don&#39;t forget to apply Py_INCREF() when returning either!!! */</span>
 
-<p>也就是说 (上一个)res 的值是 <code>Py_True</code> 或 <code>Py_False</code>, 而它俩的定义在 <code>Include/boolobject.h:21</code></p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* Py_False and Py_True are the only two bools in existence.</span></span><br><span class="line"><span class="comment">Don't forget to apply Py_INCREF() when returning either!!! */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* Don't use these directly */</span></span><br><span class="line">PyAPI_DATA(struct _longobject) _Py_FalseStruct, _Py_TrueStruct;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* Use these macros */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> Py_False ((PyObject *) &amp;_Py_FalseStruct)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> Py_True ((PyObject *) &amp;_Py_TrueStruct)</span></span><br></pre></td></tr></table></figure>
+<span class="cm">/* Don&#39;t use these directly */</span>
+<span class="n">PyAPI_DATA</span><span class="p">(</span><span class="k">struct</span> <span class="n">_longobject</span><span class="p">)</span> <span class="n">_Py_FalseStruct</span><span class="p">,</span> <span class="n">_Py_TrueStruct</span><span class="p">;</span>
 
-<p>可以发现,  <code>Py_False</code> 这玩意儿只是个宏, 代表的是 <code>_Py_FalseStruct</code> 的地址.<br>显然, 即使我们用 <code>_Py_TrueStruct</code> 的内容覆盖 <code>_Py_FalseStruct</code> 的内容, <code>Py_True</code> 和 <code>Py_False</code> 的值也不会受影响.</p>
+<span class="cm">/* Use these macros */</span>
+<span class="cp">#define Py_False ((PyObject *) &amp;_Py_FalseStruct)
+</span><span class="cp">#define Py_True ((PyObject *) &amp;_Py_TrueStruct)
+</span></code></pre></td></tr></table>
+</div>
+</div><p>可以发现,  <code>Py_False</code> 这玩意儿只是个宏, 代表的是 <code>_Py_FalseStruct</code> 的地址.
+显然, 即使我们用 <code>_Py_TrueStruct</code> 的内容覆盖 <code>_Py_FalseStruct</code> 的内容, <code>Py_True</code> 和 <code>Py_False</code> 的值也不会受影响.</p>
 <p>而且 <code>is</code> 操作符的实现非常简单粗暴, 也不大可能对 <code>is</code> 操作符动什么手脚</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">case</span> PyCmp_IS:</span><br><span class="line">    res = (v == w);</span><br><span class="line">    <span class="keyword">break</span>;</span><br></pre></td></tr></table></figure>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c">    <span class="k">case</span> <span class="nl">PyCmp_IS</span><span class="p">:</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="p">(</span><span class="n">v</span> <span class="o">==</span> <span class="n">w</span><span class="p">);</span>
+        <span class="k">break</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>就这么结束了吗? 不, 上次在 python repl 环境中无法重载内置类型的方法, 那直接写内存有没有可能重载呢?</p>
+<h2 id="3-bool_repr">3. <code>bool_repr</code></h2>
+<p>在 <code>Python/boolobject.c:12</code> 可以看到 <code>bool_repr</code> 的实现,</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="k">static</span> <span class="n">PyObject</span> <span class="o">*</span><span class="n">false_str</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+<span class="k">static</span> <span class="n">PyObject</span> <span class="o">*</span><span class="n">true_str</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
 
-<p>就这么结束了吗? 不, 上次在 python repl 环境中无法重载内置类型的方法, 那直接写内存有没有可能重载呢?</p>
-<h2 id="3-bool-repr"><a href="#3-bool-repr" class="headerlink" title="3. bool_repr"></a>3. <code>bool_repr</code></h2><p>在 <code>Python/boolobject.c:12</code> 可以看到 <code>bool_repr</code> 的实现, </p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> PyObject *false_str = <span class="literal">NULL</span>;</span><br><span class="line"><span class="keyword">static</span> PyObject *true_str = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> PyObject *</span><br><span class="line">bool_repr(PyObject *self)</span><br><span class="line">&#123;</span><br><span class="line">    PyObject *s;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (self == Py_True)</span><br><span class="line">        s = true_str ? true_str :</span><br><span class="line">            (true_str = PyUnicode_InternFromString(<span class="string">"True"</span>));</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        s = false_str ? false_str :</span><br><span class="line">            (false_str = PyUnicode_InternFromString(<span class="string">"False"</span>));</span><br><span class="line">    Py_XINCREF(s);</span><br><span class="line">    <span class="keyword">return</span> s;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<span class="k">static</span> <span class="n">PyObject</span> <span class="o">*</span>
+<span class="nf">bool_repr</span><span class="p">(</span><span class="n">PyObject</span> <span class="o">*</span><span class="n">self</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">PyObject</span> <span class="o">*</span><span class="n">s</span><span class="p">;</span>
 
-<p>第一反应: 能不能改掉这个函数, 比如把这个 <code>==</code> 改成 <code>!=</code> 啥的? –不可能的 .text 段的东西哪儿能说改就改.</p>
-<p>那有没有可能 hook 这个函数呢? <code>read -s ./python</code> 看一下, 真的有 <code>bool_repr</code> 这个函数, 可以 hook 的样子! –想多了这是 Debug 版才保留了这些符号…</p>
+    <span class="k">if</span> <span class="p">(</span><span class="n">self</span> <span class="o">==</span> <span class="n">Py_True</span><span class="p">)</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">true_str</span> <span class="o">?</span> <span class="nl">true_str</span> <span class="p">:</span>
+            <span class="p">(</span><span class="n">true_str</span> <span class="o">=</span> <span class="n">PyUnicode_InternFromString</span><span class="p">(</span><span class="s">&#34;True&#34;</span><span class="p">));</span>
+    <span class="k">else</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">false_str</span> <span class="o">?</span> <span class="nl">false_str</span> <span class="p">:</span>
+            <span class="p">(</span><span class="n">false_str</span> <span class="o">=</span> <span class="n">PyUnicode_InternFromString</span><span class="p">(</span><span class="s">&#34;False&#34;</span><span class="p">));</span>
+    <span class="n">Py_XINCREF</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">s</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>第一反应: 能不能改掉这个函数, 比如把这个 <code>==</code> 改成 <code>!=</code> 啥的? &ndash;不可能的 .text 段的东西哪儿能说改就改.</p>
+<p>那有没有可能 hook 这个函数呢? <code>read -s ./python</code> 看一下, 真的有 <code>bool_repr</code> 这个函数, 可以 hook 的样子! &ndash;想多了这是 Debug 版才保留了这些符号&hellip;</p>
 <p>有没有其他办法? 注意到这个函数中为了提高速度缓存了 <code>true_str</code> 和 <code>false_str</code>, 那直接 <code>false_str=true_str</code> 不就行了吗? 在 gdb 中执行 <code>p false_str=true_str</code> 然后继续执行, 可以在命令行里看到后面的输出都变成了 <code>True True</code>!</p>
-<p>这个方法真是绝妙啊, 唯一的问题就是在 Python 中没有办法获得 <code>false_str</code> 和 <code>true_str</code> 的地址, 修改也就无从谈起了…</p>
-<h2 id="4-PyUnicode-Type"><a href="#4-PyUnicode-Type" class="headerlink" title="4. PyUnicode_Type"></a>4. <code>PyUnicode_Type</code></h2><p>不要慌, 还没走到绝路.</p>
-<p><code>false_str</code> 的真实类型是什么?  这玩意儿一定有某个地方存着 “False” 这个字符串吧, 而且这个对象是动态生成的, 我肯定有权限修改.</p>
+<p>这个方法真是绝妙啊, 唯一的问题就是在 Python 中没有办法获得 <code>false_str</code> 和 <code>true_str</code> 的地址, 修改也就无从谈起了&hellip;</p>
+<h2 id="4-pyunicode_type">4. <code>PyUnicode_Type</code></h2>
+<p>不要慌, 还没走到绝路.</p>
+<p><code>false_str</code> 的真实类型是什么?  这玩意儿一定有某个地方存着 &ldquo;False&rdquo; 这个字符串吧, 而且这个对象是动态生成的, 我肯定有权限修改.</p>
 <p><code>p *false_str</code> 看一下, 发现是 PyUnicode_Type</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$<span class="number">41</span> = &#123;</span><br><span class="line">  _ob_next = <span class="number">0x6b2ba0</span> &lt;_Py_FalseStruct&gt;, </span><br><span class="line">  _ob_prev = <span class="number">0x6b2b60</span> &lt;_Py_TrueStruct&gt;, </span><br><span class="line">  ob_refcnt = <span class="number">6</span>, </span><br><span class="line">  ob_type = <span class="number">0x6cf020</span> &lt;PyUnicode_Type&gt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="err">$</span><span class="mi">41</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="n">_ob_next</span> <span class="o">=</span> <span class="mh">0x6b2ba0</span> <span class="o">&lt;</span><span class="n">_Py_FalseStruct</span><span class="o">&gt;</span><span class="p">,</span> 
+  <span class="n">_ob_prev</span> <span class="o">=</span> <span class="mh">0x6b2b60</span> <span class="o">&lt;</span><span class="n">_Py_TrueStruct</span><span class="o">&gt;</span><span class="p">,</span> 
+  <span class="n">ob_refcnt</span> <span class="o">=</span> <span class="mi">6</span><span class="p">,</span> 
+  <span class="n">ob_type</span> <span class="o">=</span> <span class="mh">0x6cf020</span> <span class="o">&lt;</span><span class="n">PyUnicode_Type</span><span class="o">&gt;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>在 <code>Objects/unicodeobject.c:12538</code> 可以找到 <code>unicode_repr </code> 函数, 部分内容如下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">repr</span> <span class="o">=</span> <span class="n">PyUnicode_New</span><span class="p">(</span><span class="n">osize</span><span class="p">,</span> <span class="n">max</span><span class="p">);</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">repr</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">NULL</span><span class="p">;</span>
+<span class="n">okind</span> <span class="o">=</span> <span class="n">PyUnicode_KIND</span><span class="p">(</span><span class="n">repr</span><span class="p">);</span>
+<span class="n">odata</span> <span class="o">=</span> <span class="n">PyUnicode_DATA</span><span class="p">(</span><span class="n">repr</span><span class="p">);</span>
 
-<p>在 <code>Objects/unicodeobject.c:12538</code> 可以找到 <code>unicode_repr</code> 函数, 部分内容如下</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">repr = PyUnicode_New(osize, <span class="built_in">max</span>);</span><br><span class="line"><span class="keyword">if</span> (repr == <span class="literal">NULL</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">okind = PyUnicode_KIND(repr);</span><br><span class="line">odata = PyUnicode_DATA(repr);</span><br><span class="line"></span><br><span class="line">PyUnicode_WRITE(okind, odata, <span class="number">0</span>, quote);</span><br><span class="line">PyUnicode_WRITE(okind, odata, osize<span class="number">-1</span>, quote);</span><br></pre></td></tr></table></figure>
-
-<p>repr 为返回值, 可以看出 repr 由 <code>PyUnicode_New</code> 初始化, 通过 <code>Py_Unicode_DATA</code> 获取其中的 data 部分, 目测为字符串存放的位置</p>
+<span class="n">PyUnicode_WRITE</span><span class="p">(</span><span class="n">okind</span><span class="p">,</span> <span class="n">odata</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">quote</span><span class="p">);</span>
+<span class="n">PyUnicode_WRITE</span><span class="p">(</span><span class="n">okind</span><span class="p">,</span> <span class="n">odata</span><span class="p">,</span> <span class="n">osize</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">quote</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>repr 为返回值, 可以看出 repr 由 <code>PyUnicode_New</code> 初始化, 通过 <code>Py_Unicode_DATA</code> 获取其中的 data 部分, 目测为字符串存放的位置</p>
 <p>先到 <code>Objects/unicodeobject.c:1233</code> 看看 <code>PyUnicode_New</code> 函数</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">unicode = (PyCompactUnicodeObject *)obj;</span><br><span class="line"><span class="keyword">if</span> (is_ascii)</span><br><span class="line">    data = ((PyASCIIObject*)obj) + <span class="number">1</span>;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    data = unicode + <span class="number">1</span>;</span><br><span class="line">...</span><br><span class="line">...</span><br><span class="line"><span class="keyword">if</span> (is_ascii) &#123;</span><br><span class="line">    ((<span class="keyword">char</span>*)data)[<span class="built_in">size</span>] = <span class="number">0</span>;</span><br><span class="line">    _PyUnicode_WSTR(unicode) = <span class="literal">NULL</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>! 将 obj 转为 <code>PyASCIIObject*</code> 再 +1 再转为 <code>char*</code>, 似乎就是字符串存放的真正地址了?</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pwndbg&gt; p (<span class="keyword">char</span> *)((PyASCIIObject *)false_str + <span class="number">1</span>)</span><br><span class="line">$<span class="number">47</span> = <span class="number">0x7fd80d9afbe0</span> <span class="string">"True"</span> <span class="comment">//注意因为先前已经 false_str=true_str 了所以这里是 True</span></span><br></pre></td></tr></table></figure>
-
-<p>wow, 没错! 这真是相当 excited.</p>
-<p>又因为<code>sizeof(PyASCIIObject) == 64</code>, 那么 <code>false_str + 64</code> 也就是 <code>id(&#39;False&#39;) + 64</code> 就是字符串的位置了.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c">    <span class="n">unicode</span> <span class="o">=</span> <span class="p">(</span><span class="n">PyCompactUnicodeObject</span> <span class="o">*</span><span class="p">)</span><span class="n">obj</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">is_ascii</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">((</span><span class="n">PyASCIIObject</span><span class="o">*</span><span class="p">)</span><span class="n">obj</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="k">else</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">unicode</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="p">...</span>
+    <span class="p">...</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">is_ascii</span><span class="p">)</span> <span class="p">{</span>
+        <span class="p">((</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span><span class="n">data</span><span class="p">)[</span><span class="n">size</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="n">_PyUnicode_WSTR</span><span class="p">(</span><span class="n">unicode</span><span class="p">)</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+    <span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>! 将 obj 转为 <code>PyASCIIObject*</code> 再 +1 再转为 <code>char*</code>, 似乎就是字符串存放的真正地址了?</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">pwndbg</span><span class="o">&gt;</span> <span class="n">p</span> <span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)((</span><span class="n">PyASCIIObject</span> <span class="o">*</span><span class="p">)</span><span class="n">false_str</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+<span class="err">$</span><span class="mi">47</span> <span class="o">=</span> <span class="mh">0x7fd80d9afbe0</span> <span class="s">&#34;True&#34;</span> <span class="c1">//注意因为先前已经 false_str=true_str 了所以这里是 True
+</span></code></pre></td></tr></table>
+</div>
+</div><p>wow, 没错! 这真是相当 excited.</p>
+<p>又因为<code>sizeof(PyASCIIObject) == 64</code>, 那么 <code>false_str + 64</code> 也就是 <code>id('False') + 64</code> 就是字符串的位置了.</p>
 <p>写成 Python 代码如下</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> ctypes</span><br><span class="line">print(<span class="literal">True</span>, <span class="literal">False</span>) <span class="comment"># 确保已经生成了对应的字符串</span></span><br><span class="line">false_str_addr = id(<span class="string">'False'</span>) + <span class="number">64</span> <span class="comment"># Debug 版</span></span><br><span class="line"><span class="keyword">for</span> i, c <span class="keyword">in</span> zip(range(<span class="number">5</span>), <span class="string">b'True\x00'</span>):</span><br><span class="line">    ctypes.c_char.from_address(false_str_addr + i).value = c <span class="comment"># 直接 strcpy 出错了 不造为啥</span></span><br></pre></td></tr></table></figure>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">ctypes</span>
+<span class="k">print</span><span class="p">(</span><span class="bp">True</span><span class="p">,</span> <span class="bp">False</span><span class="p">)</span> <span class="c1"># 确保已经生成了对应的字符串</span>
+<span class="n">false_str_addr</span> <span class="o">=</span> <span class="nb">id</span><span class="p">(</span><span class="s1">&#39;False&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">64</span> <span class="c1"># Debug 版</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span> <span class="sa">b</span><span class="s1">&#39;True</span><span class="se">\x00</span><span class="s1">&#39;</span><span class="p">):</span>
+    <span class="n">ctypes</span><span class="o">.</span><span class="n">c_char</span><span class="o">.</span><span class="n">from_address</span><span class="p">(</span><span class="n">false_str_addr</span> <span class="o">+</span> <span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">c</span> <span class="c1"># 直接 strcpy 出错了 不造为啥</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>不过有一点比较迷, 就是系统自带的 Python, 偏移量并不是64, 而是 48. 难道是gcc的迷之优化?</p>
+<h1 id="最终代码-互换-true-false">最终代码: 互换 True False</h1>
+<p>注意到 <code>PyASCIIObject</code> 有个 <code>length</code> 指定了字符串长度, 修改的时候最好一起改掉</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">pwndbg</span><span class="o">&gt;</span> <span class="n">p</span> <span class="o">*</span><span class="p">(</span><span class="n">PyASCIIObject</span> <span class="o">*</span><span class="p">)</span><span class="n">true_str</span>
+<span class="err">$</span><span class="mi">1</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="n">ob_base</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">_ob_next</span> <span class="o">=</span> <span class="mh">0x6b2ba0</span> <span class="o">&lt;</span><span class="n">_Py_FalseStruct</span><span class="o">&gt;</span><span class="p">,</span> 
+    <span class="n">_ob_prev</span> <span class="o">=</span> <span class="mh">0x6b2b60</span> <span class="o">&lt;</span><span class="n">_Py_TrueStruct</span><span class="o">&gt;</span><span class="p">,</span> 
+    <span class="n">ob_refcnt</span> <span class="o">=</span> <span class="mi">6</span><span class="p">,</span> 
+    <span class="n">ob_type</span> <span class="o">=</span> <span class="mh">0x6cf020</span> <span class="o">&lt;</span><span class="n">PyUnicode_Type</span><span class="o">&gt;</span>
+  <span class="p">},</span> 
+  <span class="n">length</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span> 
+  <span class="n">hash</span> <span class="o">=</span> <span class="o">-</span><span class="mi">8576775955766428395</span><span class="p">,</span> 
+  <span class="n">state</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">interned</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> 
+    <span class="n">kind</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> 
+    <span class="n">compact</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> 
+    <span class="n">ascii</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> 
+    <span class="n">ready</span> <span class="o">=</span> <span class="mi">1</span>
+  <span class="p">},</span> 
+  <span class="n">wstr</span> <span class="o">=</span> <span class="mh">0x0</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>完整代码</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">ctypes</span>
+<span class="k">print</span><span class="p">(</span><span class="bp">True</span><span class="p">,</span> <span class="bp">False</span><span class="p">)</span> <span class="c1"># 确保已经生成了对应的字符串</span>
+<span class="n">false_addr</span> <span class="o">=</span> <span class="nb">id</span><span class="p">(</span><span class="s1">&#39;False&#39;</span><span class="p">)</span>
+<span class="n">true_addr</span> <span class="o">=</span> <span class="nb">id</span><span class="p">(</span><span class="s1">&#39;True&#39;</span><span class="p">)</span>
 
-<p>不过有一点比较迷, 就是系统自带的 Python, 偏移量并不是64, 而是 48. 难道是gcc的迷之优化?</p>
-<h1 id="最终代码-互换-True-False"><a href="#最终代码-互换-True-False" class="headerlink" title="最终代码: 互换 True False"></a>最终代码: 互换 True False</h1><p>注意到 <code>PyASCIIObject</code> 有个 <code>length</code> 指定了字符串长度, 修改的时候最好一起改掉</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">pwndbg&gt; p *(PyASCIIObject *)true_str</span><br><span class="line">$<span class="number">1</span> = &#123;</span><br><span class="line">  ob_base = &#123;</span><br><span class="line">    _ob_next = <span class="number">0x6b2ba0</span> &lt;_Py_FalseStruct&gt;, </span><br><span class="line">    _ob_prev = <span class="number">0x6b2b60</span> &lt;_Py_TrueStruct&gt;, </span><br><span class="line">    ob_refcnt = <span class="number">6</span>, </span><br><span class="line">    ob_type = <span class="number">0x6cf020</span> &lt;PyUnicode_Type&gt;</span><br><span class="line">  &#125;, </span><br><span class="line">  length = <span class="number">4</span>, </span><br><span class="line">  hash = <span class="number">-8576775955766428395</span>, </span><br><span class="line">  state = &#123;</span><br><span class="line">    interned = <span class="number">1</span>, </span><br><span class="line">    kind = <span class="number">1</span>, </span><br><span class="line">    compact = <span class="number">1</span>, </span><br><span class="line">    ascii = <span class="number">1</span>, </span><br><span class="line">    <span class="built_in">ready</span> = <span class="number">1</span></span><br><span class="line">  &#125;, </span><br><span class="line">  wstr = <span class="number">0x0</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<span class="n">read_char</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">n</span><span class="p">:</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_char</span><span class="o">.</span><span class="n">from_address</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
 
+<span class="n">tmp</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">read_char</span><span class="p">(</span><span class="n">false_addr</span> <span class="o">+</span> <span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">value</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">)])</span>
+<span class="n">str_offset</span> <span class="o">=</span> <span class="n">tmp</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;False&#39;</span><span class="p">)</span> <span class="c1"># 定位字符串所在位置</span>
+<span class="n">length_offset</span> <span class="o">=</span> <span class="n">tmp</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;</span><span class="se">\x05</span><span class="s1">&#39;</span><span class="p">)</span> <span class="c1"># 定位长度所在位置(这个有点不放心...)</span>
 
+<span class="c1"># 修改字符串</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span> <span class="sa">b</span><span class="s1">&#39;True</span><span class="se">\x00</span><span class="s1">&#39;</span><span class="p">):</span>
+    <span class="n">read_char</span><span class="p">(</span><span class="n">false_addr</span> <span class="o">+</span> <span class="n">str_offset</span> <span class="o">+</span> <span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">c</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">),</span> <span class="sa">b</span><span class="s1">&#39;False</span><span class="se">\x00</span><span class="s1">&#39;</span><span class="p">):</span>
+    <span class="n">read_char</span><span class="p">(</span><span class="n">true_addr</span> <span class="o">+</span> <span class="n">str_offset</span> <span class="o">+</span> <span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">c</span>
+    
+<span class="c1"># 修改长度</span>
+<span class="n">read_char</span><span class="p">(</span><span class="n">false_addr</span> <span class="o">+</span> <span class="n">length_offset</span><span class="p">)</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;</span><span class="se">\x04</span><span class="s1">&#39;</span>
+<span class="n">read_char</span><span class="p">(</span><span class="n">true_addr</span> <span class="o">+</span> <span class="n">length_offset</span><span class="p">)</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;</span><span class="se">\x05</span><span class="s1">&#39;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>效果:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="k">print</span> <span class="bp">True</span><span class="p">,</span> <span class="bp">False</span>
+<span class="o">------&gt;</span> <span class="k">print</span><span class="p">(</span><span class="bp">True</span><span class="p">,</span> <span class="bp">False</span><span class="p">)</span>
+<span class="bp">False</span> <span class="bp">True</span>
 
-<p>完整代码</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> ctypes</span><br><span class="line">print(<span class="literal">True</span>, <span class="literal">False</span>) <span class="comment"># 确保已经生成了对应的字符串</span></span><br><span class="line">false_addr = id(<span class="string">'False'</span>)</span><br><span class="line">true_addr = id(<span class="string">'True'</span>)</span><br><span class="line"></span><br><span class="line">read_char = <span class="keyword">lambda</span> n: ctypes.c_char.from_address(n)</span><br><span class="line"></span><br><span class="line">tmp = <span class="string">b''</span>.join([read_char(false_addr + i).value <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">100</span>)])</span><br><span class="line">str_offset = tmp.index(<span class="string">b'False'</span>) <span class="comment"># 定位字符串所在位置</span></span><br><span class="line">length_offset = tmp.index(<span class="string">b'\x05'</span>) <span class="comment"># 定位长度所在位置(这个有点不放心...)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 修改字符串</span></span><br><span class="line"><span class="keyword">for</span> i, c <span class="keyword">in</span> zip(range(<span class="number">5</span>), <span class="string">b'True\x00'</span>):</span><br><span class="line">    read_char(false_addr + str_offset + i).value = c</span><br><span class="line"><span class="keyword">for</span> i, c <span class="keyword">in</span> zip(range(<span class="number">6</span>), <span class="string">b'False\x00'</span>):</span><br><span class="line">    read_char(true_addr + str_offset + i).value = c</span><br><span class="line">    </span><br><span class="line"><span class="comment"># 修改长度</span></span><br><span class="line">read_char(false_addr + length_offset).value = <span class="string">b'\x04'</span></span><br><span class="line">read_char(true_addr + length_offset).value = <span class="string">b'\x05'</span></span><br></pre></td></tr></table></figure>
+<span class="n">In</span> <span class="p">[</span><span class="mi">3</span><span class="p">]:</span> <span class="mi">1</span> <span class="o">==</span> <span class="mi">2</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">3</span><span class="p">]:</span> <span class="bp">True</span>
 
+<span class="n">In</span> <span class="p">[</span><span class="mi">4</span><span class="p">]:</span> <span class="mi">1</span> <span class="o">==</span> <span class="mi">1</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">4</span><span class="p">]:</span> <span class="bp">False</span>
 
+<span class="n">In</span> <span class="p">[</span><span class="mi">5</span><span class="p">]:</span> <span class="s1">&#39;God&#39;</span> <span class="ow">is</span> <span class="s1">&#39;girl&#39;</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">5</span><span class="p">]:</span> <span class="bp">True</span>
 
-<p>效果:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">2</span>]: <span class="keyword">print</span> <span class="literal">True</span>, <span class="literal">False</span></span><br><span class="line">------&gt; print(True, False)</span><br><span class="line"><span class="literal">False</span> <span class="literal">True</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">3</span>]: <span class="number">1</span> == <span class="number">2</span></span><br><span class="line">Out[<span class="number">3</span>]: <span class="literal">True</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">4</span>]: <span class="number">1</span> == <span class="number">1</span></span><br><span class="line">Out[<span class="number">4</span>]: <span class="literal">False</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">5</span>]: <span class="string">'God'</span> <span class="keyword">is</span> <span class="string">'girl'</span></span><br><span class="line">Out[<span class="number">5</span>]: <span class="literal">True</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">6</span>]: <span class="string">'cat'</span> <span class="keyword">is</span> <span class="string">'dog'</span></span><br><span class="line">Out[<span class="number">6</span>]: <span class="literal">True</span></span><br></pre></td></tr></table></figure>
+<span class="n">In</span> <span class="p">[</span><span class="mi">6</span><span class="p">]:</span> <span class="s1">&#39;cat&#39;</span> <span class="ow">is</span> <span class="s1">&#39;dog&#39;</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">6</span><span class="p">]:</span> <span class="bp">True</span>
 
+</code></pre></td></tr></table>
+</div>
+</div><p>正确用法:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="s1">&#39;Emacs&#39;</span> <span class="ow">is</span> <span class="s1">&#39;the best editor&#39;</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="bp">False</span>
 
+<span class="n">In</span> <span class="p">[</span><span class="mi">3</span><span class="p">]:</span> <span class="err">我给你一次重新组织语言的机会</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">3</span><span class="p">]:</span> <span class="o">...</span>
 
-<p>正确用法:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">2</span>]: <span class="string">'Emacs'</span> <span class="keyword">is</span> <span class="string">'the best editor'</span></span><br><span class="line">Out[<span class="number">2</span>]: <span class="literal">False</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">3</span>]: 我给你一次重新组织语言的机会</span><br><span class="line">Out[<span class="number">3</span>]: ...</span><br><span class="line"></span><br><span class="line">In [<span class="number">4</span>]: <span class="string">'Emacs'</span> <span class="keyword">is</span> <span class="string">'the best editor'</span></span><br><span class="line">Out[<span class="number">4</span>]: <span class="literal">True</span></span><br></pre></td></tr></table></figure>
+<span class="n">In</span> <span class="p">[</span><span class="mi">4</span><span class="p">]:</span> <span class="s1">&#39;Emacs&#39;</span> <span class="ow">is</span> <span class="s1">&#39;the best editor&#39;</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">4</span><span class="p">]:</span> <span class="bp">True</span>
 
+</code></pre></td></tr></table>
+</div>
+</div>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Aloxaf</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2018-10-28
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a></span>
+  </p>
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/python/">python</a>
+          <a href="/tags/egg_pain/">egg_pain</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/2018/11/kde_dark_theme/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">解决 KDE 暗色主题下 WPS &amp; 搜狗拼音设置字体颜色不正常的问题</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/2018/10/arch_pwndbg/">
+            <span class="next-text nav-default">Arch Linux 下使用 pwndbg</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  <span id="/2018/10/egg_pain_python/" class="leancloud_visitors" data-flag-title="如何在 Python3 中让 &#39;a&#39; is &#39;b&#39; 为 True">
+		<span class="post-meta-item-text">文章阅读量 </span>
+		<span class="leancloud-visitors-count">0</span>
+		<p></p>
+	  </span>
+  <div id="vcomments"></div>
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+  <script type="text/javascript">
+    new Valine({
+        el: '#vcomments' ,
+        serverURLs: 'https:\/\/lcd.aloxaf.cn',
+        appId: 'fSbXaElXXTznggVXiWy8NFBU-gzGzoHsz',
+        appKey: 'kK3SxB14xAACgHftKrSaBRDU',
+        notify:  false ,
+        verify:  false ,
+        avatar:'mm',
+        placeholder: '妙啊，妙啊',
+        visitor:  true 
+    });
+  </script>
+
+  
 
       </div>
-      <div class="post-copyright">
-    <p class="copyright-item">
-      <span>原文作者: </span>
-      <a href="https://www.aloxaf.com">Aloxaf</a>
-    </p>
-    <p class="copyright-item">
-      <span>原文链接: </span>
-      <a href="https://www.aloxaf.com/2018/10/egg_pain_python/">https://www.aloxaf.com/2018/10/egg_pain_python/</a>
-    </p>
-    <p class="copyright-item">
-      <span>许可协议: </span><a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
-    </p>
-  </div>
-      <footer class="post-footer">
-        <div class="post-tags">
-            <a href="/tags/python/">python</a>
-            <a href="/tags/egg-pain/">egg_pain</a>
-            </div>
-        
-        <nav class="post-nav"><a class="prev" href="/2018/11/kde_dark_theme/">
-        <i class="iconfont icon-left"></i>
-        <span class="prev-text nav-default">解决 KDE 暗色主题下 WPS & 搜狗拼音设置字体颜色不正常的问题</span>
-        <span class="prev-text nav-mobile">上一篇</span>
-      </a>
-    <a class="next" href="/2018/10/arch_pwndbg/">
-        <span class="next-text nav-default">Arch Linux 下使用 pwndbg</span>
-        <span class="prev-text nav-mobile">下一篇</span>
-        <i class="iconfont icon-right"></i>
-      </a>
-    </nav></footer>
-    </article></div><div class="comments" id="comments"><div id="vcomments"></div>
-    </div></div>
-      </main>
+    </main>
 
-      <footer id="footer" class="footer"><div class="social-links"><a href="mailto:aloxafx@gmail.com" class="iconfont icon-email" title="email"></a>
-        <a href="https://github.com/Aloxaf" target="_blank" rel="noopener" class="iconfont icon-github" title="github"></a>
-        <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
-    </div><div class="copyright">
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:aloxafx@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/Aloxaf" class="iconfont icon-github" title="github"></a>
+  <a href="http://www.aloxaf.com/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
   <span class="power-by">
-    由 <a class="hexo-link" href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> 强力驱动
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
   </span>
   <span class="division">|</span>
   <span class="theme-info">
     主题 - 
-    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even" target="_blank" rel="noopener">Even</a>
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
   </span>
 
-  <span class="copyright-year">&copy;2017 - 2020<span class="heart">
-      <i class="iconfont icon-heart"></i>
-    </span>
-    <span class="author">Aloxaf</span>
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span><span>Aloxaf</span>
   </span>
 </div>
-</footer>
 
-      <div class="back-to-top" id="back-to-top">
-        <i class="iconfont icon-up"></i>
-      </div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
     </div>
-<!-- valine Comments -->
-<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
-<script type="text/javascript">
-    new Valine({
-        el: '#vcomments',
-        serverURLs: "https://lcd.aloxaf.cn",
-        notify: false,
-        verify: false,
-        app_id: "fSbXaElXXTznggVXiWy8NFBU-gzGzoHsz",
-        app_key: "kK3SxB14xAACgHftKrSaBRDU",
-        placeholder: "妙啊，妙啊",
-        avatar: 'mm',
-        visitor: true,
-    });
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "zh".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-123773630-1', 'auto');
+	
+	ga('send', 'pageview');
+}
 </script>
-<script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
-  <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
-  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
-  <script type="text/javascript" src="/js/src/even.js?v=2.11.0"></script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
 </body>
 </html>

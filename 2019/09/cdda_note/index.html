@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
-  <head><meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>CDDA 幸存者笔记 - Aloxaf&#39;s Blog</title>
+  <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
 
 <meta http-equiv="Cache-Control" content="no-transform" />
 <meta http-equiv="Cache-Control" content="no-siteapp" />
@@ -13,45 +15,64 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
-<meta name="description" content="CDDA 幸存者笔记"/><meta name="keywords" content="cdda, Aloxaf's blog" /><link rel="alternate" href="/atom.xml" title="Aloxaf's blog"><link rel="shortcut icon" type="image/x-icon" href="/favicon.svg?v=2.11.0" />
-<link rel="canonical" href="https://www.aloxaf.com/2019/09/cdda_note/"/>
 
-<link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
-<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.11.0" />
+<meta name="author" content="aloxaf" /><meta name="description" content="是幸存者笔记，绝不是开发者笔记
+" /><meta name="keywords" content="aloxaf, ctf, linux, zsh" />
 
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-123773630-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'UA-123773630-1');
-</script><script id="baidu_push">
-(function(){
-    var bp = document.createElement('script');
-    var curProtocol = window.location.protocol.split(':')[0];
-    if (curProtocol === 'https') {
-        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
-    }
-    else {
-        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-    }
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(bp, s);
-})();
-</script>
-<script>
-  window.config = {"leancloud":{"app_id":null,"app_key":null},"toc":true,"fancybox":true,"pjax":"","latex":true};
-</script>
 
-    <title>CDDA 幸存者笔记 - Aloxaf's blog</title>
-  <meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Aloxaf's blog" type="application/atom+xml">
+
+
+
+<meta name="generator" content="Hugo 0.78.1 with theme even" />
+
+
+<link rel="canonical" href="http://www.aloxaf.com/2019/09/cdda_note/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.65ccf00eb040f87c6c85a4206ef3520967b49eb3940b6b6f15c2e84bc94782d7.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="CDDA 幸存者笔记" />
+<meta property="og:description" content="是幸存者笔记，绝不是开发者笔记" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://www.aloxaf.com/2019/09/cdda_note/" />
+<meta property="article:published_time" content="2019-09-15T12:16:01+00:00" />
+<meta property="article:modified_time" content="2020-07-31T11:24:07+00:00" />
+<meta itemprop="name" content="CDDA 幸存者笔记">
+<meta itemprop="description" content="是幸存者笔记，绝不是开发者笔记">
+<meta itemprop="datePublished" content="2019-09-15T12:16:01+00:00" />
+<meta itemprop="dateModified" content="2020-07-31T11:24:07+00:00" />
+<meta itemprop="wordCount" content="3320">
+
+
+
+<meta itemprop="keywords" content="cdda," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="CDDA 幸存者笔记"/>
+<meta name="twitter:description" content="是幸存者笔记，绝不是开发者笔记"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
 </head>
-
-  <body><div id="mobile-navbar" class="mobile-navbar">
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
   <div class="mobile-header-logo">
-    <a href="/." class="logo">Aloxaf's blog</a>
+    <a href="/" class="logo">Aloxaf&#39;s Blog</a>
   </div>
   <div class="mobile-navbar-icon">
     <span></span>
@@ -59,130 +80,353 @@
     <span></span>
   </div>
 </div>
-
 <nav id="mobile-menu" class="mobile-menu slideout-menu">
-  <ul class="mobile-menu-list"><a href="/">
-        <li class="mobile-menu-item">首页
-          </li>
-      </a><a href="/archives/">
-        <li class="mobile-menu-item">归档
-          </li>
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
       </a><a href="/tags/">
-        <li class="mobile-menu-item">标签
-          </li>
+        <li class="mobile-menu-item">标签</li>
       </a><a href="/about/">
-        <li class="mobile-menu-item">关于
-          </li>
-      </a><a href="/friends/">
-        <li class="mobile-menu-item">友链
-          </li>
-      </a></ul>
+        <li class="mobile-menu-item">关于</li>
+      </a><a href="/friend/">
+        <li class="mobile-menu-item">友链</li>
+      </a>
+  </ul>
 </nav>
-<div class="container" id="mobile-panel">
-      <header id="header" class="header"><div class="logo-wrapper">
-  <a href="/." class="logo">Aloxaf's blog</a>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Aloxaf&#39;s Blog</a>
 </div>
 
-<nav class="site-navbar"><ul id="menu" class="menu"><li class="menu-item">
-          <a class="menu-item-link" href="/">
-            首页
-            </a>
-        </li>
-      <li class="menu-item">
-          <a class="menu-item-link" href="/archives/">
-            归档
-            </a>
-        </li>
-      <li class="menu-item">
-          <a class="menu-item-link" href="/tags/">
-            标签
-            </a>
-        </li>
-      <li class="menu-item">
-          <a class="menu-item-link" href="/about/">
-            关于
-            </a>
-        </li>
-      <li class="menu-item">
-          <a class="menu-item-link" href="/friends/">
-            友链
-            </a>
-        </li>
-      </ul></nav>
-</header>
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">关于</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/friend/">友链</a>
+      </li>
+  </ul>
+</nav>
+    </header>
 
-      <main id="main" class="main">
-        <div class="content-wrapper">
-          <div id="content" class="content"><article class="post">
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
     <header class="post-header">
-      <h1 class="post-title">CDDA 幸存者笔记
-        </h1>
+      <h1 class="post-title">CDDA 幸存者笔记</h1>
 
       <div class="post-meta">
-        <span class="post-time">
-          2019-09-15
-        </span><span class="post-category">
-            <a href="/categories/game/">game</a>
-            </span>
-        <span id="/2019/09/cdda_note/" class="leancloud_visitors" data-flag-title="CDDA 幸存者笔记">
-            <span class="leancloud-visitors-count" style="display: none;">0</span>
-          </span>
-        </div>
+        <span class="post-time"> 2019-09-15 </span>
+        <div class="post-category">
+            <a href="/categories/game/"> game </a>
+            </div>
+        
+      </div>
     </header>
 
     <div class="post-toc" id="post-toc">
-    <h2 class="post-toc-title">文章目录</h2>
-    <div class="post-toc-content">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#破解保险箱"><span class="toc-text">破解保险箱</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#需求"><span class="toc-text">需求</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#算法"><span class="toc-text">算法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#安装生化插件"><span class="toc-text">安装生化插件</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#需求-1"><span class="toc-text">需求</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#算法-1"><span class="toc-text">算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#计算生化操作技能"><span class="toc-text">计算生化操作技能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#计算安装成功率"><span class="toc-text">计算安装成功率</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#备注"><span class="toc-text">备注</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#回血速率"><span class="toc-text">回血速率</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#自然回血（无视吧，太少了）"><span class="toc-text">自然回血（无视吧，太少了）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#TL-DR"><span class="toc-text">TL;DR</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#科学回血"><span class="toc-text">科学回血</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#TL-DR-1"><span class="toc-text">TL;DR</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关于健康"><span class="toc-text">关于健康</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#生化插件能耗改动"><span class="toc-text">生化插件能耗改动</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#车辆"><span class="toc-text">车辆</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#越野性能"><span class="toc-text">越野性能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#启动时的噪音"><span class="toc-text">启动时的噪音</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#运行中的提示"><span class="toc-text">运行中的提示</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#怪物的特殊攻击"><span class="toc-text">怪物的特殊攻击</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#凝视"><span class="toc-text">凝视</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#恐惧震慑"><span class="toc-text">恐惧震慑</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#拍照"><span class="toc-text">拍照</span></a></li></ol></li></ol>
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#破解保险箱">破解保险箱</a>
+      <ul>
+        <li><a href="#需求">需求</a></li>
+        <li><a href="#算法">算法</a></li>
+      </ul>
+    </li>
+    <li><a href="#安装生化插件">安装生化插件</a>
+      <ul>
+        <li><a href="#需求-1">需求</a></li>
+        <li><a href="#算法-1">算法</a>
+          <ul>
+            <li><a href="#计算生化操作技能">计算生化操作技能</a></li>
+            <li><a href="#计算安装成功率">计算安装成功率</a></li>
+          </ul>
+        </li>
+        <li><a href="#备注">备注</a></li>
+      </ul>
+    </li>
+    <li><a href="#回血速率">回血速率</a>
+      <ul>
+        <li><a href="#自然回血无视吧太少了">自然回血（无视吧，太少了）</a>
+          <ul>
+            <li><a href="#tldr">TL;DR</a></li>
+          </ul>
+        </li>
+        <li><a href="#科学回血">科学回血</a>
+          <ul>
+            <li><a href="#tldr-1">TL;DR</a></li>
+          </ul>
+        </li>
+        <li><a href="#关于健康">关于健康</a></li>
+      </ul>
+    </li>
+    <li><a href="#生化插件能耗改动">生化插件能耗改动</a></li>
+    <li><a href="#车辆">车辆</a>
+      <ul>
+        <li><a href="#越野性能">越野性能</a></li>
+        <li><a href="#启动时的噪音">启动时的噪音</a></li>
+        <li><a href="#运行中的提示">运行中的提示</a></li>
+      </ul>
+    </li>
+    <li><a href="#怪物的特殊攻击">怪物的特殊攻击</a>
+      <ul>
+        <li><a href="#凝视">凝视</a></li>
+        <li><a href="#恐惧震慑">恐惧震慑</a></li>
+        <li><a href="#拍照">拍照</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+  <div class="post-outdated">
+    <div class="hint">
+      <p>【注】本文最后更新于 <span class="timeago" datetime="2020-07-31T11:24:07" title="July 31, 2020">July 31, 2020</span>，文中内容可能已经过时。</p>
     </div>
-  </div><div class="post-content"><p>是幸存者笔记，绝不是开发者笔记</p>
-<a id="more"></a>
-
-<h1 id="破解保险箱"><a href="#破解保险箱" class="headerlink" title="破解保险箱"></a>破解保险箱</h1><h2 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h2><ul>
+  </div>
+    <div class="post-content">
+      <p>是幸存者笔记，绝不是开发者笔记</p>
+<h1 id="破解保险箱">破解保险箱</h1>
+<h2 id="需求">需求</h2>
+<ul>
 <li>听力正常</li>
-<li>听诊器 或 听力增强CBM </li>
+<li>听诊器 或 听力增强CBM</li>
 </ul>
-<h2 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h2><ol>
-<li><p>如果不满足需求, 只能直接拨动刻度盘, 每次花费 10s, 有 $\frac{1}{30^3}$ 的几率成功</p>
+<h2 id="算法">算法</h2>
+<ol>
+<li>
+<p>如果不满足需求, 只能直接拨动刻度盘, 每次花费 10s, 有 $\frac{1}{30^3}$ 的几率成功</p>
 </li>
-<li><p>满足要求, 则开始计算破解耗时</p>
+<li>
+<p>满足要求, 则开始计算破解耗时</p>
 </li>
-<li><p><code>耗时 = MAX(150 - 20 * (机械学 - 3) - 10 * (感知 - 8), 30) 分钟</code></p>
+<li>
+<p><code>耗时 = MAX(150 - 20 * (机械学 - 3) - 10 * (感知 - 8), 30) 分钟</code></p>
 </li>
-<li><p><code>行动点数 = 耗时(秒) * 100</code></p>
+<li>
+<p><code>行动点数 = 耗时(秒) * 100</code></p>
 </li>
 </ol>
-<h1 id="安装生化插件"><a href="#安装生化插件" class="headerlink" title="安装生化插件"></a>安装生化插件</h1><h2 id="需求-1"><a href="#需求-1" class="headerlink" title="需求"></a>需求</h2><ul>
+<h1 id="安装生化插件">安装生化插件</h1>
+<h2 id="需求-1">需求</h2>
+<ul>
 <li>无故障的无菌生化插件</li>
 </ul>
-<h2 id="算法-1"><a href="#算法-1" class="headerlink" title="算法"></a>算法</h2><h3 id="计算生化操作技能"><a href="#计算生化操作技能" class="headerlink" title="计算生化操作技能"></a>计算生化操作技能</h3><ol>
-<li><code>等级 = 智力 * 4 + 主技能 * 4 + 次技能 * 3 + 最次技能 * 1</code></li>
+<h2 id="算法-1">算法</h2>
+<h3 id="计算生化操作技能">计算生化操作技能</h3>
+<ol>
+<li><code>等级 = 智力 * 4 + 主技能 * 4 + 次技能 * 3 + 最次技能 * 1 </code></li>
 <li>若职业为住院医师/生化外科医生, <code>等级 += 3</code></li>
 <li>若职业为人体强化协会会员/全自动医疗仪专家, <code>等级 += 7</code></li>
 <li><code>等级 = 等级 - MIN(40, 等级 - 等级 / 10)</code></li>
 </ol>
-<h3 id="计算安装成功率"><a href="#计算安装成功率" class="headerlink" title="计算安装成功率"></a>计算安装成功率</h3><ol>
-<li>若开启 MOD “完全可靠的医疗仪”, 并且使用全自动医疗仪安装, 则成功率 100%</li>
+<h3 id="计算安装成功率">计算安装成功率</h3>
+<ol>
+<li>若开启 MOD &ldquo;完全可靠的医疗仪&rdquo;, 并且使用全自动医疗仪安装, 则成功率 100%</li>
 <li>计算生化操作技能等级: 若有全自动医疗仪, 则技能主次顺序为: 急救, 计算机学, 电子学. 反之顺序为: 电子学, 急救, 机械学.</li>
 <li>计算协助智力点数，增加到生化操作技能上</li>
-<li><code>难度参数 = 生化操作技能 / (4 * 生化插件安装难度)</code></li>
-<li><code>成功率 = (100 * 难度参数) / 难度参数 + sqrt(难度参数)</code> </li>
+<li><code>难度参数 = 生化操作技能 / (4 * 生化插件安装难度) </code></li>
+<li><code>成功率 = (100 * 难度参数) / 难度参数 + sqrt(难度参数)</code></li>
 <li><code>耗时 = 难度参数 * 20分钟</code></li>
 </ol>
-<h2 id="备注"><a href="#备注" class="headerlink" title="备注"></a>备注</h2><p>生化插件安装难度可查询: <a href="https://cdda-trunk.aloxaf.cn" target="_blank" rel="noopener">https://cdda-trunk.aloxaf.cn</a></p>
-<h1 id="回血速率"><a href="#回血速率" class="headerlink" title="回血速率"></a>回血速率</h1><h2 id="自然回血（无视吧，太少了）"><a href="#自然回血（无视吧，太少了）" class="headerlink" title="自然回血（无视吧，太少了）"></a>自然回血（无视吧，太少了）</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">at_rest_quality = <span class="keyword">if</span> sleep <span class="number">1</span> <span class="keyword">else</span> <span class="number">0</span></span><br><span class="line"></span><br><span class="line">// 基本恢复速率, 曾经是 <span class="number">0.01</span></span><br><span class="line">heal_rate = <span class="number">0.0001</span></span><br><span class="line">// 最终恢复速率</span><br><span class="line">final_rate = <span class="number">0.0</span></span><br><span class="line"></span><br><span class="line">// healing_awake 参考</span><br><span class="line">// 急速自愈 <span class="number">2.0</span>    高速自愈 <span class="number">0.66</span>   快速自愈 <span class="number">0.2</span>   高速新陈代谢 <span class="number">0.2</span></span><br><span class="line">// 虚弱   <span class="number">-0.002</span>   衰退   <span class="number">-0.02</span>   解体   <span class="number">-0.08</span></span><br><span class="line">awake_rate = heal_rate * mutation_value(<span class="string">"healing_awake"</span>)</span><br><span class="line"><span class="keyword">if</span> awake_rate &gt; <span class="number">0</span>:</span><br><span class="line">    final_rate += awake_rate</span><br><span class="line"><span class="keyword">elif</span> at_rest_quality &lt; <span class="number">1</span>:</span><br><span class="line">	final_rate += (<span class="number">1</span> - at_rest_quality) * awake_rate</span><br><span class="line"></span><br><span class="line">// healing_rest 参考</span><br><span class="line">// 急速自愈 <span class="number">1.5</span>    高速自愈   <span class="number">0.5</span>    快速自愈  <span class="number">0.5</span>   高速新陈代谢 <span class="number">0.5</span></span><br><span class="line">// 虚弱   <span class="number">-0.25</span>   慢速自愈  <span class="number">-0.25</span>   自愈弱化 <span class="number">-0.66</span>   自愈无效   <span class="number">-0.9</span></span><br><span class="line">asleep_rate = <span class="number">0.0</span></span><br><span class="line"><span class="keyword">if</span> at_rest_quality &gt; <span class="number">0</span>:</span><br><span class="line">	alseep_rate = at_rest_quality * heal_rate * (<span class="number">1</span> + mutation_value(<span class="string">"healing_rest"</span>))</span><br><span class="line"><span class="keyword">if</span> alseep_rate &gt; <span class="number">0.0</span>:</span><br><span class="line">	final_rate += asleep_rate * (<span class="number">1</span> + healthy / <span class="number">200</span>)</span><br><span class="line"></span><br><span class="line">// 身强力壮 <span class="number">0.2</span> 钢筋铁骨 <span class="number">0.3</span>   不可战胜 <span class="number">0.4</span></span><br><span class="line">// 小个子 <span class="number">-0.05</span> 毫不起眼 <span class="number">-0.25</span> 瘦弱 <span class="number">-0.25</span>  体型细小 <span class="number">-0.3</span>  弱不禁风 <span class="number">-0.5</span> 柴毁骨立 <span class="number">-0.75</span></span><br><span class="line">primary_hp_mod = mutation_value( <span class="string">"hp_modifier"</span> );</span><br><span class="line"><span class="keyword">if</span> primary_hp_mod &lt; <span class="number">0.0</span>:</span><br><span class="line">	// HP mod can<span class="string">'t get below -1.0</span></span><br><span class="line"><span class="string">	final_rate *= 1.0f + primary_hp_mod;</span></span><br></pre></td></tr></table></figure>
+<h2 id="备注">备注</h2>
+<p>生化插件安装难度可查询: <a href="https://cdda-trunk.aloxaf.cn">https://cdda-trunk.aloxaf.cn</a></p>
+<h1 id="回血速率">回血速率</h1>
+<h2 id="自然回血无视吧太少了">自然回血（无视吧，太少了）</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">at_rest_quality</span> <span class="o">=</span> <span class="k">if</span> <span class="n">sleep</span> <span class="mi">1</span> <span class="k">else</span> <span class="mi">0</span>
 
-<h3 id="TL-DR"><a href="#TL-DR" class="headerlink" title="TL;DR"></a>TL;DR</h3><p>首先基本回血速率 0.0001（以前是 0.01）。</p>
-<p>清醒回血速率为基本回血速率<strong>乘上</strong>特性加成，默认为 0（也就是不回血），最高可以由急速自愈提供 2.0 的加成。<br>睡眠回血速率为基本回血速率<strong>乘上</strong>特性加成，默认为 1（也就是只提供基本回血），最高急速自愈提供 2.5，最低自愈无效提提供 0.1（不增反减）。然后睡眠回血速率还会受到健康（-200~200）影响，最高翻倍，最低归 0（完全不回血）。</p>
+<span class="o">//</span> <span class="err">基本恢复速率</span><span class="p">,</span> <span class="err">曾经是</span> <span class="mf">0.01</span>
+<span class="n">heal_rate</span> <span class="o">=</span> <span class="mf">0.0001</span>
+<span class="o">//</span> <span class="err">最终恢复速率</span>
+<span class="n">final_rate</span> <span class="o">=</span> <span class="mf">0.0</span>
+
+<span class="o">//</span> <span class="n">healing_awake</span> <span class="err">参考</span>
+<span class="o">//</span> <span class="err">急速自愈</span> <span class="mf">2.0</span>    <span class="err">高速自愈</span> <span class="mf">0.66</span>   <span class="err">快速自愈</span> <span class="mf">0.2</span>   <span class="err">高速新陈代谢</span> <span class="mf">0.2</span>
+<span class="o">//</span> <span class="err">虚弱</span>   <span class="o">-</span><span class="mf">0.002</span>   <span class="err">衰退</span>   <span class="o">-</span><span class="mf">0.02</span>   <span class="err">解体</span>   <span class="o">-</span><span class="mf">0.08</span>
+<span class="n">awake_rate</span> <span class="o">=</span> <span class="n">heal_rate</span> <span class="o">*</span> <span class="n">mutation_value</span><span class="p">(</span><span class="s2">&#34;healing_awake&#34;</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">awake_rate</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">final_rate</span> <span class="o">+=</span> <span class="n">awake_rate</span>
+<span class="k">elif</span> <span class="n">at_rest_quality</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+	<span class="n">final_rate</span> <span class="o">+=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">at_rest_quality</span><span class="p">)</span> <span class="o">*</span> <span class="n">awake_rate</span>
+
+<span class="o">//</span> <span class="n">healing_rest</span> <span class="err">参考</span>
+<span class="o">//</span> <span class="err">急速自愈</span> <span class="mf">1.5</span>    <span class="err">高速自愈</span>   <span class="mf">0.5</span>    <span class="err">快速自愈</span>  <span class="mf">0.5</span>   <span class="err">高速新陈代谢</span> <span class="mf">0.5</span>
+<span class="o">//</span> <span class="err">虚弱</span>   <span class="o">-</span><span class="mf">0.25</span>   <span class="err">慢速自愈</span>  <span class="o">-</span><span class="mf">0.25</span>   <span class="err">自愈弱化</span> <span class="o">-</span><span class="mf">0.66</span>   <span class="err">自愈无效</span>   <span class="o">-</span><span class="mf">0.9</span>
+<span class="n">asleep_rate</span> <span class="o">=</span> <span class="mf">0.0</span>
+<span class="k">if</span> <span class="n">at_rest_quality</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+	<span class="n">alseep_rate</span> <span class="o">=</span> <span class="n">at_rest_quality</span> <span class="o">*</span> <span class="n">heal_rate</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">mutation_value</span><span class="p">(</span><span class="s2">&#34;healing_rest&#34;</span><span class="p">))</span>
+<span class="k">if</span> <span class="n">alseep_rate</span> <span class="o">&gt;</span> <span class="mf">0.0</span><span class="p">:</span>
+	<span class="n">final_rate</span> <span class="o">+=</span> <span class="n">asleep_rate</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">healthy</span> <span class="o">/</span> <span class="mi">200</span><span class="p">)</span>
+
+<span class="o">//</span> <span class="err">身强力壮</span> <span class="mf">0.2</span> <span class="err">钢筋铁骨</span> <span class="mf">0.3</span>   <span class="err">不可战胜</span> <span class="mf">0.4</span>
+<span class="o">//</span> <span class="err">小个子</span> <span class="o">-</span><span class="mf">0.05</span> <span class="err">毫不起眼</span> <span class="o">-</span><span class="mf">0.25</span> <span class="err">瘦弱</span> <span class="o">-</span><span class="mf">0.25</span>  <span class="err">体型细小</span> <span class="o">-</span><span class="mf">0.3</span>  <span class="err">弱不禁风</span> <span class="o">-</span><span class="mf">0.5</span> <span class="err">柴毁骨立</span> <span class="o">-</span><span class="mf">0.75</span>
+<span class="n">primary_hp_mod</span> <span class="o">=</span> <span class="n">mutation_value</span><span class="p">(</span> <span class="s2">&#34;hp_modifier&#34;</span> <span class="p">);</span>
+<span class="k">if</span> <span class="n">primary_hp_mod</span> <span class="o">&lt;</span> <span class="mf">0.0</span><span class="p">:</span>
+	<span class="o">//</span> <span class="n">HP</span> <span class="n">mod</span> <span class="n">can</span><span class="s1">&#39;t get below -1.0</span>
+	<span class="n">final_rate</span> <span class="o">*=</span> <span class="mf">1.0</span><span class="n">f</span> <span class="o">+</span> <span class="n">primary_hp_mod</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="tldr">TL;DR</h3>
+<p>首先基本回血速率 0.0001（以前是 0.01）。</p>
+<p>清醒回血速率为基本回血速率<strong>乘上</strong>特性加成，默认为 0（也就是不回血），最高可以由急速自愈提供 2.0 的加成。
+睡眠回血速率为基本回血速率<strong>乘上</strong>特性加成，默认为 1（也就是只提供基本回血），最高急速自愈提供 2.5，最低自愈无效提提供 0.1（不增反减）。然后睡眠回血速率还会受到健康（-200~200）影响，最高翻倍，最低归 0（完全不回血）。</p>
 <p>最终回血速率：白天就是清醒回血速率，晚上为两个相加，然后这个值再<strong>乘上</strong>特性加成，最高不可战胜提供 1.4，最低柴毁骨立提供 0.25。</p>
 <p>这个数值非常小……一个没有任何特性健康为 0 的正常人睡 8 个小时大概能自然回血 3 点……</p>
-<h2 id="科学回血"><a href="#科学回血" class="headerlink" title="科学回血"></a>科学回血</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">rate_medicine = <span class="number">0.0</span></span><br><span class="line">bandaged_rate = <span class="number">0.0</span></span><br><span class="line">disinfected_rate = <span class="number">0.0</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// HEAL_RATE  base_mods=<span class="number">2</span>  scaling_mods=<span class="number">2</span></span><br><span class="line">// HEAL_TORSO base_mods=<span class="number">50</span></span><br><span class="line">// HEAL_TORSO base_mods=<span class="number">150</span></span><br><span class="line">// level  <span class="number">1</span><span class="number">-2</span>(极差) <span class="number">3</span><span class="number">-4</span>(不佳) <span class="number">5</span><span class="number">-6</span>(普通) <span class="number">7</span><span class="number">-8</span>(好)</span><br><span class="line">// <span class="number">9</span><span class="number">-10</span>(良好) <span class="number">11</span>~<span class="number">12</span>(优秀) <span class="number">13</span><span class="number">-14</span>(出色) <span class="number">15</span><span class="number">-16</span>(完美)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">effect</span>:</span>:get_amount(arg):</span><br><span class="line">    ret = get(<span class="string">"base_mods"</span>) + get(<span class="string">"scaling_mods"</span>) * (min(<span class="number">8</span>, level) - <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> bandaged:</span><br><span class="line">    bandaged_rate += bandaged.get_amount(<span class="string">"HEAL_RATE"</span>) / <span class="number">24</span>hours</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> body_part = head:</span><br><span class="line">    	bandaged_rate *= bandaged.get_amount(<span class="string">"HEAL_HEAD"</span>) / <span class="number">100</span></span><br><span class="line">    <span class="keyword">if</span> body_part = torso:</span><br><span class="line">        bandaged_rate *= bandaged.get_amount(<span class="string">"HEAL_TORSO"</span>) / <span class="number">100</span></span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line"><span class="keyword">if</span> disinfected:</span><br><span class="line">    disinfected_rate += disinfected.get_amount(<span class="string">"HEAL_RATE"</span>) / <span class="number">24</span>hours</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> body_part = head:</span><br><span class="line">    	disinfected_rate *= disinfected.get_amount(<span class="string">"HEAL_HEAD"</span>) / <span class="number">100</span></span><br><span class="line">    <span class="keyword">if</span> body_part = torso:</span><br><span class="line">        disinfected_rate *= disinfected.get_amount(<span class="string">"HEAL_TORSO"</span>) / <span class="number">100</span></span><br><span class="line"></span><br><span class="line">rate_medicine += bandaged_rate + disinfected_rate</span><br><span class="line">rate_medicine *= <span class="number">1.0</span> + mutation_value(<span class="string">"healing_resting"</span>)</span><br><span class="line">rate_medicine *= <span class="number">1.0</span> + at_rest_quality</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> bandaged <span class="keyword">and</span> disinfected:</span><br><span class="line">    rate_medicine *= <span class="number">2</span></span><br><span class="line">    </span><br><span class="line"><span class="keyword">if</span> healthy &gt; <span class="number">0</span>:</span><br><span class="line">    rate_medicine *= <span class="number">1.0</span> + healthy / <span class="number">200</span></span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    rate_medicine *= <span class="number">1.0</span> + healthy / <span class="number">400</span></span><br><span class="line">    </span><br><span class="line">primary_hp_mod = mutation_value( <span class="string">"hp_modifier"</span> );</span><br><span class="line"><span class="keyword">if</span> primary_hp_mod &lt; <span class="number">0.0</span>:</span><br><span class="line">	// HP mod can<span class="string">'t get below -1.0</span></span><br><span class="line"><span class="string">	rate_medicine *= 1.0f + primary_hp_mod;</span></span><br></pre></td></tr></table></figure>
+<h2 id="科学回血">科学回血</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">rate_medicine</span> <span class="o">=</span> <span class="mf">0.0</span>
+<span class="n">bandaged_rate</span> <span class="o">=</span> <span class="mf">0.0</span>
+<span class="n">disinfected_rate</span> <span class="o">=</span> <span class="mf">0.0</span>
 
-<h3 id="TL-DR-1"><a href="#TL-DR-1" class="headerlink" title="TL;DR"></a>TL;DR</h3><p>运用医学手段后的回血，分为包扎回血和消毒回血，两者算法一致，主要受包扎/消毒效果影响。“极差”没有加成，“好”及以上可以翻八倍。其中头部和身体会再乘上特殊加成，头部 0.5，身体 1.5。</p>
+
+<span class="o">//</span> <span class="n">HEAL_RATE</span>  <span class="n">base_mods</span><span class="o">=</span><span class="mi">2</span>  <span class="n">scaling_mods</span><span class="o">=</span><span class="mi">2</span>
+<span class="o">//</span> <span class="n">HEAL_TORSO</span> <span class="n">base_mods</span><span class="o">=</span><span class="mi">50</span>
+<span class="o">//</span> <span class="n">HEAL_TORSO</span> <span class="n">base_mods</span><span class="o">=</span><span class="mi">150</span>
+<span class="o">//</span> <span class="n">level</span>  <span class="mi">1</span><span class="o">-</span><span class="mi">2</span><span class="p">(</span><span class="err">极差</span><span class="p">)</span> <span class="mi">3</span><span class="o">-</span><span class="mi">4</span><span class="p">(</span><span class="err">不佳</span><span class="p">)</span> <span class="mi">5</span><span class="o">-</span><span class="mi">6</span><span class="p">(</span><span class="err">普通</span><span class="p">)</span> <span class="mi">7</span><span class="o">-</span><span class="mi">8</span><span class="p">(</span><span class="err">好</span><span class="p">)</span>
+<span class="o">//</span> <span class="mi">9</span><span class="o">-</span><span class="mi">10</span><span class="p">(</span><span class="err">良好</span><span class="p">)</span> <span class="mi">11</span><span class="o">~</span><span class="mi">12</span><span class="p">(</span><span class="err">优秀</span><span class="p">)</span> <span class="mi">13</span><span class="o">-</span><span class="mi">14</span><span class="p">(</span><span class="err">出色</span><span class="p">)</span> <span class="mi">15</span><span class="o">-</span><span class="mi">16</span><span class="p">(</span><span class="err">完美</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">effect</span><span class="p">::</span><span class="n">get_amount</span><span class="p">(</span><span class="n">arg</span><span class="p">):</span>
+    <span class="n">ret</span> <span class="o">=</span> <span class="n">get</span><span class="p">(</span><span class="s2">&#34;base_mods&#34;</span><span class="p">)</span> <span class="o">+</span> <span class="n">get</span><span class="p">(</span><span class="s2">&#34;scaling_mods&#34;</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="n">level</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">bandaged</span><span class="p">:</span>
+    <span class="n">bandaged_rate</span> <span class="o">+=</span> <span class="n">bandaged</span><span class="o">.</span><span class="n">get_amount</span><span class="p">(</span><span class="s2">&#34;HEAL_RATE&#34;</span><span class="p">)</span> <span class="o">/</span> <span class="mi">24</span><span class="n">hours</span>
+    
+    <span class="k">if</span> <span class="n">body_part</span> <span class="o">=</span> <span class="n">head</span><span class="p">:</span>
+    	<span class="n">bandaged_rate</span> <span class="o">*=</span> <span class="n">bandaged</span><span class="o">.</span><span class="n">get_amount</span><span class="p">(</span><span class="s2">&#34;HEAL_HEAD&#34;</span><span class="p">)</span> <span class="o">/</span> <span class="mi">100</span>
+    <span class="k">if</span> <span class="n">body_part</span> <span class="o">=</span> <span class="n">torso</span><span class="p">:</span>
+        <span class="n">bandaged_rate</span> <span class="o">*=</span> <span class="n">bandaged</span><span class="o">.</span><span class="n">get_amount</span><span class="p">(</span><span class="s2">&#34;HEAL_TORSO&#34;</span><span class="p">)</span> <span class="o">/</span> <span class="mi">100</span>
+        
+        
+<span class="k">if</span> <span class="n">disinfected</span><span class="p">:</span>
+    <span class="n">disinfected_rate</span> <span class="o">+=</span> <span class="n">disinfected</span><span class="o">.</span><span class="n">get_amount</span><span class="p">(</span><span class="s2">&#34;HEAL_RATE&#34;</span><span class="p">)</span> <span class="o">/</span> <span class="mi">24</span><span class="n">hours</span>
+    
+    <span class="k">if</span> <span class="n">body_part</span> <span class="o">=</span> <span class="n">head</span><span class="p">:</span>
+    	<span class="n">disinfected_rate</span> <span class="o">*=</span> <span class="n">disinfected</span><span class="o">.</span><span class="n">get_amount</span><span class="p">(</span><span class="s2">&#34;HEAL_HEAD&#34;</span><span class="p">)</span> <span class="o">/</span> <span class="mi">100</span>
+    <span class="k">if</span> <span class="n">body_part</span> <span class="o">=</span> <span class="n">torso</span><span class="p">:</span>
+        <span class="n">disinfected_rate</span> <span class="o">*=</span> <span class="n">disinfected</span><span class="o">.</span><span class="n">get_amount</span><span class="p">(</span><span class="s2">&#34;HEAL_TORSO&#34;</span><span class="p">)</span> <span class="o">/</span> <span class="mi">100</span>
+
+<span class="n">rate_medicine</span> <span class="o">+=</span> <span class="n">bandaged_rate</span> <span class="o">+</span> <span class="n">disinfected_rate</span>
+<span class="n">rate_medicine</span> <span class="o">*=</span> <span class="mf">1.0</span> <span class="o">+</span> <span class="n">mutation_value</span><span class="p">(</span><span class="s2">&#34;healing_resting&#34;</span><span class="p">)</span>
+<span class="n">rate_medicine</span> <span class="o">*=</span> <span class="mf">1.0</span> <span class="o">+</span> <span class="n">at_rest_quality</span>
+
+<span class="k">if</span> <span class="n">bandaged</span> <span class="ow">and</span> <span class="n">disinfected</span><span class="p">:</span>
+    <span class="n">rate_medicine</span> <span class="o">*=</span> <span class="mi">2</span>
+    
+<span class="k">if</span> <span class="n">healthy</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">rate_medicine</span> <span class="o">*=</span> <span class="mf">1.0</span> <span class="o">+</span> <span class="n">healthy</span> <span class="o">/</span> <span class="mi">200</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">rate_medicine</span> <span class="o">*=</span> <span class="mf">1.0</span> <span class="o">+</span> <span class="n">healthy</span> <span class="o">/</span> <span class="mi">400</span>
+    
+<span class="n">primary_hp_mod</span> <span class="o">=</span> <span class="n">mutation_value</span><span class="p">(</span> <span class="s2">&#34;hp_modifier&#34;</span> <span class="p">);</span>
+<span class="k">if</span> <span class="n">primary_hp_mod</span> <span class="o">&lt;</span> <span class="mf">0.0</span><span class="p">:</span>
+	<span class="o">//</span> <span class="n">HP</span> <span class="n">mod</span> <span class="n">can</span><span class="s1">&#39;t get below -1.0</span>
+	<span class="n">rate_medicine</span> <span class="o">*=</span> <span class="mf">1.0</span><span class="n">f</span> <span class="o">+</span> <span class="n">primary_hp_mod</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="tldr-1">TL;DR</h3>
+<p>运用医学手段后的回血，分为包扎回血和消毒回血，两者算法一致，主要受包扎/消毒效果影响。“极差”没有加成，“好”及以上可以翻八倍。其中头部和身体会再乘上特殊加成，头部 0.5，身体 1.5。</p>
 <p>最终回血数值等于包扎回血加上消毒回血，再乘上特性加成（默认 1，最高急速自愈 2.5，最低自愈无效 0.1），如果在睡觉的话再翻倍，如果同时包扎&amp;消毒就再翻倍，然后再乘上健康（取值 -200~200）加成（满值翻倍，负满值减半），然后如果有改变HP上限的特性（身强力壮、弱不禁风等等），也等比例应用到回血数值上。</p>
 <p>一个没有特性健康为 0 正常人极差包扎+极差消毒，睡 8 个小时，四肢能回血 5 点。看起来很少，毕竟是“极差”的处理，如果是“良好”的话，这个数字就可以达到 40。所以提升急救学等级 &amp; 使用更高级的包扎/消毒材料就很有必要了。</p>
-<h2 id="关于健康"><a href="#关于健康" class="headerlink" title="关于健康"></a>关于健康</h2><p>虽然表面上说健康值范围是 -200~200，但通过饮食能达到的健康值上限基本为 10。同时因为辐射等原因健康值可能暴跌到负三四百甚至五六百。这个时候回血就会变成负值。。。</p>
-<h1 id="生化插件能耗改动"><a href="#生化插件能耗改动" class="headerlink" title="生化插件能耗改动"></a>生化插件能耗改动</h1><p>9702 以后，生化能量使用了焦耳热单位，最小单位为 mJ，同时由于数据类型的限制带来了一个上限：2147483647mJ，大约是 2100 kJ。因为是数据类型本身带来的限制，这个上限不大可能改变了。</p>
+<h2 id="关于健康">关于健康</h2>
+<p>虽然表面上说健康值范围是 -200~200，但通过饮食能达到的健康值上限基本为 10。同时因为辐射等原因健康值可能暴跌到负三四百甚至五六百。这个时候回血就会变成负值。。。</p>
+<h1 id="生化插件能耗改动">生化插件能耗改动</h1>
+<p>9702 以后，生化能量使用了焦耳热单位，最小单位为 mJ，同时由于数据类型的限制带来了一个上限：2147483647mJ，大约是 2100 kJ。因为是数据类型本身带来的限制，这个上限不大可能改变了。</p>
 <p>当然这样生化插件就被削地不成样子了，于是 9748 后，生化插件的耗能也开始进行改动，究竟是强了还是弱了并不好说，把数据列举出来各位自行判断。（不过值得吐槽的是 CBM 界面的耗能显示没有调整，导致很多插件耗能显示为 0……）</p>
 <p>注：1 W 即 1 J/s，也就是 1 J/回合。“1 J; 1 W”表示启动耗能 1 J，功率 1W</p>
 <table>
@@ -193,7 +437,8 @@
 <th>新版耗能</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>肾上腺素泵</td>
 <td>50 kJ</td>
 <td>5 J</td>
@@ -378,8 +623,11 @@
 <td>50 kJ</td>
 <td>20 kJ</td>
 </tr>
-</tbody></table>
-<h1 id="车辆"><a href="#车辆" class="headerlink" title="车辆"></a>车辆</h1><h2 id="越野性能"><a href="#越野性能" class="headerlink" title="越野性能"></a>越野性能</h2><ol>
+</tbody>
+</table>
+<h1 id="车辆">车辆</h1>
+<h2 id="越野性能">越野性能</h2>
+<ol>
 <li>轮胎面积计算: 轮胎直径 * 轮胎宽度</li>
 <li>轮胎越野系数: 塑料轮子 0.1, 竞赛车轮 0.3, 越野车轮 0.7, 履带 0.9, 轨道轮 0.05, 普通轮子 0.5</li>
 <li>轮胎牵引面积: 轮胎总面积 * 轮胎平均越野系数</li>
@@ -388,7 +636,8 @@
 <li>越野系数: 轮胎牵引面积 / 重量惩罚, 最高不超过 1.0, 最低不低于 0.1</li>
 </ol>
 <p>简化一下: (轮胎总面积 * 轮胎平均越野系数) / ( (1 - 轮胎平均越野系数) * 车辆总质量 )</p>
-<h2 id="启动时的噪音"><a href="#启动时的噪音" class="headerlink" title="启动时的噪音"></a>启动时的噪音</h2><table>
+<h2 id="启动时的噪音">启动时的噪音</h2>
+<table>
 <thead>
 <tr>
 <th>噪音描述</th>
@@ -396,7 +645,8 @@
 <th>解决方案</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>从 xx 传出一声巨响！</td>
 <td>发动机发生回火</td>
 <td>修理发动机，提高耐久</td>
@@ -426,8 +676,10 @@
 <td>引擎耐久过低</td>
 <td>修理引擎</td>
 </tr>
-</tbody></table>
-<h2 id="运行中的提示"><a href="#运行中的提示" class="headerlink" title="运行中的提示"></a>运行中的提示</h2><table>
+</tbody>
+</table>
+<h2 id="运行中的提示">运行中的提示</h2>
+<table>
 <thead>
 <tr>
 <th>描述</th>
@@ -435,7 +687,8 @@
 <th>解决方案</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>xx 艰难地牵引着 xx！</td>
 <td>加速度过低</td>
 <td>减轻车辆重量、换用更大马力的引擎、尽量走公路</td>
@@ -445,99 +698,159 @@
 <td>车辆正在加速中，但加速度为 0</td>
 <td>减轻车辆重量、换用更大马力的引擎、尽量走公路</td>
 </tr>
-</tbody></table>
-<h1 id="怪物的特殊攻击"><a href="#怪物的特殊攻击" class="headerlink" title="怪物的特殊攻击"></a>怪物的特殊攻击</h1><h2 id="凝视"><a href="#凝视" class="headerlink" title="凝视"></a>凝视</h2><p>燃烧之眼的超恶心攻击手段，游戏中最恶心的怪物没有之一。</p>
+</tbody>
+</table>
+<h1 id="怪物的特殊攻击">怪物的特殊攻击</h1>
+<h2 id="凝视">凝视</h2>
+<p>燃烧之眼的超恶心攻击手段，游戏中最恶心的怪物没有之一。</p>
 <p>攻击的唯一条件就是它看见了你。会导致持续 80 分钟的传送病。可以使用带有空间稳定效果的装备或者神器（？）（待验证）来防御。</p>
-<p>目前已知的空间稳定装备有：<a href="https://cdda-trunk.aloxaf.cn/dimensional_anchor_on" target="_blank" rel="noopener">五点式空间锚（开）</a>  </p>
+<p>目前已知的空间稳定装备有：<a href="https://cdda-trunk.aloxaf.cn/dimensional_anchor_on">五点式空间锚（开）</a></p>
 <p>嗯……只有一种装备</p>
-<h2 id="恐惧震慑"><a href="#恐惧震慑" class="headerlink" title="恐惧震慑"></a>恐惧震慑</h2><p>和凝视有点像，但不同的是这是你看到它才会触发。</p>
-<p>我觉得直面大多数神话生物都应该导致这个效果，然而<del>很可惜</del>目前只有<a href="https://cdda-trunk.aloxaf.cn/monsters/mon_amigara_horror" target="_blank" rel="noopener">阿米格拉 </a>、<a href="https://cdda-trunk.aloxaf.cn/monsters/mon_blood_sacrifice" target="_blank" rel="noopener">血祭牺牲者</a>、<a href="https://cdda-trunk.aloxaf.cn/monsters/mon_flesh_angel" target="_blank" rel="noopener">血肉天使</a>、<a href="https://cdda-trunk.aloxaf.cn/monsters/mon_gozu" target="_blank" rel="noopener">牛头怪</a>能带来恐惧震慑的效果</p>
+<h2 id="恐惧震慑">恐惧震慑</h2>
+<p>和凝视有点像，但不同的是这是你看到它才会触发。</p>
+<p>我觉得直面大多数神话生物都应该导致这个效果，然而<del>很可惜</del>目前只有<a href="https://cdda-trunk.aloxaf.cn/monsters/mon_amigara_horror">阿米格拉 </a>、<a href="https://cdda-trunk.aloxaf.cn/monsters/mon_blood_sacrifice">血祭牺牲者</a>、<a href="https://cdda-trunk.aloxaf.cn/monsters/mon_flesh_angel">血肉天使</a>、<a href="https://cdda-trunk.aloxaf.cn/monsters/mon_gozu">牛头怪</a>能带来恐惧震慑的效果</p>
 <p>防御手段：</p>
 <ol>
 <li>有心灵护盾效果的神器可以完全防御</li>
-<li>有不完全心灵护盾效果的装备有 1/4 几率防御：<a href="https://cdda-trunk.aloxaf.cn/tinfoil_hat" target="_blank" rel="noopener">锡纸帽 </a>、<a href="https://cdda-trunk.aloxaf.cn/phase_immersion_suit_on" target="_blank" rel="noopener">相位沉浸服（开） </a></li>
+<li>有不完全心灵护盾效果的装备有 1/4 几率防御：<a href="https://cdda-trunk.aloxaf.cn/tinfoil_hat">锡纸帽 </a>、<a href="https://cdda-trunk.aloxaf.cn/phase_immersion_suit_on">相位沉浸服（开） </a></li>
 </ol>
-<h2 id="拍照"><a href="#拍照" class="headerlink" title="拍照"></a>拍照</h2><p>眼球无人机的攻击手段（笑）。前期挺麻烦，后期就是送材料。</p>
+<h2 id="拍照">拍照</h2>
+<p>眼球无人机的攻击手段（笑）。前期挺麻烦，后期就是送材料。</p>
 <p>攻击条件是六格视野范围内，所以离远点射死就没事了。</p>
 <p>防御手段则是需要对应职业。一般政府/军队人员都能防御，比如警察、警探、SWAT 人员、CRIT 人员、生化警官、联邦执法官等等都能让眼球无视你。不过联邦执法官需要戴着你的徽章才有效，其他职业不用戴对应徽章也能让眼球无人机无视你，戴上的话眼球无人机就会离开。</p>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">aloxaf</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2020-07-31
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a></span>
+  </p>
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/cdda/">cdda</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/2019/11/xkeysnail_tutorial/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">xkeysnail 使用指南</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/2019/04/zip_plaintext_attack/">
+            <span class="next-text nav-default">ZIP 明文攻击原理（上）</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  <span id="/2019/09/cdda_note/" class="leancloud_visitors" data-flag-title="CDDA 幸存者笔记">
+		<span class="post-meta-item-text">文章阅读量 </span>
+		<span class="leancloud-visitors-count">0</span>
+		<p></p>
+	  </span>
+  <div id="vcomments"></div>
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+  <script type="text/javascript">
+    new Valine({
+        el: '#vcomments' ,
+        serverURLs: 'https:\/\/lcd.aloxaf.cn',
+        appId: 'fSbXaElXXTznggVXiWy8NFBU-gzGzoHsz',
+        appKey: 'kK3SxB14xAACgHftKrSaBRDU',
+        notify:  false ,
+        verify:  false ,
+        avatar:'mm',
+        placeholder: '妙啊，妙啊',
+        visitor:  true 
+    });
+  </script>
+
+  
 
       </div>
-      <div class="post-copyright">
-    <p class="copyright-item">
-      <span>原文作者: </span>
-      <a href="https://www.aloxaf.com">Aloxaf</a>
-    </p>
-    <p class="copyright-item">
-      <span>原文链接: </span>
-      <a href="https://www.aloxaf.com/2019/09/cdda_note/">https://www.aloxaf.com/2019/09/cdda_note/</a>
-    </p>
-    <p class="copyright-item">
-      <span>许可协议: </span><a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
-    </p>
-  </div>
-      <footer class="post-footer">
-        <div class="post-tags">
-            <a href="/tags/cdda/">cdda</a>
-            </div>
-        
-        <nav class="post-nav"><a class="prev" href="/2019/11/xkeysnail_tutorial/">
-        <i class="iconfont icon-left"></i>
-        <span class="prev-text nav-default">xkeysnail 使用指南</span>
-        <span class="prev-text nav-mobile">上一篇</span>
-      </a>
-    <a class="next" href="/2019/04/zip_plaintext_attack/">
-        <span class="next-text nav-default">ZIP 明文攻击原理（上）</span>
-        <span class="prev-text nav-mobile">下一篇</span>
-        <i class="iconfont icon-right"></i>
-      </a>
-    </nav></footer>
-    </article></div><div class="comments" id="comments"><div id="vcomments"></div>
-    </div></div>
-      </main>
+    </main>
 
-      <footer id="footer" class="footer"><div class="social-links"><a href="mailto:aloxafx@gmail.com" class="iconfont icon-email" title="email"></a>
-        <a href="https://github.com/Aloxaf" target="_blank" rel="noopener" class="iconfont icon-github" title="github"></a>
-        <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
-    </div><div class="copyright">
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:aloxafx@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/Aloxaf" class="iconfont icon-github" title="github"></a>
+  <a href="http://www.aloxaf.com/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
   <span class="power-by">
-    由 <a class="hexo-link" href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> 强力驱动
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
   </span>
   <span class="division">|</span>
   <span class="theme-info">
     主题 - 
-    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even" target="_blank" rel="noopener">Even</a>
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
   </span>
 
-  <span class="copyright-year">&copy;2017 - 2020<span class="heart">
-      <i class="iconfont icon-heart"></i>
-    </span>
-    <span class="author">Aloxaf</span>
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span><span>Aloxaf</span>
   </span>
 </div>
-</footer>
 
-      <div class="back-to-top" id="back-to-top">
-        <i class="iconfont icon-up"></i>
-      </div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
     </div>
-<!-- valine Comments -->
-<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
-<script type="text/javascript">
-    new Valine({
-        el: '#vcomments',
-        serverURLs: "https://lcd.aloxaf.cn",
-        notify: false,
-        verify: false,
-        app_id: "fSbXaElXXTznggVXiWy8NFBU-gzGzoHsz",
-        app_key: "kK3SxB14xAACgHftKrSaBRDU",
-        placeholder: "妙啊，妙啊",
-        avatar: 'mm',
-        visitor: true,
-    });
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "zh".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-123773630-1', 'auto');
+	
+	ga('send', 'pageview');
+}
 </script>
-<script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
-  <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
-  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
-  <script type="text/javascript" src="/js/src/even.js?v=2.11.0"></script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
 </body>
 </html>

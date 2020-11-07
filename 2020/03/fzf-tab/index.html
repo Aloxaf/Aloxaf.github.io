@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
-  <head><meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>fzf-tab —— 使用 fzf 进行 zsh 补全 - Aloxaf&#39;s Blog</title>
+  <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
 
 <meta http-equiv="Cache-Control" content="no-transform" />
 <meta http-equiv="Cache-Control" content="no-siteapp" />
@@ -13,45 +15,64 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
-<meta name="description" content="fzf-tab —— 使用 fzf 进行 zsh 补全"/><meta name="keywords" content="linux, zsh, Aloxaf's blog" /><link rel="alternate" href="/atom.xml" title="Aloxaf's blog"><link rel="shortcut icon" type="image/x-icon" href="/favicon.svg?v=2.11.0" />
-<link rel="canonical" href="https://www.aloxaf.com/2020/03/fzf-tab/"/>
 
-<link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
-<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.11.0" />
+<meta name="author" content="aloxaf" /><meta name="description" content="
+" /><meta name="keywords" content="aloxaf, ctf, linux, zsh" />
 
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-123773630-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'UA-123773630-1');
-</script><script id="baidu_push">
-(function(){
-    var bp = document.createElement('script');
-    var curProtocol = window.location.protocol.split(':')[0];
-    if (curProtocol === 'https') {
-        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
-    }
-    else {
-        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-    }
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(bp, s);
-})();
-</script>
-<script>
-  window.config = {"leancloud":{"app_id":null,"app_key":null},"toc":true,"fancybox":true,"pjax":"","latex":true};
-</script>
 
-    <title>fzf-tab —— 使用 fzf 进行 zsh 补全 - Aloxaf's blog</title>
-  <meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Aloxaf's blog" type="application/atom+xml">
+
+
+
+<meta name="generator" content="Hugo 0.78.1 with theme even" />
+
+
+<link rel="canonical" href="http://www.aloxaf.com/2020/03/fzf-tab/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.65ccf00eb040f87c6c85a4206ef3520967b49eb3940b6b6f15c2e84bc94782d7.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="fzf-tab —— 使用 fzf 进行 zsh 补全" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://www.aloxaf.com/2020/03/fzf-tab/" />
+<meta property="article:published_time" content="2020-03-13T17:27:22+00:00" />
+<meta property="article:modified_time" content="2020-03-13T17:27:22+00:00" />
+<meta itemprop="name" content="fzf-tab —— 使用 fzf 进行 zsh 补全">
+<meta itemprop="description" content="">
+<meta itemprop="datePublished" content="2020-03-13T17:27:22+00:00" />
+<meta itemprop="dateModified" content="2020-03-13T17:27:22+00:00" />
+<meta itemprop="wordCount" content="2062">
+
+
+
+<meta itemprop="keywords" content="linux,zsh," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="fzf-tab —— 使用 fzf 进行 zsh 补全"/>
+<meta name="twitter:description" content=""/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
 </head>
-
-  <body><div id="mobile-navbar" class="mobile-navbar">
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
   <div class="mobile-header-logo">
-    <a href="/." class="logo">Aloxaf's blog</a>
+    <a href="/" class="logo">Aloxaf&#39;s Blog</a>
   </div>
   <div class="mobile-navbar-icon">
     <span></span>
@@ -59,97 +80,105 @@
     <span></span>
   </div>
 </div>
-
 <nav id="mobile-menu" class="mobile-menu slideout-menu">
-  <ul class="mobile-menu-list"><a href="/">
-        <li class="mobile-menu-item">首页
-          </li>
-      </a><a href="/archives/">
-        <li class="mobile-menu-item">归档
-          </li>
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
       </a><a href="/tags/">
-        <li class="mobile-menu-item">标签
-          </li>
+        <li class="mobile-menu-item">标签</li>
       </a><a href="/about/">
-        <li class="mobile-menu-item">关于
-          </li>
-      </a><a href="/friends/">
-        <li class="mobile-menu-item">友链
-          </li>
-      </a></ul>
+        <li class="mobile-menu-item">关于</li>
+      </a><a href="/friend/">
+        <li class="mobile-menu-item">友链</li>
+      </a>
+  </ul>
 </nav>
-<div class="container" id="mobile-panel">
-      <header id="header" class="header"><div class="logo-wrapper">
-  <a href="/." class="logo">Aloxaf's blog</a>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Aloxaf&#39;s Blog</a>
 </div>
 
-<nav class="site-navbar"><ul id="menu" class="menu"><li class="menu-item">
-          <a class="menu-item-link" href="/">
-            首页
-            </a>
-        </li>
-      <li class="menu-item">
-          <a class="menu-item-link" href="/archives/">
-            归档
-            </a>
-        </li>
-      <li class="menu-item">
-          <a class="menu-item-link" href="/tags/">
-            标签
-            </a>
-        </li>
-      <li class="menu-item">
-          <a class="menu-item-link" href="/about/">
-            关于
-            </a>
-        </li>
-      <li class="menu-item">
-          <a class="menu-item-link" href="/friends/">
-            友链
-            </a>
-        </li>
-      </ul></nav>
-</header>
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">关于</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/friend/">友链</a>
+      </li>
+  </ul>
+</nav>
+    </header>
 
-      <main id="main" class="main">
-        <div class="content-wrapper">
-          <div id="content" class="content"><article class="post">
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
     <header class="post-header">
-      <h1 class="post-title">fzf-tab —— 使用 fzf 进行 zsh 补全
-        </h1>
+      <h1 class="post-title">fzf-tab —— 使用 fzf 进行 zsh 补全</h1>
 
       <div class="post-meta">
-        <span class="post-time">
-          2020-03-13
-        </span><span class="post-category">
-            <a href="/categories/zsh/">zsh</a>
-            </span>
-        <span id="/2020/03/fzf-tab/" class="leancloud_visitors" data-flag-title="fzf-tab —— 使用 fzf 进行 zsh 补全">
-            <span class="leancloud-visitors-count" style="display: none;">0</span>
-          </span>
-        </div>
+        <span class="post-time"> 2020-03-13 </span>
+        <div class="post-category">
+            <a href="/categories/zsh/"> zsh </a>
+            </div>
+        
+      </div>
     </header>
 
     <div class="post-toc" id="post-toc">
-    <h2 class="post-toc-title">文章目录</h2>
-    <div class="post-toc-content">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#碎碎念"><span class="toc-text">碎碎念</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#学到的一些知识"><span class="toc-text">学到的一些知识</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#另外一些有趣项目"><span class="toc-text">另外一些有趣项目</span></a></li></ol>
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#碎碎念">碎碎念</a></li>
+    <li><a href="#学到的一些知识">学到的一些知识</a></li>
+    <li><a href="#另外一些有趣项目">另外一些有趣项目</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+  <div class="post-outdated">
+    <div class="hint">
+      <p>【注】本文最后更新于 <span class="timeago" datetime="2020-03-13T17:27:22" title="March 13, 2020">March 13, 2020</span>，文中内容可能已经过时。</p>
     </div>
-  </div><div class="post-content"><p><a href="https://asciinema.org/a/293849" target="_blank" rel="noopener"><img src="https://asciinema.org/a/293849.svg" alt="asciicast"></a></p>
-<a id="more"></a>
-
-<h1 id="碎碎念"><a href="#碎碎念" class="headerlink" title="碎碎念"></a>碎碎念</h1><p>这是一个我念叨了很久的想法，自从了解到 fzf 以后，我就一直在思考这个问题：能不用使用 fzf 作为 zsh 的补全选择菜单？</p>
+  </div>
+    <div class="post-content">
+      <p><a href="https://asciinema.org/a/293849"><img src="https://asciinema.org/a/293849.svg" alt="asciicast"></a></p>
+<h1 id="碎碎念">碎碎念</h1>
+<p>这是一个我念叨了很久的想法，自从了解到 fzf 以后，我就一直在思考这个问题：能不用使用 fzf 作为 zsh 的补全选择菜单？</p>
 <p>zsh 默认的补全选择菜单非常难用，当然一般人都会进行配置。比较常用的配置是：</p>
-<figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">zstyle</span> <span class="string">':completion:*'</span> menu yes select</span><br></pre></td></tr></table></figure>
-
-<p>这样可以使用 <kbd>Tab</kbd> 来滚动选择补全。然而它其实还可以更强：</p>
-<figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">zstyle</span> <span class="string">':completion:*'</span> menu yes select search</span><br></pre></td></tr></table></figure>
-
-<p>这会允许你在列表中搜索。相对来说更好用了一点，但是不支持模糊搜索，而且反应有点慢，仍然不够完美。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-zsh" data-lang="zsh">zstyle <span class="s1">&#39;:completion:*&#39;</span> menu yes <span class="k">select</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>这样可以使用 <kbd>Tab</kbd> 来滚动选择补全。然而它其实还可以更强：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-zsh" data-lang="zsh">zstyle <span class="s1">&#39;:completion:*&#39;</span> menu yes <span class="k">select</span> search
+</code></pre></td></tr></table>
+</div>
+</div><p>这会允许你在列表中搜索。相对来说更好用了一点，但是不支持模糊搜索，而且反应有点慢，仍然不够完美。</p>
 <p>要想追求（我眼中的）完美的补全体验，还是得上 fzf。基本思路应该是：截获补全列表、用 fzf 展示并选择、将选择项传回去。但这就面临这一个很严肃的问题：如何截获本该传给 zsh compsys 的补全候选项呢？</p>
-<p>作为一个 zsh 萌新，我完全无从下手。不过几经搜索之后我幸运地找到了 <a href="https://github.com/Valodim/zsh-capture-completion" target="_blank" rel="noopener">https://github.com/Valodim/zsh-capture-completion</a> 这个可以捕获 zsh 补全列表的项目，它的思路非常有趣——用 zpty 开启一个新的 shell，然后在这个 shell 里面替换掉一个关键内置函数 <code>compadd</code>，捕获本来应该传给 zsh 的补全候选项并输出它们，再 zpty 捕获这些输出。</p>
+<p>作为一个 zsh 萌新，我完全无从下手。不过几经搜索之后我幸运地找到了 <a href="https://github.com/Valodim/zsh-capture-completion">https://github.com/Valodim/zsh-capture-completion</a> 这个可以捕获 zsh 补全列表的项目，它的思路非常有趣——用 zpty 开启一个新的 shell，然后在这个 shell 里面替换掉一个关键内置函数 <code>compadd</code>，捕获本来应该传给 zsh 的补全候选项并输出它们，再 zpty 捕获这些输出。</p>
 <p>zsh 里面竟然可以覆盖掉内置函数？？而且原来所有的补全相关的辅助函数都是基于 <code>compadd</code> 的？？我果然还是太 naive 了……</p>
-<p>参考这个思路，我完成了 <a href="https://github.com/Aloxaf/fzf-tab" target="_blank" rel="noopener">https://github.com/Aloxaf/fzf-tab</a> 。安装方式见 <a href="https://github.com/Aloxaf/fzf-tab/blob/master/README_CN.md" target="_blank" rel="noopener">README.md</a></p>
+<p>参考这个思路，我完成了 <a href="https://github.com/Aloxaf/fzf-tab">https://github.com/Aloxaf/fzf-tab</a> 。安装方式见 <a href="https://github.com/Aloxaf/fzf-tab/blob/master/README_CN.md">README.md</a></p>
 <p>这玩意儿几乎地完美实现了我的需求，而且还有附带了一些额外功能：</p>
 <ol>
 <li>最基本的：使用 fzf 来模糊搜索补全候选项，而且几乎适用所有场景的补全</li>
@@ -157,11 +186,40 @@
 <li>在补全目录时，还可以使用 <kbd>/</kbd> 来快速激活下一次补全。在补全长路径时这个功能尤其有用。</li>
 </ol>
 <p>结合 fzf 的 <code>--preview</code> 开关，还能实现更丰富的功能：</p>
-<figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># kill 结束进程时时提供预览</span></span><br><span class="line"><span class="built_in">zstyle</span> <span class="string">':completion:*:*:*:*:processes'</span> <span class="built_in">command</span> <span class="string">"ps -u <span class="variable">$USER</span> -o pid,user,comm,cmd -w -w"</span></span><br><span class="line"><span class="built_in">zstyle</span> <span class="string">':fzf-tab:complete:kill:argument-rest'</span> extra-opts --preview=<span class="string">'echo $(&lt;&#123;f&#125;)'</span> --preview-window=down:3:wrap</span><br><span class="line"></span><br><span class="line"><span class="comment"># （实验性功能）cd 时在右侧预览目录内容</span></span><br><span class="line"><span class="built_in">local</span> extract=<span class="string">"</span></span><br><span class="line"><span class="string"># 提取输入</span></span><br><span class="line"><span class="string">in=\$&#123;\$&#123;\"\$(&lt;&#123;f&#125;)\"%\$'\0'*&#125;#*\$'\0'&#125;</span></span><br><span class="line"><span class="string"># 获取相关信息</span></span><br><span class="line"><span class="string">local -A ctxt=(\"\$&#123;(@ps:\2:)CTXT&#125;\")</span></span><br><span class="line"><span class="string">"</span></span><br><span class="line"><span class="built_in">zstyle</span> <span class="string">':fzf-tab:complete:cd*'</span> extra-opts --preview=<span class="variable">$extract</span><span class="string">"exa -1 --color=always \$&#123;~ctxt[hpre]&#125;\$in"</span></span><br></pre></td></tr></table></figure>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-zsh" data-lang="zsh"><span class="c1"># kill 结束进程时时提供预览</span>
+zstyle <span class="s1">&#39;:completion:*:*:*:*:processes&#39;</span> <span class="nb">command</span> <span class="s2">&#34;ps -u </span><span class="nv">$USER</span><span class="s2"> -o pid,user,comm,cmd -w -w&#34;</span>
+zstyle <span class="s1">&#39;:fzf-tab:complete:kill:argument-rest&#39;</span> extra-opts --preview<span class="o">=</span><span class="s1">&#39;echo $(&lt;{f})&#39;</span> --preview-window<span class="o">=</span>down:3:wrap
 
-<p>当然，这玩意儿也有不完美的地方。比如：尚不支持 <code>_approximate</code> completer、基于 compctl（zsh 的旧补全系统） 的补全也不支持、作为一个外来的“前端”与 zsh 本身的结合仍然不是很理想……</p>
+<span class="c1"># （实验性功能）cd 时在右侧预览目录内容</span>
+<span class="nb">local</span> <span class="nv">extract</span><span class="o">=</span><span class="s2">&#34;
+</span><span class="s2"># 提取输入
+</span><span class="s2">in=\${\${\&#34;\$(&lt;{f})\&#34;%\$&#39;\0&#39;*}#*\$&#39;\0&#39;}
+</span><span class="s2"># 获取相关信息
+</span><span class="s2">local -A ctxt=(\&#34;\${(@ps:\2:)CTXT}\&#34;)
+</span><span class="s2">&#34;</span>
+zstyle <span class="s1">&#39;:fzf-tab:complete:cd*&#39;</span> extra-opts --preview<span class="o">=</span><span class="nv">$extract</span><span class="s2">&#34;exa -1 --color=always \${~ctxt[hpre]}\$in&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>当然，这玩意儿也有不完美的地方。比如：尚不支持 <code>_approximate</code> completer、基于 compctl（zsh 的旧补全系统） 的补全也不支持、作为一个外来的“前端”与 zsh 本身的结合仍然不是很理想……</p>
 <p>不过以绝大多数人对 zsh 的配置程度，我觉得 fzf-tab 应该能满足至少 95% 的用户的需求。</p>
-<h1 id="学到的一些知识"><a href="#学到的一些知识" class="headerlink" title="学到的一些知识"></a>学到的一些知识</h1><p>由于是第一次编写 zsh 插件，比较生疏。所幸得到了 powerlevel10k 的作者 romkatv 的帮助，学到了不少知识：</p>
+<h1 id="学到的一些知识">学到的一些知识</h1>
+<p>由于是第一次编写 zsh 插件，比较生疏。所幸得到了 powerlevel10k 的作者 romkatv 的帮助，学到了不少知识：</p>
 <ol>
 <li>写 zsh 插件和写 zsh 脚本的思路是不同的。虽然两者并没有本质上的区别……</li>
 </ol>
@@ -178,92 +236,148 @@
 <p>但是！！如果某个用户丧心病狂地 <code>alias emulate=echo</code> 了的话，你的 <code>emulate</code> 会直接执行失败，因此你又不得不用引号来包裹 <code>emulate</code> 来防止它被识别为 alias。然后再启用 <code>no_aliases</code> 开关来禁止 alias 展开。</p>
 <p>你以为这就结束了吗？不！zsh 函数和变量，默认都是全局的！</p>
 <p>变量还好，可以通过 <code>local</code> 来指定必须是局部变量（不过不少人会漏掉 <code>i</code> 这种循环变量）。然而并没有办法来定义局部函数。因此，为了防止覆盖掉 zsh 的内部函数 OR 其他插件定义的函数，插件的函数名不得不带上又丑又长的前缀……全局变量也是尽可能丑一点长一点。</p>
-<p>前几天就遇到了一个因为全局变量名太普通而导致冲突的真实例子：<a href="https://github.com/agkozak/zsh-z/issues/17" target="_blank" rel="noopener">https://github.com/agkozak/zsh-z/issues/17</a></p>
+<p>前几天就遇到了一个因为全局变量名太普通而导致冲突的真实例子：https://github.com/agkozak/zsh-z/issues/17</p>
 <p>学姐的 zsh-z 出现了一个莫名奇妙的报错，经过排查，原因是 <code>zpm-zsh/colors</code> 定义了一个名为 <code>c</code> 的全局变量。然后 <code>zsh-z</code> 里有这么一段代码 <code>if (( $+ops[-c] ))</code>，这里出现了一个拼写错误（opts -&gt; ops），所以 ops 会是一个未定义变量、而不是关联数组。zsh 尝试将 ops 理解为普通数组、 <code>-c</code> 解释为一个表达式并进行求值，然而 <code>c</code> 里面包含了特殊字符，于是求值显然失败了，导致了奇怪的报错……</p>
 <p>总而言之，要想写一个完美的 zsh 插件是非常心累的……要么写一堆样板代码来创造一个确定的环境、要么祈祷遇到的用户是正常人。</p>
-<h1 id="另外一些有趣项目"><a href="#另外一些有趣项目" class="headerlink" title="另外一些有趣项目"></a>另外一些有趣项目</h1><ul>
-<li><a href="https://github.com/lincheney/fzf-tab-completion" target="_blank" rel="noopener">https://github.com/lincheney/fzf-tab-completion</a> 和 fzf-tab 的功能相似，不过我写 fzf-tab 时没有搜到这个项目，不然我就不会写了……</li>
-<li><a href="https://github.com/relastle/pmy" target="_blank" rel="noopener">https://github.com/relastle/pmy</a> 尝试基于 fzf 打造另一个补全后端</li>
+<h1 id="另外一些有趣项目">另外一些有趣项目</h1>
+<ul>
+<li><a href="https://github.com/lincheney/fzf-tab-completion">https://github.com/lincheney/fzf-tab-completion</a> 和 fzf-tab 的功能相似，不过我写 fzf-tab 时没有搜到这个项目，不然我就不会写了……</li>
+<li><a href="https://github.com/relastle/pmy">https://github.com/relastle/pmy</a> 尝试基于 fzf 打造另一个补全后端</li>
 </ul>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">aloxaf</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2020-03-13
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a></span>
+  </p>
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/linux/">linux</a>
+          <a href="/tags/zsh/">zsh</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/2020/05/tyrano_browser_save/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">基于 tyrano 的游戏如何在浏览器中存档</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/2019/11/elegant_apis_in_rust/">
+            <span class="next-text nav-default">【译】设计优雅的 Rust 库 API</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  <span id="/2020/03/fzf-tab/" class="leancloud_visitors" data-flag-title="fzf-tab —— 使用 fzf 进行 zsh 补全">
+		<span class="post-meta-item-text">文章阅读量 </span>
+		<span class="leancloud-visitors-count">0</span>
+		<p></p>
+	  </span>
+  <div id="vcomments"></div>
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+  <script type="text/javascript">
+    new Valine({
+        el: '#vcomments' ,
+        serverURLs: 'https:\/\/lcd.aloxaf.cn',
+        appId: 'fSbXaElXXTznggVXiWy8NFBU-gzGzoHsz',
+        appKey: 'kK3SxB14xAACgHftKrSaBRDU',
+        notify:  false ,
+        verify:  false ,
+        avatar:'mm',
+        placeholder: '妙啊，妙啊',
+        visitor:  true 
+    });
+  </script>
+
+  
 
       </div>
-      <div class="post-copyright">
-    <p class="copyright-item">
-      <span>原文作者: </span>
-      <a href="https://www.aloxaf.com">Aloxaf</a>
-    </p>
-    <p class="copyright-item">
-      <span>原文链接: </span>
-      <a href="https://www.aloxaf.com/2020/03/fzf-tab/">https://www.aloxaf.com/2020/03/fzf-tab/</a>
-    </p>
-    <p class="copyright-item">
-      <span>许可协议: </span><a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
-    </p>
-  </div>
-      <footer class="post-footer">
-        <div class="post-tags">
-            <a href="/tags/linux/">linux</a>
-            <a href="/tags/zsh/">zsh</a>
-            </div>
-        
-        <nav class="post-nav"><a class="prev" href="/2020/05/tyrano_browser_save/">
-        <i class="iconfont icon-left"></i>
-        <span class="prev-text nav-default">基于 tyrano 的游戏如何在浏览器中存档</span>
-        <span class="prev-text nav-mobile">上一篇</span>
-      </a>
-    <a class="next" href="/2019/11/elegant_apis_in_rust/">
-        <span class="next-text nav-default">【译】设计优雅的 Rust 库 API</span>
-        <span class="prev-text nav-mobile">下一篇</span>
-        <i class="iconfont icon-right"></i>
-      </a>
-    </nav></footer>
-    </article></div><div class="comments" id="comments"><div id="vcomments"></div>
-    </div></div>
-      </main>
+    </main>
 
-      <footer id="footer" class="footer"><div class="social-links"><a href="mailto:aloxafx@gmail.com" class="iconfont icon-email" title="email"></a>
-        <a href="https://github.com/Aloxaf" target="_blank" rel="noopener" class="iconfont icon-github" title="github"></a>
-        <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
-    </div><div class="copyright">
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:aloxafx@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/Aloxaf" class="iconfont icon-github" title="github"></a>
+  <a href="http://www.aloxaf.com/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
   <span class="power-by">
-    由 <a class="hexo-link" href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> 强力驱动
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
   </span>
   <span class="division">|</span>
   <span class="theme-info">
     主题 - 
-    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even" target="_blank" rel="noopener">Even</a>
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
   </span>
 
-  <span class="copyright-year">&copy;2017 - 2020<span class="heart">
-      <i class="iconfont icon-heart"></i>
-    </span>
-    <span class="author">Aloxaf</span>
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span><span>Aloxaf</span>
   </span>
 </div>
-</footer>
 
-      <div class="back-to-top" id="back-to-top">
-        <i class="iconfont icon-up"></i>
-      </div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
     </div>
-<!-- valine Comments -->
-<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
-<script type="text/javascript">
-    new Valine({
-        el: '#vcomments',
-        serverURLs: "https://lcd.aloxaf.cn",
-        notify: false,
-        verify: false,
-        app_id: "fSbXaElXXTznggVXiWy8NFBU-gzGzoHsz",
-        app_key: "kK3SxB14xAACgHftKrSaBRDU",
-        placeholder: "妙啊，妙啊",
-        avatar: 'mm',
-        visitor: true,
-    });
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "zh".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-123773630-1', 'auto');
+	
+	ga('send', 'pageview');
+}
 </script>
-<script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
-  <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
-  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
-  <script type="text/javascript" src="/js/src/even.js?v=2.11.0"></script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
 </body>
 </html>

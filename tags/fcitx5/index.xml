@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>fcitx5 on Aloxaf&#39;s Blog</title>
+    <link>http://www.aloxaf.com/tags/fcitx5/</link>
+    <description>Recent content in fcitx5 on Aloxaf&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Thu, 24 Sep 2020 21:53:09 +0000</lastBuildDate><atom:link href="http://www.aloxaf.com/tags/fcitx5/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>使用 fcitx5-lua 编写 lua 插件</title>
+      <link>http://www.aloxaf.com/2020/09/fcitx5_plugin/</link>
+      <pubDate>Thu, 24 Sep 2020 21:53:09 +0000</pubDate>
+      
+      <guid>http://www.aloxaf.com/2020/09/fcitx5_plugin/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;突然发现五个月前自己写过一篇 fcitx5-lua 的教程，刚好拿来水一篇&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;fcitx5 终于加上了 lua 支持，可以使用 lua 编写一些简单的插件。但是文档一如既往地非常少，查阅了大量资料并翻看源码以后总算弄懂了插件的编写步骤，记录一下以免忘记，顺便分享给同样需要的人。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

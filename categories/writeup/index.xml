@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>writeup on Aloxaf&#39;s Blog</title>
+    <link>http://www.aloxaf.com/categories/writeup/</link>
+    <description>Recent content in writeup on Aloxaf&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Mon, 20 Aug 2018 21:37:00 +0000</lastBuildDate><atom:link href="http://www.aloxaf.com/categories/writeup/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>hackme.inndy 部分writeup</title>
+      <link>http://www.aloxaf.com/2018/08/hackme_inndy/</link>
+      <pubDate>Mon, 20 Aug 2018 21:37:00 +0000</pubDate>
+      
+      <guid>http://www.aloxaf.com/2018/08/hackme_inndy/</guid>
+      <description>&lt;p&gt;听奥博大佬说对新手很友好, 来试试&lt;/p&gt;
+&lt;p&gt;官方不建议直接给出 flag, 就不放 flag 了&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>TJCTF 2018 中两道 Python Jail 的解法</title>
+      <link>http://www.aloxaf.com/2018/08/tjctf_pythonjail/</link>
+      <pubDate>Sat, 11 Aug 2018 12:23:25 +0000</pubDate>
+      
+      <guid>http://www.aloxaf.com/2018/08/tjctf_pythonjail/</guid>
+      <description>&lt;p&gt;感谢 M4x 师傅推荐了这个比赛, 虽然是面向美国高中生, 不过打了以后还是有点收获的.
+&lt;del&gt;同时内心受到一万点暴击伤害&lt;/del&gt;&lt;/p&gt;
+&lt;p&gt;尤其是两道 Python jail, 非常硬却失挺.
+(下载地址在文末)&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>pwnable.kr - Toddler&#39;s Bottle 部分writeup</title>
+      <link>http://www.aloxaf.com/2018/05/pwnable.kr_toddlers_bottle/</link>
+      <pubDate>Fri, 04 May 2018 10:19:12 +0000</pubDate>
+      
+      <guid>http://www.aloxaf.com/2018/05/pwnable.kr_toddlers_bottle/</guid>
+      <description>&lt;p&gt;Toddler&amp;rsquo;s Bottle vey&lt;/p&gt;
+&lt;p&gt;包含了 Toddler&amp;rsquo;s Bottle 这一节的除了 UAF 和 unlink 以外的 writeup.
+(一看就知道还不会利用堆漏洞)&lt;/p&gt;
+&lt;p&gt;更: 又多了 blukat 和 horcruses&amp;hellip;&amp;hellip;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

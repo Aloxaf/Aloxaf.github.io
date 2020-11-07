@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
-  <head><meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Aloxaf&#39;s Blog</title>
+  <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
 
 <meta http-equiv="Cache-Control" content="no-transform" />
 <meta http-equiv="Cache-Control" content="no-siteapp" />
@@ -13,45 +15,57 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
-<meta name="description" content="懒军, CTFer, 咸鱼王"/><link rel="alternate" href="/atom.xml" title="Aloxaf's blog"><link rel="shortcut icon" type="image/x-icon" href="/favicon.svg?v=2.11.0" />
-<link rel="canonical" href="https://www.aloxaf.com/page/2/"/>
 
-<link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
-<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.11.0" />
+<meta name="author" content="Aloxaf" /><meta name="description" content="一只咸鱼的咸鱼博客" /><meta name="keywords" content="aloxaf, ctf, linux, zsh" />
 
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-123773630-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'UA-123773630-1');
-</script><script id="baidu_push">
-(function(){
-    var bp = document.createElement('script');
-    var curProtocol = window.location.protocol.split(':')[0];
-    if (curProtocol === 'https') {
-        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
-    }
-    else {
-        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-    }
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(bp, s);
-})();
-</script>
-<script>
-  window.config = {"leancloud":{"app_id":null,"app_key":null},"toc":true,"fancybox":true,"pjax":"","latex":true};
-</script>
 
-    <title>Aloxaf's blog</title>
-  <meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Aloxaf's blog" type="application/atom+xml">
+
+
+
+<meta name="generator" content="Hugo 0.78.1 with theme even" />
+
+
+<link rel="canonical" href="http://www.aloxaf.com/" />
+  <link href="http://www.aloxaf.com/index.xml" rel="alternate" type="application/rss+xml" title="Aloxaf&#39;s Blog" />
+  <link href="http://www.aloxaf.com/index.xml" rel="feed" type="application/rss+xml" title="Aloxaf&#39;s Blog" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.65ccf00eb040f87c6c85a4206ef3520967b49eb3940b6b6f15c2e84bc94782d7.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Aloxaf&#39;s Blog" />
+<meta property="og:description" content="一只咸鱼的咸鱼博客" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="http://www.aloxaf.com/" />
+<meta property="og:updated_time" content="2020-10-09T11:56:34+00:00" />
+<meta itemprop="name" content="Aloxaf&#39;s Blog">
+<meta itemprop="description" content="一只咸鱼的咸鱼博客">
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Aloxaf&#39;s Blog"/>
+<meta name="twitter:description" content="一只咸鱼的咸鱼博客"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
 </head>
-
-  <body><div id="mobile-navbar" class="mobile-navbar">
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
   <div class="mobile-header-logo">
-    <a href="/." class="logo">Aloxaf's blog</a>
+    <a href="/" class="logo">Aloxaf&#39;s Blog</a>
   </div>
   <div class="mobile-navbar-icon">
     <span></span>
@@ -59,316 +73,282 @@
     <span></span>
   </div>
 </div>
-
 <nav id="mobile-menu" class="mobile-menu slideout-menu">
-  <ul class="mobile-menu-list"><a href="/">
-        <li class="mobile-menu-item">首页
-          </li>
-      </a><a href="/archives/">
-        <li class="mobile-menu-item">归档
-          </li>
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
       </a><a href="/tags/">
-        <li class="mobile-menu-item">标签
-          </li>
+        <li class="mobile-menu-item">标签</li>
       </a><a href="/about/">
-        <li class="mobile-menu-item">关于
-          </li>
-      </a><a href="/friends/">
-        <li class="mobile-menu-item">友链
-          </li>
-      </a></ul>
+        <li class="mobile-menu-item">关于</li>
+      </a><a href="/friend/">
+        <li class="mobile-menu-item">友链</li>
+      </a>
+  </ul>
 </nav>
-<div class="container" id="mobile-panel">
-      <header id="header" class="header"><div class="logo-wrapper">
-  <a href="/." class="logo">Aloxaf's blog</a>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Aloxaf&#39;s Blog</a>
 </div>
 
-<nav class="site-navbar"><ul id="menu" class="menu"><li class="menu-item">
-          <a class="menu-item-link" href="/">
-            首页
-            </a>
-        </li>
-      <li class="menu-item">
-          <a class="menu-item-link" href="/archives/">
-            归档
-            </a>
-        </li>
-      <li class="menu-item">
-          <a class="menu-item-link" href="/tags/">
-            标签
-            </a>
-        </li>
-      <li class="menu-item">
-          <a class="menu-item-link" href="/about/">
-            关于
-            </a>
-        </li>
-      <li class="menu-item">
-          <a class="menu-item-link" href="/friends/">
-            友链
-            </a>
-        </li>
-      </ul></nav>
-</header>
-
-      <main id="main" class="main">
-        <div class="content-wrapper">
-          <div id="content" class="content"><section id="posts" class="posts"><article class="post">
-    <header class="post-header">
-      <h1 class="post-title"><a class="post-link" href="/2019/04/fxxk_jetbrains_font_linux/">JetBrains 家 IDE 在 Linux 下的奇怪字体问题(锯齿, 字体过小)</a>
-        </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2019-04-03
-        </span><span class="post-category">
-            <a href="/categories/linux/">linux</a>
-            </span>
-        <span id="/2019/04/fxxk_jetbrains_font_linux/" class="leancloud_visitors" data-flag-title="JetBrains 家 IDE 在 Linux 下的奇怪字体问题(锯齿, 字体过小)">
-            <span class="leancloud-visitors-count" style="display: none;">0</span>
-          </span>
-        </div>
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">关于</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/friend/">友链</a>
+      </li>
+  </ul>
+</nav>
     </header>
 
-    <div class="post-content"><p>JetBrains 家的 IDE 在 Linux 下会有一些奇怪的问题: 如字体很丑(没开抗锯齿一样), 字体过小(目测是 HiDPI 下的问题), 最近更新了一下 PyCharm 2019 又出现了这个问题, 解决问题以后记录一下方案, 造福广大 JetBrains 信徒</p>
-<p>长话短说——统统是 jre 的问题</p>
-<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>换用 IntelliJ patch 过的 jre</p>
-<h2 id="具体方法"><a href="#具体方法" class="headerlink" title="具体方法"></a>具体方法</h2><p>有很多, 因为我在用 Arch Linux 就用 Arch Linux 下比较方便的方法了:</p>
-<ol>
-<li>安装 clion-jre (Archlinuxcn 源有二进制包) (从 AUR 安装 intellij-jdk 应该也行, 可能还更方便? 不过懒得试了, 因为我用 clion 时已经装了这个)</li>
-<li>如果是 clion 可以无视这条步骤.  <code>Esc-x</code>, 输入 <code>Switch Boot JDK</code>, 改用 <code>/opt/clion/jre64</code> ( 没有这个的话自己浏览路径选</li>
-<li>没了, 重新启动你的 IDE, 问题应该解决了</li>
-</ol>
-<p>注：2019.1 版本以后，如果需要更换 JDK 需要安装 <a href="https://plugins.jetbrains.com/plugin/12836-choose-runtime" target="_blank" rel="noopener">Choose Runtime</a> 插件，然后使用 Choose Runtime 来更换 Runtime。</p>
-
-        </div></article>
-      <article class="post">
-    <header class="post-header">
-      <h1 class="post-title"><a class="post-link" href="/2019/04/alacritty_hidpi/">Alacritty HiDPI 下的坑</a>
-        </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2019-04-03
-        </span><span class="post-category">
-            <a href="/categories/linux/">linux</a>
-            </span>
-        <span id="/2019/04/alacritty_hidpi/" class="leancloud_visitors" data-flag-title="Alacritty HiDPI 下的坑">
-            <span class="leancloud-visitors-count" style="display: none;">0</span>
-          </span>
-        </div>
-    </header>
-
-    <div class="post-content"><p>为啥要折腾 Alacritty 呢, 因为 Konsole 有点小问题: <a href="https://bugs.kde.org/show_bug.cgi?id=401298" target="_blank" rel="noopener">https://bugs.kde.org/show_bug.cgi?id=401298</a> (不过这个问题已经 fix 了, 下个版本应该就没有了, 我大概又会滚回 Konsole, 毕竟有 blur 和 ligatures), 阻碍我使用棒棒的 <a href="https://github.com/Peltoche/lsd/issues/118" target="_blank" rel="noopener">lsd</a>.</p>
-<h2 id="问题表现"><a href="#问题表现" class="headerlink" title="问题表现"></a>问题表现</h2><p>具体表现为布局问题, 无视配置文件, 如</p>
-<ul>
-<li>总是最大化窗口</li>
-<li>总是最大化高度</li>
-</ul>
-<h2 id="解决方案-临时"><a href="#解决方案-临时" class="headerlink" title="解决方案(临时)"></a>解决方案(临时)</h2><p>为 Alacritty 设置环境变量 <code>WINIT_HIDPI_FACTOR=1</code> </p>
-<p>参考: <a href="https://github.com/tomaka/winit/issues/745" target="_blank" rel="noopener">tomaka/winit#745</a></p>
-
-        </div></article>
-      <article class="post">
-    <header class="post-header">
-      <h1 class="post-title"><a class="post-link" href="/2019/03/powershell_miaoa/">PowerShell 真香</a>
-        </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2019-03-02
-        </span><span class="post-category">
-            <a href="/categories/linux/">linux</a>
-            </span>
-        <span id="/2019/03/powershell_miaoa/" class="leancloud_visitors" data-flag-title="PowerShell 真香">
-            <span class="leancloud-visitors-count" style="display: none;">0</span>
-          </span>
-        </div>
-    </header>
-
-    <div class="post-content"><blockquote>
-<p>我就是饿死, 死外面, 从外面跳下去, 也不会用 M$ 的垃圾 PowerShell !</p>
-<p>…</p>
-<p>真香!</p>
-</blockquote>
-<p><strong>NOTE: 这是一篇黑 bash 吹 PowerShell(以下简称 pwsh) 的文章, bash 死忠粉以及软黑请退散.</strong></p>
-          <div class="read-more">
-            <a href="/2019/03/powershell_miaoa/" class="read-more-link">阅读更多</a>
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <section id="posts" class="posts">
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/2019/04/fxxk_jetbrains_font_linux/">JetBrains 家 IDE 在 Linux 下的奇怪字体问题(锯齿, 字体过小)</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2019-04-03 </span>
+      <div class="post-category">
+          <a href="/categories/linux/"> linux </a>
           </div>
-        </div></article>
-      <article class="post">
-    <header class="post-header">
-      <h1 class="post-title"><a class="post-link" href="/2018/11/arch_optimize/">Arch Linux 杂七杂八的优化</a>
-        </h1>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      JetBrains 家的 IDE 在 Linux 下会有一些奇怪的问题: 如字体很丑(没开抗锯齿一样), 字体过小(目测是 HiDPI 下的问题), 最近更新了一下 PyCharm 2019 又出现了这个问题, 解决问题以
+    </div>
+    <div class="read-more">
+      <a href="/2019/04/fxxk_jetbrains_font_linux/" class="read-more-link">阅读更多</a>
+    </div>
+  </div>
+</article>
 
-      <div class="post-meta">
-        <span class="post-time">
-          2018-11-18
-        </span><span class="post-category">
-            <a href="/categories/linux/">linux</a>
-            </span>
-        <span id="/2018/11/arch_optimize/" class="leancloud_visitors" data-flag-title="Arch Linux 杂七杂八的优化">
-            <span class="leancloud-visitors-count" style="display: none;">0</span>
-          </span>
-        </div>
-    </header>
-
-    <div class="post-content"><p>发现无聊时刷 <a href="https://wiki.archlinux.org/" target="_blank" rel="noopener">Arch Wiki</a> 也挺有趣的, 记录一下自己干了啥吧. 毕竟有些配置没法放到 dotfiles 里. 记录一下以后翻起来也方便.</p>
-          <div class="read-more">
-            <a href="/2018/11/arch_optimize/" class="read-more-link">阅读更多</a>
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/2019/04/alacritty_hidpi/">Alacritty HiDPI 下的坑</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2019-04-03 </span>
+      <div class="post-category">
+          <a href="/categories/linux/"> linux </a>
           </div>
-        </div></article>
-      <article class="post">
-    <header class="post-header">
-      <h1 class="post-title"><a class="post-link" href="/2018/11/kde_dark_theme/">解决 KDE 暗色主题下 WPS & 搜狗拼音设置字体颜色不正常的问题</a>
-        </h1>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      为啥要折腾 Alacritty 呢, 因为 Konsole 有点小问题: https://bugs.kde.org/show_bug.cgi?id=401298 (不过这个问题已经 fix 了, 下个版本应该就没有了, 我大概又会滚回 Konsole, 毕竟有 blur 和 ligatures), 阻碍我使用棒棒的 lsd. 问题表现 具体
+    </div>
+    <div class="read-more">
+      <a href="/2019/04/alacritty_hidpi/" class="read-more-link">阅读更多</a>
+    </div>
+  </div>
+</article>
 
-      <div class="post-meta">
-        <span class="post-time">
-          2018-11-14
-        </span><span class="post-category">
-            <a href="/categories/linux/">linux</a>
-            </span>
-        <span id="/2018/11/kde_dark_theme/" class="leancloud_visitors" data-flag-title="解决 KDE 暗色主题下 WPS & 搜狗拼音设置字体颜色不正常的问题">
-            <span class="leancloud-visitors-count" style="display: none;">0</span>
-          </span>
-        </div>
-    </header>
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/2019/03/powershell_miaoa/">PowerShell 真香</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2019-03-02 </span>
+      <div class="post-category">
+          <a href="/categories/linux/"> linux </a>
+          </div>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      我就是饿死, 死外面, 从外面跳下去, 也不会用 M$ 的垃圾 PowerShell ! &hellip; 真香! NOTE: 这是一篇黑 bash 吹 PowerShell(以下简称 pwsh) 的文章, bash 死忠粉以及软黑请退散
+    </div>
+    <div class="read-more">
+      <a href="/2019/03/powershell_miaoa/" class="read-more-link">阅读更多</a>
+    </div>
+  </div>
+</article>
 
-    <div class="post-content"><p>这是一个比较迷的 bug, 困扰了我很久, 然而又不知道为什么.</p>
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/2018/11/arch_optimize/">Arch Linux 杂七杂八的优化</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2018-11-18 </span>
+      <div class="post-category">
+          <a href="/categories/linux/"> linux </a>
+          </div>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      <p>发现无聊时刷 <a href="https://wiki.archlinux.org/">Arch Wiki</a> 也挺有趣的, 记录一下自己干了啥吧. 毕竟有些配置没法放到 dotfiles 里. 记录一下以后翻起来也方便.</p>
+    </div>
+    <div class="read-more">
+      <a href="/2018/11/arch_optimize/" class="read-more-link">阅读更多</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/2018/11/kde_dark_theme/">解决 KDE 暗色主题下 WPS &amp; 搜狗拼音设置字体颜色不正常的问题</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2018-11-14 </span>
+      <div class="post-category">
+          <a href="/categories/linux/"> linux </a>
+          </div>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      <p>这是一个比较迷的 bug, 困扰了我很久, 然而又不知道为什么.</p>
 <p>今天在群里看到有人提到了这个问题, 简单地讲就是程序只有一部分跟随系统主题, 然后就会产生各种诡异的效果.</p>
 <p>比如</p>
 <ul>
 <li>搜狗, 字体跟随系统变成浅色, 背景没有变, 变成浅色背景+浅色字体, 亮瞎眼组合</li>
-<li>WPS 表格, 表格背景是黑的….究极の难看</li>
-<li>WPS 文字, 字体也变浅色了, 不仅亮瞎眼. 如果强行调成黑色的话, 在 Windows 上就会变亮瞎眼…</li>
+<li>WPS 表格, 表格背景是黑的&hellip;.究极の难看</li>
+<li>WPS 文字, 字体也变浅色了, 不仅亮瞎眼. 如果强行调成黑色的话, 在 Windows 上就会变亮瞎眼&hellip;</li>
 </ul>
-          <div class="read-more">
-            <a href="/2018/11/kde_dark_theme/" class="read-more-link">阅读更多</a>
+    </div>
+    <div class="read-more">
+      <a href="/2018/11/kde_dark_theme/" class="read-more-link">阅读更多</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/2018/10/egg_pain_python/">如何在 Python3 中让 &#39;a&#39; is &#39;b&#39; 为 True</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2018-10-28 </span>
+      <div class="post-category">
+          <a href="/categories/egg_pain/"> egg_pain </a>
           </div>
-        </div></article>
-      <article class="post">
-    <header class="post-header">
-      <h1 class="post-title"><a class="post-link" href="/2018/10/egg_pain_python/">如何在 Python3 中让 'a' is 'b' 为 True</a>
-        </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2018-10-28
-        </span><span class="post-category">
-            <a href="/categories/egg-pain/">egg_pain</a>
-            </span>
-        <span id="/2018/10/egg_pain_python/" class="leancloud_visitors" data-flag-title="如何在 Python3 中让 'a' is 'b' 为 True">
-            <span class="leancloud-visitors-count" style="display: none;">0</span>
-          </span>
-        </div>
-    </header>
-
-    <div class="post-content"><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这是一篇闲蛋疼的文章, 讲述了闲蛋疼的我是如何<del>历经千辛万苦终于</del>在 Python 中让 <code>&#39;a&#39; is &#39;b&#39;</code> 得到 <code>True</code>.</p>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      <h1 id="前言">前言</h1>
+<p>这是一篇闲蛋疼的文章, 讲述了闲蛋疼的我是如何<del>历经千辛万苦终于</del>在 Python 中让 <code>'a' is 'b'</code> 得到 <code>True</code>.</p>
 <p><del>(虽然这件事情毫无意义)</del></p>
 <p><del>(不过拿来坑下一任或许是个好主意呢)</del></p>
-          <div class="read-more">
-            <a href="/2018/10/egg_pain_python/" class="read-more-link">阅读更多</a>
+    </div>
+    <div class="read-more">
+      <a href="/2018/10/egg_pain_python/" class="read-more-link">阅读更多</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/2018/10/arch_pwndbg/">Arch Linux 下使用 pwndbg</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2018-10-19 </span>
+      <div class="post-category">
+          <a href="/categories/linux/"> linux </a>
           </div>
-        </div></article>
-      <article class="post">
-    <header class="post-header">
-      <h1 class="post-title"><a class="post-link" href="/2018/10/arch_pwndbg/">Arch Linux 下使用 pwndbg</a>
-        </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2018-10-19
-        </span><span class="post-category">
-            <a href="/categories/linux/">linux</a>
-            </span>
-        <span id="/2018/10/arch_pwndbg/" class="leancloud_visitors" data-flag-title="Arch Linux 下使用 pwndbg">
-            <span class="leancloud-visitors-count" style="display: none;">0</span>
-          </span>
-        </div>
-    </header>
-
-    <div class="post-content"><p>pwndbg 的安装: <code>pacman -S pwndbg</code> 然后添加 <code>source /usr/share/pwndbg/gdbinit.py</code> 到 <code>~/.gdbinit</code></p>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      <p>pwndbg 的安装: <code>pacman -S pwndbg</code> 然后添加 <code>source /usr/share/pwndbg/gdbinit.py</code> 到 <code>~/.gdbinit</code></p>
 <p>然而要在 Arch Linux 下愉快地使用 pwndbg, 还要解决以下问题:</p>
 <ul>
-<li><a href="https://github.com/pwndbg/pwndbg/issues/340" target="_blank" rel="noopener">Arch Support - Roadmap</a> 搁了快一年的问题, 主要是 Arch 下没有 libc6-dbg 这种包, 要调试符号只能自己编译…</li>
-<li><s><a href="https://github.com/pwndbg/pwndbg/issues/523#issuecomment-425673020" target="_blank" rel="noopener">Python exception under gdb-8.2-2</a> 上游 gdb 的问题, 8.3 应该会修复, 不过可以按链接所示的方法临时 patch 一下</s> gdb 8.2.1 已 fix</li>
+<li><a href="https://github.com/pwndbg/pwndbg/issues/340">Arch Support - Roadmap</a> 搁了快一年的问题, 主要是 Arch 下没有 libc6-dbg 这种包, 要调试符号只能自己编译&hellip;</li>
+<li><s><a href="https://github.com/pwndbg/pwndbg/issues/523#issuecomment-425673020">Python exception under gdb-8.2-2</a> 上游 gdb 的问题, 8.3 应该会修复, 不过可以按链接所示的方法临时 patch 一下</s> gdb 8.2.1 已 fix</li>
 </ul>
 <p>这里解决第一个问题, 利用棒棒的 ABS (Arch Build System)</p>
-          <div class="read-more">
-            <a href="/2018/10/arch_pwndbg/" class="read-more-link">阅读更多</a>
+    </div>
+    <div class="read-more">
+      <a href="/2018/10/arch_pwndbg/" class="read-more-link">阅读更多</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/2018/10/arch_git/">加速 AUR 软件安装速度</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2018-10-18 </span>
+      <div class="post-category">
+          <a href="/categories/linux/"> linux </a>
           </div>
-        </div></article>
-      <article class="post">
-    <header class="post-header">
-      <h1 class="post-title"><a class="post-link" href="/2018/10/arch_git/">加速 AUR 软件安装速度</a>
-        </h1>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      <p>AUR 里的构建脚本常常需要从 github 拉取源代码,
+然而没有加 <code>--depth 1</code> 的 <code>git clone</code> 把大量流量花在了下载对于构建毫无用处的提交记录等东西上面.</p>
+<p>尤其是安装主题这种东西的时候, clone 下来几百 MB, 结果构建完得到一个几 MB 的包&hellip;</p>
+    </div>
+    <div class="read-more">
+      <a href="/2018/10/arch_git/" class="read-more-link">阅读更多</a>
+    </div>
+  </div>
+</article>
 
-      <div class="post-meta">
-        <span class="post-time">
-          2018-10-18
-        </span><span class="post-category">
-            <a href="/categories/linux/">linux</a>
-            </span>
-        <span id="/2018/10/arch_git/" class="leancloud_visitors" data-flag-title="加速 AUR 软件安装速度">
-            <span class="leancloud-visitors-count" style="display: none;">0</span>
-          </span>
-        </div>
-    </header>
-
-    <div class="post-content"><p>AUR 里的构建脚本常常需要从 github 拉取源代码,<br>然而没有加 <code>--depth 1</code> 的 <code>git clone</code> 把大量流量花在了下载对于构建毫无用处的提交记录等东西上面. </p>
-<p>尤其是安装主题这种东西的时候, clone 下来几百 MB, 结果构建完得到一个几 MB 的包…</p>
-          <div class="read-more">
-            <a href="/2018/10/arch_git/" class="read-more-link">阅读更多</a>
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/2018/10/linux_emoji/">在 Linux 下使用 Blob Emoji</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2018-10-10 </span>
+      <div class="post-category">
+          <a href="/categories/linux/"> linux </a>
           </div>
-        </div></article>
-      <article class="post">
-    <header class="post-header">
-      <h1 class="post-title"><a class="post-link" href="/2018/10/linux_emoji/">在 Linux 下使用 Blob Emoji</a>
-        </h1>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      <p>默认emoji太丑, 没有颜色, 看着浑身难受.</p>
+<p>还是喜欢果冻人&hellip;</p>
+    </div>
+    <div class="read-more">
+      <a href="/2018/10/linux_emoji/" class="read-more-link">阅读更多</a>
+    </div>
+  </div>
+</article>
 
-      <div class="post-meta">
-        <span class="post-time">
-          2018-10-10
-        </span><span class="post-category">
-            <a href="/categories/linux/">linux</a>
-            </span>
-        <span id="/2018/10/linux_emoji/" class="leancloud_visitors" data-flag-title="在 Linux 下使用 Blob Emoji">
-            <span class="leancloud-visitors-count" style="display: none;">0</span>
-          </span>
-        </div>
-    </header>
-
-    <div class="post-content"><p>默认emoji太丑, 没有颜色, 看着浑身难受.</p>
-<p>还是喜欢果冻人…</p>
-          <div class="read-more">
-            <a href="/2018/10/linux_emoji/" class="read-more-link">阅读更多</a>
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/2018/10/zip_crack/">ZIP 明文攻击工具</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2018-10-04 </span>
+      <div class="post-category">
+          <a href="/categories/ctf/"> ctf </a>
           </div>
-        </div></article>
-      <article class="post">
-    <header class="post-header">
-      <h1 class="post-title"><a class="post-link" href="/2018/10/zip_crack/">ZIP 明文攻击工具</a>
-        </h1>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      <p>这个国庆假期抽了点风&hellip;&hellip;</p>
+<p>写了一个假期的代码&hellip;&hellip;</p>
+    </div>
+    <div class="read-more">
+      <a href="/2018/10/zip_crack/" class="read-more-link">阅读更多</a>
+    </div>
+  </div>
+</article>
 
-      <div class="post-meta">
-        <span class="post-time">
-          2018-10-04
-        </span><span class="post-category">
-            <a href="/categories/ctf/">ctf</a>
-            </span>
-        <span id="/2018/10/zip_crack/" class="leancloud_visitors" data-flag-title="ZIP 明文攻击工具">
-            <span class="leancloud-visitors-count" style="display: none;">0</span>
-          </span>
-        </div>
-    </header>
-
-    <div class="post-content"><p>这个国庆假期抽了点风……</p>
-<p>写了一个假期的代码……</p>
-          <div class="read-more">
-            <a href="/2018/10/zip_crack/" class="read-more-link">阅读更多</a>
-          </div>
-        </div></article>
-      <nav class="pagination"><a class="prev" href="/">
+    </section>
+  
+  <nav class="pagination">
+    <a class="prev" href="/">
         <i class="iconfont icon-left"></i>
         <span class="prev-text">上一页</span>
       </a>
@@ -376,36 +356,78 @@
         <span class="next-text">下一页</span>
         <i class="iconfont icon-right"></i>
       </a>
-    </nav></section></div></div>
-      </main>
+  </nav>
+        </div>
+        
 
-      <footer id="footer" class="footer"><div class="social-links"><a href="mailto:aloxafx@gmail.com" class="iconfont icon-email" title="email"></a>
-        <a href="https://github.com/Aloxaf" target="_blank" rel="noopener" class="iconfont icon-github" title="github"></a>
-        <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
-    </div><div class="copyright">
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:aloxafx@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/Aloxaf" class="iconfont icon-github" title="github"></a>
+  <a href="http://www.aloxaf.com/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
   <span class="power-by">
-    由 <a class="hexo-link" href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> 强力驱动
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
   </span>
   <span class="division">|</span>
   <span class="theme-info">
     主题 - 
-    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even" target="_blank" rel="noopener">Even</a>
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
   </span>
 
-  <span class="copyright-year">&copy;2017 - 2020<span class="heart">
-      <i class="iconfont icon-heart"></i>
-    </span>
-    <span class="author">Aloxaf</span>
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span><span>Aloxaf</span>
   </span>
 </div>
-</footer>
 
-      <div class="back-to-top" id="back-to-top">
-        <i class="iconfont icon-up"></i>
-      </div>
-    </div><script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
-  <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
-  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
-  <script type="text/javascript" src="/js/src/even.js?v=2.11.0"></script>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "zh".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-123773630-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
 </body>
 </html>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>emacs on Aloxaf&#39;s Blog</title>
+    <link>http://www.aloxaf.com/tags/emacs/</link>
+    <description>Recent content in emacs on Aloxaf&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Sun, 03 Nov 2019 15:33:49 +0000</lastBuildDate><atom:link href="http://www.aloxaf.com/tags/emacs/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>xkeysnail 使用指南</title>
+      <link>http://www.aloxaf.com/2019/11/xkeysnail_tutorial/</link>
+      <pubDate>Sun, 03 Nov 2019 15:33:49 +0000</pubDate>
+      
+      <guid>http://www.aloxaf.com/2019/11/xkeysnail_tutorial/</guid>
+      <description>&lt;h1 id=&#34;emacs-keybings-everywhere&#34;&gt;Emacs keybings Everywhere!&lt;/h1&gt;
+&lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
+&lt;p&gt;xkeysnail 是一个非常强大的 keyboard remapping 工具, 它类似于 xmodmap, 但更为灵活. 不仅能重映射键位, 还能重映射快捷键, 甚至能在不同的程序下使用不同的映射!&lt;/p&gt;
+&lt;p&gt;再也不用两套快捷键换来换去了!! ( 早点知道这个东西, 我就不至于练就一身无缝切换快捷键的毫无卵用的本领了&amp;hellip;&lt;/p&gt;
+&lt;p&gt;项目地址: &lt;a href=&#34;https://github.com/mooz/xkeysnail&#34;&gt;https://github.com/mooz/xkeysnail&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Linux 下在打开方式中增加用 emacsclient</title>
+      <link>http://www.aloxaf.com/2018/07/add_open_by_emacsclient/</link>
+      <pubDate>Thu, 26 Jul 2018 08:42:30 +0000</pubDate>
+      
+      <guid>http://www.aloxaf.com/2018/07/add_open_by_emacsclient/</guid>
+      <description>&lt;p&gt;参考 &lt;a href=&#34;http://liuyuanzhi.blogspot.com/2009/08/open-with-emacs-in-nautilus.html&#34;&gt;open-with-emacs-in-nautilus&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

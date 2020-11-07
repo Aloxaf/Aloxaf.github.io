@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
-  <head><meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>利用 GitHub Actions 编译 AUR 包并建立自己的软件源 - Aloxaf&#39;s Blog</title>
+  <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
 
 <meta http-equiv="Cache-Control" content="no-transform" />
 <meta http-equiv="Cache-Control" content="no-siteapp" />
@@ -13,45 +15,68 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
-<meta name="description" content="利用 GitHub Actions 编译 AUR 包并建立自己的软件源"/><meta name="keywords" content="linux, Aloxaf's blog" /><link rel="alternate" href="/atom.xml" title="Aloxaf's blog"><link rel="shortcut icon" type="image/x-icon" href="/favicon.svg?v=2.11.0" />
-<link rel="canonical" href="https://www.aloxaf.com/2020/06/build_aur_with_github_actions/"/>
 
-<link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
-<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.11.0" />
+<meta name="author" content="aloxaf" /><meta name="description" content="Arch 用户当然要有自己的软件源！
+白嫖真香！
+" /><meta name="keywords" content="aloxaf, ctf, linux, zsh" />
 
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-123773630-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'UA-123773630-1');
-</script><script id="baidu_push">
-(function(){
-    var bp = document.createElement('script');
-    var curProtocol = window.location.protocol.split(':')[0];
-    if (curProtocol === 'https') {
-        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
-    }
-    else {
-        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-    }
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(bp, s);
-})();
-</script>
-<script>
-  window.config = {"leancloud":{"app_id":null,"app_key":null},"toc":true,"fancybox":true,"pjax":"","latex":true};
-</script>
 
-    <title>利用 GitHub Actions 编译 AUR 包并建立自己的软件源 - Aloxaf's blog</title>
-  <meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Aloxaf's blog" type="application/atom+xml">
+
+
+
+<meta name="generator" content="Hugo 0.78.1 with theme even" />
+
+
+<link rel="canonical" href="http://www.aloxaf.com/2020/06/build_aur_with_github_actions/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.65ccf00eb040f87c6c85a4206ef3520967b49eb3940b6b6f15c2e84bc94782d7.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="利用 GitHub Actions 编译 AUR 包并建立自己的软件源" />
+<meta property="og:description" content="Arch 用户当然要有自己的软件源！
+白嫖真香！" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://www.aloxaf.com/2020/06/build_aur_with_github_actions/" />
+<meta property="article:published_time" content="2020-06-24T08:43:00+00:00" />
+<meta property="article:modified_time" content="2020-06-24T08:43:00+00:00" />
+<meta itemprop="name" content="利用 GitHub Actions 编译 AUR 包并建立自己的软件源">
+<meta itemprop="description" content="Arch 用户当然要有自己的软件源！
+白嫖真香！">
+<meta itemprop="datePublished" content="2020-06-24T08:43:00+00:00" />
+<meta itemprop="dateModified" content="2020-06-24T08:43:00+00:00" />
+<meta itemprop="wordCount" content="1530">
+
+
+
+<meta itemprop="keywords" content="linux," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="利用 GitHub Actions 编译 AUR 包并建立自己的软件源"/>
+<meta name="twitter:description" content="Arch 用户当然要有自己的软件源！
+白嫖真香！"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
 </head>
-
-  <body><div id="mobile-navbar" class="mobile-navbar">
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
   <div class="mobile-header-logo">
-    <a href="/." class="logo">Aloxaf's blog</a>
+    <a href="/" class="logo">Aloxaf&#39;s Blog</a>
   </div>
   <div class="mobile-navbar-icon">
     <span></span>
@@ -59,87 +84,99 @@
     <span></span>
   </div>
 </div>
-
 <nav id="mobile-menu" class="mobile-menu slideout-menu">
-  <ul class="mobile-menu-list"><a href="/">
-        <li class="mobile-menu-item">首页
-          </li>
-      </a><a href="/archives/">
-        <li class="mobile-menu-item">归档
-          </li>
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
       </a><a href="/tags/">
-        <li class="mobile-menu-item">标签
-          </li>
+        <li class="mobile-menu-item">标签</li>
       </a><a href="/about/">
-        <li class="mobile-menu-item">关于
-          </li>
-      </a><a href="/friends/">
-        <li class="mobile-menu-item">友链
-          </li>
-      </a></ul>
+        <li class="mobile-menu-item">关于</li>
+      </a><a href="/friend/">
+        <li class="mobile-menu-item">友链</li>
+      </a>
+  </ul>
 </nav>
-<div class="container" id="mobile-panel">
-      <header id="header" class="header"><div class="logo-wrapper">
-  <a href="/." class="logo">Aloxaf's blog</a>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Aloxaf&#39;s Blog</a>
 </div>
 
-<nav class="site-navbar"><ul id="menu" class="menu"><li class="menu-item">
-          <a class="menu-item-link" href="/">
-            首页
-            </a>
-        </li>
-      <li class="menu-item">
-          <a class="menu-item-link" href="/archives/">
-            归档
-            </a>
-        </li>
-      <li class="menu-item">
-          <a class="menu-item-link" href="/tags/">
-            标签
-            </a>
-        </li>
-      <li class="menu-item">
-          <a class="menu-item-link" href="/about/">
-            关于
-            </a>
-        </li>
-      <li class="menu-item">
-          <a class="menu-item-link" href="/friends/">
-            友链
-            </a>
-        </li>
-      </ul></nav>
-</header>
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">关于</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/friend/">友链</a>
+      </li>
+  </ul>
+</nav>
+    </header>
 
-      <main id="main" class="main">
-        <div class="content-wrapper">
-          <div id="content" class="content"><article class="post">
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
     <header class="post-header">
-      <h1 class="post-title">利用 GitHub Actions 编译 AUR 包并建立自己的软件源
-        </h1>
+      <h1 class="post-title">利用 GitHub Actions 编译 AUR 包并建立自己的软件源</h1>
 
       <div class="post-meta">
-        <span class="post-time">
-          2020-06-24
-        </span><span class="post-category">
-            <a href="/categories/linux/">linux</a>
-            </span>
-        <span id="/2020/06/build_aur_with_github_actions/" class="leancloud_visitors" data-flag-title="利用 GitHub Actions 编译 AUR 包并建立自己的软件源">
-            <span class="leancloud-visitors-count" style="display: none;">0</span>
-          </span>
-        </div>
+        <span class="post-time"> 2020-06-24 </span>
+        <div class="post-category">
+            <a href="/categories/linux/"> linux </a>
+            </div>
+        
+      </div>
     </header>
 
     <div class="post-toc" id="post-toc">
-    <h2 class="post-toc-title">文章目录</h2>
-    <div class="post-toc-content">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#前言"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#准备工作"><span class="toc-text">准备工作</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#服务器-x-1"><span class="toc-text">服务器 x 1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SSH-密钥-x-1"><span class="toc-text">SSH 密钥 x 1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GPG-密钥-x-1"><span class="toc-text">GPG 密钥 x 1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GitHub-Repo-x-1"><span class="toc-text">GitHub Repo x 1</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#配置"><span class="toc-text">配置</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#塞密钥"><span class="toc-text">塞密钥</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#建立-script-script-conf"><span class="toc-text">建立 .&#x2F;script&#x2F;script.conf</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置-GitHub-Actions-Secret"><span class="toc-text">配置 GitHub Actions Secret</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#放入你想要打包的包"><span class="toc-text">放入你想要打包的包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#打包上传你的构建脚本"><span class="toc-text">打包上传你的构建脚本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#测试"><span class="toc-text">测试</span></a></li></ol></li></ol>
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#前言">前言</a></li>
+    <li><a href="#准备工作">准备工作</a>
+      <ul>
+        <li><a href="#服务器-x-1">服务器 x 1</a></li>
+        <li><a href="#ssh-密钥-x-1">SSH 密钥 x 1</a></li>
+        <li><a href="#gpg-密钥-x-1">GPG 密钥 x 1</a></li>
+        <li><a href="#github-repo-x-1">GitHub Repo x 1</a></li>
+      </ul>
+    </li>
+    <li><a href="#配置">配置</a>
+      <ul>
+        <li><a href="#塞密钥">塞密钥</a></li>
+        <li><a href="#建立-scriptscriptconf">建立 <code>./script/script.conf</code></a></li>
+        <li><a href="#配置-github-actions-secret">配置 GitHub Actions Secret</a></li>
+        <li><a href="#放入你想要打包的包">放入你想要打包的包</a></li>
+        <li><a href="#打包上传你的构建脚本">打包上传你的构建脚本</a></li>
+        <li><a href="#测试">测试</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+  <div class="post-outdated">
+    <div class="hint">
+      <p>【注】本文最后更新于 <span class="timeago" datetime="2020-06-24T08:43:00" title="June 24, 2020">June 24, 2020</span>，文中内容可能已经过时。</p>
     </div>
-  </div><div class="post-content"><p>Arch 用户当然要有自己的软件源！</p>
+  </div>
+    <div class="post-content">
+      <p>Arch 用户当然要有自己的软件源！</p>
 <p><s>白嫖真香！</s></p>
-<a id="more"></a>
-
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>起因是有人在群里发了一篇<a href="https://viflythink.com/Use_GitHubActions_to_build_AUR/" target="_blank" rel="noopener">利用 GitHub Actions 打包 AUR 并建立本地软件源的文章</a>。</p>
+<h1 id="前言">前言</h1>
+<p>起因是有人在群里发了一篇<a href="https://viflythink.com/Use_GitHubActions_to_build_AUR/">利用 GitHub Actions 打包 AUR 并建立本地软件源的文章</a>。</p>
 <p>我看了看，觉得是好的，因为在本地编译 AUR 包的体验并不咋样：</p>
 <ul>
 <li>需要下载大量外网的资源，尤其是打 git 包的时候因为 makepkg 不支持 shallow clone 所以不得不将整个 repo 拉下，下载几百兆的东西最后打出一个两三兆的包是常有的事。</li>
@@ -152,128 +189,227 @@
 <li>我还想重打某些官方源里的包</li>
 <li>本地源不够好用，我想直接建立一个个人源。</li>
 </ul>
-<p>于是我又自己整了一个项目：<a href="https://github.com/Aloxaf/aur-build" target="_blank" rel="noopener">https://github.com/Aloxaf/aur-build</a></p>
-<p>效果如下：<a href="https://repo.aloxaf.com/" target="_blank" rel="noopener">https://repo.aloxaf.com/</a></p>
+<p>于是我又自己整了一个项目：https://github.com/Aloxaf/aur-build</p>
+<p>效果如下：https://repo.aloxaf.com/</p>
 <p>使用方法，将下列文本追加到 <code>/etc/pacman.conf</code> 中，</p>
-<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[aloxaf]</span></span><br><span class="line"><span class="attr">Server</span> = http://repo.aloxaf.com/<span class="variable">$arch</span></span><br></pre></td></tr></table></figure>
-
-<p>然后执行下列命令导入我的 GPG 公钥</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman-key --recv-keys A07920B86500DE6C</span><br><span class="line">sudo pacman-key --lsign-keys A07920B86500DE6C</span><br></pre></td></tr></table></figure>
-
-<p>就可以愉快地使用了。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-ini" data-lang="ini"><span class="k">[aloxaf]</span>
+<span class="na">Server</span> <span class="o">=</span> <span class="s">http://repo.aloxaf.com/$arch</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>然后执行下列命令导入我的 GPG 公钥</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">sudo pacman-key --recv-keys A07920B86500DE6C
+sudo pacman-key --lsign-keys A07920B86500DE6C
+</code></pre></td></tr></table>
+</div>
+</div><p>就可以愉快地使用了。</p>
 <p>过程中踩的各种坑就不说了反正你们也不想听，直接说用法吧。</p>
-<h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><h2 id="服务器-x-1"><a href="#服务器-x-1" class="headerlink" title="服务器 x 1"></a>服务器 x 1</h2><p>用来建立你的个人源，以及存放加密后的构建脚本。</p>
-<p>服务器上只用装好 nginx ，打开 autoindex 并启动即可，你很懒的话直接跑一个 <a href="https://github.com/TheWaWaR/simple-http-server" target="_blank" rel="noopener">simple-http-server</a> 甚至都可以。因为全部工作都是在 GitHub Actions 上完成的，包括建源。所以理论上放到支持直链的网盘或者云存储上都行。但是我懒，既然有服务器何必闲着。</p>
-<p>如果你打算传到云上的话可以使用 <a href="https://github.com/marketplace/actions/uptoc-action" target="_blank" rel="noopener">uptoc-action</a>，上传目录为 <code>/home/aur-build/.cache/pikaur/pkg</code>。或者也可以像我开始介绍的那篇文章一样传到 GitHub releases 上。</p>
-<h2 id="SSH-密钥-x-1"><a href="#SSH-密钥-x-1" class="headerlink" title="SSH 密钥 x 1"></a>SSH 密钥 x 1</h2><p>用于将打好的包部署到服务器上。</p>
+<h1 id="准备工作">准备工作</h1>
+<h2 id="服务器-x-1">服务器 x 1</h2>
+<p>用来建立你的个人源，以及存放加密后的构建脚本。</p>
+<p>服务器上只用装好 nginx ，打开 autoindex 并启动即可，你很懒的话直接跑一个 <a href="https://github.com/TheWaWaR/simple-http-server">simple-http-server</a> 甚至都可以。因为全部工作都是在 GitHub Actions 上完成的，包括建源。所以理论上放到支持直链的网盘或者云存储上都行。但是我懒，既然有服务器何必闲着。</p>
+<p>如果你打算传到云上的话可以使用 <a href="https://github.com/marketplace/actions/uptoc-action">uptoc-action</a>，上传目录为 <code>/home/aur-build/.cache/pikaur/pkg</code>。或者也可以像我开始介绍的那篇文章一样传到 GitHub releases 上。</p>
+<h2 id="ssh-密钥-x-1">SSH 密钥 x 1</h2>
+<p>用于将打好的包部署到服务器上。</p>
 <p>由于这个密钥需要上传到 GitHub Actions 上，为了防止可能存在的泄露，建议单独生成一个：执行 <code>ssh-keygen -f ~/.ssh/aur_build</code> 生成密钥，然后将 <code>~/.ssh/aur_build.pub</code> 中的内容追加到你服务器对应用户的 <code>~/.ssh/authorized_keys</code> 文件中。</p>
-<h2 id="GPG-密钥-x-1"><a href="#GPG-密钥-x-1" class="headerlink" title="GPG 密钥 x 1"></a>GPG 密钥 x 1</h2><p>用于签名包，虽然不是必需的但是有这个显得很正规（</p>
-<p>出于同样的理由建议生成一个单独的子密钥，没有的话参照<a href="https://mogeko.me/2019/068/" target="_blank" rel="noopener">这篇文章</a>自己生成一个并上传到公钥服务器上。</p>
-<h2 id="GitHub-Repo-x-1"><a href="#GitHub-Repo-x-1" class="headerlink" title="GitHub Repo x 1"></a>GitHub Repo x 1</h2><p>可以直接 fork <a href="https://github.com/Aloxaf/aur-build" target="_blank" rel="noopener">我的 Repo</a>。然后把它 clone 到本地进行修改</p>
-<h1 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h1><h2 id="塞密钥"><a href="#塞密钥" class="headerlink" title="塞密钥"></a>塞密钥</h2><p>全塞到  <code>./script/data</code> 目录下即可。整个脚本会被加密压缩然后传到服务器上，一般情况下不会泄露。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 导出 GPG 私钥</span></span><br><span class="line">gpg --<span class="built_in">export</span>-secret-keys-subkeys YOUR_GPG_KEY_ID &gt; ./script/data/private.key</span><br><span class="line"><span class="comment"># 还有 GPG 私钥的密码</span></span><br><span class="line"><span class="built_in">echo</span> -n <span class="string">'YOUR_GPG_KEY_PASSPHARSE'</span> &gt; ./script/data/private.passpharse</span><br><span class="line"><span class="comment"># 还有你的 SSH 私钥</span></span><br><span class="line">cp ~/.ssh/aur_build ./script/data/private.passpharse</span><br></pre></td></tr></table></figure>
-
-<h2 id="建立-script-script-conf"><a href="#建立-script-script-conf" class="headerlink" title="建立 ./script/script.conf"></a>建立 <code>./script/script.conf</code></h2><p>这里存放了你的自定义配置，比如你的服务器地址，脚本的加密密码等。我提供了一个 sample 文件，照着改就行了</p>
+<h2 id="gpg-密钥-x-1">GPG 密钥 x 1</h2>
+<p>用于签名包，虽然不是必需的但是有这个显得很正规（</p>
+<p>出于同样的理由建议生成一个单独的子密钥，没有的话参照<a href="https://mogeko.me/2019/068/">这篇文章</a>自己生成一个并上传到公钥服务器上。</p>
+<h2 id="github-repo-x-1">GitHub Repo x 1</h2>
+<p>可以直接 fork <a href="https://github.com/Aloxaf/aur-build">我的 Repo</a>。然后把它 clone 到本地进行修改</p>
+<h1 id="配置">配置</h1>
+<h2 id="塞密钥">塞密钥</h2>
+<p>全塞到  <code>./script/data</code> 目录下即可。整个脚本会被加密压缩然后传到服务器上，一般情况下不会泄露。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 导出 GPG 私钥</span>
+gpg --export-secret-keys-subkeys YOUR_GPG_KEY_ID &gt; ./script/data/private.key
+<span class="c1"># 还有 GPG 私钥的密码</span>
+<span class="nb">echo</span> -n <span class="s1">&#39;YOUR_GPG_KEY_PASSPHARSE&#39;</span> &gt; ./script/data/private.passpharse
+<span class="c1"># 还有你的 SSH 私钥</span>
+cp ~/.ssh/aur_build ./script/data/private.passpharse
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="建立-scriptscriptconf">建立 <code>./script/script.conf</code></h2>
+<p>这里存放了你的自定义配置，比如你的服务器地址，脚本的加密密码等。我提供了一个 sample 文件，照着改就行了</p>
 <ul>
 <li>必须要改，不然跑不起来：<code>GPGKEY</code> <code>SERVER</code> <code>SCRIPT</code></li>
-<li>建议你改，虽然不改我也不能拿你怎样：<code>REPO_NAME</code> <code>PACKAGER</code> <code>PASSWORD</code> </li>
+<li>建议你改，虽然不改我也不能拿你怎样：<code>REPO_NAME</code> <code>PACKAGER</code> <code>PASSWORD</code></li>
 <li>看自己情况决定改不改：<code>CFLAGS</code> <code>CXXFLAGS</code>，其中 <code>-march</code> 的值可以通过在自己电脑上执行 <code>gcc -march=native -Q --help=target | grep march=</code> 获得</li>
 </ul>
-<h2 id="配置-GitHub-Actions-Secret"><a href="#配置-GitHub-Actions-Secret" class="headerlink" title="配置 GitHub Actions Secret"></a>配置 GitHub Actions Secret</h2><p>在你 REPO 主页点击 Settings -&gt; Secrets  -&gt; New secret。</p>
+<h2 id="配置-github-actions-secret">配置 GitHub Actions Secret</h2>
+<p>在你 REPO 主页点击 Settings -&gt; Secrets  -&gt; New secret。</p>
 <p>添加两个 Secret</p>
 <ul>
 <li><code>SCRIPT_URL</code>：你的构建脚本的下载地址</li>
 <li><code>PASSWORD</code>：构建脚本的密码（就是上一节的 PASSWORD）</li>
 </ul>
-<h2 id="放入你想要打包的包"><a href="#放入你想要打包的包" class="headerlink" title="放入你想要打包的包"></a>放入你想要打包的包</h2><p>在 <code>./script/packages</code> 下建立对应目录，根据目录内容的不同有三种包：</p>
+<h2 id="放入你想要打包的包">放入你想要打包的包</h2>
+<p>在 <code>./script/packages</code> 下建立对应目录，根据目录内容的不同有三种包：</p>
 <ol>
 <li>目录为空，则为普通的 AUR 包，构建时会去 AUR 上寻找同名包。</li>
 <li>目录下有一个 PKGBUILD，则直接用这个 PKGBUILD 打包。</li>
 <li>目录下有一个 build.zsh，则执行这个 build.zsh 打包</li>
 </ol>
 <p>绝大多数情况下都是第一种。</p>
-<h2 id="打包上传你的构建脚本"><a href="#打包上传你的构建脚本" class="headerlink" title="打包上传你的构建脚本"></a>打包上传你的构建脚本</h2><p>运行 <code>./script/upload_script.zsh</code> ，构建脚本会被压缩加密并上传到服务器上。然后 GitHub Actions 在执行时会下载这个压缩包并解密再执行里面的脚本。</p>
+<h2 id="打包上传你的构建脚本">打包上传你的构建脚本</h2>
+<p>运行 <code>./script/upload_script.zsh</code> ，构建脚本会被压缩加密并上传到服务器上。然后 GitHub Actions 在执行时会下载这个压缩包并解密再执行里面的脚本。</p>
 <p>什么？你问我为什么不直接 push 到 GitHub 上，而要多此一举呢？</p>
 <p>其实是为了方便，采用这种方式构建的话，不用每次修改文件都重新 push 一次，只要重新触发 workflow 就行了，尤其是初期测试的时候常常改来改去……这个方法为我省下了大量无意义的 commit。</p>
-<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><p>Push 到 GitHub 上，以触发 GitHub Actions。或者你也可以手动触发，然后就能坐等打包结果了。</p>
+<h2 id="测试">测试</h2>
+<p>Push 到 GitHub 上，以触发 GitHub Actions。或者你也可以手动触发，然后就能坐等打包结果了。</p>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">aloxaf</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2020-06-24
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a></span>
+  </p>
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/linux/">linux</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/2020/09/fcitx5_plugin/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">使用 fcitx5-lua 编写 lua 插件</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/2020/06/wine_tyrano/">
+            <span class="next-text nav-default">使用 wine 运行基于 tyrano 的游戏</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  <span id="/2020/06/build_aur_with_github_actions/" class="leancloud_visitors" data-flag-title="利用 GitHub Actions 编译 AUR 包并建立自己的软件源">
+		<span class="post-meta-item-text">文章阅读量 </span>
+		<span class="leancloud-visitors-count">0</span>
+		<p></p>
+	  </span>
+  <div id="vcomments"></div>
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+  <script type="text/javascript">
+    new Valine({
+        el: '#vcomments' ,
+        serverURLs: 'https:\/\/lcd.aloxaf.cn',
+        appId: 'fSbXaElXXTznggVXiWy8NFBU-gzGzoHsz',
+        appKey: 'kK3SxB14xAACgHftKrSaBRDU',
+        notify:  false ,
+        verify:  false ,
+        avatar:'mm',
+        placeholder: '妙啊，妙啊',
+        visitor:  true 
+    });
+  </script>
+
+  
 
       </div>
-      <div class="post-copyright">
-    <p class="copyright-item">
-      <span>原文作者: </span>
-      <a href="https://www.aloxaf.com">Aloxaf</a>
-    </p>
-    <p class="copyright-item">
-      <span>原文链接: </span>
-      <a href="https://www.aloxaf.com/2020/06/build_aur_with_github_actions/">https://www.aloxaf.com/2020/06/build_aur_with_github_actions/</a>
-    </p>
-    <p class="copyright-item">
-      <span>许可协议: </span><a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
-    </p>
-  </div>
-      <footer class="post-footer">
-        <div class="post-tags">
-            <a href="/tags/linux/">linux</a>
-            </div>
-        
-        <nav class="post-nav"><a class="prev" href="/2020/09/fcitx5_plugin/">
-        <i class="iconfont icon-left"></i>
-        <span class="prev-text nav-default">使用 fcitx5-lua 编写 lua 插件</span>
-        <span class="prev-text nav-mobile">上一篇</span>
-      </a>
-    <a class="next" href="/2020/06/wine_tyrano/">
-        <span class="next-text nav-default">使用 wine 运行基于 tyrano 的游戏</span>
-        <span class="prev-text nav-mobile">下一篇</span>
-        <i class="iconfont icon-right"></i>
-      </a>
-    </nav></footer>
-    </article></div><div class="comments" id="comments"><div id="vcomments"></div>
-    </div></div>
-      </main>
+    </main>
 
-      <footer id="footer" class="footer"><div class="social-links"><a href="mailto:aloxafx@gmail.com" class="iconfont icon-email" title="email"></a>
-        <a href="https://github.com/Aloxaf" target="_blank" rel="noopener" class="iconfont icon-github" title="github"></a>
-        <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
-    </div><div class="copyright">
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:aloxafx@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/Aloxaf" class="iconfont icon-github" title="github"></a>
+  <a href="http://www.aloxaf.com/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
   <span class="power-by">
-    由 <a class="hexo-link" href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> 强力驱动
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
   </span>
   <span class="division">|</span>
   <span class="theme-info">
     主题 - 
-    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even" target="_blank" rel="noopener">Even</a>
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
   </span>
 
-  <span class="copyright-year">&copy;2017 - 2020<span class="heart">
-      <i class="iconfont icon-heart"></i>
-    </span>
-    <span class="author">Aloxaf</span>
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span><span>Aloxaf</span>
   </span>
 </div>
-</footer>
 
-      <div class="back-to-top" id="back-to-top">
-        <i class="iconfont icon-up"></i>
-      </div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
     </div>
-<!-- valine Comments -->
-<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
-<script type="text/javascript">
-    new Valine({
-        el: '#vcomments',
-        serverURLs: "https://lcd.aloxaf.cn",
-        notify: false,
-        verify: false,
-        app_id: "fSbXaElXXTznggVXiWy8NFBU-gzGzoHsz",
-        app_key: "kK3SxB14xAACgHftKrSaBRDU",
-        placeholder: "妙啊，妙啊",
-        avatar: 'mm',
-        visitor: true,
-    });
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "zh".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-123773630-1', 'auto');
+	
+	ga('send', 'pageview');
+}
 </script>
-<script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
-  <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
-  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
-  <script type="text/javascript" src="/js/src/even.js?v=2.11.0"></script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
 </body>
 </html>

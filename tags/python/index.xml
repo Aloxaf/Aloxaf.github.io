@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>python on Aloxaf&#39;s Blog</title>
+    <link>http://www.aloxaf.com/tags/python/</link>
+    <description>Recent content in python on Aloxaf&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Sun, 28 Oct 2018 14:24:05 +0000</lastBuildDate><atom:link href="http://www.aloxaf.com/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>如何在 Python3 中让 &#39;a&#39; is &#39;b&#39; 为 True</title>
+      <link>http://www.aloxaf.com/2018/10/egg_pain_python/</link>
+      <pubDate>Sun, 28 Oct 2018 14:24:05 +0000</pubDate>
+      
+      <guid>http://www.aloxaf.com/2018/10/egg_pain_python/</guid>
+      <description>&lt;h1 id=&#34;前言&#34;&gt;前言&lt;/h1&gt;
+&lt;p&gt;这是一篇闲蛋疼的文章, 讲述了闲蛋疼的我是如何&lt;del&gt;历经千辛万苦终于&lt;/del&gt;在 Python 中让 &lt;code&gt;&#39;a&#39; is &#39;b&#39;&lt;/code&gt; 得到 &lt;code&gt;True&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;del&gt;(虽然这件事情毫无意义)&lt;/del&gt;&lt;/p&gt;
+&lt;p&gt;&lt;del&gt;(不过拿来坑下一任或许是个好主意呢)&lt;/del&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>TJCTF 2018 中两道 Python Jail 的解法</title>
+      <link>http://www.aloxaf.com/2018/08/tjctf_pythonjail/</link>
+      <pubDate>Sat, 11 Aug 2018 12:23:25 +0000</pubDate>
+      
+      <guid>http://www.aloxaf.com/2018/08/tjctf_pythonjail/</guid>
+      <description>&lt;p&gt;感谢 M4x 师傅推荐了这个比赛, 虽然是面向美国高中生, 不过打了以后还是有点收获的.
+&lt;del&gt;同时内心受到一万点暴击伤害&lt;/del&gt;&lt;/p&gt;
+&lt;p&gt;尤其是两道 Python jail, 非常硬却失挺.
+(下载地址在文末)&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

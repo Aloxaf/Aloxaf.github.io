@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
-  <head><meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>ZIP 明文攻击工具 - Aloxaf&#39;s Blog</title>
+  <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
 
 <meta http-equiv="Cache-Control" content="no-transform" />
 <meta http-equiv="Cache-Control" content="no-siteapp" />
@@ -13,45 +15,68 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
-<meta name="description" content="ZIP 明文攻击工具"/><meta name="keywords" content="ctf, misc, rust, zip, Aloxaf's blog" /><link rel="alternate" href="/atom.xml" title="Aloxaf's blog"><link rel="shortcut icon" type="image/x-icon" href="/favicon.svg?v=2.11.0" />
-<link rel="canonical" href="https://www.aloxaf.com/2018/10/zip_crack/"/>
 
-<link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
-<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.11.0" />
+<meta name="author" content="Aloxaf" /><meta name="description" content="这个国庆假期抽了点风&amp;hellip;&amp;hellip;
+写了一个假期的代码&amp;hellip;&amp;hellip;
+" /><meta name="keywords" content="aloxaf, ctf, linux, zsh" />
 
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-123773630-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'UA-123773630-1');
-</script><script id="baidu_push">
-(function(){
-    var bp = document.createElement('script');
-    var curProtocol = window.location.protocol.split(':')[0];
-    if (curProtocol === 'https') {
-        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
-    }
-    else {
-        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-    }
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(bp, s);
-})();
-</script>
-<script>
-  window.config = {"leancloud":{"app_id":null,"app_key":null},"toc":true,"fancybox":true,"pjax":"","latex":true};
-</script>
 
-    <title>ZIP 明文攻击工具 - Aloxaf's blog</title>
-  <meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Aloxaf's blog" type="application/atom+xml">
+
+
+
+<meta name="generator" content="Hugo 0.78.1 with theme even" />
+
+
+<link rel="canonical" href="http://www.aloxaf.com/2018/10/zip_crack/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.65ccf00eb040f87c6c85a4206ef3520967b49eb3940b6b6f15c2e84bc94782d7.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="ZIP 明文攻击工具" />
+<meta property="og:description" content="这个国庆假期抽了点风&hellip;&hellip;
+写了一个假期的代码&hellip;&hellip;" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://www.aloxaf.com/2018/10/zip_crack/" />
+<meta property="article:published_time" content="2018-10-04T21:47:12+00:00" />
+<meta property="article:modified_time" content="2019-04-11T17:33:03+00:00" />
+<meta itemprop="name" content="ZIP 明文攻击工具">
+<meta itemprop="description" content="这个国庆假期抽了点风&hellip;&hellip;
+写了一个假期的代码&hellip;&hellip;">
+<meta itemprop="datePublished" content="2018-10-04T21:47:12+00:00" />
+<meta itemprop="dateModified" content="2019-04-11T17:33:03+00:00" />
+<meta itemprop="wordCount" content="1121">
+
+
+
+<meta itemprop="keywords" content="ctf,misc,zip,rust," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="ZIP 明文攻击工具"/>
+<meta name="twitter:description" content="这个国庆假期抽了点风&hellip;&hellip;
+写了一个假期的代码&hellip;&hellip;"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
 </head>
-
-  <body><div id="mobile-navbar" class="mobile-navbar">
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
   <div class="mobile-header-logo">
-    <a href="/." class="logo">Aloxaf's blog</a>
+    <a href="/" class="logo">Aloxaf&#39;s Blog</a>
   </div>
   <div class="mobile-navbar-icon">
     <span></span>
@@ -59,227 +84,321 @@
     <span></span>
   </div>
 </div>
-
 <nav id="mobile-menu" class="mobile-menu slideout-menu">
-  <ul class="mobile-menu-list"><a href="/">
-        <li class="mobile-menu-item">首页
-          </li>
-      </a><a href="/archives/">
-        <li class="mobile-menu-item">归档
-          </li>
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
       </a><a href="/tags/">
-        <li class="mobile-menu-item">标签
-          </li>
+        <li class="mobile-menu-item">标签</li>
       </a><a href="/about/">
-        <li class="mobile-menu-item">关于
-          </li>
-      </a><a href="/friends/">
-        <li class="mobile-menu-item">友链
-          </li>
-      </a></ul>
+        <li class="mobile-menu-item">关于</li>
+      </a><a href="/friend/">
+        <li class="mobile-menu-item">友链</li>
+      </a>
+  </ul>
 </nav>
-<div class="container" id="mobile-panel">
-      <header id="header" class="header"><div class="logo-wrapper">
-  <a href="/." class="logo">Aloxaf's blog</a>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Aloxaf&#39;s Blog</a>
 </div>
 
-<nav class="site-navbar"><ul id="menu" class="menu"><li class="menu-item">
-          <a class="menu-item-link" href="/">
-            首页
-            </a>
-        </li>
-      <li class="menu-item">
-          <a class="menu-item-link" href="/archives/">
-            归档
-            </a>
-        </li>
-      <li class="menu-item">
-          <a class="menu-item-link" href="/tags/">
-            标签
-            </a>
-        </li>
-      <li class="menu-item">
-          <a class="menu-item-link" href="/about/">
-            关于
-            </a>
-        </li>
-      <li class="menu-item">
-          <a class="menu-item-link" href="/friends/">
-            友链
-            </a>
-        </li>
-      </ul></nav>
-</header>
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">关于</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/friend/">友链</a>
+      </li>
+  </ul>
+</nav>
+    </header>
 
-      <main id="main" class="main">
-        <div class="content-wrapper">
-          <div id="content" class="content"><article class="post">
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
     <header class="post-header">
-      <h1 class="post-title">ZIP 明文攻击工具
-        </h1>
+      <h1 class="post-title">ZIP 明文攻击工具</h1>
 
       <div class="post-meta">
-        <span class="post-time">
-          2018-10-04
-        </span><span class="post-category">
-            <a href="/categories/ctf/">ctf</a>
-            </span>
-        <span id="/2018/10/zip_crack/" class="leancloud_visitors" data-flag-title="ZIP 明文攻击工具">
-            <span class="leancloud-visitors-count" style="display: none;">0</span>
-          </span>
-        </div>
+        <span class="post-time"> 2018-10-04 </span>
+        <div class="post-category">
+            <a href="/categories/ctf/"> ctf </a>
+            </div>
+        
+      </div>
     </header>
 
     <div class="post-toc" id="post-toc">
-    <h2 class="post-toc-title">文章目录</h2>
-    <div class="post-toc-content">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#简介"><span class="toc-text">简介</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#示例"><span class="toc-text">示例</span></a></li></ol>
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#简介">简介</a></li>
+    <li><a href="#示例">示例</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+  <div class="post-outdated">
+    <div class="warn">
+      <p>【注】本文最后更新于 <span class="timeago" datetime="2019-04-11T17:33:03" title="April 11, 2019">April 11, 2019</span>，文中内容可能已经过时。</p>
     </div>
-  </div><div class="post-content"><p>这个国庆假期抽了点风……</p>
-<p>写了一个假期的代码……</p>
-<a id="more"></a>
-
-<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>前两天自己也不记得受了啥刺激写了个 <a href="https://github.com/Aloxaf/ren3/" target="_blank" rel="noopener">ren3</a>. </p>
+  </div>
+    <div class="post-content">
+      <p>这个国庆假期抽了点风&hellip;&hellip;</p>
+<p>写了一个假期的代码&hellip;&hellip;</p>
+<h1 id="简介">简介</h1>
+<p>前两天自己也不记得受了啥刺激写了个 <a href="https://github.com/Aloxaf/ren3/">ren3</a>.</p>
 <p>写完以后大概是处于亢奋状态, 突然又想开坑, 然后又花了四天完成了</p>
 <ul>
-<li><a href="https://github.com/Aloxaf/rbkcrack" target="_blank" rel="noopener">rbkcrack</a> fork 了 bkcrack, 然后用 Rust 重(zhao)写(chao), 再然后用 <code>zip-rs·改</code> 替换掉手写的 parser, 实现了对 ZIP64 的一定程度上的兼容, 再顺便加上解压. 实测成功破解了 20+GB 的zip文件.</li>
-<li><a href="https://github.com/Aloxaf/p7zip" target="_blank" rel="noopener">p7zip</a> 稍微改了一下计算秘钥的部分, 允许使用 <code>-p[key1_key2_key3]</code> 这种格式来直接指定三个 key.  (世界上最遥远的距离, 不是生与死, 而是我都拿到 keys 了,  却找不到工具解压……)</li>
+<li><a href="https://github.com/Aloxaf/rbkcrack">rbkcrack</a> fork 了 bkcrack, 然后用 Rust 重(zhao)写(chao), 再然后用 <code>zip-rs·改</code> 替换掉手写的 parser, 实现了对 ZIP64 的一定程度上的兼容, 再顺便加上解压. 实测成功破解了 20+GB 的zip文件.</li>
+<li><a href="https://github.com/Aloxaf/p7zip">p7zip</a> 稍微改了一下计算秘钥的部分, 允许使用 <code>-p[key1_key2_key3]</code> 这种格式来直接指定三个 key.  (世界上最遥远的距离, 不是生与死, 而是我都拿到 keys 了,  却找不到工具解压&hellip;&hellip;)</li>
 </ul>
-<h1 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h1><p>就拿以前测试时出的一道题为例, 下载地址文末</p>
+<h1 id="示例">示例</h1>
+<p>就拿以前测试时出的一道题为例, 下载地址文末</p>
 <blockquote>
 <p>两个flag, 一个在flag.txt里, 一个在big_file开头</p>
 <p>big_file里的那个我自己也弄不出来, 就又加了一个flag.txt</p>
 <p>给了两个已知明文</p>
 <p>hashcat是一开始随手加进来的, libc是后来为了测试工具随手加进来的</p>
 <p>所以这里没有坑</p>
-<p>PS. 17位大小写数字混合密码, 不用试图爆破…</p>
+<p>PS. 17位大小写数字混合密码, 不用试图爆破&hellip;</p>
 </blockquote>
 <p>cipher.zip 里有4个文件, big_file 和 flag.txt 是等待破解的.</p>
-<p>其中 big_file 压缩前大小高达 4.8 GiB, 使得这个 ZIP 文件包含了 ZIP64 格式. </p>
+<p>其中 big_file 压缩前大小高达 4.8 GiB, 使得这个 ZIP 文件包含了 ZIP64 格式.</p>
 <blockquote>
-<p>这个地方没有说这个文件是 ZIP64 格式, 而是说它包含了 ZIP64 格式.<br>因为一个 ZIP 文件理论上是可以包含多种压缩算法&amp;格式(好像是这样的), 所以我们可以选择其中的原始 ZIP 格式进行破解.</p>
+<p>这个地方没有说这个文件是 ZIP64 格式, 而是说它包含了 ZIP64 格式.
+因为一个 ZIP 文件理论上是可以包含多种压缩算法&amp;格式(好像是这样的), 所以我们可以选择其中的原始 ZIP 格式进行破解.</p>
 </blockquote>
-<p>然而面对这样的一个文件 pkcrack 和 AZPR 都会给出 <code>unknown signature</code> 一类的报错. 直接把路堵死了… </p>
+<p>然而面对这样的一个文件 pkcrack 和 AZPR 都会给出 <code>unknown signature</code> 一类的报错. 直接把路堵死了&hellip;</p>
 <blockquote>
 <p>其实 pkcrack 把报错代码注释掉就能跑了</p>
 </blockquote>
-<p>这个地方我们使用 rbkcrack. </p>
+<p>这个地方我们使用 rbkcrack.</p>
 <blockquote>
-<p>它的前身 bkcrack 其实也能爆破, 不过作者手写的 parser 完全没有考虑 ZIP64 格式, 在面对复杂文件时可能会跪…</p>
+<p>它的前身 bkcrack 其实也能爆破, 不过作者手写的 parser 完全没有考虑 ZIP64 格式, 在面对复杂文件时可能会跪&hellip;</p>
 </blockquote>
 <p>题目给了两个明文, libc 那个比较大, 爆破起来比较快. 于是执行如下命令开始攻击</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rbkcrack -c libc-2.23.so -p libc-2.23.so -C cipher.zip -P plain2.zip</span><br></pre></td></tr></table></figure>
-
-<p>只花费了五秒钟就得到了keys.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">rbkcrack -c libc-2.23.so -p libc-2.23.so -C cipher.zip -P plain2.zip
+</code></pre></td></tr></table>
+</div>
+</div><p>只花费了五秒钟就得到了keys.</p>
 <blockquote>
 <p>2019.04.11 更新:</p>
-<p>rbkcrack 0.2.0 增加了自动根据 CRC32 寻找合适文件的功能,<br>于是上面的代码可以简写成 <code>rbkcrack -C cipher.zip -P plain2.zip -a</code></p>
-<p>PS. 这个功能最大的用处其实是对付某些 GBK 编码的 zip 文件…</p>
+<p>rbkcrack 0.2.0 增加了自动根据 CRC32 寻找合适文件的功能,
+于是上面的代码可以简写成 <code>rbkcrack -C cipher.zip -P plain2.zip -a</code></p>
+<p>PS. 这个功能最大的用处其实是对付某些 GBK 编码的 zip 文件&hellip;</p>
 </blockquote>
-<p>PS. 重写完 bkcrack 后我拿一个文件测试了一下, 发现 Rust 版竟然比 C++ 版还快了 15%…… (改用 sort_unstabe 以后快了 25%……)</p>
+<p>PS. 重写完 bkcrack 后我拿一个文件测试了一下, 发现 Rust 版竟然比 C++ 版还快了 15%&hellip;&hellip; (改用 sort_unstabe 以后快了 25%&hellip;&hellip;)</p>
 <blockquote>
 <p>2019.04.11 更新:</p>
 <p>现在一样快了</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Generated 4194304 Z values.</span><br><span class="line">[22:11:22] Z reduction using 4512917 extra bytes of known plaintext</span><br><span class="line">0.11 % (4855 &#x2F; 4512917)</span><br><span class="line">240 values remaining.</span><br><span class="line">[22:11:26] Attack on 240 Z values at index 4509032</span><br><span class="line">5.00 % (12 &#x2F; 240)</span><br><span class="line">[22:11:27] Keys</span><br><span class="line">d4f34b9d a6ba3461 dcd97451</span><br></pre></td></tr></table></figure>
-
-
-
-<p>得到 keys 以后直接使用如下代码可以从 cipher.zip 中解压 flag.txt.<br>(这个地方没有加 -u 开关, 因为 flag.txt 的压缩方式是 store)</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rbkcrack -c flag.txt -C cipher.zip -k d4f34b9d a6ba3461 dcd97451 -d ./flag.txt</span><br></pre></td></tr></table></figure>
-
-<p>然后得到了第一个 flag: <code>flag{Th3Re_1s_Ano1h3r_f1ag_in_big_file}</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">Generated 4194304 Z values.
+[22:11:22] Z reduction using 4512917 extra bytes of known plaintext
+0.11 % (4855 / 4512917)
+240 values remaining.
+[22:11:26] Attack on 240 Z values at index 4509032
+5.00 % (12 / 240)
+[22:11:27] Keys
+d4f34b9d a6ba3461 dcd97451
+</code></pre></td></tr></table>
+</div>
+</div><p>得到 keys 以后直接使用如下代码可以从 cipher.zip 中解压 flag.txt.
+(这个地方没有加 -u 开关, 因为 flag.txt 的压缩方式是 store)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">rbkcrack -c flag.txt -C cipher.zip -k d4f34b9d a6ba3461 dcd97451 -d ./flag.txt
+</code></pre></td></tr></table>
+</div>
+</div><p>然后得到了第一个 flag: <code>flag{Th3Re_1s_Ano1h3r_f1ag_in_big_file}</code></p>
 <p>big_file 是实打实的压缩过的, 需要加上 -u 开关提取. 由于文件非常大, 而且我们只要前面的一部分, 所以当看到 big_file 大小差不多了就可以 Ctrl+C 了.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rbkcrack -c big_file -C cipher.zip -k d4f34b9d a6ba3461 dcd97451 -d ./big_file -u</span><br></pre></td></tr></table></figure>
-
-<p>head 一下然后就得到了第二个 flag: <code>flag{Th1s_i3_A_tE5t}</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">rbkcrack -c big_file -C cipher.zip -k d4f34b9d a6ba3461 dcd97451 -d ./big_file -u
+</code></pre></td></tr></table>
+</div>
+</div><p>head 一下然后就得到了第二个 flag: <code>flag{Th1s_i3_A_tE5t}</code></p>
 <p>最后强行给 p7zip 一个出场机会, 虽然做题的时候不大可能用到, 但是真要用来干大事儿还是它靠谱.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">7za e cipher.zip <span class="string">'-p[d4f34b9d_a6ba3461_dcd97451]'</span></span><br></pre></td></tr></table></figure>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">7za e cipher.zip <span class="s1">&#39;-p[d4f34b9d_a6ba3461_dcd97451]&#39;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>下载地址: <a href="http://storage.aloxaf.cn/storage/fucking_problem.zip" target="_blank" rel="noopener nofollow">fucking_problem.zip</a></p>
+    </div>
 
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Aloxaf</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2019-04-11
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a></span>
+  </p>
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/ctf/">ctf</a>
+          <a href="/tags/misc/">misc</a>
+          <a href="/tags/zip/">zip</a>
+          <a href="/tags/rust/">rust</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/2018/10/linux_emoji/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">在 Linux 下使用 Blob Emoji</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/2018/09/reduce_rust_size/">
+            <span class="next-text nav-default">优化 Rust 程序编译体积</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
 
+  <span id="/2018/10/zip_crack/" class="leancloud_visitors" data-flag-title="ZIP 明文攻击工具">
+		<span class="post-meta-item-text">文章阅读量 </span>
+		<span class="leancloud-visitors-count">0</span>
+		<p></p>
+	  </span>
+  <div id="vcomments"></div>
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+  <script type="text/javascript">
+    new Valine({
+        el: '#vcomments' ,
+        serverURLs: 'https:\/\/lcd.aloxaf.cn',
+        appId: 'fSbXaElXXTznggVXiWy8NFBU-gzGzoHsz',
+        appKey: 'kK3SxB14xAACgHftKrSaBRDU',
+        notify:  false ,
+        verify:  false ,
+        avatar:'mm',
+        placeholder: '妙啊，妙啊',
+        visitor:  true 
+    });
+  </script>
 
-<p>下载地址: <a href="http://storage.aloxaf.cn/storage/fucking_problem.zip" target="_blank" rel="noopener nofollow">fucking_problem.zip</a></p>
+  
 
       </div>
-      <div class="post-copyright">
-    <p class="copyright-item">
-      <span>原文作者: </span>
-      <a href="https://www.aloxaf.com">Aloxaf</a>
-    </p>
-    <p class="copyright-item">
-      <span>原文链接: </span>
-      <a href="https://www.aloxaf.com/2018/10/zip_crack/">https://www.aloxaf.com/2018/10/zip_crack/</a>
-    </p>
-    <p class="copyright-item">
-      <span>许可协议: </span><a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
-    </p>
-  </div>
-      <footer class="post-footer">
-        <div class="post-tags">
-            <a href="/tags/ctf/">ctf</a>
-            <a href="/tags/misc/">misc</a>
-            <a href="/tags/rust/">rust</a>
-            <a href="/tags/zip/">zip</a>
-            </div>
-        
-        <nav class="post-nav"><a class="prev" href="/2018/10/linux_emoji/">
-        <i class="iconfont icon-left"></i>
-        <span class="prev-text nav-default">在 Linux 下使用 Blob Emoji</span>
-        <span class="prev-text nav-mobile">上一篇</span>
-      </a>
-    <a class="next" href="/2018/09/reduce_rust_size/">
-        <span class="next-text nav-default">优化 Rust 程序编译体积</span>
-        <span class="prev-text nav-mobile">下一篇</span>
-        <i class="iconfont icon-right"></i>
-      </a>
-    </nav></footer>
-    </article></div><div class="comments" id="comments"><div id="vcomments"></div>
-    </div></div>
-      </main>
+    </main>
 
-      <footer id="footer" class="footer"><div class="social-links"><a href="mailto:aloxafx@gmail.com" class="iconfont icon-email" title="email"></a>
-        <a href="https://github.com/Aloxaf" target="_blank" rel="noopener" class="iconfont icon-github" title="github"></a>
-        <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
-    </div><div class="copyright">
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:aloxafx@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/Aloxaf" class="iconfont icon-github" title="github"></a>
+  <a href="http://www.aloxaf.com/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
   <span class="power-by">
-    由 <a class="hexo-link" href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> 强力驱动
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
   </span>
   <span class="division">|</span>
   <span class="theme-info">
     主题 - 
-    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even" target="_blank" rel="noopener">Even</a>
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
   </span>
 
-  <span class="copyright-year">&copy;2017 - 2020<span class="heart">
-      <i class="iconfont icon-heart"></i>
-    </span>
-    <span class="author">Aloxaf</span>
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span><span>Aloxaf</span>
   </span>
 </div>
-</footer>
 
-      <div class="back-to-top" id="back-to-top">
-        <i class="iconfont icon-up"></i>
-      </div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
     </div>
-<!-- valine Comments -->
-<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
-<script type="text/javascript">
-    new Valine({
-        el: '#vcomments',
-        serverURLs: "https://lcd.aloxaf.cn",
-        notify: false,
-        verify: false,
-        app_id: "fSbXaElXXTznggVXiWy8NFBU-gzGzoHsz",
-        app_key: "kK3SxB14xAACgHftKrSaBRDU",
-        placeholder: "妙啊，妙啊",
-        avatar: 'mm',
-        visitor: true,
-    });
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "zh".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-123773630-1', 'auto');
+	
+	ga('send', 'pageview');
+}
 </script>
-<script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
-  <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
-  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
-  <script type="text/javascript" src="/js/src/even.js?v=2.11.0"></script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
 </body>
 </html>

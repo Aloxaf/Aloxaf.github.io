@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
-  <head><meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>在 Arch Linux 下使用 glibc 2.23 调试程序&amp;使用 pwndbg - Aloxaf&#39;s Blog</title>
+  <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
 
 <meta http-equiv="Cache-Control" content="no-transform" />
 <meta http-equiv="Cache-Control" content="no-siteapp" />
@@ -13,45 +15,67 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
-<meta name="description" content="在 Arch Linux 下使用 glibc 2.23 调试程序&使用 pwndbg"/><meta name="keywords" content="linux, pwn, Aloxaf's blog" /><link rel="alternate" href="/atom.xml" title="Aloxaf's blog"><link rel="shortcut icon" type="image/x-icon" href="/favicon.svg?v=2.11.0" />
-<link rel="canonical" href="https://www.aloxaf.com/2018/07/arch_glibc_2.23/"/>
 
-<link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
-<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.11.0" />
+<meta name="author" content="Aloxaf" /><meta name="description" content="glibc 2.26开始, 引入了 tcache 技术. 使得对 UAF 漏洞的利用非常困难. (更: 听 M4x 师傅说其实安全性下降了? thread local caching in glibc malloc)
+" /><meta name="keywords" content="aloxaf, ctf, linux, zsh" />
 
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-123773630-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'UA-123773630-1');
-</script><script id="baidu_push">
-(function(){
-    var bp = document.createElement('script');
-    var curProtocol = window.location.protocol.split(':')[0];
-    if (curProtocol === 'https') {
-        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
-    }
-    else {
-        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-    }
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(bp, s);
-})();
-</script>
-<script>
-  window.config = {"leancloud":{"app_id":null,"app_key":null},"toc":true,"fancybox":true,"pjax":"","latex":true};
-</script>
 
-    <title>在 Arch Linux 下使用 glibc 2.23 调试程序&使用 pwndbg - Aloxaf's blog</title>
-  <meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Aloxaf's blog" type="application/atom+xml">
+
+
+
+<meta name="generator" content="Hugo 0.78.1 with theme even" />
+
+
+<link rel="canonical" href="http://www.aloxaf.com/2018/07/arch_glibc_2.23/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.65ccf00eb040f87c6c85a4206ef3520967b49eb3940b6b6f15c2e84bc94782d7.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="在 Arch Linux 下使用 glibc 2.23 调试程序&amp;使用 pwndbg" />
+<meta property="og:description" content="glibc 2.26开始, 引入了 tcache 技术. 使得对 UAF 漏洞的利用非常困难.
+(更: 听 M4x 师傅说其实安全性下降了? thread local caching in glibc malloc)" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://www.aloxaf.com/2018/07/arch_glibc_2.23/" />
+<meta property="article:published_time" content="2018-07-14T11:16:09+00:00" />
+<meta property="article:modified_time" content="2018-08-12T09:23:00+00:00" />
+<meta itemprop="name" content="在 Arch Linux 下使用 glibc 2.23 调试程序&amp;使用 pwndbg">
+<meta itemprop="description" content="glibc 2.26开始, 引入了 tcache 技术. 使得对 UAF 漏洞的利用非常困难.
+(更: 听 M4x 师傅说其实安全性下降了? thread local caching in glibc malloc)">
+<meta itemprop="datePublished" content="2018-07-14T11:16:09+00:00" />
+<meta itemprop="dateModified" content="2018-08-12T09:23:00+00:00" />
+<meta itemprop="wordCount" content="1061">
+
+
+
+<meta itemprop="keywords" content="linux,pwn," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="在 Arch Linux 下使用 glibc 2.23 调试程序&amp;使用 pwndbg"/>
+<meta name="twitter:description" content="glibc 2.26开始, 引入了 tcache 技术. 使得对 UAF 漏洞的利用非常困难.
+(更: 听 M4x 师傅说其实安全性下降了? thread local caching in glibc malloc)"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
 </head>
-
-  <body><div id="mobile-navbar" class="mobile-navbar">
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
   <div class="mobile-header-logo">
-    <a href="/." class="logo">Aloxaf's blog</a>
+    <a href="/" class="logo">Aloxaf&#39;s Blog</a>
   </div>
   <div class="mobile-navbar-icon">
     <span></span>
@@ -59,201 +83,428 @@
     <span></span>
   </div>
 </div>
-
 <nav id="mobile-menu" class="mobile-menu slideout-menu">
-  <ul class="mobile-menu-list"><a href="/">
-        <li class="mobile-menu-item">首页
-          </li>
-      </a><a href="/archives/">
-        <li class="mobile-menu-item">归档
-          </li>
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
       </a><a href="/tags/">
-        <li class="mobile-menu-item">标签
-          </li>
+        <li class="mobile-menu-item">标签</li>
       </a><a href="/about/">
-        <li class="mobile-menu-item">关于
-          </li>
-      </a><a href="/friends/">
-        <li class="mobile-menu-item">友链
-          </li>
-      </a></ul>
+        <li class="mobile-menu-item">关于</li>
+      </a><a href="/friend/">
+        <li class="mobile-menu-item">友链</li>
+      </a>
+  </ul>
 </nav>
-<div class="container" id="mobile-panel">
-      <header id="header" class="header"><div class="logo-wrapper">
-  <a href="/." class="logo">Aloxaf's blog</a>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Aloxaf&#39;s Blog</a>
 </div>
 
-<nav class="site-navbar"><ul id="menu" class="menu"><li class="menu-item">
-          <a class="menu-item-link" href="/">
-            首页
-            </a>
-        </li>
-      <li class="menu-item">
-          <a class="menu-item-link" href="/archives/">
-            归档
-            </a>
-        </li>
-      <li class="menu-item">
-          <a class="menu-item-link" href="/tags/">
-            标签
-            </a>
-        </li>
-      <li class="menu-item">
-          <a class="menu-item-link" href="/about/">
-            关于
-            </a>
-        </li>
-      <li class="menu-item">
-          <a class="menu-item-link" href="/friends/">
-            友链
-            </a>
-        </li>
-      </ul></nav>
-</header>
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">关于</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/friend/">友链</a>
+      </li>
+  </ul>
+</nav>
+    </header>
 
-      <main id="main" class="main">
-        <div class="content-wrapper">
-          <div id="content" class="content"><article class="post">
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
     <header class="post-header">
-      <h1 class="post-title">在 Arch Linux 下使用 glibc 2.23 调试程序&使用 pwndbg
-        </h1>
+      <h1 class="post-title">在 Arch Linux 下使用 glibc 2.23 调试程序&amp;使用 pwndbg</h1>
 
       <div class="post-meta">
-        <span class="post-time">
-          2018-07-14
-        </span><span class="post-category">
-            <a href="/categories/linux/">linux</a>
-            </span>
-        <span id="/2018/07/arch_glibc_2.23/" class="leancloud_visitors" data-flag-title="在 Arch Linux 下使用 glibc 2.23 调试程序&使用 pwndbg">
-            <span class="leancloud-visitors-count" style="display: none;">0</span>
-          </span>
-        </div>
+        <span class="post-time"> 2018-07-14 </span>
+        <div class="post-category">
+            <a href="/categories/linux/"> linux </a>
+            </div>
+        
+      </div>
     </header>
 
     <div class="post-toc" id="post-toc">
-    <h2 class="post-toc-title">文章目录</h2>
-    <div class="post-toc-content">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#编译glibc-2-23"><span class="toc-text">编译glibc-2.23</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#第一步"><span class="toc-text">第一步</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第二步"><span class="toc-text">第二步</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第三步"><span class="toc-text">第三步</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#配置运行环境"><span class="toc-text">配置运行环境</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#愉快地Debug-吧少年-Arch-Linux-大法好折腾"><span class="toc-text">愉快地Debug 吧少年, Arch Linux 大法好折腾</span></a></li></ol></li></ol>
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#编译glibc-223">编译glibc-2.23</a>
+      <ul>
+        <li><a href="#第一步">第一步</a></li>
+        <li><a href="#第二步">第二步</a></li>
+        <li><a href="#第三步">第三步</a></li>
+      </ul>
+    </li>
+    <li><a href="#配置运行环境">配置运行环境</a>
+      <ul>
+        <li><a href="#愉快地debug-吧少年-arch-linux-大法好折腾">愉快地Debug 吧少年, Arch Linux 大法好折腾</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+  <div class="post-outdated">
+    <div class="warn">
+      <p>【注】本文最后更新于 <span class="timeago" datetime="2018-08-12T09:23:00" title="August 12, 2018">August 12, 2018</span>，文中内容可能已经过时。</p>
     </div>
-  </div><div class="post-content"><p>glibc 2.26开始, 引入了 tcache 技术. 使得对 UAF 漏洞的利用非常困难.<br>(更: 听 M4x 师傅说其实安全性下降了? <a href="http://tukan.farm/2017/07/08/tcache/" target="_blank" rel="noopener">thread local caching in glibc malloc</a>)</p>
-<a id="more"></a>
-
-<p>然后 Arch 的 glibc 已经到了 2.27…. 再加上 pwndbg 的作者与堆相关的一系列命令只对 Ubuntu 做了适配…</p>
+  </div>
+    <div class="post-content">
+      <p>glibc 2.26开始, 引入了 tcache 技术. 使得对 UAF 漏洞的利用非常困难.
+(更: 听 M4x 师傅说其实安全性下降了? <a href="http://tukan.farm/2017/07/08/tcache/">thread local caching in glibc malloc</a>)</p>
+<p>然后 Arch 的 glibc 已经到了 2.27&hellip;. 再加上 pwndbg 的作者与堆相关的一系列命令只对 Ubuntu 做了适配&hellip;</p>
 <p>pwn 的世界对 <del>Archer</del> 真是充满了恶意 = =</p>
-<p>放弃 Arch 是不可能放弃的, 这辈子都不可能放弃的. 所幸有大佬提出, <a href="https://github.com/pwndbg/pwndbg/issues/340#issuecomment-328883073" target="_blank" rel="noopener">使用带Debug Symbols的glibc可以成功运行heap等命令</a>,<br>试了一下果然如此. 可是把默认的 glibc 换成带调试符号的总觉得不好. 而且这样也没有解决 tcache 的问题. </p>
-<p>一番尝试之后, 我得到了如下的解决方案,<br>记录一下以免忘记. <del>因为已经忘了一次</del></p>
-<h1 id="编译glibc-2-23"><a href="#编译glibc-2-23" class="headerlink" title="编译glibc-2.23"></a>编译glibc-2.23</h1><h2 id="第一步"><a href="#第一步" class="headerlink" title="第一步"></a>第一步</h2><p>获取 glibc-2.23</p>
-<p><code>/tmp&gt; wget https://ftp.gnu.org/gnu/glibc/glibc-2.23.tar.xz</code><br><code>/tmp&gt; x glibc-2.23.tar.xz</code></p>
-<h2 id="第二步"><a href="#第二步" class="headerlink" title="第二步"></a>第二步</h2><p>修改源码, 防止一些奇怪的问题 <a href="https://git.busybox.net/buildroot/commit/?id=cf821efbd0b24690b52f379d4a9934a16073762e" target="_blank" rel="noopener">glibc: add patch fixing the build with binutils 2.29</a></p>
+<p>放弃 Arch 是不可能放弃的, 这辈子都不可能放弃的. 所幸有大佬提出, <a href="https://github.com/pwndbg/pwndbg/issues/340#issuecomment-328883073">使用带Debug Symbols的glibc可以成功运行heap等命令</a>,
+试了一下果然如此. 可是把默认的 glibc 换成带调试符号的总觉得不好. 而且这样也没有解决 tcache 的问题.</p>
+<p>一番尝试之后, 我得到了如下的解决方案,
+记录一下以免忘记. <del>因为已经忘了一次</del></p>
+<h1 id="编译glibc-223">编译glibc-2.23</h1>
+<h2 id="第一步">第一步</h2>
+<p>获取 glibc-2.23</p>
+<p><code>/tmp&gt; wget https://ftp.gnu.org/gnu/glibc/glibc-2.23.tar.xz</code>
+<code>/tmp&gt; x glibc-2.23.tar.xz</code></p>
+<h2 id="第二步">第二步</h2>
+<p>修改源码, 防止一些奇怪的问题 <a href="https://git.busybox.net/buildroot/commit/?id=cf821efbd0b24690b52f379d4a9934a16073762e">glibc: add patch fixing the build with binutils 2.29</a></p>
 <p>简要地讲就是把 <code>misc/regexp.c</code> 中的</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> *loc1;</span><br><span class="line"><span class="keyword">char</span> *loc2;</span><br><span class="line">...</span><br><span class="line">...</span><br><span class="line"><span class="keyword">char</span> *loc;</span><br></pre></td></tr></table></figure>
-
-<p>换成</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> *loc1 __attribute__ ((nocommon));</span><br><span class="line"><span class="keyword">char</span> *loc2 __attribute__ ((nocommon));</span><br><span class="line">...</span><br><span class="line">...</span><br><span class="line"><span class="keyword">char</span> *locs __attribute__ ((nocommon));</span><br></pre></td></tr></table></figure>
-
-<p>PS. 原链接中还多了一个 <code>compat_symbol</code>, 但是我没加也编译过了….就不管了</p>
-<h2 id="第三步"><a href="#第三步" class="headerlink" title="第三步"></a>第三步</h2><p>建立编译文件夹</p>
-<p><code>/tmp&gt;md glibc-build-32</code><br><code>/tmp&gt;md glibc-build-64</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">char</span> <span class="o">*</span><span class="n">loc1</span><span class="p">;</span>
+<span class="kt">char</span> <span class="o">*</span><span class="n">loc2</span><span class="p">;</span>
+<span class="p">...</span>
+<span class="p">...</span>
+<span class="kt">char</span> <span class="o">*</span><span class="n">loc</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>换成</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">char</span> <span class="o">*</span><span class="n">loc1</span> <span class="nf">__attribute__</span> <span class="p">((</span><span class="n">nocommon</span><span class="p">));</span>
+<span class="kt">char</span> <span class="o">*</span><span class="n">loc2</span> <span class="nf">__attribute__</span> <span class="p">((</span><span class="n">nocommon</span><span class="p">));</span>
+<span class="p">...</span>
+<span class="p">...</span>
+<span class="kt">char</span> <span class="o">*</span><span class="n">locs</span> <span class="n">__attribute__</span> <span class="p">((</span><span class="n">nocommon</span><span class="p">));</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>PS. 原链接中还多了一个 <code>compat_symbol</code>, 但是我没加也编译过了&hellip;.就不管了</p>
+<h2 id="第三步">第三步</h2>
+<p>建立编译文件夹</p>
+<p><code>/tmp&gt;md glibc-build-32</code>
+<code>/tmp&gt;md glibc-build-64</code></p>
 <p>然后随便cd进一个</p>
 <p>32位使用如下命令配置</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">../glibc-2.23/configure --<span class="built_in">disable</span>-werror --prefix=/home/aloxaf/.<span class="built_in">local</span>/lib/glibc-2.23_x86 --host=i686-linux-gnu --build=i686-linux-gnu CC=<span class="string">"gcc -m32"</span> CXX=<span class="string">"g++ -m32"</span> CFLAGS=<span class="string">"-g -O2 -march=i686 -fno-stack-protector"</span> CXXFLAGS=<span class="string">"-g -O2 -march=i686 -fno-stack-protector"</span> --<span class="built_in">enable</span>-debug=yes</span><br></pre></td></tr></table></figure>
-
-<p>64位使用如下命令配置</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">../glibc-2.23/configure --<span class="built_in">disable</span>-werror --prefix=/home/aloxaf/.<span class="built_in">local</span>/lib/glibc-2.23 --<span class="built_in">enable</span>-debug=yes CFLAGS=<span class="string">"-O2 -g"</span> CPPFLAGS=<span class="string">"-O2 -g"</span></span><br></pre></td></tr></table></figure>
-
-<p>Note:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">../glibc-2.23/configure --disable-werror --prefix<span class="o">=</span>/home/aloxaf/.local/lib/glibc-2.23_x86 --host<span class="o">=</span>i686-linux-gnu --build<span class="o">=</span>i686-linux-gnu <span class="nv">CC</span><span class="o">=</span><span class="s2">&#34;gcc -m32&#34;</span> <span class="nv">CXX</span><span class="o">=</span><span class="s2">&#34;g++ -m32&#34;</span> <span class="nv">CFLAGS</span><span class="o">=</span><span class="s2">&#34;-g -O2 -march=i686 -fno-stack-protector&#34;</span> <span class="nv">CXXFLAGS</span><span class="o">=</span><span class="s2">&#34;-g -O2 -march=i686 -fno-stack-protector&#34;</span> --enable-debug<span class="o">=</span>yes
+</code></pre></td></tr></table>
+</div>
+</div><p>64位使用如下命令配置</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">../glibc-2.23/configure --disable-werror --prefix<span class="o">=</span>/home/aloxaf/.local/lib/glibc-2.23 --enable-debug<span class="o">=</span>yes <span class="nv">CFLAGS</span><span class="o">=</span><span class="s2">&#34;-O2 -g&#34;</span> <span class="nv">CPPFLAGS</span><span class="o">=</span><span class="s2">&#34;-O2 -g&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Note:</p>
 <ul>
 <li><code>--prefix</code>请自行更改, 简要地讲就是你打算把这个glibc装到哪个地方</li>
 <li>32位不加 <code>-fno-stack-protector</code> 会出现奇怪的link问题. 反正这个只是用来调试的, 就这样粗暴地解决吧.</li>
 </ul>
 <p>配置完以后分别 <code>make -j4 &amp;&amp; make install</code> 就安装完成了</p>
-<h1 id="配置运行环境"><a href="#配置运行环境" class="headerlink" title="配置运行环境"></a>配置运行环境</h1><p>大多数 elf 编译的时候都写死了ld的路径 <code>/usr/lib/ld.so</code>, 这就比较尴尬. 就算强行让 2.26 的 ld.so 加载 2.23 的libc, 也指不定会出啥奇怪问题.</p>
-<p>幸运的是看雪大佬已经给出了方案: <a href="https://bbs.pediy.com/thread-225849.htm" target="_blank" rel="noopener">关于不同版本glibc强行加载的方法（附上代码）</a><br>虽然很暴力, 但是有效啊.</p>
-<p>不过每次都把ld.so复制到当前文件夹下 &amp;&amp; 使用 <code>LD_PRELOAD</code> 指定libc好麻烦的样子,<br>于是结合自己的经验, 修改了一下脚本.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># https://bbs.pediy.com/thread-225849.htm</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> tempfile <span class="keyword">import</span> gettempprefix</span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">change_ld</span><span class="params">(binary: str)</span>-&gt;str:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    更改ELF文件加载的libc版本</span></span><br><span class="line"><span class="string">    :param binary: ELF路径</span></span><br><span class="line"><span class="string">    :param ld:   ld.so路径</span></span><br><span class="line"><span class="string">    :param libc: lib.so路径</span></span><br><span class="line"><span class="string">    :return: 新的ELF文件路径</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line"></span><br><span class="line">    binary = ELF(binary)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> segment <span class="keyword">in</span> binary.segments:</span><br><span class="line">        <span class="keyword">if</span> segment.header[<span class="string">'p_type'</span>] == <span class="string">'PT_INTERP'</span>:</span><br><span class="line">            size = segment.header[<span class="string">'p_memsz'</span>]</span><br><span class="line">            addr = segment.header[<span class="string">'p_paddr'</span>]</span><br><span class="line">            data = segment.data()</span><br><span class="line"></span><br><span class="line">            ld = <span class="string">'/opt/ctf/ld.so'</span> <span class="keyword">if</span> binary.arch == <span class="string">'amd64'</span> <span class="keyword">else</span> <span class="string">'/opt/ctf/ld32.so'</span></span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> size &lt;= len(ld):</span><br><span class="line">                <span class="keyword">raise</span> Exception(</span><br><span class="line">                    <span class="string">"Failed to change PT_INTERP from &#123;&#125; to &#123;&#125;"</span>.format(data, ld))</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line"></span><br><span class="line">            binary.write(addr, ld.ljust(size, <span class="string">'\0'</span>).encode())</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> os.access(<span class="string">'/tmp/easypwn'</span>, os.F_OK):</span><br><span class="line">                os.mkdir(<span class="string">'/tmp/easypwn'</span>)</span><br><span class="line">            path = <span class="string">'/tmp/easypwn/&#123;&#125;_debug'</span>.format(</span><br><span class="line">                os.path.basename(binary.path))</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> os.access(path, os.F_OK):</span><br><span class="line">                os.remove(path)</span><br><span class="line">                <span class="comment"># print("Removing exist file &#123;&#125;".format(path))</span></span><br><span class="line">            binary.save(path)</span><br><span class="line">            os.chmod(path, <span class="number">0b111000000</span>)  <span class="comment"># rwx------</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># print("PT_INTERP has changed from &#123;&#125; to &#123;&#125;. Using temp file &#123;&#125;".format(data, ld, path))</span></span><br><span class="line">    <span class="keyword">return</span> ELF(path)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    change_ld(sys.argv[<span class="number">1</span>]).save(sys.argv[<span class="number">2</span>])</span><br><span class="line">    os.chmod(sys.argv[<span class="number">2</span>], <span class="number">0b111000000</span>)</span><br></pre></td></tr></table></figure>
+<h1 id="配置运行环境">配置运行环境</h1>
+<p>大多数 elf 编译的时候都写死了ld的路径 <code>/usr/lib/ld.so</code>, 这就比较尴尬. 就算强行让 2.26 的 ld.so 加载 2.23 的libc, 也指不定会出啥奇怪问题.</p>
+<p>幸运的是看雪大佬已经给出了方案: <a href="https://bbs.pediy.com/thread-225849.htm">关于不同版本glibc强行加载的方法（附上代码）</a>
+虽然很暴力, 但是有效啊.</p>
+<p>不过每次都把ld.so复制到当前文件夹下 &amp;&amp; 使用 <code>LD_PRELOAD</code> 指定libc好麻烦的样子,
+于是结合自己的经验, 修改了一下脚本.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="ch">#!/usr/bin/env python</span>
+<span class="c1"># -*- coding: utf-8 -*-</span>
 
-<p>其中 <code>/opt/ctf/ld.so</code> 是 <code>/home/aloxaf/.local/lib/glibc-2.23/lib/ld-2.23.so</code> 的硬链接,<br>32位版以此类推.</p>
+<span class="c1"># https://bbs.pediy.com/thread-225849.htm</span>
+
+<span class="kn">from</span> <span class="nn">tempfile</span> <span class="kn">import</span> <span class="n">gettempprefix</span>
+<span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+
+<span class="k">def</span> <span class="nf">change_ld</span><span class="p">(</span><span class="n">binary</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span><span class="o">-&gt;</span><span class="nb">str</span><span class="p">:</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    更改ELF文件加载的libc版本
+</span><span class="s2">    :param binary: ELF路径
+</span><span class="s2">    :param ld:   ld.so路径
+</span><span class="s2">    :param libc: lib.so路径
+</span><span class="s2">    :return: 新的ELF文件路径
+</span><span class="s2">    &#34;&#34;&#34;</span>
+
+    <span class="n">binary</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="n">binary</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">segment</span> <span class="ow">in</span> <span class="n">binary</span><span class="o">.</span><span class="n">segments</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">segment</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="s1">&#39;p_type&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;PT_INTERP&#39;</span><span class="p">:</span>
+            <span class="n">size</span> <span class="o">=</span> <span class="n">segment</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="s1">&#39;p_memsz&#39;</span><span class="p">]</span>
+            <span class="n">addr</span> <span class="o">=</span> <span class="n">segment</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="s1">&#39;p_paddr&#39;</span><span class="p">]</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">segment</span><span class="o">.</span><span class="n">data</span><span class="p">()</span>
+
+            <span class="n">ld</span> <span class="o">=</span> <span class="s1">&#39;/opt/ctf/ld.so&#39;</span> <span class="k">if</span> <span class="n">binary</span><span class="o">.</span><span class="n">arch</span> <span class="o">==</span> <span class="s1">&#39;amd64&#39;</span> <span class="k">else</span> <span class="s1">&#39;/opt/ctf/ld32.so&#39;</span>
+
+            <span class="k">if</span> <span class="n">size</span> <span class="o">&lt;=</span> <span class="nb">len</span><span class="p">(</span><span class="n">ld</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span>
+                    <span class="s2">&#34;Failed to change PT_INTERP from {} to {}&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">ld</span><span class="p">))</span>
+                <span class="k">return</span> <span class="bp">None</span>
+
+            <span class="n">binary</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">addr</span><span class="p">,</span> <span class="n">ld</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\0</span><span class="s1">&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span>
+
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">access</span><span class="p">(</span><span class="s1">&#39;/tmp/easypwn&#39;</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">F_OK</span><span class="p">):</span>
+                <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="s1">&#39;/tmp/easypwn&#39;</span><span class="p">)</span>
+            <span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;/tmp/easypwn/{}_debug&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">binary</span><span class="o">.</span><span class="n">path</span><span class="p">))</span>
+
+            <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">access</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">F_OK</span><span class="p">):</span>
+                <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+                <span class="c1"># print(&#34;Removing exist file {}&#34;.format(path))</span>
+            <span class="n">binary</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">chmod</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="mb">0b111000000</span><span class="p">)</span>  <span class="c1"># rwx------</span>
+
+    <span class="c1"># print(&#34;PT_INTERP has changed from {} to {}. Using temp file {}&#34;.format(data, ld, path))</span>
+    <span class="k">return</span> <span class="n">ELF</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">change_ld</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">chmod</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="mb">0b111000000</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>其中 <code>/opt/ctf/ld.so</code> 是 <code>/home/aloxaf/.local/lib/glibc-2.23/lib/ld-2.23.so</code> 的硬链接,
+32位版以此类推.</p>
 <p>建立硬链接主要是为了缩短路径长度, 保证能够替换掉原来的路径.</p>
 <p>然后给这个.py加个硬链接到 <code>~/.local/bin</code>, 就可以直接 <code>change_ld test test-debug</code> 让这个 elf  默认加载我们自己编译的glibc了.</p>
-<h2 id="愉快地Debug-吧少年-Arch-Linux-大法好折腾"><a href="#愉快地Debug-吧少年-Arch-Linux-大法好折腾" class="headerlink" title="愉快地Debug 吧少年, Arch Linux 大法好折腾"></a>愉快地Debug 吧少年, Arch Linux 大法好<del>折腾</del></h2>
-      </div>
-      <div class="post-copyright">
-    <p class="copyright-item">
-      <span>原文作者: </span>
-      <a href="https://www.aloxaf.com">Aloxaf</a>
-    </p>
-    <p class="copyright-item">
-      <span>原文链接: </span>
-      <a href="https://www.aloxaf.com/2018/07/arch_glibc_2.23/">https://www.aloxaf.com/2018/07/arch_glibc_2.23/</a>
-    </p>
-    <p class="copyright-item">
-      <span>许可协议: </span><a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
-    </p>
-  </div>
-      <footer class="post-footer">
-        <div class="post-tags">
-            <a href="/tags/linux/">linux</a>
-            <a href="/tags/pwn/">pwn</a>
-            </div>
-        
-        <nav class="post-nav"><a class="prev" href="/2018/07/hackme_inndy/">
-        <i class="iconfont icon-left"></i>
-        <span class="prev-text nav-default">hackme.inndy 部分writeup</span>
-        <span class="prev-text nav-mobile">上一篇</span>
-      </a>
-    <a class="next" href="/2018/05/jarvisoj_basic/">
-        <span class="next-text nav-default">Jarvis OJ BASIC 完整writeup</span>
-        <span class="prev-text nav-mobile">下一篇</span>
-        <i class="iconfont icon-right"></i>
-      </a>
-    </nav></footer>
-    </article></div><div class="comments" id="comments"><div id="vcomments"></div>
-    </div></div>
-      </main>
+<h2 id="愉快地debug-吧少年-arch-linux-大法好折腾">愉快地Debug 吧少年, Arch Linux 大法好<del>折腾</del></h2>
+    </div>
 
-      <footer id="footer" class="footer"><div class="social-links"><a href="mailto:aloxafx@gmail.com" class="iconfont icon-email" title="email"></a>
-        <a href="https://github.com/Aloxaf" target="_blank" rel="noopener" class="iconfont icon-github" title="github"></a>
-        <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
-    </div><div class="copyright">
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Aloxaf</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2018-08-12
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a></span>
+  </p>
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/linux/">linux</a>
+          <a href="/tags/pwn/">pwn</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/2018/07/add_open_by_emacsclient/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Linux 下在打开方式中增加用 emacsclient</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/2018/05/jarvisoj_basic/">
+            <span class="next-text nav-default">Jarvis OJ BASIC 完整writeup</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  <span id="/2018/07/arch_glibc_2.23/" class="leancloud_visitors" data-flag-title="在 Arch Linux 下使用 glibc 2.23 调试程序&amp;使用 pwndbg">
+		<span class="post-meta-item-text">文章阅读量 </span>
+		<span class="leancloud-visitors-count">0</span>
+		<p></p>
+	  </span>
+  <div id="vcomments"></div>
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+  <script type="text/javascript">
+    new Valine({
+        el: '#vcomments' ,
+        serverURLs: 'https:\/\/lcd.aloxaf.cn',
+        appId: 'fSbXaElXXTznggVXiWy8NFBU-gzGzoHsz',
+        appKey: 'kK3SxB14xAACgHftKrSaBRDU',
+        notify:  false ,
+        verify:  false ,
+        avatar:'mm',
+        placeholder: '妙啊，妙啊',
+        visitor:  true 
+    });
+  </script>
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:aloxafx@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/Aloxaf" class="iconfont icon-github" title="github"></a>
+  <a href="http://www.aloxaf.com/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
   <span class="power-by">
-    由 <a class="hexo-link" href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> 强力驱动
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
   </span>
   <span class="division">|</span>
   <span class="theme-info">
     主题 - 
-    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even" target="_blank" rel="noopener">Even</a>
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
   </span>
 
-  <span class="copyright-year">&copy;2017 - 2020<span class="heart">
-      <i class="iconfont icon-heart"></i>
-    </span>
-    <span class="author">Aloxaf</span>
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span><span>Aloxaf</span>
   </span>
 </div>
-</footer>
 
-      <div class="back-to-top" id="back-to-top">
-        <i class="iconfont icon-up"></i>
-      </div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
     </div>
-<!-- valine Comments -->
-<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
-<script type="text/javascript">
-    new Valine({
-        el: '#vcomments',
-        serverURLs: "https://lcd.aloxaf.cn",
-        notify: false,
-        verify: false,
-        app_id: "fSbXaElXXTznggVXiWy8NFBU-gzGzoHsz",
-        app_key: "kK3SxB14xAACgHftKrSaBRDU",
-        placeholder: "妙啊，妙啊",
-        avatar: 'mm',
-        visitor: true,
-    });
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "zh".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-123773630-1', 'auto');
+	
+	ga('send', 'pageview');
+}
 </script>
-<script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
-  <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
-  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
-  <script type="text/javascript" src="/js/src/even.js?v=2.11.0"></script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
 </body>
 </html>

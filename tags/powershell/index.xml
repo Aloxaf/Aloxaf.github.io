@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>powershell on Aloxaf&#39;s Blog</title>
+    <link>http://www.aloxaf.com/tags/powershell/</link>
+    <description>Recent content in powershell on Aloxaf&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Sat, 02 Mar 2019 00:02:05 +0000</lastBuildDate><atom:link href="http://www.aloxaf.com/tags/powershell/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>PowerShell 真香</title>
+      <link>http://www.aloxaf.com/2019/03/powershell_miaoa/</link>
+      <pubDate>Sat, 02 Mar 2019 00:02:05 +0000</pubDate>
+      
+      <guid>http://www.aloxaf.com/2019/03/powershell_miaoa/</guid>
+      <description>我就是饿死, 死外面, 从外面跳下去, 也不会用 M$ 的垃圾 PowerShell ! &amp;hellip; 真香! NOTE: 这是一篇黑 bash 吹 PowerShell(以下简称 pwsh) 的文章, bash 死忠粉以及软黑请退散</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,3 +1,2 @@
 User-agent: *
-Allow: /
-Sitemap: https://www.aloxaf.com/sitemap.xml
+Sitemap: http://www.aloxaf.com/sitemap.xml
