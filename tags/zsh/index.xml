@@ -6,7 +6,30 @@
     <description>Recent content in zsh on Aloxaf&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Fri, 13 Mar 2020 17:27:22 +0000</lastBuildDate><atom:link href="https://www.aloxaf.com/tags/zsh/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 09 Nov 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://www.aloxaf.com/tags/zsh/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>【ZSH 系列教程】历史扩展与修饰符</title>
+      <link>https://www.aloxaf.com/2020/11/zsh_history_expansion/</link>
+      <pubDate>Mon, 09 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.aloxaf.com/2020/11/zsh_history_expansion/</guid>
+      <description>&lt;p&gt;本文将介绍 zsh 的历史扩展（History Expansion）与修饰符（Modifiers）的用法。&lt;/p&gt;
+&lt;p&gt;历史扩展允许你复用历史记录中的命令的整体或者某个部分，提高了修改拼写错误和复杂命令时的体验。&lt;/p&gt;
+&lt;p&gt;修饰符是一套用于修饰扩展结果的规则，它发源于历史扩展，但也适用于参数扩展（parameter expansion）和文件名扩展（filename generation）。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>【ZSH 系列教程】 序</title>
+      <link>https://www.aloxaf.com/2020/11/zsh_tutorial_introduce/</link>
+      <pubDate>Sun, 08 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.aloxaf.com/2020/11/zsh_tutorial_introduce/</guid>
+      <description>&lt;p&gt;一直想写点什么来介绍 zsh。
+zsh 非常强大，然而很多人只是单纯把它当成 bash with many plugins 用，实在是暴殄天物。&lt;/p&gt;
+&lt;p&gt;考虑到系统化的长篇教程已经有 &lt;a href=&#34;https://github.com/goreliu/zshguide&#34;&gt;zshguide&lt;/a&gt; 了，我决定写一系列短篇教程，针对 ZSH 的某一方面进行全面的介绍。&lt;/p&gt;
+&lt;p&gt;要说最全面的教程，那肯定是 ZSH 的文档了（虽然我常常吐槽它晦涩难懂）。事实上我也确实打算照着 ZSH 文档来写，甚至本来打算起名为“ZSH 文档翻译”的，但是起名翻译的话感觉就给我的文章套上了一个框框，发挥起来不是很自由。因此还是决定叫教程，这样我觉得有用的地方就可以多提一下，&lt;del&gt;没用的地方就不讲了&lt;/del&gt;。&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>fzf-tab —— 使用 fzf 进行 zsh 补全</title>
       <link>https://www.aloxaf.com/2020/03/fzf-tab/</link>

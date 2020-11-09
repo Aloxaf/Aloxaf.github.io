@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>【ZSH 系列教程】历史扩展与修饰符 - Aloxaf&#39;s Blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Aloxaf" /><meta name="description" content="本文将介绍 zsh 的历史扩展（History Expansion）与修饰符（Modifiers）的用法。
+历史扩展允许你复用历史记录中的命令的整体或者某个部分，提高了修改拼写错误和复杂命令时的体验。
+修饰符是一套用于修饰扩展结果的规则，它发源于历史扩展，但也适用于参数扩展（parameter expansion）和文件名扩展（filename generation）。
+" /><meta name="keywords" content="aloxaf, ctf, linux, zsh" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.78.1 with theme even" />
+
+
+<link rel="preload" href="/fonts/iconfont/iconfont.woff" as="font" type="font/woff" crossorigin="anonymous">
+<link rel="preload" href="/fonts/FiraCode/FiraCode-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+
+
+<link rel="canonical" href="https://www.aloxaf.com/2020/11/zsh_history_expansion/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.66509101da8cbb6d6be4edabc85875fd614c70b5be09d59f2d54d7e09bc78d06.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="【ZSH 系列教程】历史扩展与修饰符" />
+<meta property="og:description" content="本文将介绍 zsh 的历史扩展（History Expansion）与修饰符（Modifiers）的用法。
+历史扩展允许你复用历史记录中的命令的整体或者某个部分，提高了修改拼写错误和复杂命令时的体验。
+修饰符是一套用于修饰扩展结果的规则，它发源于历史扩展，但也适用于参数扩展（parameter expansion）和文件名扩展（filename generation）。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.aloxaf.com/2020/11/zsh_history_expansion/" />
+<meta property="article:published_time" content="2020-11-09T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-11-09T00:00:00+00:00" />
+<meta itemprop="name" content="【ZSH 系列教程】历史扩展与修饰符">
+<meta itemprop="description" content="本文将介绍 zsh 的历史扩展（History Expansion）与修饰符（Modifiers）的用法。
+历史扩展允许你复用历史记录中的命令的整体或者某个部分，提高了修改拼写错误和复杂命令时的体验。
+修饰符是一套用于修饰扩展结果的规则，它发源于历史扩展，但也适用于参数扩展（parameter expansion）和文件名扩展（filename generation）。">
+<meta itemprop="datePublished" content="2020-11-09T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2020-11-09T00:00:00+00:00" />
+<meta itemprop="wordCount" content="2517">
+
+
+
+<meta itemprop="keywords" content="zsh,glob," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="【ZSH 系列教程】历史扩展与修饰符"/>
+<meta name="twitter:description" content="本文将介绍 zsh 的历史扩展（History Expansion）与修饰符（Modifiers）的用法。
+历史扩展允许你复用历史记录中的命令的整体或者某个部分，提高了修改拼写错误和复杂命令时的体验。
+修饰符是一套用于修饰扩展结果的规则，它发源于历史扩展，但也适用于参数扩展（parameter expansion）和文件名扩展（filename generation）。"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Aloxaf&#39;s Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于</li>
+      </a><a href="/friend/">
+        <li class="mobile-menu-item">友链</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Aloxaf&#39;s Blog</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">关于</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/friend/">友链</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">【ZSH 系列教程】历史扩展与修饰符</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-11-09 </span>
+        <div class="post-category">
+            <a href="/categories/zsh-%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B/"> zsh 系列教程 </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#历史扩展">历史扩展</a>
+      <ul>
+        <li><a href="#速览">速览</a></li>
+        <li><a href="#条目标识符">条目标识符</a></li>
+        <li><a href="#词标识符">词标识符</a></li>
+      </ul>
+    </li>
+    <li><a href="#修饰符">修饰符</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>本文将介绍 zsh 的历史扩展（History Expansion）与修饰符（Modifiers）的用法。</p>
+<p>历史扩展允许你复用历史记录中的命令的整体或者某个部分，提高了修改拼写错误和复杂命令时的体验。</p>
+<p>修饰符是一套用于修饰扩展结果的规则，它发源于历史扩展，但也适用于参数扩展（parameter expansion）和文件名扩展（filename generation）。</p>
+<h1 id="历史扩展">历史扩展</h1>
+<p>历史扩展只局限于会话内历史记录（internal history list），其大小可以由 <code>HISTSIZE</code> 变量控制。注意区别于 <code>SAVEHIST</code>，后者是指 <code>HISTFILE</code> 中允许保存的历史记录条目数量，这个值可以很大。但是 <code>HISTSIZE</code> 如果设置地非常大的话，在你的 <code>HISTFILE</code> 同样过大时就会在启动 ZSH 的时候出现你怎么测都测不出来但是能明显感受到的卡顿。</p>
+<p>每个历史记录条目（event）都有一个编号，利用这个编号可以快速访问某一条历史记录。你可以在 <code>PROMPT</code> 中添加 <code>%h</code> 或 <code>%!</code> 以实时显示这个编号。</p>
+<h2 id="速览">速览</h2>
+<p>zsh 的历史扩展整体上和 bash 是一致的。</p>
+<p>一条历史扩展表达式以 <code>histchars</code> 变量中的第一个字符开始（默认是 <code>!</code>），它和变量类似，可以出现在除了单引号和 C 风格转义字符串（<code>$''</code>）以外的任何地方，包括<strong>双引号内部</strong>。</p>
+<blockquote>
+<p><code>histchars</code> 是一个包含三个字符的变量，默认为 <code>!^#</code>，第一个字符用来指示历史扩展表达式的开始，第二个字符用于指示快速历史替换，第三个字符用于注释。为了简化书写，以下都假设你没有修改过这个变量。</p>
+</blockquote>
+<p><code>!</code> 后可以跟一个可选的<a href="#%E6%9D%A1%E7%9B%AE%E6%A0%87%E8%AF%86%E7%AC%A6">条目标识符</a>（event designator）和一个可选的<a href="#%E8%AF%8D%E6%A0%87%E8%AF%86%E7%AC%A6">词标识符</a>（word designator）。如果两者都没有出现，那么该表达式不会被扩展。</p>
+<p>默认情况下，含有历史扩展的命令在执行之前会先把扩展后的结果打印出来。但是我比较建议如下配置：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-zsh" data-lang="zsh"><span class="c1"># 按空格键时自动进行历史扩展</span>
+bindkey <span class="s2">&#34; &#34;</span> magic-space
+<span class="c1"># 不直接执行历史扩展的结果</span>
+setopt hist_verify
+</code></pre></td></tr></table>
+</div>
+</div><p>这样可以最大程度避免因为执行了错误的历史命令而导致损失。</p>
+<p>默认情况下，一条不包含条目标识符的历史扩展会在历史记录中寻找任何与之前缀匹配的历史记录。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-zsh" data-lang="zsh">❯ <span class="nb">echo</span> hello
+hello
+❯ print hi
+hi
+❯ !print <span class="c1"># =&gt; print hi</span>
+❯ !echo  <span class="c1"># =&gt; echo hello</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>形如 <code>^foo^bar</code> 形式的表达式则会将上一条命令中的 foo 替换为 bar 并执行。它等效于 <code>!!:s^foo^bar^</code>，最后一个 <code>^</code> 后面还可以跟其他的修饰符，比如用 <code>^foo^bar^:G</code> 来进行全局替换。</p>
+<p>如果输入的命令中含有 <code>!&quot;</code> 的话，历史扩展会被临时禁止，所有的 <code>!</code> 不再有特殊含义。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-zsh" data-lang="zsh">❯ <span class="nb">echo</span> <span class="s2">&#34;!233&#34;</span>
+zsh: no such event: <span class="m">233</span>
+❯ !<span class="s2">&#34; echo &#34;</span>!233<span class="s2">&#34;
+</span><span class="s2">!233
+</span></code></pre></td></tr></table>
+</div>
+</div><h2 id="条目标识符">条目标识符</h2>
+<p>条目标识符用于在历史记录中指定一条历史记录。以下为可用的事件标识符：</p>
+<table>
+<thead>
+<tr>
+<th>标识符</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>!</code></td>
+<td>开始一个历史扩展表达式，除非后面是空格、换行、&quot;=&quot; 和 &ldquo;(&quot;。</td>
+</tr>
+<tr>
+<td><code>!!</code></td>
+<td>上一条命令</td>
+</tr>
+<tr>
+<td><code>!n</code></td>
+<td>编号为 n 的命令</td>
+</tr>
+<tr>
+<td><code>!-n</code></td>
+<td>编号为倒数第 n 条的命令</td>
+</tr>
+<tr>
+<td><code>!str</code></td>
+<td>以 str 开头的最近一条命令</td>
+</tr>
+<tr>
+<td><code>!?str[?]</code></td>
+<td>包含 str 的最近一条命令。最后一个 <code>?</code> 起分隔作用，可以省略。</td>
+</tr>
+<tr>
+<td><code>!#</code></td>
+<td>当前输入的字符串</td>
+</tr>
+<tr>
+<td><code>!{...}</code></td>
+<td>起分隔作用，内部可以放其他标识符。作用类似 <code>${variable}</code> 中的大括号。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="词标识符">词标识符</h2>
+<table>
+<thead>
+<tr>
+<th>标识符</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>0</code></td>
+<td>第一个词（我们假设它是命令</td>
+</tr>
+<tr>
+<td><code>n</code></td>
+<td>该命令的第 n 个参数</td>
+</tr>
+<tr>
+<td><code>^</code></td>
+<td>第 1 个参数</td>
+</tr>
+<tr>
+<td><code>$</code></td>
+<td>最后一个参数</td>
+</tr>
+<tr>
+<td><code>%</code></td>
+<td>最近一个 <code>?str</code> 匹配的词</td>
+</tr>
+<tr>
+<td><code>x-y</code></td>
+<td>指定一个系列词的范围</td>
+</tr>
+<tr>
+<td><code>*</code></td>
+<td>所有参数</td>
+</tr>
+<tr>
+<td><code>x*</code></td>
+<td>等效于 <code>x-$</code></td>
+</tr>
+<tr>
+<td><code>x-</code></td>
+<td>和 <code>x*</code> 类似但不包括最后一个词</td>
+</tr>
+</tbody>
+</table>
+<p>注意 <code>%</code> 标识符只能以 <code>!%</code>、<code>!:%</code>和 <code>!?str?:%</code> 的形式使用，并且要求先前已经使用过了 <code>!?</code> 表达式。</p>
+<h1 id="修饰符">修饰符</h1>
+<p>拉低 zsh 脚本可读性但是非常有用的功能之一。</p>
+<p>修饰符可以用在历史扩展中的词标识符之后，并且可以以 <code>:x</code> 的形式多次使用。修饰符也应用于文件名扩展（filename generation）和参数扩展（parameter expansion）。（文件名扩展其实就是大家熟悉的 glob，想不到怎么翻译才好，就叫文件名扩展吧，<del>懂这个意思就行</del>）</p>
+<p>先让我们举几个例子熟悉一下用法</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-zsh" data-lang="zsh"><span class="c1"># 用于历史扩展，取上一条命令的最后一个参数，并作为路径处理，只保留文件名部分。</span>
+❯ ls ~/abc/def.xyz 
+❯ !$:t <span class="c1"># =&gt; def.xyz</span>
+
+<span class="c1"># 用于参数扩展，将展开结果中转为大写形式</span>
+❯ <span class="nv">var</span><span class="o">=</span>abc
+❯ <span class="nb">echo</span> <span class="si">${</span><span class="nv">var</span><span class="p">:</span><span class="nv">u</span><span class="si">}</span> <span class="c1"># =&gt; ABC</span>
+
+<span class="c1"># 用于文件名扩展，只保留展开结果中的文件名部分</span>
+❯ /usr/*<span class="o">(</span>:t<span class="o">)</span>  <span class="c1"># =&gt; bin etc include ...</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>很简单，但也很强大。以下为完整的修饰符列表：</p>
+<table>
+<thead>
+<tr>
+<th>修饰符</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>a</code></td>
+<td>展开为绝对路径，将会移除 <code>.</code> 和 <code>..</code>。注意这个展开不会检测路径是否有效。</td>
+</tr>
+<tr>
+<td><code>A</code></td>
+<td>展开为绝对路径，同时用 <code>realpath(3)</code> 库函数展开符号链接。</td>
+</tr>
+<tr>
+<td><code>c</code></td>
+<td>在 PATH 中搜索并展开为该命令的绝对路径</td>
+</tr>
+<tr>
+<td><code>e</code></td>
+<td>只保留文件扩展名</td>
+</tr>
+<tr>
+<td><code>h</code></td>
+<td>只保留路径（类似 <code>dirname</code>）</td>
+</tr>
+<tr>
+<td><code>l</code></td>
+<td>转为小写</td>
+</tr>
+<tr>
+<td><code>p</code></td>
+<td>只打印而不必执行命令。仅用于历史扩展。</td>
+</tr>
+<tr>
+<td><code>P</code></td>
+<td>和 <code>A</code> 功能相同，但是语义和 <code>realpath(3)</code> 更一致</td>
+</tr>
+<tr>
+<td><code>q</code></td>
+<td>将展开结果中的每一个词转义。仅用于历史扩展和变量扩展。</td>
+</tr>
+<tr>
+<td><code>Q</code></td>
+<td>移除一层转义</td>
+</tr>
+<tr>
+<td><code>r</code></td>
+<td>移除文件扩展名</td>
+</tr>
+<tr>
+<td><code>s/l/r[/]</code></td>
+<td>将 l 替换为 r。对于数组和文件展开，这个替换会应用到每个元素上。默认只替换第一个，可以使用 <code>gs/l/r</code> 或 <code>s/l/r/:G</code> 来进行全局替换。</td>
+</tr>
+<tr>
+<td><code>&amp;</code></td>
+<td>重复先前的 <code>s</code> 替换</td>
+</tr>
+<tr>
+<td><code>t</code></td>
+<td>去除路径，只保留文件全名。类似 <code>basename</code></td>
+</tr>
+<tr>
+<td><code>u</code></td>
+<td>转为大写</td>
+</tr>
+<tr>
+<td><code>x</code></td>
+<td>和 q 类似，不过是按空格分割词。不适用于变量扩展</td>
+</tr>
+</tbody>
+</table>
+<p><code>s/l/r/</code> 是个有点复杂的玩意儿，在这里详细介绍一下：</p>
+<p>首先它的工作方式如下：</p>
+<ul>
+<li>默认情况下左侧的字符串不会被解释为模式，而是纯字符串</li>
+<li><code>/</code> 可以替换为其他字符，但需要前后保持一致（这点和 sed 类似）</li>
+<li>右侧可以用 <code>&amp;</code> 来指代前面匹配到的字符串（这点也和 sed 类似）</li>
+<li><code>l</code> 可以为空，此时会使用先前的 <code>l</code> 或者 <code>!?str</code> 匹配到的字符串</li>
+<li>最后一个 <code>/</code> 和 <code>!?str[?]</code> 中的最后一个 <code>?</code>类似，在不会引起歧义的情况下可以省略。</li>
+</ul>
+<p>其次，展开顺序会影响 <code>l</code> 和 <code>r</code> 的效果。</p>
+<p>当用于历史扩展时，因为历史扩展优先级最高，所以 <code>l</code> 和 <code>r</code> 会作为普通字符串（除非开启了下面两段提到的特殊开关）。</p>
+<p>当用于参数扩展时，<strong><code>r</code> 首先被替换到展开结果中</strong>，然后展开结果再执行其他的算术展开、大括号展开等等，这意味着 <code>r</code> 的内容如果含有可执行代码的话，它可能会被执行多次。举例如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-zsh" data-lang="zsh">❯ <span class="nv">n</span><span class="o">=</span><span class="m">0</span>
+❯ <span class="nv">var</span><span class="o">=</span><span class="s2">&#34;aaa&#34;</span>
+❯ <span class="nb">echo</span> <span class="si">${</span><span class="nv">var</span><span class="p">:</span><span class="nv">gs</span><span class="p">/a/</span><span class="k">$((</span><span class="nv">n</span><span class="o">+=</span><span class="m">1</span><span class="k">))</span><span class="si">}</span>
+<span class="m">123</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>当用于文件名扩展时，则是反过来了——其他扩展的优先级是最高的，甚至高于 <code>:s</code> 的解析过程。</p>
+<p>除此之外，如果设置了 <code>HIST_SUBST_PATTERN</code> 开关，<code>l</code> 会被识别为模式而不是纯字符串。而且 <code>l</code> 可以以 <code>#</code>/<code>%</code> 开头来限定只能匹配字符串的开头/结尾。两者可以也一起使用。</p>
+<p>剩下还有一些仅适用于参数扩展和文件名扩展的修饰符，</p>
+<table>
+<thead>
+<tr>
+<th>修饰词</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>f</code></td>
+<td>反复应用后面紧跟着的修饰符（中间不需要加 <code>:</code>），直到结果不再改变</td>
+</tr>
+<tr>
+<td><code>F:expr:</code></td>
+<td>和 <code>f</code> 类似但是只重复最多 expr 次。expr 是一个可以进行运算的表达式</td>
+</tr>
+<tr>
+<td><code>w</code></td>
+<td>让后面紧跟着的修饰词作用于字符串中每个词而不是整个字符串</td>
+</tr>
+<tr>
+<td><code>W:sep:</code></td>
+<td>和 <code>w</code> 类似，但是允许指定词分隔符。这里的 <code>:</code> 可以替换为其他字符，但要前后保持一致。</td>
+</tr>
+</tbody>
+</table>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Aloxaf</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2020-11-09
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a></span>
+  </p>
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/zsh/">zsh</a>
+          <a href="/tags/glob/">glob</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/2020/11/zsh_tutorial_introduce/">
+            <span class="next-text nav-default">【ZSH 系列教程】 序</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  <span id="/2020/11/zsh_history_expansion/" class="leancloud_visitors" data-flag-title="【ZSH 系列教程】历史扩展与修饰符">
+		<span class="post-meta-item-text">文章阅读量 </span>
+		<span class="leancloud-visitors-count">0</span>
+		<p></p>
+	  </span>
+  <div id="vcomments"></div>
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+  <script type="text/javascript">
+    new Valine({
+        el: '#vcomments' ,
+        serverURLs: 'https:\/\/lcd.aloxaf.cn',
+        appId: 'fSbXaElXXTznggVXiWy8NFBU-gzGzoHsz',
+        appKey: 'kK3SxB14xAACgHftKrSaBRDU',
+        notify:  false ,
+        verify:  false ,
+        avatar:'mm',
+        placeholder: '妙啊，妙啊',
+        visitor:  true 
+    });
+  </script>
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:aloxafx@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/Aloxaf" class="iconfont icon-github" title="github"></a>
+  <a href="https://www.aloxaf.com/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span><span>Aloxaf</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script async src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script async src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "zh".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-123773630-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+</body>
+</html>
