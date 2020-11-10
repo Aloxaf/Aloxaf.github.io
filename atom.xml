@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Aloxaf&#39;s Blog</title>
+    <link>https://www.aloxaf.com/</link>
+    <description>Recent content on Aloxaf&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Mon, 09 Nov 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://www.aloxaf.com/atom.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>友链</title>
+      <link>https://www.aloxaf.com/friend/</link>
+      <pubDate>Mon, 17 Sep 2018 11:41:00 +0000</pubDate>
+      
+      <guid>https://www.aloxaf.com/friend/</guid>
+      <description>施工中的友链 我也想搞一个友链，但是不会写样式，我也不想学，就这么放着吧 (能点就行 98年生的猫 Byaidu FKY iseki L1b0 M4x OURONGXING</description>
+    </item>
+    
+    <item>
+      <title>关于</title>
+      <link>https://www.aloxaf.com/about/</link>
+      <pubDate>Sat, 11 Aug 2018 09:05:04 +0000</pubDate>
+      
+      <guid>https://www.aloxaf.com/about/</guid>
+      <description>游戏 懒军, 玩成养桶游戏的那种 曾经的目标是成为 glyph 大师 CTF 咸鱼选手 (不知道这项放哪儿) Chocola 赛高 当过舰长, 指挥官, 后来觉得还是 Agent 好 还是提督好 宗教 Arch Linux 邪</description>
+    </item>
+    
+    <item>
+      <title>【ZSH 系列教程】历史扩展与修饰符</title>
+      <link>https://www.aloxaf.com/2020/11/zsh_history_expansion/</link>
+      <pubDate>Mon, 09 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.aloxaf.com/2020/11/zsh_history_expansion/</guid>
+      <description>&lt;p&gt;本文将介绍 zsh 的历史扩展（History Expansion）与修饰符（Modifiers）的用法。&lt;/p&gt;
+&lt;p&gt;历史扩展允许你复用历史记录中的命令的整体或者某个部分，提高了修改拼写错误和复杂命令时的体验。&lt;/p&gt;
+&lt;p&gt;修饰符是一套用于修饰扩展结果的规则，它发源于历史扩展，但也适用于参数扩展（parameter expansion）和文件名扩展（filename generation）。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>【ZSH 系列教程】 序</title>
+      <link>https://www.aloxaf.com/2020/11/zsh_tutorial_introduce/</link>
+      <pubDate>Sun, 08 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.aloxaf.com/2020/11/zsh_tutorial_introduce/</guid>
+      <description>&lt;p&gt;一直想写点什么来介绍 zsh。
+zsh 非常强大，然而很多人只是单纯把它当成 bash with many plugins 用，实在是暴殄天物。&lt;/p&gt;
+&lt;p&gt;考虑到系统化的长篇教程已经有 &lt;a href=&#34;https://github.com/goreliu/zshguide&#34;&gt;zshguide&lt;/a&gt; 了，我决定写一系列短篇教程，针对 ZSH 的某一方面进行全面的介绍。&lt;/p&gt;
+&lt;p&gt;要说最全面的教程，那肯定是 ZSH 的文档了（虽然我常常吐槽它晦涩难懂）。事实上我也确实打算照着 ZSH 文档来写，甚至本来打算起名为“ZSH 文档翻译”的，但是起名翻译的话感觉就给我的文章套上了一个框框，发挥起来不是很自由。因此还是决定叫教程，这样我觉得有用的地方就可以多提一下，&lt;del&gt;没用的地方就不讲了&lt;/del&gt;。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>使用 fcitx5-lua 编写 lua 插件</title>
+      <link>https://www.aloxaf.com/2020/09/fcitx5_plugin/</link>
+      <pubDate>Thu, 24 Sep 2020 21:53:09 +0000</pubDate>
+      
+      <guid>https://www.aloxaf.com/2020/09/fcitx5_plugin/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;突然发现五个月前自己写过一篇 fcitx5-lua 的教程，刚好拿来水一篇&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;fcitx5 终于加上了 lua 支持，可以使用 lua 编写一些简单的插件。但是文档一如既往地非常少，查阅了大量资料并翻看源码以后总算弄懂了插件的编写步骤，记录一下以免忘记，顺便分享给同样需要的人。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>利用 GitHub Actions 编译 AUR 包并建立自己的软件源</title>
+      <link>https://www.aloxaf.com/2020/06/build_aur_with_github_actions/</link>
+      <pubDate>Wed, 24 Jun 2020 08:43:00 +0000</pubDate>
+      
+      <guid>https://www.aloxaf.com/2020/06/build_aur_with_github_actions/</guid>
+      <description>&lt;p&gt;Arch 用户当然要有自己的软件源！&lt;/p&gt;
+&lt;p&gt;&lt;s&gt;白嫖真香！&lt;/s&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>使用 wine 运行基于 tyrano 的游戏</title>
+      <link>https://www.aloxaf.com/2020/06/wine_tyrano/</link>
+      <pubDate>Mon, 08 Jun 2020 14:10:00 +0000</pubDate>
+      
+      <guid>https://www.aloxaf.com/2020/06/wine_tyrano/</guid>
+      <description>&lt;p&gt;∠( ᐛ 」∠)＿&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>基于 tyrano 的游戏如何在浏览器中存档</title>
+      <link>https://www.aloxaf.com/2020/05/tyrano_browser_save/</link>
+      <pubDate>Thu, 21 May 2020 21:07:00 +0000</pubDate>
+      
+      <guid>https://www.aloxaf.com/2020/05/tyrano_browser_save/</guid>
+      <description>&lt;p&gt;:D&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>fzf-tab —— 使用 fzf 进行 zsh 补全</title>
+      <link>https://www.aloxaf.com/2020/03/fzf-tab/</link>
+      <pubDate>Fri, 13 Mar 2020 17:27:22 +0000</pubDate>
+      
+      <guid>https://www.aloxaf.com/2020/03/fzf-tab/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://asciinema.org/a/293849&#34;&gt;&lt;img src=&#34;https://asciinema.org/a/293849.svg&#34; alt=&#34;asciicast&#34;&gt;&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>【译】设计优雅的 Rust 库 API</title>
+      <link>https://www.aloxaf.com/2019/11/elegant_apis_in_rust/</link>
+      <pubDate>Wed, 20 Nov 2019 21:55:09 +0000</pubDate>
+      
+      <guid>https://www.aloxaf.com/2019/11/elegant_apis_in_rust/</guid>
+      <description>&lt;p&gt;一篇讲述 Rust API 设计原则的经典老文，虽然老但仍然值得阅读。前几天有事情把它从旮旯里翻出来了，虽然是经典老文但我估计很多人都没有读过，最近闲着没事干脆用我的辣鸡英语水平翻译一下，也算为 Rust 中文社区做一点贡献。&lt;/p&gt;
+&lt;p&gt;原文见：https://deterministic.space/elegant-apis-in-rust.html&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
