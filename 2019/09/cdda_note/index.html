@@ -49,12 +49,12 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.aloxaf.com/2019/09/cdda_note/" />
 <meta property="article:published_time" content="2019-09-15T12:16:01+00:00" />
-<meta property="article:modified_time" content="2020-07-31T11:24:07+00:00" />
+<meta property="article:modified_time" content="2020-11-13T00:00:00+00:00" />
 <meta itemprop="name" content="CDDA 幸存者笔记">
 <meta itemprop="description" content="是幸存者笔记，绝不是开发者笔记">
 <meta itemprop="datePublished" content="2019-09-15T12:16:01+00:00" />
-<meta itemprop="dateModified" content="2020-07-31T11:24:07+00:00" />
-<meta itemprop="wordCount" content="3320">
+<meta itemprop="dateModified" content="2020-11-13T00:00:00+00:00" />
+<meta itemprop="wordCount" content="3685">
 
 
 
@@ -196,15 +196,21 @@
         <li><a href="#拍照">拍照</a></li>
       </ul>
     </li>
+    <li><a href="#武器属性">武器属性</a>
+      <ul>
+        <li><a href="#命中">命中</a></li>
+      </ul>
+    </li>
+    <li><a href="#感冒">感冒</a>
+      <ul>
+        <li><a href="#机制">机制</a></li>
+        <li><a href="#负面效果">负面效果</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
   </div>
 </div>
-  <div class="post-outdated">
-    <div class="hint">
-      <p>【注】本文最后更新于 <span class="timeago" datetime="2020-07-31T11:24:07" title="July 31, 2020">July 31, 2020</span>，文中内容可能已经过时。</p>
-    </div>
-  </div>
     <div class="post-content">
       <p>是幸存者笔记，绝不是开发者笔记</p>
 <h1 id="破解保险箱">破解保险箱</h1>
@@ -291,34 +297,34 @@
 <td class="lntd">
 <pre class="chroma"><code class="language-python" data-lang="python"><span class="n">at_rest_quality</span> <span class="o">=</span> <span class="k">if</span> <span class="n">sleep</span> <span class="mi">1</span> <span class="k">else</span> <span class="mi">0</span>
 
-<span class="o">//</span> <span class="err">基本恢复速率</span><span class="p">,</span> <span class="err">曾经是</span> <span class="mf">0.01</span>
+<span class="c1"># 基本恢复速率, 曾经是 0.01</span>
 <span class="n">heal_rate</span> <span class="o">=</span> <span class="mf">0.0001</span>
-<span class="o">//</span> <span class="err">最终恢复速率</span>
+<span class="c1"># 最终恢复速率</span>
 <span class="n">final_rate</span> <span class="o">=</span> <span class="mf">0.0</span>
 
-<span class="o">//</span> <span class="n">healing_awake</span> <span class="err">参考</span>
-<span class="o">//</span> <span class="err">急速自愈</span> <span class="mf">2.0</span>    <span class="err">高速自愈</span> <span class="mf">0.66</span>   <span class="err">快速自愈</span> <span class="mf">0.2</span>   <span class="err">高速新陈代谢</span> <span class="mf">0.2</span>
-<span class="o">//</span> <span class="err">虚弱</span>   <span class="o">-</span><span class="mf">0.002</span>   <span class="err">衰退</span>   <span class="o">-</span><span class="mf">0.02</span>   <span class="err">解体</span>   <span class="o">-</span><span class="mf">0.08</span>
+<span class="c1"># healing_awake 参考</span>
+<span class="c1"># 急速自愈 2.0    高速自愈 0.66   快速自愈 0.2   高速新陈代谢 0.2</span>
+<span class="c1"># 虚弱   -0.002   衰退   -0.02   解体   -0.08</span>
 <span class="n">awake_rate</span> <span class="o">=</span> <span class="n">heal_rate</span> <span class="o">*</span> <span class="n">mutation_value</span><span class="p">(</span><span class="s2">&#34;healing_awake&#34;</span><span class="p">)</span>
 <span class="k">if</span> <span class="n">awake_rate</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
     <span class="n">final_rate</span> <span class="o">+=</span> <span class="n">awake_rate</span>
 <span class="k">elif</span> <span class="n">at_rest_quality</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
 	<span class="n">final_rate</span> <span class="o">+=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">at_rest_quality</span><span class="p">)</span> <span class="o">*</span> <span class="n">awake_rate</span>
 
-<span class="o">//</span> <span class="n">healing_rest</span> <span class="err">参考</span>
-<span class="o">//</span> <span class="err">急速自愈</span> <span class="mf">1.5</span>    <span class="err">高速自愈</span>   <span class="mf">0.5</span>    <span class="err">快速自愈</span>  <span class="mf">0.5</span>   <span class="err">高速新陈代谢</span> <span class="mf">0.5</span>
-<span class="o">//</span> <span class="err">虚弱</span>   <span class="o">-</span><span class="mf">0.25</span>   <span class="err">慢速自愈</span>  <span class="o">-</span><span class="mf">0.25</span>   <span class="err">自愈弱化</span> <span class="o">-</span><span class="mf">0.66</span>   <span class="err">自愈无效</span>   <span class="o">-</span><span class="mf">0.9</span>
+<span class="c1"># healing_rest 参考</span>
+<span class="c1"># 急速自愈 1.5    高速自愈   0.5    快速自愈  0.5   高速新陈代谢 0.5</span>
+<span class="c1"># 虚弱   -0.25   慢速自愈  -0.25   自愈弱化 -0.66   自愈无效   -0.9</span>
 <span class="n">asleep_rate</span> <span class="o">=</span> <span class="mf">0.0</span>
 <span class="k">if</span> <span class="n">at_rest_quality</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
 	<span class="n">alseep_rate</span> <span class="o">=</span> <span class="n">at_rest_quality</span> <span class="o">*</span> <span class="n">heal_rate</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">mutation_value</span><span class="p">(</span><span class="s2">&#34;healing_rest&#34;</span><span class="p">))</span>
 <span class="k">if</span> <span class="n">alseep_rate</span> <span class="o">&gt;</span> <span class="mf">0.0</span><span class="p">:</span>
 	<span class="n">final_rate</span> <span class="o">+=</span> <span class="n">asleep_rate</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">healthy</span> <span class="o">/</span> <span class="mi">200</span><span class="p">)</span>
 
-<span class="o">//</span> <span class="err">身强力壮</span> <span class="mf">0.2</span> <span class="err">钢筋铁骨</span> <span class="mf">0.3</span>   <span class="err">不可战胜</span> <span class="mf">0.4</span>
-<span class="o">//</span> <span class="err">小个子</span> <span class="o">-</span><span class="mf">0.05</span> <span class="err">毫不起眼</span> <span class="o">-</span><span class="mf">0.25</span> <span class="err">瘦弱</span> <span class="o">-</span><span class="mf">0.25</span>  <span class="err">体型细小</span> <span class="o">-</span><span class="mf">0.3</span>  <span class="err">弱不禁风</span> <span class="o">-</span><span class="mf">0.5</span> <span class="err">柴毁骨立</span> <span class="o">-</span><span class="mf">0.75</span>
+<span class="c1"># 身强力壮 0.2 钢筋铁骨 0.3   不可战胜 0.4</span>
+<span class="c1"># 小个子 -0.05 毫不起眼 -0.25 瘦弱 -0.25  体型细小 -0.3  弱不禁风 -0.5 柴毁骨立 -0.75</span>
 <span class="n">primary_hp_mod</span> <span class="o">=</span> <span class="n">mutation_value</span><span class="p">(</span> <span class="s2">&#34;hp_modifier&#34;</span> <span class="p">);</span>
 <span class="k">if</span> <span class="n">primary_hp_mod</span> <span class="o">&lt;</span> <span class="mf">0.0</span><span class="p">:</span>
-	<span class="o">//</span> <span class="n">HP</span> <span class="n">mod</span> <span class="n">can</span><span class="s1">&#39;t get below -1.0</span>
+	<span class="c1"># HP mod can&#39;t get below -1.0</span>
 	<span class="n">final_rate</span> <span class="o">*=</span> <span class="mf">1.0</span><span class="n">f</span> <span class="o">+</span> <span class="n">primary_hp_mod</span><span class="p">;</span>
 </code></pre></td></tr></table>
 </div>
@@ -384,11 +390,11 @@
 <span class="n">disinfected_rate</span> <span class="o">=</span> <span class="mf">0.0</span>
 
 
-<span class="o">//</span> <span class="n">HEAL_RATE</span>  <span class="n">base_mods</span><span class="o">=</span><span class="mi">2</span>  <span class="n">scaling_mods</span><span class="o">=</span><span class="mi">2</span>
-<span class="o">//</span> <span class="n">HEAL_TORSO</span> <span class="n">base_mods</span><span class="o">=</span><span class="mi">50</span>
-<span class="o">//</span> <span class="n">HEAL_TORSO</span> <span class="n">base_mods</span><span class="o">=</span><span class="mi">150</span>
-<span class="o">//</span> <span class="n">level</span>  <span class="mi">1</span><span class="o">-</span><span class="mi">2</span><span class="p">(</span><span class="err">极差</span><span class="p">)</span> <span class="mi">3</span><span class="o">-</span><span class="mi">4</span><span class="p">(</span><span class="err">不佳</span><span class="p">)</span> <span class="mi">5</span><span class="o">-</span><span class="mi">6</span><span class="p">(</span><span class="err">普通</span><span class="p">)</span> <span class="mi">7</span><span class="o">-</span><span class="mi">8</span><span class="p">(</span><span class="err">好</span><span class="p">)</span>
-<span class="o">//</span> <span class="mi">9</span><span class="o">-</span><span class="mi">10</span><span class="p">(</span><span class="err">良好</span><span class="p">)</span> <span class="mi">11</span><span class="o">~</span><span class="mi">12</span><span class="p">(</span><span class="err">优秀</span><span class="p">)</span> <span class="mi">13</span><span class="o">-</span><span class="mi">14</span><span class="p">(</span><span class="err">出色</span><span class="p">)</span> <span class="mi">15</span><span class="o">-</span><span class="mi">16</span><span class="p">(</span><span class="err">完美</span><span class="p">)</span>
+<span class="c1"># HEAL_RATE  base_mods=2  scaling_mods=2</span>
+<span class="c1"># HEAL_TORSO base_mods=50</span>
+<span class="c1"># HEAL_TORSO base_mods=150</span>
+<span class="c1"># level  1-2(极差) 3-4(不佳) 5-6(普通) 7-8(好)</span>
+<span class="c1"># 9-10(良好) 11~12(优秀) 13-14(出色) 15-16(完美)</span>
 <span class="k">def</span> <span class="nf">effect</span><span class="p">::</span><span class="n">get_amount</span><span class="p">(</span><span class="n">arg</span><span class="p">):</span>
     <span class="n">ret</span> <span class="o">=</span> <span class="n">get</span><span class="p">(</span><span class="s2">&#34;base_mods&#34;</span><span class="p">)</span> <span class="o">+</span> <span class="n">get</span><span class="p">(</span><span class="s2">&#34;scaling_mods&#34;</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="n">level</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
 
@@ -423,7 +429,7 @@
     
 <span class="n">primary_hp_mod</span> <span class="o">=</span> <span class="n">mutation_value</span><span class="p">(</span> <span class="s2">&#34;hp_modifier&#34;</span> <span class="p">);</span>
 <span class="k">if</span> <span class="n">primary_hp_mod</span> <span class="o">&lt;</span> <span class="mf">0.0</span><span class="p">:</span>
-	<span class="o">//</span> <span class="n">HP</span> <span class="n">mod</span> <span class="n">can</span><span class="s1">&#39;t get below -1.0</span>
+	<span class="c1"># HP mod can&#39;t get below -1.0</span>
 	<span class="n">rate_medicine</span> <span class="o">*=</span> <span class="mf">1.0</span><span class="n">f</span> <span class="o">+</span> <span class="n">primary_hp_mod</span><span class="p">;</span>
 </code></pre></td></tr></table>
 </div>
@@ -726,6 +732,24 @@
 <p>眼球无人机的攻击手段（笑）。前期挺麻烦，后期就是送材料。</p>
 <p>攻击条件是六格视野范围内，所以离远点射死就没事了。</p>
 <p>防御手段则是需要对应职业。一般政府/军队人员都能防御，比如警察、警探、SWAT 人员、CRIT 人员、生化警官、联邦执法官等等都能让眼球无视你。不过联邦执法官需要戴着你的徽章才有效，其他职业不用戴对应徽章也能让眼球无人机无视你，戴上的话眼球无人机就会离开。</p>
+<h1 id="武器属性">武器属性</h1>
+<h2 id="命中">命中</h2>
+<p>参照 DPS <a href="https://cdda-trunk.aloxaf.cn/doc/classitem.html#aea25ac6413125c4838a331736963afd0">相关代码</a>进行解析，因为这个地方简单一点。虽然难以看出命中和最终 dps 的关系，但是可以发现：</p>
+<ul>
+<li>一点命中的效果等效于 4 点敏捷</li>
+<li>一点命中能抵消怪物的一级闪避</li>
+</ul>
+<h1 id="感冒">感冒</h1>
+<h2 id="机制">机制</h2>
+<p>游戏中每 30 分钟进行一次感冒检测，每次有 $\frac{1}{2 \times 24 \times 365 \times 2^{\frac{健康}{50}} }$ 的几率感冒，如果你拥有抗病体质，这个概率会再除以 3。简而言之就是健康为 0 的普通人每 30 分钟有 $\frac{1}{5840}$ 的概率感冒，健康每上升/下降 50 点这个概率降低一半/翻倍。</p>
+<p>而感冒时你有 $\frac{1}{6}$ 的概率患上持续时间 3 ~ 10 天的流感，否则患上持续时间 1 ~ 14 天的普通感冒。</p>
+<p>但是！感冒作为一种环境伤害，是可以被防护的。设嘴部的环境防护为 x，则当 <code>xd3 &gt;=  3d3</code> 时，你就能成功抵御这次感冒。</p>
+<h2 id="负面效果">负面效果</h2>
+<ul>
+<li>做事情获得的快乐减少三分之二</li>
+<li>流感会使你头部温度上升 1500 单位</li>
+<li>普通感冒会使你全身温度下降 750 单位（这两个单位暂时还没明白和摄氏度的对应关系）</li>
+</ul>
     </div>
 
     <div class="post-copyright">
@@ -736,7 +760,7 @@
   <p class="copyright-item">
     <span class="item-title">上次更新</span>
     <span class="item-content">
-        2020-07-31
+        2020-11-13
         
     </span>
   </p>
@@ -841,6 +865,14 @@
 
 
 <script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+  <script type="text/javascript">
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        }
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.5/es5/tex-mml-chtml.js" integrity="sha256-HGLuEfFcsUJGhvB8cQ8nr0gai9EucOOaIxFw7qxmd+w=" crossorigin="anonymous"></script>
 
 
 <script type="application/javascript">
