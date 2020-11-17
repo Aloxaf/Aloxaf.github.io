@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>CDDA 安卓版编译指南 - Aloxaf&#39;s Blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Aloxaf" /><meta name="description" content="对于没有 Android 开发经验的我来讲这是值得记录一下的事情……
+" /><meta name="keywords" content="aloxaf, ctf, linux, zsh" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.78.1 with theme even" />
+
+
+<link rel="preload" href="/fonts/iconfont/iconfont.woff" as="font" type="font/woff" crossorigin="anonymous">
+<link rel="preload" href="/fonts/FiraCode/FiraCode-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+
+
+<link rel="canonical" href="https://www.aloxaf.com/2020/11/cdda_compile_android/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.66509101da8cbb6d6be4edabc85875fd614c70b5be09d59f2d54d7e09bc78d06.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="CDDA 安卓版编译指南" />
+<meta property="og:description" content="对于没有 Android 开发经验的我来讲这是值得记录一下的事情……" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.aloxaf.com/2020/11/cdda_compile_android/" />
+<meta property="article:published_time" content="2020-11-17T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-11-17T00:00:00+00:00" />
+<meta itemprop="name" content="CDDA 安卓版编译指南">
+<meta itemprop="description" content="对于没有 Android 开发经验的我来讲这是值得记录一下的事情……">
+<meta itemprop="datePublished" content="2020-11-17T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2020-11-17T00:00:00+00:00" />
+<meta itemprop="wordCount" content="641">
+
+
+
+<meta itemprop="keywords" content="cdda," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="CDDA 安卓版编译指南"/>
+<meta name="twitter:description" content="对于没有 Android 开发经验的我来讲这是值得记录一下的事情……"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Aloxaf&#39;s Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于</li>
+      </a><a href="/friend/">
+        <li class="mobile-menu-item">友链</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Aloxaf&#39;s Blog</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">关于</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/friend/">友链</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">CDDA 安卓版编译指南</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-11-17 </span>
+        
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#编译">编译</a></li>
+    <li><a href="#重新打包">重新打包</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>对于没有 Android 开发经验的我来讲这是值得记录一下的事情……</p>
+<h1 id="编译">编译</h1>
+<p><strong>装备工作</strong></p>
+<ul>
+<li>安装 Arch Linux</li>
+<li>配置好梯子</li>
+<li>下载 CDDA 源码</li>
+<li><strong>切换到 CDDA 源码里的 android 目录</strong>（以下均假设你已经在这个目录里）</li>
+</ul>
+<p><strong>安装 JDK</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-zsh" data-lang="zsh"><span class="c1"># 此处也可以使用 openjdk8</span>
+pacman -S jdk8
+sudo archlinux-java <span class="nb">set</span> java-8-jdk
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>安装 Android SDK</strong></p>
+<p>我是直接用 Android Studio 的 SDK Manager 装的，注意 CDDA 要求的是 28 的 SDK，不要装成 30 的了。官方也提供了手动安装的方法（如下）：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-zsh" data-lang="zsh">wget https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
+<span class="c1"># 将 sdk 放在 ~/.local/share/android 下能够被 gradle 自动识别，可以免去配置环境变量的步骤</span>
+unzip sdk-tools-linux-4333796.zip -d ~/.local/share/android
+rm sdk-tools-linux-4333796.zip
+~/.local/share/android/tools/bin/sdkmanager --update
+~/.local/share/android/tools/bin/sdkmanager <span class="s2">&#34;tools&#34;</span> <span class="s2">&#34;platform-tools&#34;</span> <span class="s2">&#34;ndk-bundle&#34;</span>
+~/.local/share/android/tools/bin/sdkmanager --licenses
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>为 gradle 配置代理</strong></p>
+<p>辣鸡 Java 不吃 <code>HTTP(S)_PROXY</code>，需要手动为 gradle 设置代理。这是卡了我很久的一步之一。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-zsh" data-lang="zsh">mkdir -p ~/.gradle
+cat &gt;&gt; ~/.gradle/gradle.properties <span class="s">&lt;&lt;EOF
+</span><span class="s">systemProp.http.proxyHost=127.0.0.1
+</span><span class="s">systemProp.http.proxyPort=12333
+</span><span class="s">systemProp.https.proxyHost=127.0.0.1
+</span><span class="s">systemProp.https.proxyPort=12333
+</span><span class="s">EOF</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>构建</strong></p>
+<p>辣鸡官方的示例不知道构建了多少个版本，我寻思着怎么编译这么慢。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-zsh" data-lang="zsh"><span class="c1"># 你可以用 ./gradlew tasks 查看可用的任务</span>
+<span class="c1"># 这个命令限定了至构建实验版的 64 位 release 版本，并且使用四线程</span>
+./gradlew compileExperimentalReleaseSources -Pj<span class="o">=</span><span class="m">4</span> -Pabi_arm_32<span class="o">=</span><span class="nb">false</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>生成证书</strong></p>
+<p>你需要给你 apk 签个名才能装到手机上</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-zsh" data-lang="zsh">keytool -genkey -v -keystore cdda.keystore -alias gundam_wing -keyalg RSA -validity <span class="m">20000</span>
+keytool -importkeystore -srckeystore cdda.keystore -destkeystore cdda.p12 -srcstoretype JKS -deststoretype PKCS12
+openssl pkcs12 -in cdda.p12 -nodes -out cdda.rsa.pem
+sed -n <span class="s1">&#39;/BEGIN PRIVATE KEY/,/END PRIVATE KEY/p&#39;</span> cdda.rsa.pem &gt; cdda.private.rsa.pem
+sed -n <span class="s1">&#39;/BEGIN CERTIFICATE/,/END CERTIFICATE/p&#39;</span> cdda.rsa.pem &gt; cdda.x509.pem
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>签名</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-zsh" data-lang="zsh"><span class="c1"># APK 路径就自己改算了……</span>
+<span class="nv">APK_PATH</span><span class="o">=</span>./app/build/outputs/apk/experimental/release/cataclysmdda-64b8950ada-experimental-arm64-v8a-release-unsigned.apk
+~/.local/share/android/build-tools/28.0.3/apksigner sign --key cdda.pk8 --cert cdda.x509.pem <span class="nv">$APK_PATH</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>没了</strong></p>
+<p>完成了，直接把 <code>$APK_PATH</code> 指向的文件复制出来就可以安装了。</p>
+<h1 id="重新打包">重新打包</h1>
+<p>如果只是单纯地塞 MOD 进去的话，没必要手动编译一遍。只需要重新打包即可。步骤非常简单：</p>
+<p><strong>解压 apk</strong></p>
+<p>解压，就是字面意思。apk 本质是 zip，随便挑个工具解压就行。</p>
+<p><strong>修改</strong></p>
+<p>assets 里存放着游戏的资源文件，随便塞就行了。</p>
+<p><strong>重新压缩</strong></p>
+<p>也是字面意思，直接压缩（注意不要把父文件夹也压进去了），完事儿以后改后缀名为 <code>.apk</code></p>
+<p><strong>签名</strong></p>
+<p>参照前面的过程，签名完就能愉快地安装了~</p>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Aloxaf</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2020-11-17
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a></span>
+  </p>
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/cdda/">cdda</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/2020/11/zsh_history_expansion/">
+            <span class="next-text nav-default">【ZSH 系列教程】历史扩展与修饰符</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  <span id="/2020/11/cdda_compile_android/" class="leancloud_visitors" data-flag-title="CDDA 安卓版编译指南">
+		<span class="post-meta-item-text">文章阅读量 </span>
+		<span class="leancloud-visitors-count">0</span>
+		<p></p>
+	  </span>
+  <div id="vcomments"></div>
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+  <script type="text/javascript">
+    new Valine({
+        el: '#vcomments' ,
+        serverURLs: 'https:\/\/lcd.aloxaf.cn',
+        appId: 'fSbXaElXXTznggVXiWy8NFBU-gzGzoHsz',
+        appKey: 'kK3SxB14xAACgHftKrSaBRDU',
+        notify:  false ,
+        verify:  false ,
+        avatar:'mm',
+        placeholder: '妙啊，妙啊',
+        visitor:  true 
+    });
+  </script>
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:aloxafx@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/Aloxaf" class="iconfont icon-github" title="github"></a>
+  <a href="https://www.aloxaf.com/atom.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span><span>Aloxaf</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script async src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script async src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "zh".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-123773630-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+</body>
+</html>

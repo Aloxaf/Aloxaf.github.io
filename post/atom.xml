@@ -6,7 +6,16 @@
     <description>Recent content in Posts on Aloxaf&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Mon, 09 Nov 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://www.aloxaf.com/post/atom.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 17 Nov 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://www.aloxaf.com/post/atom.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CDDA 安卓版编译指南</title>
+      <link>https://www.aloxaf.com/2020/11/cdda_compile_android/</link>
+      <pubDate>Tue, 17 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.aloxaf.com/2020/11/cdda_compile_android/</guid>
+      <description>&lt;p&gt;对于没有 Android 开发经验的我来讲这是值得记录一下的事情……&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>【ZSH 系列教程】历史扩展与修饰符</title>
       <link>https://www.aloxaf.com/2020/11/zsh_history_expansion/</link>
@@ -117,19 +126,6 @@ p10k 的 Instant Prompt 功能非常好用，它可以在其他插件的加载�
 不过本文只涉及了它强大功能的冰山一角，深入研究推荐阅读 &lt;a href=&#34;https://zdharma.org/zinit/wiki/INTRODUCTION/&#34;&gt;Zinit Wiki&lt;/a&gt; 和 Zinit 的 &lt;a href=&#34;https://github.com/zdharma/zinit/blob/master/README.md&#34;&gt;README&lt;/a&gt;。&lt;/p&gt;
 &lt;p&gt;（虽然说是冰山一角，本文的内容也足以覆盖绝大多数情况了）&lt;/p&gt;
 &lt;p&gt;（如果你很懒不想研究的话，文末还有一份完整的示例配置，安装完成后可以直接使用）&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>xkeysnail 使用指南</title>
-      <link>https://www.aloxaf.com/2019/11/xkeysnail_tutorial/</link>
-      <pubDate>Sun, 03 Nov 2019 15:33:49 +0000</pubDate>
-      
-      <guid>https://www.aloxaf.com/2019/11/xkeysnail_tutorial/</guid>
-      <description>&lt;h1 id=&#34;emacs-keybings-everywhere&#34;&gt;Emacs keybings Everywhere!&lt;/h1&gt;
-&lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
-&lt;p&gt;xkeysnail 是一个非常强大的 keyboard remapping 工具, 它类似于 xmodmap, 但更为灵活. 不仅能重映射键位, 还能重映射快捷键, 甚至能在不同的程序下使用不同的映射!&lt;/p&gt;
-&lt;p&gt;再也不用两套快捷键换来换去了!! ( 早点知道这个东西, 我就不至于练就一身无缝切换快捷键的毫无卵用的本领了&amp;hellip;&lt;/p&gt;
-&lt;p&gt;项目地址: &lt;a href=&#34;https://github.com/mooz/xkeysnail&#34;&gt;https://github.com/mooz/xkeysnail&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     
   </channel>

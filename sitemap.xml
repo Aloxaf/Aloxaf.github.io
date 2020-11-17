@@ -17,7 +17,35 @@
   
   <url>
     <loc>https://www.aloxaf.com/</loc>
-    <lastmod>2020-11-13T00:00:00+00:00</lastmod>
+    <lastmod>2020-11-17T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.aloxaf.com/tags/cdda/</loc>
+    <lastmod>2020-11-17T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.aloxaf.com/2020/11/cdda_compile_android/</loc>
+    <lastmod>2020-11-17T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.aloxaf.com/post/</loc>
+    <lastmod>2020-11-17T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.aloxaf.com/tags/</loc>
+    <lastmod>2020-11-17T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -32,20 +60,6 @@
   <url>
     <loc>https://www.aloxaf.com/tags/glob/</loc>
     <lastmod>2020-11-09T00:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.aloxaf.com/post/</loc>
-    <lastmod>2020-11-13T00:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.aloxaf.com/tags/</loc>
-    <lastmod>2020-11-13T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -214,13 +228,6 @@
   <url>
     <loc>https://www.aloxaf.com/2019/11/xkeysnail_tutorial/</loc>
     <lastmod>2019-11-03T15:33:49+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.aloxaf.com/tags/cdda/</loc>
-    <lastmod>2020-11-13T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>

@@ -6,7 +6,16 @@
     <description>Recent content in Tags on Aloxaf&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Mon, 09 Nov 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://www.aloxaf.com/tags/atom.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 17 Nov 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://www.aloxaf.com/tags/atom.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>cdda</title>
+      <link>https://www.aloxaf.com/tags/cdda/</link>
+      <pubDate>Tue, 17 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.aloxaf.com/tags/cdda/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>glob</title>
       <link>https://www.aloxaf.com/tags/glob/</link>
@@ -85,15 +94,6 @@
       <pubDate>Sun, 10 Nov 2019 13:43:26 +0000</pubDate>
       
       <guid>https://www.aloxaf.com/tags/%E6%95%99%E7%A8%8B/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>emacs</title>
-      <link>https://www.aloxaf.com/tags/emacs/</link>
-      <pubDate>Sun, 03 Nov 2019 15:33:49 +0000</pubDate>
-      
-      <guid>https://www.aloxaf.com/tags/emacs/</guid>
       <description></description>
     </item>
     
