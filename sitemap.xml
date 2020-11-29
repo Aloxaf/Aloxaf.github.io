@@ -17,7 +17,35 @@
   
   <url>
     <loc>https://www.aloxaf.com/</loc>
-    <lastmod>2020-11-17T00:00:00+00:00</lastmod>
+    <lastmod>2020-11-28T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.aloxaf.com/tags/linux/</loc>
+    <lastmod>2020-11-28T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.aloxaf.com/2020/11/wow_such_linux_many_files_so_small/</loc>
+    <lastmod>2020-11-28T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.aloxaf.com/post/</loc>
+    <lastmod>2020-11-28T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.aloxaf.com/tags/</loc>
+    <lastmod>2020-11-28T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -31,20 +59,6 @@
   
   <url>
     <loc>https://www.aloxaf.com/2020/11/cdda_compile_android/</loc>
-    <lastmod>2020-11-17T00:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.aloxaf.com/post/</loc>
-    <lastmod>2020-11-17T00:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.aloxaf.com/tags/</loc>
     <lastmod>2020-11-17T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -95,13 +109,6 @@
   <url>
     <loc>https://www.aloxaf.com/tags/fcitx5/</loc>
     <lastmod>2020-09-24T21:53:09+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.aloxaf.com/tags/linux/</loc>
-    <lastmod>2020-11-07T21:06:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>

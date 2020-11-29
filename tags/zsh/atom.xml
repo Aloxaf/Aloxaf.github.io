@@ -24,10 +24,7 @@
       <pubDate>Sun, 08 Nov 2020 00:00:00 +0000</pubDate>
       
       <guid>https://www.aloxaf.com/2020/11/zsh_tutorial_introduce/</guid>
-      <description>&lt;p&gt;一直想写点什么来介绍 zsh。
-zsh 非常强大，然而很多人只是单纯把它当成 bash with many plugins 用，实在是暴殄天物。&lt;/p&gt;
-&lt;p&gt;考虑到系统化的长篇教程已经有 &lt;a href=&#34;https://github.com/goreliu/zshguide&#34;&gt;zshguide&lt;/a&gt; 了，我决定写一系列短篇教程，针对 ZSH 的某一方面进行全面的介绍。&lt;/p&gt;
-&lt;p&gt;要说最全面的教程，那肯定是 ZSH 的文档了（虽然我常常吐槽它晦涩难懂）。事实上我也确实打算照着 ZSH 文档来写，甚至本来打算起名为“ZSH 文档翻译”的，但是起名翻译的话感觉就给我的文章套上了一个框框，发挥起来不是很自由。因此还是决定叫教程，这样我觉得有用的地方就可以多提一下，&lt;del&gt;没用的地方就不讲了&lt;/del&gt;。&lt;/p&gt;</description>
+      <description>&lt;p&gt;为什么 zsh 教程这么少！&lt;/p&gt;</description>
     </item>
     
     <item>

@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.78.1 with theme even" />
+<meta name="generator" content="Hugo 0.78.2 with theme even" />
 
 
 <link rel="preload" href="/fonts/iconfont/iconfont.woff" as="font" type="font/woff" crossorigin="anonymous">
@@ -49,7 +49,7 @@
 <meta property="og:description" content="一只咸鱼的咸鱼博客" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://www.aloxaf.com/" />
-<meta property="og:updated_time" content="2020-11-17T00:00:00+00:00" />
+<meta property="og:updated_time" content="2020-11-28T00:00:00+00:00" />
 <meta itemprop="name" content="Aloxaf&#39;s Blog">
 <meta itemprop="description" content="一只咸鱼的咸鱼博客">
 <meta name="twitter:card" content="summary"/>
@@ -125,6 +125,25 @@
           <section id="posts" class="posts">
     <article class="post">
   <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/2020/11/wow_such_linux_many_files_so_small/">Linux 下如何跟大量小文件打交道</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2020-11-28 </span>
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      <p>首先声明一点，本文探讨的不是如何在生产环境中高效存储百万量级的小文件，而是在日常生活中该如何处理那些包含上万个小文件的情景。</p>
+    </div>
+    <div class="read-more">
+      <a href="/2020/11/wow_such_linux_many_files_so_small/" class="read-more-link">阅读更多</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
     <h1 class="post-title"><a class="post-link" href="/2020/11/cdda_compile_android/">CDDA 安卓版编译指南</a></h1>
     <div class="post-meta">
       <span class="post-time"> 2020-11-17 </span>
@@ -178,10 +197,7 @@
   
   <div class="post-content">
     <div class="post-summary">
-      <p>一直想写点什么来介绍 zsh。
-zsh 非常强大，然而很多人只是单纯把它当成 bash with many plugins 用，实在是暴殄天物。</p>
-<p>考虑到系统化的长篇教程已经有 <a href="https://github.com/goreliu/zshguide">zshguide</a> 了，我决定写一系列短篇教程，针对 ZSH 的某一方面进行全面的介绍。</p>
-<p>要说最全面的教程，那肯定是 ZSH 的文档了（虽然我常常吐槽它晦涩难懂）。事实上我也确实打算照着 ZSH 文档来写，甚至本来打算起名为“ZSH 文档翻译”的，但是起名翻译的话感觉就给我的文章套上了一个框框，发挥起来不是很自由。因此还是决定叫教程，这样我觉得有用的地方就可以多提一下，<del>没用的地方就不讲了</del>。</p>
+      <p>为什么 zsh 教程这么少！</p>
     </div>
     <div class="read-more">
       <a href="/2020/11/zsh_tutorial_introduce/" class="read-more-link">阅读更多</a>
@@ -312,48 +328,6 @@ zsh 非常强大，然而很多人只是单纯把它当成 bash with many plugin
     </div>
     <div class="read-more">
       <a href="/2019/11/elegant_apis_in_rust/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2019/11/zplugin_tutorial/">加速你的 zsh —— 最强 zsh 插件管理器 zplugin/zinit 教程</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2019-11-10 </span>
-      <div class="post-category">
-          <a href="/categories/%E6%95%99%E7%A8%8B/"> 教程 </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      <p><strong>2020-01-26 更新：</strong></p>
-<p>Zplugin 已改名 Zinit，不过教程中的内容仍然适用。
-阅读时请自行在脑中替换 （</p>
-<p><strong>2020-01-14 更新：</strong></p>
-<p>博主已经叛逃 powerlevel10k 了（注意是 10k 不是 9k）。
-p10k 的 Instant Prompt 功能非常好用，它可以在其他插件的加载过程中提供一个精简的 prompt 供使用，相当于后台加载。</p>
-<p>这个功能并不能加快实际的加载速度， 比如 <code>time zsh -ic 'exit'</code> 的结果仍然不会变，但是使用体验提升巨大（体验上几乎是瞬间加载）！</p>
-<p>读到这里的读者建议先尝试一下 p10k（<del>如果很满意就不用往下看了</del>）。</p>
-<p>我已经去掉了配置文件中所有的 zinit 延迟加载语句，不过 zinit 即使去掉延迟加载功能仍然十分强大，我还是选择继续使用 zinit。
-而且如果加载了特别耗时的插件的话，zinit 仍然是有用的。</p>
-<h1 id="前言">前言</h1>
-<p><a href="https://github.com/zdharma/zinit">Zinit</a> 是个冷门但是却强大无比的 zsh 插件管理器，它拥有一个 killer feature —— Turbo mode，可以让插件在后台加载。这意味这你可以先加载最重要的插件，比如语法高亮和自动建议，剩下的可以统统放到后台加载，让你的 zsh 尽快进入可用状态。</p>
-<p>利用这个机制，zinit 可以将 zsh 的启动时间缩短到几十毫秒——以我的配置为例，只需要 35 毫秒左右。而使用传统的插件管理器比如 antigen，需要近 200 毫秒才能加载完成。</p>
-<p>这里有一张图，对比了不同插件管理器的速度（来源：<a href="https://gist.github.com/laggardkernel/4a4c4986ccdcaf47b91e8227f9868ded">Comparison of ZSH frameworks and plugin managers</a>）</p>
-<p><img src="https://raw.githubusercontent.com/vintersnow/zsh_plugin_manager_speed/master/result.png" alt=""></p>
-<p>可以看到 zinit 在插件数目变多时速度……似乎更快了？？？
-什么鬼，这个大概是实验误差吧，也有可能是第一次启动时编译了自身所以后面变快了。不过 zinit 的速度是毋庸置疑的，哪怕这个插件需要数十秒来加载，只要放在后台加载，一样不影响你的 zsh 启动。</p>
-<p>然而！！这个工具虽然强大，却没多少名气，让人倍感惋惜。</p>
-<p>所以写下这篇文章，希望能有更多人了解到这个工具。
-不过本文只涉及了它强大功能的冰山一角，深入研究推荐阅读 <a href="https://zdharma.org/zinit/wiki/INTRODUCTION/">Zinit Wiki</a> 和 Zinit 的 <a href="https://github.com/zdharma/zinit/blob/master/README.md">README</a>。</p>
-<p>（虽然说是冰山一角，本文的内容也足以覆盖绝大多数情况了）</p>
-<p>（如果你很懒不想研究的话，文末还有一份完整的示例配置，安装完成后可以直接使用）</p>
-    </div>
-    <div class="read-more">
-      <a href="/2019/11/zplugin_tutorial/" class="read-more-link">阅读更多</a>
     </div>
   </div>
 </article>

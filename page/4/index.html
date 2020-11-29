@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.78.1 with theme even" />
+<meta name="generator" content="Hugo 0.78.2 with theme even" />
 
 
 <link rel="preload" href="/fonts/iconfont/iconfont.woff" as="font" type="font/woff" crossorigin="anonymous">
@@ -49,7 +49,7 @@
 <meta property="og:description" content="一只咸鱼的咸鱼博客" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://www.aloxaf.com/" />
-<meta property="og:updated_time" content="2020-11-17T00:00:00+00:00" />
+<meta property="og:updated_time" content="2020-11-28T00:00:00+00:00" />
 <meta itemprop="name" content="Aloxaf&#39;s Blog">
 <meta itemprop="description" content="一只咸鱼的咸鱼博客">
 <meta name="twitter:card" content="summary"/>
@@ -123,6 +123,51 @@
       <div class="content-wrapper">
         <div id="content" class="content">
           <section id="posts" class="posts">
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/2018/05/jarvisoj_basic/">Jarvis OJ BASIC 完整writeup</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2018-05-17 </span>
+      <div class="post-category">
+          <a href="/categories/ctf/"> ctf </a>
+          </div>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      <h1 id="握手包">握手包</h1>
+<blockquote>
+<p>给你握手包，flag是Flag_is_here这个AP的密码，自己看着办吧。</p>
+<p>提交格式：flag{WIFI密码}</p>
+</blockquote>
+<p>利用 hashcat 爆破, 以 Arch Linux 为例</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 安装必要工具</span>
+sudo pacman -S hashcat hashcat-utils
+<span class="c1"># 格式转换</span>
+cap2hccapx wifi.cap wifi.hccapx
+<span class="c1"># 用字典爆破</span>
+hashcat -m <span class="m">2500</span> wifi.hccapx 10k_most_common.txt
+</code></pre></td></tr></table>
+</div>
+</div>
+    </div>
+    <div class="read-more">
+      <a href="/2018/05/jarvisoj_basic/" class="read-more-link">阅读更多</a>
+    </div>
+  </div>
+</article>
+
     <article class="post">
   <header class="post-header">
     <h1 class="post-title"><a class="post-link" href="/2018/05/improve_hexo_table/">改进hexo/cafe主题表格显示效果</a></h1>

@@ -6,7 +6,16 @@
     <description>Recent content in Tags on Aloxaf&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Tue, 17 Nov 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://www.aloxaf.com/tags/atom.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 28 Nov 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://www.aloxaf.com/tags/atom.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>linux</title>
+      <link>https://www.aloxaf.com/tags/linux/</link>
+      <pubDate>Sat, 28 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.aloxaf.com/tags/linux/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>cdda</title>
       <link>https://www.aloxaf.com/tags/cdda/</link>
@@ -40,15 +49,6 @@
       <pubDate>Thu, 24 Sep 2020 21:53:09 +0000</pubDate>
       
       <guid>https://www.aloxaf.com/tags/fcitx5/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>linux</title>
-      <link>https://www.aloxaf.com/tags/linux/</link>
-      <pubDate>Thu, 24 Sep 2020 21:53:09 +0000</pubDate>
-      
-      <guid>https://www.aloxaf.com/tags/linux/</guid>
       <description></description>
     </item>
     

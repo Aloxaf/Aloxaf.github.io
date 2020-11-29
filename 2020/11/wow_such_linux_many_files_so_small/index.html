@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>加速 AUR 软件安装速度 - Aloxaf&#39;s Blog</title>
+  <title>Linux 下如何跟大量小文件打交道 - Aloxaf&#39;s Blog</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,8 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="aloxaf" /><meta name="description" content="AUR 里的构建脚本常常需要从 github 拉取源代码, 然而没有加 --depth 1 的 git clone 把大量流量花在了下载对于构建毫无用处的提交记录等东西上面.
-尤其是安装主题这种东西的时候, clone 下来几百 MB, 结果构建完得到一个几 MB 的包&amp;hellip;
+<meta name="author" content="Aloxaf" /><meta name="description" content="首先声明一点，本文探讨的不是如何在生产环境中高效存储百万量级的小文件，而是在日常生活中该如何处理那些包含上万个小文件的情景。
 " /><meta name="keywords" content="aloxaf, ctf, linux, zsh" />
 
 
@@ -32,7 +31,7 @@
 <link rel="preload" href="/fonts/FiraCode/FiraCode-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
 
 
-<link rel="canonical" href="https://www.aloxaf.com/2018/10/arch_git/" />
+<link rel="canonical" href="https://www.aloxaf.com/2020/11/wow_such_linux_many_files_so_small/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -45,30 +44,24 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
-<meta property="og:title" content="加速 AUR 软件安装速度" />
-<meta property="og:description" content="AUR 里的构建脚本常常需要从 github 拉取源代码,
-然而没有加 --depth 1 的 git clone 把大量流量花在了下载对于构建毫无用处的提交记录等东西上面.
-尤其是安装主题这种东西的时候, clone 下来几百 MB, 结果构建完得到一个几 MB 的包&hellip;" />
+<meta property="og:title" content="Linux 下如何跟大量小文件打交道" />
+<meta property="og:description" content="首先声明一点，本文探讨的不是如何在生产环境中高效存储百万量级的小文件，而是在日常生活中该如何处理那些包含上万个小文件的情景。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.aloxaf.com/2018/10/arch_git/" />
-<meta property="article:published_time" content="2018-10-18T16:15:30+00:00" />
-<meta property="article:modified_time" content="2018-10-18T16:15:30+00:00" />
-<meta itemprop="name" content="加速 AUR 软件安装速度">
-<meta itemprop="description" content="AUR 里的构建脚本常常需要从 github 拉取源代码,
-然而没有加 --depth 1 的 git clone 把大量流量花在了下载对于构建毫无用处的提交记录等东西上面.
-尤其是安装主题这种东西的时候, clone 下来几百 MB, 结果构建完得到一个几 MB 的包&hellip;">
-<meta itemprop="datePublished" content="2018-10-18T16:15:30+00:00" />
-<meta itemprop="dateModified" content="2018-10-18T16:15:30+00:00" />
-<meta itemprop="wordCount" content="359">
+<meta property="og:url" content="https://www.aloxaf.com/2020/11/wow_such_linux_many_files_so_small/" />
+<meta property="article:published_time" content="2020-11-28T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-11-28T00:00:00+00:00" />
+<meta itemprop="name" content="Linux 下如何跟大量小文件打交道">
+<meta itemprop="description" content="首先声明一点，本文探讨的不是如何在生产环境中高效存储百万量级的小文件，而是在日常生活中该如何处理那些包含上万个小文件的情景。">
+<meta itemprop="datePublished" content="2020-11-28T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2020-11-28T00:00:00+00:00" />
+<meta itemprop="wordCount" content="1494">
 
 
 
 <meta itemprop="keywords" content="linux," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="加速 AUR 软件安装速度"/>
-<meta name="twitter:description" content="AUR 里的构建脚本常常需要从 github 拉取源代码,
-然而没有加 --depth 1 的 git clone 把大量流量花在了下载对于构建毫无用处的提交记录等东西上面.
-尤其是安装主题这种东西的时候, clone 下来几百 MB, 结果构建完得到一个几 MB 的包&hellip;"/>
+<meta name="twitter:title" content="Linux 下如何跟大量小文件打交道"/>
+<meta name="twitter:description" content="首先声明一点，本文探讨的不是如何在生产环境中高效存储百万量级的小文件，而是在日常生活中该如何处理那些包含上万个小文件的情景。"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -139,13 +132,11 @@
           <article class="post">
     
     <header class="post-header">
-      <h1 class="post-title">加速 AUR 软件安装速度</h1>
+      <h1 class="post-title">Linux 下如何跟大量小文件打交道</h1>
 
       <div class="post-meta">
-        <span class="post-time"> 2018-10-18 </span>
-        <div class="post-category">
-            <a href="/categories/linux/"> linux </a>
-            </div>
+        <span class="post-time"> 2020-11-28 </span>
+        
         
       </div>
     </header>
@@ -153,104 +144,113 @@
     <div class="post-toc" id="post-toc">
   <h2 class="post-toc-title">文章目录</h2>
   <div class="post-toc-content">
-    <nav id="TableOfContents"></nav>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#前言">前言</a></li>
+    <li><a href="#解决方案">解决方案</a>
+      <ul>
+        <li><a href="#打包存储">打包存储</a></li>
+        <li><a href="#使用-tmpfs">使用 tmpfs</a></li>
+        <li><a href="#使用-loop-device">使用 loop device</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
   </div>
 </div>
-  <div class="post-outdated">
-    <div class="warn">
-      <p>【注】本文最后更新于 <span class="timeago" datetime="2018-10-18T16:15:30" title="October 18, 2018">October 18, 2018</span>，文中内容可能已经过时。</p>
-    </div>
-  </div>
     <div class="post-content">
-      <p>AUR 里的构建脚本常常需要从 github 拉取源代码,
-然而没有加 <code>--depth 1</code> 的 <code>git clone</code> 把大量流量花在了下载对于构建毫无用处的提交记录等东西上面.</p>
-<p>尤其是安装主题这种东西的时候, clone 下来几百 MB, 结果构建完得到一个几 MB 的包&hellip;</p>
-<p>暴力的解决方案:</p>
-<p>打开 <code>/usr/share/makepkg/source/git.sh</code>, 其中有一段这样的代码</p>
+      <p>首先声明一点，本文探讨的不是如何在生产环境中高效存储百万量级的小文件，而是在日常生活中该如何处理那些包含上万个小文件的情景。</p>
+<h1 id="前言">前言</h1>
+<p>在 HDD 上处理大量小文件是一件非常头痛的事情，它存在一下问题：</p>
+<p><strong>1.速度很慢</strong></p>
+<p>这个慢体现在诸多方面——创建慢、删除慢、复制慢。</p>
+<p>以我维护的某直接使用了文件作为缓存后端的辣鸡 laravel 项目为例。它的缓存文件夹只有数百兆大小，然而有近十万个文件，五万个文件夹！</p>
+<p>在服务器上时，因为 SSD 性能强劲的原因，这玩意儿工作起来还是没啥问题的。但是我本地 HDD 调试的时候就非常痛苦了——就这么区区几百兆的缓存，不仅每次创建都要花好几分钟，就连删掉它们也要很久。</p>
+<p><strong>2. 占用大量 inode</strong></p>
+<p>嘛……虽然说 inode 在个人电脑上一般不会用完，但是既然能省还是要省一点好。</p>
+<p><strong>3.占用大量空间</strong></p>
+<p>创建文件系统时如果没有调整的话，默认是 4K 一个块，这意味着存储大量小于 4K 的文件时会产生极大浪费。还是以那个辣鸡项目为例，<code>du -sh</code> 显示缓存文件夹占用了 629M，但是 <code>du -sh --apparent-size</code> 的结果却只有 237M——浪费了近 62% 的空间！</p>
+<p><strong>4.影响索引服务的速度</strong></p>
+<p>不要花时间索引这种无用的东西啊喂！</p>
+<h1 id="解决方案">解决方案</h1>
+<h2 id="打包存储">打包存储</h2>
+<p>场景：持久保存、很少写入、频繁读取</p>
+<p>优点：节省空间、方便传输、方便访问（搭配 fuse）</p>
+<p>缺点：不方便写入</p>
+<p>打包压缩是最简单最通用的解决方案。有效节省空间方便传输，但是访问起来比较麻烦。</p>
+<p>还好，Linux 上有万能的 fuse。</p>
+<ul>
+<li>
+<p>如果只在 dolphin 里访问，安装 kio-extras 软件包并在 dolphin 里勾选“将归档文件作为文件夹打开”即可像访问普通文件夹一样访问压缩包。Gnome 的 GVFS 应该也有同样的功能，但是我不用 Gnome（</p>
+</li>
+<li>
+<p>如果需要其他程序访问，则需要使用 fuse-zip（支持读取、写入）或 avfs（仅读取、但支持的格式多）来手动挂载。</p>
+</li>
+</ul>
+<h2 id="使用-tmpfs">使用 tmpfs</h2>
+<p>场景：非持久保存、体积小、读取写入都很频繁</p>
+<p>优点：一个字，快！！！</p>
+<p>缺点：占内存……</p>
+<p>tmpfs 中的内容直接储存在内存之中，因此速度上没话说。还是以我那个辣鸡项目为例，原先要花数分钟才能搞定的事情，用了 tmpfs 数秒钟就能完成了。</p>
+<p>使用 tmpfs 最简单的方案就是直接 <code>ln -s /tmp ./cache</code> 建一个符号链接；Docker 的话麻烦一点，得参考 <a href="https://docs.docker.com/storage/tmpfs/">https://docs.docker.com/storage/tmpfs/</a> 手动挂载一下。</p>
+<h2 id="使用-loop-device">使用 loop device</h2>
+<p>场景：持久保存、读取写入都很频繁</p>
+<p>优点：（搭配特定文件系统）节省空间、方便传输、方便访问</p>
+<p>缺点：体积不够灵活</p>
+<p>loop device 是一个非常棒的功能。通俗点来讲，就是把一个文件映射成一个块设备（block device）。我们可以像操作正常硬盘的块设备一样操作这个 loop deivce，比如格式化、挂载。对于需要持久存储并且也需要频繁读取写入的情景，这是一个很好的解决方案。</p>
+<p>步骤举例：</p>
+<ol>
+<li>
+<p>创建一个空的的 disk.img</p>
+<p><code>dd if=/dev/zero of=./disk.img bs=1M count=1024</code></p>
+</li>
+<li>
+<p>格式化</p>
+<p><code>mkfs.ext4 -L Disk -T small disk.img</code></p>
+<p>这个地方可以根据自己的需要调整参数或是选择其他文件系统，这里为简单起见直接使用 ext4 + 预设的 <code>small</code> 配置。</p>
+</li>
+<li>
+<p>挂载</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="k">if</span> ! git clone --mirror <span class="s2">&#34;</span><span class="nv">$url</span><span class="s2">&#34;</span> <span class="s2">&#34;</span><span class="nv">$dir</span><span class="s2">&#34;</span><span class="p">;</span> <span class="k">then</span>
-	error <span class="s2">&#34;</span><span class="k">$(</span>gettext <span class="s2">&#34;Failure while downloading %s %s repo&#34;</span><span class="k">)</span><span class="s2">&#34;</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">repo</span><span class="si">}</span><span class="s2">&#34;</span> <span class="s2">&#34;git&#34;</span>
-	plain <span class="s2">&#34;</span><span class="k">$(</span>gettext <span class="s2">&#34;Aborting...&#34;</span><span class="k">)</span><span class="s2">&#34;</span>
-	<span class="nb">exit</span> <span class="m">1</span>
-<span class="k">fi</span>
+<pre class="chroma"><code class="language-bash" data-lang="bash">mkdir ./a_dir
+sudo mount disk.img ./a_dir
 </code></pre></td></tr></table>
 </div>
-</div><p>改成这样, 也就是在外面又加了一层 if. 不直接改在原来的基础上加是因为有些网站不支持 <code>--depth</code></p>
+</div><p>接下来就可以将其当成一个普通目录使用了！</p>
+</li>
+</ol>
+<p>这样一来，访问、移动、复制、删除这个文件夹时都会非常方便。而且因为我们调整了块大小，文件存储得会更加紧凑，节省空间。</p>
+<p>甚至，如果有压缩需求的话，我们还可以在这个地方使用 zfs/btrfs 以进一步节省空间。</p>
+<p>以 btrfs 为例，首先格式化：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="k">if</span> ! git clone --depth<span class="o">=</span><span class="m">1</span> --mirror <span class="s2">&#34;</span><span class="nv">$url</span><span class="s2">&#34;</span> <span class="s2">&#34;</span><span class="nv">$dir</span><span class="s2">&#34;</span><span class="p">;</span> <span class="k">then</span>
-	<span class="k">if</span> ! git clone --mirror <span class="s2">&#34;</span><span class="nv">$url</span><span class="s2">&#34;</span> <span class="s2">&#34;</span><span class="nv">$dir</span><span class="s2">&#34;</span><span class="p">;</span> <span class="k">then</span>
-		error <span class="s2">&#34;</span><span class="k">$(</span>gettext <span class="s2">&#34;Failure while downloading %s %s repo&#34;</span><span class="k">)</span><span class="s2">&#34;</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">repo</span><span class="si">}</span><span class="s2">&#34;</span> <span class="s2">&#34;git&#34;</span>
-		plain <span class="s2">&#34;</span><span class="k">$(</span>gettext <span class="s2">&#34;Aborting...&#34;</span><span class="k">)</span><span class="s2">&#34;</span>
-		<span class="nb">exit</span> <span class="m">1</span>
-	<span class="k">fi</span>
-<span class="k">fi</span>
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 官方建议对小于 1GB 的文件系统启用 `--mixed` 开关，可以允许元数据和文件存储在同一个块上，有效节省储存空间</span>
+mkfs.btrfs -L Disk -M disk.img
 </code></pre></td></tr></table>
 </div>
-</div><p>同理, 还有如下代码</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="k">if</span> ! git fetch --all -p<span class="p">;</span> <span class="k">then</span>
-	<span class="c1"># only warn on failure to allow offline builds</span>
-	warning <span class="s2">&#34;</span><span class="k">$(</span>gettext <span class="s2">&#34;Failure while updating %s %s repo&#34;</span><span class="k">)</span><span class="s2">&#34;</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">repo</span><span class="si">}</span><span class="s2">&#34;</span> <span class="s2">&#34;git&#34;</span>
-<span class="k">fi</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>&hellip;.改成</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="k">if</span> ! git fetch --depth<span class="o">=</span><span class="m">1</span> -p<span class="p">;</span> <span class="k">then</span>
-	<span class="k">if</span> ! git fetch --all -p<span class="p">;</span> <span class="k">then</span>
-		<span class="c1"># only warn on failure to allow offline builds</span>
-		warning <span class="s2">&#34;</span><span class="k">$(</span>gettext <span class="s2">&#34;Failure while updating %s %s repo&#34;</span><span class="k">)</span><span class="s2">&#34;</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">repo</span><span class="si">}</span><span class="s2">&#34;</span> <span class="s2">&#34;git&#34;</span>
-	<span class="k">fi</span>
-<span class="k">fi</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>这样速度就令人满意多了, 对于大部分构建脚本应该都没问题,</p>
-<p><del>遇到问题再改吧 (</del></p>
+</div><p>接着挂载时启用压缩功能：<code>sudo mount -o compress=zstd disk.img ./a_dir</code></p>
+<p>我使用这种方法储存了一个包含约 5 万个文档、大小为 1GB 的文件夹，btrfs 的透明压缩在这里为我省下了约一半的空间（尽管我的镜像大小本身就有 1GB……）</p>
+<p>这个方案唯一的缺点就是不够灵活——不管你存了多少文件，设备的大小是固定的。这一方面导致如果空间没存满的话就浪费了不少空间，另一方面空间不够的话扩容也是个麻烦事：<a href="https://superuser.com/questions/693158/can-i-expand-the-size-of-a-file-based-disk-image/693162">linux - Can I expand the size of a file based disk image? - Super User</a></p>
     </div>
 
     <div class="post-copyright">
   <p class="copyright-item">
     <span class="item-title">文章作者</span>
-    <span class="item-content">aloxaf</span>
+    <span class="item-content">Aloxaf</span>
   </p>
   <p class="copyright-item">
     <span class="item-title">上次更新</span>
     <span class="item-content">
-        2018-10-18
+        2020-11-28
         
     </span>
   </p>
@@ -265,13 +265,9 @@
           <a href="/tags/linux/">linux</a>
           </div>
       <nav class="post-nav">
-        <a class="prev" href="/2018/10/arch_pwndbg/">
-            <i class="iconfont icon-left"></i>
-            <span class="prev-text nav-default">Arch Linux 下使用 pwndbg</span>
-            <span class="prev-text nav-mobile">上一篇</span>
-          </a>
-        <a class="next" href="/2018/10/linux_emoji/">
-            <span class="next-text nav-default">在 Linux 下使用 Blob Emoji</span>
+        
+        <a class="next" href="/2020/11/cdda_compile_android/">
+            <span class="next-text nav-default">CDDA 安卓版编译指南</span>
             <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
           </a>
@@ -281,7 +277,7 @@
         </div>
         
 
-  <span id="/2018/10/arch_git/" class="leancloud_visitors" data-flag-title="加速 AUR 软件安装速度">
+  <span id="/2020/11/wow_such_linux_many_files_so_small/" class="leancloud_visitors" data-flag-title="Linux 下如何跟大量小文件打交道">
 		<span class="post-meta-item-text">文章阅读量 </span>
 		<span class="leancloud-visitors-count">0</span>
 		<p></p>

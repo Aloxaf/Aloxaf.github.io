@@ -24,7 +24,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.78.1 with theme even" />
+<meta name="generator" content="Hugo 0.78.2 with theme even" />
 
 
 <link rel="preload" href="/fonts/iconfont/iconfont.woff" as="font" type="font/woff" crossorigin="anonymous">
@@ -54,7 +54,7 @@
 <meta itemprop="description" content="对于没有 Android 开发经验的我来讲这是值得记录一下的事情……">
 <meta itemprop="datePublished" content="2020-11-17T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2020-11-17T00:00:00+00:00" />
-<meta itemprop="wordCount" content="641">
+<meta itemprop="wordCount" content="657">
 
 
 
@@ -179,22 +179,44 @@ sudo archlinux-java <span class="nb">set</span> java-8-jdk
 <p>我是直接用 Android Studio 的 SDK Manager 装的，注意 CDDA 要求的是 28 的 SDK，不要装成 30 的了。官方也提供了手动安装的方法（如下）：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-zsh" data-lang="zsh">wget https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
-<span class="c1"># 将 sdk 放在 ~/.local/share/android 下能够被 gradle 自动识别，可以免去配置环境变量的步骤</span>
-unzip sdk-tools-linux-4333796.zip -d ~/.local/share/android
+<pre class="chroma"><code class="language-zsh" data-lang="zsh"><span class="c1"># 配置相关环境变量</span>
+<span class="nb">export</span> <span class="nv">XDG_CONFIG_HOME</span><span class="o">=</span><span class="nv">$HOME</span>/.config
+<span class="nb">export</span> <span class="nv">XDG_DATA_HOME</span><span class="o">=</span><span class="nv">$HOME</span>/.local/share
+
+<span class="nb">export</span> <span class="nv">ANDROID_SDK_HOME</span><span class="o">=</span><span class="nv">$XDG_CONFIG_HOME</span>/android
+<span class="nb">export</span> <span class="nv">ANDROID_SDK_ROOT</span><span class="o">=</span><span class="nv">$XDG_DATA_HOME</span>/android
+<span class="nb">export</span> <span class="nv">ANDROID_AVD_HOME</span><span class="o">=</span><span class="nv">$XDG_DATA_HOME</span>/android
+<span class="nb">export</span> <span class="nv">ANDROID_EMULATOR_HOME</span><span class="o">=</span><span class="nv">$XDG_DATA_HOME</span>/android
+<span class="nb">export</span> <span class="nv">ADB_VENDOR_KEY</span><span class="o">=</span><span class="nv">$XDG_CONFIG_HOME</span>/android
+
+<span class="c1"># 下载 sdk，扔到 ~/.loca/share/ 下</span>
+wget https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
+unzip sdk-tools-linux-4333796.zip -d <span class="nv">$ANDROID_SDK_ROOT</span>
 rm sdk-tools-linux-4333796.zip
-~/.local/share/android/tools/bin/sdkmanager --update
-~/.local/share/android/tools/bin/sdkmanager <span class="s2">&#34;tools&#34;</span> <span class="s2">&#34;platform-tools&#34;</span> <span class="s2">&#34;ndk-bundle&#34;</span>
-~/.local/share/android/tools/bin/sdkmanager --licenses
+
+<span class="nv">$ANDROID_SDK_ROOT</span>/tools/bin/sdkmanager --update
+<span class="nv">$ANDROID_SDK_ROOT</span>/tools/bin/sdkmanager <span class="s2">&#34;tools&#34;</span> <span class="s2">&#34;platform-tools&#34;</span> <span class="s2">&#34;ndk-bundle&#34;</span>
+<span class="nv">$ANDROID_SDK_ROOT</span>/tools/bin/sdkmanager --licenses
 </code></pre></td></tr></table>
 </div>
 </div><p><strong>为 gradle 配置代理</strong></p>
@@ -229,8 +251,8 @@ cat &gt;&gt; ~/.gradle/gradle.properties <span class="s">&lt;&lt;EOF
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-zsh" data-lang="zsh"><span class="c1"># 你可以用 ./gradlew tasks 查看可用的任务</span>
-<span class="c1"># 这个命令限定了至构建实验版的 64 位 release 版本，并且使用四线程</span>
-./gradlew compileExperimentalReleaseSources -Pj<span class="o">=</span><span class="m">4</span> -Pabi_arm_32<span class="o">=</span><span class="nb">false</span>
+<span class="c1"># 这个命令限定了只构建实验版的 64 位 release 版本，并且使用四线程</span>
+./gradlew assembleExperimentalRelease -Pj<span class="o">=</span><span class="m">4</span> -Pabi_arm_32<span class="o">=</span><span class="nb">false</span>
 </code></pre></td></tr></table>
 </div>
 </div><p><strong>生成证书</strong></p>
@@ -301,7 +323,11 @@ sed -n <span class="s1">&#39;/BEGIN CERTIFICATE/,/END CERTIFICATE/p&#39;</span> 
           <a href="/tags/cdda/">cdda</a>
           </div>
       <nav class="post-nav">
-        
+        <a class="prev" href="/2020/11/wow_such_linux_many_files_so_small/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Linux 下如何跟大量小文件打交道</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
         <a class="next" href="/2020/11/zsh_history_expansion/">
             <span class="next-text nav-default">【ZSH 系列教程】历史扩展与修饰符</span>
             <span class="next-text nav-mobile">下一篇</span>

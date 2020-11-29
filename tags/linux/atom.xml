@@ -6,7 +6,16 @@
     <description>Recent content in linux on Aloxaf&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Thu, 24 Sep 2020 21:53:09 +0000</lastBuildDate><atom:link href="https://www.aloxaf.com/tags/linux/atom.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 28 Nov 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://www.aloxaf.com/tags/linux/atom.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Linux 下如何跟大量小文件打交道</title>
+      <link>https://www.aloxaf.com/2020/11/wow_such_linux_many_files_so_small/</link>
+      <pubDate>Sat, 28 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.aloxaf.com/2020/11/wow_such_linux_many_files_so_small/</guid>
+      <description>&lt;p&gt;首先声明一点，本文探讨的不是如何在生产环境中高效存储百万量级的小文件，而是在日常生活中该如何处理那些包含上万个小文件的情景。&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>使用 fcitx5-lua 编写 lua 插件</title>
       <link>https://www.aloxaf.com/2020/09/fcitx5_plugin/</link>
@@ -115,22 +124,6 @@ p10k 的 Instant Prompt 功能非常好用，它可以在其他插件的加载�
       
       <guid>https://www.aloxaf.com/2018/11/arch_optimize/</guid>
       <description>&lt;p&gt;发现无聊时刷 &lt;a href=&#34;https://wiki.archlinux.org/&#34;&gt;Arch Wiki&lt;/a&gt; 也挺有趣的, 记录一下自己干了啥吧. 毕竟有些配置没法放到 dotfiles 里. 记录一下以后翻起来也方便.&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>解决 KDE 暗色主题下 WPS &amp; 搜狗拼音设置字体颜色不正常的问题</title>
-      <link>https://www.aloxaf.com/2018/11/kde_dark_theme/</link>
-      <pubDate>Wed, 14 Nov 2018 20:58:52 +0000</pubDate>
-      
-      <guid>https://www.aloxaf.com/2018/11/kde_dark_theme/</guid>
-      <description>&lt;p&gt;这是一个比较迷的 bug, 困扰了我很久, 然而又不知道为什么.&lt;/p&gt;
-&lt;p&gt;今天在群里看到有人提到了这个问题, 简单地讲就是程序只有一部分跟随系统主题, 然后就会产生各种诡异的效果.&lt;/p&gt;
-&lt;p&gt;比如&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;搜狗, 字体跟随系统变成浅色, 背景没有变, 变成浅色背景+浅色字体, 亮瞎眼组合&lt;/li&gt;
-&lt;li&gt;WPS 表格, 表格背景是黑的&amp;hellip;.究极の难看&lt;/li&gt;
-&lt;li&gt;WPS 文字, 字体也变浅色了, 不仅亮瞎眼. 如果强行调成黑色的话, 在 Windows 上就会变亮瞎眼&amp;hellip;&lt;/li&gt;
-&lt;/ul&gt;</description>
     </item>
     
   </channel>
