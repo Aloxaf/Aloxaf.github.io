@@ -6,7 +6,17 @@
     <description>Recent content in Posts on Aloxaf&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Sat, 28 Nov 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://www.aloxaf.com/post/atom.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 01 Dec 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://www.aloxaf.com/post/atom.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>【ZSH 系列教程】参数扩展（上）</title>
+      <link>https://www.aloxaf.com/2020/12/zsh_parameter_expansion/</link>
+      <pubDate>Tue, 01 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.aloxaf.com/2020/12/zsh_parameter_expansion/</guid>
+      <description>&lt;p&gt;zsh 的参数扩展相比 bash 而言强大了不止一星半点，它让 zsh 无需借助外部命令就能完成大量操作，是写出一个&lt;s&gt;复杂的&lt;/s&gt;流畅的 zsh 插件的必备技能之一。&lt;/p&gt;
+&lt;p&gt;这也是一个区分“zsh 用户”和“用 zsh 作为交互式 shell 的 bash 用户”的有效手段。&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>Linux 下如何跟大量小文件打交道</title>
       <link>https://www.aloxaf.com/2020/11/wow_such_linux_many_files_so_small/</link>
@@ -92,16 +102,6 @@
       
       <guid>https://www.aloxaf.com/2020/03/fzf-tab/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;https://asciinema.org/a/293849&#34;&gt;&lt;img src=&#34;https://asciinema.org/a/293849.svg&#34; alt=&#34;asciicast&#34;&gt;&lt;/a&gt;&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>【译】设计优雅的 Rust 库 API</title>
-      <link>https://www.aloxaf.com/2019/11/elegant_apis_in_rust/</link>
-      <pubDate>Wed, 20 Nov 2019 21:55:09 +0000</pubDate>
-      
-      <guid>https://www.aloxaf.com/2019/11/elegant_apis_in_rust/</guid>
-      <description>&lt;p&gt;一篇讲述 Rust API 设计原则的经典老文，虽然老但仍然值得阅读。前几天有事情把它从旮旯里翻出来了，虽然是经典老文但我估计很多人都没有读过，最近闲着没事干脆用我的辣鸡英语水平翻译一下，也算为 Rust 中文社区做一点贡献。&lt;/p&gt;
-&lt;p&gt;原文见：https://deterministic.space/elegant-apis-in-rust.html&lt;/p&gt;</description>
     </item>
     
   </channel>

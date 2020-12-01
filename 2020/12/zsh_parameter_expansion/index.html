@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>【ZSH 系列教程】参数扩展（上） - Aloxaf&#39;s Blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Aloxaf" /><meta name="description" content="zsh 的参数扩展相比 bash 而言强大了不止一星半点，它让 zsh 无需借助外部命令就能完成大量操作，是写出一个复杂的流畅的 zsh 插件的必备技能之一。
+这也是一个区分“zsh 用户”和“用 zsh 作为交互式 shell 的 bash 用户”的有效手段。
+" /><meta name="keywords" content="aloxaf, ctf, linux, zsh" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.78.2 with theme even" />
+
+
+<link rel="preload" href="/fonts/iconfont/iconfont.woff" as="font" type="font/woff" crossorigin="anonymous">
+<link rel="preload" href="/fonts/FiraCode/FiraCode-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+
+
+<link rel="canonical" href="https://www.aloxaf.com/2020/12/zsh_parameter_expansion/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.66509101da8cbb6d6be4edabc85875fd614c70b5be09d59f2d54d7e09bc78d06.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="【ZSH 系列教程】参数扩展（上）" />
+<meta property="og:description" content="zsh 的参数扩展相比 bash 而言强大了不止一星半点，它让 zsh 无需借助外部命令就能完成大量操作，是写出一个复杂的流畅的 zsh 插件的必备技能之一。
+这也是一个区分“zsh 用户”和“用 zsh 作为交互式 shell 的 bash 用户”的有效手段。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.aloxaf.com/2020/12/zsh_parameter_expansion/" />
+<meta property="article:published_time" content="2020-12-01T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-12-01T00:00:00+00:00" />
+<meta itemprop="name" content="【ZSH 系列教程】参数扩展（上）">
+<meta itemprop="description" content="zsh 的参数扩展相比 bash 而言强大了不止一星半点，它让 zsh 无需借助外部命令就能完成大量操作，是写出一个复杂的流畅的 zsh 插件的必备技能之一。
+这也是一个区分“zsh 用户”和“用 zsh 作为交互式 shell 的 bash 用户”的有效手段。">
+<meta itemprop="datePublished" content="2020-12-01T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2020-12-01T00:00:00+00:00" />
+<meta itemprop="wordCount" content="1647">
+
+
+
+<meta itemprop="keywords" content="zsh," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="【ZSH 系列教程】参数扩展（上）"/>
+<meta name="twitter:description" content="zsh 的参数扩展相比 bash 而言强大了不止一星半点，它让 zsh 无需借助外部命令就能完成大量操作，是写出一个复杂的流畅的 zsh 插件的必备技能之一。
+这也是一个区分“zsh 用户”和“用 zsh 作为交互式 shell 的 bash 用户”的有效手段。"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Aloxaf&#39;s Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于</li>
+      </a><a href="/friend/">
+        <li class="mobile-menu-item">友链</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Aloxaf&#39;s Blog</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">关于</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/friend/">友链</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">【ZSH 系列教程】参数扩展（上）</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-12-01 </span>
+        <div class="post-category">
+            <a href="/categories/zsh-%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B/"> zsh 系列教程 </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents"></nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>zsh 的参数扩展相比 bash 而言强大了不止一星半点，它让 zsh 无需借助外部命令就能完成大量操作，是写出一个<s>复杂的</s>流畅的 zsh 插件的必备技能之一。</p>
+<p>这也是一个区分“zsh 用户”和“用 zsh 作为交互式 shell 的 bash 用户”的有效手段。</p>
+<p>考虑到本节内容很长，而我很懒，我决定将这节拆开。这篇文章里只介绍传统的 <code>${var%string}</code> 形式的扩展，这方面和 bash 的用法大部分相同，但也有一些区别。</p>
+<hr>
+<p>首先是与变量定义相关的</p>
+<table>
+<thead>
+<tr>
+<th>形式</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>${+var}</code></td>
+<td>若 var 已定义则返回 1，反之返回 0</td>
+</tr>
+<tr>
+<td><code>${var-str}</code></td>
+<td>若 var 未定义则返回 str，反之返回 $var</td>
+</tr>
+<tr>
+<td><code>${var:-str}</code></td>
+<td>若 var 为空则返回 str，反之返回 $var</td>
+</tr>
+<tr>
+<td><code>${var+str}</code></td>
+<td>若 var 已定义则返回 str，反之返回 $var</td>
+</tr>
+<tr>
+<td><code>${var:+str}</code></td>
+<td>若 var 不为空则返回 str，反之返回 $var</td>
+</tr>
+<tr>
+<td><code>${var=str}</code></td>
+<td>若 var 未定义则赋值并返回 str</td>
+</tr>
+<tr>
+<td><code>${var:=str}</code></td>
+<td>若 var 为空则赋值并返回 str</td>
+</tr>
+<tr>
+<td><code>${var::=str}</code></td>
+<td>总是为 var 赋值并返回 str</td>
+</tr>
+<tr>
+<td><code>${var?str}</code></td>
+<td>若 var 未定义则抛出错误，错误信息为 str，否则返回 $var</td>
+</tr>
+<tr>
+<td><code>${var:?str}</code></td>
+<td>若 var 为空则抛出错误，错误信息为 str，否则返回 $var</td>
+</tr>
+</tbody>
+</table>
+<p>这部分和 bash 应该是一致的，没啥好讲，只提一个 zsh 里的特殊用法：</p>
+<p><strong>包裹字符串字面量</strong></p>
+<p>比如我有一个字符串 &ldquo;~/.local/share&rdquo;，我想把 share 替换成 bin。</p>
+<p>一般的做法是将这个字符串赋给一个变量，然后再替换。但在 zsh 里我们可以直接这样写 <code>${${:-&quot;~/.local/share&quot;}/share/bin}</code>。这里巧妙地利用了 <code>${var:-str}</code> 的语法将一个字符串字面量包裹了起来，是一个<del><del>降低代码可读性</del></del>节省代码行数的小技巧。</p>
+<hr>
+<p>接下来是最常用的字符串替换，仍然与 bash 差不多</p>
+<table>
+<thead>
+<tr>
+<th>形式</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>${var#pat}</code></td>
+<td>从 $var 的开头删掉匹配模式 pat 的字符串并返回</td>
+</tr>
+<tr>
+<td><code>${var##pat}</code></td>
+<td>同上，不过此处是贪婪匹配</td>
+</tr>
+<tr>
+<td><code>${var%pat}</code></td>
+<td>从 $var 的末尾删掉匹配模式 pat 的字符串并返回</td>
+</tr>
+<tr>
+<td><code>${var%%pat}</code></td>
+<td>同上，不过此处是贪婪匹配</td>
+</tr>
+<tr>
+<td><code>${var:#pat}</code></td>
+<td>如果 $var 完整匹配 pat 则返回空字符串，否则直接返回</td>
+</tr>
+<tr>
+<td><code>${var/pat/repl}</code></td>
+<td>将第一个匹配 pat 的字符串替换为 repl，贪婪匹配</td>
+</tr>
+<tr>
+<td><code>${var//pat/repl}</code></td>
+<td>同上，但是会替换所有出现的位置</td>
+</tr>
+<tr>
+<td><code>${var:/pat/repl}</code></td>
+<td>同上，但是要求 pat 匹配整个字符串（类比一下 ${var:#pat} ）</td>
+</tr>
+</tbody>
+</table>
+<p>需要注意的是，如果 var 是数组的话，那么规则就会应用到每一个元素。比如 <code>${var#pat}</code> 变成从数组中每个元素的开头删除匹配模式 pat 的字符串，<code>${var:#pat}</code> 变成将数组中完整匹配 pat 的元素删除。</p>
+<p>举例如下，注意只有加了引号并且没有使用 <code>@</code> 的时候规则才会作用于数组整体：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-zsh" data-lang="zsh"><span class="nb">local</span> -a <span class="nv">var</span><span class="o">=(</span>1a 1b 1c<span class="o">)</span>
+<span class="nb">echo</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">var</span><span class="p">#1</span><span class="si">}</span><span class="s2">&#34;</span>    <span class="c1"># =&gt; a 1b 1c</span>
+<span class="nb">echo</span> <span class="si">${</span><span class="nv">var</span><span class="p">#1</span><span class="si">}</span>      <span class="c1"># =&gt; a b c</span>
+<span class="nb">echo</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">var</span><span class="p">[@]#1</span><span class="si">}</span><span class="s2">&#34;</span> <span class="c1"># =&gt; a b c</span>
+<span class="nb">echo</span> <span class="s2">&#34;</span><span class="si">${</span><span class="p">(@)var#1</span><span class="si">}</span><span class="s2">&#34;</span> <span class="c1"># =&gt; a b c</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>关于 <code>${var/pat/repl}</code> 的形式还有几个需要注意的点：</p>
+<ul>
+<li>
+<p>在 <code>${var/pat/repl}</code> 的形式中，pat 也可以加 <code>#</code>、<code>%</code>或<code>#%</code> 来指示从前、从后、或是要求完整匹配字符串。这点同样与 bash 一致。</p>
+</li>
+<li>
+<p>如果 pat 是一个变量，那么它的展开结果会被当成一个纯字符串而不是模式。这点与 bash 不同需要注意！你需要显式使用 <code>${~var}</code> 来告诉 zsh 这个地方的展开结果是模式。</p>
+</li>
+<li>
+<p>这个替换默认是贪婪的，如果想要不贪婪的话，需要使用 <code>S</code> flag：<code>${(S)var/pat/repl}</code> 。关于参数扩展 flag 的内容会在下节介绍。</p>
+</li>
+</ul>
+<hr>
+<p>接下来是数组操作，这部分掺杂的乱七八糟的玩意儿就逐渐多起来了</p>
+<table>
+<thead>
+<tr>
+<th>形式</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>${var:\|arr}</code></td>
+<td>两数组做差</td>
+</tr>
+<tr>
+<td><code>${var:*arr}</code></td>
+<td>两数组取交集</td>
+</tr>
+<tr>
+<td><code>${var:^arr}</code></td>
+<td>zip 两个数组，最终数组长度以较短的为准</td>
+</tr>
+<tr>
+<td><code>${var:^^arr}</code></td>
+<td>zip 两个数组，最终数组长度以较长的为准，较短的数组会循环补全到同样长度</td>
+</tr>
+<tr>
+<td><code>${var:ofs}</code></td>
+<td>切片，取下标 ofs 一直到末尾的内容</td>
+</tr>
+<tr>
+<td><code>${var:ofs:len}</code></td>
+<td>切片，从下标 ofs 开始取 len 个元素</td>
+</tr>
+</tbody>
+</table>
+<p>注意点：</p>
+<ul>
+<li>
+<p>ofs 如果包含负号的话需要加一个空格，否则会与 <code>${var:-str}</code> 的用法冲突</p>
+</li>
+<li>
+<p>切片下标会自动进行算术扩展，因此可以直接写 a + b 而不用 <code>$(( a + b ))</code>（当然还是要注意空格）</p>
+</li>
+</ul>
+<hr>
+<p>最后是某些前缀，下面的 spec 可以为上面任一扩展形式，其中 <code>#</code> 如过要与 <code>^=~</code> 组合的话，则必须放在它们的右边。特别的，如果 spec 只是一个简单的变量名的话，可以省略大括号：</p>
+<ul>
+<li>
+<p><code>${#spec}</code> &ndash; 取展开结果的长度</p>
+</li>
+<li>
+<p><code>${^spec}</code> &ndash; 对展开结果启用 RC_EXPAND_PARAM 开关，比如 <code>var=(1 2 3)</code>，则 <code>A${^var}B</code> 会展开为 <code>A1B A2B A3B</code></p>
+</li>
+<li>
+<p><code>${=spec}</code> &ndash; 对展开结果启用 SH_WORD_SPLIT，也就是根据 IFS 把你的展开结果分割为数组。没错！这就是 bash 的默认行为……</p>
+</li>
+<li>
+<p><code>${~spec}</code> &ndash; 对展开结果启用 GLOB_SUBST 并视为模式尝试展开。没错！这也是 bash 的默认行为……</p>
+</li>
+</ul>
+<p>后两个都是坑爹 bash 的默认行为，也是导致 bash 里到处都是引号的罪魁祸首。因为 zsh 默认没启用这种行为，所以在写 zsh 的时候大家可以放心地省略引号，不会有任何问题。</p>
+<p>最后值得一提的是 <code>${~spec}</code> 的一个常用用法：<code>echo ${~${:-&quot;~/.zshenv&quot;}}</code> =&gt; <code>/home/aloxaf/.zshenv</code>，不要再傻傻地用 <code>${var/~/$HOME}</code> 了！</p>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Aloxaf</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2020-12-01
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a></span>
+  </p>
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/zsh/">zsh</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/2020/11/wow_such_linux_many_files_so_small/">
+            <span class="next-text nav-default">Linux 下如何跟大量小文件打交道</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  <span id="/2020/12/zsh_parameter_expansion/" class="leancloud_visitors" data-flag-title="【ZSH 系列教程】参数扩展（上）">
+		<span class="post-meta-item-text">文章阅读量 </span>
+		<span class="leancloud-visitors-count">0</span>
+		<p></p>
+	  </span>
+  <div id="vcomments"></div>
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+  <script type="text/javascript">
+    new Valine({
+        el: '#vcomments' ,
+        serverURLs: 'https:\/\/lcd.aloxaf.cn',
+        appId: 'fSbXaElXXTznggVXiWy8NFBU-gzGzoHsz',
+        appKey: 'kK3SxB14xAACgHftKrSaBRDU',
+        notify:  false ,
+        verify:  false ,
+        avatar:'mm',
+        placeholder: '妙啊，妙啊',
+        visitor:  true 
+    });
+  </script>
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:aloxafx@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/Aloxaf" class="iconfont icon-github" title="github"></a>
+  <a href="https://www.aloxaf.com/atom.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span><span>Aloxaf</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script async src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script async src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "zh".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-123773630-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+</body>
+</html>

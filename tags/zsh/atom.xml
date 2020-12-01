@@ -6,7 +6,17 @@
     <description>Recent content in zsh on Aloxaf&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Mon, 09 Nov 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://www.aloxaf.com/tags/zsh/atom.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 01 Dec 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://www.aloxaf.com/tags/zsh/atom.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>【ZSH 系列教程】参数扩展（上）</title>
+      <link>https://www.aloxaf.com/2020/12/zsh_parameter_expansion/</link>
+      <pubDate>Tue, 01 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.aloxaf.com/2020/12/zsh_parameter_expansion/</guid>
+      <description>&lt;p&gt;zsh 的参数扩展相比 bash 而言强大了不止一星半点，它让 zsh 无需借助外部命令就能完成大量操作，是写出一个&lt;s&gt;复杂的&lt;/s&gt;流畅的 zsh 插件的必备技能之一。&lt;/p&gt;
+&lt;p&gt;这也是一个区分“zsh 用户”和“用 zsh 作为交互式 shell 的 bash 用户”的有效手段。&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>【ZSH 系列教程】历史扩展与修饰符</title>
       <link>https://www.aloxaf.com/2020/11/zsh_history_expansion/</link>
