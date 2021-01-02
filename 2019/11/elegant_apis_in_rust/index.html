@@ -25,7 +25,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.78.2 with theme even" />
+<meta name="generator" content="Hugo 0.80.0 with theme even" />
 
 
 <link rel="preload" href="/fonts/iconfont/iconfont.woff" as="font" type="font/woff" crossorigin="anonymous">
@@ -418,7 +418,7 @@
 <pre class="chroma"><code class="language-rust" data-lang="rust"><span class="c1">// 选择 A: 你来解析
 </span><span class="c1"></span><span class="k">fn</span> <span class="nf">output_a</span><span class="p">(</span><span class="n">f</span>: <span class="kp">&amp;</span><span class="nc">Foo</span><span class="p">,</span><span class="w"> </span><span class="n">color</span>: <span class="kp">&amp;</span><span class="kt">str</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nb">Result</span><span class="o">&lt;</span><span class="n">Bar</span><span class="p">,</span><span class="w"> </span><span class="n">ParseError</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span><span class="w">    </span><span class="c1">// 这里使用解析后的类型遮蔽掉了原来的 `color`
-</span><span class="c1"></span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">color</span>: <span class="nc">Color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">try</span><span class="o">!</span><span class="p">(</span><span class="n">color</span><span class="p">.</span><span class="n">parse</span><span class="p">());</span><span class="w">
+</span><span class="c1"></span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">color</span>: <span class="nc">Color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kr">try</span><span class="o">!</span><span class="p">(</span><span class="n">color</span><span class="p">.</span><span class="n">parse</span><span class="p">());</span><span class="w">
 </span><span class="w">
 </span><span class="w">    </span><span class="n">f</span><span class="p">.</span><span class="n">to_bar</span><span class="p">(</span><span class="o">&amp;</span><span class="n">color</span><span class="p">)</span><span class="w">
 </span><span class="w"></span><span class="p">}</span><span class="w">
@@ -899,7 +899,7 @@
   <span class="copyright-year">
     &copy; 
     2017 - 
-    2020<span class="heart"><i class="iconfont icon-heart"></i></span><span>Aloxaf</span>
+    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>Aloxaf</span>
   </span>
 </div>
 
