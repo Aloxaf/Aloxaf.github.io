@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>BOOKWALKER 在线阅读器图片提取笔记 - Aloxaf&#39;s Blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Aloxaf" /><meta name="description" content="好久没写博客了，水一篇文章
+" /><meta name="keywords" content="aloxaf, ctf, linux, zsh" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.81.0 with theme even" />
+
+
+<link rel="preload" href="/fonts/iconfont/iconfont.woff" as="font" type="font/woff" crossorigin="anonymous">
+<link rel="preload" href="/fonts/FiraCode/FiraCode-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+
+
+<link rel="canonical" href="https://www.aloxaf.com/2021/03/bookwalker_image_extract/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.96e8e2c964270ec266a0efff67202fed95e11f1fc9c9dd9b1219e1f4a54b5c4b.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="BOOKWALKER 在线阅读器图片提取笔记" />
+<meta property="og:description" content="好久没写博客了，水一篇文章" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.aloxaf.com/2021/03/bookwalker_image_extract/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2021-03-08T22:48:00&#43;00:00" />
+<meta property="article:modified_time" content="2021-03-08T22:48:00&#43;00:00" />
+
+<meta itemprop="name" content="BOOKWALKER 在线阅读器图片提取笔记">
+<meta itemprop="description" content="好久没写博客了，水一篇文章"><meta itemprop="datePublished" content="2021-03-08T22:48:00&#43;00:00" />
+<meta itemprop="dateModified" content="2021-03-08T22:48:00&#43;00:00" />
+<meta itemprop="wordCount" content="1349">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="BOOKWALKER 在线阅读器图片提取笔记"/>
+<meta name="twitter:description" content="好久没写博客了，水一篇文章"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Aloxaf&#39;s Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于</li>
+      </a><a href="/friend/">
+        <li class="mobile-menu-item">友链</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Aloxaf&#39;s Blog</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">关于</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/friend/">友链</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">BOOKWALKER 在线阅读器图片提取笔记</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2021-03-08 </span>
+        
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#通过-canvas-提取">通过 canvas 提取</a></li>
+        <li><a href="#逆向还原算法">逆向还原算法</a></li>
+        <li><a href="#hook">Hook</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>好久没写博客了，水一篇文章</p>
+<p>受人请求帮忙提取 BOOKWALKER 里的图片。这类提供在线阅读方案的服务商为了防止用户拷贝可谓是绞尽脑汁，它们服务器返回的图片甚至是这样的：</p>
+<p><img src="https://user-images.githubusercontent.com/17017672/110337420-e01aca80-8060-11eb-8a11-810489468e90.jpeg" alt="a-004"></p>
+<p>将图片分割为一个个小块并打乱，在客户端再进行恢复并画到 canvas 上，
+防止通过抓取请求这种简单方式直接获取到图片，密集+某些地方不均等的分割也让人肉还原成为几乎不可能的事情。</p>
+<h2 id="通过-canvas-提取">通过 canvas 提取</h2>
+<p>作为聪明人，我当然不会选择硬杠还原算法。我的第一反应是——从 canvas 里导出图片不就行了吗？</p>
+<p>答案是不行，Firefox 告诉我「The operation is insecure」</p>
+<p>…………</p>
+<p>看着这个报错我的内心非常无语，作为 debugger 竟然连绕过安全检查的特权都没有吗？！明明右键都可以保存！</p>
+<p>查了一下资料，貌似也没有关闭这个检查的开关，也许借助 headless browser 可以做到（后来发现确实有人用这种方案实现了），但我个人并不是很喜欢这种过重的方案，pass！</p>
+<h2 id="逆向还原算法">逆向还原算法</h2>
+<p>作为聪明人，一条路走不通就得换条路走。于是我打算试试从 js 中逆向出还原算法。</p>
+<p>但是看到源代码的瞬间，我皱起了眉头</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">yIcCI</span><span class="p">(</span><span class="nx">lCeYI</span><span class="p">,</span> <span class="nx">CCeYI</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">YCeYI</span> <span class="o">=</span> <span class="nx">yIcCI</span><span class="p">;</span>
+  <span class="k">switch</span> <span class="p">(</span><span class="nx">lCeYI</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="mi">40</span><span class="o">:</span>
+      <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">eCeYI</span> <span class="o">=</span> <span class="nx">iLlII</span><span class="p">[</span><span class="nx">$IlII</span><span class="p">(</span><span class="s2">&#34;l&#34;</span><span class="p">,</span> <span class="mi">377</span><span class="p">)](</span>
+          <span class="nx">Y$lCI</span><span class="p">(</span><span class="s1">&#39;&#34;\b&lt;]2N#\vPCCh^EV79p]3.\v,A&#39;</span><span class="p">,</span> <span class="mi">361</span><span class="p">)</span>
+        <span class="p">)[</span><span class="nx">iELCI</span><span class="p">(</span><span class="s2">&#34;M&#34;</span><span class="p">,</span> <span class="mi">339</span><span class="p">)]();</span>
+        <span class="k">this</span><span class="p">[</span><span class="nx">I$lCI</span><span class="p">(</span><span class="s2">&#34;*G&#34;</span><span class="p">,</span> <span class="mi">203</span><span class="p">)](</span><span class="nx">eClCI</span><span class="p">(</span><span class="s2">&#34;G\x00\x00H#^NRVHC&#34;</span><span class="p">,</span> <span class="mi">569</span><span class="p">),</span> <span class="nx">eCeYI</span><span class="p">),</span>
+          <span class="k">this</span><span class="p">[</span><span class="nx">i_LlI</span><span class="p">(</span><span class="s2">&#34;(=&#34;</span><span class="p">,</span> <span class="mi">998</span><span class="p">)][</span><span class="nx">LyYlI</span><span class="p">(</span><span class="s2">&#34;9[/\r\x07=c0&#34;</span><span class="p">,</span> <span class="mi">6</span><span class="p">)](</span>
+            <span class="nx">eCeYI</span><span class="p">,</span>
+            <span class="k">this</span><span class="p">[</span><span class="nx">E_ICI</span><span class="p">(</span><span class="s2">&#34;\t:Q\x00X&#39;T&#34;</span><span class="p">,</span> <span class="mi">363</span><span class="p">)]</span>
+          <span class="p">);</span>
+      <span class="p">}</span>
+      <span class="k">break</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>什么鬼，这里面怎么连个正常的字符串也没有？？</p>
+<p>花了半天我才弄懂，原来这里面的字符串全部被替换成了 <code>$IlII(&quot;l&quot;, 377)</code> 这种形式……现在的 js 混淆真是原来越越先进了……</p>
+<p>不过值得庆幸的是，这些字符串生成函数是全局定义的纯函数，因此只要写段代码在浏览器里 eval + replace 就能还原出字符串。
+现在代码可读性一下就上来不少了。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">yIcCI</span><span class="p">(</span><span class="nx">lCeYI</span><span class="p">,</span> <span class="nx">CCeYI</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">YCeYI</span> <span class="o">=</span> <span class="nx">yIcCI</span><span class="p">;</span>
+  <span class="k">switch</span> <span class="p">(</span><span class="nx">lCeYI</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="mi">40</span><span class="o">:</span>
+      <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">eCeYI</span> <span class="o">=</span> <span class="nx">iLlII</span><span class="p">[</span><span class="s2">&#34;$&#34;</span><span class="p">](</span><span class="s2">&#34;#settingFontFace input:checked&#34;</span><span class="p">)[</span><span class="s2">&#34;val&#34;</span><span class="p">]();</span>
+        <span class="k">this</span><span class="p">[</span><span class="s2">&#34;b6l&#34;</span><span class="p">](</span><span class="s2">&#34;settingFontFace&#34;</span><span class="p">,</span> <span class="nx">eCeYI</span><span class="p">),</span>
+          <span class="k">this</span><span class="p">[</span><span class="s2">&#34;a6l&#34;</span><span class="p">][</span><span class="s2">&#34;setFontFace&#34;</span><span class="p">](</span><span class="nx">eCeYI</span><span class="p">,</span> <span class="k">this</span><span class="p">[</span><span class="s2">&#34;directlySave&#34;</span><span class="p">]);</span>
+      <span class="p">}</span>
+      <span class="k">break</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>然而，连字符串都整成了这个鬼样子的混淆器，在其他方面显然也不会弱。就我能看出来的，这个混淆器还做了这些事情：</p>
+<ul>
+<li>将部分没有副作用的语句块提取成一个函数</li>
+<li>不直接调用函数，而是塞到一个 map 里，再辅以随机的 key</li>
+<li>函数参数统统缩成两个，一个 this 一个 arguments</li>
+<li>常量展开</li>
+<li>……</li>
+</ul>
+<p>又花了半天的时间，我终于……放弃了这个方法</p>
+<p>如果有谁想顺着这条路走下去的话，这有一份我分析了一半的 <a href="http://storage.aloxaf.cn/storage/viewer_image.7z">viewer_image.7z</a>，
+其中第 81467 行即为核心的解密函数</p>
+<h2 id="hook">Hook</h2>
+<p>聪明人总是善于发现新的路径，为什么我放弃逆向了呢，一方面是逆向确实麻烦，另一方面我想到了新的方法。</p>
+<p>在上一步中，我试图通过看网络请求的栈回溯来分析程序流程。可惜的是，每当我点击栈回溯的时候浏览器都会卡死……（后来我才弄清楚，智障 Firefox 不会主动为我格式化源码，于是它就试图直接为我定位到一个包含上百万字符的行，然后就没有然后了）</p>
+<p>我以为是网络请求的栈回溯生成得有问题，于是打算找 canvas 操作的栈回溯。可惜的是 Firefox 并没有提供相关断点。那就只能自己打了，于是我 hook 了 CanvasRenderingContext2D 的 drawImage 方法，打印了一些日志，然后我的浏览器又卡死了……</p>
+<p>趁着 Firefox 还没被 OOMKiller 干掉之前，我分析了一下满屏的 drawImage 日志，我发现这是客户端在进行图片的拼接，难怪会如此频繁地调用 drawImage。
+嗯？</p>
+<p>原来是借助 canvas 进行图片拼接的？想想也是，没道理放着现成的 canvas 不用去造一个图片处理库的轮子。</p>
+<p>于是我意识到了还有一条更简单的道路——直接记录下 drawImage 的参数，然后在本地根据这些参数进行还原。</p>
+<p>然后就没有然后了，这个方法确实非常简单，以下就是最终的两个脚本。</p>
+<ul>
+<li>userscript.js 用于打包下载图片及参数，在控制台执行 <code>autoScoll()</code> 后滚动一下等它慢慢下载完，再执行 <code>saveAsZip()</code> 保存下来即可</li>
+<li>rerange.py 用于重新拼接图片，解压以后扔在同一目录执行</li>
+</ul>
+<script src="https://gist.github.com/Aloxaf/016f4ed6f9fc823549754cf8bb566416.js"></script>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Aloxaf</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2021-03-08
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a></span>
+  </p>
+</div>
+<footer class="post-footer">
+      
+      <nav class="post-nav">
+        
+        <a class="next" href="/2021/01/zsh_parameter_expansion_flags/">
+            <span class="next-text nav-default">【ZSH 系列教程】参数扩展（下）</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  <span id="/2021/03/bookwalker_image_extract/" class="leancloud_visitors" data-flag-title="BOOKWALKER 在线阅读器图片提取笔记">
+		<span class="post-meta-item-text">文章阅读量 </span>
+		<span class="leancloud-visitors-count">0</span>
+		<p></p>
+	  </span>
+  <div id="vcomments"></div>
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+  <script type="text/javascript">
+    new Valine({
+        el: '#vcomments' ,
+        serverURLs: 'https:\/\/lcd.aloxaf.cn',
+        appId: 'fSbXaElXXTznggVXiWy8NFBU-gzGzoHsz',
+        appKey: 'kK3SxB14xAACgHftKrSaBRDU',
+        notify:  false ,
+        verify:  false ,
+        avatar:'mm',
+        placeholder: '妙啊，妙啊',
+        visitor:  true 
+    });
+  </script>
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:aloxafx@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/Aloxaf" class="iconfont icon-github" title="github"></a>
+  <a href="https://www.aloxaf.com/atom.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>Aloxaf</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script async src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script async src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "zh".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-123773630-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+</body>
+</html>

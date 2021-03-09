@@ -6,7 +6,7 @@
     <description>Recent content on Aloxaf&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Fri, 01 Jan 2021 00:00:00 +0800</lastBuildDate><atom:link href="https://www.aloxaf.com/atom.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 08 Mar 2021 22:48:00 +0000</lastBuildDate><atom:link href="https://www.aloxaf.com/atom.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>友链</title>
       <link>https://www.aloxaf.com/friend/</link>
@@ -23,6 +23,15 @@
       
       <guid>https://www.aloxaf.com/about/</guid>
       <description>游戏 懒军, 玩成养桶游戏的那种 曾经的目标是成为 glyph 大师 CTF 咸鱼选手 (不知道这项放哪儿) Chocola 赛高 当过舰长, 指挥官, 后来觉得还是 Agent 好 还是提督好 宗教 Arch Linux 邪</description>
+    </item>
+    
+    <item>
+      <title>BOOKWALKER 在线阅读器图片提取笔记</title>
+      <link>https://www.aloxaf.com/2021/03/bookwalker_image_extract/</link>
+      <pubDate>Mon, 08 Mar 2021 22:48:00 +0000</pubDate>
+      
+      <guid>https://www.aloxaf.com/2021/03/bookwalker_image_extract/</guid>
+      <description>&lt;p&gt;好久没写博客了，水一篇文章&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -92,16 +101,6 @@
 &lt;p&gt;突然发现五个月前自己写过一篇 fcitx5-lua 的教程，刚好拿来水一篇&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;fcitx5 终于加上了 lua 支持，可以使用 lua 编写一些简单的插件。但是文档一如既往地非常少，查阅了大量资料并翻看源码以后总算弄懂了插件的编写步骤，记录一下以免忘记，顺便分享给同样需要的人。&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>利用 GitHub Actions 编译 AUR 包并建立自己的软件源</title>
-      <link>https://www.aloxaf.com/2020/06/build_aur_with_github_actions/</link>
-      <pubDate>Wed, 24 Jun 2020 08:43:00 +0000</pubDate>
-      
-      <guid>https://www.aloxaf.com/2020/06/build_aur_with_github_actions/</guid>
-      <description>&lt;p&gt;Arch 用户当然要有自己的软件源！&lt;/p&gt;
-&lt;p&gt;&lt;s&gt;白嫖真香！&lt;/s&gt;&lt;/p&gt;</description>
     </item>
     
   </channel>

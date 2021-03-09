@@ -6,7 +6,16 @@
     <description>Recent content in Posts on Aloxaf&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Fri, 01 Jan 2021 00:00:00 +0800</lastBuildDate><atom:link href="https://www.aloxaf.com/post/atom.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 08 Mar 2021 22:48:00 +0000</lastBuildDate><atom:link href="https://www.aloxaf.com/post/atom.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>BOOKWALKER 在线阅读器图片提取笔记</title>
+      <link>https://www.aloxaf.com/2021/03/bookwalker_image_extract/</link>
+      <pubDate>Mon, 08 Mar 2021 22:48:00 +0000</pubDate>
+      
+      <guid>https://www.aloxaf.com/2021/03/bookwalker_image_extract/</guid>
+      <description>&lt;p&gt;好久没写博客了，水一篇文章&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>【ZSH 系列教程】参数扩展（下）</title>
       <link>https://www.aloxaf.com/2021/01/zsh_parameter_expansion_flags/</link>
@@ -93,15 +102,6 @@
       
       <guid>https://www.aloxaf.com/2020/06/wine_tyrano/</guid>
       <description>&lt;p&gt;∠( ᐛ 」∠)＿&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>基于 tyrano 的游戏如何在浏览器中存档</title>
-      <link>https://www.aloxaf.com/2020/05/tyrano_browser_save/</link>
-      <pubDate>Thu, 21 May 2020 21:07:00 +0000</pubDate>
-      
-      <guid>https://www.aloxaf.com/2020/05/tyrano_browser_save/</guid>
-      <description>&lt;p&gt;:D&lt;/p&gt;</description>
     </item>
     
   </channel>
