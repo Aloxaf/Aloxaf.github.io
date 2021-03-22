@@ -54,7 +54,7 @@
 <meta itemprop="name" content="Linux 下如何跟大量小文件打交道">
 <meta itemprop="description" content="首先声明一点，本文探讨的不是如何在生产环境中高效存储百万量级的小文件，而是在日常生活中该如何处理那些包含上万个小文件的情景。"><meta itemprop="datePublished" content="2020-11-28T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2020-11-28T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="1494">
+<meta itemprop="wordCount" content="1572">
 <meta itemprop="keywords" content="linux," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Linux 下如何跟大量小文件打交道"/>
 <meta name="twitter:description" content="首先声明一点，本文探讨的不是如何在生产环境中高效存储百万量级的小文件，而是在日常生活中该如何处理那些包含上万个小文件的情景。"/>
@@ -176,10 +176,10 @@
 <h1 id="解决方案">解决方案</h1>
 <h2 id="打包存储">打包存储</h2>
 <p>场景：持久保存、很少写入、频繁读取</p>
-<p>优点：节省空间、方便传输、方便访问（搭配 fuse）</p>
+<p>优点：节省空间、方便传输、方便访问</p>
 <p>缺点：不方便写入</p>
-<p>打包压缩是最简单最通用的解决方案。有效节省空间方便传输，但是访问起来比较麻烦。</p>
-<p>还好，Linux 上有万能的 fuse。</p>
+<p>如果你很确信这些文件不需要再修改了的话，那最简单的方案就是使用 SquashFS，这也是大部分 livecd 所使用的文件系统。</p>
+<p>如果你还需要一点点可修改性的话，也可以选择用 zip 打包压缩，然后使用万能的 fuse 来挂载：</p>
 <ul>
 <li>
 <p>如果只在 dolphin 里访问，安装 kio-extras 软件包并在 dolphin 里勾选“将归档文件作为文件夹打开”即可像访问普通文件夹一样访问压缩包。Gnome 的 GVFS 应该也有同样的功能，但是我不用 Gnome（</p>
@@ -202,8 +202,8 @@
 <p>步骤举例：</p>
 <ol>
 <li>
-<p>创建一个空的的 disk.img</p>
-<p><code>dd if=/dev/zero of=./disk.img bs=1M count=1024</code></p>
+<p>创建一个 1G 的稀疏文件 disk.img</p>
+<p><code>dd if=/dev/zero of=./disk.img bs=1 count=0 seek=1G</code></p>
 </li>
 <li>
 <p>格式化</p>
@@ -238,9 +238,9 @@ sudo mount disk.img ./a_dir
 mkfs.btrfs -L Disk -M disk.img
 </code></pre></td></tr></table>
 </div>
-</div><p>接着挂载时启用压缩功能：<code>sudo mount -o compress=zstd disk.img ./a_dir</code></p>
+</div><p>接着挂载时启用压缩与自动碎片整理功能：<code>sudo mount -o compress-force=zstd,autodefrag disk.img ./a_dir</code></p>
 <p>我使用这种方法储存了一个包含约 5 万个文档、大小为 1GB 的文件夹，btrfs 的透明压缩在这里为我省下了约一半的空间（尽管我的镜像大小本身就有 1GB……）</p>
-<p>这个方案唯一的缺点就是不够灵活——不管你存了多少文件，设备的大小是固定的。这一方面导致如果空间没存满的话就浪费了不少空间，另一方面空间不够的话扩容也是个麻烦事：<a href="https://superuser.com/questions/693158/can-i-expand-the-size-of-a-file-based-disk-image/693162">linux - Can I expand the size of a file based disk image? - Super User</a></p>
+<p>这个方案唯一的缺点就是不够灵活——不管你存了多少文件，设备的大小是固定的。这一方面导致如果空间没存满的话就浪费了不少空间（当然，稀疏文件可以缓解这一问题，但是磁盘碎片还是会不可避免地浪费空间），另一方面空间不够的话扩容也是个麻烦事：<a href="https://superuser.com/questions/693158/can-i-expand-the-size-of-a-file-based-disk-image/693162">linux - Can I expand the size of a file based disk image? - Super User</a></p>
     </div>
 
     <div class="post-copyright">
