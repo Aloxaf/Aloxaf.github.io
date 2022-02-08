@@ -25,7 +25,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.81.0 with theme even" />
+<meta name="generator" content="Hugo 0.92.0 with theme even" />
 
 
 <link rel="preload" href="/fonts/iconfont/iconfont.woff" as="font" type="font/woff" crossorigin="anonymous">
@@ -41,7 +41,7 @@
 
 
 
-<link href="/sass/main.min.96e8e2c964270ec266a0efff67202fed95e11f1fc9c9dd9b1219e1f4a54b5c4b.css" rel="stylesheet">
+<link href="/sass/main.min.6e68329c1369b8a285a4985e6b6efdb778e12c12b24e8b3fcdd6c5af778d414e.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
@@ -50,13 +50,13 @@
 这也是一个区分“zsh 用户”和“用 zsh 作为交互式 shell 的 bash 用户”的有效手段。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.aloxaf.com/2020/12/zsh_parameter_expansion/" /><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2020-12-01T00:00:00&#43;00:00" />
-<meta property="article:modified_time" content="2020-12-01T00:00:00&#43;00:00" />
+<meta property="article:published_time" content="2020-12-01T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-12-01T00:00:00+00:00" />
 
 <meta itemprop="name" content="【ZSH 系列教程】参数扩展（上）">
 <meta itemprop="description" content="zsh 的参数扩展相比 bash 而言强大了不止一星半点，它让 zsh 无需借助外部命令就能完成大量操作，是写出一个复杂的流畅的 zsh 插件的必备技能之一。
-这也是一个区分“zsh 用户”和“用 zsh 作为交互式 shell 的 bash 用户”的有效手段。"><meta itemprop="datePublished" content="2020-12-01T00:00:00&#43;00:00" />
-<meta itemprop="dateModified" content="2020-12-01T00:00:00&#43;00:00" />
+这也是一个区分“zsh 用户”和“用 zsh 作为交互式 shell 的 bash 用户”的有效手段。"><meta itemprop="datePublished" content="2020-12-01T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2020-12-01T00:00:00+00:00" />
 <meta itemprop="wordCount" content="1647">
 <meta itemprop="keywords" content="zsh," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="【ZSH 系列教程】参数扩展（上）"/>
@@ -150,7 +150,7 @@
   </div>
 </div>
   <div class="post-outdated">
-    <div class="hint">
+    <div class="warn">
       <p>【注】本文最后更新于 <span class="timeago" datetime="2020-12-01T00:00:00" title="December 1, 2020">December 1, 2020</span>，文中内容可能已经过时。</p>
     </div>
   </div>
@@ -262,14 +262,14 @@
 <p>举例如下，注意只有加了引号并且没有使用 <code>@</code> 的时候规则才会作用于数组整体：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-zsh" data-lang="zsh"><span class="nb">local</span> -a <span class="nv">var</span><span class="o">=(</span>1a 1b 1c<span class="o">)</span>
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="nb">local</span> -a <span class="nv">var</span><span class="o">=(</span>1a 1b 1c<span class="o">)</span>
 <span class="nb">echo</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">var</span><span class="p">#1</span><span class="si">}</span><span class="s2">&#34;</span>    <span class="c1"># =&gt; a 1b 1c</span>
 <span class="nb">echo</span> <span class="si">${</span><span class="nv">var</span><span class="p">#1</span><span class="si">}</span>      <span class="c1"># =&gt; a b c</span>
 <span class="nb">echo</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">var</span><span class="p">[@]#1</span><span class="si">}</span><span class="s2">&#34;</span> <span class="c1"># =&gt; a b c</span>
@@ -403,7 +403,7 @@
   <script type="text/javascript">
     new Valine({
         el: '#vcomments' ,
-        serverURLs: 'https:\/\/lcd.aloxaf.cn',
+        serverURLs: '',
         appId: 'fSbXaElXXTznggVXiWy8NFBU-gzGzoHsz',
         appKey: 'kK3SxB14xAACgHftKrSaBRDU',
         notify:  false ,
@@ -441,7 +441,7 @@
   <span class="copyright-year">
     &copy; 
     2017 - 
-    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>Aloxaf</span>
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span><span>Aloxaf</span>
   </span>
 </div>
 

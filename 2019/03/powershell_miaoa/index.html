@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.81.0 with theme even" />
+<meta name="generator" content="Hugo 0.92.0 with theme even" />
 
 
 <link rel="preload" href="/fonts/iconfont/iconfont.woff" as="font" type="font/woff" crossorigin="anonymous">
@@ -39,7 +39,7 @@
 
 
 
-<link href="/sass/main.min.96e8e2c964270ec266a0efff67202fed95e11f1fc9c9dd9b1219e1f4a54b5c4b.css" rel="stylesheet">
+<link href="/sass/main.min.6e68329c1369b8a285a4985e6b6efdb778e12c12b24e8b3fcdd6c5af778d414e.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
@@ -47,12 +47,12 @@
 <meta property="og:description" content="我就是饿死, 死外面, 从外面跳下去, 也不会用 M$ 的垃圾 PowerShell ! &hellip; 真香! NOTE: 这是一篇黑 bash 吹 PowerShell(以下简称 pwsh) 的文章, bash 死忠粉以及软黑请退散" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.aloxaf.com/2019/03/powershell_miaoa/" /><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2019-03-02T00:02:05&#43;00:00" />
-<meta property="article:modified_time" content="2019-03-02T00:02:05&#43;00:00" />
+<meta property="article:published_time" content="2019-03-02T00:02:05+00:00" />
+<meta property="article:modified_time" content="2019-03-02T00:02:05+00:00" />
 
 <meta itemprop="name" content="PowerShell 真香">
-<meta itemprop="description" content="我就是饿死, 死外面, 从外面跳下去, 也不会用 M$ 的垃圾 PowerShell ! &hellip; 真香! NOTE: 这是一篇黑 bash 吹 PowerShell(以下简称 pwsh) 的文章, bash 死忠粉以及软黑请退散"><meta itemprop="datePublished" content="2019-03-02T00:02:05&#43;00:00" />
-<meta itemprop="dateModified" content="2019-03-02T00:02:05&#43;00:00" />
+<meta itemprop="description" content="我就是饿死, 死外面, 从外面跳下去, 也不会用 M$ 的垃圾 PowerShell ! &hellip; 真香! NOTE: 这是一篇黑 bash 吹 PowerShell(以下简称 pwsh) 的文章, bash 死忠粉以及软黑请退散"><meta itemprop="datePublished" content="2019-03-02T00:02:05+00:00" />
+<meta itemprop="dateModified" content="2019-03-02T00:02:05+00:00" />
 <meta itemprop="wordCount" content="4252">
 <meta itemprop="keywords" content="linux,powershell," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="PowerShell 真香"/>
@@ -192,7 +192,7 @@
 <p>多么直观的语法啊, 麻麻再也不用担心我几个星期没写就忘记语法了</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -238,7 +238,7 @@
 </span><span class="lnt">44
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="c"># if 语句</span>
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="c"># if 语句</span>
 <span class="nv">$n</span> <span class="p">=</span> <span class="nb">Read-Host</span> <span class="s2">&#34;请输入你的年龄&#34;</span>
 <span class="k">if</span> <span class="p">(</span><span class="nv">$n</span> <span class="o">-ge</span> <span class="n">18</span><span class="p">)</span> <span class="p">{</span>
     <span class="nb">echo </span><span class="s2">&#34;是成年人&#34;</span>
@@ -302,7 +302,7 @@
 <p>比如说以空格为分隔符, 截取第 3 列</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -314,7 +314,7 @@
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="p">::</span> <span class="n">batch</span>
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="p">::</span> <span class="n">batch</span>
 <span class="k">for</span> <span class="p">/</span><span class="n">f</span> <span class="s2">&#34;tokens=3&#34;</span> <span class="k">%</span><span class="n">i</span> <span class="k">in</span> <span class="p">(</span><span class="s2">&#34;1 2 3 4 5&#34;</span><span class="p">)</span> <span class="k">do</span> <span class="nb">echo </span><span class="k">%</span><span class="n">i</span>
 
 <span class="c"># bash</span>
@@ -331,7 +331,7 @@
 <p>我们来看看 pwsh</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -340,7 +340,7 @@
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="p">&gt;</span> <span class="s1">&#39;&lt;p&gt;WOWOWOWO&lt;/p&gt;&#39;</span> <span class="o">-match</span> <span class="s1">&#39;&lt;p&gt;.*&lt;/p&gt;&#39;</span>
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="p">&gt;</span> <span class="s1">&#39;&lt;p&gt;WOWOWOWO&lt;/p&gt;&#39;</span> <span class="o">-match</span> <span class="s1">&#39;&lt;p&gt;.*&lt;/p&gt;&#39;</span>
 <span class="n">True</span>
 <span class="p">&gt;</span> <span class="s1">&#39;&lt;p&gt;WOWOWOWO&lt;/p&gt;&#39;</span> <span class="o">-replace</span> <span class="s1">&#39;&lt;p&gt;(.*)&lt;/p&gt;&#39;</span><span class="p">,</span><span class="s1">&#39;$1&#39;</span>
 <span class="n">WOWOWOWO</span>
@@ -361,7 +361,7 @@
 <p>乍一看好像也没什么问题? 让我来为你演示一下这个神奇特性</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -370,7 +370,7 @@
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>/tmp<span class="o">]</span>$ mkdir <span class="nb">test</span>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>/tmp<span class="o">]</span>$ mkdir <span class="nb">test</span>
 <span class="o">[</span>/tmp<span class="o">]</span>$ <span class="nb">cd</span> <span class="nb">test</span>
 <span class="o">[</span>/tmp/test<span class="o">]</span>$ touch -- -f
 <span class="o">[</span>/tmp/test<span class="o">]</span>$ *
@@ -398,7 +398,7 @@ bash: -f：未找到命令
 <p>pwsh 的类型标注可以固定某个变量的类型. 比如</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -414,7 +414,7 @@ bash: -f：未找到命令
 </span><span class="lnt">14
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="no">[int]</span><span class="nv">$n</span> <span class="p">=</span> <span class="n">2233</span>
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="no">[int]</span><span class="nv">$n</span> <span class="p">=</span> <span class="n">2233</span>
 <span class="nv">$n</span> <span class="p">=</span> <span class="n">233</span>   <span class="c"># OK</span>
 <span class="nv">$n</span> <span class="p">=</span> <span class="s2">&#34;asd&#34;</span> <span class="c"># ERROR!</span>
 <span class="nv">$n</span> <span class="p">=</span> <span class="s2">&#34;233&#34;</span> <span class="c"># 比较艹蛋的一点是这样又可以, 隐式类型转换坑爹啊</span>
@@ -433,7 +433,7 @@ bash: -f：未找到命令
 </div><p>注意到上面指定了函数参数的类型, 其实这还可以更棒</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -449,7 +449,7 @@ bash: -f：未找到命令
 </span><span class="lnt">14
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="k">function</span> <span class="n">add</span><span class="p">()</span> <span class="p">{</span>
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="k">function</span> <span class="n">add</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">param</span><span class="p">(</span>
     	<span class="no">[ValidateNotNull]</span>
     	<span class="no">[int]</span>
@@ -540,7 +540,7 @@ bash: -f：未找到命令
 <p>举例来说, 我想获得当前系统中内存占用超过 200 mb 的进程 (这里我又要点名批评一下 C++ 写的 telegram-desktop <a href="https://github.com/telegramdesktop/tdesktop/issues/2464">telegramdesktop/tdesktop#2464</a>, <s>请立即使用 Rust</s></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -553,7 +553,7 @@ bash: -f：未找到命令
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="p">&gt;</span> <span class="nb">Get-Process</span> <span class="p">|</span> <span class="nb">Where-Object</span> <span class="p">{</span> <span class="nv">$_</span><span class="p">.</span><span class="n">WS</span> <span class="o">-gt</span> <span class="n">200mb</span> <span class="p">}</span>
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="p">&gt;</span> <span class="nb">Get-Process</span> <span class="p">|</span> <span class="nb">Where-Object</span> <span class="p">{</span> <span class="nv">$_</span><span class="p">.</span><span class="n">WS</span> <span class="o">-gt</span> <span class="n">200mb</span> <span class="p">}</span>
 <span class="c"># 使用别名的话可以写成 gps | ? { $_.WS -ge 200mb }</span>
 
  <span class="n">NPM</span><span class="p">(</span><span class="n">K</span><span class="p">)</span>    <span class="n">PM</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>      <span class="n">WS</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>     <span class="n">CPU</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>      <span class="n">Id</span>  <span class="nb">SI </span><span class="n">ProcessName</span>
@@ -562,7 +562,7 @@ bash: -f：未找到命令
       <span class="n">0</span>     <span class="n">0</span><span class="p">.</span><span class="n">00</span>     <span class="n">226</span><span class="p">.</span><span class="n">43</span>     <span class="n">773</span><span class="p">.</span><span class="n">39</span>    <span class="n">1027</span> <span class="n">977</span> <span class="n">kwin_x11</span>
       <span class="n">0</span>     <span class="n">0</span><span class="p">.</span><span class="n">00</span>     <span class="n">226</span><span class="p">.</span><span class="n">46</span>     <span class="n">135</span><span class="p">.</span><span class="n">83</span>    <span class="n">8116</span> <span class="n">058</span> <span class="n">chromium</span>
       <span class="n">0</span>     <span class="n">0</span><span class="p">.</span><span class="n">00</span>     <span class="n">236</span><span class="p">.</span><span class="n">60</span>      <span class="n">97</span><span class="p">.</span><span class="n">72</span>   <span class="n">14990</span> <span class="n">977</span> <span class="n">Typora</span>
-      <span class="n">0</span>     <span class="n">0</span><span class="p">.</span><span class="n">00</span>     <span class="n">392</span><span class="p">.</span><span class="n">42</span>     <span class="n">394</span><span class="p">.</span><span class="n">97</span>    <span class="n">6366</span> <span class="n">030</span> <span class="n">telegram-deskto</span>
+      <span class="n">0</span>     <span class="n">0</span><span class="p">.</span><span class="n">00</span>     <span class="n">392</span><span class="p">.</span><span class="n">42</span>     <span class="n">394</span><span class="p">.</span><span class="n">97</span>    <span class="n">6366</span> <span class="n">030</span> <span class="nb">telegram-deskto</span>
       <span class="n">0</span>     <span class="n">0</span><span class="p">.</span><span class="n">00</span>     <span class="n">402</span><span class="p">.</span><span class="n">94</span>     <span class="n">878</span><span class="p">.</span><span class="n">92</span>    <span class="n">1381</span> <span class="n">058</span> <span class="n">chromium</span>
 </code></pre></td></tr></table>
 </div>
@@ -572,7 +572,7 @@ bash: -f：未找到命令
 <p>反观 bash, 这个时候只能上 awk 了</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -581,7 +581,7 @@ bash: -f：未找到命令
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">➤ ps aux <span class="p">|</span> awk <span class="s1">&#39;$4 * 8192 / 100 &gt; 200&#39;</span> <span class="c1"># 为了让输出好看点我删掉了命令行参数</span>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">➤ ps aux <span class="p">|</span> awk <span class="s1">&#39;$4 * 8192 / 100 &gt; 200&#39;</span> <span class="c1"># 为了让输出好看点我删掉了命令行参数</span>
 aloxaf    <span class="m">1027</span>  4.9  2.9 <span class="m">3279432</span> <span class="m">232108</span> ?      Sl   11:04  14:04 /usr/bin/kwin_x11
 aloxaf    <span class="m">1033</span>  2.1  2.6 <span class="m">1395968</span> <span class="m">212200</span> ?      Sl   11:04   6:06 /usr/bin/plasmashell
 aloxaf    <span class="m">1381</span>  5.3  5.2 <span class="m">1423580</span> <span class="m">414932</span> ?      Sl   11:06  15:05 /usr/lib/chromium/chromium
@@ -610,14 +610,14 @@ fc 教授说 freebsd 那边在做 <a href="https://wiki.freebsd.org/LibXo">LibXo
 <p>举例来说 <code>seq 12345 | rg 12345</code>这样一个简单的命令竟然花了 0.76 s</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="p">&gt;</span> <span class="nb">Measure-Command</span> <span class="n">-Expression</span> <span class="p">{</span><span class="n">seq</span> <span class="n">12345</span> <span class="p">|</span> <span class="n">rg</span> <span class="n">12345</span><span class="p">}</span> <span class="p">|</span> <span class="nb">select </span><span class="n">TotalMilliseconds</span>
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="p">&gt;</span> <span class="nb">Measure-Command</span> <span class="n">-Expression</span> <span class="p">{</span><span class="n">seq</span> <span class="n">12345</span> <span class="p">|</span> <span class="n">rg</span> <span class="n">12345</span><span class="p">}</span> <span class="p">|</span> <span class="nb">select </span><span class="n">TotalMilliseconds</span>
 
 <span class="n">TotalMilliseconds</span>
 <span class="p">-----------------</span>
@@ -627,13 +627,13 @@ fc 教授说 freebsd 那边在做 <a href="https://wiki.freebsd.org/LibXo">LibXo
 </div><p>反观 bash , 简直就是吊打!</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">➤ <span class="nb">time</span> seq <span class="m">12345</span> <span class="p">|</span> rg <span class="m">12345</span>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">➤ <span class="nb">time</span> seq <span class="m">12345</span> <span class="p">|</span> rg <span class="m">12345</span>
 <span class="m">12345</span>
 seq <span class="m">12345</span>  0.00s user 0.00s system 84% cpu 0.002 total
 rg <span class="m">12345</span>  0.00s user 0.00s system 92% cpu 0.005 total
@@ -658,13 +658,13 @@ rg <span class="m">12345</span>  0.00s user 0.00s system 92% cpu 0.005 total
 <p>pwsh 的启动速度真的太慢了, 和 zsh 差 20 倍啊.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">➤ <span class="nb">time</span> zsh -c <span class="s1">&#39;exit&#39;</span>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">➤ <span class="nb">time</span> zsh -c <span class="s1">&#39;exit&#39;</span>
 zsh -c <span class="s1">&#39;exit&#39;</span>  0.01s user 0.00s system 94% cpu 0.018 total
 ➤ <span class="nb">time</span> pwsh -nop -c <span class="s1">&#39;exit&#39;</span>
 pwsh -nop -c <span class="s1">&#39;exit&#39;</span>  0.38s user 0.05s system 118% cpu 0.360 total
@@ -728,7 +728,7 @@ pwsh -nop -c <span class="s1">&#39;exit&#39;</span>  0.38s user 0.05s system 118
   <script type="text/javascript">
     new Valine({
         el: '#vcomments' ,
-        serverURLs: 'https:\/\/lcd.aloxaf.cn',
+        serverURLs: '',
         appId: 'fSbXaElXXTznggVXiWy8NFBU-gzGzoHsz',
         appKey: 'kK3SxB14xAACgHftKrSaBRDU',
         notify:  false ,
@@ -766,7 +766,7 @@ pwsh -nop -c <span class="s1">&#39;exit&#39;</span>  0.38s user 0.05s system 118
   <span class="copyright-year">
     &copy; 
     2017 - 
-    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>Aloxaf</span>
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span><span>Aloxaf</span>
   </span>
 </div>
 

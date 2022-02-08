@@ -24,7 +24,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.81.0 with theme even" />
+<meta name="generator" content="Hugo 0.92.0 with theme even" />
 
 
 <link rel="preload" href="/fonts/iconfont/iconfont.woff" as="font" type="font/woff" crossorigin="anonymous">
@@ -40,7 +40,7 @@
 
 
 
-<link href="/sass/main.min.96e8e2c964270ec266a0efff67202fed95e11f1fc9c9dd9b1219e1f4a54b5c4b.css" rel="stylesheet">
+<link href="/sass/main.min.6e68329c1369b8a285a4985e6b6efdb778e12c12b24e8b3fcdd6c5af778d414e.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
@@ -48,12 +48,12 @@
 <meta property="og:description" content="发现无聊时刷 Arch Wiki 也挺有趣的, 记录一下自己干了啥吧. 毕竟有些配置没法放到 dotfiles 里. 记录一下以后翻起来也方便." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.aloxaf.com/2018/11/arch_optimize/" /><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2018-11-18T22:56:27&#43;00:00" />
-<meta property="article:modified_time" content="2018-11-19T21:05:43&#43;00:00" />
+<meta property="article:published_time" content="2018-11-18T22:56:27+00:00" />
+<meta property="article:modified_time" content="2018-11-19T21:05:43+00:00" />
 
 <meta itemprop="name" content="Arch Linux 杂七杂八的优化">
-<meta itemprop="description" content="发现无聊时刷 Arch Wiki 也挺有趣的, 记录一下自己干了啥吧. 毕竟有些配置没法放到 dotfiles 里. 记录一下以后翻起来也方便."><meta itemprop="datePublished" content="2018-11-18T22:56:27&#43;00:00" />
-<meta itemprop="dateModified" content="2018-11-19T21:05:43&#43;00:00" />
+<meta itemprop="description" content="发现无聊时刷 Arch Wiki 也挺有趣的, 记录一下自己干了啥吧. 毕竟有些配置没法放到 dotfiles 里. 记录一下以后翻起来也方便."><meta itemprop="datePublished" content="2018-11-18T22:56:27+00:00" />
+<meta itemprop="dateModified" content="2018-11-19T21:05:43+00:00" />
 <meta itemprop="wordCount" content="1384">
 <meta itemprop="keywords" content="linux," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Arch Linux 杂七杂八的优化"/>
@@ -216,10 +216,10 @@
 <p>往 <code>/etc/udev/rules.d/60-ioschedulers.rules</code> 里写入如下规则, 为 SSD 启用 <code>mq-deadline</code> 调度器</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">ACTION==&#34;add|change&#34;, KERNEL==&#34;sd[a-z]|mmcblk[0-9]*|nvme[0-9]*&#34;, ATTR{queue/rotational}==&#34;0&#34;, ATTR{queue/scheduler}=&#34;mq-deadline&#34;
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">ACTION==&#34;add|change&#34;, KERNEL==&#34;sd[a-z]|mmcblk[0-9]*|nvme[0-9]*&#34;, ATTR{queue/rotational}==&#34;0&#34;, ATTR{queue/scheduler}=&#34;mq-deadline&#34;
 </code></pre></td></tr></table>
 </div>
 </div><h2 id="ext4-性能优化">Ext4 性能优化</h2>
@@ -247,10 +247,10 @@
 <p>每次手动挂载很麻烦, 直接添加到 fstab 的话没插移动硬盘就会 error, 这时就要使用 <code>nofail</code> 参数, 像这样</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">LABEL=backup    /mnt/backup     ext4    defaults,noatime,nofail         0 2
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">LABEL=backup    /mnt/backup     ext4    defaults,noatime,nofail         0 2
 </code></pre></td></tr></table>
 </div>
 </div><p>第一次用貌似会遇到无法写入的问题, 使用 <code>sudo chown -R $USER:$USER /mnt/backup</code> 更改一次所有权就行了</p>
@@ -259,10 +259,10 @@
 <p>不过资料盘用得比较少, 可以用 <code>noauto,x-systemd.automount</code> 参数使得在访问时才挂载</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">LABEL=storage   /mnt/storage    ext4    defaults,noatime,noauto,x-systemd.automount             0 2
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">LABEL=storage   /mnt/storage    ext4    defaults,noatime,noauto,x-systemd.automount             0 2
 </code></pre></td></tr></table>
 </div>
 </div><p>(第一次用还是需要 chown 好像&hellip;.)</p>
@@ -272,7 +272,7 @@
 <p><code># Misc options</code>开启 <code>Color</code> 和 <code>VerbosePkgLists</code></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -280,7 +280,7 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-ini" data-lang="ini"><span class="c1"># Misc options</span>
+<pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="c1"># Misc options</span>
 <span class="c1">#UseSyslog</span>
 <span class="na">Color</span>
 <span class="c1">#TotalDownload</span>
@@ -293,7 +293,7 @@
 <p>创建 <code>/usr/share/libalpm/hooks/clean-cache.hook</code>, 内容如下</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -306,7 +306,7 @@
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-ini" data-lang="ini"><span class="k">[Trigger]</span>
+<pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="k">[Trigger]</span>
 <span class="na">Operation</span> <span class="o">=</span> <span class="s">Remove</span>
 <span class="na">Operation</span> <span class="o">=</span> <span class="s">Install</span>
 <span class="na">Operation</span> <span class="o">=</span> <span class="s">Upgrade</span>
@@ -326,7 +326,7 @@
 <p>新建 <code>~/.makepkg.conf</code>, 写入如下内容pacman</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -337,7 +337,7 @@
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-ini" data-lang="ini"><span class="na">CFLAGS</span><span class="o">=</span><span class="s">&#34;-march=native -O2 -pipe -fno-plt&#34;</span>
+<pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="na">CFLAGS</span><span class="o">=</span><span class="s">&#34;-march=native -O2 -pipe -fno-plt&#34;</span>
 <span class="na">CXXFLAGS</span><span class="o">=</span><span class="s">&#34;-march=native -O2 -pipe -fno-plt&#34;</span>
 
 <span class="na">MAKEFLAGS</span><span class="o">=</span><span class="s">&#34;-j$(nproc)&#34;</span>
@@ -401,7 +401,7 @@
   <script type="text/javascript">
     new Valine({
         el: '#vcomments' ,
-        serverURLs: 'https:\/\/lcd.aloxaf.cn',
+        serverURLs: '',
         appId: 'fSbXaElXXTznggVXiWy8NFBU-gzGzoHsz',
         appKey: 'kK3SxB14xAACgHftKrSaBRDU',
         notify:  false ,
@@ -439,7 +439,7 @@
   <span class="copyright-year">
     &copy; 
     2017 - 
-    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>Aloxaf</span>
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span><span>Aloxaf</span>
   </span>
 </div>
 

@@ -24,7 +24,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.81.0 with theme even" />
+<meta name="generator" content="Hugo 0.92.0 with theme even" />
 
 
 <link rel="preload" href="/fonts/iconfont/iconfont.woff" as="font" type="font/woff" crossorigin="anonymous">
@@ -40,7 +40,7 @@
 
 
 
-<link href="/sass/main.min.96e8e2c964270ec266a0efff67202fed95e11f1fc9c9dd9b1219e1f4a54b5c4b.css" rel="stylesheet">
+<link href="/sass/main.min.6e68329c1369b8a285a4985e6b6efdb778e12c12b24e8b3fcdd6c5af778d414e.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
@@ -48,12 +48,12 @@
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.aloxaf.com/2020/03/fzf-tab/" /><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2020-03-13T17:27:17&#43;00:00" />
-<meta property="article:modified_time" content="2021-02-08T09:19:20&#43;00:00" />
+<meta property="article:published_time" content="2020-03-13T17:27:17+00:00" />
+<meta property="article:modified_time" content="2021-02-08T09:19:20+00:00" />
 
 <meta itemprop="name" content="fzf-tab —— 使用 fzf 进行 zsh 补全">
-<meta itemprop="description" content=""><meta itemprop="datePublished" content="2020-03-13T17:27:17&#43;00:00" />
-<meta itemprop="dateModified" content="2021-02-08T09:19:20&#43;00:00" />
+<meta itemprop="description" content=""><meta itemprop="datePublished" content="2020-03-13T17:27:17+00:00" />
+<meta itemprop="dateModified" content="2021-02-08T09:19:20+00:00" />
 <meta itemprop="wordCount" content="2108">
 <meta itemprop="keywords" content="linux,zsh," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="fzf-tab —— 使用 fzf 进行 zsh 补全"/>
@@ -151,6 +151,11 @@
 </nav>
   </div>
 </div>
+  <div class="post-outdated">
+    <div class="warn">
+      <p>【注】本文最后更新于 <span class="timeago" datetime="2021-02-08T09:19:20" title="February 8, 2021">February 8, 2021</span>，文中内容可能已经过时。</p>
+    </div>
+  </div>
     <div class="post-content">
       <p><a href="https://asciinema.org/a/293849"><img src="https://asciinema.org/a/293849.svg" alt="asciicast"></a></p>
 <h1 id="碎碎念">碎碎念</h1>
@@ -158,19 +163,19 @@
 <p>zsh 默认的补全选择菜单非常难用，当然一般人都会进行配置。比较常用的配置是：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-zsh" data-lang="zsh">zstyle <span class="s1">&#39;:completion:*&#39;</span> menu yes <span class="k">select</span>
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh">zstyle <span class="s1">&#39;:completion:*&#39;</span> menu yes <span class="k">select</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>这样可以使用 <kbd>Tab</kbd> 来滚动选择补全。然而它其实还可以更强：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-zsh" data-lang="zsh">zstyle <span class="s1">&#39;:completion:*&#39;</span> menu yes <span class="k">select</span> search
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh">zstyle <span class="s1">&#39;:completion:*&#39;</span> menu yes <span class="k">select</span> search
 </code></pre></td></tr></table>
 </div>
 </div><p>这会允许你在列表中搜索。相对来说更好用了一点，但是不支持模糊搜索，而且反应有点慢，仍然不够完美。</p>
@@ -189,7 +194,7 @@
 <p>结合 fzf 的 <code>--preview</code> 开关，还能实现更丰富的功能：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -198,7 +203,7 @@
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-zsh" data-lang="zsh"><span class="c1"># kill 结束进程时时提供预览</span>
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="c1"># kill 结束进程时时提供预览</span>
 zstyle <span class="s1">&#39;:completion:*:*:*:*:processes&#39;</span> <span class="nb">command</span> <span class="s2">&#34;ps -u </span><span class="nv">$USER</span><span class="s2"> -o pid,user,comm,cmd -w -w&#34;</span>
 zstyle <span class="s1">&#39;:fzf-tab:complete:kill:argument-rest&#39;</span> fzf-preview <span class="s1">&#39;ps --pid=$word -o cmd --no-headers -w -w&#39;</span>
 zstyle <span class="s1">&#39;:fzf-tab:complete:kill:argument-rest&#39;</span> fzf-flags <span class="s1">&#39;--preview-window=down:3:wrap&#39;</span>
@@ -288,7 +293,7 @@ zstyle <span class="s1">&#39;:fzf-tab:complete:cd:*&#39;</span> fzf-preview <spa
   <script type="text/javascript">
     new Valine({
         el: '#vcomments' ,
-        serverURLs: 'https:\/\/lcd.aloxaf.cn',
+        serverURLs: '',
         appId: 'fSbXaElXXTznggVXiWy8NFBU-gzGzoHsz',
         appKey: 'kK3SxB14xAACgHftKrSaBRDU',
         notify:  false ,
@@ -326,7 +331,7 @@ zstyle <span class="s1">&#39;:fzf-tab:complete:cd:*&#39;</span> fzf-preview <spa
   <span class="copyright-year">
     &copy; 
     2017 - 
-    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>Aloxaf</span>
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span><span>Aloxaf</span>
   </span>
 </div>
 

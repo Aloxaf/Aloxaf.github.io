@@ -25,7 +25,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.81.0 with theme even" />
+<meta name="generator" content="Hugo 0.92.0 with theme even" />
 
 
 <link rel="preload" href="/fonts/iconfont/iconfont.woff" as="font" type="font/woff" crossorigin="anonymous">
@@ -41,7 +41,7 @@
 
 
 
-<link href="/sass/main.min.96e8e2c964270ec266a0efff67202fed95e11f1fc9c9dd9b1219e1f4a54b5c4b.css" rel="stylesheet">
+<link href="/sass/main.min.6e68329c1369b8a285a4985e6b6efdb778e12c12b24e8b3fcdd6c5af778d414e.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
@@ -50,14 +50,14 @@
 原文见：https://deterministic.space/elegant-apis-in-rust.html" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.aloxaf.com/2019/11/elegant_apis_in_rust/" /><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2019-11-20T21:55:09&#43;00:00" />
-<meta property="article:modified_time" content="2019-11-20T21:55:09&#43;00:00" />
+<meta property="article:published_time" content="2019-11-20T21:55:09+00:00" />
+<meta property="article:modified_time" content="2019-11-20T21:55:09+00:00" />
 
 <meta itemprop="name" content="【译】设计优雅的 Rust 库 API">
 <meta itemprop="description" content="一篇讲述 Rust API 设计原则的经典老文，虽然老但仍然值得阅读。前几天有事情把它从旮旯里翻出来了，虽然是经典老文但我估计很多人都没有读过，最近闲着没事干脆用我的辣鸡英语水平翻译一下，也算为 Rust 中文社区做一点贡献。
-原文见：https://deterministic.space/elegant-apis-in-rust.html"><meta itemprop="datePublished" content="2019-11-20T21:55:09&#43;00:00" />
-<meta itemprop="dateModified" content="2019-11-20T21:55:09&#43;00:00" />
-<meta itemprop="wordCount" content="7260">
+原文见：https://deterministic.space/elegant-apis-in-rust.html"><meta itemprop="datePublished" content="2019-11-20T21:55:09+00:00" />
+<meta itemprop="dateModified" content="2019-11-20T21:55:09+00:00" />
+<meta itemprop="wordCount" content="7344">
 <meta itemprop="keywords" content="rust,译文,设计," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="【译】设计优雅的 Rust 库 API"/>
 <meta name="twitter:description" content="一篇讲述 Rust API 设计原则的经典老文，虽然老但仍然值得阅读。前几天有事情把它从旮旯里翻出来了，虽然是经典老文但我估计很多人都没有读过，最近闲着没事干脆用我的辣鸡英语水平翻译一下，也算为 Rust 中文社区做一点贡献。
@@ -283,7 +283,7 @@
 <p>编写带有示例代码的文档可以展示 API 的用法而且还能获得自动测试——一石二鸟。详见第一版 TRPL（The Rust Programming Language）的<a href="https://kaisery.gitbooks.io/rust-book-chinese/content/content/Documentation%20%E6%96%87%E6%A1%A3.html#%E7%94%A8%E4%BD%9C%E6%B5%8B%E8%AF%95%E7%9A%84%E6%96%87%E6%A1%A3">文档</a>一节。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -297,7 +297,7 @@
 </span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-rust" data-lang="rust"><span class="sd">/// 使用魔法操作数字
+<pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="sd">/// 使用魔法操作数字
 </span><span class="sd">///
 </span><span class="sd">/// # 示例
 </span><span class="sd">///
@@ -318,7 +318,7 @@
 <p>但是在 Rust 中你<strong>不应该</strong>这样做！如果你事先知道<strong>所有</strong>可能的值，请使用 <code>enum</code>。这样，你就不需要对字符串进行解析（parse）或者模式匹配——也不用处理可能出现的错误——而且能确保你的用户提供的输入一定是有效的<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -327,7 +327,7 @@
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-rust" data-lang="rust"><span class="k">enum</span> <span class="nc">Color</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">Red</span><span class="p">,</span><span class="w"> </span><span class="n">Green</span><span class="p">,</span><span class="w"> </span><span class="n">Blue</span><span class="p">,</span><span class="w"> </span><span class="n">LightGoldenRodYellow</span><span class="w"> </span><span class="p">}</span><span class="w">
+<pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="k">enum</span> <span class="nc">Color</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">Red</span><span class="p">,</span><span class="w"> </span><span class="n">Green</span><span class="p">,</span><span class="w"> </span><span class="n">Blue</span><span class="p">,</span><span class="w"> </span><span class="n">LightGoldenRodYellow</span><span class="w"> </span><span class="p">}</span><span class="w">
 </span><span class="w">
 </span><span class="w"></span><span class="k">fn</span> <span class="nf">color_me</span><span class="p">(</span><span class="n">input</span>: <span class="kp">&amp;</span><span class="kt">str</span><span class="p">,</span><span class="w"> </span><span class="n">color</span>: <span class="nc">Color</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* ... */</span><span class="w"> </span><span class="p">}</span><span class="w">
 </span><span class="w">
@@ -340,7 +340,7 @@
 <p>或者，如果你想表达更复杂的值的话，则可以定义一个新的 <code>struct</code>，然后定义一堆公共常量。然后把这些常量放到模块中，用户就可以使用与 <code>enum</code> 类似的语法来访问它们了。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -359,7 +359,7 @@
 </span><span class="lnt">17
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-rust" data-lang="rust"><span class="k">pub</span><span class="w"> </span><span class="k">mod</span> <span class="nn">output_options</span><span class="w"> </span><span class="p">{</span><span class="w">
+<pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="k">pub</span><span class="w"> </span><span class="k">mod</span> <span class="nn">output_options</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span><span class="w">    </span><span class="k">pub</span><span class="w"> </span><span class="k">struct</span> <span class="nc">OutputOptions</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* ... */</span><span class="w"> </span><span class="p">}</span><span class="w">
 </span><span class="w">    
 </span><span class="w">    </span><span class="k">impl</span><span class="w"> </span><span class="n">OutputOptions</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">fn</span> <span class="nf">new</span><span class="p">(</span><span class="cm">/* ... */</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nc">OutputOptions</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* ... */</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span><span class="w">
@@ -384,7 +384,7 @@
 <p>根据你的 API 设计，你也可以选择让你的用户来解析字符串。如果你提供了正确的类型和实现，这应该不会很难（不过仍然需要在文档中注明）。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -411,7 +411,7 @@
 </span><span class="lnt">25
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-rust" data-lang="rust"><span class="c1">// 选择 A: 你来解析
+<pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="c1">// 选择 A: 你来解析
 </span><span class="c1"></span><span class="k">fn</span> <span class="nf">output_a</span><span class="p">(</span><span class="n">f</span>: <span class="kp">&amp;</span><span class="nc">Foo</span><span class="p">,</span><span class="w"> </span><span class="n">color</span>: <span class="kp">&amp;</span><span class="kt">str</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nb">Result</span><span class="o">&lt;</span><span class="n">Bar</span><span class="p">,</span><span class="w"> </span><span class="n">ParseError</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span><span class="w">    </span><span class="c1">// 这里使用解析后的类型遮蔽掉了原来的 `color`
 </span><span class="c1"></span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">color</span>: <span class="nc">Color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kr">try</span><span class="o">!</span><span class="p">(</span><span class="n">color</span><span class="p">.</span><span class="n">parse</span><span class="p">());</span><span class="w">
@@ -487,7 +487,7 @@
 <p><a href="https://play.rust-lang.org/?gist=68645e903a2f903cf43d3070d562a809&amp;version=nightly&amp;backtrace=0">原先：</a></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -499,9 +499,9 @@
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-rust" data-lang="rust"><span class="c1">// 对于 API 作者来说很容易编写，文档也很易于阅读
+<pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="c1">// 对于 API 作者来说很容易编写，文档也很易于阅读
 </span><span class="c1"></span><span class="k">fn</span> <span class="nf">foo</span><span class="p">(</span><span class="n">lorem</span>: <span class="kp">&amp;</span><span class="kt">str</span><span class="p">,</span><span class="w"> </span><span class="n">ipsum</span>: <span class="nb">Option</span><span class="o">&lt;</span><span class="kt">i32</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="n">dolor</span>: <span class="nb">Option</span><span class="o">&lt;</span><span class="kt">i32</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="n">sit</span>: <span class="nb">Option</span><span class="o">&lt;</span><span class="kt">i32</span><span class="o">&gt;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span><span class="w">    </span><span class="n">println</span><span class="o">!</span><span class="p">(</span><span class="s">&#34;{}&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">lorem</span><span class="p">);</span><span class="w">
+</span><span class="w">    </span><span class="fm">println!</span><span class="p">(</span><span class="s">&#34;{}&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">lorem</span><span class="p">);</span><span class="w">
 </span><span class="w"></span><span class="p">}</span><span class="w">
 </span><span class="w">
 </span><span class="w"></span><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -514,7 +514,7 @@
 </div><p><a href="https://play.rust-lang.org/?gist=23b98645fa7fd68cb9e28da9425a62f9&amp;version=nightly&amp;backtrace=0">现在：</a></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -532,7 +532,7 @@
 </span><span class="lnt">16
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-rust" data-lang="rust"><span class="c1">// 对于 API 作者来说得多打点字
+<pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="c1">// 对于 API 作者来说得多打点字
 </span><span class="c1">// （而且遗憾的是，每个参数都需要被单独指定——否则 Rust 只会根据第一个参数推断类型。
 </span><span class="c1">// 这种写法阅读来不是很方便，文档可能也没那么好看）
 </span><span class="c1"></span><span class="k">fn</span> <span class="nf">foo</span><span class="o">&lt;</span><span class="n">I</span><span class="p">,</span><span class="w"> </span><span class="n">D</span><span class="p">,</span><span class="w"> </span><span class="n">S</span><span class="o">&gt;</span><span class="p">(</span><span class="n">lorem</span>: <span class="kp">&amp;</span><span class="kt">str</span><span class="p">,</span><span class="w"> </span><span class="n">ipsum</span>: <span class="nc">I</span><span class="p">,</span><span class="w"> </span><span class="n">dolor</span>: <span class="nc">D</span><span class="p">,</span><span class="w"> </span><span class="n">sit</span>: <span class="nc">S</span><span class="p">)</span><span class="w"> </span><span class="k">where</span><span class="w">
@@ -540,7 +540,7 @@
 </span><span class="w">    </span><span class="n">D</span>: <span class="nb">Into</span><span class="o">&lt;</span><span class="nb">Option</span><span class="o">&lt;</span><span class="kt">i32</span><span class="o">&gt;&gt;</span><span class="p">,</span><span class="w">
 </span><span class="w">    </span><span class="n">S</span>: <span class="nb">Into</span><span class="o">&lt;</span><span class="nb">Option</span><span class="o">&lt;</span><span class="kt">i32</span><span class="o">&gt;&gt;</span><span class="p">,</span><span class="w">
 </span><span class="w"></span><span class="p">{</span><span class="w">
-</span><span class="w">    </span><span class="n">println</span><span class="o">!</span><span class="p">(</span><span class="s">&#34;{}&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">lorem</span><span class="p">);</span><span class="w">
+</span><span class="w">    </span><span class="fm">println!</span><span class="p">(</span><span class="s">&#34;{}&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">lorem</span><span class="p">);</span><span class="w">
 </span><span class="w"></span><span class="p">}</span><span class="w">
 </span><span class="w">
 </span><span class="w"></span><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -562,13 +562,13 @@
 <p>bluss 给的例子是 <code>std::fs::OpenOptions::open</code> 的实现（来自 Rust 1.12 的<a href="https://doc.rust-lang.org/1.12.0/src/std/up/src/libstd/fs.rs.html#599-604">源码</a>）和 <code>image</code> crate 的 <a href="https://github.com/PistonDevelopers/image/pull/518">这个PR</a>，它将 <code>open</code> 函数修改成了这个样子：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-rust" data-lang="rust"><span class="k">pub</span><span class="w"> </span><span class="k">fn</span> <span class="nf">open</span><span class="o">&lt;</span><span class="n">P</span><span class="o">&gt;</span><span class="p">(</span><span class="n">path</span>: <span class="nc">P</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nc">ImageResult</span><span class="o">&lt;</span><span class="n">DynamicImage</span><span class="o">&gt;</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">P</span>: <span class="nb">AsRef</span><span class="o">&lt;</span><span class="n">Path</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">
+<pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="k">pub</span><span class="w"> </span><span class="k">fn</span> <span class="nf">open</span><span class="o">&lt;</span><span class="n">P</span><span class="o">&gt;</span><span class="p">(</span><span class="n">path</span>: <span class="nc">P</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nc">ImageResult</span><span class="o">&lt;</span><span class="n">DynamicImage</span><span class="o">&gt;</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">P</span>: <span class="nb">AsRef</span><span class="o">&lt;</span><span class="n">Path</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span><span class="w">    </span><span class="c1">// 简单的包装函数，在调用 open_impl 之前去掉泛型
 </span><span class="c1"></span><span class="w">    </span><span class="n">open_impl</span><span class="p">(</span><span class="n">path</span><span class="p">.</span><span class="n">as_ref</span><span class="p">())</span><span class="w">
 </span><span class="w"></span><span class="p">}</span><span class="w">
@@ -597,14 +597,14 @@
 <p>如果你在设计一个 trait，你也可以为此设计两个功能相同的方法，不同的是一个接受值而另一个接受用于计算出值的闭包。一个实际例子是 <code>Result</code> 中的 <code>unwrap_or</code> 和 <code>unwrap_or_else</code>：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-rust" data-lang="rust"><span class="kd">let</span><span class="w"> </span><span class="n">res</span>: <span class="nb">Result</span><span class="o">&lt;</span><span class="kt">i32</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="kt">str</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Err</span><span class="p">(</span><span class="s">&#34;oh noes&#34;</span><span class="p">);</span><span class="w">
+<pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="kd">let</span><span class="w"> </span><span class="n">res</span>: <span class="nb">Result</span><span class="o">&lt;</span><span class="kt">i32</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="kt">str</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Err</span><span class="p">(</span><span class="s">&#34;oh noes&#34;</span><span class="p">);</span><span class="w">
 </span><span class="w"></span><span class="n">res</span><span class="p">.</span><span class="n">unwrap_or</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span><span class="w"> </span><span class="c1">// 立即返回 `42`
 </span><span class="c1"></span><span class="w">
 </span><span class="w"></span><span class="kd">let</span><span class="w"> </span><span class="n">res</span>: <span class="nb">Result</span><span class="o">&lt;</span><span class="kt">i32</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="kt">str</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Err</span><span class="p">(</span><span class="s">&#34;oh noes&#34;</span><span class="p">);</span><span class="w">
@@ -630,14 +630,14 @@
 <p><code>str::find&lt;P: Pattern&gt;(p: P)</code> 接受一个<a href="https://doc.rust-lang.org/std/str/pattern/trait.Pattern.html"><code>Pattern</code></a>作为输入，<code>char</code>、<code>str</code>、<code>FnMut(char) -&gt; bool</code> 等类型都实现了这个 trait</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-rust" data-lang="rust"><span class="s">&#34;Lorem ipsum&#34;</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="sc">&#39;L&#39;</span><span class="p">);</span><span class="w">
+<pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="s">&#34;Lorem ipsum&#34;</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="sc">&#39;L&#39;</span><span class="p">);</span><span class="w">
 </span><span class="w"></span><span class="s">&#34;Lorem ipsum&#34;</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#34;ipsum&#34;</span><span class="p">);</span><span class="w">
-</span><span class="w"></span><span class="s">&#34;Lorem ipsum&#34;</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">char</span>::<span class="n">is_whitespace</span><span class="p">);</span><span class="w">
+</span><span class="w"></span><span class="s">&#34;Lorem ipsum&#34;</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="kt">char</span>::<span class="n">is_whitespace</span><span class="p">);</span><span class="w">
 </span></code></pre></td></tr></table>
 </div>
 </div><h3 id="扩展-trait">扩展 trait</h3>
@@ -646,7 +646,7 @@
 <p>如 <a href="https://twitter.com/Argorak">Florian</a> 在 <a href="http://yakshav.es/decorating-results/">“Decorating Results”</a> 中写到的，你可以使用这种方法来编写并实现 trait 来为内置类型如 <code>Result</code> 实现自己的方法。举例：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -668,14 +668,14 @@
 </span><span class="lnt">20
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-rust" data-lang="rust"><span class="k">pub</span><span class="w"> </span><span class="k">trait</span><span class="w"> </span><span class="n">GrandResultExt</span><span class="w"> </span><span class="p">{</span><span class="w">
+<pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="k">pub</span><span class="w"> </span><span class="k">trait</span><span class="w"> </span><span class="n">GrandResultExt</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span><span class="w">    </span><span class="k">fn</span> <span class="nf">party</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nc">Self</span><span class="p">;</span><span class="w">
 </span><span class="w"></span><span class="p">}</span><span class="w">
 </span><span class="w">
 </span><span class="w"></span><span class="k">impl</span><span class="w"> </span><span class="n">GrandResultExt</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nb">Result</span><span class="o">&lt;</span><span class="nb">String</span><span class="p">,</span><span class="w"> </span><span class="nb">Box</span><span class="o">&lt;</span><span class="n">Error</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span><span class="w">    </span><span class="k">fn</span> <span class="nf">party</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nb">Result</span><span class="o">&lt;</span><span class="nb">String</span><span class="p">,</span><span class="w"> </span><span class="nb">Box</span><span class="o">&lt;</span><span class="n">Error</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="bp">self</span><span class="p">.</span><span class="n">is_ok</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span><span class="w">          </span><span class="n">println</span><span class="o">!</span><span class="p">(</span><span class="s">&#34;Wooohoo! 🎉&#34;</span><span class="p">);</span><span class="w">
+</span><span class="w">          </span><span class="fm">println!</span><span class="p">(</span><span class="s">&#34;Wooohoo! 🎉&#34;</span><span class="p">);</span><span class="w">
 </span><span class="w">        </span><span class="p">}</span><span class="w">
 </span><span class="w">        </span><span class="bp">self</span><span class="w">
 </span><span class="w">    </span><span class="p">}</span><span class="w">
@@ -693,12 +693,12 @@
 </div><p>Florian 在 <a href="https://github.com/skade/lazers/blob/d9ace30c05cf103c5faf0660c06127b578c92762/lazers-traits/src/decorations.md#results-of-finding-a-database">lazers</a> 的真实代码中使用了这样的模式装饰了 <code>BoxFuture</code>（来自 <code>futures</code> crate）以让代码更加可读：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-rust" data-lang="rust"><span class="kd">let</span><span class="w"> </span><span class="n">my_database</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">client</span><span class="w">
+<pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="kd">let</span><span class="w"> </span><span class="n">my_database</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">client</span><span class="w">
 </span><span class="w">    </span><span class="p">.</span><span class="n">find_database</span><span class="p">(</span><span class="s">&#34;might_not_exist&#34;</span><span class="p">)</span><span class="w">
 </span><span class="w">    </span><span class="p">.</span><span class="n">or_create</span><span class="p">();</span><span class="w">
 </span></code></pre></td></tr></table>
@@ -710,11 +710,11 @@
 <h4 id="例-stdfsopenoptionshttpsdocrust-langorgstdfsstructopenoptionshtml">例： <a href="https://doc.rust-lang.org/std/fs/struct.OpenOptions.html"><code>std::fs::OpenOptions</code></a></h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-rust" data-lang="rust"><span class="k">use</span><span class="w"> </span><span class="n">std</span>::<span class="n">fs</span>::<span class="n">OpenOptions</span><span class="p">;</span><span class="w">
+<pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="k">use</span><span class="w"> </span><span class="n">std</span>::<span class="n">fs</span>::<span class="n">OpenOptions</span><span class="p">;</span><span class="w">
 </span><span class="w"></span><span class="kd">let</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">OpenOptions</span>::<span class="n">new</span><span class="p">().</span><span class="n">read</span><span class="p">(</span><span class="kc">true</span><span class="p">).</span><span class="n">write</span><span class="p">(</span><span class="kc">true</span><span class="p">).</span><span class="n">open</span><span class="p">(</span><span class="s">&#34;foo.txt&#34;</span><span class="p">);</span><span class="w">
 </span></code></pre></td></tr></table>
 </div>
@@ -729,7 +729,7 @@
 <p>这是一个关于邮寄包裹的小例子：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -740,7 +740,7 @@
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-rust" data-lang="rust"><span class="kd">let</span><span class="w"> </span><span class="n">p</span>: <span class="nc">OpenPackage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Package</span>::<span class="n">new</span><span class="p">();</span><span class="w">
+<pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="kd">let</span><span class="w"> </span><span class="n">p</span>: <span class="nc">OpenPackage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Package</span>::<span class="n">new</span><span class="p">();</span><span class="w">
 </span><span class="w"></span><span class="kd">let</span><span class="w"> </span><span class="n">p</span>: <span class="nc">OpenPackage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">package</span><span class="p">.</span><span class="n">insert</span><span class="p">([</span><span class="n">stuff</span><span class="p">,</span><span class="w"> </span><span class="n">padding</span><span class="p">,</span><span class="w"> </span><span class="n">padding</span><span class="p">]);</span><span class="w">
 </span><span class="w">
 </span><span class="w"></span><span class="kd">let</span><span class="w"> </span><span class="n">p</span>: <span class="nc">ClosedPackage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">package</span><span class="p">.</span><span class="n">seal_up</span><span class="p">();</span><span class="w">
@@ -790,16 +790,16 @@
 <hr>
 <ol>
 <li id="fn:1" role="doc-endnote">
-<p>如果你的类型不需要任何参数就能构造，你应该为它实现 <code>Default</code>，并且使用这个代替 <code>new</code>。一个例外是 “容器” 类型诸如 <code>Vec</code> 或 <code>HashMap</code>，用它们的 <code>new</code> 初始化一个空容器是有意义的。 <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>如果你的类型不需要任何参数就能构造，你应该为它实现 <code>Default</code>，并且使用这个代替 <code>new</code>。一个例外是 “容器” 类型诸如 <code>Vec</code> 或 <code>HashMap</code>，用它们的 <code>new</code> 初始化一个空容器是有意义的。&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:2" role="doc-endnote">
-<p>在其他强类型语言中有一句口号 “making illegal states unrepresentable”。我第一次听说这个是在人们谈论 Haskell 的时候，这也是 <em>F# for fun and profit</em> 的<a href="http://fsharpforfunandprofit.com/posts/designing-with-types-making-illegal-states-unrepresentable/">这篇文章</a>的标题，和 Richard Feldman 在 elm-conf 2016 上的<a href="https://www.youtube.com/watch?v=IcgmSRJHu_8">这篇演讲</a>。 <a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>在其他强类型语言中有一句口号 “making illegal states unrepresentable”。我第一次听说这个是在人们谈论 Haskell 的时候，这也是 <em>F# for fun and profit</em> 的<a href="http://fsharpforfunandprofit.com/posts/designing-with-types-making-illegal-states-unrepresentable/">这篇文章</a>的标题，和 Richard Feldman 在 elm-conf 2016 上的<a href="https://www.youtube.com/watch?v=IcgmSRJHu_8">这篇演讲</a>。&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:3" role="doc-endnote">
-<p>在这方面，Rust 的迭代器与 Java 中的迭代器借口或 Python 中的迭代器协议（等等）非常类似。 <a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>在这方面，Rust 的迭代器与 Java 中的迭代器借口或 Python 中的迭代器协议（等等）非常类似。&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:4" role="doc-endnote">
-<p>举例来说，<code>std</code> 使用 <code>Result</code> 类型（包含了 <code>Ok</code> 和 <code>Err</code> 成员）来处理错误，而不是没有这种语义的 <code>Either</code> 类型（包含 <code>Left</code> 和 <code>Right</code> 成员）。 <a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>举例来说，<code>std</code> 使用 <code>Result</code> 类型（包含了 <code>Ok</code> 和 <code>Err</code> 成员）来处理错误，而不是没有这种语义的 <code>Either</code> 类型（包含 <code>Left</code> 和 <code>Right</code> 成员）。&#160;<a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 </ol>
 </section>
@@ -857,7 +857,7 @@
   <script type="text/javascript">
     new Valine({
         el: '#vcomments' ,
-        serverURLs: 'https:\/\/lcd.aloxaf.cn',
+        serverURLs: '',
         appId: 'fSbXaElXXTznggVXiWy8NFBU-gzGzoHsz',
         appKey: 'kK3SxB14xAACgHftKrSaBRDU',
         notify:  false ,
@@ -895,7 +895,7 @@
   <span class="copyright-year">
     &copy; 
     2017 - 
-    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>Aloxaf</span>
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span><span>Aloxaf</span>
   </span>
 </div>
 

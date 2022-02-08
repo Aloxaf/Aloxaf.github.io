@@ -26,7 +26,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.81.0 with theme even" />
+<meta name="generator" content="Hugo 0.92.0 with theme even" />
 
 
 <link rel="preload" href="/fonts/iconfont/iconfont.woff" as="font" type="font/woff" crossorigin="anonymous">
@@ -42,7 +42,7 @@
 
 
 
-<link href="/sass/main.min.96e8e2c964270ec266a0efff67202fed95e11f1fc9c9dd9b1219e1f4a54b5c4b.css" rel="stylesheet">
+<link href="/sass/main.min.6e68329c1369b8a285a4985e6b6efdb778e12c12b24e8b3fcdd6c5af778d414e.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
@@ -74,8 +74,8 @@ hashcat -m 2500 wifi.hccapx 10k_most_common.txt
 " />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.aloxaf.com/2018/05/jarvisoj_basic/" /><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2018-05-17T08:23:16&#43;00:00" />
-<meta property="article:modified_time" content="2018-08-13T10:04:57&#43;00:00" />
+<meta property="article:published_time" content="2018-05-17T08:23:16+00:00" />
+<meta property="article:modified_time" content="2018-08-13T10:04:57+00:00" />
 
 <meta itemprop="name" content="Jarvis OJ BASIC 完整writeup">
 <meta itemprop="description" content="握手包
@@ -102,8 +102,8 @@ cap2hccapx wifi.cap wifi.hccapx
 hashcat -m 2500 wifi.hccapx 10k_most_common.txt
 
 
-"><meta itemprop="datePublished" content="2018-05-17T08:23:16&#43;00:00" />
-<meta itemprop="dateModified" content="2018-08-13T10:04:57&#43;00:00" />
+"><meta itemprop="datePublished" content="2018-05-17T08:23:16+00:00" />
+<meta itemprop="dateModified" content="2018-08-13T10:04:57+00:00" />
 <meta itemprop="wordCount" content="2652">
 <meta itemprop="keywords" content="ctf,writeup,misc,crypto,reverse," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Jarvis OJ BASIC 完整writeup"/>
@@ -266,7 +266,7 @@ hashcat -m 2500 wifi.hccapx 10k_most_common.txt
 <p>利用 hashcat 爆破, 以 Arch Linux 为例</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -274,7 +274,7 @@ hashcat -m 2500 wifi.hccapx 10k_most_common.txt
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 安装必要工具</span>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 安装必要工具</span>
 sudo pacman -S hashcat hashcat-utils
 <span class="c1"># 格式转换</span>
 cap2hccapx wifi.cap wifi.hccapx
@@ -323,7 +323,7 @@ hashcat -m <span class="m">2500</span> wifi.hccapx 10k_most_common.txt
 <p>很简单的加密算法</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -341,7 +341,7 @@ hashcat -m <span class="m">2500</span> wifi.hccapx 10k_most_common.txt
 </span><span class="lnt">16
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">Crypto.Util</span> <span class="kn">import</span> <span class="n">number</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">Crypto.Util</span> <span class="kn">import</span> <span class="n">number</span>
 
 <span class="n">cipher</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;./flag.enc&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
 
@@ -356,7 +356,7 @@ hashcat -m <span class="m">2500</span> wifi.hccapx 10k_most_common.txt
 <span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="n">wtf</span><span class="p">(</span><span class="n">i</span><span class="p">):</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">255</span><span class="p">)}</span>
 
 <span class="n">p</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">((</span><span class="nb">chr</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">cipher</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">number</span><span class="o">.</span><span class="n">long_to_bytes</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="mi">16</span><span class="p">))</span><span class="o">.</span><span class="n">decode</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">number</span><span class="o">.</span><span class="n">long_to_bytes</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="mi">16</span><span class="p">))</span><span class="o">.</span><span class="n">decode</span><span class="p">())</span>
 </code></pre></td></tr></table>
 </div>
 </div><h1 id="熟悉的声音">熟悉的声音</h1>
@@ -368,17 +368,17 @@ hashcat -m <span class="m">2500</span> wifi.hccapx 10k_most_common.txt
 <p>用 pwntools 的 asm 命令编译一下</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">asm</span><span class="p">(</span><span class="s1">&#39;xchg eax, esp;ret;mov ecx, [eax];mov [edx], ecx;pop ebx;ret&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;hex&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">asm</span><span class="p">(</span><span class="s1">&#39;xchg eax, esp;ret;mov ecx, [eax];mov [edx], ecx;pop ebx;ret&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;hex&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
 </code></pre></td></tr></table>
 </div>
 </div><h1 id="easy-rsa">Easy RSA</h1>
 <p>N 这么小, 直接用 factor 命令就能分解</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -390,7 +390,7 @@ hashcat -m <span class="m">2500</span> wifi.hccapx 10k_most_common.txt
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">gmpy2</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">gmpy2</span>
 <span class="kn">from</span> <span class="nn">Crypto.Util</span> <span class="kn">import</span> <span class="n">number</span>
 
 <span class="n">c</span> <span class="o">=</span> <span class="mh">0xdc2eeeb2782c</span>
@@ -399,7 +399,7 @@ hashcat -m <span class="m">2500</span> wifi.hccapx 10k_most_common.txt
 <span class="n">e</span> <span class="o">=</span> <span class="mi">23</span>
 <span class="n">d</span> <span class="o">=</span> <span class="n">gmpy2</span><span class="o">.</span><span class="n">invert</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="p">(</span><span class="n">p</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">q</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
 <span class="n">m</span> <span class="o">=</span> <span class="nb">pow</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">number</span><span class="o">.</span><span class="n">long_to_bytes</span><span class="p">(</span><span class="n">m</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">number</span><span class="o">.</span><span class="n">long_to_bytes</span><span class="p">(</span><span class="n">m</span><span class="p">))</span>
 </code></pre></td></tr></table>
 </div>
 </div><h1 id="爱吃培根的出题人">爱吃培根的出题人</h1>
@@ -410,7 +410,7 @@ hashcat -m <span class="m">2500</span> wifi.hccapx 10k_most_common.txt
 <p>拖进 IDA F5, 整理一下以后其实是这样的</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -444,7 +444,7 @@ hashcat -m <span class="m">2500</span> wifi.hccapx 10k_most_common.txt
 </span><span class="lnt">32
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">int</span> <span class="kr">__cdecl</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">**</span><span class="n">envp</span><span class="p">)</span>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="kt">int</span> <span class="kr">__cdecl</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">**</span><span class="n">envp</span><span class="p">)</span>
 <span class="p">{</span>
   <span class="kr">__int64</span> <span class="n">v3</span><span class="p">;</span> <span class="c1">// rdi
 </span><span class="c1"></span>  <span class="kt">char</span> <span class="n">v5</span><span class="p">[</span><span class="mi">6</span><span class="p">];</span> <span class="c1">// [rsp+0h] [rbp-38h]
@@ -482,7 +482,7 @@ hashcat -m <span class="m">2500</span> wifi.hccapx 10k_most_common.txt
 <h2 id="爆破">爆破</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -511,7 +511,7 @@ hashcat -m <span class="m">2500</span> wifi.hccapx 10k_most_common.txt
 </span><span class="lnt">27
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
 </span><span class="cp"></span>
 <span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">list1</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span>
   <span class="mh">0xFB</span><span class="p">,</span> <span class="mh">0x9E</span><span class="p">,</span> <span class="mh">0x67</span><span class="p">,</span> <span class="mh">0x12</span><span class="p">,</span> <span class="mh">0x4E</span><span class="p">,</span> <span class="mh">0x9D</span><span class="p">,</span> <span class="mh">0x98</span><span class="p">,</span> <span class="mh">0xAB</span><span class="p">,</span> <span class="mh">0x00</span><span class="p">,</span> <span class="mh">0x06</span><span class="p">,</span> 
@@ -545,7 +545,7 @@ hashcat -m <span class="m">2500</span> wifi.hccapx 10k_most_common.txt
 <h2 id="z3">z3</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -565,7 +565,7 @@ hashcat -m <span class="m">2500</span> wifi.hccapx 10k_most_common.txt
 </span><span class="lnt">18
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">z3</span> <span class="kn">import</span> <span class="o">*</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">z3</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="n">list1</span> <span class="o">=</span> <span class="p">[</span>
     <span class="mh">0xFB</span><span class="p">,</span> <span class="mh">0x9E</span><span class="p">,</span> <span class="mh">0x67</span><span class="p">,</span> <span class="mh">0x12</span><span class="p">,</span> <span class="mh">0x4E</span><span class="p">,</span> <span class="mh">0x9D</span><span class="p">,</span> <span class="mh">0x98</span><span class="p">,</span> <span class="mh">0xAB</span><span class="p">,</span> <span class="mh">0x00</span><span class="p">,</span> <span class="mh">0x06</span><span class="p">,</span> 
     <span class="mh">0x46</span><span class="p">,</span> <span class="mh">0x8A</span><span class="p">,</span> <span class="mh">0xF4</span><span class="p">,</span> <span class="mh">0xB4</span><span class="p">,</span> <span class="mh">0x06</span><span class="p">,</span> <span class="mh">0x0B</span><span class="p">,</span> <span class="mh">0x43</span><span class="p">,</span> <span class="mh">0xDC</span><span class="p">,</span> <span class="mh">0xD9</span><span class="p">,</span> <span class="mh">0xA4</span><span class="p">,</span> 
@@ -573,7 +573,7 @@ hashcat -m <span class="m">2500</span> wifi.hccapx 10k_most_common.txt
     <span class="mh">0x00</span><span class="p">,</span> <span class="mh">0x00</span>
 <span class="p">]</span>
 <span class="n">v5</span> <span class="o">=</span> <span class="p">[</span><span class="mh">0xAB</span><span class="p">,</span> <span class="mh">0xDD</span><span class="p">,</span> <span class="mh">0x33</span><span class="p">,</span> <span class="mh">0x54</span><span class="p">,</span> <span class="mh">0x35</span><span class="p">,</span> <span class="mh">0xEF</span><span class="p">]</span>
-<span class="n">flag</span> <span class="o">=</span> <span class="p">[</span><span class="n">BitVec</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;f{i}&#39;</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">26</span><span class="p">)]</span>
+<span class="n">flag</span> <span class="o">=</span> <span class="p">[</span><span class="n">BitVec</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;f</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">26</span><span class="p">)]</span>
 
 <span class="n">solver</span> <span class="o">=</span> <span class="n">Solver</span><span class="p">()</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">26</span><span class="p">):</span>
@@ -582,7 +582,7 @@ hashcat -m <span class="m">2500</span> wifi.hccapx 10k_most_common.txt
 <span class="k">assert</span> <span class="n">solver</span><span class="o">.</span><span class="n">check</span><span class="p">()</span> <span class="o">==</span> <span class="n">sat</span>
 <span class="n">m</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">model</span><span class="p">()</span>
 <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">flag</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="nb">chr</span><span class="p">(</span><span class="n">m</span><span class="p">[</span><span class="n">c</span><span class="p">]</span><span class="o">.</span><span class="n">as_long</span><span class="p">()),</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="nb">chr</span><span class="p">(</span><span class="n">m</span><span class="p">[</span><span class="n">c</span><span class="p">]</span><span class="o">.</span><span class="n">as_long</span><span class="p">()),</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>很快很棒棒</p>
@@ -590,7 +590,7 @@ hashcat -m <span class="m">2500</span> wifi.hccapx 10k_most_common.txt
 <p>M4x 师傅推荐的妙妙工具. 来尝试一下.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -667,7 +667,7 @@ hashcat -m <span class="m">2500</span> wifi.hccapx 10k_most_common.txt
 </span><span class="lnt">75
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="ch">#!/usr/bin/env python</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="ch">#!/usr/bin/env python</span>
 
 <span class="kn">from</span> <span class="nn">subprocess</span> <span class="kn">import</span> <span class="n">Popen</span><span class="p">,</span> <span class="n">PIPE</span>
 <span class="kn">from</span> <span class="nn">string</span> <span class="kn">import</span> <span class="n">printable</span>
@@ -699,18 +699,18 @@ hashcat -m <span class="m">2500</span> wifi.hccapx 10k_most_common.txt
             <span class="n">payload</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">padding</span>
             <span class="n">inscount</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">run_pin</span><span class="p">(</span><span class="n">payload</span><span class="p">))</span>
 
-            <span class="n">delta1</span> <span class="o">=</span> <span class="n">inscount</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">inscount</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">inscount</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">2</span> <span class="k">else</span> <span class="bp">None</span>
-            <span class="n">delta2</span> <span class="o">=</span> <span class="n">inscount</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="n">inscount</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">]</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">inscount</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">3</span> <span class="k">else</span> <span class="bp">None</span>
+            <span class="n">delta1</span> <span class="o">=</span> <span class="n">inscount</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">inscount</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">inscount</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">2</span> <span class="k">else</span> <span class="kc">None</span>
+            <span class="n">delta2</span> <span class="o">=</span> <span class="n">inscount</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="n">inscount</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">]</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">inscount</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">3</span> <span class="k">else</span> <span class="kc">None</span>
 
-            <span class="k">print</span><span class="p">(</span><span class="s1">&#39;len={}</span><span class="se">\t</span><span class="s1">ins={}</span><span class="se">\t</span><span class="s1">delta={}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;len=</span><span class="si">{}</span><span class="se">\t</span><span class="s1">ins=</span><span class="si">{}</span><span class="se">\t</span><span class="s1">delta=</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
                 <span class="nb">len</span><span class="p">(</span><span class="n">payload</span><span class="p">),</span> <span class="n">inscount</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">delta1</span><span class="p">))</span>
-            <span class="k">if</span> <span class="n">delta2</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span> <span class="ow">and</span> <span class="n">delta1</span> <span class="o">!=</span> <span class="n">delta2</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">delta2</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">delta1</span> <span class="o">!=</span> <span class="n">delta2</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">len</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
 
-                <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;key length is {self.len}? (y/n) &#39;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;key length is </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">len</span><span class="si">}</span><span class="s1">? (y/n) &#39;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
                 <span class="k">if</span> <span class="nb">input</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span>
                     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">len</span>
-        <span class="k">print</span><span class="p">(</span><span class="s2">&#34;Can&#39;t guess key length!</span><span class="se">\n</span><span class="s2">Please input your guess: &#34;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Can&#39;t guess key length!</span><span class="se">\n</span><span class="s2">Please input your guess: &#34;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">len</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span>
 
     <span class="k">def</span> <span class="nf">guess_key</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -722,19 +722,19 @@ hashcat -m <span class="m">2500</span> wifi.hccapx 10k_most_common.txt
                 <span class="n">_payload</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
                 <span class="n">inscount</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">run_pin</span><span class="p">(</span><span class="n">_payload</span><span class="p">))</span>
 
-                <span class="n">delta1</span> <span class="o">=</span> <span class="n">inscount</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">inscount</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">inscount</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">2</span> <span class="k">else</span> <span class="bp">None</span>
-                <span class="n">delta2</span> <span class="o">=</span> <span class="n">inscount</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="n">inscount</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">]</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">inscount</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">3</span> <span class="k">else</span> <span class="bp">None</span>
+                <span class="n">delta1</span> <span class="o">=</span> <span class="n">inscount</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">inscount</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">inscount</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">2</span> <span class="k">else</span> <span class="kc">None</span>
+                <span class="n">delta2</span> <span class="o">=</span> <span class="n">inscount</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="n">inscount</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">]</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">inscount</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">3</span> <span class="k">else</span> <span class="kc">None</span>
 
-                <span class="k">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\r</span><span class="s1">payload:{}</span><span class="se">\t</span><span class="s1">ins={}</span><span class="se">\t</span><span class="s1">delta={}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\r</span><span class="s1">payload:</span><span class="si">{}</span><span class="se">\t</span><span class="s1">ins=</span><span class="si">{}</span><span class="se">\t</span><span class="s1">delta=</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
                     <span class="n">_payload</span><span class="p">,</span> <span class="n">inscount</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">delta1</span><span class="p">),</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
-                <span class="k">if</span> <span class="n">delta2</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span> <span class="ow">and</span> <span class="n">delta1</span> <span class="o">!=</span> <span class="n">delta2</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">delta2</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">delta1</span> <span class="o">!=</span> <span class="n">delta2</span><span class="p">:</span>
                     <span class="c1"># print(f&#39;fount {c} !&#39;)</span>
-                    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
                     <span class="k">break</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="k">print</span><span class="p">(</span><span class="s2">&#34;Didn&#39;t find password!&#34;</span><span class="p">)</span>
-                <span class="k">return</span> <span class="bp">None</span>
-        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">payload</span><span class="p">))</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Didn&#39;t find password!&#34;</span><span class="p">)</span>
+                <span class="k">return</span> <span class="kc">None</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">payload</span><span class="p">))</span>
         <span class="k">return</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
@@ -754,16 +754,16 @@ hashcat -m <span class="m">2500</span> wifi.hccapx 10k_most_common.txt
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">_3</span> <span class="o">=</span> <span class="p">(</span><span class="mi">3</span> <span class="o">+</span> <span class="mi">1000000000</span> <span class="o">//</span> <span class="mi">3</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1000000000</span> <span class="o">//</span> <span class="mi">3</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">_3</span> <span class="o">=</span> <span class="p">(</span><span class="mi">3</span> <span class="o">+</span> <span class="mi">1000000000</span> <span class="o">//</span> <span class="mi">3</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1000000000</span> <span class="o">//</span> <span class="mi">3</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
 <span class="n">_5</span> <span class="o">=</span> <span class="p">(</span><span class="mi">5</span> <span class="o">+</span> <span class="mi">1000000000</span> <span class="o">-</span> <span class="mi">15</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1000000000</span> <span class="o">//</span> <span class="mi">5</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
 <span class="n">_15</span> <span class="o">=</span> <span class="p">(</span><span class="mi">15</span> <span class="o">+</span> <span class="mi">1000000000</span> <span class="o">//</span> <span class="mi">15</span> <span class="o">*</span> <span class="mi">15</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1000000000</span> <span class="o">//</span> <span class="mi">15</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
-<span class="k">print</span><span class="p">(</span><span class="n">_3</span> <span class="o">+</span> <span class="n">_5</span> <span class="o">-</span> <span class="n">_15</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">_3</span> <span class="o">+</span> <span class="n">_5</span> <span class="o">-</span> <span class="n">_15</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>注意是 1000000000 <strong>以内</strong></p>
@@ -774,24 +774,24 @@ hashcat -m <span class="m">2500</span> wifi.hccapx 10k_most_common.txt
 <p>file 一下.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">haha: Linux rev 1.0 ext2 filesystem data, UUID=8eecd08f-bae8-41ff-8497-8338f58ad15b
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">haha: Linux rev 1.0 ext2 filesystem data, UUID=8eecd08f-bae8-41ff-8497-8338f58ad15b
 </code></pre></td></tr></table>
 </div>
 </div><p>挂上去发现一堆小文件, 里面各有一个字符
 写个 zsh 脚本跑一下</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-zsh" data-lang="zsh">mkdir loli
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh">mkdir loli
 sudo mount haha loli
 <span class="k">for</span> i <span class="o">({</span>0..253<span class="o">})</span> <span class="o">{</span>
 	  cat <span class="nv">$i</span>  
@@ -801,10 +801,10 @@ sudo mount haha loli
 </div><p>结果</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">Haha ext2 file system is easy, and I know you can easily decompress of it and find the content in it.But the content is spilted in pieces can you make the pieces together. Now this is the flag PCTF{P13c3_7oghter_i7}. The rest is up to you. Cheer up, boy.
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">Haha ext2 file system is easy, and I know you can easily decompress of it and find the content in it.But the content is spilted in pieces can you make the pieces together. Now this is the flag PCTF{P13c3_7oghter_i7}. The rest is up to you. Cheer up, boy.
 </code></pre></td></tr></table>
 </div>
 </div><h1 id="veryeasyrsa">veryeasyRSA</h1>
@@ -817,18 +817,18 @@ sudo mount haha loli
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">gmpy2</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">gmpy2</span>
 <span class="n">p</span> <span class="o">=</span> <span class="mi">3487583947589437589237958723892346254777</span>
 <span class="n">q</span> <span class="o">=</span> <span class="mi">8767867843568934765983476584376578389</span>
 <span class="n">e</span> <span class="o">=</span> <span class="mi">65537</span>
-<span class="k">print</span><span class="p">(</span><span class="n">gmpy2</span><span class="o">.</span><span class="n">invert</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="p">(</span><span class="n">p</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">q</span><span class="o">-</span><span class="mi">1</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">gmpy2</span><span class="o">.</span><span class="n">invert</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="p">(</span><span class="n">p</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">q</span><span class="o">-</span><span class="mi">1</span><span class="p">)))</span>
 </code></pre></td></tr></table>
 </div>
 </div><h1 id="美丽的实验室logo">美丽的实验室logo</h1>
@@ -860,10 +860,10 @@ sudo mount haha loli
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;{i:X}&#39;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="s1">&#39;锟斤拷&#39;</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;GBK&#39;</span><span class="p">))</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">i</span><span class="si">:</span><span class="s1">X</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="s1">&#39;锟斤拷&#39;</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;GBK&#39;</span><span class="p">))</span>
 </code></pre></td></tr></table>
 </div>
 </div><h1 id="veryeasy">veryeasy</h1>
@@ -872,12 +872,12 @@ sudo mount haha loli
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">curl https://dn.jarvisoj.com/challengefiles/veryeasy.d944f0e9f8d5fe5b358930023da97d1a --output - <span class="p">|</span> grep -aoP <span class="s1">&#39;PCTF{.+?}&#39;</span>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">curl https://dn.jarvisoj.com/challengefiles/veryeasy.d944f0e9f8d5fe5b358930023da97d1a --output - <span class="p">|</span> grep -aoP <span class="s1">&#39;PCTF{.+?}&#39;</span>
 <span class="c1"># or</span>
 curl https://dn.jarvisoj.com/challengefiles/veryeasy.d944f0e9f8d5fe5b358930023da97d1a --output - <span class="p">|</span> strings <span class="p">|</span> rg PCTF
 </code></pre></td></tr></table>
@@ -950,7 +950,7 @@ curl https://dn.jarvisoj.com/challengefiles/veryeasy.d944f0e9f8d5fe5b358930023da
   <script type="text/javascript">
     new Valine({
         el: '#vcomments' ,
-        serverURLs: 'https:\/\/lcd.aloxaf.cn',
+        serverURLs: '',
         appId: 'fSbXaElXXTznggVXiWy8NFBU-gzGzoHsz',
         appKey: 'kK3SxB14xAACgHftKrSaBRDU',
         notify:  false ,
@@ -988,7 +988,7 @@ curl https://dn.jarvisoj.com/challengefiles/veryeasy.d944f0e9f8d5fe5b358930023da
   <span class="copyright-year">
     &copy; 
     2017 - 
-    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>Aloxaf</span>
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span><span>Aloxaf</span>
   </span>
 </div>
 

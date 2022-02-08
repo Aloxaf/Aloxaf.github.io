@@ -6,7 +6,16 @@
     <description>Recent content in linux on Aloxaf&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Sat, 28 Nov 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://www.aloxaf.com/tags/linux/atom.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 23 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://www.aloxaf.com/tags/linux/atom.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Btrfs 迁移笔记</title>
+      <link>https://www.aloxaf.com/draft/btrfs_note/</link>
+      <pubDate>Tue, 23 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.aloxaf.com/draft/btrfs_note/</guid>
+      <description>&lt;p&gt;我终于也是 Btrfs 人了！&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>Linux 下如何跟大量小文件打交道</title>
       <link>https://www.aloxaf.com/2020/11/wow_such_linux_many_files_so_small/</link>
@@ -115,15 +124,6 @@ p10k 的 Instant Prompt 功能非常好用，它可以在其他插件的加载�
       
       <guid>https://www.aloxaf.com/2019/03/powershell_miaoa/</guid>
       <description>我就是饿死, 死外面, 从外面跳下去, 也不会用 M$ 的垃圾 PowerShell ! &amp;hellip; 真香! NOTE: 这是一篇黑 bash 吹 PowerShell(以下简称 pwsh) 的文章, bash 死忠粉以及软黑请退散</description>
-    </item>
-    
-    <item>
-      <title>Arch Linux 杂七杂八的优化</title>
-      <link>https://www.aloxaf.com/2018/11/arch_optimize/</link>
-      <pubDate>Sun, 18 Nov 2018 22:56:27 +0000</pubDate>
-      
-      <guid>https://www.aloxaf.com/2018/11/arch_optimize/</guid>
-      <description>&lt;p&gt;发现无聊时刷 &lt;a href=&#34;https://wiki.archlinux.org/&#34;&gt;Arch Wiki&lt;/a&gt; 也挺有趣的, 记录一下自己干了啥吧. 毕竟有些配置没法放到 dotfiles 里. 记录一下以后翻起来也方便.&lt;/p&gt;</description>
     </item>
     
   </channel>

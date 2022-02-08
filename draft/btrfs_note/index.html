@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Btrfs 迁移笔记 - Aloxaf&#39;s Blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Aloxaf" /><meta name="description" content="我终于也是 Btrfs 人了！
+" /><meta name="keywords" content="aloxaf, ctf, linux, zsh" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.92.0 with theme even" />
+
+
+<link rel="preload" href="/fonts/iconfont/iconfont.woff" as="font" type="font/woff" crossorigin="anonymous">
+<link rel="preload" href="/fonts/FiraCode/FiraCode-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+
+
+<link rel="canonical" href="https://www.aloxaf.com/draft/btrfs_note/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.6e68329c1369b8a285a4985e6b6efdb778e12c12b24e8b3fcdd6c5af778d414e.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Btrfs 迁移笔记" />
+<meta property="og:description" content="我终于也是 Btrfs 人了！" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.aloxaf.com/draft/btrfs_note/" /><meta property="article:section" content="draft" />
+<meta property="article:published_time" content="2021-03-23T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-03-23T00:00:00+00:00" />
+
+<meta itemprop="name" content="Btrfs 迁移笔记">
+<meta itemprop="description" content="我终于也是 Btrfs 人了！"><meta itemprop="datePublished" content="2021-03-23T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2021-03-23T00:00:00+00:00" />
+<meta itemprop="wordCount" content="1723">
+<meta itemprop="keywords" content="linux,btrfs,filesystem," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Btrfs 迁移笔记"/>
+<meta name="twitter:description" content="我终于也是 Btrfs 人了！"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Aloxaf&#39;s Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于</li>
+      </a><a href="/friend/">
+        <li class="mobile-menu-item">友链</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Aloxaf&#39;s Blog</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">关于</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/friend/">友链</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+  <div class="post-content">
+    <p>我终于也是 Btrfs 人了！</p>
+<p>Arch 群人均 Btrfs 用户，我对 Btrfs 也垂涎已久，这次趁着换硬盘把文件系统也一并换了，记录一下折腾过程，供后人参考。</p>
+<h1 id="迁移系统">迁移系统</h1>
+<h2 id="btrfs-convert">btrfs-convert</h2>
+<p>这是一个能够将 ext4 文件系统原地转换至 Btrfs 的工具<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>，它应该是比较稳定的，至少回滚功能做得不错。如果你没有额外硬盘备份你的数据，但又十分想用 Btrfs，则可以考虑使用它来进行原地转换。</p>
+<p>不过我第一次使用它时就遇到了 bug，导致转换完的文件系统无法挂载，虽然最后成功回滚了，但是也不敢再用这个工具进行转换了……（当然这个 bug 目前已经修复了<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>）</p>
+<h2 id="备份">备份</h2>
+<p>仙子有两篇关于这个的文章<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup>，照抄里面的 rsync 命令就行了。</p>
+<p>为了进一步节省备份的时间与空间，建议先使用 filelight、ncdu、dua-cli 等工具检查一下磁盘，把 target、node_modules 等「占用空间大」或者「文件数量多」的缓存文件夹都删掉。</p>
+<h2 id="格式化">格式化</h2>
+<p><code>mkfs.btrfs</code> 会根据情况自动选择合适的参数，一般只需要补一个 <code>-L</code> 指定一下 label 即可。</p>
+<p>但是，如果你用 RAID、或者是在虚拟机里装的 Linux，那可能需要调整一下 <code>-d</code> 和 <code>-m</code> 参数<sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup></p>
+<h2 id="分区">分区</h2>
+<p>如果作为系统盘建议分一个 512M 的 FAT32 EFI 分区，否则不用分，Btrfs 有棒棒的子卷可以代替。</p>
+<p>如果你的 Linux 内核版本小于 5.0 并且你需要使用 SWAP 的话，则建议再分一个交换分区<sup id="fnref:5"><a href="#fn:5" class="footnote-ref" role="doc-noteref">5</a></sup></p>
+<h2 id="子卷布局">子卷布局</h2>
+<p>格式化完后，先别急着把数据移回来。为了更好地使用 Btrfs 的快照功能，我们需要建立一些子卷。</p>
+<p>关于子卷的布局不同人有不同的想法，我参考了一堆资料<sup id="fnref:6"><a href="#fn:6" class="footnote-ref" role="doc-noteref">6</a></sup>，最终决定采用平坦子卷布局。建立了 @、@home、@swap、@var 四个顶层子卷，再为 ~/.cache 单独创建一个子卷。</p>
+<p>创建这么多子卷的好处有啥呢……主要是为了方便快照。Btrfs 的快照是以子卷为单位的，而 /swap /var .cache 这种东西修改地非常频繁，如果将它们包含在快照中的话，快照的体积会增大的非常快。这好吗？这不好。所以得把它们放到单独的子卷中。</p>
+<p>创建完子卷就可以把东西扔回去了，不过如果想要透明压缩的时候记得在挂载的时候就指定 <code>compress</code></p>
+<h2 id="挂载参数">挂载参数</h2>
+<p>Btrfs 有<a href="https://man.archlinux.org/man/btrfs.5#MOUNT_OPTIONS">很多挂载参数</a>，考古了一下 Arch 群的历史发言记录，我决定采用 <code>noatime,space_cache=v2,compress=zstd</code>，然后为 SSD 加上 <code>discard=async</code>，HDD 加上 <code>autodefrag</code>。</p>
+<ul>
+<li>noatime：对于拥有 CoW 的 Btrfs 来讲，即使是修改时间戳这种简单的写入也会带来不小的开销，因此 noatime <a href="https://gms.tf/btrfs-requires-noatime.html">某些情况下可以显著提高性能</a></li>
+<li>space_cache=v2：fc 教授建议加上的，对大磁盘有优化，据说以后将会成为 Btrfs 的默认设置</li>
+<li>compress=zstd：使用 zstd 压缩，有些人会推荐使用 compress-force，但根据 Btrfs manual 的说法，4.15 以后应该没有使用 compress-force  的必要了。</li>
+<li>discard=async：异步 trim</li>
+<li>autodefrag：相比手动运行 defrag，autodefrag 更不容易断开 reflink。</li>
+</ul>
+<h1 id="维护">维护</h1>
+<h2 id="碎片检测">碎片检测</h2>
+<p>CoW 的文件系统都很容易产生碎片，建议在正常使用一段时间后参照<a href="https://blog.lilydjwg.me/2019/2/16/defragmentation-in-linux.214120.html">仙子的文章</a>检测一下。为其中碎片过多的文件关闭 CoW。</p>
+<p>需要注意的是，如果你开启了压缩，那么碎片会比通常情况下多不少。因为考虑到主流压缩算法都不支持随机访问，要想访问某段数据就得解压整个块，所以压缩文件的最大 extent 大小被限制为 128KiB，而通常的最大 extent 大小是 128MiB。</p>
+<p>也就是说，如果有个 1GiB 的可压缩文件，那它大概会碎成 8192 块，这是正常的，不需要管，如果远超这个数字，才需要考虑是不是得关闭 CoW（这同样会禁用压缩）。</p>
+<h2 id="sqlite">SQLite</h2>
+<p>SQLite 的 Write-Ahead Logging 可以<a href="https://wiki.tnonline.net/w/Blog/SQLite_Performance_on_Btrfs">有效提升 CoW 文件系统下的性能</a>，如果检测到某个 SQLite 数据库的碎片过多，可以使用这种方案来手动优化一下。</p>
+<p>注：主流软件比如 Chromium、Firefox 都已经采用 WAL 了</p>
+<h2 id="docker">Docker</h2>
+<p>Docker 默认使用的是支持 CoW 的 OverlayFS2，但是底层文件系统已经支持 CoW 了就没有再套一层 CoW 的必要了，这是完全的负优化。</p>
+<p>因此建议参考 <a href="https://docs.docker.com/storage/storagedriver/btrfs-driver/">https://docs.docker.com/storage/storagedriver/btrfs-driver/</a> 将 storage driver 替换为 btrfs</p>
+<h2 id="快照">快照</h2>
+<p>为什么馋 Btrfs？一个是压缩，另一个就是快照了。</p>
+<p>利用了 CoW 特性的 Btrfs 快照非常轻量，不少 Btrfs 用户都是每小时给系统照一次快照，非常奢侈。</p>
+<h2 id="去重">去重</h2>
+<section class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1" role="doc-endnote">
+<p><a href="https://btrfs.wiki.kernel.org/index.php/Conversion_from_Ext3">https://btrfs.wiki.kernel.org/index.php/Conversion_from_Ext3</a>&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2" role="doc-endnote">
+<p><a href="https://wiki.archlinux.org/index.php/Btrfs_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)#%E4%BB%8E_Ext3/4_%E8%BD%AC%E6%8D%A2">Btrfs_(简体中文)#从_Ext3/4_转换</a>&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:3" role="doc-endnote">
+<p><a href="https://blog.lilydjwg.me/2013/12/29/rsync-btrfs-dm-crypt-full-backup.42219.html">rsync+btrfs+dm-crypt 备份整个系统</a>、<a href="https://blog.lilydjwg.me/2019/3/31/move-system-to-ssd.214336.html">迁移系统到 SSD</a>&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:4" role="doc-endnote">
+<p><a href="https://man.archlinux.org/man/mkfs.btrfs.8.en">mkfs.btrfs(8)</a>&#160;<a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:5" role="doc-endnote">
+<p><a href="https://man.archlinux.org/man/btrfs.5#SWAPFILE_SUPPORT">btrfs.5#SWAPFILE_SUPPORT</a>&#160;<a href="#fnref:5" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:6" role="doc-endnote">
+<p><a href="https://wiki.archlinux.org/index.php/snapper#Suggested_filesystem_layout">Arch Wiki</a>、<a href="https://en.opensuse.org/SDB:BTRFS">OpenSUSE Wiki</a>、<a href="https://btrfs.wiki.kernel.org/index.php/SysadminGuide#Subvolumes">Btrfs Wiki</a>，以及 <a href="https://farseerfc.me/zhs/btrfs-vs-zfs-difference-in-implementing-snapshots.html#id7">fc 教授的博客</a>&#160;<a href="#fnref:6" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</section>
+  </div>
+</article>
+        </div>
+        
+
+  <span id="/draft/btrfs_note/" class="leancloud_visitors" data-flag-title="Btrfs 迁移笔记">
+		<span class="post-meta-item-text">文章阅读量 </span>
+		<span class="leancloud-visitors-count">0</span>
+		<p></p>
+	  </span>
+  <div id="vcomments"></div>
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+  <script type="text/javascript">
+    new Valine({
+        el: '#vcomments' ,
+        serverURLs: '',
+        appId: 'fSbXaElXXTznggVXiWy8NFBU-gzGzoHsz',
+        appKey: 'kK3SxB14xAACgHftKrSaBRDU',
+        notify:  false ,
+        verify:  false ,
+        avatar:'mm',
+        placeholder: '妙啊，妙啊',
+        visitor:  true 
+    });
+  </script>
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:aloxafx@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/Aloxaf" class="iconfont icon-github" title="github"></a>
+  <a href="https://www.aloxaf.com/atom.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span><span>Aloxaf</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script async src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script async src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "zh".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-123773630-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+</body>
+</html>

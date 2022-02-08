@@ -26,7 +26,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.81.0 with theme even" />
+<meta name="generator" content="Hugo 0.92.0 with theme even" />
 
 
 <link rel="preload" href="/fonts/iconfont/iconfont.woff" as="font" type="font/woff" crossorigin="anonymous">
@@ -42,7 +42,7 @@
 
 
 
-<link href="/sass/main.min.96e8e2c964270ec266a0efff67202fed95e11f1fc9c9dd9b1219e1f4a54b5c4b.css" rel="stylesheet">
+<link href="/sass/main.min.6e68329c1369b8a285a4985e6b6efdb778e12c12b24e8b3fcdd6c5af778d414e.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
@@ -57,8 +57,8 @@ WPS 文字, 字体也变浅色了, 不仅亮瞎眼. 如果强行调成黑色的�
 " />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.aloxaf.com/2018/11/kde_dark_theme/" /><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2018-11-14T20:58:52&#43;00:00" />
-<meta property="article:modified_time" content="2018-11-14T20:58:52&#43;00:00" />
+<meta property="article:published_time" content="2018-11-14T20:58:52+00:00" />
+<meta property="article:modified_time" content="2018-11-14T20:58:52+00:00" />
 
 <meta itemprop="name" content="解决 KDE 暗色主题下 WPS &amp; 搜狗拼音设置字体颜色不正常的问题">
 <meta itemprop="description" content="这是一个比较迷的 bug, 困扰了我很久, 然而又不知道为什么.
@@ -68,8 +68,8 @@ WPS 文字, 字体也变浅色了, 不仅亮瞎眼. 如果强行调成黑色的�
 搜狗, 字体跟随系统变成浅色, 背景没有变, 变成浅色背景&#43;浅色字体, 亮瞎眼组合
 WPS 表格, 表格背景是黑的&hellip;.究极の难看
 WPS 文字, 字体也变浅色了, 不仅亮瞎眼. 如果强行调成黑色的话, 在 Windows 上就会变亮瞎眼&hellip;
-"><meta itemprop="datePublished" content="2018-11-14T20:58:52&#43;00:00" />
-<meta itemprop="dateModified" content="2018-11-14T20:58:52&#43;00:00" />
+"><meta itemprop="datePublished" content="2018-11-14T20:58:52+00:00" />
+<meta itemprop="dateModified" content="2018-11-14T20:58:52+00:00" />
 <meta itemprop="wordCount" content="275">
 <meta itemprop="keywords" content="linux," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="解决 KDE 暗色主题下 WPS &amp; 搜狗拼音设置字体颜色不正常的问题"/>
@@ -188,19 +188,19 @@ WPS 文字, 字体也变浅色了, 不仅亮瞎眼. 如果强行调成黑色的�
 <p>以 WPS 为例, Before</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-ini" data-lang="ini"><span class="na">Exec</span><span class="o">=</span><span class="s">/usr/bin/wps %f</span>
+<pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="na">Exec</span><span class="o">=</span><span class="s">/usr/bin/wps %f</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>After</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-ini" data-lang="ini"><span class="na">Exec</span><span class="o">=</span><span class="s">/usr/bin/wps -style gtk+ %f</span>
+<pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="na">Exec</span><span class="o">=</span><span class="s">/usr/bin/wps -style gtk+ %f</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>原理: 把这堆不守规矩的程序踢给 GTK+</p>
@@ -256,7 +256,7 @@ WPS 文字, 字体也变浅色了, 不仅亮瞎眼. 如果强行调成黑色的�
   <script type="text/javascript">
     new Valine({
         el: '#vcomments' ,
-        serverURLs: 'https:\/\/lcd.aloxaf.cn',
+        serverURLs: '',
         appId: 'fSbXaElXXTznggVXiWy8NFBU-gzGzoHsz',
         appKey: 'kK3SxB14xAACgHftKrSaBRDU',
         notify:  false ,
@@ -294,7 +294,7 @@ WPS 文字, 字体也变浅色了, 不仅亮瞎眼. 如果强行调成黑色的�
   <span class="copyright-year">
     &copy; 
     2017 - 
-    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>Aloxaf</span>
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span><span>Aloxaf</span>
   </span>
 </div>
 

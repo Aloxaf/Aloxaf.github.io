@@ -25,7 +25,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.81.0 with theme even" />
+<meta name="generator" content="Hugo 0.92.0 with theme even" />
 
 
 <link rel="preload" href="/fonts/iconfont/iconfont.woff" as="font" type="font/woff" crossorigin="anonymous">
@@ -41,7 +41,7 @@
 
 
 
-<link href="/sass/main.min.96e8e2c964270ec266a0efff67202fed95e11f1fc9c9dd9b1219e1f4a54b5c4b.css" rel="stylesheet">
+<link href="/sass/main.min.6e68329c1369b8a285a4985e6b6efdb778e12c12b24e8b3fcdd6c5af778d414e.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
@@ -52,15 +52,15 @@
 fcitx5 终于加上了 lua 支持，可以使用 lua 编写一些简单的插件。但是文档一如既往地非常少，查阅了大量资料并翻看源码以后总算弄懂了插件的编写步骤，记录一下以免忘记，顺便分享给同样需要的人。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.aloxaf.com/2020/09/fcitx5_plugin/" /><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2020-09-24T21:53:09&#43;00:00" />
-<meta property="article:modified_time" content="2020-09-24T21:53:09&#43;00:00" />
+<meta property="article:published_time" content="2020-09-24T21:53:09+00:00" />
+<meta property="article:modified_time" content="2020-09-24T21:53:09+00:00" />
 
 <meta itemprop="name" content="使用 fcitx5-lua 编写 lua 插件">
 <meta itemprop="description" content="
 突然发现五个月前自己写过一篇 fcitx5-lua 的教程，刚好拿来水一篇
 
-fcitx5 终于加上了 lua 支持，可以使用 lua 编写一些简单的插件。但是文档一如既往地非常少，查阅了大量资料并翻看源码以后总算弄懂了插件的编写步骤，记录一下以免忘记，顺便分享给同样需要的人。"><meta itemprop="datePublished" content="2020-09-24T21:53:09&#43;00:00" />
-<meta itemprop="dateModified" content="2020-09-24T21:53:09&#43;00:00" />
+fcitx5 终于加上了 lua 支持，可以使用 lua 编写一些简单的插件。但是文档一如既往地非常少，查阅了大量资料并翻看源码以后总算弄懂了插件的编写步骤，记录一下以免忘记，顺便分享给同样需要的人。"><meta itemprop="datePublished" content="2020-09-24T21:53:09+00:00" />
+<meta itemprop="dateModified" content="2020-09-24T21:53:09+00:00" />
 <meta itemprop="wordCount" content="2064">
 <meta itemprop="keywords" content="linux,fcitx5," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="使用 fcitx5-lua 编写 lua 插件"/>
@@ -181,7 +181,7 @@ fcitx5 终于加上了 lua 支持，可以使用 lua 编写一些简单的插件
   </div>
 </div>
   <div class="post-outdated">
-    <div class="hint">
+    <div class="warn">
       <p>【注】本文最后更新于 <span class="timeago" datetime="2020-09-24T21:53:09" title="September 24, 2020">September 24, 2020</span>，文中内容可能已经过时。</p>
     </div>
   </div>
@@ -215,7 +215,7 @@ fcitx5 终于加上了 lua 支持，可以使用 lua 编写一些简单的插件
 <p>下面提供了一个例子，注册了一个 <code>cl</code> 命令用于进行简单的数学计算。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -233,7 +233,7 @@ fcitx5 终于加上了 lua 支持，可以使用 lua 编写一些简单的插件
 </span><span class="lnt">16
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-lua" data-lang="lua"><span class="kr">function</span> <span class="nf">calc</span><span class="p">(</span><span class="n">input</span><span class="p">)</span>
+<pre tabindex="0" class="chroma"><code class="language-lua" data-lang="lua"><span class="kr">function</span> <span class="nf">calc</span><span class="p">(</span><span class="n">input</span><span class="p">)</span>
   <span class="c1">-- input 不包含命令，比如输入 cl5+5，input 就为 5+5，不会包含 cl 前缀。</span>
   <span class="kd">local</span> <span class="n">func</span> <span class="o">=</span> <span class="n">loadstring</span><span class="p">(</span><span class="n">string.format</span><span class="p">(</span><span class="s2">&#34;return %s&#34;</span><span class="p">,</span> <span class="n">input</span><span class="p">))</span>
   <span class="kr">if</span> <span class="n">func</span> <span class="o">==</span> <span class="kc">nil</span> <span class="kr">then</span>
@@ -263,7 +263,7 @@ fcitx5 终于加上了 lua 支持，可以使用 lua 编写一些简单的插件
 <p>看这个例子就懂了，以下是一个为 fcitx5 添加输入“时间戳”三个字时自动在候选列表中添加当前时间戳的功能的例子。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -271,7 +271,7 @@ fcitx5 终于加上了 lua 支持，可以使用 lua 编写一些简单的插件
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-lua" data-lang="lua"><span class="c1">-- 此处并不需要用户输入</span>
+<pre tabindex="0" class="chroma"><code class="language-lua" data-lang="lua"><span class="c1">-- 此处并不需要用户输入</span>
 <span class="kr">function</span> <span class="nf">timestamp</span><span class="p">(</span><span class="n">_input</span><span class="p">)</span>
   <span class="kr">return</span> <span class="n">os.time</span><span class="p">(</span><span class="n">os.date</span><span class="p">(</span><span class="s2">&#34;!*t&#34;</span><span class="p">))</span>
 <span class="kr">end</span>
@@ -284,7 +284,7 @@ fcitx5 终于加上了 lua 支持，可以使用 lua 编写一些简单的插件
 <p>比 如 以 下 函 数 可 以 为 你 的 输 入 自 动 加 入 空 格 ， 就 像 我 这 个 样 子</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -295,7 +295,7 @@ fcitx5 终于加上了 lua 支持，可以使用 lua 编写一些简单的插件
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-lua" data-lang="lua"><span class="n">ime.register_converter</span><span class="p">(</span><span class="s2">&#34;konge&#34;</span><span class="p">,</span> <span class="s2">&#34;使用空格分词&#34;</span><span class="p">)</span>
+<pre tabindex="0" class="chroma"><code class="language-lua" data-lang="lua"><span class="n">ime.register_converter</span><span class="p">(</span><span class="s2">&#34;konge&#34;</span><span class="p">,</span> <span class="s2">&#34;使用空格分词&#34;</span><span class="p">)</span>
 
 <span class="kr">function</span> <span class="nf">konge</span><span class="p">(</span><span class="n">str</span><span class="p">)</span>
   <span class="kd">local</span> <span class="n">tmp</span> <span class="o">=</span> <span class="n">string.gsub</span><span class="p">(</span><span class="n">str</span><span class="p">,</span> <span class="n">utf8.charpattern</span><span class="p">,</span> <span class="s2">&#34;%1 &#34;</span><span class="p">)</span>
@@ -312,7 +312,7 @@ fcitx5 终于加上了 lua 支持，可以使用 lua 编写一些简单的插件
 <p>这个相比 GooglePinyin 就复杂了点。假设我们的插件叫 testlua，那么就需要在 <code>~/.local/share/fcitx5/addon</code> 文件夹下创建一个 testlua.conf 文件，填入插件的基本信息，模板如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -325,7 +325,7 @@ fcitx5 终于加上了 lua 支持，可以使用 lua 编写一些简单的插件
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-ini" data-lang="ini"><span class="k">[Addon]</span>
+<pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="k">[Addon]</span>
 <span class="na">Name</span><span class="o">=</span><span class="s">Test Lua</span>
 <span class="na">Comment</span><span class="o">=</span><span class="s">Test Lua</span>
 <span class="na">Category</span><span class="o">=</span><span class="s">Module</span>
@@ -346,7 +346,7 @@ fcitx5 终于加上了 lua 支持，可以使用 lua 编写一些简单的插件
 <p>顾名思义，这个函数可以监控指定的事件，完整列表如下。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -361,7 +361,7 @@ fcitx5 终于加上了 lua 支持，可以使用 lua 编写一些简单的插件
 </span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-lua" data-lang="lua"><span class="kd">local</span> <span class="n">EventType</span> <span class="o">=</span> <span class="p">{</span>
+<pre tabindex="0" class="chroma"><code class="language-lua" data-lang="lua"><span class="kd">local</span> <span class="n">EventType</span> <span class="o">=</span> <span class="p">{</span>
     <span class="n">ContextCreated</span> <span class="o">=</span> <span class="mh">0x0001000</span> <span class="o">|</span> <span class="mh">0x1</span><span class="p">,</span>
     <span class="n">ContextDestroyed</span> <span class="o">=</span> <span class="mh">0x0001000</span> <span class="o">|</span> <span class="mh">0x2</span><span class="p">,</span>
     <span class="n">FocusOut</span> <span class="o">=</span> <span class="mh">0x0001000</span> <span class="o">|</span> <span class="mh">0x3</span><span class="p">,</span>
@@ -381,7 +381,7 @@ fcitx5 终于加上了 lua 支持，可以使用 lua 编写一些简单的插件
 <p>以下是使用 <kbd>Ctrl + Shift + Space</kbd> 开关空格模式的例子</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -416,7 +416,7 @@ fcitx5 终于加上了 lua 支持，可以使用 lua 编写一些简单的插件
 </span><span class="lnt">33
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-lua" data-lang="lua"><span class="kd">local</span> <span class="n">fcitx</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s2">&#34;fcitx&#34;</span><span class="p">)</span>
+<pre tabindex="0" class="chroma"><code class="language-lua" data-lang="lua"><span class="kd">local</span> <span class="n">fcitx</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s2">&#34;fcitx&#34;</span><span class="p">)</span>
 
 <span class="c1">-- 注册我们的事件监听器以及转换器</span>
 <span class="n">fcitx.watchEvent</span><span class="p">(</span><span class="n">fcitx.EventType</span><span class="p">.</span><span class="n">KeyEvent</span><span class="p">,</span> <span class="s2">&#34;key_event&#34;</span><span class="p">)</span>
@@ -505,7 +505,7 @@ fcitx5 终于加上了 lua 支持，可以使用 lua 编写一些简单的插件
   <script type="text/javascript">
     new Valine({
         el: '#vcomments' ,
-        serverURLs: 'https:\/\/lcd.aloxaf.cn',
+        serverURLs: '',
         appId: 'fSbXaElXXTznggVXiWy8NFBU-gzGzoHsz',
         appKey: 'kK3SxB14xAACgHftKrSaBRDU',
         notify:  false ,
@@ -543,7 +543,7 @@ fcitx5 终于加上了 lua 支持，可以使用 lua 编写一些简单的插件
   <span class="copyright-year">
     &copy; 
     2017 - 
-    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>Aloxaf</span>
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span><span>Aloxaf</span>
   </span>
 </div>
 

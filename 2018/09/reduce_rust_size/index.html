@@ -25,7 +25,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.81.0 with theme even" />
+<meta name="generator" content="Hugo 0.92.0 with theme even" />
 
 
 <link rel="preload" href="/fonts/iconfont/iconfont.woff" as="font" type="font/woff" crossorigin="anonymous">
@@ -41,7 +41,7 @@
 
 
 
-<link href="/sass/main.min.96e8e2c964270ec266a0efff67202fed95e11f1fc9c9dd9b1219e1f4a54b5c4b.css" rel="stylesheet">
+<link href="/sass/main.min.6e68329c1369b8a285a4985e6b6efdb778e12c12b24e8b3fcdd6c5af778d414e.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
@@ -50,13 +50,13 @@
 2019-11-12 更新： 自这篇文章发表后已经过了一年，Rust 发生了许多变化，比如不再自带 Jemalloc 作为内存分配器。因此更新一下文章，参考了一个新项目 min-sized-rust 进行了更多的优化。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.aloxaf.com/2018/09/reduce_rust_size/" /><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2018-09-07T12:27:05&#43;00:00" />
-<meta property="article:modified_time" content="2019-11-22T13:51:55&#43;00:00" />
+<meta property="article:published_time" content="2018-09-07T12:27:05+00:00" />
+<meta property="article:modified_time" content="2019-11-22T13:51:55+00:00" />
 
 <meta itemprop="name" content="优化 Rust 程序编译体积">
 <meta itemprop="description" content="体积狂魔の执念，记录一下以免忘记。
-2019-11-12 更新： 自这篇文章发表后已经过了一年，Rust 发生了许多变化，比如不再自带 Jemalloc 作为内存分配器。因此更新一下文章，参考了一个新项目 min-sized-rust 进行了更多的优化。"><meta itemprop="datePublished" content="2018-09-07T12:27:05&#43;00:00" />
-<meta itemprop="dateModified" content="2019-11-22T13:51:55&#43;00:00" />
+2019-11-12 更新： 自这篇文章发表后已经过了一年，Rust 发生了许多变化，比如不再自带 Jemalloc 作为内存分配器。因此更新一下文章，参考了一个新项目 min-sized-rust 进行了更多的优化。"><meta itemprop="datePublished" content="2018-09-07T12:27:05+00:00" />
+<meta itemprop="dateModified" content="2019-11-22T13:51:55+00:00" />
 <meta itemprop="wordCount" content="2976">
 <meta itemprop="keywords" content="rust," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="优化 Rust 程序编译体积"/>
@@ -182,11 +182,11 @@
 <p>首先记录一下编译器版本</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">❯ rustc --version
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">❯ rustc --version
 rustc 1.41.0-nightly <span class="o">(</span>5c5b8afd8 2019-11-16<span class="o">)</span>
 </code></pre></td></tr></table>
 </div>
@@ -196,10 +196,10 @@ rustc 1.41.0-nightly <span class="o">(</span>5c5b8afd8 2019-11-16<span class="o"
 <h1 id="使用-release-构建">使用 Release 构建</h1>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">cargo build --release
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">cargo build --release
 </code></pre></td></tr></table>
 </div>
 </div><p>最基本的优化体积方式之一，大家都懂的。Cargo 默认的编译模式是 dev ，该下没有进行任何优化，而且附带了大量调试信息。dev 模式下的程序别说几十兆，上百兆都是有可能的……</p>
@@ -228,10 +228,10 @@ rustc 1.41.0-nightly <span class="o">(</span>5c5b8afd8 2019-11-16<span class="o"
 <h1 id="使用-strip">使用 strip</h1>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">strip -s target/release/ren3
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">strip -s target/release/ren3
 </code></pre></td></tr></table>
 </div>
 </div><p>最基本的优化体积方式之二，可以去除（对正常运行）无用的符号信息</p>
@@ -261,12 +261,12 @@ rustc 1.41.0-nightly <span class="o">(</span>5c5b8afd8 2019-11-16<span class="o"
 <p><a href="https://doc.rust-lang.org/cargo/reference/manifest.html#the-profile-sections">默认的 release 优化等级为 3</a>，这个等级下编译器会进行循环展开之类的操作以体积膨胀为代价提高程序运行速度。不过这次我们在优化体积，我们不需要以体积为代价的优化。因为我们调整优化等级为 <code>z</code>，意为最小二进制体积：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-toml" data-lang="toml"><span class="p">[</span><span class="nx">profile</span><span class="p">.</span><span class="nx">release</span><span class="p">]</span>
-<span class="nx">opt</span><span class="err">-</span><span class="nx">level</span> <span class="p">=</span> <span class="s1">&#39;z&#39;</span>
+<pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="p">[</span><span class="nx">profile</span><span class="p">.</span><span class="nx">release</span><span class="p">]</span>
+<span class="nx">opt-level</span> <span class="p">=</span> <span class="s1">&#39;z&#39;</span>
 </code></pre></td></tr></table>
 </div>
 </div><table>
@@ -305,11 +305,11 @@ rustc 1.41.0-nightly <span class="o">(</span>5c5b8afd8 2019-11-16<span class="o"
 <p>LTO（Link Time Optimization），意为链接时优化。可以消除大量冗余代码，减小二进制体积——代价是更长的链接时间</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-toml" data-lang="toml"><span class="p">[</span><span class="nx">profile</span><span class="p">.</span><span class="nx">release</span><span class="p">]</span>
+<pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="p">[</span><span class="nx">profile</span><span class="p">.</span><span class="nx">release</span><span class="p">]</span>
 <span class="nx">lto</span> <span class="p">=</span> <span class="kc">true</span>
 </code></pre></td></tr></table>
 </div>
@@ -359,12 +359,12 @@ rustc 1.41.0-nightly <span class="o">(</span>5c5b8afd8 2019-11-16<span class="o"
 <p>Cargo 默认会启用 16 个并行代码生成单元，对编译速度有提升，但是会妨碍某些优化的进行。我们限制到 1：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-toml" data-lang="toml"><span class="p">[</span><span class="nx">profile</span><span class="p">.</span><span class="nx">release</span><span class="p">]</span>
-<span class="nx">codegen</span><span class="err">-</span><span class="nx">units</span> <span class="p">=</span> <span class="mi">1</span>
+<pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="p">[</span><span class="nx">profile</span><span class="p">.</span><span class="nx">release</span><span class="p">]</span>
+<span class="nx">codegen-units</span> <span class="p">=</span> <span class="mi">1</span>
 </code></pre></td></tr></table>
 </div>
 </div><table>
@@ -415,11 +415,11 @@ rustc 1.41.0-nightly <span class="o">(</span>5c5b8afd8 2019-11-16<span class="o"
 <p>众所周知，Rust 程序在 panic 时会生成栈回溯，方便定位问题。而这个 flag 会禁用这种行为——请自行权衡使用。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-toml" data-lang="toml"><span class="p">[</span><span class="nx">profile</span><span class="p">.</span><span class="nx">release</span><span class="p">]</span>
+<pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="p">[</span><span class="nx">profile</span><span class="p">.</span><span class="nx">release</span><span class="p">]</span>
 <span class="nx">panic</span> <span class="p">=</span> <span class="s1">&#39;abort&#39;</span>
 </code></pre></td></tr></table>
 </div>
@@ -482,13 +482,13 @@ rustc 1.41.0-nightly <span class="o">(</span>5c5b8afd8 2019-11-16<span class="o"
 <p>先看一下这个项目当前的依赖：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-toml" data-lang="toml"><span class="p">[</span><span class="nx">dependencies</span><span class="p">]</span>
+<pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="p">[</span><span class="nx">dependencies</span><span class="p">]</span>
 <span class="nx">regex</span> <span class="p">=</span> <span class="s2">&#34;1.3.1&#34;</span>
 <span class="nx">clap</span> <span class="p">=</span> <span class="p">{</span> <span class="nx">version</span> <span class="p">=</span> <span class="s2">&#34;2.33.0&#34;</span><span class="p">,</span> <span class="nx">features</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;yaml&#34;</span><span class="p">]</span> <span class="p">}</span>
 <span class="nx">colored</span> <span class="p">=</span> <span class="s2">&#34;1.9.0&#34;</span>
@@ -502,7 +502,7 @@ rustc 1.41.0-nightly <span class="o">(</span>5c5b8afd8 2019-11-16<span class="o"
 <p>不过这个图也未必准确，因为 Rust 拥有条件编译，这里列出的依赖并不一定会全部用到。比如 <code>winconsole</code> 就只会在 Windows 上被编译。所以我们还要使用另一个工具 <a href="https://github.com/RazrFalcon/cargo-bloat"><code>cargo-bloat</code></a>（为了方便看出结果，这里没有启用前面的优化）</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -528,7 +528,7 @@ rustc 1.41.0-nightly <span class="o">(</span>5c5b8afd8 2019-11-16<span class="o"
 </span><span class="lnt">24
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">❯ cargo bloat --release --crates
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">❯ cargo bloat --release --crates
 ...
     Finished release <span class="o">[</span>optimized<span class="o">]</span> target<span class="o">(</span>s<span class="o">)</span> in 1m 06s
     Analyzing /home/aloxaf/.cache/cargo-build/release/ren3
@@ -613,12 +613,12 @@ Note: numbers above are a result of guesswork. They are not 100% correct and nev
 <p>作为一个简单的文件夹改名工具，并不会用到复杂的正则，也不需要匹配奇怪的 Unicode 字符。所以我们可以禁用这两个 feature</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-toml" data-lang="toml"><span class="p">[</span><span class="nx">dependencies</span><span class="p">]</span>
-<span class="nx">regex</span> <span class="p">=</span> <span class="p">{</span> <span class="nx">version</span> <span class="p">=</span> <span class="s2">&#34;1.3.1&#34;</span><span class="p">,</span> <span class="nx">default</span><span class="err">-</span><span class="nx">features</span> <span class="p">=</span> <span class="kc">false</span><span class="p">,</span> <span class="nx">features</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;std&#34;</span><span class="p">]</span> <span class="p">}</span>
+<pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="p">[</span><span class="nx">dependencies</span><span class="p">]</span>
+<span class="nx">regex</span> <span class="p">=</span> <span class="p">{</span> <span class="nx">version</span> <span class="p">=</span> <span class="s2">&#34;1.3.1&#34;</span><span class="p">,</span> <span class="nx">default-features</span> <span class="p">=</span> <span class="kc">false</span><span class="p">,</span> <span class="nx">features</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;std&#34;</span><span class="p">]</span> <span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>此时再编译</p>
@@ -679,21 +679,21 @@ Note: numbers above are a result of guesswork. They are not 100% correct and nev
 <p>在项目根目录下创建 <code>Xargo.toml</code>（不需要删掉原来的 <code>Cargo.toml</code>），写入：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-toml" data-lang="toml"><span class="p">[</span><span class="nx">dependencies</span><span class="p">]</span>
-<span class="nx">std</span> <span class="p">=</span> <span class="p">{</span> <span class="nx">default</span><span class="err">-</span><span class="nx">features</span> <span class="p">=</span> <span class="kc">false</span> <span class="p">}</span>
+<pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="p">[</span><span class="nx">dependencies</span><span class="p">]</span>
+<span class="nx">std</span> <span class="p">=</span> <span class="p">{</span> <span class="nx">default-features</span> <span class="p">=</span> <span class="kc">false</span> <span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>然后编译（target 请自行调整）</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">xargo build --target x86_64-unknown-linux-gnu --release
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">xargo build --target x86_64-unknown-linux-gnu --release
 </code></pre></td></tr></table>
 </div>
 </div><table>
@@ -743,12 +743,12 @@ Note: numbers above are a result of guesswork. They are not 100% correct and nev
 <p>即使已经在 <code>Cargo.toml</code> 指定了 <code>panic = 'abort'</code>，<code>rustc</code> 默认还是会生成相关的格式化字符串。我们可以通过 feature <code>panic_immediate_abort</code> 来禁止这个行为</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-toml" data-lang="toml"><span class="p">[</span><span class="nx">dependencies</span><span class="p">]</span>
-<span class="nx">std</span> <span class="p">=</span> <span class="p">{</span> <span class="nx">default</span><span class="err">-</span><span class="nx">features</span> <span class="p">=</span> <span class="kc">false</span><span class="p">,</span> <span class="nx">features</span><span class="p">=[</span> <span class="s2">&#34;panic_immediate_abort&#34;</span> <span class="p">]</span> <span class="p">}</span>
+<pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="p">[</span><span class="nx">dependencies</span><span class="p">]</span>
+<span class="nx">std</span> <span class="p">=</span> <span class="p">{</span> <span class="nx">default-features</span> <span class="p">=</span> <span class="kc">false</span><span class="p">,</span> <span class="nx">features</span><span class="p">=[</span> <span class="s2">&#34;panic_immediate_abort&#34;</span> <span class="p">]</span> <span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
 </div><table>
@@ -797,10 +797,10 @@ Note: numbers above are a result of guesswork. They are not 100% correct and nev
 <h1 id="upx-压缩">UPX 压缩</h1>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">upx -9 target/x86_64-unknown-linux-gnu/release/ren3
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">upx -9 target/x86_64-unknown-linux-gnu/release/ren3
 </code></pre></td></tr></table>
 </div>
 </div><p>都懂的 XD</p>
@@ -896,7 +896,7 @@ Note: numbers above are a result of guesswork. They are not 100% correct and nev
   <script type="text/javascript">
     new Valine({
         el: '#vcomments' ,
-        serverURLs: 'https:\/\/lcd.aloxaf.cn',
+        serverURLs: '',
         appId: 'fSbXaElXXTznggVXiWy8NFBU-gzGzoHsz',
         appKey: 'kK3SxB14xAACgHftKrSaBRDU',
         notify:  false ,
@@ -934,7 +934,7 @@ Note: numbers above are a result of guesswork. They are not 100% correct and nev
   <span class="copyright-year">
     &copy; 
     2017 - 
-    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>Aloxaf</span>
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span><span>Aloxaf</span>
   </span>
 </div>
 

@@ -26,7 +26,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.81.0 with theme even" />
+<meta name="generator" content="Hugo 0.92.0 with theme even" />
 
 
 <link rel="preload" href="/fonts/iconfont/iconfont.woff" as="font" type="font/woff" crossorigin="anonymous">
@@ -42,7 +42,7 @@
 
 
 
-<link href="/sass/main.min.96e8e2c964270ec266a0efff67202fed95e11f1fc9c9dd9b1219e1f4a54b5c4b.css" rel="stylesheet">
+<link href="/sass/main.min.6e68329c1369b8a285a4985e6b6efdb778e12c12b24e8b3fcdd6c5af778d414e.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
@@ -53,15 +53,15 @@
 (不过拿来坑下一任或许是个好主意呢)" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.aloxaf.com/2018/10/egg_pain_python/" /><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2018-10-28T14:24:05&#43;00:00" />
-<meta property="article:modified_time" content="2018-10-28T21:08:33&#43;00:00" />
+<meta property="article:published_time" content="2018-10-28T14:24:05+00:00" />
+<meta property="article:modified_time" content="2018-10-28T21:08:33+00:00" />
 
 <meta itemprop="name" content="如何在 Python3 中让 &#39;a&#39; is &#39;b&#39; 为 True">
 <meta itemprop="description" content="前言
 这是一篇闲蛋疼的文章, 讲述了闲蛋疼的我是如何历经千辛万苦终于在 Python 中让 &#39;a&#39; is &#39;b&#39; 得到 True.
 (虽然这件事情毫无意义)
-(不过拿来坑下一任或许是个好主意呢)"><meta itemprop="datePublished" content="2018-10-28T14:24:05&#43;00:00" />
-<meta itemprop="dateModified" content="2018-10-28T21:08:33&#43;00:00" />
+(不过拿来坑下一任或许是个好主意呢)"><meta itemprop="datePublished" content="2018-10-28T14:24:05+00:00" />
+<meta itemprop="dateModified" content="2018-10-28T21:08:33+00:00" />
 <meta itemprop="wordCount" content="3287">
 <meta itemprop="keywords" content="python,egg_pain," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="如何在 Python3 中让 &#39;a&#39; is &#39;b&#39; 为 True"/>
@@ -206,16 +206,16 @@
 <p>很简单粗暴的想法, 然而 python 的回应也很简单粗暴: 关键字不能赋值.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="bp">False</span> <span class="o">=</span> <span class="bp">True</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="kc">False</span> <span class="o">=</span> <span class="kc">True</span>
   <span class="n">File</span> <span class="s2">&#34;&lt;ipython-input-1-e3c38088f793&gt;&#34;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span>
-    <span class="bp">False</span> <span class="o">=</span> <span class="bp">True</span>
+    <span class="kc">False</span> <span class="o">=</span> <span class="kc">True</span>
                 <span class="o">^</span>
 <span class="ne">SyntaxError</span><span class="p">:</span> <span class="n">can</span><span class="s1">&#39;t assign to keyword</span>
 </code></pre></td></tr></table>
@@ -224,7 +224,7 @@
 <p>在 Python2 中, 这行代码其实是可以执行的, 不过这只是改变了字面量 <code>False</code> 的值,  并没有达到我的要求.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -233,13 +233,13 @@
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="bp">False</span> <span class="o">=</span> <span class="bp">True</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="kc">False</span> <span class="o">=</span> <span class="kc">True</span>
 
 <span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="mi">1</span> <span class="o">==</span> <span class="mi">2</span>
-<span class="n">Out</span><span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="bp">False</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="kc">False</span>
 
-<span class="n">In</span> <span class="p">[</span><span class="mi">3</span><span class="p">]:</span> <span class="bp">False</span>
-<span class="n">Out</span><span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="bp">True</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">3</span><span class="p">]:</span> <span class="kc">False</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="kc">True</span>
 </code></pre></td></tr></table>
 </div>
 </div></blockquote>
@@ -247,7 +247,7 @@
 <p>既然不能直接赋值, 那试试用 <code>globals()</code> 来赋值?</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -258,15 +258,15 @@
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="nb">globals</span><span class="p">()[</span><span class="s1">&#39;a&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="nb">globals</span><span class="p">()[</span><span class="s1">&#39;a&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
 
 <span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="n">a</span>
 <span class="n">Out</span><span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="mi">1</span>
 
-<span class="n">In</span> <span class="p">[</span><span class="mi">3</span><span class="p">]:</span> <span class="nb">globals</span><span class="p">()[</span><span class="s1">&#39;False&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">True</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">3</span><span class="p">]:</span> <span class="nb">globals</span><span class="p">()[</span><span class="s1">&#39;False&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
 
-<span class="n">In</span> <span class="p">[</span><span class="mi">4</span><span class="p">]:</span> <span class="bp">False</span>
-<span class="n">Out</span><span class="p">[</span><span class="mi">4</span><span class="p">]:</span> <span class="bp">False</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">4</span><span class="p">]:</span> <span class="kc">False</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">4</span><span class="p">]:</span> <span class="kc">False</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>仍然失败, 想想也是, 在 Python3 中 <code>False</code> 已经是一个关键字了, 优先级肯定高于变量. 即使有同名变量也会被遮蔽.</p>
@@ -276,7 +276,7 @@
 <p>虽然不能做到 <code>'a' is 'b'</code> 但能实现 <code>'a' == 'b'</code> 的话也是一个进步啊.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -285,11 +285,11 @@
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">In</span> <span class="p">[</span><span class="mi">10</span><span class="p">]:</span> <span class="nb">int</span><span class="o">.</span><span class="fm">__eq__</span> <span class="o">=</span> <span class="k">lambda</span> <span class="p">:</span> <span class="bp">True</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">In</span> <span class="p">[</span><span class="mi">10</span><span class="p">]:</span> <span class="nb">int</span><span class="o">.</span><span class="fm">__eq__</span> <span class="o">=</span> <span class="k">lambda</span> <span class="p">:</span> <span class="kc">True</span>
 <span class="o">---------------------------------------------------------------------------</span>
 <span class="ne">TypeError</span>                                 <span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">)</span>
 <span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">71</span><span class="n">a46054a87d</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span><span class="p">()</span>
-<span class="o">----&gt;</span> <span class="mi">1</span> <span class="nb">int</span><span class="o">.</span><span class="fm">__eq__</span> <span class="o">=</span> <span class="k">lambda</span> <span class="p">:</span> <span class="bp">True</span>
+<span class="o">----&gt;</span> <span class="mi">1</span> <span class="nb">int</span><span class="o">.</span><span class="fm">__eq__</span> <span class="o">=</span> <span class="k">lambda</span> <span class="p">:</span> <span class="kc">True</span>
 
 <span class="ne">TypeError</span><span class="p">:</span> <span class="n">can</span><span class="s1">&#39;t set attributes of built-in/extension type &#39;</span><span class="nb">int</span><span class="s1">&#39;</span>
 </code></pre></td></tr></table>
@@ -311,7 +311,7 @@
 <p>这几个月熟悉了一下棒棒的 gdb, 这次要利用起来</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -319,7 +319,7 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># gitee 的唯一用处</span>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># gitee 的唯一用处</span>
 wget https://gitee.com/Aloxaf/cpython/repository/archive/v3.7.1.zip
 unzip v3.7.1.zip
 <span class="nb">cd</span> cpython
@@ -334,17 +334,17 @@ make -j4
 <p>接着创建一个 Python 文件, 写入如下内容</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span>
 
-<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="mi">1</span> <span class="o">==</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span>
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="mi">1</span> <span class="o">==</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span>
     <span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
@@ -357,7 +357,7 @@ make -j4
 <p>只需要创建一个小小的 CMakeLists.txt, 就能使用自动跳转了!!</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -371,7 +371,7 @@ make -j4
 </span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cmake" data-lang="cmake"><span class="nb">make_minimum_required</span><span class="p">(</span><span class="s">VERSION</span> <span class="s">3.0</span><span class="p">)</span><span class="err">
+<pre tabindex="0" class="chroma"><code class="language-cmake" data-lang="cmake"><span class="nb">make_minimum_required</span><span class="p">(</span><span class="s">VERSION</span> <span class="s">3.0</span><span class="p">)</span><span class="err">
 </span><span class="err"></span><span class="nb">project</span><span class="p">(</span><span class="s">cpython</span><span class="p">)</span><span class="err">
 </span><span class="err">
 </span><span class="err"></span><span class="nb">file</span><span class="p">(</span><span class="s">GLOB</span> <span class="s">SOURCE_FILES</span>
@@ -390,7 +390,7 @@ make -j4
 <p>(先前是不断单步走到这儿的&hellip;)</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -405,7 +405,7 @@ make -j4
 </span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="err">────────────────────────────</span><span class="p">[</span> <span class="n">SOURCE</span> <span class="p">(</span><span class="n">CODE</span><span class="p">)</span> <span class="p">]</span><span class="err">─────────────────────────────</span>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="err">────────────────────────────</span><span class="p">[</span> <span class="n">SOURCE</span> <span class="p">(</span><span class="n">CODE</span><span class="p">)</span> <span class="p">]</span><span class="err">─────────────────────────────</span>
    <span class="mi">2580</span>         <span class="n">TARGET</span><span class="p">(</span><span class="n">COMPARE_OP</span><span class="p">)</span> <span class="p">{</span>
    <span class="mi">2581</span>             <span class="n">PyObject</span> <span class="o">*</span><span class="n">right</span> <span class="o">=</span> <span class="n">POP</span><span class="p">();</span>
    <span class="mi">2582</span>             <span class="n">PyObject</span> <span class="o">*</span><span class="n">left</span> <span class="o">=</span> <span class="n">TOP</span><span class="p">();</span>
@@ -425,7 +425,7 @@ make -j4
 <p><code>p *res</code> 解引用看一下这个结构体, 发现看不懂</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -433,7 +433,7 @@ make -j4
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="err">$</span><span class="mi">2</span> <span class="o">=</span> <span class="p">{</span>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="err">$</span><span class="mi">2</span> <span class="o">=</span> <span class="p">{</span>
   <span class="n">_ob_next</span> <span class="o">=</span> <span class="mh">0x7fd80d9afba0</span><span class="p">,</span> 
   <span class="n">_ob_prev</span> <span class="o">=</span> <span class="mh">0x7fd80d9afc08</span><span class="p">,</span> 
   <span class="n">ob_refcnt</span> <span class="o">=</span> <span class="mi">138</span><span class="p">,</span> 
@@ -444,7 +444,7 @@ make -j4
 </div><p><code>rg '} PyObject'</code> 搜索一下定义, 在 <code>Include/object.h:110</code></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -460,7 +460,7 @@ make -j4
 </span><span class="lnt">14
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#define _PyObject_HEAD_EXTRA            \
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="cp">#define _PyObject_HEAD_EXTRA            \
 </span><span class="cp">    struct _object *_ob_next;           \
 </span><span class="cp">    struct _object *_ob_prev;
 </span><span class="cp"></span>
@@ -487,13 +487,13 @@ make -j4
 <p>在 <code>Python/ceval:4686</code> 行可以找到 <code>cmp_outcome</code> 的定义, 结尾是这么写的.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c">    <span class="n">v</span> <span class="o">=</span> <span class="n">res</span> <span class="o">?</span> <span class="nl">Py_True</span> <span class="p">:</span> <span class="n">Py_False</span><span class="p">;</span>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c">    <span class="n">v</span> <span class="o">=</span> <span class="n">res</span> <span class="o">?</span> <span class="nl">Py_True</span> <span class="p">:</span> <span class="n">Py_False</span><span class="p">;</span>
     <span class="n">Py_INCREF</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
     <span class="k">return</span> <span class="n">v</span><span class="p">;</span>
 <span class="p">}</span>
@@ -502,7 +502,7 @@ make -j4
 </div><p>也就是说 (上一个)res 的值是 <code>Py_True</code> 或 <code>Py_False</code>, 而它俩的定义在 <code>Include/boolobject.h:21</code></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -513,7 +513,7 @@ make -j4
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="cm">/* Py_False and Py_True are the only two bools in existence.
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="cm">/* Py_False and Py_True are the only two bools in existence.
 </span><span class="cm">Don&#39;t forget to apply Py_INCREF() when returning either!!! */</span>
 
 <span class="cm">/* Don&#39;t use these directly */</span>
@@ -529,12 +529,12 @@ make -j4
 <p>而且 <code>is</code> 操作符的实现非常简单粗暴, 也不大可能对 <code>is</code> 操作符动什么手脚</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c">    <span class="k">case</span> <span class="nl">PyCmp_IS</span><span class="p">:</span>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c">    <span class="k">case</span> <span class="nl">PyCmp_IS</span><span class="p">:</span>
         <span class="n">res</span> <span class="o">=</span> <span class="p">(</span><span class="n">v</span> <span class="o">==</span> <span class="n">w</span><span class="p">);</span>
         <span class="k">break</span><span class="p">;</span>
 </code></pre></td></tr></table>
@@ -544,7 +544,7 @@ make -j4
 <p>在 <code>Python/boolobject.c:12</code> 可以看到 <code>bool_repr</code> 的实现,</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -563,7 +563,7 @@ make -j4
 </span><span class="lnt">17
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="k">static</span> <span class="n">PyObject</span> <span class="o">*</span><span class="n">false_str</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="k">static</span> <span class="n">PyObject</span> <span class="o">*</span><span class="n">false_str</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
 <span class="k">static</span> <span class="n">PyObject</span> <span class="o">*</span><span class="n">true_str</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
 
 <span class="k">static</span> <span class="n">PyObject</span> <span class="o">*</span>
@@ -592,7 +592,7 @@ make -j4
 <p><code>p *false_str</code> 看一下, 发现是 PyUnicode_Type</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -600,7 +600,7 @@ make -j4
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="err">$</span><span class="mi">41</span> <span class="o">=</span> <span class="p">{</span>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="err">$</span><span class="mi">41</span> <span class="o">=</span> <span class="p">{</span>
   <span class="n">_ob_next</span> <span class="o">=</span> <span class="mh">0x6b2ba0</span> <span class="o">&lt;</span><span class="n">_Py_FalseStruct</span><span class="o">&gt;</span><span class="p">,</span> 
   <span class="n">_ob_prev</span> <span class="o">=</span> <span class="mh">0x6b2b60</span> <span class="o">&lt;</span><span class="n">_Py_TrueStruct</span><span class="o">&gt;</span><span class="p">,</span> 
   <span class="n">ob_refcnt</span> <span class="o">=</span> <span class="mi">6</span><span class="p">,</span> 
@@ -611,7 +611,7 @@ make -j4
 </div><p>在 <code>Objects/unicodeobject.c:12538</code> 可以找到 <code>unicode_repr </code> 函数, 部分内容如下</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -621,7 +621,7 @@ make -j4
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">repr</span> <span class="o">=</span> <span class="n">PyUnicode_New</span><span class="p">(</span><span class="n">osize</span><span class="p">,</span> <span class="n">max</span><span class="p">);</span>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="n">repr</span> <span class="o">=</span> <span class="n">PyUnicode_New</span><span class="p">(</span><span class="n">osize</span><span class="p">,</span> <span class="n">max</span><span class="p">);</span>
 <span class="k">if</span> <span class="p">(</span><span class="n">repr</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
     <span class="k">return</span> <span class="nb">NULL</span><span class="p">;</span>
 <span class="n">okind</span> <span class="o">=</span> <span class="n">PyUnicode_KIND</span><span class="p">(</span><span class="n">repr</span><span class="p">);</span>
@@ -635,7 +635,7 @@ make -j4
 <p>先到 <code>Objects/unicodeobject.c:1233</code> 看看 <code>PyUnicode_New</code> 函数</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -648,7 +648,7 @@ make -j4
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c">    <span class="n">unicode</span> <span class="o">=</span> <span class="p">(</span><span class="n">PyCompactUnicodeObject</span> <span class="o">*</span><span class="p">)</span><span class="n">obj</span><span class="p">;</span>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c">    <span class="n">unicode</span> <span class="o">=</span> <span class="p">(</span><span class="n">PyCompactUnicodeObject</span> <span class="o">*</span><span class="p">)</span><span class="n">obj</span><span class="p">;</span>
     <span class="k">if</span> <span class="p">(</span><span class="n">is_ascii</span><span class="p">)</span>
         <span class="n">data</span> <span class="o">=</span> <span class="p">((</span><span class="n">PyASCIIObject</span><span class="o">*</span><span class="p">)</span><span class="n">obj</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
     <span class="k">else</span>
@@ -664,11 +664,11 @@ make -j4
 </div><p>! 将 obj 转为 <code>PyASCIIObject*</code> 再 +1 再转为 <code>char*</code>, 似乎就是字符串存放的真正地址了?</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">pwndbg</span><span class="o">&gt;</span> <span class="n">p</span> <span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)((</span><span class="n">PyASCIIObject</span> <span class="o">*</span><span class="p">)</span><span class="n">false_str</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="n">pwndbg</span><span class="o">&gt;</span> <span class="n">p</span> <span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)((</span><span class="n">PyASCIIObject</span> <span class="o">*</span><span class="p">)</span><span class="n">false_str</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
 <span class="err">$</span><span class="mi">47</span> <span class="o">=</span> <span class="mh">0x7fd80d9afbe0</span> <span class="s">&#34;True&#34;</span> <span class="c1">//注意因为先前已经 false_str=true_str 了所以这里是 True
 </span></code></pre></td></tr></table>
 </div>
@@ -677,15 +677,15 @@ make -j4
 <p>写成 Python 代码如下</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">ctypes</span>
-<span class="k">print</span><span class="p">(</span><span class="bp">True</span><span class="p">,</span> <span class="bp">False</span><span class="p">)</span> <span class="c1"># 确保已经生成了对应的字符串</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">ctypes</span>
+<span class="nb">print</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span> <span class="c1"># 确保已经生成了对应的字符串</span>
 <span class="n">false_str_addr</span> <span class="o">=</span> <span class="nb">id</span><span class="p">(</span><span class="s1">&#39;False&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">64</span> <span class="c1"># Debug 版</span>
 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span> <span class="sa">b</span><span class="s1">&#39;True</span><span class="se">\x00</span><span class="s1">&#39;</span><span class="p">):</span>
     <span class="n">ctypes</span><span class="o">.</span><span class="n">c_char</span><span class="o">.</span><span class="n">from_address</span><span class="p">(</span><span class="n">false_str_addr</span> <span class="o">+</span> <span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">c</span> <span class="c1"># 直接 strcpy 出错了 不造为啥</span>
@@ -696,7 +696,7 @@ make -j4
 <p>注意到 <code>PyASCIIObject</code> 有个 <code>length</code> 指定了字符串长度, 修改的时候最好一起改掉</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -717,7 +717,7 @@ make -j4
 </span><span class="lnt">19
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">pwndbg</span><span class="o">&gt;</span> <span class="n">p</span> <span class="o">*</span><span class="p">(</span><span class="n">PyASCIIObject</span> <span class="o">*</span><span class="p">)</span><span class="n">true_str</span>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="n">pwndbg</span><span class="o">&gt;</span> <span class="n">p</span> <span class="o">*</span><span class="p">(</span><span class="n">PyASCIIObject</span> <span class="o">*</span><span class="p">)</span><span class="n">true_str</span>
 <span class="err">$</span><span class="mi">1</span> <span class="o">=</span> <span class="p">{</span>
   <span class="n">ob_base</span> <span class="o">=</span> <span class="p">{</span>
     <span class="n">_ob_next</span> <span class="o">=</span> <span class="mh">0x6b2ba0</span> <span class="o">&lt;</span><span class="n">_Py_FalseStruct</span><span class="o">&gt;</span><span class="p">,</span> 
@@ -741,7 +741,7 @@ make -j4
 </div><p>完整代码</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -763,8 +763,8 @@ make -j4
 </span><span class="lnt">20
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">ctypes</span>
-<span class="k">print</span><span class="p">(</span><span class="bp">True</span><span class="p">,</span> <span class="bp">False</span><span class="p">)</span> <span class="c1"># 确保已经生成了对应的字符串</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">ctypes</span>
+<span class="nb">print</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span> <span class="c1"># 确保已经生成了对应的字符串</span>
 <span class="n">false_addr</span> <span class="o">=</span> <span class="nb">id</span><span class="p">(</span><span class="s1">&#39;False&#39;</span><span class="p">)</span>
 <span class="n">true_addr</span> <span class="o">=</span> <span class="nb">id</span><span class="p">(</span><span class="s1">&#39;True&#39;</span><span class="p">)</span>
 
@@ -788,7 +788,7 @@ make -j4
 </div><p>效果:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -806,28 +806,28 @@ make -j4
 </span><span class="lnt">16
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="k">print</span> <span class="bp">True</span><span class="p">,</span> <span class="bp">False</span>
-<span class="o">------&gt;</span> <span class="k">print</span><span class="p">(</span><span class="bp">True</span><span class="p">,</span> <span class="bp">False</span><span class="p">)</span>
-<span class="bp">False</span> <span class="bp">True</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="nb">print</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">False</span>
+<span class="o">------&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+<span class="kc">False</span> <span class="kc">True</span>
 
 <span class="n">In</span> <span class="p">[</span><span class="mi">3</span><span class="p">]:</span> <span class="mi">1</span> <span class="o">==</span> <span class="mi">2</span>
-<span class="n">Out</span><span class="p">[</span><span class="mi">3</span><span class="p">]:</span> <span class="bp">True</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">3</span><span class="p">]:</span> <span class="kc">True</span>
 
 <span class="n">In</span> <span class="p">[</span><span class="mi">4</span><span class="p">]:</span> <span class="mi">1</span> <span class="o">==</span> <span class="mi">1</span>
-<span class="n">Out</span><span class="p">[</span><span class="mi">4</span><span class="p">]:</span> <span class="bp">False</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">4</span><span class="p">]:</span> <span class="kc">False</span>
 
 <span class="n">In</span> <span class="p">[</span><span class="mi">5</span><span class="p">]:</span> <span class="s1">&#39;God&#39;</span> <span class="ow">is</span> <span class="s1">&#39;girl&#39;</span>
-<span class="n">Out</span><span class="p">[</span><span class="mi">5</span><span class="p">]:</span> <span class="bp">True</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">5</span><span class="p">]:</span> <span class="kc">True</span>
 
 <span class="n">In</span> <span class="p">[</span><span class="mi">6</span><span class="p">]:</span> <span class="s1">&#39;cat&#39;</span> <span class="ow">is</span> <span class="s1">&#39;dog&#39;</span>
-<span class="n">Out</span><span class="p">[</span><span class="mi">6</span><span class="p">]:</span> <span class="bp">True</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">6</span><span class="p">]:</span> <span class="kc">True</span>
 
 </code></pre></td></tr></table>
 </div>
 </div><p>正确用法:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -838,14 +838,14 @@ make -j4
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="s1">&#39;Emacs&#39;</span> <span class="ow">is</span> <span class="s1">&#39;the best editor&#39;</span>
-<span class="n">Out</span><span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="bp">False</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="s1">&#39;Emacs&#39;</span> <span class="ow">is</span> <span class="s1">&#39;the best editor&#39;</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="kc">False</span>
 
-<span class="n">In</span> <span class="p">[</span><span class="mi">3</span><span class="p">]:</span> <span class="err">我给你一次重新组织语言的机会</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">3</span><span class="p">]:</span> <span class="n">我给你一次重新组织语言的机会</span>
 <span class="n">Out</span><span class="p">[</span><span class="mi">3</span><span class="p">]:</span> <span class="o">...</span>
 
 <span class="n">In</span> <span class="p">[</span><span class="mi">4</span><span class="p">]:</span> <span class="s1">&#39;Emacs&#39;</span> <span class="ow">is</span> <span class="s1">&#39;the best editor&#39;</span>
-<span class="n">Out</span><span class="p">[</span><span class="mi">4</span><span class="p">]:</span> <span class="bp">True</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">4</span><span class="p">]:</span> <span class="kc">True</span>
 
 </code></pre></td></tr></table>
 </div>
@@ -903,7 +903,7 @@ make -j4
   <script type="text/javascript">
     new Valine({
         el: '#vcomments' ,
-        serverURLs: 'https:\/\/lcd.aloxaf.cn',
+        serverURLs: '',
         appId: 'fSbXaElXXTznggVXiWy8NFBU-gzGzoHsz',
         appKey: 'kK3SxB14xAACgHftKrSaBRDU',
         notify:  false ,
@@ -941,7 +941,7 @@ make -j4
   <span class="copyright-year">
     &copy; 
     2017 - 
-    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>Aloxaf</span>
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span><span>Aloxaf</span>
   </span>
 </div>
 

@@ -24,7 +24,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.81.0 with theme even" />
+<meta name="generator" content="Hugo 0.92.0 with theme even" />
 
 
 <link rel="preload" href="/fonts/iconfont/iconfont.woff" as="font" type="font/woff" crossorigin="anonymous">
@@ -40,7 +40,7 @@
 
 
 
-<link href="/sass/main.min.96e8e2c964270ec266a0efff67202fed95e11f1fc9c9dd9b1219e1f4a54b5c4b.css" rel="stylesheet">
+<link href="/sass/main.min.6e68329c1369b8a285a4985e6b6efdb778e12c12b24e8b3fcdd6c5af778d414e.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
@@ -49,14 +49,14 @@
 (更: 听 M4x 师傅说其实安全性下降了? thread local caching in glibc malloc)" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.aloxaf.com/2018/07/arch_glibc_2.23/" /><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2018-07-14T11:16:09&#43;00:00" />
-<meta property="article:modified_time" content="2018-08-12T09:23:00&#43;00:00" />
+<meta property="article:published_time" content="2018-07-14T11:16:09+00:00" />
+<meta property="article:modified_time" content="2018-08-12T09:23:00+00:00" />
 
 <meta itemprop="name" content="在 Arch Linux 下使用 glibc 2.23 调试程序&amp;使用 pwndbg">
 <meta itemprop="description" content="glibc 2.26开始, 引入了 tcache 技术. 使得对 UAF 漏洞的利用非常困难.
-(更: 听 M4x 师傅说其实安全性下降了? thread local caching in glibc malloc)"><meta itemprop="datePublished" content="2018-07-14T11:16:09&#43;00:00" />
-<meta itemprop="dateModified" content="2018-08-12T09:23:00&#43;00:00" />
-<meta itemprop="wordCount" content="1061">
+(更: 听 M4x 师傅说其实安全性下降了? thread local caching in glibc malloc)"><meta itemprop="datePublished" content="2018-07-14T11:16:09+00:00" />
+<meta itemprop="dateModified" content="2018-08-12T09:23:00+00:00" />
+<meta itemprop="wordCount" content="1060">
 <meta itemprop="keywords" content="linux,pwn," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="在 Arch Linux 下使用 glibc 2.23 调试程序&amp;使用 pwndbg"/>
 <meta name="twitter:description" content="glibc 2.26开始, 引入了 tcache 技术. 使得对 UAF 漏洞的利用非常困难.
@@ -187,14 +187,14 @@
 <p>简要地讲就是把 <code>misc/regexp.c</code> 中的</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">char</span> <span class="o">*</span><span class="n">loc1</span><span class="p">;</span>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="kt">char</span> <span class="o">*</span><span class="n">loc1</span><span class="p">;</span>
 <span class="kt">char</span> <span class="o">*</span><span class="n">loc2</span><span class="p">;</span>
 <span class="p">...</span>
 <span class="p">...</span>
@@ -204,14 +204,14 @@
 </div><p>换成</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">char</span> <span class="o">*</span><span class="n">loc1</span> <span class="nf">__attribute__</span> <span class="p">((</span><span class="n">nocommon</span><span class="p">));</span>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="kt">char</span> <span class="o">*</span><span class="n">loc1</span> <span class="nf">__attribute__</span> <span class="p">((</span><span class="n">nocommon</span><span class="p">));</span>
 <span class="kt">char</span> <span class="o">*</span><span class="n">loc2</span> <span class="nf">__attribute__</span> <span class="p">((</span><span class="n">nocommon</span><span class="p">));</span>
 <span class="p">...</span>
 <span class="p">...</span>
@@ -227,19 +227,19 @@
 <p>32位使用如下命令配置</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">../glibc-2.23/configure --disable-werror --prefix<span class="o">=</span>/home/aloxaf/.local/lib/glibc-2.23_x86 --host<span class="o">=</span>i686-linux-gnu --build<span class="o">=</span>i686-linux-gnu <span class="nv">CC</span><span class="o">=</span><span class="s2">&#34;gcc -m32&#34;</span> <span class="nv">CXX</span><span class="o">=</span><span class="s2">&#34;g++ -m32&#34;</span> <span class="nv">CFLAGS</span><span class="o">=</span><span class="s2">&#34;-g -O2 -march=i686 -fno-stack-protector&#34;</span> <span class="nv">CXXFLAGS</span><span class="o">=</span><span class="s2">&#34;-g -O2 -march=i686 -fno-stack-protector&#34;</span> --enable-debug<span class="o">=</span>yes
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">../glibc-2.23/configure --disable-werror --prefix<span class="o">=</span>/home/aloxaf/.local/lib/glibc-2.23_x86 --host<span class="o">=</span>i686-linux-gnu --build<span class="o">=</span>i686-linux-gnu <span class="nv">CC</span><span class="o">=</span><span class="s2">&#34;gcc -m32&#34;</span> <span class="nv">CXX</span><span class="o">=</span><span class="s2">&#34;g++ -m32&#34;</span> <span class="nv">CFLAGS</span><span class="o">=</span><span class="s2">&#34;-g -O2 -march=i686 -fno-stack-protector&#34;</span> <span class="nv">CXXFLAGS</span><span class="o">=</span><span class="s2">&#34;-g -O2 -march=i686 -fno-stack-protector&#34;</span> --enable-debug<span class="o">=</span>yes
 </code></pre></td></tr></table>
 </div>
 </div><p>64位使用如下命令配置</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">../glibc-2.23/configure --disable-werror --prefix<span class="o">=</span>/home/aloxaf/.local/lib/glibc-2.23 --enable-debug<span class="o">=</span>yes <span class="nv">CFLAGS</span><span class="o">=</span><span class="s2">&#34;-O2 -g&#34;</span> <span class="nv">CPPFLAGS</span><span class="o">=</span><span class="s2">&#34;-O2 -g&#34;</span>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">../glibc-2.23/configure --disable-werror --prefix<span class="o">=</span>/home/aloxaf/.local/lib/glibc-2.23 --enable-debug<span class="o">=</span>yes <span class="nv">CFLAGS</span><span class="o">=</span><span class="s2">&#34;-O2 -g&#34;</span> <span class="nv">CPPFLAGS</span><span class="o">=</span><span class="s2">&#34;-O2 -g&#34;</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>Note:</p>
@@ -256,7 +256,7 @@
 于是结合自己的经验, 修改了一下脚本.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -313,7 +313,7 @@
 </span><span class="lnt">55
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="ch">#!/usr/bin/env python</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="ch">#!/usr/bin/env python</span>
 <span class="c1"># -*- coding: utf-8 -*-</span>
 
 <span class="c1"># https://bbs.pediy.com/thread-225849.htm</span>
@@ -345,14 +345,14 @@
 
             <span class="k">if</span> <span class="n">size</span> <span class="o">&lt;=</span> <span class="nb">len</span><span class="p">(</span><span class="n">ld</span><span class="p">):</span>
                 <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span>
-                    <span class="s2">&#34;Failed to change PT_INTERP from {} to {}&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">ld</span><span class="p">))</span>
-                <span class="k">return</span> <span class="bp">None</span>
+                    <span class="s2">&#34;Failed to change PT_INTERP from </span><span class="si">{}</span><span class="s2"> to </span><span class="si">{}</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">ld</span><span class="p">))</span>
+                <span class="k">return</span> <span class="kc">None</span>
 
             <span class="n">binary</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">addr</span><span class="p">,</span> <span class="n">ld</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\0</span><span class="s1">&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span>
 
             <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">access</span><span class="p">(</span><span class="s1">&#39;/tmp/easypwn&#39;</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">F_OK</span><span class="p">):</span>
                 <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="s1">&#39;/tmp/easypwn&#39;</span><span class="p">)</span>
-            <span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;/tmp/easypwn/{}_debug&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;/tmp/easypwn/</span><span class="si">{}</span><span class="s1">_debug&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
                 <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">binary</span><span class="o">.</span><span class="n">path</span><span class="p">))</span>
 
             <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">access</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">F_OK</span><span class="p">):</span>
@@ -428,7 +428,7 @@
   <script type="text/javascript">
     new Valine({
         el: '#vcomments' ,
-        serverURLs: 'https:\/\/lcd.aloxaf.cn',
+        serverURLs: '',
         appId: 'fSbXaElXXTznggVXiWy8NFBU-gzGzoHsz',
         appKey: 'kK3SxB14xAACgHftKrSaBRDU',
         notify:  false ,
@@ -466,7 +466,7 @@
   <span class="copyright-year">
     &copy; 
     2017 - 
-    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>Aloxaf</span>
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span><span>Aloxaf</span>
   </span>
 </div>
 

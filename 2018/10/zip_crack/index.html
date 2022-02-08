@@ -25,7 +25,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.81.0 with theme even" />
+<meta name="generator" content="Hugo 0.92.0 with theme even" />
 
 
 <link rel="preload" href="/fonts/iconfont/iconfont.woff" as="font" type="font/woff" crossorigin="anonymous">
@@ -41,7 +41,7 @@
 
 
 
-<link href="/sass/main.min.96e8e2c964270ec266a0efff67202fed95e11f1fc9c9dd9b1219e1f4a54b5c4b.css" rel="stylesheet">
+<link href="/sass/main.min.6e68329c1369b8a285a4985e6b6efdb778e12c12b24e8b3fcdd6c5af778d414e.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
@@ -50,13 +50,13 @@
 写了一个假期的代码&hellip;&hellip;" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.aloxaf.com/2018/10/zip_crack/" /><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2018-10-04T21:47:12&#43;00:00" />
-<meta property="article:modified_time" content="2019-04-11T17:33:03&#43;00:00" />
+<meta property="article:published_time" content="2018-10-04T21:47:12+00:00" />
+<meta property="article:modified_time" content="2019-04-11T17:33:03+00:00" />
 
 <meta itemprop="name" content="ZIP 明文攻击工具">
 <meta itemprop="description" content="这个国庆假期抽了点风&hellip;&hellip;
-写了一个假期的代码&hellip;&hellip;"><meta itemprop="datePublished" content="2018-10-04T21:47:12&#43;00:00" />
-<meta itemprop="dateModified" content="2019-04-11T17:33:03&#43;00:00" />
+写了一个假期的代码&hellip;&hellip;"><meta itemprop="datePublished" content="2018-10-04T21:47:12+00:00" />
+<meta itemprop="dateModified" content="2019-04-11T17:33:03+00:00" />
 <meta itemprop="wordCount" content="1121">
 <meta itemprop="keywords" content="ctf,misc,zip,rust," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="ZIP 明文攻击工具"/>
@@ -196,10 +196,10 @@
 <p>题目给了两个明文, libc 那个比较大, 爆破起来比较快. 于是执行如下命令开始攻击</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">rbkcrack -c libc-2.23.so -p libc-2.23.so -C cipher.zip -P plain2.zip
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">rbkcrack -c libc-2.23.so -p libc-2.23.so -C cipher.zip -P plain2.zip
 </code></pre></td></tr></table>
 </div>
 </div><p>只花费了五秒钟就得到了keys.</p>
@@ -216,7 +216,7 @@
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -226,7 +226,7 @@
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">Generated 4194304 Z values.
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">Generated 4194304 Z values.
 [22:11:22] Z reduction using 4512917 extra bytes of known plaintext
 0.11 % (4855 / 4512917)
 240 values remaining.
@@ -240,30 +240,30 @@ d4f34b9d a6ba3461 dcd97451
 (这个地方没有加 -u 开关, 因为 flag.txt 的压缩方式是 store)</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">rbkcrack -c flag.txt -C cipher.zip -k d4f34b9d a6ba3461 dcd97451 -d ./flag.txt
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">rbkcrack -c flag.txt -C cipher.zip -k d4f34b9d a6ba3461 dcd97451 -d ./flag.txt
 </code></pre></td></tr></table>
 </div>
 </div><p>然后得到了第一个 flag: <code>flag{Th3Re_1s_Ano1h3r_f1ag_in_big_file}</code></p>
 <p>big_file 是实打实的压缩过的, 需要加上 -u 开关提取. 由于文件非常大, 而且我们只要前面的一部分, 所以当看到 big_file 大小差不多了就可以 Ctrl+C 了.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">rbkcrack -c big_file -C cipher.zip -k d4f34b9d a6ba3461 dcd97451 -d ./big_file -u
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">rbkcrack -c big_file -C cipher.zip -k d4f34b9d a6ba3461 dcd97451 -d ./big_file -u
 </code></pre></td></tr></table>
 </div>
 </div><p>head 一下然后就得到了第二个 flag: <code>flag{Th1s_i3_A_tE5t}</code></p>
 <p>最后强行给 p7zip 一个出场机会, 虽然做题的时候不大可能用到, 但是真要用来干大事儿还是它靠谱.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">7za e cipher.zip <span class="s1">&#39;-p[d4f34b9d_a6ba3461_dcd97451]&#39;</span>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">7za e cipher.zip <span class="s1">&#39;-p[d4f34b9d_a6ba3461_dcd97451]&#39;</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>下载地址: <a href="http://storage.aloxaf.cn/storage/fucking_problem.zip" target="_blank" rel="noopener nofollow">fucking_problem.zip</a></p>
@@ -322,7 +322,7 @@ d4f34b9d a6ba3461 dcd97451
   <script type="text/javascript">
     new Valine({
         el: '#vcomments' ,
-        serverURLs: 'https:\/\/lcd.aloxaf.cn',
+        serverURLs: '',
         appId: 'fSbXaElXXTznggVXiWy8NFBU-gzGzoHsz',
         appKey: 'kK3SxB14xAACgHftKrSaBRDU',
         notify:  false ,
@@ -360,7 +360,7 @@ d4f34b9d a6ba3461 dcd97451
   <span class="copyright-year">
     &copy; 
     2017 - 
-    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>Aloxaf</span>
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span><span>Aloxaf</span>
   </span>
 </div>
 

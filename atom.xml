@@ -6,7 +6,7 @@
     <description>Recent content on Aloxaf&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Mon, 08 Mar 2021 22:48:00 +0000</lastBuildDate><atom:link href="https://www.aloxaf.com/atom.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 04 Jan 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://www.aloxaf.com/atom.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>友链</title>
       <link>https://www.aloxaf.com/friend/</link>
@@ -26,6 +26,24 @@
     </item>
     
     <item>
+      <title>掌阅 Facenote 阅读器安装第三方 APP</title>
+      <link>https://www.aloxaf.com/2022/01/facenote_thirdparty_app/</link>
+      <pubDate>Tue, 04 Jan 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.aloxaf.com/2022/01/facenote_thirdparty_app/</guid>
+      <description>&lt;p&gt;竟然快一年没写博客了&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Btrfs 迁移笔记</title>
+      <link>https://www.aloxaf.com/draft/btrfs_note/</link>
+      <pubDate>Tue, 23 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.aloxaf.com/draft/btrfs_note/</guid>
+      <description>&lt;p&gt;我终于也是 Btrfs 人了！&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>BOOKWALKER 在线阅读器图片提取笔记</title>
       <link>https://www.aloxaf.com/2021/03/bookwalker_image_extract/</link>
       <pubDate>Mon, 08 Mar 2021 22:48:00 +0000</pubDate>
@@ -37,7 +55,7 @@
     <item>
       <title>【ZSH 系列教程】参数扩展（下）</title>
       <link>https://www.aloxaf.com/2021/01/zsh_parameter_expansion_flags/</link>
-      <pubDate>Fri, 01 Jan 2021 00:00:00 +0800</pubDate>
+      <pubDate>Fri, 01 Jan 2021 00:00:00 +0000</pubDate>
       
       <guid>https://www.aloxaf.com/2021/01/zsh_parameter_expansion_flags/</guid>
       <description>&lt;p&gt;本文介绍 ZSH 参数扩展的另一个重要内容——参数扩展标记（Parameter Expansion Flags）。&lt;/p&gt;</description>
@@ -80,27 +98,6 @@
       <description>&lt;p&gt;本文将介绍 zsh 的历史扩展（History Expansion）与修饰符（Modifiers）的用法。&lt;/p&gt;
 &lt;p&gt;历史扩展允许你复用历史记录中的命令的整体或者某个部分，提高了修改拼写错误和复杂命令时的体验。&lt;/p&gt;
 &lt;p&gt;修饰符是一套用于修饰扩展结果的规则，它发源于历史扩展，但也适用于参数扩展（parameter expansion）和文件名扩展（filename generation）。&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>【ZSH 系列教程】 序</title>
-      <link>https://www.aloxaf.com/2020/11/zsh_tutorial_introduce/</link>
-      <pubDate>Sun, 08 Nov 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.aloxaf.com/2020/11/zsh_tutorial_introduce/</guid>
-      <description>&lt;p&gt;为什么 zsh 教程这么少！&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>使用 fcitx5-lua 编写 lua 插件</title>
-      <link>https://www.aloxaf.com/2020/09/fcitx5_plugin/</link>
-      <pubDate>Thu, 24 Sep 2020 21:53:09 +0000</pubDate>
-      
-      <guid>https://www.aloxaf.com/2020/09/fcitx5_plugin/</guid>
-      <description>&lt;blockquote&gt;
-&lt;p&gt;突然发现五个月前自己写过一篇 fcitx5-lua 的教程，刚好拿来水一篇&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;fcitx5 终于加上了 lua 支持，可以使用 lua 编写一些简单的插件。但是文档一如既往地非常少，查阅了大量资料并翻看源码以后总算弄懂了插件的编写步骤，记录一下以免忘记，顺便分享给同样需要的人。&lt;/p&gt;</description>
     </item>
     
   </channel>

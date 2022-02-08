@@ -26,7 +26,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.81.0 with theme even" />
+<meta name="generator" content="Hugo 0.92.0 with theme even" />
 
 
 <link rel="preload" href="/fonts/iconfont/iconfont.woff" as="font" type="font/woff" crossorigin="anonymous">
@@ -42,7 +42,7 @@
 
 
 
-<link href="/sass/main.min.96e8e2c964270ec266a0efff67202fed95e11f1fc9c9dd9b1219e1f4a54b5c4b.css" rel="stylesheet">
+<link href="/sass/main.min.6e68329c1369b8a285a4985e6b6efdb778e12c12b24e8b3fcdd6c5af778d414e.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
@@ -54,16 +54,16 @@ xkeysnail 是一个非常强大的 keyboard remapping 工具, 它类似于 xmodm
 项目地址: https://github.com/mooz/xkeysnail" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.aloxaf.com/2019/11/xkeysnail_tutorial/" /><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2019-11-03T15:33:49&#43;00:00" />
-<meta property="article:modified_time" content="2019-11-03T15:33:49&#43;00:00" />
+<meta property="article:published_time" content="2019-11-03T15:33:49+00:00" />
+<meta property="article:modified_time" content="2019-11-03T15:33:49+00:00" />
 
 <meta itemprop="name" content="xkeysnail 使用指南">
 <meta itemprop="description" content="Emacs keybings Everywhere!
 简介
 xkeysnail 是一个非常强大的 keyboard remapping 工具, 它类似于 xmodmap, 但更为灵活. 不仅能重映射键位, 还能重映射快捷键, 甚至能在不同的程序下使用不同的映射!
 再也不用两套快捷键换来换去了!! ( 早点知道这个东西, 我就不至于练就一身无缝切换快捷键的毫无卵用的本领了&hellip;
-项目地址: https://github.com/mooz/xkeysnail"><meta itemprop="datePublished" content="2019-11-03T15:33:49&#43;00:00" />
-<meta itemprop="dateModified" content="2019-11-03T15:33:49&#43;00:00" />
+项目地址: https://github.com/mooz/xkeysnail"><meta itemprop="datePublished" content="2019-11-03T15:33:49+00:00" />
+<meta itemprop="dateModified" content="2019-11-03T15:33:49+00:00" />
 <meta itemprop="wordCount" content="987">
 <meta itemprop="keywords" content="linux,emacs,教程," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="xkeysnail 使用指南"/>
@@ -196,19 +196,19 @@ xkeysnail 是一个非常强大的 keyboard remapping 工具, 它类似于 xmodm
 <h3 id="arch-linux">Arch Linux</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">pikaur -S xkeysnail
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">pikaur -S xkeysnail
 </code></pre></td></tr></table>
 </div>
 </div><h3 id="other">Other</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">pip install xkeysnail --user
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">pip install xkeysnail --user
 </code></pre></td></tr></table>
 </div>
 </div><p>注: 官方文档里使用的是 <code>sudo pip</code> 来安装, 但不推荐这样做. 尤其是 pip 这种辣鸡包管理器, 很容易把系统的包管理搞乱.</p>
@@ -216,21 +216,21 @@ xkeysnail 是一个非常强大的 keyboard remapping 工具, 它类似于 xmodm
 <p>首先下载 <a href="https://github.com/mooz/xkeysnail/blob/master/example/config.py">官方示例</a>, 然后用以下命令执行</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">sudo xkeysnail config.py
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">sudo xkeysnail config.py
 </code></pre></td></tr></table>
 </div>
 </div><p>不出意外地话应该没有报错, 然可以切换到一个不支持 Emacs 快捷键的环境, 比如浏览器. 试一下 C-a, C-e 等基本的快捷键是否能工作.</p>
 <p>如果遇到 <code>Xlib.error.DisplayConnectionError: Can't connect to display &quot;:0.0&quot;: b'No protocol specified\n' </code> 这样的错误, 可以尝试</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">xhost +SI:localuser:root
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">xhost +SI:localuser:root
 sudo xkeysnail config.py
 </code></pre></td></tr></table>
 </div>
@@ -252,54 +252,54 @@ sudo xkeysnail config.py
 <p>首先我们增加一个 uinput 组</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">sudo groupadd uinput
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">sudo groupadd uinput
 </code></pre></td></tr></table>
 </div>
 </div><p>然后将当前用户添加到 input 和 uinput 组中
 ( 这个步骤似乎并不是即时生效的, 执行完这条命令可以用 <code>groups</code> 查看一下当前用户所属的组, 如果没有 input &amp; uinput 的话可以重启或者重新登录试试 )</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">sudo usermod -a -G input,uinput <span class="nv">$USER</span>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">sudo usermod -a -G input,uinput <span class="nv">$USER</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>然后编写两个 udev 规则, 放在 <code>/etc/udev/rules.d/</code> 下</p>
 <p>input.rules</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-json" data-lang="json"><span class="err">KERNEL==</span><span class="s2">&#34;event*&#34;</span><span class="err">,</span> <span class="err">NAME=</span><span class="s2">&#34;input/%k&#34;</span><span class="err">,</span> <span class="err">MODE=</span><span class="s2">&#34;660&#34;</span><span class="err">,</span> <span class="err">GROUP=</span><span class="s2">&#34;input&#34;</span>
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="err">KERNEL==</span><span class="s2">&#34;event*&#34;</span><span class="err">,</span> <span class="err">NAME=</span><span class="s2">&#34;input/%k&#34;</span><span class="err">,</span> <span class="err">MODE=</span><span class="s2">&#34;660&#34;</span><span class="err">,</span> <span class="err">GROUP=</span><span class="s2">&#34;input&#34;</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>uinput.rules</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-json" data-lang="json"><span class="err">KERNEL==</span><span class="s2">&#34;uinput&#34;</span><span class="err">,</span> <span class="err">GROUP=</span><span class="s2">&#34;uinput&#34;</span>
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="err">KERNEL==</span><span class="s2">&#34;uinput&#34;</span><span class="err">,</span> <span class="err">GROUP=</span><span class="s2">&#34;uinput&#34;</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>接着应用这两条规则</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">sudo udevadm control --reload-rules <span class="o">&amp;&amp;</span> udevadm trigger
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">sudo udevadm control --reload-rules <span class="o">&amp;&amp;</span> udevadm trigger
 </code></pre></td></tr></table>
 </div>
 </div><h3 id="编写-service">编写 service</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -318,7 +318,7 @@ sudo xkeysnail config.py
 </span><span class="lnt">17
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-ini" data-lang="ini"><span class="c1"># https://qiita.com/samurai20000@github/items/2e1d779e806a7e8543d6</span>
+<pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="c1"># https://qiita.com/samurai20000@github/items/2e1d779e806a7e8543d6</span>
 
 <span class="k">[Unit]</span>
 <span class="na">Description</span><span class="o">=</span><span class="s">xkeysnail</span>
@@ -402,7 +402,7 @@ sudo xkeysnail config.py
   <script type="text/javascript">
     new Valine({
         el: '#vcomments' ,
-        serverURLs: 'https:\/\/lcd.aloxaf.cn',
+        serverURLs: '',
         appId: 'fSbXaElXXTznggVXiWy8NFBU-gzGzoHsz',
         appKey: 'kK3SxB14xAACgHftKrSaBRDU',
         notify:  false ,
@@ -440,7 +440,7 @@ sudo xkeysnail config.py
   <span class="copyright-year">
     &copy; 
     2017 - 
-    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>Aloxaf</span>
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span><span>Aloxaf</span>
   </span>
 </div>
 

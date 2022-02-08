@@ -6,7 +6,16 @@
     <description>Recent content in Posts on Aloxaf&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Mon, 08 Mar 2021 22:48:00 +0000</lastBuildDate><atom:link href="https://www.aloxaf.com/post/atom.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 04 Jan 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://www.aloxaf.com/post/atom.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>掌阅 Facenote 阅读器安装第三方 APP</title>
+      <link>https://www.aloxaf.com/2022/01/facenote_thirdparty_app/</link>
+      <pubDate>Tue, 04 Jan 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.aloxaf.com/2022/01/facenote_thirdparty_app/</guid>
+      <description>&lt;p&gt;竟然快一年没写博客了&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>BOOKWALKER 在线阅读器图片提取笔记</title>
       <link>https://www.aloxaf.com/2021/03/bookwalker_image_extract/</link>
@@ -19,7 +28,7 @@
     <item>
       <title>【ZSH 系列教程】参数扩展（下）</title>
       <link>https://www.aloxaf.com/2021/01/zsh_parameter_expansion_flags/</link>
-      <pubDate>Fri, 01 Jan 2021 00:00:00 +0800</pubDate>
+      <pubDate>Fri, 01 Jan 2021 00:00:00 +0000</pubDate>
       
       <guid>https://www.aloxaf.com/2021/01/zsh_parameter_expansion_flags/</guid>
       <description>&lt;p&gt;本文介绍 ZSH 参数扩展的另一个重要内容——参数扩展标记（Parameter Expansion Flags）。&lt;/p&gt;</description>
@@ -93,15 +102,6 @@
       <guid>https://www.aloxaf.com/2020/06/build_aur_with_github_actions/</guid>
       <description>&lt;p&gt;Arch 用户当然要有自己的软件源！&lt;/p&gt;
 &lt;p&gt;&lt;s&gt;白嫖真香！&lt;/s&gt;&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>使用 wine 运行基于 tyrano 的游戏</title>
-      <link>https://www.aloxaf.com/2020/06/wine_tyrano/</link>
-      <pubDate>Mon, 08 Jun 2020 14:10:00 +0000</pubDate>
-      
-      <guid>https://www.aloxaf.com/2020/06/wine_tyrano/</guid>
-      <description>&lt;p&gt;∠( ᐛ 」∠)＿&lt;/p&gt;</description>
     </item>
     
   </channel>
