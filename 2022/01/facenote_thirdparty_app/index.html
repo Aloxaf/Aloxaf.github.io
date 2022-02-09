@@ -49,12 +49,12 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.aloxaf.com/2022/01/facenote_thirdparty_app/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2022-01-04T00:00:00+00:00" />
-<meta property="article:modified_time" content="2022-01-04T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-02-09T00:00:00+00:00" />
 
 <meta itemprop="name" content="掌阅 Facenote 阅读器安装第三方 APP">
 <meta itemprop="description" content="竟然快一年没写博客了"><meta itemprop="datePublished" content="2022-01-04T00:00:00+00:00" />
-<meta itemprop="dateModified" content="2022-01-04T00:00:00+00:00" />
-<meta itemprop="wordCount" content="227">
+<meta itemprop="dateModified" content="2022-02-09T00:00:00+00:00" />
+<meta itemprop="wordCount" content="482">
 <meta itemprop="keywords" content="crack," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="掌阅 Facenote 阅读器安装第三方 APP"/>
 <meta name="twitter:description" content="竟然快一年没写博客了"/>
@@ -147,6 +147,17 @@
       <p>竟然快一年没写博客了</p>
 <p>前段时间买了个掌阅的电纸书，由于应用商店有微信读书，所以书籍的阅读体验不错。但是没有 Tachiyomi，所以看漫画很不爽。</p>
 <p>我向来厌恶任何封闭的系统，所以在买它之前我特地其实上网搜了一下，掌阅的系统算是「半开放模式」——不能直接装 app，但是能通过 adb 装。然而当我实操的时候，发现根本没用——根据网上教程的说法，在关机模式下不断执行 <code>adb install xxx.apk</code> 并开机，就能在开机后安装上指定 app。但我实测了几次都没有等到「奇迹出现」，没办法，只能自己动手了。</p>
+<blockquote>
+<p>本来本文已经弃坑了，但是更新博客配置时不小心发了出来……竟然还被人看到了，那没办法，还是简单填一下坑吧</p>
+</blockquote>
+<p>掌阅的这个系统，不知道是有意还是无意，它的应用商店竟然没有走 HTTPS，那搞起中间人攻击来可是轻而易举。</p>
+<p>于是我写了一个 <a href="https://github.com/mitmproxy/mitmprox">mitproxy</a> 的脚本，在安装完 mitproxy 后，使用 <code>mitmdump -s facenote.py</code> 启动代理，然后在掌阅系统中设置好无线代理，再打开应用商店，即可看到三个应用，接着按如下顺序安装并设置即可：</p>
+<ol>
+<li>创建快捷方式：用于打开「设置」-&gt;「安全」中的「允许安装未知来源应用」</li>
+<li>APK 安装器：开启静默安装模式</li>
+<li>MiXplorer：一个小巧的文件浏览器</li>
+</ol>
+<p>填完了！</p>
     </div>
 
     <div class="post-copyright">
@@ -157,7 +168,7 @@
   <p class="copyright-item">
     <span class="item-title">上次更新</span>
     <span class="item-content">
-        2022-01-04
+        2022-02-09
         
     </span>
   </p>
