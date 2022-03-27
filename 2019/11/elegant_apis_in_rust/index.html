@@ -25,7 +25,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.92.0 with theme even" />
+<meta name="generator" content="Hugo 0.95.0 with theme even" />
 
 
 <link rel="preload" href="/fonts/iconfont/iconfont.woff" as="font" type="font/woff" crossorigin="anonymous">
@@ -297,19 +297,19 @@
 </span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="sd">/// 使用魔法操作数字
-</span><span class="sd">///
-</span><span class="sd">/// # 示例
-</span><span class="sd">///
-</span><span class="sd">/// ```rust
-</span><span class="sd">/// assert_eq!(min( 0,   14),    0);
-</span><span class="sd">/// assert_eq!(min( 0, -127), -127);
-</span><span class="sd">/// assert_eq!(min(42,  666),   42);
-</span><span class="sd">/// ```(由于 hexo markdown 渲染辣鸡，此处加点文字避免被渲染为单独代码块）
-</span><span class="sd"></span><span class="k">fn</span> <span class="nf">min</span><span class="p">(</span><span class="n">lhs</span>: <span class="kt">i32</span><span class="p">,</span><span class="w"> </span><span class="n">rhs</span>: <span class="kt">i32</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="kt">i32</span> <span class="p">{</span><span class="w">
-</span><span class="w">	</span><span class="k">if</span><span class="w"> </span><span class="n">lhs</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">rhs</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">lhs</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">rhs</span><span class="w"> </span><span class="p">}</span><span class="w">
-</span><span class="w"></span><span class="p">}</span><span class="w">
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="sd">/// 使用魔法操作数字
+</span></span></span><span class="line"><span class="cl"><span class="sd">///
+</span></span></span><span class="line"><span class="cl"><span class="sd">/// # 示例
+</span></span></span><span class="line"><span class="cl"><span class="sd">///
+</span></span></span><span class="line"><span class="cl"><span class="sd">/// ```rust
+</span></span></span><span class="line"><span class="cl"><span class="sd">/// assert_eq!(min( 0,   14),    0);
+</span></span></span><span class="line"><span class="cl"><span class="sd">/// assert_eq!(min( 0, -127), -127);
+</span></span></span><span class="line"><span class="cl"><span class="sd">/// assert_eq!(min(42,  666),   42);
+</span></span></span><span class="line"><span class="cl"><span class="sd">/// ```(由于 hexo markdown 渲染辣鸡，此处加点文字避免被渲染为单独代码块）
+</span></span></span><span class="line"><span class="cl"><span class="sd"></span><span class="k">fn</span> <span class="nf">min</span><span class="p">(</span><span class="n">lhs</span>: <span class="kt">i32</span><span class="p">,</span><span class="w"> </span><span class="n">rhs</span>: <span class="kt">i32</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="kt">i32</span> <span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">if</span><span class="w"> </span><span class="n">lhs</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">rhs</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">lhs</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">rhs</span><span class="w"> </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>你还可以使用 <code>#![deny(missing_docs)]</code> 来强制保证每个公开 API 都有文档。你可能也会对我的这篇提出了 <a href="https://deterministic.space/machine-readable-inline-markdown-code-cocumentation.html">Rust 文档格式化约定</a>的文章感兴趣。</p>
 <h3 id="不要在-api-中使用-字符串类型">不要在 API 中使用 “字符串类型”</h3>
@@ -327,14 +327,14 @@
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="k">enum</span> <span class="nc">Color</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">Red</span><span class="p">,</span><span class="w"> </span><span class="n">Green</span><span class="p">,</span><span class="w"> </span><span class="n">Blue</span><span class="p">,</span><span class="w"> </span><span class="n">LightGoldenRodYellow</span><span class="w"> </span><span class="p">}</span><span class="w">
-</span><span class="w">
-</span><span class="w"></span><span class="k">fn</span> <span class="nf">color_me</span><span class="p">(</span><span class="n">input</span>: <span class="kp">&amp;</span><span class="kt">str</span><span class="p">,</span><span class="w"> </span><span class="n">color</span>: <span class="nc">Color</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* ... */</span><span class="w"> </span><span class="p">}</span><span class="w">
-</span><span class="w">
-</span><span class="w"></span><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span><span class="w">    </span><span class="n">color_me</span><span class="p">(</span><span class="s">&#34;surprised&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">Color</span>::<span class="n">Blue</span><span class="p">);</span><span class="w">
-</span><span class="w"></span><span class="p">}</span><span class="w">
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="k">enum</span> <span class="nc">Color</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">Red</span><span class="p">,</span><span class="w"> </span><span class="n">Green</span><span class="p">,</span><span class="w"> </span><span class="n">Blue</span><span class="p">,</span><span class="w"> </span><span class="n">LightGoldenRodYellow</span><span class="w"> </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">fn</span> <span class="nf">color_me</span><span class="p">(</span><span class="n">input</span>: <span class="kp">&amp;</span><span class="kt">str</span><span class="p">,</span><span class="w"> </span><span class="n">color</span>: <span class="nc">Color</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* ... */</span><span class="w"> </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">color_me</span><span class="p">(</span><span class="s">&#34;surprised&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">Color</span>::<span class="n">Blue</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="全是常量的模块">全是常量的模块</h4>
 <p>或者，如果你想表达更复杂的值的话，则可以定义一个新的 <code>struct</code>，然后定义一堆公共常量。然后把这些常量放到模块中，用户就可以使用与 <code>enum</code> 类似的语法来访问它们了。</p>
@@ -359,24 +359,24 @@
 </span><span class="lnt">17
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="k">pub</span><span class="w"> </span><span class="k">mod</span> <span class="nn">output_options</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span><span class="w">    </span><span class="k">pub</span><span class="w"> </span><span class="k">struct</span> <span class="nc">OutputOptions</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* ... */</span><span class="w"> </span><span class="p">}</span><span class="w">
-</span><span class="w">    
-</span><span class="w">    </span><span class="k">impl</span><span class="w"> </span><span class="n">OutputOptions</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">fn</span> <span class="nf">new</span><span class="p">(</span><span class="cm">/* ... */</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nc">OutputOptions</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* ... */</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span><span class="w">
-</span><span class="w">    
-</span><span class="w">    </span><span class="k">pub</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">DEFAULT</span>: <span class="nc">OutputOptions</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">OutputOptions</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* ... */</span><span class="w"> </span><span class="p">};</span><span class="w">
-</span><span class="w">    </span><span class="k">pub</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">SLIM</span>: <span class="nc">OutputOptions</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">OutputOptions</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* ... */</span><span class="w"> </span><span class="p">};</span><span class="w">
-</span><span class="w">    </span><span class="k">pub</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">PRETTY</span>: <span class="nc">OutputOptions</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">OutputOptions</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* ... */</span><span class="w"> </span><span class="p">};</span><span class="w">
-</span><span class="w"></span><span class="p">}</span><span class="w">
-</span><span class="w">
-</span><span class="w"></span><span class="k">fn</span> <span class="nf">output</span><span class="p">(</span><span class="n">f</span>: <span class="kp">&amp;</span><span class="nc">Foo</span><span class="p">,</span><span class="w"> </span><span class="n">opts</span>: <span class="nc">OutputOptions</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* ... */</span><span class="w"> </span><span class="p">}</span><span class="w">
-</span><span class="w">
-</span><span class="w"></span><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">foo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Foo</span>::<span class="n">new</span><span class="p">();</span><span class="w">
-</span><span class="w">    
-</span><span class="w">    </span><span class="n">output</span><span class="p">(</span><span class="n">foo</span><span class="p">,</span><span class="w"> </span><span class="n">output_options</span>::<span class="n">PRETTY</span><span class="p">);</span><span class="w">
-</span><span class="w"></span><span class="p">}</span><span class="w">
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="k">pub</span><span class="w"> </span><span class="k">mod</span> <span class="nn">output_options</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">pub</span><span class="w"> </span><span class="k">struct</span> <span class="nc">OutputOptions</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* ... */</span><span class="w"> </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">impl</span><span class="w"> </span><span class="n">OutputOptions</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">fn</span> <span class="nf">new</span><span class="p">(</span><span class="cm">/* ... */</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nc">OutputOptions</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* ... */</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">pub</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">DEFAULT</span>: <span class="nc">OutputOptions</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">OutputOptions</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* ... */</span><span class="w"> </span><span class="p">};</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">pub</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">SLIM</span>: <span class="nc">OutputOptions</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">OutputOptions</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* ... */</span><span class="w"> </span><span class="p">};</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">pub</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">PRETTY</span>: <span class="nc">OutputOptions</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">OutputOptions</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* ... */</span><span class="w"> </span><span class="p">};</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">fn</span> <span class="nf">output</span><span class="p">(</span><span class="n">f</span>: <span class="kp">&amp;</span><span class="nc">Foo</span><span class="p">,</span><span class="w"> </span><span class="n">opts</span>: <span class="nc">OutputOptions</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* ... */</span><span class="w"> </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">foo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Foo</span>::<span class="n">new</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">output</span><span class="p">(</span><span class="n">foo</span><span class="p">,</span><span class="w"> </span><span class="n">output_options</span>::<span class="n">PRETTY</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="使用-fromstr-来解析字符串">使用 <code>FromStr</code> 来解析字符串</h4>
 <p>在某些情况下，你的用户确实不得不使用字符串，比如：从环境变量中读取或者读取<strong>他们的</strong>用户的输入作为参数——也就是说，他们没办法在代码中编写（静态）字符串传递给你的 API（这个也是我们尝试阻止的）。这种情况下就需要使用 <a href="https://doc.rust-lang.org/std/str/trait.FromStr.html"><code>FromStr</code></a> triat 了，它抽象了 “解析字符串到 Rust 数据类型” 的行为。</p>
@@ -411,32 +411,32 @@
 </span><span class="lnt">25
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="c1">// 选择 A: 你来解析
-</span><span class="c1"></span><span class="k">fn</span> <span class="nf">output_a</span><span class="p">(</span><span class="n">f</span>: <span class="kp">&amp;</span><span class="nc">Foo</span><span class="p">,</span><span class="w"> </span><span class="n">color</span>: <span class="kp">&amp;</span><span class="kt">str</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nb">Result</span><span class="o">&lt;</span><span class="n">Bar</span><span class="p">,</span><span class="w"> </span><span class="n">ParseError</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span><span class="w">    </span><span class="c1">// 这里使用解析后的类型遮蔽掉了原来的 `color`
-</span><span class="c1"></span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">color</span>: <span class="nc">Color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kr">try</span><span class="o">!</span><span class="p">(</span><span class="n">color</span><span class="p">.</span><span class="n">parse</span><span class="p">());</span><span class="w">
-</span><span class="w">
-</span><span class="w">    </span><span class="n">f</span><span class="p">.</span><span class="n">to_bar</span><span class="p">(</span><span class="o">&amp;</span><span class="n">color</span><span class="p">)</span><span class="w">
-</span><span class="w"></span><span class="p">}</span><span class="w">
-</span><span class="w">
-</span><span class="w"></span><span class="c1">// 选择 B: 用户来解析
-</span><span class="c1"></span><span class="k">fn</span> <span class="nf">output_b</span><span class="p">(</span><span class="n">f</span>: <span class="kp">&amp;</span><span class="nc">Foo</span><span class="p">,</span><span class="w"> </span><span class="n">color</span>: <span class="kp">&amp;</span><span class="nc">Color</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nc">Bar</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span><span class="w">    </span><span class="n">f</span><span class="p">.</span><span class="n">to_bar</span><span class="p">(</span><span class="n">color</span><span class="p">)</span><span class="w">
-</span><span class="w"></span><span class="p">}</span><span class="w">
-</span><span class="w">
-</span><span class="w"></span><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">foo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Foo</span>::<span class="n">new</span><span class="p">();</span><span class="w">
-</span><span class="w">
-</span><span class="w">    </span><span class="c1">// 选择 A: 你来解析，用户来处理 API 错误
-</span><span class="c1"></span><span class="w">    </span><span class="n">output_a</span><span class="p">(</span><span class="n">foo</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;Green&#34;</span><span class="p">).</span><span class="n">expect</span><span class="p">(</span><span class="s">&#34;Error :(&#34;</span><span class="p">);</span><span class="w">
-</span><span class="w">
-</span><span class="w">    </span><span class="c1">// 选择 B: 用户传入有效类型，所以不需要处理错误
-</span><span class="c1"></span><span class="w">    </span><span class="n">output_b</span><span class="p">(</span><span class="n">foo</span><span class="p">,</span><span class="w"> </span><span class="n">Color</span>::<span class="n">Green</span><span class="p">);</span><span class="w">
-</span><span class="w">
-</span><span class="w">    </span><span class="c1">// 选择 B: 用户使用字符串，需要自己解析并处理错误
-</span><span class="c1"></span><span class="w">    </span><span class="n">output_b</span><span class="p">(</span><span class="n">foo</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;Green&#34;</span><span class="p">.</span><span class="n">parse</span><span class="p">().</span><span class="n">except</span><span class="p">(</span><span class="s">&#34;Parse error!&#34;</span><span class="p">));</span><span class="w">
-</span><span class="w"></span><span class="p">}</span><span class="w">
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="c1">// 选择 A: 你来解析
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">fn</span> <span class="nf">output_a</span><span class="p">(</span><span class="n">f</span>: <span class="kp">&amp;</span><span class="nc">Foo</span><span class="p">,</span><span class="w"> </span><span class="n">color</span>: <span class="kp">&amp;</span><span class="kt">str</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nb">Result</span><span class="o">&lt;</span><span class="n">Bar</span><span class="p">,</span><span class="w"> </span><span class="n">ParseError</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// 这里使用解析后的类型遮蔽掉了原来的 `color`
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">color</span>: <span class="nc">Color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kr">try</span><span class="o">!</span><span class="p">(</span><span class="n">color</span><span class="p">.</span><span class="n">parse</span><span class="p">());</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">f</span><span class="p">.</span><span class="n">to_bar</span><span class="p">(</span><span class="o">&amp;</span><span class="n">color</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">// 选择 B: 用户来解析
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">fn</span> <span class="nf">output_b</span><span class="p">(</span><span class="n">f</span>: <span class="kp">&amp;</span><span class="nc">Foo</span><span class="p">,</span><span class="w"> </span><span class="n">color</span>: <span class="kp">&amp;</span><span class="nc">Color</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nc">Bar</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">f</span><span class="p">.</span><span class="n">to_bar</span><span class="p">(</span><span class="n">color</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">foo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Foo</span>::<span class="n">new</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// 选择 A: 你来解析，用户来处理 API 错误
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">    </span><span class="n">output_a</span><span class="p">(</span><span class="n">foo</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;Green&#34;</span><span class="p">).</span><span class="n">expect</span><span class="p">(</span><span class="s">&#34;Error :(&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// 选择 B: 用户传入有效类型，所以不需要处理错误
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">    </span><span class="n">output_b</span><span class="p">(</span><span class="n">foo</span><span class="p">,</span><span class="w"> </span><span class="n">Color</span>::<span class="n">Green</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// 选择 B: 用户使用字符串，需要自己解析并处理错误
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">    </span><span class="n">output_b</span><span class="p">(</span><span class="n">foo</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;Green&#34;</span><span class="p">.</span><span class="n">parse</span><span class="p">().</span><span class="n">except</span><span class="p">(</span><span class="s">&#34;Parse error!&#34;</span><span class="p">));</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="错误处理">错误处理</h3>
 <p>TRPL 中对于错误处理<a href="https://kaisery.gitbooks.io/rust-book-chinese/content/content/Error%20Handling%20%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86.html">有一章</a>写得很不错。（译注：也可以参阅<a href="https://kaisery.github.io/trpl-zh-cn/ch09-00-error-handling.html">第二版 TRPL</a>或<a href="https://rustwiki.org/zh-CN/rust-by-example/error.html">Rust By Example</a>的错误处理章节）</p>
@@ -499,17 +499,17 @@
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="c1">// 对于 API 作者来说很容易编写，文档也很易于阅读
-</span><span class="c1"></span><span class="k">fn</span> <span class="nf">foo</span><span class="p">(</span><span class="n">lorem</span>: <span class="kp">&amp;</span><span class="kt">str</span><span class="p">,</span><span class="w"> </span><span class="n">ipsum</span>: <span class="nb">Option</span><span class="o">&lt;</span><span class="kt">i32</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="n">dolor</span>: <span class="nb">Option</span><span class="o">&lt;</span><span class="kt">i32</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="n">sit</span>: <span class="nb">Option</span><span class="o">&lt;</span><span class="kt">i32</span><span class="o">&gt;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span><span class="w">    </span><span class="fm">println!</span><span class="p">(</span><span class="s">&#34;{}&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">lorem</span><span class="p">);</span><span class="w">
-</span><span class="w"></span><span class="p">}</span><span class="w">
-</span><span class="w">
-</span><span class="w"></span><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span><span class="w">    </span><span class="n">foo</span><span class="p">(</span><span class="s">&#34;bar&#34;</span><span class="p">,</span><span class="w"> </span><span class="nb">None</span><span class="p">,</span><span class="w"> </span><span class="nb">None</span><span class="p">,</span><span class="w"> </span><span class="nb">None</span><span class="p">);</span><span class="w">               </span><span class="c1">// 看起来有些奇怪
-</span><span class="c1"></span><span class="w">    </span><span class="n">foo</span><span class="p">(</span><span class="s">&#34;bar&#34;</span><span class="p">,</span><span class="w"> </span><span class="nb">Some</span><span class="p">(</span><span class="mi">42</span><span class="p">),</span><span class="w"> </span><span class="nb">None</span><span class="p">,</span><span class="w"> </span><span class="nb">None</span><span class="p">);</span><span class="w">           </span><span class="c1">// 还好
-</span><span class="c1"></span><span class="w">    </span><span class="n">foo</span><span class="p">(</span><span class="s">&#34;bar&#34;</span><span class="p">,</span><span class="w"> </span><span class="nb">Some</span><span class="p">(</span><span class="mi">42</span><span class="p">),</span><span class="w"> </span><span class="nb">Some</span><span class="p">(</span><span class="mi">1337</span><span class="p">),</span><span class="w"> </span><span class="nb">Some</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">));</span><span class="w"> </span><span class="c1">// 停！太多…… Some 了……
-</span><span class="c1"></span><span class="p">}</span><span class="w">
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="c1">// 对于 API 作者来说很容易编写，文档也很易于阅读
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">fn</span> <span class="nf">foo</span><span class="p">(</span><span class="n">lorem</span>: <span class="kp">&amp;</span><span class="kt">str</span><span class="p">,</span><span class="w"> </span><span class="n">ipsum</span>: <span class="nb">Option</span><span class="o">&lt;</span><span class="kt">i32</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="n">dolor</span>: <span class="nb">Option</span><span class="o">&lt;</span><span class="kt">i32</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="n">sit</span>: <span class="nb">Option</span><span class="o">&lt;</span><span class="kt">i32</span><span class="o">&gt;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="fm">println!</span><span class="p">(</span><span class="s">&#34;{}&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">lorem</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">foo</span><span class="p">(</span><span class="s">&#34;bar&#34;</span><span class="p">,</span><span class="w"> </span><span class="nb">None</span><span class="p">,</span><span class="w"> </span><span class="nb">None</span><span class="p">,</span><span class="w"> </span><span class="nb">None</span><span class="p">);</span><span class="w">               </span><span class="c1">// 看起来有些奇怪
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">    </span><span class="n">foo</span><span class="p">(</span><span class="s">&#34;bar&#34;</span><span class="p">,</span><span class="w"> </span><span class="nb">Some</span><span class="p">(</span><span class="mi">42</span><span class="p">),</span><span class="w"> </span><span class="nb">None</span><span class="p">,</span><span class="w"> </span><span class="nb">None</span><span class="p">);</span><span class="w">           </span><span class="c1">// 还好
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">    </span><span class="n">foo</span><span class="p">(</span><span class="s">&#34;bar&#34;</span><span class="p">,</span><span class="w"> </span><span class="nb">Some</span><span class="p">(</span><span class="mi">42</span><span class="p">),</span><span class="w"> </span><span class="nb">Some</span><span class="p">(</span><span class="mi">1337</span><span class="p">),</span><span class="w"> </span><span class="nb">Some</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">));</span><span class="w"> </span><span class="c1">// 停！太多…… Some 了……
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p><a href="https://play.rust-lang.org/?gist=23b98645fa7fd68cb9e28da9425a62f9&amp;version=nightly&amp;backtrace=0">现在：</a></p>
 <div class="highlight"><div class="chroma">
@@ -532,23 +532,23 @@
 </span><span class="lnt">16
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="c1">// 对于 API 作者来说得多打点字
-</span><span class="c1">// （而且遗憾的是，每个参数都需要被单独指定——否则 Rust 只会根据第一个参数推断类型。
-</span><span class="c1">// 这种写法阅读来不是很方便，文档可能也没那么好看）
-</span><span class="c1"></span><span class="k">fn</span> <span class="nf">foo</span><span class="o">&lt;</span><span class="n">I</span><span class="p">,</span><span class="w"> </span><span class="n">D</span><span class="p">,</span><span class="w"> </span><span class="n">S</span><span class="o">&gt;</span><span class="p">(</span><span class="n">lorem</span>: <span class="kp">&amp;</span><span class="kt">str</span><span class="p">,</span><span class="w"> </span><span class="n">ipsum</span>: <span class="nc">I</span><span class="p">,</span><span class="w"> </span><span class="n">dolor</span>: <span class="nc">D</span><span class="p">,</span><span class="w"> </span><span class="n">sit</span>: <span class="nc">S</span><span class="p">)</span><span class="w"> </span><span class="k">where</span><span class="w">
-</span><span class="w">    </span><span class="n">I</span>: <span class="nb">Into</span><span class="o">&lt;</span><span class="nb">Option</span><span class="o">&lt;</span><span class="kt">i32</span><span class="o">&gt;&gt;</span><span class="p">,</span><span class="w">
-</span><span class="w">    </span><span class="n">D</span>: <span class="nb">Into</span><span class="o">&lt;</span><span class="nb">Option</span><span class="o">&lt;</span><span class="kt">i32</span><span class="o">&gt;&gt;</span><span class="p">,</span><span class="w">
-</span><span class="w">    </span><span class="n">S</span>: <span class="nb">Into</span><span class="o">&lt;</span><span class="nb">Option</span><span class="o">&lt;</span><span class="kt">i32</span><span class="o">&gt;&gt;</span><span class="p">,</span><span class="w">
-</span><span class="w"></span><span class="p">{</span><span class="w">
-</span><span class="w">    </span><span class="fm">println!</span><span class="p">(</span><span class="s">&#34;{}&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">lorem</span><span class="p">);</span><span class="w">
-</span><span class="w"></span><span class="p">}</span><span class="w">
-</span><span class="w">
-</span><span class="w"></span><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span><span class="w">    </span><span class="n">foo</span><span class="p">(</span><span class="s">&#34;bar&#34;</span><span class="p">,</span><span class="w"> </span><span class="nb">None</span><span class="p">,</span><span class="w"> </span><span class="nb">None</span><span class="p">,</span><span class="w"> </span><span class="nb">None</span><span class="p">);</span><span class="w"> </span><span class="c1">// 仍然奇怪
-</span><span class="c1"></span><span class="w">    </span><span class="n">foo</span><span class="p">(</span><span class="s">&#34;bar&#34;</span><span class="p">,</span><span class="w"> </span><span class="mi">42</span><span class="p">,</span><span class="w"> </span><span class="nb">None</span><span class="p">,</span><span class="w"> </span><span class="nb">None</span><span class="p">);</span><span class="w">   </span><span class="c1">// 不错
-</span><span class="c1"></span><span class="w">    </span><span class="n">foo</span><span class="p">(</span><span class="s">&#34;bar&#34;</span><span class="p">,</span><span class="w"> </span><span class="mi">42</span><span class="p">,</span><span class="w"> </span><span class="mi">1337</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="p">);</span><span class="w">     </span><span class="c1">// Wow，棒棒！请务必这样编写 API！
-</span><span class="c1"></span><span class="p">}</span><span class="w">
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="c1">// 对于 API 作者来说得多打点字
+</span></span></span><span class="line"><span class="cl"><span class="c1">// （而且遗憾的是，每个参数都需要被单独指定——否则 Rust 只会根据第一个参数推断类型。
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 这种写法阅读来不是很方便，文档可能也没那么好看）
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">fn</span> <span class="nf">foo</span><span class="o">&lt;</span><span class="n">I</span><span class="p">,</span><span class="w"> </span><span class="n">D</span><span class="p">,</span><span class="w"> </span><span class="n">S</span><span class="o">&gt;</span><span class="p">(</span><span class="n">lorem</span>: <span class="kp">&amp;</span><span class="kt">str</span><span class="p">,</span><span class="w"> </span><span class="n">ipsum</span>: <span class="nc">I</span><span class="p">,</span><span class="w"> </span><span class="n">dolor</span>: <span class="nc">D</span><span class="p">,</span><span class="w"> </span><span class="n">sit</span>: <span class="nc">S</span><span class="p">)</span><span class="w"> </span><span class="k">where</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">I</span>: <span class="nb">Into</span><span class="o">&lt;</span><span class="nb">Option</span><span class="o">&lt;</span><span class="kt">i32</span><span class="o">&gt;&gt;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">D</span>: <span class="nb">Into</span><span class="o">&lt;</span><span class="nb">Option</span><span class="o">&lt;</span><span class="kt">i32</span><span class="o">&gt;&gt;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">S</span>: <span class="nb">Into</span><span class="o">&lt;</span><span class="nb">Option</span><span class="o">&lt;</span><span class="kt">i32</span><span class="o">&gt;&gt;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="fm">println!</span><span class="p">(</span><span class="s">&#34;{}&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">lorem</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">foo</span><span class="p">(</span><span class="s">&#34;bar&#34;</span><span class="p">,</span><span class="w"> </span><span class="nb">None</span><span class="p">,</span><span class="w"> </span><span class="nb">None</span><span class="p">,</span><span class="w"> </span><span class="nb">None</span><span class="p">);</span><span class="w"> </span><span class="c1">// 仍然奇怪
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">    </span><span class="n">foo</span><span class="p">(</span><span class="s">&#34;bar&#34;</span><span class="p">,</span><span class="w"> </span><span class="mi">42</span><span class="p">,</span><span class="w"> </span><span class="nb">None</span><span class="p">,</span><span class="w"> </span><span class="nb">None</span><span class="p">);</span><span class="w">   </span><span class="c1">// 不错
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">    </span><span class="n">foo</span><span class="p">(</span><span class="s">&#34;bar&#34;</span><span class="p">,</span><span class="w"> </span><span class="mi">42</span><span class="p">,</span><span class="w"> </span><span class="mi">1337</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="p">);</span><span class="w">     </span><span class="c1">// Wow，棒棒！请务必这样编写 API！
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="关于可能较长的编译时间的说明">关于可能较长的编译时间的说明</h4>
 <p>如果你有：</p>
@@ -568,11 +568,11 @@
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="k">pub</span><span class="w"> </span><span class="k">fn</span> <span class="nf">open</span><span class="o">&lt;</span><span class="n">P</span><span class="o">&gt;</span><span class="p">(</span><span class="n">path</span>: <span class="nc">P</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nc">ImageResult</span><span class="o">&lt;</span><span class="n">DynamicImage</span><span class="o">&gt;</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">P</span>: <span class="nb">AsRef</span><span class="o">&lt;</span><span class="n">Path</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span><span class="w">    </span><span class="c1">// 简单的包装函数，在调用 open_impl 之前去掉泛型
-</span><span class="c1"></span><span class="w">    </span><span class="n">open_impl</span><span class="p">(</span><span class="n">path</span><span class="p">.</span><span class="n">as_ref</span><span class="p">())</span><span class="w">
-</span><span class="w"></span><span class="p">}</span><span class="w">
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="k">pub</span><span class="w"> </span><span class="k">fn</span> <span class="nf">open</span><span class="o">&lt;</span><span class="n">P</span><span class="o">&gt;</span><span class="p">(</span><span class="n">path</span>: <span class="nc">P</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nc">ImageResult</span><span class="o">&lt;</span><span class="n">DynamicImage</span><span class="o">&gt;</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">P</span>: <span class="nb">AsRef</span><span class="o">&lt;</span><span class="n">Path</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// 简单的包装函数，在调用 open_impl 之前去掉泛型
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">    </span><span class="n">open_impl</span><span class="p">(</span><span class="n">path</span><span class="p">.</span><span class="n">as_ref</span><span class="p">())</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="惰性">惰性</h3>
 <p>尽管 Rust 不能像 Haskell 一样对表达式进行惰性计算，但是你仍然可以使用一些技术来优雅地省略不必要的计算和分配。</p>
@@ -604,12 +604,12 @@
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="kd">let</span><span class="w"> </span><span class="n">res</span>: <span class="nb">Result</span><span class="o">&lt;</span><span class="kt">i32</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="kt">str</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Err</span><span class="p">(</span><span class="s">&#34;oh noes&#34;</span><span class="p">);</span><span class="w">
-</span><span class="w"></span><span class="n">res</span><span class="p">.</span><span class="n">unwrap_or</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span><span class="w"> </span><span class="c1">// 立即返回 `42`
-</span><span class="c1"></span><span class="w">
-</span><span class="w"></span><span class="kd">let</span><span class="w"> </span><span class="n">res</span>: <span class="nb">Result</span><span class="o">&lt;</span><span class="kt">i32</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="kt">str</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Err</span><span class="p">(</span><span class="s">&#34;oh noes&#34;</span><span class="p">);</span><span class="w">
-</span><span class="w"></span><span class="n">res</span><span class="p">.</span><span class="n">unwrap_or_else</span><span class="p">(</span><span class="o">|</span><span class="n">msg</span><span class="o">|</span><span class="w"> </span><span class="n">msg</span><span class="p">.</span><span class="n">len</span><span class="p">()</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="kt">i32</span><span class="p">);</span><span class="w"> </span><span class="c1">// 将会在需要的时候调用闭包计算
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="kd">let</span><span class="w"> </span><span class="n">res</span>: <span class="nb">Result</span><span class="o">&lt;</span><span class="kt">i32</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="kt">str</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Err</span><span class="p">(</span><span class="s">&#34;oh noes&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">res</span><span class="p">.</span><span class="n">unwrap_or</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span><span class="w"> </span><span class="c1">// 立即返回 `42`
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">let</span><span class="w"> </span><span class="n">res</span>: <span class="nb">Result</span><span class="o">&lt;</span><span class="kt">i32</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="kt">str</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Err</span><span class="p">(</span><span class="s">&#34;oh noes&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">res</span><span class="p">.</span><span class="n">unwrap_or_else</span><span class="p">(</span><span class="o">|</span><span class="n">msg</span><span class="o">|</span><span class="w"> </span><span class="n">msg</span><span class="p">.</span><span class="n">len</span><span class="p">()</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="kt">i32</span><span class="p">);</span><span class="w"> </span><span class="c1">// 将会在需要的时候调用闭包计算
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="关于惰性的小技巧">关于惰性的小技巧</h4>
 <ul>
@@ -635,10 +635,10 @@
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="s">&#34;Lorem ipsum&#34;</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="sc">&#39;L&#39;</span><span class="p">);</span><span class="w">
-</span><span class="w"></span><span class="s">&#34;Lorem ipsum&#34;</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#34;ipsum&#34;</span><span class="p">);</span><span class="w">
-</span><span class="w"></span><span class="s">&#34;Lorem ipsum&#34;</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="kt">char</span>::<span class="n">is_whitespace</span><span class="p">);</span><span class="w">
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="s">&#34;Lorem ipsum&#34;</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="sc">&#39;L&#39;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="s">&#34;Lorem ipsum&#34;</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#34;ipsum&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="s">&#34;Lorem ipsum&#34;</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="kt">char</span>::<span class="n">is_whitespace</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="扩展-trait">扩展 trait</h3>
 <p>尽量使用标准库中定义的类型和 trait，因为大部分 Rust 程序员都了解它们，它们经过了充分的测试并且有良好的文档。不过，由于 Rust 标准库倾向于提供有语义含义的类型<sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup>，这些类型包含的方法可能对你的 API 来说还不够。幸运的是，Rust 的 “孤儿规则（orphan rules）” 赋予了为任何类型实现任何 trait 的能力——前提是类型和 trait 中的任意一个是在当前 crate 中定义的。</p>
@@ -668,27 +668,27 @@
 </span><span class="lnt">20
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="k">pub</span><span class="w"> </span><span class="k">trait</span><span class="w"> </span><span class="n">GrandResultExt</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span><span class="w">    </span><span class="k">fn</span> <span class="nf">party</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nc">Self</span><span class="p">;</span><span class="w">
-</span><span class="w"></span><span class="p">}</span><span class="w">
-</span><span class="w">
-</span><span class="w"></span><span class="k">impl</span><span class="w"> </span><span class="n">GrandResultExt</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nb">Result</span><span class="o">&lt;</span><span class="nb">String</span><span class="p">,</span><span class="w"> </span><span class="nb">Box</span><span class="o">&lt;</span><span class="n">Error</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span><span class="w">    </span><span class="k">fn</span> <span class="nf">party</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nb">Result</span><span class="o">&lt;</span><span class="nb">String</span><span class="p">,</span><span class="w"> </span><span class="nb">Box</span><span class="o">&lt;</span><span class="n">Error</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="bp">self</span><span class="p">.</span><span class="n">is_ok</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span><span class="w">          </span><span class="fm">println!</span><span class="p">(</span><span class="s">&#34;Wooohoo! 🎉&#34;</span><span class="p">);</span><span class="w">
-</span><span class="w">        </span><span class="p">}</span><span class="w">
-</span><span class="w">        </span><span class="bp">self</span><span class="w">
-</span><span class="w">    </span><span class="p">}</span><span class="w">
-</span><span class="w"></span><span class="p">}</span><span class="w">
-</span><span class="w">
-</span><span class="w"></span><span class="c1">// 用户代码
-</span><span class="c1"></span><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">fortune</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">library_function</span><span class="p">()</span><span class="w">
-</span><span class="w">        </span><span class="p">.</span><span class="n">method_returning_result</span><span class="p">()</span><span class="w">
-</span><span class="w">        </span><span class="p">.</span><span class="n">party</span><span class="p">()</span><span class="w">
-</span><span class="w">        </span><span class="p">.</span><span class="n">unwrap_or</span><span class="p">(</span><span class="s">&#34;Out of luck.&#34;</span><span class="p">.</span><span class="n">to_string</span><span class="p">());</span><span class="w">
-</span><span class="w"></span><span class="p">}</span><span class="w">
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="k">pub</span><span class="w"> </span><span class="k">trait</span><span class="w"> </span><span class="n">GrandResultExt</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">fn</span> <span class="nf">party</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nc">Self</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">impl</span><span class="w"> </span><span class="n">GrandResultExt</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nb">Result</span><span class="o">&lt;</span><span class="nb">String</span><span class="p">,</span><span class="w"> </span><span class="nb">Box</span><span class="o">&lt;</span><span class="n">Error</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">fn</span> <span class="nf">party</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nb">Result</span><span class="o">&lt;</span><span class="nb">String</span><span class="p">,</span><span class="w"> </span><span class="nb">Box</span><span class="o">&lt;</span><span class="n">Error</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="bp">self</span><span class="p">.</span><span class="n">is_ok</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="fm">println!</span><span class="p">(</span><span class="s">&#34;Wooohoo! 🎉&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="bp">self</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">// 用户代码
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">fortune</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">library_function</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">.</span><span class="n">method_returning_result</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">.</span><span class="n">party</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">.</span><span class="n">unwrap_or</span><span class="p">(</span><span class="s">&#34;Out of luck.&#34;</span><span class="p">.</span><span class="n">to_string</span><span class="p">());</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>Florian 在 <a href="https://github.com/skade/lazers/blob/d9ace30c05cf103c5faf0660c06127b578c92762/lazers-traits/src/decorations.md#results-of-finding-a-database">lazers</a> 的真实代码中使用了这样的模式装饰了 <code>BoxFuture</code>（来自 <code>futures</code> crate）以让代码更加可读：</p>
 <div class="highlight"><div class="chroma">
@@ -698,10 +698,10 @@
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="kd">let</span><span class="w"> </span><span class="n">my_database</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">client</span><span class="w">
-</span><span class="w">    </span><span class="p">.</span><span class="n">find_database</span><span class="p">(</span><span class="s">&#34;might_not_exist&#34;</span><span class="p">)</span><span class="w">
-</span><span class="w">    </span><span class="p">.</span><span class="n">or_create</span><span class="p">();</span><span class="w">
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="kd">let</span><span class="w"> </span><span class="n">my_database</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">client</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">.</span><span class="n">find_database</span><span class="p">(</span><span class="s">&#34;might_not_exist&#34;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">.</span><span class="n">or_create</span><span class="p">();</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="扩展-trait-1">扩展 trait</h4>
 <p>到目前为止，我们已经通过定义并实现自己的 trait 扩展了类型上的可用方法。但你还可以定义<strong>扩展其他 trait</strong> 的 trait（<code>trait MyTrait: BufRead + Debug {}</code>）。最突出的例子是 <a href="https://crates.io/crates/itertools">itertools</a> crate，它为 <code>std</code> 的迭代器添加了一大堆方法。</p>
@@ -714,9 +714,9 @@
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="k">use</span><span class="w"> </span><span class="n">std</span>::<span class="n">fs</span>::<span class="n">OpenOptions</span><span class="p">;</span><span class="w">
-</span><span class="w"></span><span class="kd">let</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">OpenOptions</span>::<span class="n">new</span><span class="p">().</span><span class="n">read</span><span class="p">(</span><span class="kc">true</span><span class="p">).</span><span class="n">write</span><span class="p">(</span><span class="kc">true</span><span class="p">).</span><span class="n">open</span><span class="p">(</span><span class="s">&#34;foo.txt&#34;</span><span class="p">);</span><span class="w">
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="k">use</span><span class="w"> </span><span class="n">std</span>::<span class="n">fs</span>::<span class="n">OpenOptions</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">let</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">OpenOptions</span>::<span class="n">new</span><span class="p">().</span><span class="n">read</span><span class="p">(</span><span class="kc">true</span><span class="p">).</span><span class="n">write</span><span class="p">(</span><span class="kc">true</span><span class="p">).</span><span class="n">open</span><span class="p">(</span><span class="s">&#34;foo.txt&#34;</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="session-type">Session Type</h3>
 <p>你可以在类型系统中编码一个状态机。</p>
@@ -740,16 +740,16 @@
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="kd">let</span><span class="w"> </span><span class="n">p</span>: <span class="nc">OpenPackage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Package</span>::<span class="n">new</span><span class="p">();</span><span class="w">
-</span><span class="w"></span><span class="kd">let</span><span class="w"> </span><span class="n">p</span>: <span class="nc">OpenPackage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">package</span><span class="p">.</span><span class="n">insert</span><span class="p">([</span><span class="n">stuff</span><span class="p">,</span><span class="w"> </span><span class="n">padding</span><span class="p">,</span><span class="w"> </span><span class="n">padding</span><span class="p">]);</span><span class="w">
-</span><span class="w">
-</span><span class="w"></span><span class="kd">let</span><span class="w"> </span><span class="n">p</span>: <span class="nc">ClosedPackage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">package</span><span class="p">.</span><span class="n">seal_up</span><span class="p">();</span><span class="w">
-</span><span class="w">
-</span><span class="w"></span><span class="c1">// let p: OpenPackage = package.insert([more_stuff]);
-</span><span class="c1">//~^ ERROR: No method named `insert` on `ClosedPackage`
-</span><span class="c1"></span><span class="w">
-</span><span class="w"></span><span class="kd">let</span><span class="w"> </span><span class="n">p</span>: <span class="nc">DeliveryTracking</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">package</span><span class="p">.</span><span class="n">send</span><span class="p">(</span><span class="n">address</span><span class="p">,</span><span class="w"> </span><span class="n">postage</span><span class="p">);</span><span class="w">
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="kd">let</span><span class="w"> </span><span class="n">p</span>: <span class="nc">OpenPackage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Package</span>::<span class="n">new</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">let</span><span class="w"> </span><span class="n">p</span>: <span class="nc">OpenPackage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">package</span><span class="p">.</span><span class="n">insert</span><span class="p">([</span><span class="n">stuff</span><span class="p">,</span><span class="w"> </span><span class="n">padding</span><span class="p">,</span><span class="w"> </span><span class="n">padding</span><span class="p">]);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">let</span><span class="w"> </span><span class="n">p</span>: <span class="nc">ClosedPackage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">package</span><span class="p">.</span><span class="n">seal_up</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">// let p: OpenPackage = package.insert([more_stuff]);
+</span></span></span><span class="line"><span class="cl"><span class="c1">//~^ ERROR: No method named `insert` on `ClosedPackage`
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">let</span><span class="w"> </span><span class="n">p</span>: <span class="nc">DeliveryTracking</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">package</span><span class="p">.</span><span class="n">send</span><span class="p">(</span><span class="n">address</span><span class="p">,</span><span class="w"> </span><span class="n">postage</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>一个很好的实际例子是 /u/ssokolow <a href="https://www.reddit.com/r/rust/comments/568yvh/typesafe_unions_in_c_and_rust/d8hcwfs">在 /r/rust 的这个帖子</a> 中给出的：</p>
 <blockquote>
@@ -857,9 +857,9 @@
   <script type="text/javascript">
     new Valine({
         el: '#vcomments' ,
-        serverURLs: '',
-        appId: 'fSbXaElXXTznggVXiWy8NFBU-gzGzoHsz',
-        appKey: 'kK3SxB14xAACgHftKrSaBRDU',
+        serverURLs: 'https:\/\/0mqcauyd.api.lncldglobal.com',
+        appId: '0mQCAuYdR6NE9gIVBd6rDEjY-MdYXbMMI',
+        appKey: 'CBACoI7HhLeuROO39gpYpYDl',
         notify:  false ,
         verify:  false ,
         avatar:'mm',
@@ -919,7 +919,7 @@
 
 
 
-<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 <script type="application/javascript">

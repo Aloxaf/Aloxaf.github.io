@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.92.0 with theme even" />
+<meta name="generator" content="Hugo 0.95.0 with theme even" />
 
 
 <link rel="preload" href="/fonts/iconfont/iconfont.woff" as="font" type="font/woff" crossorigin="anonymous">
@@ -172,25 +172,25 @@
 </span><span class="lnt">18
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 1.建立 init.d 文件夹, 尽管对于arch 来说没有卵用</span>
-sudo mkdir /etc/init.d
-
-<span class="c1"># 2.安装内核头文件, 因为接下来需要编译内核模块, 以内核4.14为例</span>
-sudo pacman -S linux414-headers
-
-<span class="c1"># 3.安装ncurses5-compat-libs, 因为vm-tools依赖ncurses5, 而arch只有ncurses6</span>
-<span class="c1"># 这个地方如果GPG校验失败的话, 就添加 --m-arg &#34;--skipchecksums --skippgpcheck&#34;</span>
-yaourt -S ncurses5-compat-libs
-
-<span class="c1"># 4.下载VMware Linux版, 得到一个.bundle文件</span>
-<span class="c1"># 以root身份运行之</span>
-sudo chmod +x xxx.bundle
-sudo ./xxx.bundle
-
-<span class="c1"># 一开始每次更新完内核都要使用如下命令重新编译内核模块的</span>
-<span class="c1"># 不过某次更新以后变成自动弹出窗口请求root权限进行编译, 就不用执行下面的代码了</span>
-<span class="c1"># sudo vmware-modconfig --console --install-all</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 1.建立 init.d 文件夹, 尽管对于arch 来说没有卵用</span>
+</span></span><span class="line"><span class="cl">sudo mkdir /etc/init.d
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 2.安装内核头文件, 因为接下来需要编译内核模块, 以内核4.14为例</span>
+</span></span><span class="line"><span class="cl">sudo pacman -S linux414-headers
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 3.安装ncurses5-compat-libs, 因为vm-tools依赖ncurses5, 而arch只有ncurses6</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 这个地方如果GPG校验失败的话, 就添加 --m-arg &#34;--skipchecksums --skippgpcheck&#34;</span>
+</span></span><span class="line"><span class="cl">yaourt -S ncurses5-compat-libs
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 4.下载VMware Linux版, 得到一个.bundle文件</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 以root身份运行之</span>
+</span></span><span class="line"><span class="cl">sudo chmod +x xxx.bundle
+</span></span><span class="line"><span class="cl">sudo ./xxx.bundle
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 一开始每次更新完内核都要使用如下命令重新编译内核模块的</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 不过某次更新以后变成自动弹出窗口请求root权限进行编译, 就不用执行下面的代码了</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># sudo vmware-modconfig --console --install-all</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div>
     </div>
@@ -241,9 +241,9 @@ sudo ./xxx.bundle
   <script type="text/javascript">
     new Valine({
         el: '#vcomments' ,
-        serverURLs: '',
-        appId: 'fSbXaElXXTznggVXiWy8NFBU-gzGzoHsz',
-        appKey: 'kK3SxB14xAACgHftKrSaBRDU',
+        serverURLs: 'https:\/\/0mqcauyd.api.lncldglobal.com',
+        appId: '0mQCAuYdR6NE9gIVBd6rDEjY-MdYXbMMI',
+        appKey: 'CBACoI7HhLeuROO39gpYpYDl',
         notify:  false ,
         verify:  false ,
         avatar:'mm',
@@ -303,7 +303,7 @@ sudo ./xxx.bundle
 
 
 
-<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 <script type="application/javascript">

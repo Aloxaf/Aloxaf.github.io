@@ -24,7 +24,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.92.0 with theme even" />
+<meta name="generator" content="Hugo 0.95.0 with theme even" />
 
 
 <link rel="preload" href="/fonts/iconfont/iconfont.woff" as="font" type="font/woff" crossorigin="anonymous">
@@ -296,38 +296,38 @@
 </span><span class="lnt">31
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">at_rest_quality</span> <span class="o">=</span> <span class="k">if</span> <span class="n">sleep</span> <span class="mi">1</span> <span class="k">else</span> <span class="mi">0</span>
-
-<span class="c1"># 基本恢复速率, 曾经是 0.01</span>
-<span class="n">heal_rate</span> <span class="o">=</span> <span class="mf">0.0001</span>
-<span class="c1"># 最终恢复速率</span>
-<span class="n">final_rate</span> <span class="o">=</span> <span class="mf">0.0</span>
-
-<span class="c1"># healing_awake 参考</span>
-<span class="c1"># 急速自愈 2.0    高速自愈 0.66   快速自愈 0.2   高速新陈代谢 0.2</span>
-<span class="c1"># 虚弱   -0.002   衰退   -0.02   解体   -0.08</span>
-<span class="n">awake_rate</span> <span class="o">=</span> <span class="n">heal_rate</span> <span class="o">*</span> <span class="n">mutation_value</span><span class="p">(</span><span class="s2">&#34;healing_awake&#34;</span><span class="p">)</span>
-<span class="k">if</span> <span class="n">awake_rate</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-    <span class="n">final_rate</span> <span class="o">+=</span> <span class="n">awake_rate</span>
-<span class="k">elif</span> <span class="n">at_rest_quality</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
-	<span class="n">final_rate</span> <span class="o">+=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">at_rest_quality</span><span class="p">)</span> <span class="o">*</span> <span class="n">awake_rate</span>
-
-<span class="c1"># healing_rest 参考</span>
-<span class="c1"># 急速自愈 1.5    高速自愈   0.5    快速自愈  0.5   高速新陈代谢 0.5</span>
-<span class="c1"># 虚弱   -0.25   慢速自愈  -0.25   自愈弱化 -0.66   自愈无效   -0.9</span>
-<span class="n">asleep_rate</span> <span class="o">=</span> <span class="mf">0.0</span>
-<span class="k">if</span> <span class="n">at_rest_quality</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-	<span class="n">alseep_rate</span> <span class="o">=</span> <span class="n">at_rest_quality</span> <span class="o">*</span> <span class="n">heal_rate</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">mutation_value</span><span class="p">(</span><span class="s2">&#34;healing_rest&#34;</span><span class="p">))</span>
-<span class="k">if</span> <span class="n">alseep_rate</span> <span class="o">&gt;</span> <span class="mf">0.0</span><span class="p">:</span>
-	<span class="n">final_rate</span> <span class="o">+=</span> <span class="n">asleep_rate</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">healthy</span> <span class="o">/</span> <span class="mi">200</span><span class="p">)</span>
-
-<span class="c1"># 身强力壮 0.2 钢筋铁骨 0.3   不可战胜 0.4</span>
-<span class="c1"># 小个子 -0.05 毫不起眼 -0.25 瘦弱 -0.25  体型细小 -0.3  弱不禁风 -0.5 柴毁骨立 -0.75</span>
-<span class="n">primary_hp_mod</span> <span class="o">=</span> <span class="n">mutation_value</span><span class="p">(</span> <span class="s2">&#34;hp_modifier&#34;</span> <span class="p">);</span>
-<span class="k">if</span> <span class="n">primary_hp_mod</span> <span class="o">&lt;</span> <span class="mf">0.0</span><span class="p">:</span>
-	<span class="c1"># HP mod can&#39;t get below -1.0</span>
-	<span class="n">final_rate</span> <span class="o">*=</span> <span class="mf">1.0</span><span class="n">f</span> <span class="o">+</span> <span class="n">primary_hp_mod</span><span class="p">;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">at_rest_quality</span> <span class="o">=</span> <span class="k">if</span> <span class="n">sleep</span> <span class="mi">1</span> <span class="k">else</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 基本恢复速率, 曾经是 0.01</span>
+</span></span><span class="line"><span class="cl"><span class="n">heal_rate</span> <span class="o">=</span> <span class="mf">0.0001</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 最终恢复速率</span>
+</span></span><span class="line"><span class="cl"><span class="n">final_rate</span> <span class="o">=</span> <span class="mf">0.0</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># healing_awake 参考</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 急速自愈 2.0    高速自愈 0.66   快速自愈 0.2   高速新陈代谢 0.2</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 虚弱   -0.002   衰退   -0.02   解体   -0.08</span>
+</span></span><span class="line"><span class="cl"><span class="n">awake_rate</span> <span class="o">=</span> <span class="n">heal_rate</span> <span class="o">*</span> <span class="n">mutation_value</span><span class="p">(</span><span class="s2">&#34;healing_awake&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="n">awake_rate</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">final_rate</span> <span class="o">+=</span> <span class="n">awake_rate</span>
+</span></span><span class="line"><span class="cl"><span class="k">elif</span> <span class="n">at_rest_quality</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">	<span class="n">final_rate</span> <span class="o">+=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">at_rest_quality</span><span class="p">)</span> <span class="o">*</span> <span class="n">awake_rate</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># healing_rest 参考</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 急速自愈 1.5    高速自愈   0.5    快速自愈  0.5   高速新陈代谢 0.5</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 虚弱   -0.25   慢速自愈  -0.25   自愈弱化 -0.66   自愈无效   -0.9</span>
+</span></span><span class="line"><span class="cl"><span class="n">asleep_rate</span> <span class="o">=</span> <span class="mf">0.0</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="n">at_rest_quality</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">	<span class="n">alseep_rate</span> <span class="o">=</span> <span class="n">at_rest_quality</span> <span class="o">*</span> <span class="n">heal_rate</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">mutation_value</span><span class="p">(</span><span class="s2">&#34;healing_rest&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="n">alseep_rate</span> <span class="o">&gt;</span> <span class="mf">0.0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">	<span class="n">final_rate</span> <span class="o">+=</span> <span class="n">asleep_rate</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">healthy</span> <span class="o">/</span> <span class="mi">200</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 身强力壮 0.2 钢筋铁骨 0.3   不可战胜 0.4</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 小个子 -0.05 毫不起眼 -0.25 瘦弱 -0.25  体型细小 -0.3  弱不禁风 -0.5 柴毁骨立 -0.75</span>
+</span></span><span class="line"><span class="cl"><span class="n">primary_hp_mod</span> <span class="o">=</span> <span class="n">mutation_value</span><span class="p">(</span> <span class="s2">&#34;hp_modifier&#34;</span> <span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="n">primary_hp_mod</span> <span class="o">&lt;</span> <span class="mf">0.0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">	<span class="c1"># HP mod can&#39;t get below -1.0</span>
+</span></span><span class="line"><span class="cl">	<span class="n">final_rate</span> <span class="o">*=</span> <span class="mf">1.0</span><span class="n">f</span> <span class="o">+</span> <span class="n">primary_hp_mod</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="tldr">TL;DR</h3>
 <p>首先基本回血速率 0.0001（以前是 0.01）。</p>
@@ -386,53 +386,53 @@
 </span><span class="lnt">46
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">rate_medicine</span> <span class="o">=</span> <span class="mf">0.0</span>
-<span class="n">bandaged_rate</span> <span class="o">=</span> <span class="mf">0.0</span>
-<span class="n">disinfected_rate</span> <span class="o">=</span> <span class="mf">0.0</span>
-
-
-<span class="c1"># HEAL_RATE  base_mods=2  scaling_mods=2</span>
-<span class="c1"># HEAL_TORSO base_mods=50</span>
-<span class="c1"># HEAL_TORSO base_mods=150</span>
-<span class="c1"># level  1-2(极差) 3-4(不佳) 5-6(普通) 7-8(好)</span>
-<span class="c1"># 9-10(良好) 11~12(优秀) 13-14(出色) 15-16(完美)</span>
-<span class="k">def</span> <span class="nf">effect</span><span class="p">::</span><span class="n">get_amount</span><span class="p">(</span><span class="n">arg</span><span class="p">):</span>
-    <span class="n">ret</span> <span class="o">=</span> <span class="n">get</span><span class="p">(</span><span class="s2">&#34;base_mods&#34;</span><span class="p">)</span> <span class="o">+</span> <span class="n">get</span><span class="p">(</span><span class="s2">&#34;scaling_mods&#34;</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="n">level</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
-
-<span class="k">if</span> <span class="n">bandaged</span><span class="p">:</span>
-    <span class="n">bandaged_rate</span> <span class="o">+=</span> <span class="n">bandaged</span><span class="o">.</span><span class="n">get_amount</span><span class="p">(</span><span class="s2">&#34;HEAL_RATE&#34;</span><span class="p">)</span> <span class="o">/</span> <span class="mi">24</span><span class="n">hours</span>
-    
-    <span class="k">if</span> <span class="n">body_part</span> <span class="o">=</span> <span class="n">head</span><span class="p">:</span>
-    	<span class="n">bandaged_rate</span> <span class="o">*=</span> <span class="n">bandaged</span><span class="o">.</span><span class="n">get_amount</span><span class="p">(</span><span class="s2">&#34;HEAL_HEAD&#34;</span><span class="p">)</span> <span class="o">/</span> <span class="mi">100</span>
-    <span class="k">if</span> <span class="n">body_part</span> <span class="o">=</span> <span class="n">torso</span><span class="p">:</span>
-        <span class="n">bandaged_rate</span> <span class="o">*=</span> <span class="n">bandaged</span><span class="o">.</span><span class="n">get_amount</span><span class="p">(</span><span class="s2">&#34;HEAL_TORSO&#34;</span><span class="p">)</span> <span class="o">/</span> <span class="mi">100</span>
-        
-        
-<span class="k">if</span> <span class="n">disinfected</span><span class="p">:</span>
-    <span class="n">disinfected_rate</span> <span class="o">+=</span> <span class="n">disinfected</span><span class="o">.</span><span class="n">get_amount</span><span class="p">(</span><span class="s2">&#34;HEAL_RATE&#34;</span><span class="p">)</span> <span class="o">/</span> <span class="mi">24</span><span class="n">hours</span>
-    
-    <span class="k">if</span> <span class="n">body_part</span> <span class="o">=</span> <span class="n">head</span><span class="p">:</span>
-    	<span class="n">disinfected_rate</span> <span class="o">*=</span> <span class="n">disinfected</span><span class="o">.</span><span class="n">get_amount</span><span class="p">(</span><span class="s2">&#34;HEAL_HEAD&#34;</span><span class="p">)</span> <span class="o">/</span> <span class="mi">100</span>
-    <span class="k">if</span> <span class="n">body_part</span> <span class="o">=</span> <span class="n">torso</span><span class="p">:</span>
-        <span class="n">disinfected_rate</span> <span class="o">*=</span> <span class="n">disinfected</span><span class="o">.</span><span class="n">get_amount</span><span class="p">(</span><span class="s2">&#34;HEAL_TORSO&#34;</span><span class="p">)</span> <span class="o">/</span> <span class="mi">100</span>
-
-<span class="n">rate_medicine</span> <span class="o">+=</span> <span class="n">bandaged_rate</span> <span class="o">+</span> <span class="n">disinfected_rate</span>
-<span class="n">rate_medicine</span> <span class="o">*=</span> <span class="mf">1.0</span> <span class="o">+</span> <span class="n">mutation_value</span><span class="p">(</span><span class="s2">&#34;healing_resting&#34;</span><span class="p">)</span>
-<span class="n">rate_medicine</span> <span class="o">*=</span> <span class="mf">1.0</span> <span class="o">+</span> <span class="n">at_rest_quality</span>
-
-<span class="k">if</span> <span class="n">bandaged</span> <span class="ow">and</span> <span class="n">disinfected</span><span class="p">:</span>
-    <span class="n">rate_medicine</span> <span class="o">*=</span> <span class="mi">2</span>
-    
-<span class="k">if</span> <span class="n">healthy</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-    <span class="n">rate_medicine</span> <span class="o">*=</span> <span class="mf">1.0</span> <span class="o">+</span> <span class="n">healthy</span> <span class="o">/</span> <span class="mi">200</span>
-<span class="k">else</span><span class="p">:</span>
-    <span class="n">rate_medicine</span> <span class="o">*=</span> <span class="mf">1.0</span> <span class="o">+</span> <span class="n">healthy</span> <span class="o">/</span> <span class="mi">400</span>
-    
-<span class="n">primary_hp_mod</span> <span class="o">=</span> <span class="n">mutation_value</span><span class="p">(</span> <span class="s2">&#34;hp_modifier&#34;</span> <span class="p">);</span>
-<span class="k">if</span> <span class="n">primary_hp_mod</span> <span class="o">&lt;</span> <span class="mf">0.0</span><span class="p">:</span>
-	<span class="c1"># HP mod can&#39;t get below -1.0</span>
-	<span class="n">rate_medicine</span> <span class="o">*=</span> <span class="mf">1.0</span><span class="n">f</span> <span class="o">+</span> <span class="n">primary_hp_mod</span><span class="p">;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">rate_medicine</span> <span class="o">=</span> <span class="mf">0.0</span>
+</span></span><span class="line"><span class="cl"><span class="n">bandaged_rate</span> <span class="o">=</span> <span class="mf">0.0</span>
+</span></span><span class="line"><span class="cl"><span class="n">disinfected_rate</span> <span class="o">=</span> <span class="mf">0.0</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># HEAL_RATE  base_mods=2  scaling_mods=2</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># HEAL_TORSO base_mods=50</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># HEAL_TORSO base_mods=150</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># level  1-2(极差) 3-4(不佳) 5-6(普通) 7-8(好)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 9-10(良好) 11~12(优秀) 13-14(出色) 15-16(完美)</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">effect</span><span class="p">::</span><span class="n">get_amount</span><span class="p">(</span><span class="n">arg</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ret</span> <span class="o">=</span> <span class="n">get</span><span class="p">(</span><span class="s2">&#34;base_mods&#34;</span><span class="p">)</span> <span class="o">+</span> <span class="n">get</span><span class="p">(</span><span class="s2">&#34;scaling_mods&#34;</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="n">level</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="n">bandaged</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">bandaged_rate</span> <span class="o">+=</span> <span class="n">bandaged</span><span class="o">.</span><span class="n">get_amount</span><span class="p">(</span><span class="s2">&#34;HEAL_RATE&#34;</span><span class="p">)</span> <span class="o">/</span> <span class="mi">24</span><span class="n">hours</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">body_part</span> <span class="o">=</span> <span class="n">head</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    	<span class="n">bandaged_rate</span> <span class="o">*=</span> <span class="n">bandaged</span><span class="o">.</span><span class="n">get_amount</span><span class="p">(</span><span class="s2">&#34;HEAL_HEAD&#34;</span><span class="p">)</span> <span class="o">/</span> <span class="mi">100</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">body_part</span> <span class="o">=</span> <span class="n">torso</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">bandaged_rate</span> <span class="o">*=</span> <span class="n">bandaged</span><span class="o">.</span><span class="n">get_amount</span><span class="p">(</span><span class="s2">&#34;HEAL_TORSO&#34;</span><span class="p">)</span> <span class="o">/</span> <span class="mi">100</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="n">disinfected</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">disinfected_rate</span> <span class="o">+=</span> <span class="n">disinfected</span><span class="o">.</span><span class="n">get_amount</span><span class="p">(</span><span class="s2">&#34;HEAL_RATE&#34;</span><span class="p">)</span> <span class="o">/</span> <span class="mi">24</span><span class="n">hours</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">body_part</span> <span class="o">=</span> <span class="n">head</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    	<span class="n">disinfected_rate</span> <span class="o">*=</span> <span class="n">disinfected</span><span class="o">.</span><span class="n">get_amount</span><span class="p">(</span><span class="s2">&#34;HEAL_HEAD&#34;</span><span class="p">)</span> <span class="o">/</span> <span class="mi">100</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">body_part</span> <span class="o">=</span> <span class="n">torso</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">disinfected_rate</span> <span class="o">*=</span> <span class="n">disinfected</span><span class="o">.</span><span class="n">get_amount</span><span class="p">(</span><span class="s2">&#34;HEAL_TORSO&#34;</span><span class="p">)</span> <span class="o">/</span> <span class="mi">100</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">rate_medicine</span> <span class="o">+=</span> <span class="n">bandaged_rate</span> <span class="o">+</span> <span class="n">disinfected_rate</span>
+</span></span><span class="line"><span class="cl"><span class="n">rate_medicine</span> <span class="o">*=</span> <span class="mf">1.0</span> <span class="o">+</span> <span class="n">mutation_value</span><span class="p">(</span><span class="s2">&#34;healing_resting&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">rate_medicine</span> <span class="o">*=</span> <span class="mf">1.0</span> <span class="o">+</span> <span class="n">at_rest_quality</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="n">bandaged</span> <span class="ow">and</span> <span class="n">disinfected</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">rate_medicine</span> <span class="o">*=</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="n">healthy</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">rate_medicine</span> <span class="o">*=</span> <span class="mf">1.0</span> <span class="o">+</span> <span class="n">healthy</span> <span class="o">/</span> <span class="mi">200</span>
+</span></span><span class="line"><span class="cl"><span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">rate_medicine</span> <span class="o">*=</span> <span class="mf">1.0</span> <span class="o">+</span> <span class="n">healthy</span> <span class="o">/</span> <span class="mi">400</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl"><span class="n">primary_hp_mod</span> <span class="o">=</span> <span class="n">mutation_value</span><span class="p">(</span> <span class="s2">&#34;hp_modifier&#34;</span> <span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="n">primary_hp_mod</span> <span class="o">&lt;</span> <span class="mf">0.0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">	<span class="c1"># HP mod can&#39;t get below -1.0</span>
+</span></span><span class="line"><span class="cl">	<span class="n">rate_medicine</span> <span class="o">*=</span> <span class="mf">1.0</span><span class="n">f</span> <span class="o">+</span> <span class="n">primary_hp_mod</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="tldr-1">TL;DR</h3>
 <p>运用医学手段后的回血，分为包扎回血和消毒回血，两者算法一致，主要受包扎/消毒效果影响。“极差”没有加成，“好”及以上可以翻八倍。其中头部和身体会再乘上特殊加成，头部 0.5，身体 1.5。</p>
@@ -803,9 +803,9 @@
   <script type="text/javascript">
     new Valine({
         el: '#vcomments' ,
-        serverURLs: '',
-        appId: 'fSbXaElXXTznggVXiWy8NFBU-gzGzoHsz',
-        appKey: 'kK3SxB14xAACgHftKrSaBRDU',
+        serverURLs: 'https:\/\/0mqcauyd.api.lncldglobal.com',
+        appId: '0mQCAuYdR6NE9gIVBd6rDEjY-MdYXbMMI',
+        appKey: 'CBACoI7HhLeuROO39gpYpYDl',
         notify:  false ,
         verify:  false ,
         avatar:'mm',
@@ -865,7 +865,7 @@
 
 
 
-<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
   <script type="text/javascript">
     window.MathJax = {
       tex: {

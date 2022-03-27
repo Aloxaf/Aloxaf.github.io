@@ -38,7 +38,7 @@ Zplugin 已改名 Zinit，不过教程中的内容仍然适用。 阅读时请�
 
 
 
-<meta name="generator" content="Hugo 0.92.0 with theme even" />
+<meta name="generator" content="Hugo 0.95.0 with theme even" />
 
 
 <link rel="preload" href="/fonts/iconfont/iconfont.woff" as="font" type="font/woff" crossorigin="anonymous">
@@ -321,8 +321,8 @@ p10k 的 Instant Prompt 功能非常好用，它可以在其他插件的加载�
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">sh -c <span class="s2">&#34;</span><span class="k">$(</span>curl -fsSL https://raw.githubusercontent.com/zdharma/zinit/master/doc/install.sh<span class="k">)</span><span class="s2">&#34;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sh -c <span class="s2">&#34;</span><span class="k">$(</span>curl -fsSL https://raw.githubusercontent.com/zdharma/zinit/master/doc/install.sh<span class="k">)</span><span class="s2">&#34;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="手动安装">手动安装</h2>
 <p>首先 clone repo 到随便哪个位置</p>
@@ -331,8 +331,8 @@ p10k 的 Instant Prompt 功能非常好用，它可以在其他插件的加载�
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">git clone https://github.com/zdharma/zinit.git ~/.zinit/bin
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git clone https://github.com/zdharma/zinit.git ~/.zinit/bin
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>然后在你的 ~/.zshrc 顶端添加如下语句</p>
 <div class="highlight"><div class="chroma">
@@ -340,8 +340,8 @@ p10k 的 Instant Prompt 功能非常好用，它可以在其他插件的加载�
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">source</span> ~/.zinit/bin/zinit.zsh
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">source</span> ~/.zinit/bin/zinit.zsh
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>安装完成，非常简单。</p>
 <h1 id="配置">配置</h1>
@@ -363,9 +363,9 @@ p10k 的 Instant Prompt 功能非常好用，它可以在其他插件的加载�
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">zinit load zdharma/history-search-multi-word
-zinit light zsh-users/zsh-syntax-highlighting
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">zinit load zdharma/history-search-multi-word
+</span></span><span class="line"><span class="cl">zinit light zsh-users/zsh-syntax-highlighting
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>以上命令展示了两种最基本的加载插件的方式。</p>
 <ul>
@@ -383,9 +383,9 @@ zinit light zsh-users/zsh-syntax-highlighting
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">zinit snippet <span class="s1">&#39;https://github.com/robbyrussell/oh-my-zsh/raw/master/plugins/git/git.plugin.zsh&#39;</span>
-zinit snippet <span class="s1">&#39;https://github.com/sorin-ionescu/prezto/blob/master/modules/helper/init.zsh&#39;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">zinit snippet <span class="s1">&#39;https://github.com/robbyrussell/oh-my-zsh/raw/master/plugins/git/git.plugin.zsh&#39;</span>
+</span></span><span class="line"><span class="cl">zinit snippet <span class="s1">&#39;https://github.com/sorin-ionescu/prezto/blob/master/modules/helper/init.zsh&#39;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>此外，对于 Oh My Zsh 和 Prezto，你还可以使用缩写 <code>OMZ::</code> 和 <code>PZT::</code>：</p>
 <div class="highlight"><div class="chroma">
@@ -394,9 +394,9 @@ zinit snippet <span class="s1">&#39;https://github.com/sorin-ionescu/prezto/blob
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">zinit snippet OMZ::plugins/git/git.plugin.zsh
-zinit snippet PZT::modules/helper/init.zsh
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">zinit snippet OMZ::plugins/git/git.plugin.zsh
+</span></span><span class="line"><span class="cl">zinit snippet PZT::modules/helper/init.zsh
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>此外的此外，snippet 还支持 Subversion 协议，which GitHub 也支持。这可以让你加载包含多个文件的代码片段（比如 Prezto module 就有可能包含两个或者更多的文件，像 <code>init.zsh</code> 和 <code>alias.zsh</code>）。默认会被 source 的文件有：<code>*.plugin.zsh</code>, <code>init.zsh</code>, <code>*.zsh-theme</code>：</p>
 <div class="highlight"><div class="chroma">
@@ -406,10 +406,10 @@ zinit snippet PZT::modules/helper/init.zsh
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># URL 指向目录</span>
-zinit ice svn
-zinit snippet PZT::modules/docker
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># URL 指向目录</span>
+</span></span><span class="line"><span class="cl">zinit ice svn
+</span></span><span class="line"><span class="cl">zinit snippet PZT::modules/docker
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="代码片段和性能">代码片段和性能</h2>
 <p>通过 <code>curl</code>，<code>wget</code> 等工具和 SVN ，你可以几乎完全避免加载 Oh My Zsh 和 Prezto 或者是其他框架的代码。这可以提高 <code>Zplugin</code> 的性能，而且更快更紧凑（指占用内存更小并且加载时间更短）。</p>
@@ -421,9 +421,9 @@ zinit snippet PZT::modules/docker
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">zinit ice svn pick<span class="s2">&#34;init.zsh&#34;</span>
-zinit snippet PZT::modules/git
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">zinit ice svn pick<span class="s2">&#34;init.zsh&#34;</span>
+</span></span><span class="line"><span class="cl">zinit snippet PZT::modules/git
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>ice 修饰词的内容可以简单地放在 <code>&quot;...&quot;</code>, <code>'...'</code> 或 <code>$'...'</code> 中。不需要在 ice 修饰词名称的后面加上 <code>&quot;:&quot;</code> （尽管你这么做也没问题，而且加 <code>=</code> 也是可以的。比如 <code>pick=&quot;init.zsh&quot;</code> 或 <code>pick=init.zsh</code> 都是可行的）。
 这样可以让 <code>vim</code>，<code>emacs</code> 之类的编辑器和 <code>zsh-users/zsh-syntax-highlighting</code> 或 <code>zdharma/fast-syntax-highlighting</code> 能够高亮 ice 修饰词的内容。</p>
@@ -435,9 +435,9 @@ zinit snippet PZT::modules/git
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">zinit ice as<span class="s2">&#34;program&#34;</span> cp<span class="s2">&#34;httpstat.sh -&gt; httpstat&#34;</span> pick<span class="s2">&#34;httpstat&#34;</span>
-zinit light b4b4r07/httpstat
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">zinit ice as<span class="s2">&#34;program&#34;</span> cp<span class="s2">&#34;httpstat.sh -&gt; httpstat&#34;</span> pick<span class="s2">&#34;httpstat&#34;</span>
+</span></span><span class="line"><span class="cl">zinit light b4b4r07/httpstat
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>上面的代码会将插件目录添加到 <code>$PATH</code> 中，并复制文件 <code>httpstat.sh</code> 为 <code>httpstat</code> ，并为 <code>pick</code> 选中的文件（本例中为 <code>httpstat</code>） 添加正确的可执行权限（<code>+x</code>）。还有一个修饰词 <code>mv</code>，它和 <code>cp</code> 的工作方式类似，只不过是移动文件而不是复制。<code>mv</code>的优先级比<code>cp</code>低。</p>
 <blockquote>
@@ -452,10 +452,10 @@ zinit light b4b4r07/httpstat
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">zinit ice as<span class="s2">&#34;program&#34;</span> mv<span class="s2">&#34;httpstat.sh -&gt; httpstat&#34;</span> <span class="se">\
-</span><span class="se"></span>      pick<span class="s2">&#34;httpstat&#34;</span> atpull<span class="s1">&#39;!git reset --hard&#39;</span>
-zinit light b4b4r07/httpstat
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">zinit ice as<span class="s2">&#34;program&#34;</span> mv<span class="s2">&#34;httpstat.sh -&gt; httpstat&#34;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>      pick<span class="s2">&#34;httpstat&#34;</span> atpull<span class="s1">&#39;!git reset --hard&#39;</span>
+</span></span><span class="line"><span class="cl">zinit light b4b4r07/httpstat
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><code>atpull</code> 后面的命令以感叹号开头，意味着它会在 <code>git pull</code> 和 <code>mv</code> 之前被执行。此外 <code>atpull</code>, <code>mv</code>, <code>cp</code> 都只会在获取到新的提交的时候被执行。</p>
 <p>总而言之，当用户执行 <code>zinit update b4b4r07/httpstat</code> 来升级这个插件的时候，如果有新 commit，首先执行的是 <code>git reset --hard</code>——它会恢复原来的 <code>httpstat.sh</code>，然后 <code>git pull</code>被执行并拉取新的 commit（进行快进），然后 <code>mv</code> 再次被执行将命令名称修改为 <code>httpstat</code> 而不是 <code>httpstat.sh</code>。这样 <code>mv</code> 可以用于永久性更新插件的内容而且不会阻碍插件使用 <code>git</code> （或 <code>subversion</code> ）更新。</p>
@@ -472,11 +472,11 @@ zinit light b4b4r07/httpstat
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">zinit ice mv<span class="s2">&#34;httpstat.sh -&gt; httpstat&#34;</span> <span class="se">\
-</span><span class="se"></span>        pick<span class="s2">&#34;httpstat&#34;</span> as<span class="s2">&#34;program&#34;</span>
-zinit snippet <span class="se">\
-</span><span class="se"></span>    https://github.com/b4b4r07/httpstat/blob/master/httpstat.sh
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">zinit ice mv<span class="s2">&#34;httpstat.sh -&gt; httpstat&#34;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>        pick<span class="s2">&#34;httpstat&#34;</span> as<span class="s2">&#34;program&#34;</span>
+</span></span><span class="line"><span class="cl">zinit snippet <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    https://github.com/b4b4r07/httpstat/blob/master/httpstat.sh
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>注：Snippet 也支持 <code>atpull</code>，所以可以这样写 <code>atpull'!svn revert'</code> 。还有 <code>atinit</code>，可以在每次加载插件或 snippet 的时候被执行。</p>
 <h2 id="通过-snippet-安装补全">通过 snippet 安装补全</h2>
@@ -487,9 +487,9 @@ zinit snippet <span class="se">\
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">zinit ice as<span class="s2">&#34;completion&#34;</span>
-zinit snippet https://github.com/docker/cli/blob/master/contrib/completion/zsh/_docker
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">zinit ice as<span class="s2">&#34;completion&#34;</span>
+</span></span><span class="line"><span class="cl">zinit snippet https://github.com/docker/cli/blob/master/contrib/completion/zsh/_docker
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="补全管理">补全管理</h2>
 <p>Zplugin 允许禁用/启动任意插件的任意一条补全。试着安装一个提供了补全的流行插件：</p>
@@ -499,9 +499,9 @@ zinit snippet https://github.com/docker/cli/blob/master/contrib/completion/zsh/_
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">zinit ice blockf
-zinit light zsh-users/zsh-completions
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">zinit ice blockf
+</span></span><span class="line"><span class="cl">zinit light zsh-users/zsh-completions
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>第一条命令（<code>blockf</code> ice）将会阻断传统的添加补全的方式。zinit 会使用它自己的方式（基于符号链接而不是往 <code>$fpath</code> 里加一堆目录）。Zplugin 将会自动安装它下载的插件的补全。想要卸载这些补全并且重新安装的话，可以使用：</p>
 <div class="highlight"><div class="chroma">
@@ -510,9 +510,9 @@ zinit light zsh-users/zsh-completions
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">zinit cuninstall zsh-users/zsh-completions   <span class="c1"># 卸载</span>
-zinit creinstall zsh-users/zsh-completions   <span class="c1"># 安装</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">zinit cuninstall zsh-users/zsh-completions   <span class="c1"># 卸载</span>
+</span></span><span class="line"><span class="cl">zinit creinstall zsh-users/zsh-completions   <span class="c1"># 安装</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="列出补全">列出补全</h3>
 <blockquote>
@@ -524,8 +524,8 @@ zinit creinstall zsh-users/zsh-completions   <span class="c1"># 安装</span>
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">zi clist
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">zi clist
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>这个命令特别适用于 <code>zsh-users/zsh-completions</code> 这类提供了大量补全的插件——表格每行将会展示三个补全（这样可以占用的终端页面的大小）就像这样</p>
 <div class="highlight"><div class="chroma">
@@ -537,12 +537,12 @@ zinit creinstall zsh-users/zsh-completions   <span class="c1"># 安装</span>
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">...
-atach, bitcoin-cli, bower    zsh-users/zsh-completions
-bundle, caffeinate, cap      zsh-users/zsh-completions
-cask, cf, chattr             zsh-users/zsh-completions
-...
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">...
+</span></span><span class="line"><span class="cl">atach, bitcoin-cli, bower    zsh-users/zsh-completions
+</span></span><span class="line"><span class="cl">bundle, caffeinate, cap      zsh-users/zsh-completions
+</span></span><span class="line"><span class="cl">cask, cf, chattr             zsh-users/zsh-completions
+</span></span><span class="line"><span class="cl">...
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>你也可以通过给 <code>clist </code> 添加参数来提高每行显示的补全的数目，比如 <code>zi clist 6</code> 将会显示：</p>
 <div class="highlight"><div class="chroma">
@@ -554,12 +554,12 @@ cask, cf, chattr             zsh-users/zsh-completions
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">...
-bundle, caffeinate, cap, cask, cf, chattr      zsh-users/zsh-completions
-cheat, choc, cmake, coffee, column, composer   zsh-users/zsh-completions
-console, dad, debuild, dget, dhcpcd, diana     zsh-users/zsh-completions
-...
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">...
+</span></span><span class="line"><span class="cl">bundle, caffeinate, cap, cask, cf, chattr      zsh-users/zsh-completions
+</span></span><span class="line"><span class="cl">cheat, choc, cmake, coffee, column, composer   zsh-users/zsh-completions
+</span></span><span class="line"><span class="cl">console, dad, debuild, dget, dhcpcd, diana     zsh-users/zsh-completions
+</span></span><span class="line"><span class="cl">...
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="启用和禁用补全">启用和禁用补全</h2>
 <p>补全可以被禁用，这样就可以调用 zsh 的原始补全。这个命令非常简单，它只需要补全的名称作为参数</p>
@@ -571,11 +571,11 @@ console, dad, debuild, dget, dhcpcd, diana     zsh-users/zsh-completions
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ zi cdisable cmake
-Disabled cmake completion belonging to zsh-users/zsh-completions
-$ zi cenable cmake
-Enabled cmake completion belonging to zsh-users/zsh-completions
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ zi cdisable cmake
+</span></span><span class="line"><span class="cl">Disabled cmake completion belonging to zsh-users/zsh-completions
+</span></span><span class="line"><span class="cl">$ zi cenable cmake
+</span></span><span class="line"><span class="cl">Enabled cmake completion belonging to zsh-users/zsh-completions
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>就这么简单。还有一个命令 <code>zinit csearch</code>，可以搜索所有的插件目录列出所有可用的补全并且展示它们是否被启用。</p>
 <p><img src="https://zdharma.org/zinit/wiki/img/csearch.png" alt="#csearch screenshot"></p>
@@ -592,13 +592,13 @@ Enabled cmake completion belonging to zsh-users/zsh-completions
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">zinit ice svn
-zinit snippet https://github.com/zsh-users/zsh-completions/trunk/src
-
-<span class="c1"># 对于 Oh My Zsh 和 Prezto, 可以直接使用 OMZ:: 和 PZT:: 前缀</span>
-<span class="c1"># 不需要添加 `/trunk/`， （不过路径需要指向一个目录而不是文件）</span>
-zinit ice svn<span class="p">;</span> zinit snippet PZT::modules/docker
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">zinit ice svn
+</span></span><span class="line"><span class="cl">zinit snippet https://github.com/zsh-users/zsh-completions/trunk/src
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 对于 Oh My Zsh 和 Prezto, 可以直接使用 OMZ:: 和 PZT:: 前缀</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 不需要添加 `/trunk/`， （不过路径需要指向一个目录而不是文件）</span>
+</span></span><span class="line"><span class="cl">zinit ice svn<span class="p">;</span> zinit snippet PZT::modules/docker
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>snippet 也会默认自动安全可用补全，就像 plugin 一样。</p>
 <h2 id="turbo-mode-zsh--53">Turbo Mode (Zsh &gt;= 5.3)</h2>
@@ -615,10 +615,10 @@ zinit ice svn<span class="p">;</span> zinit snippet PZT::modules/docker
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">PS1</span><span class="o">=</span><span class="s2">&#34;READY &gt; &#34;</span>
-zinit ice wait<span class="s1">&#39;!0&#39;</span> 
-zinit load halfo/lambda-mod-zsh-theme
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nv">PS1</span><span class="o">=</span><span class="s2">&#34;READY &gt; &#34;</span>
+</span></span><span class="line"><span class="cl">zinit ice wait<span class="s1">&#39;!0&#39;</span> 
+</span></span><span class="line"><span class="cl">zinit load halfo/lambda-mod-zsh-theme
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>上面的代码让 <code>psprint/zprompts</code> 插件在 <code>zshrc</code> 处理完毕后的 <code>0</code> 秒后启动。实际它会在基本的命令提示符 <code>READY &gt;</code> 出现后的大概 1ms 后启动。我已经使用这种方式来设置我的命令提示符两年多了，没有丝毫问题。 只提供 <code>wait</code> 一个词也是可以的，它的效果等同于 <code>wait'0'</code>（同样 <code>wait'!'</code>等同于 <code>wait'!0'</code>）</p>
 <p>感叹号让 Zplugin 在插件加载完毕后重设命令提示符，对于延迟加载主题来说是很有必要的。Prezto 主题也是一样，下面的例子使用了更长的延迟</p>
@@ -628,9 +628,9 @@ zinit load halfo/lambda-mod-zsh-theme
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">zi ice svn silent wait<span class="s1">&#39;!1&#39;</span> atload<span class="s1">&#39;prompt smiley&#39;</span>
-zi snippet PZT::modules/prompt
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">zi ice svn silent wait<span class="s1">&#39;!1&#39;</span> atload<span class="s1">&#39;prompt smiley&#39;</span>
+</span></span><span class="line"><span class="cl">zi snippet PZT::modules/prompt
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>延迟加载 <code>zsh-users/zsh-autosuggestions</code></p>
 <div class="highlight"><div class="chroma">
@@ -639,9 +639,9 @@ zi snippet PZT::modules/prompt
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">zinit ice <span class="nb">wait</span> lucid atload<span class="s1">&#39;_zsh_autosuggest_start&#39;</span>
-zinit light zsh-users/zsh-autosuggestions
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">zinit ice <span class="nb">wait</span> lucid atload<span class="s1">&#39;_zsh_autosuggest_start&#39;</span>
+</span></span><span class="line"><span class="cl">zinit light zsh-users/zsh-autosuggestions
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>解释：Autosuggesstions 使用了 <code>precmd</code> 钩子，它会在处理完 <code>zshrc</code> 之后（刚好在第一个命令提示符出现之前）被调用。然而 Turbo mode 会在 <code>zshrc</code> 加载完成 1s 后再加载它，使得在第一个命令提示符下 <code>precmd</code> 将不会被安装并调用。这就会让 autosuggesstions 在第一个命令提示符下处于不可用状态。但 <code>atload</code> ice 可以修复这个问题，它可以在插件加载完成后调用同样的函数，就像 <code>precmd</code> 做的那样，这样就可以获得一致的体验。</p>
 <p><code>lucid</code> ice 可以隐藏 Turbo mode 下插件加载完成的提示，类似 <code>Loaded zsh-users/zsh-autosuggestions</code></p>
@@ -655,9 +655,9 @@ zinit light zsh-users/zsh-autosuggestions
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">root@sg &gt; ~ &gt; print <span class="nv">$precmd_functions</span>                       &lt; ✔ &lt; 22:21:33
-_zsh_autosuggest_start prompt_zinc_setup prompt_zinc_precmd
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root@sg &gt; ~ &gt; print <span class="nv">$precmd_functions</span>                       &lt; ✔ &lt; 22:21:33
+</span></span><span class="line"><span class="cl">_zsh_autosuggest_start prompt_zinc_setup prompt_zinc_precmd
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>然后，把他们添加到 <code>atload''</code> ice 中</p>
 <div class="highlight"><div class="chroma">
@@ -667,10 +667,10 @@ _zsh_autosuggest_start prompt_zinc_setup prompt_zinc_precmd
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">zinit ice wait<span class="s1">&#39;!&#39;</span> lucid nocd <span class="se">\
-</span><span class="se"></span>    atload<span class="s1">&#39;!prompt_zinc_setup; prompt_zinc_precmd&#39;</span>
-zinit load robobenklein/zinc
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">zinit ice wait<span class="s1">&#39;!&#39;</span> lucid nocd <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    atload<span class="s1">&#39;!prompt_zinc_setup; prompt_zinc_precmd&#39;</span>
+</span></span><span class="line"><span class="cl">zinit load robobenklein/zinc
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><code>atload'!...'</code> 中的感叹号会让 Zplugin 跟踪这个函数以便卸载插件，详见 <a href="https://zdharma.org/zinit/wiki/atload-and-other-at-ices/">这儿</a>。这个对于接下来会提到的设置多个命令提示符会有用。</p>
 <h2 id="按条件自动加载卸载">按条件自动加载/卸载</h2>
@@ -689,17 +689,17 @@ zinit load robobenklein/zinc
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 处于 ~/tmp 时加载</span>
-
-zinit ice load<span class="s1">&#39;![[ $PWD = */tmp* ]]&#39;</span> unload<span class="s1">&#39;![[ $PWD != */tmp* ]]&#39;</span> <span class="se">\
-</span><span class="se"></span>    atload<span class="s2">&#34;!promptinit; prompt sprint3&#34;</span>
-zinit load psprint/zprompts
-
-<span class="c1"># 不在 ~/tmp 时加载</span>
-
-zinit ice load<span class="s1">&#39;![[ $PWD != */tmp* ]]&#39;</span> unload<span class="s1">&#39;![[ $PWD = */tmp* ]]&#39;</span>
-zinit load russjohnson/angry-fly-zsh
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 处于 ~/tmp 时加载</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">zinit ice load<span class="s1">&#39;![[ $PWD = */tmp* ]]&#39;</span> unload<span class="s1">&#39;![[ $PWD != */tmp* ]]&#39;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    atload<span class="s2">&#34;!promptinit; prompt sprint3&#34;</span>
+</span></span><span class="line"><span class="cl">zinit load psprint/zprompts
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 不在 ~/tmp 时加载</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">zinit ice load<span class="s1">&#39;![[ $PWD != */tmp* ]]&#39;</span> unload<span class="s1">&#39;![[ $PWD = */tmp* ]]&#39;</span>
+</span></span><span class="line"><span class="cl">zinit load russjohnson/angry-fly-zsh
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>两个命令提示符，每个都在不同的目录下生效，这个技术可以用来定义不同的插件组，比如定义一个 <code>$PLUGINS</code> 和可能的值比如 <code>cpp</code>, <code>web</code>, <code>admin</code>，并且设置 <code>load</code>/<code>unload</code> 条件来激活 <code>cpp</code>， <code>web</code> 中不同的插件。</p>
 <blockquote>
@@ -718,8 +718,8 @@ zinit load russjohnson/angry-fly-zsh
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">zinit snippet OMZ::lib/git.zsh
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">zinit snippet OMZ::lib/git.zsh
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>否则可能会收到这样的错误</p>
 <div class="highlight"><div class="chroma">
@@ -728,9 +728,9 @@ zinit load russjohnson/angry-fly-zsh
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">........:1: <span class="nb">command</span> not found: git_prompt_status
-........:1: <span class="nb">command</span> not found: git_prompt_short_sha
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">........:1: <span class="nb">command</span> not found: git_prompt_status
+</span></span><span class="line"><span class="cl">........:1: <span class="nb">command</span> not found: git_prompt_short_sha
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>部分主题可能还需要加载 <code>OMZ::lib/theme-and-appearance.zsh</code></p>
 <h2 id="为什么我的键位绑定失效了">为什么我的键位绑定失效了</h2>
@@ -741,9 +741,9 @@ zinit load russjohnson/angry-fly-zsh
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"> <span class="c1"># 直接加载 OMZ 的键位绑定</span>
- zinit snippet OMZ::lib/key-bindings.zsh
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"> <span class="c1"># 直接加载 OMZ 的键位绑定</span>
+</span></span><span class="line"><span class="cl"> zinit snippet OMZ::lib/key-bindings.zsh
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="为什么我的补全失效了">为什么我的补全失效了</h2>
 <p>因为以往也是 OMZ 替你做这件事情的……有两种解决办法</p>
@@ -758,11 +758,11 @@ zinit load russjohnson/angry-fly-zsh
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 初始化补全</span>
-autoload -Uz compinit<span class="p">;</span> compinit
-<span class="c1"># zinit 出于效率考虑会截获 compdef 调用，放到最后再统一应用，可以节省不少时间</span>
-zinit cdreplay -q
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 初始化补全</span>
+</span></span><span class="line"><span class="cl">autoload -Uz compinit<span class="p">;</span> compinit
+</span></span><span class="line"><span class="cl"><span class="c1"># zinit 出于效率考虑会截获 compdef 调用，放到最后再统一应用，可以节省不少时间</span>
+</span></span><span class="line"><span class="cl">zinit cdreplay -q
+</span></span></code></pre></td></tr></table>
 </div>
 </div></li>
 <li>
@@ -774,10 +774,10 @@ zinit cdreplay -q
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 假设 git 插件是最后加载的</span>
-zinit ice lucid <span class="nv">wait</span><span class="o">=</span><span class="s2">&#34;0&#34;</span> <span class="nv">atload</span><span class="o">=</span><span class="s2">&#34;zpcompinit; zpcdreplay&#34;</span>
-zinit snippet OMZ::plugins/git/git.plugin.zsh
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 假设 git 插件是最后加载的</span>
+</span></span><span class="line"><span class="cl">zinit ice lucid <span class="nv">wait</span><span class="o">=</span><span class="s2">&#34;0&#34;</span> <span class="nv">atload</span><span class="o">=</span><span class="s2">&#34;zpcompinit; zpcdreplay&#34;</span>
+</span></span><span class="line"><span class="cl">zinit snippet OMZ::plugins/git/git.plugin.zsh
+</span></span></code></pre></td></tr></table>
 </div>
 </div></li>
 </ol>
@@ -793,8 +793,8 @@ zinit snippet OMZ::plugins/git/git.plugin.zsh
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">sh -c <span class="s2">&#34;</span><span class="k">$(</span>curl -fsSL https://raw.githubusercontent.com/zdharma/zinit/master/doc/mod-install.sh<span class="k">)</span><span class="s2">&#34;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sh -c <span class="s2">&#34;</span><span class="k">$(</span>curl -fsSL https://raw.githubusercontent.com/zdharma/zinit/master/doc/mod-install.sh<span class="k">)</span><span class="s2">&#34;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>脚本执行完会提示你添加两行代码到 <code>~/.zshrc</code> 顶部</p>
 <h3 id="已安装-zplugin">已安装 Zplugin</h3>
@@ -803,8 +803,8 @@ zinit snippet OMZ::plugins/git/git.plugin.zsh
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">zinit module build
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">zinit module build
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>同样，脚本执行完会提示你添加两行代码到 <code>~/.zshrc</code> 顶部</p>
 <h3 id="用法">用法</h3>
@@ -838,11 +838,11 @@ zinit snippet OMZ::plugins/git/git.plugin.zsh
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">zinit snippet OMZ::lib/completion.zsh
-zinit snippet OMZ::lib/history.zsh
-zinit snippet OMZ::lib/key-bindings.zsh
-zinit snippet OMZ::lib/theme-and-appearance.zsh
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">zinit snippet OMZ::lib/completion.zsh
+</span></span><span class="line"><span class="cl">zinit snippet OMZ::lib/history.zsh
+</span></span><span class="line"><span class="cl">zinit snippet OMZ::lib/key-bindings.zsh
+</span></span><span class="line"><span class="cl">zinit snippet OMZ::lib/theme-and-appearance.zsh
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>上面的代码加载了 OMZ 对补全、历史、键位绑定、主题等的设置，对于我来说基本上和 OMZ 的使用体验就一致了。如果还想要什么功能的话，可以直接去 OMZ 的 lib 目录下找。</p>
 <h1 id="一份示例配置">一份示例配置</h1>
@@ -885,42 +885,42 @@ zinit snippet OMZ::lib/theme-and-appearance.zsh
 </span><span class="lnt">35
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">source</span> ~/.zinit/bin/zinit.zsh
-
-<span class="c1"># 快速目录跳转</span>
-zinit ice lucid <span class="nv">wait</span><span class="o">=</span><span class="s1">&#39;1&#39;</span>
-zinit light skywind3000/z.lua
-
-<span class="c1"># 语法高亮</span>
-zinit ice lucid <span class="nv">wait</span><span class="o">=</span><span class="s1">&#39;0&#39;</span> <span class="nv">atinit</span><span class="o">=</span><span class="s1">&#39;zpcompinit&#39;</span>
-zinit light zdharma/fast-syntax-highlighting
-
-<span class="c1"># 自动建议</span>
-zinit ice lucid <span class="nv">wait</span><span class="o">=</span><span class="s2">&#34;0&#34;</span> <span class="nv">atload</span><span class="o">=</span><span class="s1">&#39;_zsh_autosuggest_start&#39;</span>
-zinit light zsh-users/zsh-autosuggestions
-
-<span class="c1"># 补全</span>
-zinit ice lucid <span class="nv">wait</span><span class="o">=</span><span class="s1">&#39;0&#39;</span>
-zinit light zsh-users/zsh-completions
-
-<span class="c1"># 加载 OMZ 框架及部分插件</span>
-zinit snippet OMZ::lib/completion.zsh
-zinit snippet OMZ::lib/history.zsh
-zinit snippet OMZ::lib/key-bindings.zsh
-zinit snippet OMZ::lib/theme-and-appearance.zsh
-zinit snippet OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
-zinit snippet OMZ::plugins/sudo/sudo.plugin.zsh
-
-zinit ice svn
-zinit snippet OMZ::plugins/extract
-
-zinit ice lucid <span class="nv">wait</span><span class="o">=</span><span class="s1">&#39;1&#39;</span>
-zinit snippet OMZ::plugins/git/git.plugin.zsh
-
-<span class="c1"># 加载 pure 主题</span>
-zinit ice pick<span class="s2">&#34;async.zsh&#34;</span> src<span class="s2">&#34;pure.zsh&#34;</span>
-zinit light sindresorhus/pure
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">source</span> ~/.zinit/bin/zinit.zsh
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 快速目录跳转</span>
+</span></span><span class="line"><span class="cl">zinit ice lucid <span class="nv">wait</span><span class="o">=</span><span class="s1">&#39;1&#39;</span>
+</span></span><span class="line"><span class="cl">zinit light skywind3000/z.lua
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 语法高亮</span>
+</span></span><span class="line"><span class="cl">zinit ice lucid <span class="nv">wait</span><span class="o">=</span><span class="s1">&#39;0&#39;</span> <span class="nv">atinit</span><span class="o">=</span><span class="s1">&#39;zpcompinit&#39;</span>
+</span></span><span class="line"><span class="cl">zinit light zdharma/fast-syntax-highlighting
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 自动建议</span>
+</span></span><span class="line"><span class="cl">zinit ice lucid <span class="nv">wait</span><span class="o">=</span><span class="s2">&#34;0&#34;</span> <span class="nv">atload</span><span class="o">=</span><span class="s1">&#39;_zsh_autosuggest_start&#39;</span>
+</span></span><span class="line"><span class="cl">zinit light zsh-users/zsh-autosuggestions
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 补全</span>
+</span></span><span class="line"><span class="cl">zinit ice lucid <span class="nv">wait</span><span class="o">=</span><span class="s1">&#39;0&#39;</span>
+</span></span><span class="line"><span class="cl">zinit light zsh-users/zsh-completions
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 加载 OMZ 框架及部分插件</span>
+</span></span><span class="line"><span class="cl">zinit snippet OMZ::lib/completion.zsh
+</span></span><span class="line"><span class="cl">zinit snippet OMZ::lib/history.zsh
+</span></span><span class="line"><span class="cl">zinit snippet OMZ::lib/key-bindings.zsh
+</span></span><span class="line"><span class="cl">zinit snippet OMZ::lib/theme-and-appearance.zsh
+</span></span><span class="line"><span class="cl">zinit snippet OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
+</span></span><span class="line"><span class="cl">zinit snippet OMZ::plugins/sudo/sudo.plugin.zsh
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">zinit ice svn
+</span></span><span class="line"><span class="cl">zinit snippet OMZ::plugins/extract
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">zinit ice lucid <span class="nv">wait</span><span class="o">=</span><span class="s1">&#39;1&#39;</span>
+</span></span><span class="line"><span class="cl">zinit snippet OMZ::plugins/git/git.plugin.zsh
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 加载 pure 主题</span>
+</span></span><span class="line"><span class="cl">zinit ice pick<span class="s2">&#34;async.zsh&#34;</span> src<span class="s2">&#34;pure.zsh&#34;</span>
+</span></span><span class="line"><span class="cl">zinit light sindresorhus/pure
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>安装完 Zinit 后，可以将以上代码粘贴到 <code>~/.zshrc </code> 中，然后建议<strong>挂着代理</strong>启用 zsh（因为会从 GitHub clone，所以第一次启动会比较慢，根据你的网络状况可能需要几十秒到几十分钟不等</p>
 <p>本来还有一段安装一些常用工具的代码，不过一方面这些工具最好的安装方式应该是通过系统包管理工具安装，另一方面加上这段可能会让网络不好的朋友非常痛苦，故单独提出来放在下面。</p>
@@ -953,31 +953,31 @@ zinit light sindresorhus/pure
 </span><span class="lnt">24
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># ---- (可选)加载了一堆二进制程序 ----</span>
-zinit light zinit/z-a-bin-gem-node
-
-zinit <span class="nv">as</span><span class="o">=</span><span class="s2">&#34;null&#34;</span> <span class="nv">wait</span><span class="o">=</span><span class="s2">&#34;1&#34;</span> lucid <span class="nv">from</span><span class="o">=</span><span class="s2">&#34;gh-r&#34;</span> <span class="k">for</span> <span class="se">\
-</span><span class="se"></span>    <span class="nv">mv</span><span class="o">=</span><span class="s2">&#34;exa* -&gt; exa&#34;</span> sbin       ogham/exa <span class="se">\
-</span><span class="se"></span>    <span class="nv">mv</span><span class="o">=</span><span class="s2">&#34;*/rg -&gt; rg&#34;</span>  sbin		BurntSushi/ripgrep <span class="se">\
-</span><span class="se"></span>    <span class="nv">mv</span><span class="o">=</span><span class="s2">&#34;fd* -&gt; fd&#34;</span>   <span class="nv">sbin</span><span class="o">=</span><span class="s2">&#34;fd/fd&#34;</span>  @sharkdp/fd <span class="se">\
-</span><span class="se"></span>    <span class="nv">sbin</span><span class="o">=</span><span class="s2">&#34;fzf&#34;</span>       junegunn/fzf-bin
-
-<span class="c1"># 加载它们的补全等</span>
-zinit ice <span class="nv">mv</span><span class="o">=</span><span class="s2">&#34;*.zsh -&gt; _fzf&#34;</span> <span class="nv">as</span><span class="o">=</span><span class="s2">&#34;completion&#34;</span>
-zinit snippet <span class="s1">&#39;https://github.com/junegunn/fzf/blob/master/shell/completion.zsh&#39;</span>
-zinit snippet <span class="s1">&#39;https://github.com/junegunn/fzf/blob/master/shell/key-bindings.zsh&#39;</span>
-zinit ice <span class="nv">as</span><span class="o">=</span><span class="s2">&#34;completion&#34;</span>
-zinit snippet <span class="s1">&#39;https://github.com/robbyrussell/oh-my-zsh/blob/master/plugins/fd/_fd&#39;</span>
-zinit ice <span class="nv">mv</span><span class="o">=</span><span class="s2">&#34;*.zsh -&gt; _exa&#34;</span> <span class="nv">as</span><span class="o">=</span><span class="s2">&#34;completion&#34;</span>
-zinit snippet <span class="s1">&#39;https://github.com/ogham/exa/blob/master/contrib/completions.zsh&#39;</span>
-
-<span class="c1"># 不需要花里胡哨的 ls，我们有更花里胡哨的 exa</span>
-<span class="nv">DISABLE_LS_COLORS</span><span class="o">=</span><span class="nb">true</span>
-<span class="nb">alias</span> <span class="nv">ls</span><span class="o">=</span>exa
-<span class="c1"># 配置 fzf 使用 fd</span>
-<span class="nb">export</span> <span class="nv">FZF_DEFAULT_COMMAND</span><span class="o">=</span><span class="s1">&#39;fd --type f&#39;</span>
-<span class="c1"># ---- 加载完了 ----</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># ---- (可选)加载了一堆二进制程序 ----</span>
+</span></span><span class="line"><span class="cl">zinit light zinit/z-a-bin-gem-node
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">zinit <span class="nv">as</span><span class="o">=</span><span class="s2">&#34;null&#34;</span> <span class="nv">wait</span><span class="o">=</span><span class="s2">&#34;1&#34;</span> lucid <span class="nv">from</span><span class="o">=</span><span class="s2">&#34;gh-r&#34;</span> <span class="k">for</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    <span class="nv">mv</span><span class="o">=</span><span class="s2">&#34;exa* -&gt; exa&#34;</span> sbin       ogham/exa <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    <span class="nv">mv</span><span class="o">=</span><span class="s2">&#34;*/rg -&gt; rg&#34;</span>  sbin		BurntSushi/ripgrep <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    <span class="nv">mv</span><span class="o">=</span><span class="s2">&#34;fd* -&gt; fd&#34;</span>   <span class="nv">sbin</span><span class="o">=</span><span class="s2">&#34;fd/fd&#34;</span>  @sharkdp/fd <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    <span class="nv">sbin</span><span class="o">=</span><span class="s2">&#34;fzf&#34;</span>       junegunn/fzf-bin
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 加载它们的补全等</span>
+</span></span><span class="line"><span class="cl">zinit ice <span class="nv">mv</span><span class="o">=</span><span class="s2">&#34;*.zsh -&gt; _fzf&#34;</span> <span class="nv">as</span><span class="o">=</span><span class="s2">&#34;completion&#34;</span>
+</span></span><span class="line"><span class="cl">zinit snippet <span class="s1">&#39;https://github.com/junegunn/fzf/blob/master/shell/completion.zsh&#39;</span>
+</span></span><span class="line"><span class="cl">zinit snippet <span class="s1">&#39;https://github.com/junegunn/fzf/blob/master/shell/key-bindings.zsh&#39;</span>
+</span></span><span class="line"><span class="cl">zinit ice <span class="nv">as</span><span class="o">=</span><span class="s2">&#34;completion&#34;</span>
+</span></span><span class="line"><span class="cl">zinit snippet <span class="s1">&#39;https://github.com/robbyrussell/oh-my-zsh/blob/master/plugins/fd/_fd&#39;</span>
+</span></span><span class="line"><span class="cl">zinit ice <span class="nv">mv</span><span class="o">=</span><span class="s2">&#34;*.zsh -&gt; _exa&#34;</span> <span class="nv">as</span><span class="o">=</span><span class="s2">&#34;completion&#34;</span>
+</span></span><span class="line"><span class="cl">zinit snippet <span class="s1">&#39;https://github.com/ogham/exa/blob/master/contrib/completions.zsh&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 不需要花里胡哨的 ls，我们有更花里胡哨的 exa</span>
+</span></span><span class="line"><span class="cl"><span class="nv">DISABLE_LS_COLORS</span><span class="o">=</span><span class="nb">true</span>
+</span></span><span class="line"><span class="cl"><span class="nb">alias</span> <span class="nv">ls</span><span class="o">=</span>exa
+</span></span><span class="line"><span class="cl"><span class="c1"># 配置 fzf 使用 fd</span>
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">FZF_DEFAULT_COMMAND</span><span class="o">=</span><span class="s1">&#39;fd --type f&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># ---- 加载完了 ----</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div>
     </div>
@@ -1034,9 +1034,9 @@ zinit snippet <span class="s1">&#39;https://github.com/ogham/exa/blob/master/con
   <script type="text/javascript">
     new Valine({
         el: '#vcomments' ,
-        serverURLs: '',
-        appId: 'fSbXaElXXTznggVXiWy8NFBU-gzGzoHsz',
-        appKey: 'kK3SxB14xAACgHftKrSaBRDU',
+        serverURLs: 'https:\/\/0mqcauyd.api.lncldglobal.com',
+        appId: '0mQCAuYdR6NE9gIVBd6rDEjY-MdYXbMMI',
+        appKey: 'CBACoI7HhLeuROO39gpYpYDl',
         notify:  false ,
         verify:  false ,
         avatar:'mm',
@@ -1096,7 +1096,7 @@ zinit snippet <span class="s1">&#39;https://github.com/ogham/exa/blob/master/con
 
 
 
-<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 <script type="application/javascript">

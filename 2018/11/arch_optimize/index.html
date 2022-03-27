@@ -24,7 +24,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.92.0 with theme even" />
+<meta name="generator" content="Hugo 0.95.0 with theme even" />
 
 
 <link rel="preload" href="/fonts/iconfont/iconfont.woff" as="font" type="font/woff" crossorigin="anonymous">
@@ -219,8 +219,8 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">ACTION==&#34;add|change&#34;, KERNEL==&#34;sd[a-z]|mmcblk[0-9]*|nvme[0-9]*&#34;, ATTR{queue/rotational}==&#34;0&#34;, ATTR{queue/scheduler}=&#34;mq-deadline&#34;
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">ACTION==&#34;add|change&#34;, KERNEL==&#34;sd[a-z]|mmcblk[0-9]*|nvme[0-9]*&#34;, ATTR{queue/rotational}==&#34;0&#34;, ATTR{queue/scheduler}=&#34;mq-deadline&#34;
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="ext4-性能优化">Ext4 性能优化</h2>
 <p>参考: <a href="https://wiki.archlinux.org/index.php/Ext4#Improving_performance">Ext4#Improving_performance</a></p>
@@ -250,8 +250,8 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">LABEL=backup    /mnt/backup     ext4    defaults,noatime,nofail         0 2
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">LABEL=backup    /mnt/backup     ext4    defaults,noatime,nofail         0 2
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>第一次用貌似会遇到无法写入的问题, 使用 <code>sudo chown -R $USER:$USER /mnt/backup</code> 更改一次所有权就行了</p>
 <h3 id="自动挂载大分区">自动挂载大分区</h3>
@@ -262,8 +262,8 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">LABEL=storage   /mnt/storage    ext4    defaults,noatime,noauto,x-systemd.automount             0 2
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">LABEL=storage   /mnt/storage    ext4    defaults,noatime,noauto,x-systemd.automount             0 2
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>(第一次用还是需要 chown 好像&hellip;.)</p>
 <h1 id="pacman">pacman</h1>
@@ -280,13 +280,13 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="c1"># Misc options</span>
-<span class="c1">#UseSyslog</span>
-<span class="na">Color</span>
-<span class="c1">#TotalDownload</span>
-<span class="na">CheckSpace</span>
-<span class="na">VerbosePkgLists</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="c1"># Misc options</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#UseSyslog</span>
+</span></span><span class="line"><span class="cl"><span class="na">Color</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#TotalDownload</span>
+</span></span><span class="line"><span class="cl"><span class="na">CheckSpace</span>
+</span></span><span class="line"><span class="cl"><span class="na">VerbosePkgLists</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>作用: pacman 彩色输出 &amp;&amp; 升级时使用三栏显示</p>
 <h2 id="自动清理软件包缓存">自动清理软件包缓存</h2>
@@ -306,18 +306,18 @@
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="k">[Trigger]</span>
-<span class="na">Operation</span> <span class="o">=</span> <span class="s">Remove</span>
-<span class="na">Operation</span> <span class="o">=</span> <span class="s">Install</span>
-<span class="na">Operation</span> <span class="o">=</span> <span class="s">Upgrade</span>
-<span class="na">Type</span> <span class="o">=</span> <span class="s">Package</span>
-<span class="na">Target</span> <span class="o">=</span> <span class="s">*</span>
-
-<span class="k">[Action]</span>
-<span class="na">Description</span> <span class="o">=</span> <span class="s">Cleaning up old packages...</span>
-<span class="na">When</span> <span class="o">=</span> <span class="s">PostTransaction</span>
-<span class="na">Exec</span> <span class="o">=</span> <span class="s">/usr/bin/paccache -rvk3</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="k">[Trigger]</span>
+</span></span><span class="line"><span class="cl"><span class="na">Operation</span> <span class="o">=</span> <span class="s">Remove</span>
+</span></span><span class="line"><span class="cl"><span class="na">Operation</span> <span class="o">=</span> <span class="s">Install</span>
+</span></span><span class="line"><span class="cl"><span class="na">Operation</span> <span class="o">=</span> <span class="s">Upgrade</span>
+</span></span><span class="line"><span class="cl"><span class="na">Type</span> <span class="o">=</span> <span class="s">Package</span>
+</span></span><span class="line"><span class="cl"><span class="na">Target</span> <span class="o">=</span> <span class="s">*</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">[Action]</span>
+</span></span><span class="line"><span class="cl"><span class="na">Description</span> <span class="o">=</span> <span class="s">Cleaning up old packages...</span>
+</span></span><span class="line"><span class="cl"><span class="na">When</span> <span class="o">=</span> <span class="s">PostTransaction</span>
+</span></span><span class="line"><span class="cl"><span class="na">Exec</span> <span class="o">=</span> <span class="s">/usr/bin/paccache -rvk3</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>作用: 每次升级软件包后清理最近三次以前的软件包</p>
 <h1 id="makepkg">makepkg</h1>
@@ -337,16 +337,16 @@
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="na">CFLAGS</span><span class="o">=</span><span class="s">&#34;-march=native -O2 -pipe -fno-plt&#34;</span>
-<span class="na">CXXFLAGS</span><span class="o">=</span><span class="s">&#34;-march=native -O2 -pipe -fno-plt&#34;</span>
-
-<span class="na">MAKEFLAGS</span><span class="o">=</span><span class="s">&#34;-j$(nproc)&#34;</span>
-
-<span class="na">BUILDENV</span><span class="o">=</span><span class="s">(!distcc color ccache !check !sign)</span>
-<span class="na">BUILDDIR</span><span class="o">=</span><span class="s">/tmp/makepkg</span>
-
-<span class="na">COMPRESSXZ</span><span class="o">=</span><span class="s">(xz -c -z - --threads=0)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="na">CFLAGS</span><span class="o">=</span><span class="s">&#34;-march=native -O2 -pipe -fno-plt&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="na">CXXFLAGS</span><span class="o">=</span><span class="s">&#34;-march=native -O2 -pipe -fno-plt&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="na">MAKEFLAGS</span><span class="o">=</span><span class="s">&#34;-j$(nproc)&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="na">BUILDENV</span><span class="o">=</span><span class="s">(!distcc color ccache !check !sign)</span>
+</span></span><span class="line"><span class="cl"><span class="na">BUILDDIR</span><span class="o">=</span><span class="s">/tmp/makepkg</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="na">COMPRESSXZ</span><span class="o">=</span><span class="s">(xz -c -z - --threads=0)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>作用: 优化生成的二进制文件 &amp;&amp;  加快编译速度 &amp;&amp; 加快软件包生成速度</p>
     </div>
@@ -401,9 +401,9 @@
   <script type="text/javascript">
     new Valine({
         el: '#vcomments' ,
-        serverURLs: '',
-        appId: 'fSbXaElXXTznggVXiWy8NFBU-gzGzoHsz',
-        appKey: 'kK3SxB14xAACgHftKrSaBRDU',
+        serverURLs: 'https:\/\/0mqcauyd.api.lncldglobal.com',
+        appId: '0mQCAuYdR6NE9gIVBd6rDEjY-MdYXbMMI',
+        appKey: 'CBACoI7HhLeuROO39gpYpYDl',
         notify:  false ,
         verify:  false ,
         avatar:'mm',
@@ -463,7 +463,7 @@
 
 
 
-<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 <script type="application/javascript">

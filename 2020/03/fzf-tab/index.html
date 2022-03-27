@@ -24,7 +24,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.92.0 with theme even" />
+<meta name="generator" content="Hugo 0.95.0 with theme even" />
 
 
 <link rel="preload" href="/fonts/iconfont/iconfont.woff" as="font" type="font/woff" crossorigin="anonymous">
@@ -166,8 +166,8 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh">zstyle <span class="s1">&#39;:completion:*&#39;</span> menu yes <span class="k">select</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl">zstyle <span class="s1">&#39;:completion:*&#39;</span> menu yes <span class="k">select</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>这样可以使用 <kbd>Tab</kbd> 来滚动选择补全。然而它其实还可以更强：</p>
 <div class="highlight"><div class="chroma">
@@ -175,8 +175,8 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh">zstyle <span class="s1">&#39;:completion:*&#39;</span> menu yes <span class="k">select</span> search
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl">zstyle <span class="s1">&#39;:completion:*&#39;</span> menu yes <span class="k">select</span> search
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>这会允许你在列表中搜索。相对来说更好用了一点，但是不支持模糊搜索，而且反应有点慢，仍然不够完美。</p>
 <p>要想追求（我眼中的）完美的补全体验，还是得上 fzf。基本思路应该是：截获补全列表、用 fzf 展示并选择、将选择项传回去。但这就面临这一个很严肃的问题：如何截获本该传给 zsh compsys 的补全候选项呢？</p>
@@ -203,14 +203,14 @@
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="c1"># kill 结束进程时时提供预览</span>
-zstyle <span class="s1">&#39;:completion:*:*:*:*:processes&#39;</span> <span class="nb">command</span> <span class="s2">&#34;ps -u </span><span class="nv">$USER</span><span class="s2"> -o pid,user,comm,cmd -w -w&#34;</span>
-zstyle <span class="s1">&#39;:fzf-tab:complete:kill:argument-rest&#39;</span> fzf-preview <span class="s1">&#39;ps --pid=$word -o cmd --no-headers -w -w&#39;</span>
-zstyle <span class="s1">&#39;:fzf-tab:complete:kill:argument-rest&#39;</span> fzf-flags <span class="s1">&#39;--preview-window=down:3:wrap&#39;</span>
-
-<span class="c1"># cd 时在右侧预览目录内容</span>
-zstyle <span class="s1">&#39;:fzf-tab:complete:cd:*&#39;</span> fzf-preview <span class="s1">&#39;exa -1 --color=always $realpath&#39;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl"><span class="c1"># kill 结束进程时时提供预览</span>
+</span></span><span class="line"><span class="cl">zstyle <span class="s1">&#39;:completion:*:*:*:*:processes&#39;</span> <span class="nb">command</span> <span class="s2">&#34;ps -u </span><span class="nv">$USER</span><span class="s2"> -o pid,user,comm,cmd -w -w&#34;</span>
+</span></span><span class="line"><span class="cl">zstyle <span class="s1">&#39;:fzf-tab:complete:kill:argument-rest&#39;</span> fzf-preview <span class="s1">&#39;ps --pid=$word -o cmd --no-headers -w -w&#39;</span>
+</span></span><span class="line"><span class="cl">zstyle <span class="s1">&#39;:fzf-tab:complete:kill:argument-rest&#39;</span> fzf-flags <span class="s1">&#39;--preview-window=down:3:wrap&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># cd 时在右侧预览目录内容</span>
+</span></span><span class="line"><span class="cl">zstyle <span class="s1">&#39;:fzf-tab:complete:cd:*&#39;</span> fzf-preview <span class="s1">&#39;exa -1 --color=always $realpath&#39;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>当然，这玩意儿也有不完美的地方。比如：尚不支持 <code>_approximate</code> completer、基于 compctl（zsh 的旧补全系统） 的补全也不支持、作为一个外来的“前端”与 zsh 本身的结合仍然不是很理想……</p>
 <p>不过以绝大多数人对 zsh 的配置程度，我觉得 fzf-tab 应该能满足至少 95% 的用户的需求。</p>
@@ -293,9 +293,9 @@ zstyle <span class="s1">&#39;:fzf-tab:complete:cd:*&#39;</span> fzf-preview <spa
   <script type="text/javascript">
     new Valine({
         el: '#vcomments' ,
-        serverURLs: '',
-        appId: 'fSbXaElXXTznggVXiWy8NFBU-gzGzoHsz',
-        appKey: 'kK3SxB14xAACgHftKrSaBRDU',
+        serverURLs: 'https:\/\/0mqcauyd.api.lncldglobal.com',
+        appId: '0mQCAuYdR6NE9gIVBd6rDEjY-MdYXbMMI',
+        appKey: 'CBACoI7HhLeuROO39gpYpYDl',
         notify:  false ,
         verify:  false ,
         avatar:'mm',
@@ -355,7 +355,7 @@ zstyle <span class="s1">&#39;:fzf-tab:complete:cd:*&#39;</span> fzf-preview <spa
 
 
 
-<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 <script type="application/javascript">

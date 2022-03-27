@@ -25,7 +25,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.92.0 with theme even" />
+<meta name="generator" content="Hugo 0.95.0 with theme even" />
 
 
 <link rel="preload" href="/fonts/iconfont/iconfont.woff" as="font" type="font/woff" crossorigin="anonymous">
@@ -172,12 +172,12 @@
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="k">if</span> ! git clone --mirror <span class="s2">&#34;</span><span class="nv">$url</span><span class="s2">&#34;</span> <span class="s2">&#34;</span><span class="nv">$dir</span><span class="s2">&#34;</span><span class="p">;</span> <span class="k">then</span>
-	error <span class="s2">&#34;</span><span class="k">$(</span>gettext <span class="s2">&#34;Failure while downloading %s %s repo&#34;</span><span class="k">)</span><span class="s2">&#34;</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">repo</span><span class="si">}</span><span class="s2">&#34;</span> <span class="s2">&#34;git&#34;</span>
-	plain <span class="s2">&#34;</span><span class="k">$(</span>gettext <span class="s2">&#34;Aborting...&#34;</span><span class="k">)</span><span class="s2">&#34;</span>
-	<span class="nb">exit</span> <span class="m">1</span>
-<span class="k">fi</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="k">if</span> ! git clone --mirror <span class="s2">&#34;</span><span class="nv">$url</span><span class="s2">&#34;</span> <span class="s2">&#34;</span><span class="nv">$dir</span><span class="s2">&#34;</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">	error <span class="s2">&#34;</span><span class="k">$(</span>gettext <span class="s2">&#34;Failure while downloading %s %s repo&#34;</span><span class="k">)</span><span class="s2">&#34;</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">repo</span><span class="si">}</span><span class="s2">&#34;</span> <span class="s2">&#34;git&#34;</span>
+</span></span><span class="line"><span class="cl">	plain <span class="s2">&#34;</span><span class="k">$(</span>gettext <span class="s2">&#34;Aborting...&#34;</span><span class="k">)</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="nb">exit</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl"><span class="k">fi</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>改成这样, 也就是在外面又加了一层 if. 不直接改在原来的基础上加是因为有些网站不支持 <code>--depth</code></p>
 <div class="highlight"><div class="chroma">
@@ -191,14 +191,14 @@
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="k">if</span> ! git clone --depth<span class="o">=</span><span class="m">1</span> --mirror <span class="s2">&#34;</span><span class="nv">$url</span><span class="s2">&#34;</span> <span class="s2">&#34;</span><span class="nv">$dir</span><span class="s2">&#34;</span><span class="p">;</span> <span class="k">then</span>
-	<span class="k">if</span> ! git clone --mirror <span class="s2">&#34;</span><span class="nv">$url</span><span class="s2">&#34;</span> <span class="s2">&#34;</span><span class="nv">$dir</span><span class="s2">&#34;</span><span class="p">;</span> <span class="k">then</span>
-		error <span class="s2">&#34;</span><span class="k">$(</span>gettext <span class="s2">&#34;Failure while downloading %s %s repo&#34;</span><span class="k">)</span><span class="s2">&#34;</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">repo</span><span class="si">}</span><span class="s2">&#34;</span> <span class="s2">&#34;git&#34;</span>
-		plain <span class="s2">&#34;</span><span class="k">$(</span>gettext <span class="s2">&#34;Aborting...&#34;</span><span class="k">)</span><span class="s2">&#34;</span>
-		<span class="nb">exit</span> <span class="m">1</span>
-	<span class="k">fi</span>
-<span class="k">fi</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="k">if</span> ! git clone --depth<span class="o">=</span><span class="m">1</span> --mirror <span class="s2">&#34;</span><span class="nv">$url</span><span class="s2">&#34;</span> <span class="s2">&#34;</span><span class="nv">$dir</span><span class="s2">&#34;</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> ! git clone --mirror <span class="s2">&#34;</span><span class="nv">$url</span><span class="s2">&#34;</span> <span class="s2">&#34;</span><span class="nv">$dir</span><span class="s2">&#34;</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">		error <span class="s2">&#34;</span><span class="k">$(</span>gettext <span class="s2">&#34;Failure while downloading %s %s repo&#34;</span><span class="k">)</span><span class="s2">&#34;</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">repo</span><span class="si">}</span><span class="s2">&#34;</span> <span class="s2">&#34;git&#34;</span>
+</span></span><span class="line"><span class="cl">		plain <span class="s2">&#34;</span><span class="k">$(</span>gettext <span class="s2">&#34;Aborting...&#34;</span><span class="k">)</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">		<span class="nb">exit</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl">	<span class="k">fi</span>
+</span></span><span class="line"><span class="cl"><span class="k">fi</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>同理, 还有如下代码</p>
 <div class="highlight"><div class="chroma">
@@ -209,11 +209,11 @@
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="k">if</span> ! git fetch --all -p<span class="p">;</span> <span class="k">then</span>
-	<span class="c1"># only warn on failure to allow offline builds</span>
-	warning <span class="s2">&#34;</span><span class="k">$(</span>gettext <span class="s2">&#34;Failure while updating %s %s repo&#34;</span><span class="k">)</span><span class="s2">&#34;</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">repo</span><span class="si">}</span><span class="s2">&#34;</span> <span class="s2">&#34;git&#34;</span>
-<span class="k">fi</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="k">if</span> ! git fetch --all -p<span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">	<span class="c1"># only warn on failure to allow offline builds</span>
+</span></span><span class="line"><span class="cl">	warning <span class="s2">&#34;</span><span class="k">$(</span>gettext <span class="s2">&#34;Failure while updating %s %s repo&#34;</span><span class="k">)</span><span class="s2">&#34;</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">repo</span><span class="si">}</span><span class="s2">&#34;</span> <span class="s2">&#34;git&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">fi</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>&hellip;.改成</p>
 <div class="highlight"><div class="chroma">
@@ -226,13 +226,13 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="k">if</span> ! git fetch --depth<span class="o">=</span><span class="m">1</span> -p<span class="p">;</span> <span class="k">then</span>
-	<span class="k">if</span> ! git fetch --all -p<span class="p">;</span> <span class="k">then</span>
-		<span class="c1"># only warn on failure to allow offline builds</span>
-		warning <span class="s2">&#34;</span><span class="k">$(</span>gettext <span class="s2">&#34;Failure while updating %s %s repo&#34;</span><span class="k">)</span><span class="s2">&#34;</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">repo</span><span class="si">}</span><span class="s2">&#34;</span> <span class="s2">&#34;git&#34;</span>
-	<span class="k">fi</span>
-<span class="k">fi</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="k">if</span> ! git fetch --depth<span class="o">=</span><span class="m">1</span> -p<span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> ! git fetch --all -p<span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">		<span class="c1"># only warn on failure to allow offline builds</span>
+</span></span><span class="line"><span class="cl">		warning <span class="s2">&#34;</span><span class="k">$(</span>gettext <span class="s2">&#34;Failure while updating %s %s repo&#34;</span><span class="k">)</span><span class="s2">&#34;</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">repo</span><span class="si">}</span><span class="s2">&#34;</span> <span class="s2">&#34;git&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">fi</span>
+</span></span><span class="line"><span class="cl"><span class="k">fi</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>这样速度就令人满意多了, 对于大部分构建脚本应该都没问题,</p>
 <p><del>遇到问题再改吧 (</del></p>
@@ -288,9 +288,9 @@
   <script type="text/javascript">
     new Valine({
         el: '#vcomments' ,
-        serverURLs: '',
-        appId: 'fSbXaElXXTznggVXiWy8NFBU-gzGzoHsz',
-        appKey: 'kK3SxB14xAACgHftKrSaBRDU',
+        serverURLs: 'https:\/\/0mqcauyd.api.lncldglobal.com',
+        appId: '0mQCAuYdR6NE9gIVBd6rDEjY-MdYXbMMI',
+        appKey: 'CBACoI7HhLeuROO39gpYpYDl',
         notify:  false ,
         verify:  false ,
         avatar:'mm',
@@ -350,7 +350,7 @@
 
 
 
-<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 <script type="application/javascript">

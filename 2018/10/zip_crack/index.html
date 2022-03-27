@@ -25,7 +25,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.92.0 with theme even" />
+<meta name="generator" content="Hugo 0.95.0 with theme even" />
 
 
 <link rel="preload" href="/fonts/iconfont/iconfont.woff" as="font" type="font/woff" crossorigin="anonymous">
@@ -199,8 +199,8 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">rbkcrack -c libc-2.23.so -p libc-2.23.so -C cipher.zip -P plain2.zip
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">rbkcrack -c libc-2.23.so -p libc-2.23.so -C cipher.zip -P plain2.zip
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>只花费了五秒钟就得到了keys.</p>
 <blockquote>
@@ -226,15 +226,15 @@
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">Generated 4194304 Z values.
-[22:11:22] Z reduction using 4512917 extra bytes of known plaintext
-0.11 % (4855 / 4512917)
-240 values remaining.
-[22:11:26] Attack on 240 Z values at index 4509032
-5.00 % (12 / 240)
-[22:11:27] Keys
-d4f34b9d a6ba3461 dcd97451
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Generated 4194304 Z values.
+</span></span><span class="line"><span class="cl">[22:11:22] Z reduction using 4512917 extra bytes of known plaintext
+</span></span><span class="line"><span class="cl">0.11 % (4855 / 4512917)
+</span></span><span class="line"><span class="cl">240 values remaining.
+</span></span><span class="line"><span class="cl">[22:11:26] Attack on 240 Z values at index 4509032
+</span></span><span class="line"><span class="cl">5.00 % (12 / 240)
+</span></span><span class="line"><span class="cl">[22:11:27] Keys
+</span></span><span class="line"><span class="cl">d4f34b9d a6ba3461 dcd97451
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>得到 keys 以后直接使用如下代码可以从 cipher.zip 中解压 flag.txt.
 (这个地方没有加 -u 开关, 因为 flag.txt 的压缩方式是 store)</p>
@@ -243,8 +243,8 @@ d4f34b9d a6ba3461 dcd97451
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">rbkcrack -c flag.txt -C cipher.zip -k d4f34b9d a6ba3461 dcd97451 -d ./flag.txt
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">rbkcrack -c flag.txt -C cipher.zip -k d4f34b9d a6ba3461 dcd97451 -d ./flag.txt
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>然后得到了第一个 flag: <code>flag{Th3Re_1s_Ano1h3r_f1ag_in_big_file}</code></p>
 <p>big_file 是实打实的压缩过的, 需要加上 -u 开关提取. 由于文件非常大, 而且我们只要前面的一部分, 所以当看到 big_file 大小差不多了就可以 Ctrl+C 了.</p>
@@ -253,8 +253,8 @@ d4f34b9d a6ba3461 dcd97451
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">rbkcrack -c big_file -C cipher.zip -k d4f34b9d a6ba3461 dcd97451 -d ./big_file -u
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">rbkcrack -c big_file -C cipher.zip -k d4f34b9d a6ba3461 dcd97451 -d ./big_file -u
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>head 一下然后就得到了第二个 flag: <code>flag{Th1s_i3_A_tE5t}</code></p>
 <p>最后强行给 p7zip 一个出场机会, 虽然做题的时候不大可能用到, 但是真要用来干大事儿还是它靠谱.</p>
@@ -263,8 +263,8 @@ d4f34b9d a6ba3461 dcd97451
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">7za e cipher.zip <span class="s1">&#39;-p[d4f34b9d_a6ba3461_dcd97451]&#39;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">7za e cipher.zip <span class="s1">&#39;-p[d4f34b9d_a6ba3461_dcd97451]&#39;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>下载地址: <a href="http://storage.aloxaf.cn/storage/fucking_problem.zip" target="_blank" rel="noopener nofollow">fucking_problem.zip</a></p>
     </div>
@@ -322,9 +322,9 @@ d4f34b9d a6ba3461 dcd97451
   <script type="text/javascript">
     new Valine({
         el: '#vcomments' ,
-        serverURLs: '',
-        appId: 'fSbXaElXXTznggVXiWy8NFBU-gzGzoHsz',
-        appKey: 'kK3SxB14xAACgHftKrSaBRDU',
+        serverURLs: 'https:\/\/0mqcauyd.api.lncldglobal.com',
+        appId: '0mQCAuYdR6NE9gIVBd6rDEjY-MdYXbMMI',
+        appKey: 'CBACoI7HhLeuROO39gpYpYDl',
         notify:  false ,
         verify:  false ,
         avatar:'mm',
@@ -384,7 +384,7 @@ d4f34b9d a6ba3461 dcd97451
 
 
 
-<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 <script type="application/javascript">

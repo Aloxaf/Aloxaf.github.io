@@ -26,7 +26,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.92.0 with theme even" />
+<meta name="generator" content="Hugo 0.95.0 with theme even" />
 
 
 <link rel="preload" href="/fonts/iconfont/iconfont.woff" as="font" type="font/woff" crossorigin="anonymous">
@@ -192,11 +192,11 @@
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="c1"># 按空格键时自动进行历史扩展</span>
-bindkey <span class="s2">&#34; &#34;</span> magic-space
-<span class="c1"># 不直接执行历史扩展的结果</span>
-setopt hist_verify
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl"><span class="c1"># 按空格键时自动进行历史扩展</span>
+</span></span><span class="line"><span class="cl">bindkey <span class="s2">&#34; &#34;</span> magic-space
+</span></span><span class="line"><span class="cl"><span class="c1"># 不直接执行历史扩展的结果</span>
+</span></span><span class="line"><span class="cl">setopt hist_verify
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>这样可以最大程度避免因为执行了错误的历史命令而导致损失。</p>
 <p>默认情况下，一条不包含条目标识符的历史扩展会在历史记录中寻找任何与之前缀匹配的历史记录。</p>
@@ -210,13 +210,13 @@ setopt hist_verify
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh">❯ <span class="nb">echo</span> hello
-hello
-❯ print hi
-hi
-❯ !print <span class="c1"># =&gt; print hi</span>
-❯ !echo  <span class="c1"># =&gt; echo hello</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl">❯ <span class="nb">echo</span> hello
+</span></span><span class="line"><span class="cl">hello
+</span></span><span class="line"><span class="cl">❯ print hi
+</span></span><span class="line"><span class="cl">hi
+</span></span><span class="line"><span class="cl">❯ !print <span class="c1"># =&gt; print hi</span>
+</span></span><span class="line"><span class="cl">❯ !echo  <span class="c1"># =&gt; echo hello</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>形如 <code>^foo^bar</code> 形式的表达式则会将上一条命令中的 foo 替换为 bar 并执行。它等效于 <code>!!:s^foo^bar^</code>，最后一个 <code>^</code> 后面还可以跟其他的修饰符，比如用 <code>^foo^bar^:G</code> 来进行全局替换。</p>
 <p>如果输入的命令中含有 <code>!&quot;</code> 的话，历史扩展会被临时禁止，所有的 <code>!</code> 不再有特殊含义。</p>
@@ -228,11 +228,11 @@ hi
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh">❯ <span class="nb">echo</span> <span class="s2">&#34;!233&#34;</span>
-zsh: no such event: <span class="m">233</span>
-❯ !<span class="s2">&#34; echo &#34;</span>!233<span class="s2">&#34;
-</span><span class="s2">!233
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl">❯ <span class="nb">echo</span> <span class="s2">&#34;!233&#34;</span>
+</span></span><span class="line"><span class="cl">zsh: no such event: <span class="m">233</span>
+</span></span><span class="line"><span class="cl">❯ !<span class="s2">&#34; echo &#34;</span>!233<span class="s2">&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">!233
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="条目标识符">条目标识符</h2>
 <p>条目标识符用于在历史记录中指定一条历史记录。以下为可用的事件标识符：</p>
@@ -344,17 +344,17 @@ zsh: no such event: <span class="m">233</span>
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="c1"># 用于历史扩展，取上一条命令的最后一个参数，并作为路径处理，只保留文件名部分。</span>
-❯ ls ~/abc/def.xyz 
-❯ !$:t <span class="c1"># =&gt; def.xyz</span>
-
-<span class="c1"># 用于参数扩展，将展开结果中转为大写形式</span>
-❯ <span class="nv">var</span><span class="o">=</span>abc
-❯ <span class="nb">echo</span> <span class="si">${</span><span class="nv">var</span><span class="p">:</span><span class="nv">u</span><span class="si">}</span> <span class="c1"># =&gt; ABC</span>
-
-<span class="c1"># 用于文件名扩展，只保留展开结果中的文件名部分</span>
-❯ /usr/*<span class="o">(</span>:t<span class="o">)</span>  <span class="c1"># =&gt; bin etc include ...</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl"><span class="c1"># 用于历史扩展，取上一条命令的最后一个参数，并作为路径处理，只保留文件名部分。</span>
+</span></span><span class="line"><span class="cl">❯ ls ~/abc/def.xyz 
+</span></span><span class="line"><span class="cl">❯ !$:t <span class="c1"># =&gt; def.xyz</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 用于参数扩展，将展开结果中转为大写形式</span>
+</span></span><span class="line"><span class="cl">❯ <span class="nv">var</span><span class="o">=</span>abc
+</span></span><span class="line"><span class="cl">❯ <span class="nb">echo</span> <span class="si">${</span><span class="nv">var</span><span class="p">:</span><span class="nv">u</span><span class="si">}</span> <span class="c1"># =&gt; ABC</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 用于文件名扩展，只保留展开结果中的文件名部分</span>
+</span></span><span class="line"><span class="cl">❯ /usr/*<span class="o">(</span>:t<span class="o">)</span>  <span class="c1"># =&gt; bin etc include ...</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>很简单，但也很强大。以下为完整的修饰符列表：</p>
 <table>
@@ -451,11 +451,11 @@ zsh: no such event: <span class="m">233</span>
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh">❯ <span class="nv">n</span><span class="o">=</span><span class="m">0</span>
-❯ <span class="nv">var</span><span class="o">=</span><span class="s2">&#34;aaa&#34;</span>
-❯ <span class="nb">echo</span> <span class="si">${</span><span class="nv">var</span><span class="p">:</span><span class="nv">gs</span><span class="p">/a/</span><span class="k">$((</span><span class="nv">n</span><span class="o">+=</span><span class="m">1</span><span class="k">))</span><span class="si">}</span>
-<span class="m">123</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl">❯ <span class="nv">n</span><span class="o">=</span><span class="m">0</span>
+</span></span><span class="line"><span class="cl">❯ <span class="nv">var</span><span class="o">=</span><span class="s2">&#34;aaa&#34;</span>
+</span></span><span class="line"><span class="cl">❯ <span class="nb">echo</span> <span class="si">${</span><span class="nv">var</span><span class="p">:</span><span class="nv">gs</span><span class="p">/a/</span><span class="k">$((</span><span class="nv">n</span><span class="o">+=</span><span class="m">1</span><span class="k">))</span><span class="si">}</span>
+</span></span><span class="line"><span class="cl"><span class="m">123</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>当用于文件名扩展时，则是反过来了——其他扩展的优先级是最高的，甚至高于 <code>:s</code> 的解析过程。</p>
 <p>除此之外，如果设置了 <code>HIST_SUBST_PATTERN</code> 开关，<code>l</code> 会被识别为模式而不是纯字符串。而且 <code>l</code> 可以以 <code>#</code>/<code>%</code> 开头来限定只能匹配字符串的开头/结尾。两者可以也一起使用。</p>
@@ -539,9 +539,9 @@ zsh: no such event: <span class="m">233</span>
   <script type="text/javascript">
     new Valine({
         el: '#vcomments' ,
-        serverURLs: '',
-        appId: 'fSbXaElXXTznggVXiWy8NFBU-gzGzoHsz',
-        appKey: 'kK3SxB14xAACgHftKrSaBRDU',
+        serverURLs: 'https:\/\/0mqcauyd.api.lncldglobal.com',
+        appId: '0mQCAuYdR6NE9gIVBd6rDEjY-MdYXbMMI',
+        appKey: 'CBACoI7HhLeuROO39gpYpYDl',
         notify:  false ,
         verify:  false ,
         avatar:'mm',
@@ -601,7 +601,7 @@ zsh: no such event: <span class="m">233</span>
 
 
 
-<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 <script type="application/javascript">

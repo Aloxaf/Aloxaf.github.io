@@ -24,7 +24,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.92.0 with theme even" />
+<meta name="generator" content="Hugo 0.95.0 with theme even" />
 
 
 <link rel="preload" href="/fonts/iconfont/iconfont.woff" as="font" type="font/woff" crossorigin="anonymous">
@@ -155,7 +155,7 @@
   </div>
 </div>
   <div class="post-outdated">
-    <div class="hint">
+    <div class="warn">
       <p>【注】本文最后更新于 <span class="timeago" datetime="2021-03-23T00:00:00" title="March 23, 2021">March 23, 2021</span>，文中内容可能已经过时。</p>
     </div>
   </div>
@@ -218,9 +218,9 @@
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">mkdir ./a_dir
-sudo mount disk.img ./a_dir
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">mkdir ./a_dir
+</span></span><span class="line"><span class="cl">sudo mount disk.img ./a_dir
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>接下来就可以将其当成一个普通目录使用了！</p>
 </li>
@@ -234,9 +234,9 @@ sudo mount disk.img ./a_dir
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 官方建议对小于 1GB 的文件系统启用 `--mixed` 开关，可以允许元数据和文件存储在同一个块上，有效节省储存空间</span>
-mkfs.btrfs -L Disk -M disk.img
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 官方建议对小于 1GB 的文件系统启用 `--mixed` 开关，可以允许元数据和文件存储在同一个块上，有效节省储存空间</span>
+</span></span><span class="line"><span class="cl">mkfs.btrfs -L Disk -M disk.img
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>接着挂载时启用压缩与自动碎片整理功能：<code>sudo mount -o compress-force=zstd,autodefrag disk.img ./a_dir</code></p>
 <p>我使用这种方法储存了一个包含约 5 万个文档、大小为 1GB 的文件夹，btrfs 的透明压缩在这里为我省下了约一半的空间（尽管我的镜像大小本身就有 1GB……）</p>
@@ -294,9 +294,9 @@ mkfs.btrfs -L Disk -M disk.img
   <script type="text/javascript">
     new Valine({
         el: '#vcomments' ,
-        serverURLs: '',
-        appId: 'fSbXaElXXTznggVXiWy8NFBU-gzGzoHsz',
-        appKey: 'kK3SxB14xAACgHftKrSaBRDU',
+        serverURLs: 'https:\/\/0mqcauyd.api.lncldglobal.com',
+        appId: '0mQCAuYdR6NE9gIVBd6rDEjY-MdYXbMMI',
+        appKey: 'CBACoI7HhLeuROO39gpYpYDl',
         notify:  false ,
         verify:  false ,
         avatar:'mm',
@@ -356,7 +356,7 @@ mkfs.btrfs -L Disk -M disk.img
 
 
 
-<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 <script type="application/javascript">

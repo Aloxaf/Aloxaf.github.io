@@ -24,7 +24,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.92.0 with theme even" />
+<meta name="generator" content="Hugo 0.95.0 with theme even" />
 
 
 <link rel="preload" href="/fonts/iconfont/iconfont.woff" as="font" type="font/woff" crossorigin="anonymous">
@@ -171,10 +171,10 @@
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="c1"># 此处也可以使用 openjdk8</span>
-pacman -S jdk8
-sudo archlinux-java <span class="nb">set</span> java-8-jdk
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl"><span class="c1"># 此处也可以使用 openjdk8</span>
+</span></span><span class="line"><span class="cl">pacman -S jdk8
+</span></span><span class="line"><span class="cl">sudo archlinux-java <span class="nb">set</span> java-8-jdk
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><strong>安装 Android SDK</strong></p>
 <p>我是直接用 Android Studio 的 SDK Manager 装的，注意 CDDA 要求的是 28 的 SDK，不要装成 30 的了。官方也提供了手动安装的方法（如下）：</p>
@@ -200,25 +200,25 @@ sudo archlinux-java <span class="nb">set</span> java-8-jdk
 </span><span class="lnt">18
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="c1"># 配置相关环境变量</span>
-<span class="nb">export</span> <span class="nv">XDG_CONFIG_HOME</span><span class="o">=</span><span class="nv">$HOME</span>/.config
-<span class="nb">export</span> <span class="nv">XDG_DATA_HOME</span><span class="o">=</span><span class="nv">$HOME</span>/.local/share
-
-<span class="nb">export</span> <span class="nv">ANDROID_SDK_HOME</span><span class="o">=</span><span class="nv">$XDG_CONFIG_HOME</span>/android
-<span class="nb">export</span> <span class="nv">ANDROID_SDK_ROOT</span><span class="o">=</span><span class="nv">$XDG_DATA_HOME</span>/android
-<span class="nb">export</span> <span class="nv">ANDROID_AVD_HOME</span><span class="o">=</span><span class="nv">$XDG_DATA_HOME</span>/android
-<span class="nb">export</span> <span class="nv">ANDROID_EMULATOR_HOME</span><span class="o">=</span><span class="nv">$XDG_DATA_HOME</span>/android
-<span class="nb">export</span> <span class="nv">ADB_VENDOR_KEY</span><span class="o">=</span><span class="nv">$XDG_CONFIG_HOME</span>/android
-
-<span class="c1"># 下载 sdk，扔到 ~/.loca/share/ 下</span>
-wget https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
-unzip sdk-tools-linux-4333796.zip -d <span class="nv">$ANDROID_SDK_ROOT</span>
-rm sdk-tools-linux-4333796.zip
-
-<span class="nv">$ANDROID_SDK_ROOT</span>/tools/bin/sdkmanager --update
-<span class="nv">$ANDROID_SDK_ROOT</span>/tools/bin/sdkmanager <span class="s2">&#34;tools&#34;</span> <span class="s2">&#34;platform-tools&#34;</span> <span class="s2">&#34;ndk-bundle&#34;</span>
-<span class="nv">$ANDROID_SDK_ROOT</span>/tools/bin/sdkmanager --licenses
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl"><span class="c1"># 配置相关环境变量</span>
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">XDG_CONFIG_HOME</span><span class="o">=</span><span class="nv">$HOME</span>/.config
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">XDG_DATA_HOME</span><span class="o">=</span><span class="nv">$HOME</span>/.local/share
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">ANDROID_SDK_HOME</span><span class="o">=</span><span class="nv">$XDG_CONFIG_HOME</span>/android
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">ANDROID_SDK_ROOT</span><span class="o">=</span><span class="nv">$XDG_DATA_HOME</span>/android
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">ANDROID_AVD_HOME</span><span class="o">=</span><span class="nv">$XDG_DATA_HOME</span>/android
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">ANDROID_EMULATOR_HOME</span><span class="o">=</span><span class="nv">$XDG_DATA_HOME</span>/android
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">ADB_VENDOR_KEY</span><span class="o">=</span><span class="nv">$XDG_CONFIG_HOME</span>/android
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 下载 sdk，扔到 ~/.loca/share/ 下</span>
+</span></span><span class="line"><span class="cl">wget https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
+</span></span><span class="line"><span class="cl">unzip sdk-tools-linux-4333796.zip -d <span class="nv">$ANDROID_SDK_ROOT</span>
+</span></span><span class="line"><span class="cl">rm sdk-tools-linux-4333796.zip
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">$ANDROID_SDK_ROOT</span>/tools/bin/sdkmanager --update
+</span></span><span class="line"><span class="cl"><span class="nv">$ANDROID_SDK_ROOT</span>/tools/bin/sdkmanager <span class="s2">&#34;tools&#34;</span> <span class="s2">&#34;platform-tools&#34;</span> <span class="s2">&#34;ndk-bundle&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$ANDROID_SDK_ROOT</span>/tools/bin/sdkmanager --licenses
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><strong>为 gradle 配置代理</strong></p>
 <p>辣鸡 Java 不吃 <code>HTTP(S)_PROXY</code>，需要手动为 gradle 设置代理。这是卡了我很久的一步之一。</p>
@@ -233,14 +233,14 @@ rm sdk-tools-linux-4333796.zip
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh">mkdir -p ~/.gradle
-cat &gt;&gt; ~/.gradle/gradle.properties <span class="s">&lt;&lt;EOF
-</span><span class="s">systemProp.http.proxyHost=127.0.0.1
-</span><span class="s">systemProp.http.proxyPort=12333
-</span><span class="s">systemProp.https.proxyHost=127.0.0.1
-</span><span class="s">systemProp.https.proxyPort=12333
-</span><span class="s">EOF</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl">mkdir -p ~/.gradle
+</span></span><span class="line"><span class="cl">cat &gt;&gt; ~/.gradle/gradle.properties <span class="s">&lt;&lt;EOF
+</span></span></span><span class="line"><span class="cl"><span class="s">systemProp.http.proxyHost=127.0.0.1
+</span></span></span><span class="line"><span class="cl"><span class="s">systemProp.http.proxyPort=12333
+</span></span></span><span class="line"><span class="cl"><span class="s">systemProp.https.proxyHost=127.0.0.1
+</span></span></span><span class="line"><span class="cl"><span class="s">systemProp.https.proxyPort=12333
+</span></span></span><span class="line"><span class="cl"><span class="s">EOF</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><strong>构建</strong></p>
 <p>辣鸡官方的示例不知道构建了多少个版本，我寻思着怎么编译这么慢。</p>
@@ -251,10 +251,10 @@ cat &gt;&gt; ~/.gradle/gradle.properties <span class="s">&lt;&lt;EOF
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="c1"># 你可以用 ./gradlew tasks 查看可用的任务</span>
-<span class="c1"># 这个命令限定了只构建实验版的 64 位 release 版本，并且使用四线程</span>
-./gradlew assembleExperimentalRelease -Pj<span class="o">=</span><span class="m">4</span> -Pabi_arm_32<span class="o">=</span><span class="nb">false</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl"><span class="c1"># 你可以用 ./gradlew tasks 查看可用的任务</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 这个命令限定了只构建实验版的 64 位 release 版本，并且使用四线程</span>
+</span></span><span class="line"><span class="cl">./gradlew assembleExperimentalRelease -Pj<span class="o">=</span><span class="m">4</span> -Pabi_arm_32<span class="o">=</span><span class="nb">false</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><strong>生成证书</strong></p>
 <p>你需要给你 apk 签个名才能装到手机上</p>
@@ -267,12 +267,12 @@ cat &gt;&gt; ~/.gradle/gradle.properties <span class="s">&lt;&lt;EOF
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh">keytool -genkey -v -keystore cdda.keystore -alias gundam_wing -keyalg RSA -validity <span class="m">20000</span>
-keytool -importkeystore -srckeystore cdda.keystore -destkeystore cdda.p12 -srcstoretype JKS -deststoretype PKCS12
-openssl pkcs12 -in cdda.p12 -nodes -out cdda.rsa.pem
-sed -n <span class="s1">&#39;/BEGIN PRIVATE KEY/,/END PRIVATE KEY/p&#39;</span> cdda.rsa.pem &gt; cdda.private.rsa.pem
-sed -n <span class="s1">&#39;/BEGIN CERTIFICATE/,/END CERTIFICATE/p&#39;</span> cdda.rsa.pem &gt; cdda.x509.pem
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl">keytool -genkey -v -keystore cdda.keystore -alias gundam_wing -keyalg RSA -validity <span class="m">20000</span>
+</span></span><span class="line"><span class="cl">keytool -importkeystore -srckeystore cdda.keystore -destkeystore cdda.p12 -srcstoretype JKS -deststoretype PKCS12
+</span></span><span class="line"><span class="cl">openssl pkcs12 -in cdda.p12 -nodes -out cdda.rsa.pem
+</span></span><span class="line"><span class="cl">sed -n <span class="s1">&#39;/BEGIN PRIVATE KEY/,/END PRIVATE KEY/p&#39;</span> cdda.rsa.pem &gt; cdda.private.rsa.pem
+</span></span><span class="line"><span class="cl">sed -n <span class="s1">&#39;/BEGIN CERTIFICATE/,/END CERTIFICATE/p&#39;</span> cdda.rsa.pem &gt; cdda.x509.pem
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><strong>签名</strong></p>
 <div class="highlight"><div class="chroma">
@@ -282,10 +282,10 @@ sed -n <span class="s1">&#39;/BEGIN CERTIFICATE/,/END CERTIFICATE/p&#39;</span> 
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="c1"># APK 路径就自己改算了……</span>
-<span class="nv">APK_PATH</span><span class="o">=</span>./app/build/outputs/apk/experimental/release/cataclysmdda-64b8950ada-experimental-arm64-v8a-release-unsigned.apk
-~/.local/share/android/build-tools/28.0.3/apksigner sign --key cdda.pk8 --cert cdda.x509.pem <span class="nv">$APK_PATH</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl"><span class="c1"># APK 路径就自己改算了……</span>
+</span></span><span class="line"><span class="cl"><span class="nv">APK_PATH</span><span class="o">=</span>./app/build/outputs/apk/experimental/release/cataclysmdda-64b8950ada-experimental-arm64-v8a-release-unsigned.apk
+</span></span><span class="line"><span class="cl">~/.local/share/android/build-tools/28.0.3/apksigner sign --key cdda.pk8 --cert cdda.x509.pem <span class="nv">$APK_PATH</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><strong>没了</strong></p>
 <p>完成了，直接把 <code>$APK_PATH</code> 指向的文件复制出来就可以安装了。</p>
@@ -351,9 +351,9 @@ sed -n <span class="s1">&#39;/BEGIN CERTIFICATE/,/END CERTIFICATE/p&#39;</span> 
   <script type="text/javascript">
     new Valine({
         el: '#vcomments' ,
-        serverURLs: '',
-        appId: 'fSbXaElXXTznggVXiWy8NFBU-gzGzoHsz',
-        appKey: 'kK3SxB14xAACgHftKrSaBRDU',
+        serverURLs: 'https:\/\/0mqcauyd.api.lncldglobal.com',
+        appId: '0mQCAuYdR6NE9gIVBd6rDEjY-MdYXbMMI',
+        appKey: 'CBACoI7HhLeuROO39gpYpYDl',
         notify:  false ,
         verify:  false ,
         avatar:'mm',
@@ -413,7 +413,7 @@ sed -n <span class="s1">&#39;/BEGIN CERTIFICATE/,/END CERTIFICATE/p&#39;</span> 
 
 
 
-<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 <script type="application/javascript">

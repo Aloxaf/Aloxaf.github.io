@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.92.0 with theme even" />
+<meta name="generator" content="Hugo 0.95.0 with theme even" />
 
 
 <link rel="preload" href="/fonts/iconfont/iconfont.woff" as="font" type="font/woff" crossorigin="anonymous">
@@ -238,51 +238,51 @@
 </span><span class="lnt">44
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="c"># if 语句</span>
-<span class="nv">$n</span> <span class="p">=</span> <span class="nb">Read-Host</span> <span class="s2">&#34;请输入你的年龄&#34;</span>
-<span class="k">if</span> <span class="p">(</span><span class="nv">$n</span> <span class="o">-ge</span> <span class="n">18</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nb">echo </span><span class="s2">&#34;是成年人&#34;</span>
-<span class="p">}</span> <span class="k">elseif</span> <span class="p">(</span><span class="nv">$n</span> <span class="o">-ge</span> <span class="n">13</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nb">echo </span><span class="s2">&#34;是青少年&#34;</span>
-<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-    <span class="nb">echo </span><span class="s2">&#34;是小屁孩&#34;</span>
-<span class="p">}</span>
-
-<span class="c"># switch 语句</span>
-<span class="k">switch</span> <span class="p">(</span><span class="nv">$n</span><span class="p">)</span> <span class="p">{</span>
-    <span class="p">{</span><span class="nv">$_</span> <span class="o">-gt</span> <span class="n">18</span><span class="p">}</span> <span class="p">{</span> <span class="nb">echo </span><span class="s2">&#34;是成年人&#34;</span><span class="p">;</span> <span class="k">break</span> <span class="p">}</span>
-    <span class="n">18</span> <span class="p">{</span> <span class="nb">echo </span><span class="s2">&#34;是半步成年&#34;</span><span class="p">;</span> <span class="k">break</span> <span class="p">}</span>
-    <span class="k">Default</span> <span class="p">{</span> <span class="nb">echo </span><span class="s2">&#34;不是成年人&#34;</span><span class="p">;</span> <span class="k">break</span> <span class="p">}</span>
-<span class="p">}</span>
-
-<span class="c"># for 语句</span>
-<span class="nv">$sum</span> <span class="p">=</span> <span class="n">0</span>
-<span class="k">for</span> <span class="p">(</span><span class="nv">$i</span> <span class="p">=</span> <span class="n">0</span><span class="p">;</span> <span class="nv">$i</span> <span class="o">-le</span> <span class="n">100</span><span class="p">;</span> <span class="nv">$i</span><span class="p">++)</span> <span class="p">{</span>
-    <span class="nv">$sum</span> <span class="p">+=</span> <span class="nv">$i</span>
-<span class="p">}</span>
-<span class="nb">echo </span><span class="nv">$sum</span>
-
-<span class="c"># while 循环, do while 差不多</span>
-<span class="nv">$sum</span> <span class="p">=</span> <span class="n">0</span>
-<span class="nv">$i</span> <span class="p">=</span> <span class="n">0</span>
-<span class="k">while</span> <span class="p">(</span><span class="nv">$i</span> <span class="o">-le</span> <span class="n">100</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nv">$sum</span> <span class="p">+=</span> <span class="nv">$i</span>
-    <span class="nv">$i</span><span class="p">++</span>
-<span class="p">}</span>
-<span class="nb">echo </span><span class="nv">$sum</span>
-
-<span class="c"># Hash 表</span>
-<span class="nv">$language</span> <span class="p">=</span> <span class="p">@{</span>
-    <span class="n">Name</span> <span class="p">=</span> <span class="s2">&#34;PowerShell&#34;</span>
-    <span class="n">Company</span> <span class="p">=</span> <span class="s2">&#34;Microsoft&#34;</span>
-<span class="p">}</span>
-<span class="nb">echo </span><span class="s2">&#34;</span><span class="p">$(</span><span class="nv">$language</span><span class="p">.</span><span class="n">Name</span><span class="p">)</span><span class="s2">&#34;</span>
-
-<span class="c"># 定义函数</span>
-<span class="k">function</span> <span class="n">pow</span><span class="p">(</span><span class="nv">$x</span><span class="p">,</span> <span class="nv">$y</span><span class="p">=</span><span class="n">2</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="no">[Math]</span><span class="p">::</span><span class="n">Pow</span><span class="p">(</span><span class="nv">$x</span><span class="p">,</span> <span class="nv">$y</span><span class="p">)</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="c"># if 语句</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$n</span> <span class="p">=</span> <span class="nb">Read-Host</span> <span class="s2">&#34;请输入你的年龄&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="nv">$n</span> <span class="o">-ge</span> <span class="n">18</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">echo </span><span class="s2">&#34;是成年人&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> <span class="k">elseif</span> <span class="p">(</span><span class="nv">$n</span> <span class="o">-ge</span> <span class="n">13</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">echo </span><span class="s2">&#34;是青少年&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">echo </span><span class="s2">&#34;是小屁孩&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># switch 语句</span>
+</span></span><span class="line"><span class="cl"><span class="k">switch</span> <span class="p">(</span><span class="nv">$n</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span><span class="nv">$_</span> <span class="o">-gt</span> <span class="n">18</span><span class="p">}</span> <span class="p">{</span> <span class="nb">echo </span><span class="s2">&#34;是成年人&#34;</span><span class="p">;</span> <span class="k">break</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">18</span> <span class="p">{</span> <span class="nb">echo </span><span class="s2">&#34;是半步成年&#34;</span><span class="p">;</span> <span class="k">break</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">Default</span> <span class="p">{</span> <span class="nb">echo </span><span class="s2">&#34;不是成年人&#34;</span><span class="p">;</span> <span class="k">break</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># for 语句</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$sum</span> <span class="p">=</span> <span class="n">0</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="p">(</span><span class="nv">$i</span> <span class="p">=</span> <span class="n">0</span><span class="p">;</span> <span class="nv">$i</span> <span class="o">-le</span> <span class="n">100</span><span class="p">;</span> <span class="nv">$i</span><span class="p">++)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$sum</span> <span class="p">+=</span> <span class="nv">$i</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo </span><span class="nv">$sum</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># while 循环, do while 差不多</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$sum</span> <span class="p">=</span> <span class="n">0</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$i</span> <span class="p">=</span> <span class="n">0</span>
+</span></span><span class="line"><span class="cl"><span class="k">while</span> <span class="p">(</span><span class="nv">$i</span> <span class="o">-le</span> <span class="n">100</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$sum</span> <span class="p">+=</span> <span class="nv">$i</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$i</span><span class="p">++</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo </span><span class="nv">$sum</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># Hash 表</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$language</span> <span class="p">=</span> <span class="p">@{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Name</span> <span class="p">=</span> <span class="s2">&#34;PowerShell&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Company</span> <span class="p">=</span> <span class="s2">&#34;Microsoft&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo </span><span class="s2">&#34;</span><span class="p">$(</span><span class="nv">$language</span><span class="p">.</span><span class="n">Name</span><span class="p">)</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># 定义函数</span>
+</span></span><span class="line"><span class="cl"><span class="k">function</span> <span class="n">pow</span><span class="p">(</span><span class="nv">$x</span><span class="p">,</span> <span class="nv">$y</span><span class="p">=</span><span class="n">2</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="no">[Math]</span><span class="p">::</span><span class="n">Pow</span><span class="p">(</span><span class="nv">$x</span><span class="p">,</span> <span class="nv">$y</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="内置功能强大">内置功能强大</h2>
 <p>pwsh 不需要借助外部命令就能完成大量操作.</p>
@@ -314,17 +314,17 @@
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="p">::</span> <span class="n">batch</span>
-<span class="k">for</span> <span class="p">/</span><span class="n">f</span> <span class="s2">&#34;tokens=3&#34;</span> <span class="k">%</span><span class="n">i</span> <span class="k">in</span> <span class="p">(</span><span class="s2">&#34;1 2 3 4 5&#34;</span><span class="p">)</span> <span class="k">do</span> <span class="nb">echo </span><span class="k">%</span><span class="n">i</span>
-
-<span class="c"># bash</span>
-<span class="nb">echo </span><span class="n">1</span> <span class="n">2</span> <span class="n">3</span> <span class="n">4</span> <span class="n">5</span> <span class="p">|</span> <span class="n">cut</span> <span class="n">-d</span><span class="s1">&#39; &#39;</span> <span class="n">-f3</span>
-<span class="nb">echo </span><span class="n">1</span> <span class="n">2</span> <span class="n">3</span> <span class="n">4</span> <span class="n">5</span> <span class="p">|</span> <span class="n">awk</span> <span class="s1">&#39;{print $3}&#39;</span>
-
-<span class="c"># pwsh</span>
-<span class="c"># 首先 pwsh 也能用 bash 的方法</span>
-<span class="p">(</span><span class="s1">&#39;1 2 3 4 5&#39;</span> <span class="n">-split</span> <span class="s1">&#39; &#39;</span><span class="p">)[</span><span class="n">2</span><span class="p">]</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="p">::</span> <span class="n">batch</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="p">/</span><span class="n">f</span> <span class="s2">&#34;tokens=3&#34;</span> <span class="k">%</span><span class="n">i</span> <span class="k">in</span> <span class="p">(</span><span class="s2">&#34;1 2 3 4 5&#34;</span><span class="p">)</span> <span class="k">do</span> <span class="nb">echo </span><span class="k">%</span><span class="n">i</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># bash</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo </span><span class="n">1</span> <span class="n">2</span> <span class="n">3</span> <span class="n">4</span> <span class="n">5</span> <span class="p">|</span> <span class="n">cut</span> <span class="n">-d</span><span class="s1">&#39; &#39;</span> <span class="n">-f3</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo </span><span class="n">1</span> <span class="n">2</span> <span class="n">3</span> <span class="n">4</span> <span class="n">5</span> <span class="p">|</span> <span class="n">awk</span> <span class="s1">&#39;{print $3}&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># pwsh</span>
+</span></span><span class="line"><span class="cl"><span class="c"># 首先 pwsh 也能用 bash 的方法</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="s1">&#39;1 2 3 4 5&#39;</span> <span class="n">-split</span> <span class="s1">&#39; &#39;</span><span class="p">)[</span><span class="n">2</span><span class="p">]</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>你说 bash 你丢不丢人, 连 cmd 都能不借助外部命令自己处理</p>
 <p>再来看正则表达式, bash 不用说了大家都知道的, cmd 也不用说了, findstr 那垃圾正则有和没有都一样</p>
@@ -340,14 +340,14 @@
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="p">&gt;</span> <span class="s1">&#39;&lt;p&gt;WOWOWOWO&lt;/p&gt;&#39;</span> <span class="o">-match</span> <span class="s1">&#39;&lt;p&gt;.*&lt;/p&gt;&#39;</span>
-<span class="n">True</span>
-<span class="p">&gt;</span> <span class="s1">&#39;&lt;p&gt;WOWOWOWO&lt;/p&gt;&#39;</span> <span class="o">-replace</span> <span class="s1">&#39;&lt;p&gt;(.*)&lt;/p&gt;&#39;</span><span class="p">,</span><span class="s1">&#39;$1&#39;</span>
-<span class="n">WOWOWOWO</span>
-<span class="p">&gt;</span> <span class="s1">&#39;&lt;div&gt;&lt;div&gt;&lt;/div&gt;&#39;</span> <span class="o">-match</span> <span class="s2">&#34;&lt;div[^&gt;]*&gt;[^&lt;&gt;]*(((?&#39;Open&#39;&lt;div[^&gt;]*&gt;)[^&lt;&gt;]*)+((?&#39;-Open&#39;&lt;/div&gt;)[^&lt;&gt;]*)+)*(?(Open)(?!))&lt;/div&gt;&#34;</span>
-<span class="p">&gt;</span> <span class="nv">$Matches</span><span class="p">.</span><span class="n">Values</span>
-<span class="p">&lt;</span><span class="n">div</span><span class="p">&gt;&lt;/</span><span class="n">div</span><span class="p">&gt;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="p">&gt;</span> <span class="s1">&#39;&lt;p&gt;WOWOWOWO&lt;/p&gt;&#39;</span> <span class="o">-match</span> <span class="s1">&#39;&lt;p&gt;.*&lt;/p&gt;&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="n">True</span>
+</span></span><span class="line"><span class="cl"><span class="p">&gt;</span> <span class="s1">&#39;&lt;p&gt;WOWOWOWO&lt;/p&gt;&#39;</span> <span class="o">-replace</span> <span class="s1">&#39;&lt;p&gt;(.*)&lt;/p&gt;&#39;</span><span class="p">,</span><span class="s1">&#39;$1&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="n">WOWOWOWO</span>
+</span></span><span class="line"><span class="cl"><span class="p">&gt;</span> <span class="s1">&#39;&lt;div&gt;&lt;div&gt;&lt;/div&gt;&#39;</span> <span class="o">-match</span> <span class="s2">&#34;&lt;div[^&gt;]*&gt;[^&lt;&gt;]*(((?&#39;Open&#39;&lt;div[^&gt;]*&gt;)[^&lt;&gt;]*)+((?&#39;-Open&#39;&lt;/div&gt;)[^&lt;&gt;]*)+)*(?(Open)(?!))&lt;/div&gt;&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&gt;</span> <span class="nv">$Matches</span><span class="p">.</span><span class="n">Values</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="n">div</span><span class="p">&gt;&lt;/</span><span class="n">div</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>真是妙啊!</p>
 <h2 id="符合直觉的通配符">符合直觉的通配符</h2>
@@ -370,14 +370,14 @@
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>/tmp<span class="o">]</span>$ mkdir <span class="nb">test</span>
-<span class="o">[</span>/tmp<span class="o">]</span>$ <span class="nb">cd</span> <span class="nb">test</span>
-<span class="o">[</span>/tmp/test<span class="o">]</span>$ touch -- -f
-<span class="o">[</span>/tmp/test<span class="o">]</span>$ *
-bash: -f：未找到命令
-<span class="o">[</span>/tmp/test<span class="o">]</span>$ <span class="o">[</span> * ~/.zshrc <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="nb">echo</span> <span class="m">1</span>
-<span class="m">1</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>/tmp<span class="o">]</span>$ mkdir <span class="nb">test</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>/tmp<span class="o">]</span>$ <span class="nb">cd</span> <span class="nb">test</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>/tmp/test<span class="o">]</span>$ touch -- -f
+</span></span><span class="line"><span class="cl"><span class="o">[</span>/tmp/test<span class="o">]</span>$ *
+</span></span><span class="line"><span class="cl">bash: -f：未找到命令
+</span></span><span class="line"><span class="cl"><span class="o">[</span>/tmp/test<span class="o">]</span>$ <span class="o">[</span> * ~/.zshrc <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="nb">echo</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl"><span class="m">1</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>看懂了吗! 竟然 TM 有这种操作!! (想象一下你<code>rm *</code> 的时候目录下有个叫 <code>-rf</code>的文件). (我记得好像有一道 CTF 题就是用了这种神奇操作.)</p>
 <p>了解这个神奇特性以后, 你应该知道, <code>[ -f ~/*.c ]</code> 这个代码是肯定行不通的.</p>
@@ -414,21 +414,21 @@ bash: -f：未找到命令
 </span><span class="lnt">14
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="no">[int]</span><span class="nv">$n</span> <span class="p">=</span> <span class="n">2233</span>
-<span class="nv">$n</span> <span class="p">=</span> <span class="n">233</span>   <span class="c"># OK</span>
-<span class="nv">$n</span> <span class="p">=</span> <span class="s2">&#34;asd&#34;</span> <span class="c"># ERROR!</span>
-<span class="nv">$n</span> <span class="p">=</span> <span class="s2">&#34;233&#34;</span> <span class="c"># 比较艹蛋的一点是这样又可以, 隐式类型转换坑爹啊</span>
-
-<span class="no">[int[]]</span><span class="nv">$list</span> <span class="p">=</span> <span class="p">@()</span>
-<span class="nv">$list</span> <span class="p">+=</span> <span class="n">1</span>   <span class="c"># OK</span>
-<span class="nv">$list</span> <span class="p">+=</span> <span class="s2">&#34;a&#34;</span> <span class="c"># ERROR!</span>
-
-<span class="k">function</span> <span class="n">add</span><span class="p">(</span><span class="no">[int]</span><span class="nv">$a</span><span class="p">,</span> <span class="no">[int]</span><span class="nv">$b</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="nv">$a</span> <span class="p">+</span> <span class="nv">$b</span>
-<span class="p">}</span>
-<span class="n">add</span> <span class="n">1</span> <span class="n">2</span>     <span class="c"># OK</span>
-<span class="n">add</span> <span class="s2">&#34;a&#34;</span> <span class="s2">&#34;b&#34;</span> <span class="c"># ERROR!</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="no">[int]</span><span class="nv">$n</span> <span class="p">=</span> <span class="n">2233</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$n</span> <span class="p">=</span> <span class="n">233</span>   <span class="c"># OK</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$n</span> <span class="p">=</span> <span class="s2">&#34;asd&#34;</span> <span class="c"># ERROR!</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$n</span> <span class="p">=</span> <span class="s2">&#34;233&#34;</span> <span class="c"># 比较艹蛋的一点是这样又可以, 隐式类型转换坑爹啊</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="no">[int[]]</span><span class="nv">$list</span> <span class="p">=</span> <span class="p">@()</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$list</span> <span class="p">+=</span> <span class="n">1</span>   <span class="c"># OK</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$list</span> <span class="p">+=</span> <span class="s2">&#34;a&#34;</span> <span class="c"># ERROR!</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">function</span> <span class="n">add</span><span class="p">(</span><span class="no">[int]</span><span class="nv">$a</span><span class="p">,</span> <span class="no">[int]</span><span class="nv">$b</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nv">$a</span> <span class="p">+</span> <span class="nv">$b</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">add</span> <span class="n">1</span> <span class="n">2</span>     <span class="c"># OK</span>
+</span></span><span class="line"><span class="cl"><span class="n">add</span> <span class="s2">&#34;a&#34;</span> <span class="s2">&#34;b&#34;</span> <span class="c"># ERROR!</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>注意到上面指定了函数参数的类型, 其实这还可以更棒</p>
 <div class="highlight"><div class="chroma">
@@ -449,21 +449,21 @@ bash: -f：未找到命令
 </span><span class="lnt">14
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="k">function</span> <span class="n">add</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">param</span><span class="p">(</span>
-    	<span class="no">[ValidateNotNull]</span>
-    	<span class="no">[int]</span>
-    	<span class="nv">$a</span><span class="p">,</span>
-        <span class="no">[ValidateNotNull]</span>
-    	<span class="no">[int]</span>
-    	<span class="nv">$b</span>
-    <span class="p">)</span>
-    <span class="k">process</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="nv">$a</span> <span class="p">+</span> <span class="nv">$b</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-<span class="n">add</span> <span class="nv">$null</span> <span class="n">2</span> <span class="c"># ERROR!</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="k">function</span> <span class="n">add</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">param</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    	<span class="no">[ValidateNotNull]</span>
+</span></span><span class="line"><span class="cl">    	<span class="no">[int]</span>
+</span></span><span class="line"><span class="cl">    	<span class="nv">$a</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="no">[ValidateNotNull]</span>
+</span></span><span class="line"><span class="cl">    	<span class="no">[int]</span>
+</span></span><span class="line"><span class="cl">    	<span class="nv">$b</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">process</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nv">$a</span> <span class="p">+</span> <span class="nv">$b</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">add</span> <span class="nv">$null</span> <span class="n">2</span> <span class="c"># ERROR!</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>这就是 pwsh 的 <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_advanced_parameters?view=powershell-6">advanced_parameters</a></p>
 <h2 id="可读性高">可读性高</h2>
@@ -553,18 +553,18 @@ bash: -f：未找到命令
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="p">&gt;</span> <span class="nb">Get-Process</span> <span class="p">|</span> <span class="nb">Where-Object</span> <span class="p">{</span> <span class="nv">$_</span><span class="p">.</span><span class="n">WS</span> <span class="o">-gt</span> <span class="n">200mb</span> <span class="p">}</span>
-<span class="c"># 使用别名的话可以写成 gps | ? { $_.WS -ge 200mb }</span>
-
- <span class="n">NPM</span><span class="p">(</span><span class="n">K</span><span class="p">)</span>    <span class="n">PM</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>      <span class="n">WS</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>     <span class="n">CPU</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>      <span class="n">Id</span>  <span class="nb">SI </span><span class="n">ProcessName</span>
- <span class="p">------</span>    <span class="p">-----</span>      <span class="p">-----</span>     <span class="p">------</span>      <span class="p">--</span>  <span class="p">--</span> <span class="p">-----------</span>
-      <span class="n">0</span>     <span class="n">0</span><span class="p">.</span><span class="n">00</span>     <span class="n">206</span><span class="p">.</span><span class="n">59</span>     <span class="n">334</span><span class="p">.</span><span class="n">50</span>    <span class="n">1033</span> <span class="n">032</span> <span class="n">plasmashell</span>
-      <span class="n">0</span>     <span class="n">0</span><span class="p">.</span><span class="n">00</span>     <span class="n">226</span><span class="p">.</span><span class="n">43</span>     <span class="n">773</span><span class="p">.</span><span class="n">39</span>    <span class="n">1027</span> <span class="n">977</span> <span class="n">kwin_x11</span>
-      <span class="n">0</span>     <span class="n">0</span><span class="p">.</span><span class="n">00</span>     <span class="n">226</span><span class="p">.</span><span class="n">46</span>     <span class="n">135</span><span class="p">.</span><span class="n">83</span>    <span class="n">8116</span> <span class="n">058</span> <span class="n">chromium</span>
-      <span class="n">0</span>     <span class="n">0</span><span class="p">.</span><span class="n">00</span>     <span class="n">236</span><span class="p">.</span><span class="n">60</span>      <span class="n">97</span><span class="p">.</span><span class="n">72</span>   <span class="n">14990</span> <span class="n">977</span> <span class="n">Typora</span>
-      <span class="n">0</span>     <span class="n">0</span><span class="p">.</span><span class="n">00</span>     <span class="n">392</span><span class="p">.</span><span class="n">42</span>     <span class="n">394</span><span class="p">.</span><span class="n">97</span>    <span class="n">6366</span> <span class="n">030</span> <span class="nb">telegram-deskto</span>
-      <span class="n">0</span>     <span class="n">0</span><span class="p">.</span><span class="n">00</span>     <span class="n">402</span><span class="p">.</span><span class="n">94</span>     <span class="n">878</span><span class="p">.</span><span class="n">92</span>    <span class="n">1381</span> <span class="n">058</span> <span class="n">chromium</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="p">&gt;</span> <span class="nb">Get-Process</span> <span class="p">|</span> <span class="nb">Where-Object</span> <span class="p">{</span> <span class="nv">$_</span><span class="p">.</span><span class="n">WS</span> <span class="o">-gt</span> <span class="n">200mb</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="c"># 使用别名的话可以写成 gps | ? { $_.WS -ge 200mb }</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="n">NPM</span><span class="p">(</span><span class="n">K</span><span class="p">)</span>    <span class="n">PM</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>      <span class="n">WS</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>     <span class="n">CPU</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>      <span class="n">Id</span>  <span class="nb">SI </span><span class="n">ProcessName</span>
+</span></span><span class="line"><span class="cl"> <span class="p">------</span>    <span class="p">-----</span>      <span class="p">-----</span>     <span class="p">------</span>      <span class="p">--</span>  <span class="p">--</span> <span class="p">-----------</span>
+</span></span><span class="line"><span class="cl">      <span class="n">0</span>     <span class="n">0</span><span class="p">.</span><span class="n">00</span>     <span class="n">206</span><span class="p">.</span><span class="n">59</span>     <span class="n">334</span><span class="p">.</span><span class="n">50</span>    <span class="n">1033</span> <span class="n">032</span> <span class="n">plasmashell</span>
+</span></span><span class="line"><span class="cl">      <span class="n">0</span>     <span class="n">0</span><span class="p">.</span><span class="n">00</span>     <span class="n">226</span><span class="p">.</span><span class="n">43</span>     <span class="n">773</span><span class="p">.</span><span class="n">39</span>    <span class="n">1027</span> <span class="n">977</span> <span class="n">kwin_x11</span>
+</span></span><span class="line"><span class="cl">      <span class="n">0</span>     <span class="n">0</span><span class="p">.</span><span class="n">00</span>     <span class="n">226</span><span class="p">.</span><span class="n">46</span>     <span class="n">135</span><span class="p">.</span><span class="n">83</span>    <span class="n">8116</span> <span class="n">058</span> <span class="n">chromium</span>
+</span></span><span class="line"><span class="cl">      <span class="n">0</span>     <span class="n">0</span><span class="p">.</span><span class="n">00</span>     <span class="n">236</span><span class="p">.</span><span class="n">60</span>      <span class="n">97</span><span class="p">.</span><span class="n">72</span>   <span class="n">14990</span> <span class="n">977</span> <span class="n">Typora</span>
+</span></span><span class="line"><span class="cl">      <span class="n">0</span>     <span class="n">0</span><span class="p">.</span><span class="n">00</span>     <span class="n">392</span><span class="p">.</span><span class="n">42</span>     <span class="n">394</span><span class="p">.</span><span class="n">97</span>    <span class="n">6366</span> <span class="n">030</span> <span class="nb">telegram-deskto</span>
+</span></span><span class="line"><span class="cl">      <span class="n">0</span>     <span class="n">0</span><span class="p">.</span><span class="n">00</span>     <span class="n">402</span><span class="p">.</span><span class="n">94</span>     <span class="n">878</span><span class="p">.</span><span class="n">92</span>    <span class="n">1381</span> <span class="n">058</span> <span class="n">chromium</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><blockquote>
 <p>眼尖的小朋友可能会发现, &ldquo;telegram-deskto&rdquo; 好像有点奇怪&hellip;&hellip;默默甩 issue <a href="https://github.com/dotnet/corefx/issues/34437">dotnet/corefx#34437</a></p>
@@ -581,14 +581,14 @@ bash: -f：未找到命令
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">➤ ps aux <span class="p">|</span> awk <span class="s1">&#39;$4 * 8192 / 100 &gt; 200&#39;</span> <span class="c1"># 为了让输出好看点我删掉了命令行参数</span>
-aloxaf    <span class="m">1027</span>  4.9  2.9 <span class="m">3279432</span> <span class="m">232108</span> ?      Sl   11:04  14:04 /usr/bin/kwin_x11
-aloxaf    <span class="m">1033</span>  2.1  2.6 <span class="m">1395968</span> <span class="m">212200</span> ?      Sl   11:04   6:06 /usr/bin/plasmashell
-aloxaf    <span class="m">1381</span>  5.3  5.2 <span class="m">1423580</span> <span class="m">414932</span> ?      Sl   11:06  15:05 /usr/lib/chromium/chromium
-aloxaf    <span class="m">6366</span>  3.0  5.0 <span class="m">1956732</span> <span class="m">404088</span> ?      Sl   11:50   7:09 /usr/bin/telegram-desktop
-aloxaf    <span class="m">8116</span>  1.0  2.8 <span class="m">883064</span> <span class="m">225856</span> ?       Sl   11:59   2:28 /usr/lib/chromium/chromium
-aloxaf   <span class="m">14990</span>  5.2  3.1 <span class="m">1792528</span> <span class="m">249992</span> ?      Sl   14:46   3:11 /usr/share/typora/Typora 
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">➤ ps aux <span class="p">|</span> awk <span class="s1">&#39;$4 * 8192 / 100 &gt; 200&#39;</span> <span class="c1"># 为了让输出好看点我删掉了命令行参数</span>
+</span></span><span class="line"><span class="cl">aloxaf    <span class="m">1027</span>  4.9  2.9 <span class="m">3279432</span> <span class="m">232108</span> ?      Sl   11:04  14:04 /usr/bin/kwin_x11
+</span></span><span class="line"><span class="cl">aloxaf    <span class="m">1033</span>  2.1  2.6 <span class="m">1395968</span> <span class="m">212200</span> ?      Sl   11:04   6:06 /usr/bin/plasmashell
+</span></span><span class="line"><span class="cl">aloxaf    <span class="m">1381</span>  5.3  5.2 <span class="m">1423580</span> <span class="m">414932</span> ?      Sl   11:06  15:05 /usr/lib/chromium/chromium
+</span></span><span class="line"><span class="cl">aloxaf    <span class="m">6366</span>  3.0  5.0 <span class="m">1956732</span> <span class="m">404088</span> ?      Sl   11:50   7:09 /usr/bin/telegram-desktop
+</span></span><span class="line"><span class="cl">aloxaf    <span class="m">8116</span>  1.0  2.8 <span class="m">883064</span> <span class="m">225856</span> ?       Sl   11:59   2:28 /usr/lib/chromium/chromium
+</span></span><span class="line"><span class="cl">aloxaf   <span class="m">14990</span>  5.2  3.1 <span class="m">1792528</span> <span class="m">249992</span> ?      Sl   14:46   3:11 /usr/share/typora/Typora 
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>如果再按照内存使用量从大到小排序呢? pwsh 再接个 <code>Sort-Object -Descending -Property WS</code> 就行了, bash 的话接个 <code>sort -rk 4</code> 也行.</p>
 <p>有没有发现什么. bash 的可读性太 TM 糟糕了——充斥着魔术数字. 这个 4 究竟代表了什么? 从代码中看不出来, 输出以后更是 van 全看不出来!</p>
@@ -617,12 +617,12 @@ fc 教授说 freebsd 那边在做 <a href="https://wiki.freebsd.org/LibXo">LibXo
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="p">&gt;</span> <span class="nb">Measure-Command</span> <span class="n">-Expression</span> <span class="p">{</span><span class="n">seq</span> <span class="n">12345</span> <span class="p">|</span> <span class="n">rg</span> <span class="n">12345</span><span class="p">}</span> <span class="p">|</span> <span class="nb">select </span><span class="n">TotalMilliseconds</span>
-
-<span class="n">TotalMilliseconds</span>
-<span class="p">-----------------</span>
-         <span class="n">759</span><span class="p">.</span><span class="n">6631</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="p">&gt;</span> <span class="nb">Measure-Command</span> <span class="n">-Expression</span> <span class="p">{</span><span class="n">seq</span> <span class="n">12345</span> <span class="p">|</span> <span class="n">rg</span> <span class="n">12345</span><span class="p">}</span> <span class="p">|</span> <span class="nb">select </span><span class="n">TotalMilliseconds</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">TotalMilliseconds</span>
+</span></span><span class="line"><span class="cl"><span class="p">-----------------</span>
+</span></span><span class="line"><span class="cl">         <span class="n">759</span><span class="p">.</span><span class="n">6631</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>反观 bash , 简直就是吊打!</p>
 <div class="highlight"><div class="chroma">
@@ -633,11 +633,11 @@ fc 教授说 freebsd 那边在做 <a href="https://wiki.freebsd.org/LibXo">LibXo
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">➤ <span class="nb">time</span> seq <span class="m">12345</span> <span class="p">|</span> rg <span class="m">12345</span>
-<span class="m">12345</span>
-seq <span class="m">12345</span>  0.00s user 0.00s system 84% cpu 0.002 total
-rg <span class="m">12345</span>  0.00s user 0.00s system 92% cpu 0.005 total
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">➤ <span class="nb">time</span> seq <span class="m">12345</span> <span class="p">|</span> rg <span class="m">12345</span>
+</span></span><span class="line"><span class="cl"><span class="m">12345</span>
+</span></span><span class="line"><span class="cl">seq <span class="m">12345</span>  0.00s user 0.00s system 84% cpu 0.002 total
+</span></span><span class="line"><span class="cl">rg <span class="m">12345</span>  0.00s user 0.00s system 92% cpu 0.005 total
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>心累啊, 大概 M$ 一开始觉得反正 Windows 上又没啥工具给你调用&hellip;结果怎么突然就跨平台了呢?</p>
 <h2 id="与-native-程序交互">与 native 程序交互</h2>
@@ -664,11 +664,11 @@ rg <span class="m">12345</span>  0.00s user 0.00s system 92% cpu 0.005 total
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">➤ <span class="nb">time</span> zsh -c <span class="s1">&#39;exit&#39;</span>
-zsh -c <span class="s1">&#39;exit&#39;</span>  0.01s user 0.00s system 94% cpu 0.018 total
-➤ <span class="nb">time</span> pwsh -nop -c <span class="s1">&#39;exit&#39;</span>
-pwsh -nop -c <span class="s1">&#39;exit&#39;</span>  0.38s user 0.05s system 118% cpu 0.360 total
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">➤ <span class="nb">time</span> zsh -c <span class="s1">&#39;exit&#39;</span>
+</span></span><span class="line"><span class="cl">zsh -c <span class="s1">&#39;exit&#39;</span>  0.01s user 0.00s system 94% cpu 0.018 total
+</span></span><span class="line"><span class="cl">➤ <span class="nb">time</span> pwsh -nop -c <span class="s1">&#39;exit&#39;</span>
+</span></span><span class="line"><span class="cl">pwsh -nop -c <span class="s1">&#39;exit&#39;</span>  0.38s user 0.05s system 118% cpu 0.360 total
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>而且这可是没有任何配置的 pwsh 啊!!</p>
 <p>我本来试了试 oh-my-posh, 发现颜值还真挺高的, 然而这样一来启动速度就到了秒级. 吓得我赶紧卸载掉了.
@@ -728,9 +728,9 @@ pwsh -nop -c <span class="s1">&#39;exit&#39;</span>  0.38s user 0.05s system 118
   <script type="text/javascript">
     new Valine({
         el: '#vcomments' ,
-        serverURLs: '',
-        appId: 'fSbXaElXXTznggVXiWy8NFBU-gzGzoHsz',
-        appKey: 'kK3SxB14xAACgHftKrSaBRDU',
+        serverURLs: 'https:\/\/0mqcauyd.api.lncldglobal.com',
+        appId: '0mQCAuYdR6NE9gIVBd6rDEjY-MdYXbMMI',
+        appKey: 'CBACoI7HhLeuROO39gpYpYDl',
         notify:  false ,
         verify:  false ,
         avatar:'mm',
@@ -790,7 +790,7 @@ pwsh -nop -c <span class="s1">&#39;exit&#39;</span>  0.38s user 0.05s system 118
 
 
 
-<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 <script type="application/javascript">

@@ -24,7 +24,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.92.0 with theme even" />
+<meta name="generator" content="Hugo 0.95.0 with theme even" />
 
 
 <link rel="preload" href="/fonts/iconfont/iconfont.woff" as="font" type="font/woff" crossorigin="anonymous">
@@ -194,12 +194,12 @@
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="kt">char</span> <span class="o">*</span><span class="n">loc1</span><span class="p">;</span>
-<span class="kt">char</span> <span class="o">*</span><span class="n">loc2</span><span class="p">;</span>
-<span class="p">...</span>
-<span class="p">...</span>
-<span class="kt">char</span> <span class="o">*</span><span class="n">loc</span><span class="p">;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">char</span> <span class="o">*</span><span class="n">loc1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">char</span> <span class="o">*</span><span class="n">loc2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="kt">char</span> <span class="o">*</span><span class="n">loc</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>换成</p>
 <div class="highlight"><div class="chroma">
@@ -211,12 +211,12 @@
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="kt">char</span> <span class="o">*</span><span class="n">loc1</span> <span class="nf">__attribute__</span> <span class="p">((</span><span class="n">nocommon</span><span class="p">));</span>
-<span class="kt">char</span> <span class="o">*</span><span class="n">loc2</span> <span class="nf">__attribute__</span> <span class="p">((</span><span class="n">nocommon</span><span class="p">));</span>
-<span class="p">...</span>
-<span class="p">...</span>
-<span class="kt">char</span> <span class="o">*</span><span class="n">locs</span> <span class="n">__attribute__</span> <span class="p">((</span><span class="n">nocommon</span><span class="p">));</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">char</span> <span class="o">*</span><span class="n">loc1</span> <span class="nf">__attribute__</span> <span class="p">((</span><span class="n">nocommon</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl"><span class="kt">char</span> <span class="o">*</span><span class="n">loc2</span> <span class="nf">__attribute__</span> <span class="p">((</span><span class="n">nocommon</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl"><span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="kt">char</span> <span class="o">*</span><span class="n">locs</span> <span class="n">__attribute__</span> <span class="p">((</span><span class="n">nocommon</span><span class="p">));</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>PS. 原链接中还多了一个 <code>compat_symbol</code>, 但是我没加也编译过了&hellip;.就不管了</p>
 <h2 id="第三步">第三步</h2>
@@ -230,8 +230,8 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">../glibc-2.23/configure --disable-werror --prefix<span class="o">=</span>/home/aloxaf/.local/lib/glibc-2.23_x86 --host<span class="o">=</span>i686-linux-gnu --build<span class="o">=</span>i686-linux-gnu <span class="nv">CC</span><span class="o">=</span><span class="s2">&#34;gcc -m32&#34;</span> <span class="nv">CXX</span><span class="o">=</span><span class="s2">&#34;g++ -m32&#34;</span> <span class="nv">CFLAGS</span><span class="o">=</span><span class="s2">&#34;-g -O2 -march=i686 -fno-stack-protector&#34;</span> <span class="nv">CXXFLAGS</span><span class="o">=</span><span class="s2">&#34;-g -O2 -march=i686 -fno-stack-protector&#34;</span> --enable-debug<span class="o">=</span>yes
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">../glibc-2.23/configure --disable-werror --prefix<span class="o">=</span>/home/aloxaf/.local/lib/glibc-2.23_x86 --host<span class="o">=</span>i686-linux-gnu --build<span class="o">=</span>i686-linux-gnu <span class="nv">CC</span><span class="o">=</span><span class="s2">&#34;gcc -m32&#34;</span> <span class="nv">CXX</span><span class="o">=</span><span class="s2">&#34;g++ -m32&#34;</span> <span class="nv">CFLAGS</span><span class="o">=</span><span class="s2">&#34;-g -O2 -march=i686 -fno-stack-protector&#34;</span> <span class="nv">CXXFLAGS</span><span class="o">=</span><span class="s2">&#34;-g -O2 -march=i686 -fno-stack-protector&#34;</span> --enable-debug<span class="o">=</span>yes
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>64位使用如下命令配置</p>
 <div class="highlight"><div class="chroma">
@@ -239,8 +239,8 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">../glibc-2.23/configure --disable-werror --prefix<span class="o">=</span>/home/aloxaf/.local/lib/glibc-2.23 --enable-debug<span class="o">=</span>yes <span class="nv">CFLAGS</span><span class="o">=</span><span class="s2">&#34;-O2 -g&#34;</span> <span class="nv">CPPFLAGS</span><span class="o">=</span><span class="s2">&#34;-O2 -g&#34;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">../glibc-2.23/configure --disable-werror --prefix<span class="o">=</span>/home/aloxaf/.local/lib/glibc-2.23 --enable-debug<span class="o">=</span>yes <span class="nv">CFLAGS</span><span class="o">=</span><span class="s2">&#34;-O2 -g&#34;</span> <span class="nv">CPPFLAGS</span><span class="o">=</span><span class="s2">&#34;-O2 -g&#34;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>Note:</p>
 <ul>
@@ -313,62 +313,62 @@
 </span><span class="lnt">55
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="ch">#!/usr/bin/env python</span>
-<span class="c1"># -*- coding: utf-8 -*-</span>
-
-<span class="c1"># https://bbs.pediy.com/thread-225849.htm</span>
-
-<span class="kn">from</span> <span class="nn">tempfile</span> <span class="kn">import</span> <span class="n">gettempprefix</span>
-<span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">sys</span>
-
-
-<span class="k">def</span> <span class="nf">change_ld</span><span class="p">(</span><span class="n">binary</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span><span class="o">-&gt;</span><span class="nb">str</span><span class="p">:</span>
-    <span class="s2">&#34;&#34;&#34;
-</span><span class="s2">    更改ELF文件加载的libc版本
-</span><span class="s2">    :param binary: ELF路径
-</span><span class="s2">    :param ld:   ld.so路径
-</span><span class="s2">    :param libc: lib.so路径
-</span><span class="s2">    :return: 新的ELF文件路径
-</span><span class="s2">    &#34;&#34;&#34;</span>
-
-    <span class="n">binary</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="n">binary</span><span class="p">)</span>
-
-    <span class="k">for</span> <span class="n">segment</span> <span class="ow">in</span> <span class="n">binary</span><span class="o">.</span><span class="n">segments</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">segment</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="s1">&#39;p_type&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;PT_INTERP&#39;</span><span class="p">:</span>
-            <span class="n">size</span> <span class="o">=</span> <span class="n">segment</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="s1">&#39;p_memsz&#39;</span><span class="p">]</span>
-            <span class="n">addr</span> <span class="o">=</span> <span class="n">segment</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="s1">&#39;p_paddr&#39;</span><span class="p">]</span>
-            <span class="n">data</span> <span class="o">=</span> <span class="n">segment</span><span class="o">.</span><span class="n">data</span><span class="p">()</span>
-
-            <span class="n">ld</span> <span class="o">=</span> <span class="s1">&#39;/opt/ctf/ld.so&#39;</span> <span class="k">if</span> <span class="n">binary</span><span class="o">.</span><span class="n">arch</span> <span class="o">==</span> <span class="s1">&#39;amd64&#39;</span> <span class="k">else</span> <span class="s1">&#39;/opt/ctf/ld32.so&#39;</span>
-
-            <span class="k">if</span> <span class="n">size</span> <span class="o">&lt;=</span> <span class="nb">len</span><span class="p">(</span><span class="n">ld</span><span class="p">):</span>
-                <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span>
-                    <span class="s2">&#34;Failed to change PT_INTERP from </span><span class="si">{}</span><span class="s2"> to </span><span class="si">{}</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">ld</span><span class="p">))</span>
-                <span class="k">return</span> <span class="kc">None</span>
-
-            <span class="n">binary</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">addr</span><span class="p">,</span> <span class="n">ld</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\0</span><span class="s1">&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span>
-
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">access</span><span class="p">(</span><span class="s1">&#39;/tmp/easypwn&#39;</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">F_OK</span><span class="p">):</span>
-                <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="s1">&#39;/tmp/easypwn&#39;</span><span class="p">)</span>
-            <span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;/tmp/easypwn/</span><span class="si">{}</span><span class="s1">_debug&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">binary</span><span class="o">.</span><span class="n">path</span><span class="p">))</span>
-
-            <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">access</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">F_OK</span><span class="p">):</span>
-                <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
-                <span class="c1"># print(&#34;Removing exist file {}&#34;.format(path))</span>
-            <span class="n">binary</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
-            <span class="n">os</span><span class="o">.</span><span class="n">chmod</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="mb">0b111000000</span><span class="p">)</span>  <span class="c1"># rwx------</span>
-
-    <span class="c1"># print(&#34;PT_INTERP has changed from {} to {}. Using temp file {}&#34;.format(data, ld, path))</span>
-    <span class="k">return</span> <span class="n">ELF</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
-
-
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
-    <span class="n">change_ld</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
-    <span class="n">os</span><span class="o">.</span><span class="n">chmod</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="mb">0b111000000</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="ch">#!/usr/bin/env python</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -*- coding: utf-8 -*-</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># https://bbs.pediy.com/thread-225849.htm</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">tempfile</span> <span class="kn">import</span> <span class="n">gettempprefix</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">os</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">sys</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">change_ld</span><span class="p">(</span><span class="n">binary</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span><span class="o">-&gt;</span><span class="nb">str</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    更改ELF文件加载的libc版本
+</span></span></span><span class="line"><span class="cl"><span class="s2">    :param binary: ELF路径
+</span></span></span><span class="line"><span class="cl"><span class="s2">    :param ld:   ld.so路径
+</span></span></span><span class="line"><span class="cl"><span class="s2">    :param libc: lib.so路径
+</span></span></span><span class="line"><span class="cl"><span class="s2">    :return: 新的ELF文件路径
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">binary</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="n">binary</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">segment</span> <span class="ow">in</span> <span class="n">binary</span><span class="o">.</span><span class="n">segments</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">segment</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="s1">&#39;p_type&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;PT_INTERP&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">size</span> <span class="o">=</span> <span class="n">segment</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="s1">&#39;p_memsz&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">            <span class="n">addr</span> <span class="o">=</span> <span class="n">segment</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="s1">&#39;p_paddr&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">            <span class="n">data</span> <span class="o">=</span> <span class="n">segment</span><span class="o">.</span><span class="n">data</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="n">ld</span> <span class="o">=</span> <span class="s1">&#39;/opt/ctf/ld.so&#39;</span> <span class="k">if</span> <span class="n">binary</span><span class="o">.</span><span class="n">arch</span> <span class="o">==</span> <span class="s1">&#39;amd64&#39;</span> <span class="k">else</span> <span class="s1">&#39;/opt/ctf/ld32.so&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">size</span> <span class="o">&lt;=</span> <span class="nb">len</span><span class="p">(</span><span class="n">ld</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">                <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34;Failed to change PT_INTERP from </span><span class="si">{}</span><span class="s2"> to </span><span class="si">{}</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">ld</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span> <span class="kc">None</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="n">binary</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">addr</span><span class="p">,</span> <span class="n">ld</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\0</span><span class="s1">&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">access</span><span class="p">(</span><span class="s1">&#39;/tmp/easypwn&#39;</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">F_OK</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">                <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="s1">&#39;/tmp/easypwn&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;/tmp/easypwn/</span><span class="si">{}</span><span class="s1">_debug&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">                <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">binary</span><span class="o">.</span><span class="n">path</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">access</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">F_OK</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">                <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="c1"># print(&#34;Removing exist file {}&#34;.format(path))</span>
+</span></span><span class="line"><span class="cl">            <span class="n">binary</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">os</span><span class="o">.</span><span class="n">chmod</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="mb">0b111000000</span><span class="p">)</span>  <span class="c1"># rwx------</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># print(&#34;PT_INTERP has changed from {} to {}. Using temp file {}&#34;.format(data, ld, path))</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">ELF</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">change_ld</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">    <span class="n">os</span><span class="o">.</span><span class="n">chmod</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="mb">0b111000000</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>其中 <code>/opt/ctf/ld.so</code> 是 <code>/home/aloxaf/.local/lib/glibc-2.23/lib/ld-2.23.so</code> 的硬链接,
 32位版以此类推.</p>
@@ -428,9 +428,9 @@
   <script type="text/javascript">
     new Valine({
         el: '#vcomments' ,
-        serverURLs: '',
-        appId: 'fSbXaElXXTznggVXiWy8NFBU-gzGzoHsz',
-        appKey: 'kK3SxB14xAACgHftKrSaBRDU',
+        serverURLs: 'https:\/\/0mqcauyd.api.lncldglobal.com',
+        appId: '0mQCAuYdR6NE9gIVBd6rDEjY-MdYXbMMI',
+        appKey: 'CBACoI7HhLeuROO39gpYpYDl',
         notify:  false ,
         verify:  false ,
         avatar:'mm',
@@ -490,7 +490,7 @@
 
 
 
-<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 <script type="application/javascript">

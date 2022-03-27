@@ -24,7 +24,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.92.0 with theme even" />
+<meta name="generator" content="Hugo 0.95.0 with theme even" />
 
 
 <link rel="preload" href="/fonts/iconfont/iconfont.woff" as="font" type="font/woff" crossorigin="anonymous">
@@ -434,154 +434,154 @@
 </span><span class="lnt">147
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 相当于 python 代码 `chr(32+33)`</span>
-❯ <span class="nv">var</span><span class="o">=</span>32+33
-❯ <span class="nb">echo</span> <span class="si">${</span><span class="p">(#)var</span><span class="si">}</span>
-A
-
-<span class="c1"># 会输出白底红字的「Hello」</span>
-❯ <span class="nv">var</span><span class="o">=</span><span class="s2">&#34;%F{red}%K{white}Hello%f%k&#34;</span>
-❯ <span class="nb">echo</span> <span class="si">${</span><span class="p">(%)var</span><span class="si">}</span>
-
-<span class="c1"># `A` flag 的主要用途是搭配 `${...=...}`、`${...:=...}` 等一起使用</span>
-<span class="c1"># 允许用它们为数组/关联数组初始化</span>
-❯ : <span class="si">${</span><span class="p">(AA)=var=a 1 b 2 c 3</span><span class="si">}</span>
-❯ <span class="nb">echo</span> <span class="si">${</span><span class="p">(t)var</span><span class="si">}</span>
-association
-
-<span class="c1"># 无 flag  - 统计元素数</span>
-<span class="c1"># `c`      - 统计字符数（元素间视为一个空格）</span>
-<span class="c1"># `w`      - 统计词数（以空格为分隔符）</span>
-<span class="c1"># `ws:|:   - 统计词数（以&#39;|&#39;为分隔符）</span>
-<span class="c1"># `Ws:|:`  - 统计词数（以&#39;|&#39;为分隔符，但是允许空字符串存在）</span>
-❯ <span class="nv">var</span><span class="o">=(</span><span class="s2">&#34;a||||b&#34;</span> <span class="s2">&#34;c d&#34;</span> <span class="s2">&#34;e f&#34;</span><span class="o">)</span>
-❯ <span class="nb">echo</span> <span class="nv">$#</span>var <span class="si">${</span><span class="p">(c)#var</span><span class="si">}</span> <span class="si">${</span><span class="p">(w)#var</span><span class="si">}</span> <span class="si">${</span><span class="p">(ws:|:)#var</span><span class="si">}</span> <span class="si">${</span><span class="p">(Ws:|:)#var</span><span class="si">}</span>
-<span class="m">3</span> <span class="m">14</span> <span class="m">5</span> <span class="m">4</span> <span class="m">7</span>
-
-<span class="c1"># 大小写相关</span>
-❯ <span class="nv">var</span><span class="o">=</span><span class="s2">&#34;zSH is SO coOl&#34;</span>
-❯ <span class="nb">echo</span> <span class="si">${</span><span class="p">(C)var</span><span class="si">}</span>
-Zsh Is So Cool
-❯ <span class="nb">echo</span> <span class="si">${</span><span class="p">(L)var</span><span class="si">}</span>
-zsh is so cool
-❯ <span class="nb">echo</span> <span class="si">${</span><span class="p">(U)var</span><span class="si">}</span>
-ZSH IS SO COOL
-
-<span class="c1"># `D` flag 一般用于将路径还原成对用户来说更易读的格式</span>
-❯ <span class="nv">var</span><span class="o">=</span><span class="nv">$HOME</span>/.local/share/zsh
-❯ <span class="nb">echo</span> <span class="si">${</span><span class="p">(D)var</span><span class="si">}</span>
-~/.local/share/zsh
-<span class="c1"># 注意此处可以正确处理 named directory，比 ${var/#$HOME/\~} 不仅简单，兼容性也好</span>
-❯ <span class="nb">hash</span> -d <span class="nv">share</span><span class="o">=</span>~/.local/share
-❯ <span class="nb">echo</span> <span class="si">${</span><span class="p">(D)var</span><span class="si">}</span>
-~share/zsh
-
-<span class="c1"># 类似 $(echo $var)</span>
-❯ <span class="nv">var</span><span class="o">=</span><span class="s1">&#39;abc\ndef&#39;</span>
-❯ print -r <span class="nv">$var</span>
-abc<span class="se">\n</span>def
-❯ print -r <span class="si">${</span><span class="p">(g::):</span><span class="nv">var</span><span class="si">}</span>
-abc
-def
-
-<span class="c1"># 这个操作类似于 eval，也和 eval 同样存在风险</span>
-❯ <span class="nv">var</span><span class="o">=</span><span class="s1">&#39;$((1+1)) $HOME $(echo hello)&#39;</span>
-❯ <span class="nb">echo</span> <span class="si">${</span><span class="p">(e)var</span><span class="si">}</span>
-<span class="m">2</span> /home/aloxaf hello
-
-<span class="c1"># `X` flag 可以让 `e` flag 等在遇到错误时正确设置错误码而不是忽略</span>
-❯ <span class="nv">var</span><span class="o">=</span><span class="s1">&#39;${var/$(}&#39;</span>
-❯ : <span class="si">${</span><span class="p">(e)var</span><span class="si">}</span> <span class="o">&amp;&amp;</span> <span class="nb">echo</span> No error
-zsh: parse error near <span class="sb">`</span><span class="o">}</span><span class="s1">&#39;
-</span><span class="s1">No error
-</span><span class="s1">❯ : ${(Xe)var} &amp;&amp; echo No error
-</span><span class="s1">zsh: parse error near `}&#39;</span>
-zsh: parse error
-
-<span class="c1"># 变量的嵌套展开，就和 php 里的 $$var 一样</span>
-❯ <span class="nv">bar</span><span class="o">=</span><span class="m">1</span> <span class="nv">foo</span><span class="o">=</span>bar <span class="nv">var</span><span class="o">=</span>foo
-❯ <span class="nb">echo</span> <span class="si">${</span><span class="p">(P)var</span><span class="si">}</span>
-bar
-❯ <span class="nb">echo</span> <span class="si">${</span><span class="p">(P)</span><span class="si">${</span><span class="p">(P)var</span><span class="si">}}</span>
-<span class="m">1</span>
-
-<span class="c1"># `q` 用于转义特殊字符，但是有多种转义形式</span>
-<span class="c1"># `Q` 是 `q` 的逆运算</span>
-❯ <span class="nv">var</span><span class="o">=</span><span class="s2">&#34;&#39;123&#39;&#34;</span><span class="s1">$&#39;\n&#34;456 789\b0&#34;&#39;</span>
-❯ print -r <span class="si">${</span><span class="p">(q)var</span><span class="si">}</span>    <span class="c1"># 用反斜杠 + $&#39;&#39; 转义</span>
-<span class="se">\&#39;</span>123<span class="se">\&#39;</span><span class="s1">$&#39;\n&#39;</span><span class="se">\&#34;</span>456<span class="se">\ </span>789<span class="s1">$&#39;\b&#39;</span>0<span class="se">\&#34;</span>
-❯ print -r <span class="si">${</span><span class="p">(qq)var</span><span class="si">}</span>   <span class="c1"># 包裹在单引号中</span>
-<span class="s1">&#39;&#39;&#39;123&#39;&#39;
-</span><span class="s1">&#34;456 780&#34;&#39;</span>
-❯ print -r <span class="si">${</span><span class="p">(qqq)var</span><span class="si">}</span>  <span class="c1"># 包裹在双引号中</span>
-<span class="s2">&#34;&#39;123&#39;
-</span><span class="s2">\&#34;456 780\&#34;&#34;</span>
-❯ print -r <span class="si">${</span><span class="p">(qqqq)var</span><span class="si">}</span> <span class="c1"># 包裹在 $&#39;&#39; 中</span>
-<span class="s1">$&#39;\&#39;123\&#39;\n&#34;456 789\b0&#34;&#39;</span>
-❯ print -r <span class="si">${</span><span class="p">(q-)var</span><span class="si">}</span>   <span class="c1"># 最小化转义，通常这个形式是可读性最好的</span>
-<span class="se">\&#39;</span>123<span class="se">\&#39;</span><span class="s1">&#39;
-</span><span class="s1">&#34;456 780&#34;&#39;</span>
-❯ print -r <span class="si">${</span><span class="p">(q+)var</span><span class="si">}</span>   <span class="c1"># 另一种形式的最小化转义，会用 $&#39;&#39; 包裹不可打印字符</span>
-<span class="s1">$&#39;\&#39;123\&#39;\n&#34;456 789\C-H0&#34;&#39;</span>
-❯ print -r <span class="si">${</span><span class="p">(V)var</span><span class="si">}</span>    <span class="c1"># 转义为 ^H 的格式，我也忘了这种格式叫啥了</span>
-<span class="s1">&#39;123&#39;</span><span class="se">\n</span><span class="s2">&#34;456 789^H0&#34;</span>
-
-<span class="c1"># 此处使用了 `f` 来按行分割，使用 `@` 来允许保留空行</span>
-<span class="c1"># 这就是在 zsh 中按行读取小文件的标准形式</span>
-❯ print -l <span class="s2">&#34;</span><span class="si">${</span><span class="p">(@f)</span><span class="s2">&#34;</span><span class="k">$(</span>&lt;~/.zshenv<span class="k">)</span><span class="s2">&#34;</span><span class="si">}</span><span class="s2">&#34;</span>
-
-<span class="c1"># zsh 允许变量中存在 NULL</span>
-<span class="c1"># 因此 zsh 脚本常常使用 NULL 来作为一些数据的分隔符，因为正常数据中绝不会出现 NULL</span>
-❯ <span class="nv">var</span><span class="o">=</span><span class="s1">$&#39;abc\0def\0hij&#39;</span>
-❯ print -l <span class="si">${</span><span class="p">(0)var</span><span class="si">}</span>
-abc
-def
-hij
-
-<span class="c1"># `p` flag 常搭配 `s` 和 `j` flag 使用，允许你在指定分隔符时使用转义序列</span>
-❯ <span class="nv">var</span><span class="o">=</span><span class="s1">$&#39;123\n456\\n789&#39;</span>
-<span class="c1"># \n 被视为一个普通字符串，分割点是第二处</span>
-<span class="c1"># 为了便于观察结果，使用了 `q` flag 来转义换行符</span>
-❯ print -rl <span class="si">${</span><span class="p">(q)</span><span class="si">${</span><span class="p">(s:</span><span class="se">\n</span><span class="p">:)var</span><span class="si">}}</span>
-123<span class="s1">$&#39;\n&#39;</span><span class="m">456</span>
-<span class="m">789</span>
-<span class="c1"># \n 被视为换行符，分割点是第一处</span>
-❯ print -rl <span class="si">${</span><span class="p">(q)</span><span class="si">${</span><span class="p">(ps:</span><span class="se">\n</span><span class="p">:)var</span><span class="si">}}</span>
-<span class="m">123</span>
-456<span class="se">\\</span>n789
-
-<span class="c1"># 此处的 `~` flag 将 `j` flag 的参数视为了 pattern，其余部分仍然视为纯字符串</span>
-<span class="c1"># 注意这个效果和 ${~var} 不同，后者会将整个展开结果作为 pattern</span>
-❯ <span class="nv">var</span><span class="o">=(</span><span class="s2">&#34;?&#34;</span> <span class="s2">&#34;*&#34;</span><span class="o">)</span>
-❯ <span class="o">[[</span> <span class="s2">&#34;?&#34;</span> <span class="o">==</span> <span class="si">${</span><span class="p">(~j:|:)var</span><span class="si">}</span> <span class="o">]]</span><span class="p">;</span> <span class="nb">echo</span> <span class="nv">$?</span>
-<span class="m">0</span>
-❯ <span class="o">[[</span> <span class="s2">&#34;.&#34;</span> <span class="o">==</span> <span class="si">${</span><span class="p">(~j:|:)var</span><span class="si">}</span> <span class="o">]]</span><span class="p">;</span> <span class="nb">echo</span> <span class="nv">$?</span>
-<span class="m">1</span>
-
-<span class="c1"># 左填充，右填充也同理</span>
-❯ <span class="nv">var</span><span class="o">=</span><span class="s2">&#34;1&#34;</span>
-❯ <span class="nb">echo</span> <span class="si">${</span><span class="p">(l:</span><span class="nv">5</span><span class="p">::</span><span class="nv">0</span><span class="p">)var</span><span class="si">}</span>
-<span class="m">00001</span>
-❯ <span class="nb">echo</span> <span class="si">${</span><span class="p">(l:</span><span class="nv">5</span><span class="p">::</span><span class="nv">0</span><span class="p">::</span><span class="nv">_</span><span class="p">:)var</span><span class="si">}</span>
-000_1
-
-<span class="c1"># z flag 常用来保留引号内容的内容为单独的元素</span>
-❯ <span class="nv">var</span><span class="o">=</span><span class="s1">&#39;a &#34;b c&#34; # I am comment&#39;</span>
-❯ print -l <span class="si">${</span><span class="p">(z)var</span><span class="si">}</span>    <span class="c1"># 引号内被作为单独的元素，但是注释被分割了</span>
-a
-<span class="s2">&#34;b c&#34;</span>
-<span class="c1">#</span>
-I
-am
-comment
-❯ print -l <span class="si">${</span><span class="p">(Z:</span><span class="nv">C</span><span class="p">:)var</span><span class="si">}</span> <span class="c1"># 注释被去掉了</span>
-a
-<span class="s2">&#34;b c&#34;</span>
-❯ print -l <span class="si">${</span><span class="p">(Z:</span><span class="nv">c</span><span class="p">:)var</span><span class="si">}</span> <span class="c1"># 注释也被作为一个整体</span>
-a
-<span class="s2">&#34;b c&#34;</span>
-<span class="c1"># I am comment</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 相当于 python 代码 `chr(32+33)`</span>
+</span></span><span class="line"><span class="cl">❯ <span class="nv">var</span><span class="o">=</span>32+33
+</span></span><span class="line"><span class="cl">❯ <span class="nb">echo</span> <span class="si">${</span><span class="p">(#)var</span><span class="si">}</span>
+</span></span><span class="line"><span class="cl">A
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 会输出白底红字的「Hello」</span>
+</span></span><span class="line"><span class="cl">❯ <span class="nv">var</span><span class="o">=</span><span class="s2">&#34;%F{red}%K{white}Hello%f%k&#34;</span>
+</span></span><span class="line"><span class="cl">❯ <span class="nb">echo</span> <span class="si">${</span><span class="p">(%)var</span><span class="si">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># `A` flag 的主要用途是搭配 `${...=...}`、`${...:=...}` 等一起使用</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 允许用它们为数组/关联数组初始化</span>
+</span></span><span class="line"><span class="cl">❯ : <span class="si">${</span><span class="p">(AA)=var=a 1 b 2 c 3</span><span class="si">}</span>
+</span></span><span class="line"><span class="cl">❯ <span class="nb">echo</span> <span class="si">${</span><span class="p">(t)var</span><span class="si">}</span>
+</span></span><span class="line"><span class="cl">association
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 无 flag  - 统计元素数</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># `c`      - 统计字符数（元素间视为一个空格）</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># `w`      - 统计词数（以空格为分隔符）</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># `ws:|:   - 统计词数（以&#39;|&#39;为分隔符）</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># `Ws:|:`  - 统计词数（以&#39;|&#39;为分隔符，但是允许空字符串存在）</span>
+</span></span><span class="line"><span class="cl">❯ <span class="nv">var</span><span class="o">=(</span><span class="s2">&#34;a||||b&#34;</span> <span class="s2">&#34;c d&#34;</span> <span class="s2">&#34;e f&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">❯ <span class="nb">echo</span> <span class="nv">$#</span>var <span class="si">${</span><span class="p">(c)#var</span><span class="si">}</span> <span class="si">${</span><span class="p">(w)#var</span><span class="si">}</span> <span class="si">${</span><span class="p">(ws:|:)#var</span><span class="si">}</span> <span class="si">${</span><span class="p">(Ws:|:)#var</span><span class="si">}</span>
+</span></span><span class="line"><span class="cl"><span class="m">3</span> <span class="m">14</span> <span class="m">5</span> <span class="m">4</span> <span class="m">7</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 大小写相关</span>
+</span></span><span class="line"><span class="cl">❯ <span class="nv">var</span><span class="o">=</span><span class="s2">&#34;zSH is SO coOl&#34;</span>
+</span></span><span class="line"><span class="cl">❯ <span class="nb">echo</span> <span class="si">${</span><span class="p">(C)var</span><span class="si">}</span>
+</span></span><span class="line"><span class="cl">Zsh Is So Cool
+</span></span><span class="line"><span class="cl">❯ <span class="nb">echo</span> <span class="si">${</span><span class="p">(L)var</span><span class="si">}</span>
+</span></span><span class="line"><span class="cl">zsh is so cool
+</span></span><span class="line"><span class="cl">❯ <span class="nb">echo</span> <span class="si">${</span><span class="p">(U)var</span><span class="si">}</span>
+</span></span><span class="line"><span class="cl">ZSH IS SO COOL
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># `D` flag 一般用于将路径还原成对用户来说更易读的格式</span>
+</span></span><span class="line"><span class="cl">❯ <span class="nv">var</span><span class="o">=</span><span class="nv">$HOME</span>/.local/share/zsh
+</span></span><span class="line"><span class="cl">❯ <span class="nb">echo</span> <span class="si">${</span><span class="p">(D)var</span><span class="si">}</span>
+</span></span><span class="line"><span class="cl">~/.local/share/zsh
+</span></span><span class="line"><span class="cl"><span class="c1"># 注意此处可以正确处理 named directory，比 ${var/#$HOME/\~} 不仅简单，兼容性也好</span>
+</span></span><span class="line"><span class="cl">❯ <span class="nb">hash</span> -d <span class="nv">share</span><span class="o">=</span>~/.local/share
+</span></span><span class="line"><span class="cl">❯ <span class="nb">echo</span> <span class="si">${</span><span class="p">(D)var</span><span class="si">}</span>
+</span></span><span class="line"><span class="cl">~share/zsh
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 类似 $(echo $var)</span>
+</span></span><span class="line"><span class="cl">❯ <span class="nv">var</span><span class="o">=</span><span class="s1">&#39;abc\ndef&#39;</span>
+</span></span><span class="line"><span class="cl">❯ print -r <span class="nv">$var</span>
+</span></span><span class="line"><span class="cl">abc<span class="se">\n</span>def
+</span></span><span class="line"><span class="cl">❯ print -r <span class="si">${</span><span class="p">(g::):</span><span class="nv">var</span><span class="si">}</span>
+</span></span><span class="line"><span class="cl">abc
+</span></span><span class="line"><span class="cl">def
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 这个操作类似于 eval，也和 eval 同样存在风险</span>
+</span></span><span class="line"><span class="cl">❯ <span class="nv">var</span><span class="o">=</span><span class="s1">&#39;$((1+1)) $HOME $(echo hello)&#39;</span>
+</span></span><span class="line"><span class="cl">❯ <span class="nb">echo</span> <span class="si">${</span><span class="p">(e)var</span><span class="si">}</span>
+</span></span><span class="line"><span class="cl"><span class="m">2</span> /home/aloxaf hello
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># `X` flag 可以让 `e` flag 等在遇到错误时正确设置错误码而不是忽略</span>
+</span></span><span class="line"><span class="cl">❯ <span class="nv">var</span><span class="o">=</span><span class="s1">&#39;${var/$(}&#39;</span>
+</span></span><span class="line"><span class="cl">❯ : <span class="si">${</span><span class="p">(e)var</span><span class="si">}</span> <span class="o">&amp;&amp;</span> <span class="nb">echo</span> No error
+</span></span><span class="line"><span class="cl">zsh: parse error near <span class="sb">`</span><span class="o">}</span><span class="s1">&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s1">No error
+</span></span></span><span class="line"><span class="cl"><span class="s1">❯ : ${(Xe)var} &amp;&amp; echo No error
+</span></span></span><span class="line"><span class="cl"><span class="s1">zsh: parse error near `}&#39;</span>
+</span></span><span class="line"><span class="cl">zsh: parse error
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 变量的嵌套展开，就和 php 里的 $$var 一样</span>
+</span></span><span class="line"><span class="cl">❯ <span class="nv">bar</span><span class="o">=</span><span class="m">1</span> <span class="nv">foo</span><span class="o">=</span>bar <span class="nv">var</span><span class="o">=</span>foo
+</span></span><span class="line"><span class="cl">❯ <span class="nb">echo</span> <span class="si">${</span><span class="p">(P)var</span><span class="si">}</span>
+</span></span><span class="line"><span class="cl">bar
+</span></span><span class="line"><span class="cl">❯ <span class="nb">echo</span> <span class="si">${</span><span class="p">(P)</span><span class="si">${</span><span class="p">(P)var</span><span class="si">}}</span>
+</span></span><span class="line"><span class="cl"><span class="m">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># `q` 用于转义特殊字符，但是有多种转义形式</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># `Q` 是 `q` 的逆运算</span>
+</span></span><span class="line"><span class="cl">❯ <span class="nv">var</span><span class="o">=</span><span class="s2">&#34;&#39;123&#39;&#34;</span><span class="s1">$&#39;\n&#34;456 789\b0&#34;&#39;</span>
+</span></span><span class="line"><span class="cl">❯ print -r <span class="si">${</span><span class="p">(q)var</span><span class="si">}</span>    <span class="c1"># 用反斜杠 + $&#39;&#39; 转义</span>
+</span></span><span class="line"><span class="cl"><span class="se">\&#39;</span>123<span class="se">\&#39;</span><span class="s1">$&#39;\n&#39;</span><span class="se">\&#34;</span>456<span class="se">\ </span>789<span class="s1">$&#39;\b&#39;</span>0<span class="se">\&#34;</span>
+</span></span><span class="line"><span class="cl">❯ print -r <span class="si">${</span><span class="p">(qq)var</span><span class="si">}</span>   <span class="c1"># 包裹在单引号中</span>
+</span></span><span class="line"><span class="cl"><span class="s1">&#39;&#39;&#39;123&#39;&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s1">&#34;456 780&#34;&#39;</span>
+</span></span><span class="line"><span class="cl">❯ print -r <span class="si">${</span><span class="p">(qqq)var</span><span class="si">}</span>  <span class="c1"># 包裹在双引号中</span>
+</span></span><span class="line"><span class="cl"><span class="s2">&#34;&#39;123&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s2">\&#34;456 780\&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">❯ print -r <span class="si">${</span><span class="p">(qqqq)var</span><span class="si">}</span> <span class="c1"># 包裹在 $&#39;&#39; 中</span>
+</span></span><span class="line"><span class="cl"><span class="s1">$&#39;\&#39;123\&#39;\n&#34;456 789\b0&#34;&#39;</span>
+</span></span><span class="line"><span class="cl">❯ print -r <span class="si">${</span><span class="p">(q-)var</span><span class="si">}</span>   <span class="c1"># 最小化转义，通常这个形式是可读性最好的</span>
+</span></span><span class="line"><span class="cl"><span class="se">\&#39;</span>123<span class="se">\&#39;</span><span class="s1">&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s1">&#34;456 780&#34;&#39;</span>
+</span></span><span class="line"><span class="cl">❯ print -r <span class="si">${</span><span class="p">(q+)var</span><span class="si">}</span>   <span class="c1"># 另一种形式的最小化转义，会用 $&#39;&#39; 包裹不可打印字符</span>
+</span></span><span class="line"><span class="cl"><span class="s1">$&#39;\&#39;123\&#39;\n&#34;456 789\C-H0&#34;&#39;</span>
+</span></span><span class="line"><span class="cl">❯ print -r <span class="si">${</span><span class="p">(V)var</span><span class="si">}</span>    <span class="c1"># 转义为 ^H 的格式，我也忘了这种格式叫啥了</span>
+</span></span><span class="line"><span class="cl"><span class="s1">&#39;123&#39;</span><span class="se">\n</span><span class="s2">&#34;456 789^H0&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 此处使用了 `f` 来按行分割，使用 `@` 来允许保留空行</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 这就是在 zsh 中按行读取小文件的标准形式</span>
+</span></span><span class="line"><span class="cl">❯ print -l <span class="s2">&#34;</span><span class="si">${</span><span class="p">(@f)</span><span class="s2">&#34;</span><span class="k">$(</span>&lt;~/.zshenv<span class="k">)</span><span class="s2">&#34;</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># zsh 允许变量中存在 NULL</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 因此 zsh 脚本常常使用 NULL 来作为一些数据的分隔符，因为正常数据中绝不会出现 NULL</span>
+</span></span><span class="line"><span class="cl">❯ <span class="nv">var</span><span class="o">=</span><span class="s1">$&#39;abc\0def\0hij&#39;</span>
+</span></span><span class="line"><span class="cl">❯ print -l <span class="si">${</span><span class="p">(0)var</span><span class="si">}</span>
+</span></span><span class="line"><span class="cl">abc
+</span></span><span class="line"><span class="cl">def
+</span></span><span class="line"><span class="cl">hij
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># `p` flag 常搭配 `s` 和 `j` flag 使用，允许你在指定分隔符时使用转义序列</span>
+</span></span><span class="line"><span class="cl">❯ <span class="nv">var</span><span class="o">=</span><span class="s1">$&#39;123\n456\\n789&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># \n 被视为一个普通字符串，分割点是第二处</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 为了便于观察结果，使用了 `q` flag 来转义换行符</span>
+</span></span><span class="line"><span class="cl">❯ print -rl <span class="si">${</span><span class="p">(q)</span><span class="si">${</span><span class="p">(s:</span><span class="se">\n</span><span class="p">:)var</span><span class="si">}}</span>
+</span></span><span class="line"><span class="cl">123<span class="s1">$&#39;\n&#39;</span><span class="m">456</span>
+</span></span><span class="line"><span class="cl"><span class="m">789</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># \n 被视为换行符，分割点是第一处</span>
+</span></span><span class="line"><span class="cl">❯ print -rl <span class="si">${</span><span class="p">(q)</span><span class="si">${</span><span class="p">(ps:</span><span class="se">\n</span><span class="p">:)var</span><span class="si">}}</span>
+</span></span><span class="line"><span class="cl"><span class="m">123</span>
+</span></span><span class="line"><span class="cl">456<span class="se">\\</span>n789
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 此处的 `~` flag 将 `j` flag 的参数视为了 pattern，其余部分仍然视为纯字符串</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 注意这个效果和 ${~var} 不同，后者会将整个展开结果作为 pattern</span>
+</span></span><span class="line"><span class="cl">❯ <span class="nv">var</span><span class="o">=(</span><span class="s2">&#34;?&#34;</span> <span class="s2">&#34;*&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">❯ <span class="o">[[</span> <span class="s2">&#34;?&#34;</span> <span class="o">==</span> <span class="si">${</span><span class="p">(~j:|:)var</span><span class="si">}</span> <span class="o">]]</span><span class="p">;</span> <span class="nb">echo</span> <span class="nv">$?</span>
+</span></span><span class="line"><span class="cl"><span class="m">0</span>
+</span></span><span class="line"><span class="cl">❯ <span class="o">[[</span> <span class="s2">&#34;.&#34;</span> <span class="o">==</span> <span class="si">${</span><span class="p">(~j:|:)var</span><span class="si">}</span> <span class="o">]]</span><span class="p">;</span> <span class="nb">echo</span> <span class="nv">$?</span>
+</span></span><span class="line"><span class="cl"><span class="m">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 左填充，右填充也同理</span>
+</span></span><span class="line"><span class="cl">❯ <span class="nv">var</span><span class="o">=</span><span class="s2">&#34;1&#34;</span>
+</span></span><span class="line"><span class="cl">❯ <span class="nb">echo</span> <span class="si">${</span><span class="p">(l:</span><span class="nv">5</span><span class="p">::</span><span class="nv">0</span><span class="p">)var</span><span class="si">}</span>
+</span></span><span class="line"><span class="cl"><span class="m">00001</span>
+</span></span><span class="line"><span class="cl">❯ <span class="nb">echo</span> <span class="si">${</span><span class="p">(l:</span><span class="nv">5</span><span class="p">::</span><span class="nv">0</span><span class="p">::</span><span class="nv">_</span><span class="p">:)var</span><span class="si">}</span>
+</span></span><span class="line"><span class="cl">000_1
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># z flag 常用来保留引号内容的内容为单独的元素</span>
+</span></span><span class="line"><span class="cl">❯ <span class="nv">var</span><span class="o">=</span><span class="s1">&#39;a &#34;b c&#34; # I am comment&#39;</span>
+</span></span><span class="line"><span class="cl">❯ print -l <span class="si">${</span><span class="p">(z)var</span><span class="si">}</span>    <span class="c1"># 引号内被作为单独的元素，但是注释被分割了</span>
+</span></span><span class="line"><span class="cl">a
+</span></span><span class="line"><span class="cl"><span class="s2">&#34;b c&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#</span>
+</span></span><span class="line"><span class="cl">I
+</span></span><span class="line"><span class="cl">am
+</span></span><span class="line"><span class="cl">comment
+</span></span><span class="line"><span class="cl">❯ print -l <span class="si">${</span><span class="p">(Z:</span><span class="nv">C</span><span class="p">:)var</span><span class="si">}</span> <span class="c1"># 注释被去掉了</span>
+</span></span><span class="line"><span class="cl">a
+</span></span><span class="line"><span class="cl"><span class="s2">&#34;b c&#34;</span>
+</span></span><span class="line"><span class="cl">❯ print -l <span class="si">${</span><span class="p">(Z:</span><span class="nv">c</span><span class="p">:)var</span><span class="si">}</span> <span class="c1"># 注释也被作为一个整体</span>
+</span></span><span class="line"><span class="cl">a
+</span></span><span class="line"><span class="cl"><span class="s2">&#34;b c&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># I am comment</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
 <p>以下 flag 仅用于数组</p>
@@ -611,11 +611,11 @@ a
 </tr>
 <tr>
 <td><code>o</code></td>
-<td>递增排序，可以与 &lsquo;a&rsquo;, &lsquo;i&rsquo;, &lsquo;n&rsquo; 组合使用</td>
+<td>递增排序，可以与 &lsquo;a&rsquo;, &lsquo;i&rsquo;, &rsquo;n&rsquo; 组合使用</td>
 </tr>
 <tr>
 <td><code>O</code></td>
-<td>递减排序，可以与 &lsquo;a&rsquo;, &lsquo;i&rsquo;, &lsquo;n&rsquo; 组合使用</td>
+<td>递减排序，可以与 &lsquo;a&rsquo;, &lsquo;i&rsquo;, &rsquo;n&rsquo; 组合使用</td>
 </tr>
 <tr>
 <td><code>F</code></td>
@@ -673,36 +673,36 @@ a
 </span><span class="lnt">29
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># `@` flag 最常见的用法是搭配引号保留数组中的空元素</span>
-❯ <span class="nv">var</span><span class="o">=</span><span class="s1">$&#39;1\n\n2&#39;</span>
-❯ <span class="nb">echo</span> <span class="si">${#${</span><span class="p">(f)var</span><span class="si">}}</span>
-<span class="m">2</span>
-❯ <span class="nb">echo</span> <span class="s2">&#34;</span><span class="si">${#${</span><span class="p">(@f)var</span><span class="si">}}</span><span class="s2">&#34;</span>
-<span class="m">3</span>
-
-<span class="c1"># 数组排序</span>
-❯ <span class="nv">arr</span><span class="o">=(</span><span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">11</span> <span class="m">12</span> 13<span class="o">)</span>
-❯ <span class="nb">echo</span> <span class="si">${</span><span class="p">(o)arr</span><span class="si">}</span>   <span class="c1"># 按字典序递增</span>
-<span class="m">1</span> <span class="m">11</span> <span class="m">12</span> <span class="m">13</span> <span class="m">2</span> <span class="m">3</span>
-❯ <span class="nb">echo</span> <span class="si">${</span><span class="p">(on)arr</span><span class="si">}</span>  <span class="c1"># 按算术大小递增</span>
-<span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">11</span> <span class="m">12</span> <span class="m">13</span>
-
-<span class="c1"># 数组拼接</span>
-❯ <span class="nv">arr</span><span class="o">=(</span>a b c<span class="o">)</span>
-❯ <span class="nb">echo</span> <span class="si">${</span><span class="p">(j:,:)arr</span><span class="si">}</span> <span class="c1"># 以 , 为分隔符拼接数组</span>
-a,b,c
-❯ <span class="nb">echo</span> <span class="si">${</span><span class="p">(j.:.)arr</span><span class="si">}</span> <span class="c1"># 以 : 为分隔符拼接数组</span>
-a:b:c
-
-<span class="c1"># 关联数组</span>
-❯ <span class="nb">local</span> -A <span class="nv">arr</span><span class="o">=(</span>a <span class="m">1</span> b <span class="m">2</span> c 3<span class="o">)</span>
-❯ <span class="nb">echo</span> <span class="nv">$arr</span>
-<span class="m">1</span> <span class="m">2</span> <span class="m">3</span>
-❯ <span class="nb">echo</span> <span class="si">${</span><span class="p">(k)arr</span><span class="si">}</span>
-a b c
-❯ <span class="nb">echo</span> <span class="si">${</span><span class="p">(v)arr</span><span class="si">}</span>
-<span class="m">1</span> <span class="m">2</span> <span class="m">3</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># `@` flag 最常见的用法是搭配引号保留数组中的空元素</span>
+</span></span><span class="line"><span class="cl">❯ <span class="nv">var</span><span class="o">=</span><span class="s1">$&#39;1\n\n2&#39;</span>
+</span></span><span class="line"><span class="cl">❯ <span class="nb">echo</span> <span class="si">${#${</span><span class="p">(f)var</span><span class="si">}}</span>
+</span></span><span class="line"><span class="cl"><span class="m">2</span>
+</span></span><span class="line"><span class="cl">❯ <span class="nb">echo</span> <span class="s2">&#34;</span><span class="si">${#${</span><span class="p">(@f)var</span><span class="si">}}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="m">3</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 数组排序</span>
+</span></span><span class="line"><span class="cl">❯ <span class="nv">arr</span><span class="o">=(</span><span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">11</span> <span class="m">12</span> 13<span class="o">)</span>
+</span></span><span class="line"><span class="cl">❯ <span class="nb">echo</span> <span class="si">${</span><span class="p">(o)arr</span><span class="si">}</span>   <span class="c1"># 按字典序递增</span>
+</span></span><span class="line"><span class="cl"><span class="m">1</span> <span class="m">11</span> <span class="m">12</span> <span class="m">13</span> <span class="m">2</span> <span class="m">3</span>
+</span></span><span class="line"><span class="cl">❯ <span class="nb">echo</span> <span class="si">${</span><span class="p">(on)arr</span><span class="si">}</span>  <span class="c1"># 按算术大小递增</span>
+</span></span><span class="line"><span class="cl"><span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">11</span> <span class="m">12</span> <span class="m">13</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 数组拼接</span>
+</span></span><span class="line"><span class="cl">❯ <span class="nv">arr</span><span class="o">=(</span>a b c<span class="o">)</span>
+</span></span><span class="line"><span class="cl">❯ <span class="nb">echo</span> <span class="si">${</span><span class="p">(j:,:)arr</span><span class="si">}</span> <span class="c1"># 以 , 为分隔符拼接数组</span>
+</span></span><span class="line"><span class="cl">a,b,c
+</span></span><span class="line"><span class="cl">❯ <span class="nb">echo</span> <span class="si">${</span><span class="p">(j.:.)arr</span><span class="si">}</span> <span class="c1"># 以 : 为分隔符拼接数组</span>
+</span></span><span class="line"><span class="cl">a:b:c
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 关联数组</span>
+</span></span><span class="line"><span class="cl">❯ <span class="nb">local</span> -A <span class="nv">arr</span><span class="o">=(</span>a <span class="m">1</span> b <span class="m">2</span> c 3<span class="o">)</span>
+</span></span><span class="line"><span class="cl">❯ <span class="nb">echo</span> <span class="nv">$arr</span>
+</span></span><span class="line"><span class="cl"><span class="m">1</span> <span class="m">2</span> <span class="m">3</span>
+</span></span><span class="line"><span class="cl">❯ <span class="nb">echo</span> <span class="si">${</span><span class="p">(k)arr</span><span class="si">}</span>
+</span></span><span class="line"><span class="cl">a b c
+</span></span><span class="line"><span class="cl">❯ <span class="nb">echo</span> <span class="si">${</span><span class="p">(v)arr</span><span class="si">}</span>
+</span></span><span class="line"><span class="cl"><span class="m">1</span> <span class="m">2</span> <span class="m">3</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
 <p>以下 flag 仅用于 <code>${...#..}</code> 和 <code>${...%...}</code>，除了 <code>S</code>、<code>l</code> 也可以用于 <code>${.../...}</code>。</p>
@@ -758,16 +758,16 @@ a b c
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">❯ <span class="nv">var</span><span class="o">=</span><span class="s1">&#39;123,456,789,abc,def&#39;</span>
-❯ <span class="nb">echo</span> <span class="si">${</span><span class="nv">var</span><span class="p">/,*,/,</span><span class="si">}</span>    <span class="c1"># 贪婪</span>
-123,def
-❯ <span class="nb">echo</span> <span class="si">${</span><span class="p">(S)var/,*,/,</span><span class="si">}</span> <span class="c1"># 非贪婪</span>
-123,789,abc,def
-❯ <span class="nb">echo</span> <span class="si">${</span><span class="p">(M)var#*,</span><span class="si">}</span>    <span class="c1"># 输出匹配部分，而不是进行替换</span>
-123,
-❯ <span class="nb">echo</span> <span class="si">${</span><span class="p">(N)var#*,</span><span class="si">}</span>    <span class="c1"># 输出匹配部分的长度</span>
-<span class="m">4</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">❯ <span class="nv">var</span><span class="o">=</span><span class="s1">&#39;123,456,789,abc,def&#39;</span>
+</span></span><span class="line"><span class="cl">❯ <span class="nb">echo</span> <span class="si">${</span><span class="nv">var</span><span class="p">/,*,/,</span><span class="si">}</span>    <span class="c1"># 贪婪</span>
+</span></span><span class="line"><span class="cl">123,def
+</span></span><span class="line"><span class="cl">❯ <span class="nb">echo</span> <span class="si">${</span><span class="p">(S)var/,*,/,</span><span class="si">}</span> <span class="c1"># 非贪婪</span>
+</span></span><span class="line"><span class="cl">123,789,abc,def
+</span></span><span class="line"><span class="cl">❯ <span class="nb">echo</span> <span class="si">${</span><span class="p">(M)var#*,</span><span class="si">}</span>    <span class="c1"># 输出匹配部分，而不是进行替换</span>
+</span></span><span class="line"><span class="cl">123,
+</span></span><span class="line"><span class="cl">❯ <span class="nb">echo</span> <span class="si">${</span><span class="p">(N)var#*,</span><span class="si">}</span>    <span class="c1"># 输出匹配部分的长度</span>
+</span></span><span class="line"><span class="cl"><span class="m">4</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div>
     </div>
@@ -822,9 +822,9 @@ a b c
   <script type="text/javascript">
     new Valine({
         el: '#vcomments' ,
-        serverURLs: '',
-        appId: 'fSbXaElXXTznggVXiWy8NFBU-gzGzoHsz',
-        appKey: 'kK3SxB14xAACgHftKrSaBRDU',
+        serverURLs: 'https:\/\/0mqcauyd.api.lncldglobal.com',
+        appId: '0mQCAuYdR6NE9gIVBd6rDEjY-MdYXbMMI',
+        appKey: 'CBACoI7HhLeuROO39gpYpYDl',
         notify:  false ,
         verify:  false ,
         avatar:'mm',
@@ -884,7 +884,7 @@ a b c
 
 
 
-<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 <script type="application/javascript">

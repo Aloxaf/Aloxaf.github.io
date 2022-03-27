@@ -26,7 +26,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.92.0 with theme even" />
+<meta name="generator" content="Hugo 0.95.0 with theme even" />
 
 
 <link rel="preload" href="/fonts/iconfont/iconfont.woff" as="font" type="font/woff" crossorigin="anonymous">
@@ -199,8 +199,8 @@ xkeysnail 是一个非常强大的 keyboard remapping 工具, 它类似于 xmodm
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">pikaur -S xkeysnail
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">pikaur -S xkeysnail
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="other">Other</h3>
 <div class="highlight"><div class="chroma">
@@ -208,8 +208,8 @@ xkeysnail 是一个非常强大的 keyboard remapping 工具, 它类似于 xmodm
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">pip install xkeysnail --user
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">pip install xkeysnail --user
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>注: 官方文档里使用的是 <code>sudo pip</code> 来安装, 但不推荐这样做. 尤其是 pip 这种辣鸡包管理器, 很容易把系统的包管理搞乱.</p>
 <h2 id="用法">用法</h2>
@@ -219,8 +219,8 @@ xkeysnail 是一个非常强大的 keyboard remapping 工具, 它类似于 xmodm
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">sudo xkeysnail config.py
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo xkeysnail config.py
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>不出意外地话应该没有报错, 然可以切换到一个不支持 Emacs 快捷键的环境, 比如浏览器. 试一下 C-a, C-e 等基本的快捷键是否能工作.</p>
 <p>如果遇到 <code>Xlib.error.DisplayConnectionError: Can't connect to display &quot;:0.0&quot;: b'No protocol specified\n' </code> 这样的错误, 可以尝试</p>
@@ -230,9 +230,9 @@ xkeysnail 是一个非常强大的 keyboard remapping 工具, 它类似于 xmodm
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">xhost +SI:localuser:root
-sudo xkeysnail config.py
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">xhost +SI:localuser:root
+</span></span><span class="line"><span class="cl">sudo xkeysnail config.py
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>其中 xhost 命令需要通过 <code>pacman -S xorg-xhost</code> 安装</p>
 <p>如果你有热插拔键盘的需求, 还需要加上 <code>-watch</code> 开关</p>
@@ -255,8 +255,8 @@ sudo xkeysnail config.py
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">sudo groupadd uinput
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo groupadd uinput
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>然后将当前用户添加到 input 和 uinput 组中
 ( 这个步骤似乎并不是即时生效的, 执行完这条命令可以用 <code>groups</code> 查看一下当前用户所属的组, 如果没有 input &amp; uinput 的话可以重启或者重新登录试试 )</p>
@@ -265,8 +265,8 @@ sudo xkeysnail config.py
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">sudo usermod -a -G input,uinput <span class="nv">$USER</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo usermod -a -G input,uinput <span class="nv">$USER</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>然后编写两个 udev 规则, 放在 <code>/etc/udev/rules.d/</code> 下</p>
 <p>input.rules</p>
@@ -275,8 +275,8 @@ sudo xkeysnail config.py
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="err">KERNEL==</span><span class="s2">&#34;event*&#34;</span><span class="err">,</span> <span class="err">NAME=</span><span class="s2">&#34;input/%k&#34;</span><span class="err">,</span> <span class="err">MODE=</span><span class="s2">&#34;660&#34;</span><span class="err">,</span> <span class="err">GROUP=</span><span class="s2">&#34;input&#34;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="err">KERNEL==</span><span class="s2">&#34;event*&#34;</span><span class="err">,</span> <span class="err">NAME=</span><span class="s2">&#34;input/%k&#34;</span><span class="err">,</span> <span class="err">MODE=</span><span class="s2">&#34;660&#34;</span><span class="err">,</span> <span class="err">GROUP=</span><span class="s2">&#34;input&#34;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>uinput.rules</p>
 <div class="highlight"><div class="chroma">
@@ -284,8 +284,8 @@ sudo xkeysnail config.py
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="err">KERNEL==</span><span class="s2">&#34;uinput&#34;</span><span class="err">,</span> <span class="err">GROUP=</span><span class="s2">&#34;uinput&#34;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="err">KERNEL==</span><span class="s2">&#34;uinput&#34;</span><span class="err">,</span> <span class="err">GROUP=</span><span class="s2">&#34;uinput&#34;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>接着应用这两条规则</p>
 <div class="highlight"><div class="chroma">
@@ -293,8 +293,8 @@ sudo xkeysnail config.py
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">sudo udevadm control --reload-rules <span class="o">&amp;&amp;</span> udevadm trigger
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo udevadm control --reload-rules <span class="o">&amp;&amp;</span> udevadm trigger
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="编写-service">编写 service</h3>
 <div class="highlight"><div class="chroma">
@@ -318,24 +318,24 @@ sudo xkeysnail config.py
 </span><span class="lnt">17
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="c1"># https://qiita.com/samurai20000@github/items/2e1d779e806a7e8543d6</span>
-
-<span class="k">[Unit]</span>
-<span class="na">Description</span><span class="o">=</span><span class="s">xkeysnail</span>
-
-<span class="k">[Service]</span>
-<span class="c1"># DISPLAY 的值应该和 `echo $DISPLAY` 的值相同</span>
-<span class="na">Environment</span><span class="o">=</span><span class="s">DISPLAY=:0</span>
-<span class="na">ExecStartPre</span><span class="o">=</span><span class="s">-xhost +SI:localuser:root</span>
-<span class="c1"># 此处禁用了按键状态的输出, 因为我不想要一大堆毫无卵用的日志...</span>
-<span class="na">ExecStart</span><span class="o">=</span><span class="s">xkeysnail -q /home/aloxaf/.config/xkeysnail/config.py</span>
-<span class="na">Type</span><span class="o">=</span><span class="s">simple</span>
-<span class="na">Restart</span><span class="o">=</span><span class="s">always</span>
-<span class="na">RestartSec</span><span class="o">=</span><span class="s">2</span>
-
-<span class="k">[Install]</span>
-<span class="na">WantedBy</span><span class="o">=</span><span class="s">default.target</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="c1"># https://qiita.com/samurai20000@github/items/2e1d779e806a7e8543d6</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">[Unit]</span>
+</span></span><span class="line"><span class="cl"><span class="na">Description</span><span class="o">=</span><span class="s">xkeysnail</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">[Service]</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># DISPLAY 的值应该和 `echo $DISPLAY` 的值相同</span>
+</span></span><span class="line"><span class="cl"><span class="na">Environment</span><span class="o">=</span><span class="s">DISPLAY=:0</span>
+</span></span><span class="line"><span class="cl"><span class="na">ExecStartPre</span><span class="o">=</span><span class="s">-xhost +SI:localuser:root</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 此处禁用了按键状态的输出, 因为我不想要一大堆毫无卵用的日志...</span>
+</span></span><span class="line"><span class="cl"><span class="na">ExecStart</span><span class="o">=</span><span class="s">xkeysnail -q /home/aloxaf/.config/xkeysnail/config.py</span>
+</span></span><span class="line"><span class="cl"><span class="na">Type</span><span class="o">=</span><span class="s">simple</span>
+</span></span><span class="line"><span class="cl"><span class="na">Restart</span><span class="o">=</span><span class="s">always</span>
+</span></span><span class="line"><span class="cl"><span class="na">RestartSec</span><span class="o">=</span><span class="s">2</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">[Install]</span>
+</span></span><span class="line"><span class="cl"><span class="na">WantedBy</span><span class="o">=</span><span class="s">default.target</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>将以上代码保存为 <code>~/.config/systemd/user/xkeysnail.service</code>,
 然后执行 <code>systemctl --user --now enable xkeysnail.service</code>.</p>
@@ -402,9 +402,9 @@ sudo xkeysnail config.py
   <script type="text/javascript">
     new Valine({
         el: '#vcomments' ,
-        serverURLs: '',
-        appId: 'fSbXaElXXTznggVXiWy8NFBU-gzGzoHsz',
-        appKey: 'kK3SxB14xAACgHftKrSaBRDU',
+        serverURLs: 'https:\/\/0mqcauyd.api.lncldglobal.com',
+        appId: '0mQCAuYdR6NE9gIVBd6rDEjY-MdYXbMMI',
+        appKey: 'CBACoI7HhLeuROO39gpYpYDl',
         notify:  false ,
         verify:  false ,
         avatar:'mm',
@@ -464,7 +464,7 @@ sudo xkeysnail config.py
 
 
 
-<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 <script type="application/javascript">

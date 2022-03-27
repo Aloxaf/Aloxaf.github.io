@@ -25,7 +25,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.92.0 with theme even" />
+<meta name="generator" content="Hugo 0.95.0 with theme even" />
 
 
 <link rel="preload" href="/fonts/iconfont/iconfont.woff" as="font" type="font/woff" crossorigin="anonymous">
@@ -186,9 +186,9 @@
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">❯ rustc --version
-rustc 1.41.0-nightly <span class="o">(</span>5c5b8afd8 2019-11-16<span class="o">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">❯ rustc --version
+</span></span><span class="line"><span class="cl">rustc 1.41.0-nightly <span class="o">(</span>5c5b8afd8 2019-11-16<span class="o">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>这次不再采用 Hello，world 作为演示了，因为本身就没多少代码参考意义不大，本文的目的不是探究一个 Rust 程序能做到多小，而是一个<strong>实际的</strong> Rust 项目可以优化到多小。</p>
 <p>翻了一下以前的项目，决定使用 <a href="https://github.com/Aloxaf/ren3/">ren3</a> 作为优化对象：规模恰到好处，有足够的代码，又没有太多依赖。</p>
@@ -199,8 +199,8 @@ rustc 1.41.0-nightly <span class="o">(</span>5c5b8afd8 2019-11-16<span class="o"
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">cargo build --release
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cargo build --release
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>最基本的优化体积方式之一，大家都懂的。Cargo 默认的编译模式是 dev ，该下没有进行任何优化，而且附带了大量调试信息。dev 模式下的程序别说几十兆，上百兆都是有可能的……</p>
 <table>
@@ -231,8 +231,8 @@ rustc 1.41.0-nightly <span class="o">(</span>5c5b8afd8 2019-11-16<span class="o"
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">strip -s target/release/ren3
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">strip -s target/release/ren3
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>最基本的优化体积方式之二，可以去除（对正常运行）无用的符号信息</p>
 <table>
@@ -265,9 +265,9 @@ rustc 1.41.0-nightly <span class="o">(</span>5c5b8afd8 2019-11-16<span class="o"
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="p">[</span><span class="nx">profile</span><span class="p">.</span><span class="nx">release</span><span class="p">]</span>
-<span class="nx">opt-level</span> <span class="p">=</span> <span class="s1">&#39;z&#39;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">profile</span><span class="p">.</span><span class="nx">release</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">opt-level</span> <span class="p">=</span> <span class="s1">&#39;z&#39;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><table>
 <thead>
@@ -309,9 +309,9 @@ rustc 1.41.0-nightly <span class="o">(</span>5c5b8afd8 2019-11-16<span class="o"
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="p">[</span><span class="nx">profile</span><span class="p">.</span><span class="nx">release</span><span class="p">]</span>
-<span class="nx">lto</span> <span class="p">=</span> <span class="kc">true</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">profile</span><span class="p">.</span><span class="nx">release</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">lto</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><table>
 <thead>
@@ -363,9 +363,9 @@ rustc 1.41.0-nightly <span class="o">(</span>5c5b8afd8 2019-11-16<span class="o"
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="p">[</span><span class="nx">profile</span><span class="p">.</span><span class="nx">release</span><span class="p">]</span>
-<span class="nx">codegen-units</span> <span class="p">=</span> <span class="mi">1</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">profile</span><span class="p">.</span><span class="nx">release</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">codegen-units</span> <span class="p">=</span> <span class="mi">1</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><table>
 <thead>
@@ -419,9 +419,9 @@ rustc 1.41.0-nightly <span class="o">(</span>5c5b8afd8 2019-11-16<span class="o"
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="p">[</span><span class="nx">profile</span><span class="p">.</span><span class="nx">release</span><span class="p">]</span>
-<span class="nx">panic</span> <span class="p">=</span> <span class="s1">&#39;abort&#39;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">profile</span><span class="p">.</span><span class="nx">release</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">panic</span> <span class="p">=</span> <span class="s1">&#39;abort&#39;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><table>
 <thead>
@@ -488,11 +488,11 @@ rustc 1.41.0-nightly <span class="o">(</span>5c5b8afd8 2019-11-16<span class="o"
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="p">[</span><span class="nx">dependencies</span><span class="p">]</span>
-<span class="nx">regex</span> <span class="p">=</span> <span class="s2">&#34;1.3.1&#34;</span>
-<span class="nx">clap</span> <span class="p">=</span> <span class="p">{</span> <span class="nx">version</span> <span class="p">=</span> <span class="s2">&#34;2.33.0&#34;</span><span class="p">,</span> <span class="nx">features</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;yaml&#34;</span><span class="p">]</span> <span class="p">}</span>
-<span class="nx">colored</span> <span class="p">=</span> <span class="s2">&#34;1.9.0&#34;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">dependencies</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">regex</span> <span class="p">=</span> <span class="s2">&#34;1.3.1&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">clap</span> <span class="p">=</span> <span class="p">{</span> <span class="nx">version</span> <span class="p">=</span> <span class="s2">&#34;2.33.0&#34;</span><span class="p">,</span> <span class="nx">features</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;yaml&#34;</span><span class="p">]</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nx">colored</span> <span class="p">=</span> <span class="s2">&#34;1.9.0&#34;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>很少，只有三个，但是仍然有优化空间。</p>
 <h2 id="去除不必要的依赖">去除不必要的依赖</h2>
@@ -528,31 +528,31 @@ rustc 1.41.0-nightly <span class="o">(</span>5c5b8afd8 2019-11-16<span class="o"
 </span><span class="lnt">24
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">❯ cargo bloat --release --crates
-...
-    Finished release <span class="o">[</span>optimized<span class="o">]</span> target<span class="o">(</span>s<span class="o">)</span> in 1m 06s
-    Analyzing /home/aloxaf/.cache/cargo-build/release/ren3
-
- File  .text     Size Crate
- 7.3%  27.3% 351.7KiB clap
- 4.8%  17.8% 229.2KiB regex
- 4.7%  17.6% 226.4KiB regex_syntax
- 4.1%  15.2% 195.3KiB std
- 2.4%   9.1% 116.5KiB yaml_rust
- 1.5%   5.5%  70.9KiB aho_corasick
- 0.7%   2.8%  35.5KiB <span class="o">[</span>Unknown<span class="o">]</span>
- 0.4%   1.4%  17.5KiB ren3
- 0.2%   0.7%   8.8KiB colored
- 0.1%   0.3%   3.6KiB thread_local
- 0.1%   0.2%   3.2KiB ansi_term
- 0.1%   0.2%   3.2KiB memchr
- 0.0%   0.2%   2.4KiB strsim
- 0.0%   0.1%   1.5KiB textwrap
- 0.0%   0.0%      28B atty
-26.7% 100.0%   1.3MiB .text section size, the file size is 4.7MiB
-
-Note: numbers above are a result of guesswork. They are not 100% correct and never will be.
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">❯ cargo bloat --release --crates
+</span></span><span class="line"><span class="cl">...
+</span></span><span class="line"><span class="cl">    Finished release <span class="o">[</span>optimized<span class="o">]</span> target<span class="o">(</span>s<span class="o">)</span> in 1m 06s
+</span></span><span class="line"><span class="cl">    Analyzing /home/aloxaf/.cache/cargo-build/release/ren3
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> File  .text     Size Crate
+</span></span><span class="line"><span class="cl"> 7.3%  27.3% 351.7KiB clap
+</span></span><span class="line"><span class="cl"> 4.8%  17.8% 229.2KiB regex
+</span></span><span class="line"><span class="cl"> 4.7%  17.6% 226.4KiB regex_syntax
+</span></span><span class="line"><span class="cl"> 4.1%  15.2% 195.3KiB std
+</span></span><span class="line"><span class="cl"> 2.4%   9.1% 116.5KiB yaml_rust
+</span></span><span class="line"><span class="cl"> 1.5%   5.5%  70.9KiB aho_corasick
+</span></span><span class="line"><span class="cl"> 0.7%   2.8%  35.5KiB <span class="o">[</span>Unknown<span class="o">]</span>
+</span></span><span class="line"><span class="cl"> 0.4%   1.4%  17.5KiB ren3
+</span></span><span class="line"><span class="cl"> 0.2%   0.7%   8.8KiB colored
+</span></span><span class="line"><span class="cl"> 0.1%   0.3%   3.6KiB thread_local
+</span></span><span class="line"><span class="cl"> 0.1%   0.2%   3.2KiB ansi_term
+</span></span><span class="line"><span class="cl"> 0.1%   0.2%   3.2KiB memchr
+</span></span><span class="line"><span class="cl"> 0.0%   0.2%   2.4KiB strsim
+</span></span><span class="line"><span class="cl"> 0.0%   0.1%   1.5KiB textwrap
+</span></span><span class="line"><span class="cl"> 0.0%   0.0%      28B atty
+</span></span><span class="line"><span class="cl">26.7% 100.0%   1.3MiB .text section size, the file size is 4.7MiB
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Note: numbers above are a result of guesswork. They are not 100% correct and never will be.
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>使用 cargo-bloat 查看各个 crate 所占体积，可以看到 clap 和 regex 加起来占了一半。</p>
 <p>考虑到这个工具的命令行参数并不复杂，并不需要使用 clap 这种庞大的命令行参数解析库。所以要做的首先就是将 clap 去掉，换成更基础的 <a href="https://crates.io/crates/getopts">getopts</a>。</p>
@@ -617,9 +617,9 @@ Note: numbers above are a result of guesswork. They are not 100% correct and nev
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="p">[</span><span class="nx">dependencies</span><span class="p">]</span>
-<span class="nx">regex</span> <span class="p">=</span> <span class="p">{</span> <span class="nx">version</span> <span class="p">=</span> <span class="s2">&#34;1.3.1&#34;</span><span class="p">,</span> <span class="nx">default-features</span> <span class="p">=</span> <span class="kc">false</span><span class="p">,</span> <span class="nx">features</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;std&#34;</span><span class="p">]</span> <span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">dependencies</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">regex</span> <span class="p">=</span> <span class="p">{</span> <span class="nx">version</span> <span class="p">=</span> <span class="s2">&#34;1.3.1&#34;</span><span class="p">,</span> <span class="nx">default-features</span> <span class="p">=</span> <span class="kc">false</span><span class="p">,</span> <span class="nx">features</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;std&#34;</span><span class="p">]</span> <span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>此时再编译</p>
 <table>
@@ -683,9 +683,9 @@ Note: numbers above are a result of guesswork. They are not 100% correct and nev
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="p">[</span><span class="nx">dependencies</span><span class="p">]</span>
-<span class="nx">std</span> <span class="p">=</span> <span class="p">{</span> <span class="nx">default-features</span> <span class="p">=</span> <span class="kc">false</span> <span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">dependencies</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">std</span> <span class="p">=</span> <span class="p">{</span> <span class="nx">default-features</span> <span class="p">=</span> <span class="kc">false</span> <span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>然后编译（target 请自行调整）</p>
 <div class="highlight"><div class="chroma">
@@ -693,8 +693,8 @@ Note: numbers above are a result of guesswork. They are not 100% correct and nev
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">xargo build --target x86_64-unknown-linux-gnu --release
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">xargo build --target x86_64-unknown-linux-gnu --release
+</span></span></code></pre></td></tr></table>
 </div>
 </div><table>
 <thead>
@@ -747,9 +747,9 @@ Note: numbers above are a result of guesswork. They are not 100% correct and nev
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="p">[</span><span class="nx">dependencies</span><span class="p">]</span>
-<span class="nx">std</span> <span class="p">=</span> <span class="p">{</span> <span class="nx">default-features</span> <span class="p">=</span> <span class="kc">false</span><span class="p">,</span> <span class="nx">features</span><span class="p">=[</span> <span class="s2">&#34;panic_immediate_abort&#34;</span> <span class="p">]</span> <span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">dependencies</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">std</span> <span class="p">=</span> <span class="p">{</span> <span class="nx">default-features</span> <span class="p">=</span> <span class="kc">false</span><span class="p">,</span> <span class="nx">features</span><span class="p">=[</span> <span class="s2">&#34;panic_immediate_abort&#34;</span> <span class="p">]</span> <span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><table>
 <thead>
@@ -800,8 +800,8 @@ Note: numbers above are a result of guesswork. They are not 100% correct and nev
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">upx -9 target/x86_64-unknown-linux-gnu/release/ren3
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">upx -9 target/x86_64-unknown-linux-gnu/release/ren3
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>都懂的 XD</p>
 <table>
@@ -896,9 +896,9 @@ Note: numbers above are a result of guesswork. They are not 100% correct and nev
   <script type="text/javascript">
     new Valine({
         el: '#vcomments' ,
-        serverURLs: '',
-        appId: 'fSbXaElXXTznggVXiWy8NFBU-gzGzoHsz',
-        appKey: 'kK3SxB14xAACgHftKrSaBRDU',
+        serverURLs: 'https:\/\/0mqcauyd.api.lncldglobal.com',
+        appId: '0mQCAuYdR6NE9gIVBd6rDEjY-MdYXbMMI',
+        appKey: 'CBACoI7HhLeuROO39gpYpYDl',
         notify:  false ,
         verify:  false ,
         avatar:'mm',
@@ -958,7 +958,7 @@ Note: numbers above are a result of guesswork. They are not 100% correct and nev
 
 
 
-<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 <script type="application/javascript">
