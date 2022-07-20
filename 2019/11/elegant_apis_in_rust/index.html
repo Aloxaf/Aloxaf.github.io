@@ -25,7 +25,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.95.0 with theme even" />
+<meta name="generator" content="Hugo 0.101.0 with theme even" />
 
 
 <link rel="preload" href="/fonts/iconfont/iconfont.woff" as="font" type="font/woff" crossorigin="anonymous">
@@ -57,7 +57,7 @@
 <meta itemprop="description" content="一篇讲述 Rust API 设计原则的经典老文，虽然老但仍然值得阅读。前几天有事情把它从旮旯里翻出来了，虽然是经典老文但我估计很多人都没有读过，最近闲着没事干脆用我的辣鸡英语水平翻译一下，也算为 Rust 中文社区做一点贡献。
 原文见：https://deterministic.space/elegant-apis-in-rust.html"><meta itemprop="datePublished" content="2019-11-20T21:55:09+00:00" />
 <meta itemprop="dateModified" content="2019-11-20T21:55:09+00:00" />
-<meta itemprop="wordCount" content="7344">
+<meta itemprop="wordCount" content="7585">
 <meta itemprop="keywords" content="rust,译文,设计," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="【译】设计优雅的 Rust 库 API"/>
 <meta name="twitter:description" content="一篇讲述 Rust API 设计原则的经典老文，虽然老但仍然值得阅读。前几天有事情把它从旮旯里翻出来了，虽然是经典老文但我估计很多人都没有读过，最近闲着没事干脆用我的辣鸡英语水平翻译一下，也算为 Rust 中文社区做一点贡献。
@@ -786,23 +786,23 @@
 <p>我在这里介绍的是编写接口的设计模式，即面向用户的 API。虽然我认为其中的一些模式只适用于编写库，但许多模式也同样适用于编写通用应用程序的代码。</p>
 <p>你可以在 <a href="https://github.com/rust-unofficial/patterns">Rust Design Patterns</a> 仓库中找到更多信息</p>
 <p><strong>Update 2017-04-27</strong>：这篇文章发布以来，Rust 库团队的 <a href="https://github.com/brson">@brson</a> 已经发布了一个相当全面的 <a href="https://github.com/brson/rust-api-guidelines">Rust API Guidelines</a> 文档，囊括了我的所有建议，并且内容更全面。</p>
-<section class="footnotes" role="doc-endnotes">
+<div class="footnotes" role="doc-endnotes">
 <hr>
 <ol>
-<li id="fn:1" role="doc-endnote">
+<li id="fn:1">
 <p>如果你的类型不需要任何参数就能构造，你应该为它实现 <code>Default</code>，并且使用这个代替 <code>new</code>。一个例外是 “容器” 类型诸如 <code>Vec</code> 或 <code>HashMap</code>，用它们的 <code>new</code> 初始化一个空容器是有意义的。&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
-<li id="fn:2" role="doc-endnote">
+<li id="fn:2">
 <p>在其他强类型语言中有一句口号 “making illegal states unrepresentable”。我第一次听说这个是在人们谈论 Haskell 的时候，这也是 <em>F# for fun and profit</em> 的<a href="http://fsharpforfunandprofit.com/posts/designing-with-types-making-illegal-states-unrepresentable/">这篇文章</a>的标题，和 Richard Feldman 在 elm-conf 2016 上的<a href="https://www.youtube.com/watch?v=IcgmSRJHu_8">这篇演讲</a>。&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
-<li id="fn:3" role="doc-endnote">
+<li id="fn:3">
 <p>在这方面，Rust 的迭代器与 Java 中的迭代器借口或 Python 中的迭代器协议（等等）非常类似。&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
-<li id="fn:4" role="doc-endnote">
+<li id="fn:4">
 <p>举例来说，<code>std</code> 使用 <code>Result</code> 类型（包含了 <code>Ok</code> 和 <code>Err</code> 成员）来处理错误，而不是没有这种语义的 <code>Either</code> 类型（包含 <code>Left</code> 和 <code>Right</code> 成员）。&#160;<a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 </ol>
-</section>
+</div>
     </div>
 
     <div class="post-copyright">
@@ -919,7 +919,7 @@
 
 
 
-<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
 
 
 <script type="application/javascript">
