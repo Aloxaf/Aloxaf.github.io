@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.101.0 with theme even" />
+<meta name="generator" content="Hugo 0.123.3 with theme even" />
 
 
 <link rel="preload" href="/fonts/iconfont/iconfont.woff" as="font" type="font/woff" crossorigin="anonymous">
@@ -54,8 +54,7 @@
 <meta itemprop="description" content="我就是饿死, 死外面, 从外面跳下去, 也不会用 M$ 的垃圾 PowerShell ! &hellip; 真香! NOTE: 这是一篇黑 bash 吹 PowerShell(以下简称 pwsh) 的文章, bash 死忠粉以及软黑请退散"><meta itemprop="datePublished" content="2019-03-02T00:02:05+00:00" />
 <meta itemprop="dateModified" content="2019-03-02T00:02:05+00:00" />
 <meta itemprop="wordCount" content="4252">
-<meta itemprop="keywords" content="linux,powershell," /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="PowerShell 真香"/>
+<meta itemprop="keywords" content="linux,powershell," /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="PowerShell 真香"/>
 <meta name="twitter:description" content="我就是饿死, 死外面, 从外面跳下去, 也不会用 M$ 的垃圾 PowerShell ! &hellip; 真香! NOTE: 这是一篇黑 bash 吹 PowerShell(以下简称 pwsh) 的文章, bash 死忠粉以及软黑请退散"/>
 
 <!--[if lte IE 9]>
@@ -240,9 +239,9 @@
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="c"># if 语句</span>
 </span></span><span class="line"><span class="cl"><span class="nv">$n</span> <span class="p">=</span> <span class="nb">Read-Host</span> <span class="s2">&#34;请输入你的年龄&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="nv">$n</span> <span class="o">-ge</span> <span class="n">18</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="nv">$n</span> <span class="o">-ge</span> <span class="mf">18</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="nb">echo </span><span class="s2">&#34;是成年人&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span> <span class="k">elseif</span> <span class="p">(</span><span class="nv">$n</span> <span class="o">-ge</span> <span class="n">13</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> <span class="k">elseif</span> <span class="p">(</span><span class="nv">$n</span> <span class="o">-ge</span> <span class="mf">13</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="nb">echo </span><span class="s2">&#34;是青少年&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="nb">echo </span><span class="s2">&#34;是小屁孩&#34;</span>
@@ -250,37 +249,37 @@
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c"># switch 语句</span>
 </span></span><span class="line"><span class="cl"><span class="k">switch</span> <span class="p">(</span><span class="nv">$n</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="p">{</span><span class="nv">$_</span> <span class="o">-gt</span> <span class="n">18</span><span class="p">}</span> <span class="p">{</span> <span class="nb">echo </span><span class="s2">&#34;是成年人&#34;</span><span class="p">;</span> <span class="k">break</span> <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="n">18</span> <span class="p">{</span> <span class="nb">echo </span><span class="s2">&#34;是半步成年&#34;</span><span class="p">;</span> <span class="k">break</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span><span class="nv">$_</span> <span class="o">-gt</span> <span class="mf">18</span><span class="p">}</span> <span class="p">{</span> <span class="nb">echo </span><span class="s2">&#34;是成年人&#34;</span><span class="p">;</span> <span class="k">break</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="mf">18</span> <span class="p">{</span> <span class="nb">echo </span><span class="s2">&#34;是半步成年&#34;</span><span class="p">;</span> <span class="k">break</span> <span class="p">}</span>
 </span></span><span class="line"><span class="cl">    <span class="k">Default</span> <span class="p">{</span> <span class="nb">echo </span><span class="s2">&#34;不是成年人&#34;</span><span class="p">;</span> <span class="k">break</span> <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c"># for 语句</span>
-</span></span><span class="line"><span class="cl"><span class="nv">$sum</span> <span class="p">=</span> <span class="n">0</span>
-</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="p">(</span><span class="nv">$i</span> <span class="p">=</span> <span class="n">0</span><span class="p">;</span> <span class="nv">$i</span> <span class="o">-le</span> <span class="n">100</span><span class="p">;</span> <span class="nv">$i</span><span class="p">++)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$sum</span> <span class="p">=</span> <span class="mf">0</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="p">(</span><span class="nv">$i</span> <span class="p">=</span> <span class="mf">0</span><span class="p">;</span> <span class="nv">$i</span> <span class="o">-le</span> <span class="mf">100</span><span class="p">;</span> <span class="nv">$i</span><span class="p">++)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="nv">$sum</span> <span class="p">+=</span> <span class="nv">$i</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="nb">echo </span><span class="nv">$sum</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c"># while 循环, do while 差不多</span>
-</span></span><span class="line"><span class="cl"><span class="nv">$sum</span> <span class="p">=</span> <span class="n">0</span>
-</span></span><span class="line"><span class="cl"><span class="nv">$i</span> <span class="p">=</span> <span class="n">0</span>
-</span></span><span class="line"><span class="cl"><span class="k">while</span> <span class="p">(</span><span class="nv">$i</span> <span class="o">-le</span> <span class="n">100</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$sum</span> <span class="p">=</span> <span class="mf">0</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$i</span> <span class="p">=</span> <span class="mf">0</span>
+</span></span><span class="line"><span class="cl"><span class="k">while</span> <span class="p">(</span><span class="nv">$i</span> <span class="o">-le</span> <span class="mf">100</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="nv">$sum</span> <span class="p">+=</span> <span class="nv">$i</span>
 </span></span><span class="line"><span class="cl">    <span class="nv">$i</span><span class="p">++</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="nb">echo </span><span class="nv">$sum</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c"># Hash 表</span>
-</span></span><span class="line"><span class="cl"><span class="nv">$language</span> <span class="p">=</span> <span class="p">@{</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$language</span> <span class="p">=</span> <span class="vm">@</span><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="n">Name</span> <span class="p">=</span> <span class="s2">&#34;PowerShell&#34;</span>
 </span></span><span class="line"><span class="cl">    <span class="n">Company</span> <span class="p">=</span> <span class="s2">&#34;Microsoft&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="nb">echo </span><span class="s2">&#34;</span><span class="p">$(</span><span class="nv">$language</span><span class="p">.</span><span class="n">Name</span><span class="p">)</span><span class="s2">&#34;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c"># 定义函数</span>
-</span></span><span class="line"><span class="cl"><span class="k">function</span> <span class="n">pow</span><span class="p">(</span><span class="nv">$x</span><span class="p">,</span> <span class="nv">$y</span><span class="p">=</span><span class="n">2</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="no">[Math]</span><span class="p">::</span><span class="n">Pow</span><span class="p">(</span><span class="nv">$x</span><span class="p">,</span> <span class="nv">$y</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">function</span><span class="w"> </span><span class="nb">pow($x</span><span class="p">,</span> <span class="nv">$y</span><span class="p">=</span><span class="mf">2</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">[</span><span class="no">Math</span><span class="p">]::</span><span class="n">Pow</span><span class="p">(</span><span class="nv">$x</span><span class="p">,</span> <span class="nv">$y</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
@@ -318,12 +317,12 @@
 </span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="p">/</span><span class="n">f</span> <span class="s2">&#34;tokens=3&#34;</span> <span class="k">%</span><span class="n">i</span> <span class="k">in</span> <span class="p">(</span><span class="s2">&#34;1 2 3 4 5&#34;</span><span class="p">)</span> <span class="k">do</span> <span class="nb">echo </span><span class="k">%</span><span class="n">i</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c"># bash</span>
-</span></span><span class="line"><span class="cl"><span class="nb">echo </span><span class="n">1</span> <span class="n">2</span> <span class="n">3</span> <span class="n">4</span> <span class="n">5</span> <span class="p">|</span> <span class="n">cut</span> <span class="n">-d</span><span class="s1">&#39; &#39;</span> <span class="n">-f3</span>
-</span></span><span class="line"><span class="cl"><span class="nb">echo </span><span class="n">1</span> <span class="n">2</span> <span class="n">3</span> <span class="n">4</span> <span class="n">5</span> <span class="p">|</span> <span class="n">awk</span> <span class="s1">&#39;{print $3}&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo </span><span class="mf">1</span> <span class="mf">2</span> <span class="mf">3</span> <span class="mf">4</span> <span class="mf">5</span> <span class="p">|</span> <span class="n">cut</span> <span class="n">-d</span><span class="s1">&#39; &#39;</span> <span class="n">-f3</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo </span><span class="mf">1</span> <span class="mf">2</span> <span class="mf">3</span> <span class="mf">4</span> <span class="mf">5</span> <span class="p">|</span> <span class="n">awk</span> <span class="s1">&#39;{print $3}&#39;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c"># pwsh</span>
 </span></span><span class="line"><span class="cl"><span class="c"># 首先 pwsh 也能用 bash 的方法</span>
-</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="s1">&#39;1 2 3 4 5&#39;</span> <span class="n">-split</span> <span class="s1">&#39; &#39;</span><span class="p">)[</span><span class="n">2</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="s1">&#39;1 2 3 4 5&#39;</span> <span class="n">-split</span> <span class="s1">&#39; &#39;</span><span class="p">)[</span><span class="mf">2</span><span class="p">]</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>你说 bash 你丢不丢人, 连 cmd 都能不借助外部命令自己处理</p>
@@ -345,7 +344,7 @@
 </span></span><span class="line"><span class="cl"><span class="p">&gt;</span> <span class="s1">&#39;&lt;p&gt;WOWOWOWO&lt;/p&gt;&#39;</span> <span class="o">-replace</span> <span class="s1">&#39;&lt;p&gt;(.*)&lt;/p&gt;&#39;</span><span class="p">,</span><span class="s1">&#39;$1&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="n">WOWOWOWO</span>
 </span></span><span class="line"><span class="cl"><span class="p">&gt;</span> <span class="s1">&#39;&lt;div&gt;&lt;div&gt;&lt;/div&gt;&#39;</span> <span class="o">-match</span> <span class="s2">&#34;&lt;div[^&gt;]*&gt;[^&lt;&gt;]*(((?&#39;Open&#39;&lt;div[^&gt;]*&gt;)[^&lt;&gt;]*)+((?&#39;-Open&#39;&lt;/div&gt;)[^&lt;&gt;]*)+)*(?(Open)(?!))&lt;/div&gt;&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="p">&gt;</span> <span class="nv">$Matches</span><span class="p">.</span><span class="n">Values</span>
+</span></span><span class="line"><span class="cl"><span class="p">&gt;</span> <span class="nv">$Matches</span><span class="p">.</span><span class="py">Values</span>
 </span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="n">div</span><span class="p">&gt;&lt;/</span><span class="n">div</span><span class="p">&gt;</span>
 </span></span></code></pre></td></tr></table>
 </div>
@@ -414,19 +413,19 @@
 </span><span class="lnt">14
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="no">[int]</span><span class="nv">$n</span> <span class="p">=</span> <span class="n">2233</span>
-</span></span><span class="line"><span class="cl"><span class="nv">$n</span> <span class="p">=</span> <span class="n">233</span>   <span class="c"># OK</span>
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="p">[</span><span class="no">int</span><span class="p">]</span><span class="nv">$n</span> <span class="p">=</span> <span class="mf">2233</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$n</span> <span class="p">=</span> <span class="mf">233</span>   <span class="c"># OK</span>
 </span></span><span class="line"><span class="cl"><span class="nv">$n</span> <span class="p">=</span> <span class="s2">&#34;asd&#34;</span> <span class="c"># ERROR!</span>
 </span></span><span class="line"><span class="cl"><span class="nv">$n</span> <span class="p">=</span> <span class="s2">&#34;233&#34;</span> <span class="c"># 比较艹蛋的一点是这样又可以, 隐式类型转换坑爹啊</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="no">[int[]]</span><span class="nv">$list</span> <span class="p">=</span> <span class="p">@()</span>
-</span></span><span class="line"><span class="cl"><span class="nv">$list</span> <span class="p">+=</span> <span class="n">1</span>   <span class="c"># OK</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="no">int[]</span><span class="p">]</span><span class="nv">$list</span> <span class="p">=</span> <span class="vm">@</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$list</span> <span class="p">+=</span> <span class="mf">1</span>   <span class="c"># OK</span>
 </span></span><span class="line"><span class="cl"><span class="nv">$list</span> <span class="p">+=</span> <span class="s2">&#34;a&#34;</span> <span class="c"># ERROR!</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">function</span> <span class="n">add</span><span class="p">(</span><span class="no">[int]</span><span class="nv">$a</span><span class="p">,</span> <span class="no">[int]</span><span class="nv">$b</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="kd">function</span><span class="w"> </span><span class="nb">add([int]$a</span><span class="p">,</span> <span class="p">[</span><span class="no">int</span><span class="p">]</span><span class="nv">$b</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nv">$a</span> <span class="p">+</span> <span class="nv">$b</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="n">add</span> <span class="n">1</span> <span class="n">2</span>     <span class="c"># OK</span>
+</span></span><span class="line"><span class="cl"><span class="n">add</span> <span class="mf">1</span> <span class="mf">2</span>     <span class="c"># OK</span>
 </span></span><span class="line"><span class="cl"><span class="n">add</span> <span class="s2">&#34;a&#34;</span> <span class="s2">&#34;b&#34;</span> <span class="c"># ERROR!</span>
 </span></span></code></pre></td></tr></table>
 </div>
@@ -449,20 +448,20 @@
 </span><span class="lnt">14
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="k">function</span> <span class="n">add</span><span class="p">()</span> <span class="p">{</span>
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="kd">function</span><span class="w"> </span><span class="nb">add</span><span class="p">()</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="k">param</span><span class="p">(</span>
-</span></span><span class="line"><span class="cl">    	<span class="no">[ValidateNotNull]</span>
-</span></span><span class="line"><span class="cl">    	<span class="no">[int]</span>
+</span></span><span class="line"><span class="cl">    	<span class="p">[</span><span class="no">ValidateNotNull</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    	<span class="p">[</span><span class="no">int</span><span class="p">]</span>
 </span></span><span class="line"><span class="cl">    	<span class="nv">$a</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">        <span class="no">[ValidateNotNull]</span>
-</span></span><span class="line"><span class="cl">    	<span class="no">[int]</span>
+</span></span><span class="line"><span class="cl">        <span class="p">[</span><span class="no">ValidateNotNull</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    	<span class="p">[</span><span class="no">int</span><span class="p">]</span>
 </span></span><span class="line"><span class="cl">    	<span class="nv">$b</span>
 </span></span><span class="line"><span class="cl">    <span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="k">process</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nv">$a</span> <span class="p">+</span> <span class="nv">$b</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="n">add</span> <span class="nv">$null</span> <span class="n">2</span> <span class="c"># ERROR!</span>
+</span></span><span class="line"><span class="cl"><span class="n">add</span> <span class="vm">$null</span> <span class="mf">2</span> <span class="c"># ERROR!</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>这就是 pwsh 的 <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_advanced_parameters?view=powershell-6">advanced_parameters</a></p>
@@ -553,17 +552,17 @@
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="p">&gt;</span> <span class="nb">Get-Process</span> <span class="p">|</span> <span class="nb">Where-Object</span> <span class="p">{</span> <span class="nv">$_</span><span class="p">.</span><span class="n">WS</span> <span class="o">-gt</span> <span class="n">200mb</span> <span class="p">}</span>
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="p">&gt;</span> <span class="nb">Get-Process</span> <span class="p">|</span> <span class="nb">Where-Object</span> <span class="p">{</span> <span class="nv">$_</span><span class="p">.</span><span class="py">WS</span> <span class="o">-gt</span> <span class="mf">200</span><span class="p">mb</span> <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="c"># 使用别名的话可以写成 gps | ? { $_.WS -ge 200mb }</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"> <span class="n">NPM</span><span class="p">(</span><span class="n">K</span><span class="p">)</span>    <span class="n">PM</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>      <span class="n">WS</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>     <span class="n">CPU</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>      <span class="n">Id</span>  <span class="nb">SI </span><span class="n">ProcessName</span>
 </span></span><span class="line"><span class="cl"> <span class="p">------</span>    <span class="p">-----</span>      <span class="p">-----</span>     <span class="p">------</span>      <span class="p">--</span>  <span class="p">--</span> <span class="p">-----------</span>
-</span></span><span class="line"><span class="cl">      <span class="n">0</span>     <span class="n">0</span><span class="p">.</span><span class="n">00</span>     <span class="n">206</span><span class="p">.</span><span class="n">59</span>     <span class="n">334</span><span class="p">.</span><span class="n">50</span>    <span class="n">1033</span> <span class="n">032</span> <span class="n">plasmashell</span>
-</span></span><span class="line"><span class="cl">      <span class="n">0</span>     <span class="n">0</span><span class="p">.</span><span class="n">00</span>     <span class="n">226</span><span class="p">.</span><span class="n">43</span>     <span class="n">773</span><span class="p">.</span><span class="n">39</span>    <span class="n">1027</span> <span class="n">977</span> <span class="n">kwin_x11</span>
-</span></span><span class="line"><span class="cl">      <span class="n">0</span>     <span class="n">0</span><span class="p">.</span><span class="n">00</span>     <span class="n">226</span><span class="p">.</span><span class="n">46</span>     <span class="n">135</span><span class="p">.</span><span class="n">83</span>    <span class="n">8116</span> <span class="n">058</span> <span class="n">chromium</span>
-</span></span><span class="line"><span class="cl">      <span class="n">0</span>     <span class="n">0</span><span class="p">.</span><span class="n">00</span>     <span class="n">236</span><span class="p">.</span><span class="n">60</span>      <span class="n">97</span><span class="p">.</span><span class="n">72</span>   <span class="n">14990</span> <span class="n">977</span> <span class="n">Typora</span>
-</span></span><span class="line"><span class="cl">      <span class="n">0</span>     <span class="n">0</span><span class="p">.</span><span class="n">00</span>     <span class="n">392</span><span class="p">.</span><span class="n">42</span>     <span class="n">394</span><span class="p">.</span><span class="n">97</span>    <span class="n">6366</span> <span class="n">030</span> <span class="nb">telegram-deskto</span>
-</span></span><span class="line"><span class="cl">      <span class="n">0</span>     <span class="n">0</span><span class="p">.</span><span class="n">00</span>     <span class="n">402</span><span class="p">.</span><span class="n">94</span>     <span class="n">878</span><span class="p">.</span><span class="n">92</span>    <span class="n">1381</span> <span class="n">058</span> <span class="n">chromium</span>
+</span></span><span class="line"><span class="cl">      <span class="mf">0</span>     <span class="mf">0.00</span>     <span class="mf">206.59</span>     <span class="mf">334.50</span>    <span class="mf">1033</span> <span class="mf">032</span> <span class="n">plasmashell</span>
+</span></span><span class="line"><span class="cl">      <span class="mf">0</span>     <span class="mf">0.00</span>     <span class="mf">226.43</span>     <span class="mf">773.39</span>    <span class="mf">1027</span> <span class="mf">977</span> <span class="n">kwin_x11</span>
+</span></span><span class="line"><span class="cl">      <span class="mf">0</span>     <span class="mf">0.00</span>     <span class="mf">226.46</span>     <span class="mf">135.83</span>    <span class="mf">8116</span> <span class="mf">058</span> <span class="n">chromium</span>
+</span></span><span class="line"><span class="cl">      <span class="mf">0</span>     <span class="mf">0.00</span>     <span class="mf">236.60</span>      <span class="mf">97.72</span>   <span class="mf">14990</span> <span class="mf">977</span> <span class="n">Typora</span>
+</span></span><span class="line"><span class="cl">      <span class="mf">0</span>     <span class="mf">0.00</span>     <span class="mf">392.42</span>     <span class="mf">394.97</span>    <span class="mf">6366</span> <span class="mf">030</span> <span class="nb">telegram-deskto</span>
+</span></span><span class="line"><span class="cl">      <span class="mf">0</span>     <span class="mf">0.00</span>     <span class="mf">402.94</span>     <span class="mf">878.92</span>    <span class="mf">1381</span> <span class="mf">058</span> <span class="n">chromium</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><blockquote>
@@ -617,11 +616,11 @@ fc 教授说 freebsd 那边在做 <a href="https://wiki.freebsd.org/LibXo">LibXo
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="p">&gt;</span> <span class="nb">Measure-Command</span> <span class="n">-Expression</span> <span class="p">{</span><span class="n">seq</span> <span class="n">12345</span> <span class="p">|</span> <span class="n">rg</span> <span class="n">12345</span><span class="p">}</span> <span class="p">|</span> <span class="nb">select </span><span class="n">TotalMilliseconds</span>
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="p">&gt;</span> <span class="nb">Measure-Command</span> <span class="n">-Expression</span> <span class="p">{</span><span class="n">seq</span> <span class="mf">12345</span> <span class="p">|</span> <span class="n">rg</span> <span class="mf">12345</span><span class="p">}</span> <span class="p">|</span> <span class="nb">select </span><span class="n">TotalMilliseconds</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="n">TotalMilliseconds</span>
 </span></span><span class="line"><span class="cl"><span class="p">-----------------</span>
-</span></span><span class="line"><span class="cl">         <span class="n">759</span><span class="p">.</span><span class="n">6631</span>
+</span></span><span class="line"><span class="cl">         <span class="mf">759.6631</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>反观 bash , 简直就是吊打!</p>
@@ -766,7 +765,7 @@ fc 教授说 freebsd 那边在做 <a href="https://wiki.freebsd.org/LibXo">LibXo
   <span class="copyright-year">
     &copy; 
     2017 - 
-    2022<span class="heart"><i class="iconfont icon-heart"></i></span><span>Aloxaf</span>
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span><span>Aloxaf</span>
   </span>
 </div>
 
@@ -782,7 +781,7 @@ fc 教授说 freebsd 那边在做 <a href="https://wiki.freebsd.org/LibXo">LibXo
   <script async src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
-  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+  <script>
     var languageCode = "zh".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
     timeago().render(document.querySelectorAll('.timeago'), languageCode);
     timeago.cancel();  
@@ -793,7 +792,7 @@ fc 教授说 freebsd 那边在做 <a href="https://wiki.freebsd.org/LibXo">LibXo
 <script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
 
 
-<script type="application/javascript">
+<script>
 var doNotTrack = false;
 if (!doNotTrack) {
 	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;

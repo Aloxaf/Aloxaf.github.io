@@ -1,118 +1,82 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>linux on Aloxaf&#39;s Blog</title>
+    <title>Linux on Aloxaf&#39;s Blog</title>
     <link>https://www.aloxaf.com/categories/linux/</link>
-    <description>Recent content in linux on Aloxaf&#39;s Blog</description>
+    <description>Recent content in Linux on Aloxaf&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Wed, 24 Jun 2020 08:43:00 +0000</lastBuildDate><atom:link href="https://www.aloxaf.com/categories/linux/atom.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 24 Jun 2020 08:43:00 +0000</lastBuildDate>
+    <atom:link href="https://www.aloxaf.com/categories/linux/atom.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>利用 GitHub Actions 编译 AUR 包并建立自己的软件源</title>
       <link>https://www.aloxaf.com/2020/06/build_aur_with_github_actions/</link>
       <pubDate>Wed, 24 Jun 2020 08:43:00 +0000</pubDate>
-      
       <guid>https://www.aloxaf.com/2020/06/build_aur_with_github_actions/</guid>
-      <description>&lt;p&gt;Arch 用户当然要有自己的软件源！&lt;/p&gt;
-&lt;p&gt;&lt;s&gt;白嫖真香！&lt;/s&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;Arch 用户当然要有自己的软件源！&lt;/p&gt;&#xA;&lt;p&gt;&lt;s&gt;白嫖真香！&lt;/s&gt;&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>JetBrains 家 IDE 在 Linux 下的奇怪字体问题(锯齿, 字体过小)</title>
       <link>https://www.aloxaf.com/2019/04/fxxk_jetbrains_font_linux/</link>
       <pubDate>Wed, 03 Apr 2019 17:44:44 +0000</pubDate>
-      
       <guid>https://www.aloxaf.com/2019/04/fxxk_jetbrains_font_linux/</guid>
       <description>JetBrains 家的 IDE 在 Linux 下会有一些奇怪的问题: 如字体很丑(没开抗锯齿一样), 字体过小(目测是 HiDPI 下的问题), 最近更新了一下 PyCharm 2019 又出现了这个问题, 解决问题以</description>
     </item>
-    
     <item>
       <title>Alacritty HiDPI 下的坑</title>
       <link>https://www.aloxaf.com/2019/04/alacritty_hidpi/</link>
       <pubDate>Wed, 03 Apr 2019 17:31:49 +0000</pubDate>
-      
       <guid>https://www.aloxaf.com/2019/04/alacritty_hidpi/</guid>
       <description>为啥要折腾 Alacritty 呢, 因为 Konsole 有点小问题: https://bugs.kde.org/show_bug.cgi?id=401298 (不过这个问题已经 fix 了, 下个版本应该就没有了, 我大概又会滚回 Konsole, 毕竟有 blur 和 ligatures), 阻碍我使用棒棒的 lsd. 问题表现 具体</description>
     </item>
-    
     <item>
       <title>PowerShell 真香</title>
       <link>https://www.aloxaf.com/2019/03/powershell_miaoa/</link>
       <pubDate>Sat, 02 Mar 2019 00:02:05 +0000</pubDate>
-      
       <guid>https://www.aloxaf.com/2019/03/powershell_miaoa/</guid>
       <description>我就是饿死, 死外面, 从外面跳下去, 也不会用 M$ 的垃圾 PowerShell ! &amp;hellip; 真香! NOTE: 这是一篇黑 bash 吹 PowerShell(以下简称 pwsh) 的文章, bash 死忠粉以及软黑请退散</description>
     </item>
-    
     <item>
       <title>Arch Linux 杂七杂八的优化</title>
       <link>https://www.aloxaf.com/2018/11/arch_optimize/</link>
       <pubDate>Sun, 18 Nov 2018 22:56:27 +0000</pubDate>
-      
       <guid>https://www.aloxaf.com/2018/11/arch_optimize/</guid>
       <description>&lt;p&gt;发现无聊时刷 &lt;a href=&#34;https://wiki.archlinux.org/&#34;&gt;Arch Wiki&lt;/a&gt; 也挺有趣的, 记录一下自己干了啥吧. 毕竟有些配置没法放到 dotfiles 里. 记录一下以后翻起来也方便.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>解决 KDE 暗色主题下 WPS &amp; 搜狗拼音设置字体颜色不正常的问题</title>
       <link>https://www.aloxaf.com/2018/11/kde_dark_theme/</link>
       <pubDate>Wed, 14 Nov 2018 20:58:52 +0000</pubDate>
-      
       <guid>https://www.aloxaf.com/2018/11/kde_dark_theme/</guid>
-      <description>&lt;p&gt;这是一个比较迷的 bug, 困扰了我很久, 然而又不知道为什么.&lt;/p&gt;
-&lt;p&gt;今天在群里看到有人提到了这个问题, 简单地讲就是程序只有一部分跟随系统主题, 然后就会产生各种诡异的效果.&lt;/p&gt;
-&lt;p&gt;比如&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;搜狗, 字体跟随系统变成浅色, 背景没有变, 变成浅色背景+浅色字体, 亮瞎眼组合&lt;/li&gt;
-&lt;li&gt;WPS 表格, 表格背景是黑的&amp;hellip;.究极の难看&lt;/li&gt;
-&lt;li&gt;WPS 文字, 字体也变浅色了, 不仅亮瞎眼. 如果强行调成黑色的话, 在 Windows 上就会变亮瞎眼&amp;hellip;&lt;/li&gt;
-&lt;/ul&gt;</description>
+      <description>&lt;p&gt;这是一个比较迷的 bug, 困扰了我很久, 然而又不知道为什么.&lt;/p&gt;&#xA;&lt;p&gt;今天在群里看到有人提到了这个问题, 简单地讲就是程序只有一部分跟随系统主题, 然后就会产生各种诡异的效果.&lt;/p&gt;&#xA;&lt;p&gt;比如&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;搜狗, 字体跟随系统变成浅色, 背景没有变, 变成浅色背景+浅色字体, 亮瞎眼组合&lt;/li&gt;&#xA;&lt;li&gt;WPS 表格, 表格背景是黑的&amp;hellip;.究极の难看&lt;/li&gt;&#xA;&lt;li&gt;WPS 文字, 字体也变浅色了, 不仅亮瞎眼. 如果强行调成黑色的话, 在 Windows 上就会变亮瞎眼&amp;hellip;&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
     </item>
-    
     <item>
       <title>Arch Linux 下使用 pwndbg</title>
       <link>https://www.aloxaf.com/2018/10/arch_pwndbg/</link>
       <pubDate>Fri, 19 Oct 2018 13:47:04 +0000</pubDate>
-      
       <guid>https://www.aloxaf.com/2018/10/arch_pwndbg/</guid>
-      <description>&lt;p&gt;pwndbg 的安装: &lt;code&gt;pacman -S pwndbg&lt;/code&gt; 然后添加 &lt;code&gt;source /usr/share/pwndbg/gdbinit.py&lt;/code&gt; 到 &lt;code&gt;~/.gdbinit&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;然而要在 Arch Linux 下愉快地使用 pwndbg, 还要解决以下问题:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/pwndbg/pwndbg/issues/340&#34;&gt;Arch Support - Roadmap&lt;/a&gt; 搁了快一年的问题, 主要是 Arch 下没有 libc6-dbg 这种包, 要调试符号只能自己编译&amp;hellip;&lt;/li&gt;
-&lt;li&gt;&lt;s&gt;&lt;a href=&#34;https://github.com/pwndbg/pwndbg/issues/523#issuecomment-425673020&#34;&gt;Python exception under gdb-8.2-2&lt;/a&gt; 上游 gdb 的问题, 8.3 应该会修复, 不过可以按链接所示的方法临时 patch 一下&lt;/s&gt; gdb 8.2.1 已 fix&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;这里解决第一个问题, 利用棒棒的 ABS (Arch Build System)&lt;/p&gt;</description>
+      <description>&lt;p&gt;pwndbg 的安装: &lt;code&gt;pacman -S pwndbg&lt;/code&gt; 然后添加 &lt;code&gt;source /usr/share/pwndbg/gdbinit.py&lt;/code&gt; 到 &lt;code&gt;~/.gdbinit&lt;/code&gt;&lt;/p&gt;&#xA;&lt;p&gt;然而要在 Arch Linux 下愉快地使用 pwndbg, 还要解决以下问题:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://github.com/pwndbg/pwndbg/issues/340&#34;&gt;Arch Support - Roadmap&lt;/a&gt; 搁了快一年的问题, 主要是 Arch 下没有 libc6-dbg 这种包, 要调试符号只能自己编译&amp;hellip;&lt;/li&gt;&#xA;&lt;li&gt;&lt;s&gt;&lt;a href=&#34;https://github.com/pwndbg/pwndbg/issues/523#issuecomment-425673020&#34;&gt;Python exception under gdb-8.2-2&lt;/a&gt; 上游 gdb 的问题, 8.3 应该会修复, 不过可以按链接所示的方法临时 patch 一下&lt;/s&gt; gdb 8.2.1 已 fix&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;这里解决第一个问题, 利用棒棒的 ABS (Arch Build System)&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>加速 AUR 软件安装速度</title>
       <link>https://www.aloxaf.com/2018/10/arch_git/</link>
       <pubDate>Thu, 18 Oct 2018 16:15:30 +0000</pubDate>
-      
       <guid>https://www.aloxaf.com/2018/10/arch_git/</guid>
-      <description>&lt;p&gt;AUR 里的构建脚本常常需要从 github 拉取源代码,
-然而没有加 &lt;code&gt;--depth 1&lt;/code&gt; 的 &lt;code&gt;git clone&lt;/code&gt; 把大量流量花在了下载对于构建毫无用处的提交记录等东西上面.&lt;/p&gt;
-&lt;p&gt;尤其是安装主题这种东西的时候, clone 下来几百 MB, 结果构建完得到一个几 MB 的包&amp;hellip;&lt;/p&gt;</description>
+      <description>&lt;p&gt;AUR 里的构建脚本常常需要从 github 拉取源代码,&#xA;然而没有加 &lt;code&gt;--depth 1&lt;/code&gt; 的 &lt;code&gt;git clone&lt;/code&gt; 把大量流量花在了下载对于构建毫无用处的提交记录等东西上面.&lt;/p&gt;&#xA;&lt;p&gt;尤其是安装主题这种东西的时候, clone 下来几百 MB, 结果构建完得到一个几 MB 的包&amp;hellip;&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>在 Linux 下使用 Blob Emoji</title>
       <link>https://www.aloxaf.com/2018/10/linux_emoji/</link>
       <pubDate>Wed, 10 Oct 2018 19:00:45 +0000</pubDate>
-      
       <guid>https://www.aloxaf.com/2018/10/linux_emoji/</guid>
-      <description>&lt;p&gt;默认emoji太丑, 没有颜色, 看着浑身难受.&lt;/p&gt;
-&lt;p&gt;还是喜欢果冻人&amp;hellip;&lt;/p&gt;</description>
+      <description>&lt;p&gt;默认emoji太丑, 没有颜色, 看着浑身难受.&lt;/p&gt;&#xA;&lt;p&gt;还是喜欢果冻人&amp;hellip;&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>解决 Arch Linux 下 BurpSuite 打开很丑的问题</title>
       <link>https://www.aloxaf.com/2018/07/java_ugly_font/</link>
       <pubDate>Mon, 30 Jul 2018 12:34:48 +0000</pubDate>
-      
       <guid>https://www.aloxaf.com/2018/07/java_ugly_font/</guid>
       <description>好像很多 Java 程序都有这个毛病. 查了半天 Arch Wiki, 终于找到了: Java Runtime Environment fonts 解决方案: 设置环境变量 _JAVA_OPTIONS=&#39;-Dawt.useSystemAAFontSettings=on&#39; (这么重要的东西怎么还要手动开启??) 直接在 /etc/environment 里加入这句</description>
     </item>
-    
   </channel>
 </rss>

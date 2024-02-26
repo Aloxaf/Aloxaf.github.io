@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>使用 atuin 管理 zsh 命令历史 - Aloxaf&#39;s Blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Aloxaf" /><meta name="description" content="竟然两年没写博客了，真是自工作以后就越来越懒了。 不行，我不能再这样颓废下去了，我决定定一个小目标——2024 要写 10 篇博客！ 好，现在开始水……" /><meta name="keywords" content="aloxaf, ctf, linux, zsh" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.123.3 with theme even" />
+
+
+<link rel="preload" href="/fonts/iconfont/iconfont.woff" as="font" type="font/woff" crossorigin="anonymous">
+<link rel="preload" href="/fonts/FiraCode/FiraCode-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+
+
+<link rel="canonical" href="https://www.aloxaf.com/2024/02/manage_zsh_shell_with_atuin/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.6e68329c1369b8a285a4985e6b6efdb778e12c12b24e8b3fcdd6c5af778d414e.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="使用 atuin 管理 zsh 命令历史" />
+<meta property="og:description" content="竟然两年没写博客了，真是自工作以后就越来越懒了。 不行，我不能再这样颓废下去了，我决定定一个小目标——2024 要写 10 篇博客！ 好，现在开始水……" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.aloxaf.com/2024/02/manage_zsh_shell_with_atuin/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2024-02-06T00:00:00+00:00" />
+<meta property="article:modified_time" content="2024-02-06T00:00:00+00:00" />
+
+<meta itemprop="name" content="使用 atuin 管理 zsh 命令历史">
+<meta itemprop="description" content="竟然两年没写博客了，真是自工作以后就越来越懒了。 不行，我不能再这样颓废下去了，我决定定一个小目标——2024 要写 10 篇博客！ 好，现在开始水……"><meta itemprop="datePublished" content="2024-02-06T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2024-02-06T00:00:00+00:00" />
+<meta itemprop="wordCount" content="1211">
+<meta itemprop="keywords" content="zsh," /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="使用 atuin 管理 zsh 命令历史"/>
+<meta name="twitter:description" content="竟然两年没写博客了，真是自工作以后就越来越懒了。 不行，我不能再这样颓废下去了，我决定定一个小目标——2024 要写 10 篇博客！ 好，现在开始水……"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Aloxaf&#39;s Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于</li>
+      </a><a href="/friend/">
+        <li class="mobile-menu-item">友链</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Aloxaf&#39;s Blog</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">关于</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/friend/">友链</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">使用 atuin 管理 zsh 命令历史</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2024-02-06 </span>
+        
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#对比-zsh-histdb">对比 zsh-histdb</a></li>
+        <li><a href="#从-zsh-histdb-迁移">从 zsh-histdb 迁移</a></li>
+        <li><a href="#配置-atuin">配置 atuin</a>
+          <ul>
+            <li><a href="#ctrl-r">ctrl-r</a></li>
+            <li><a href="#与-zsh-autosuggestions-结合">与 zsh-autosuggestions 结合</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>竟然两年没写博客了，真是自工作以后就越来越懒了。</p>
+<p>不行，我不能再这样颓废下去了，我决定定一个小目标——2024 要写 10 篇博客！</p>
+<p>好，现在开始水……不对！现在开始写第一篇！</p>
+<h2 id="对比-zsh-histdb">对比 zsh-histdb</h2>
+<p>atuin 是一个使用 sqlite 来管理 shell 历史记录的工具。</p>
+<p>原先一直在用 <a href="https://github.com/larkery/zsh-histdb">zsh-histdb</a>，这个工具也很好用，唯一的问题没有同步功能。atuin 这点上就做得很棒，这也是吸引我迁移的主要原因。（注：需要启用 sync v2，不然同步逻想法辑很迷惑）</p>
+<p>不过 atuin 也有让我觉得不太好的地方，那就是数据全部放在一个表里，这使得数据库的体积膨胀得很快，因为记录了大量重复的命令和路径。</p>
+<h2 id="从-zsh-histdb-迁移">从 zsh-histdb 迁移</h2>
+<p>atuin 提供了从一些常见的历史记录管理插件里迁移的命令。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">HISTDB_FILE</span><span class="o">=</span><span class="nv">$HISTDB_FILE</span>
+</span></span><span class="line"><span class="cl">atuin import zsh-hist-db
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这很好，就是漏了些字段。修完以后随手发了个 PR，被合并以后又发现还有个关于默认值的小问题没修复……算了不管了，影响不大，<del>我自己本地改一下就行</del>。</p>
+<h2 id="配置-atuin">配置 atuin</h2>
+<p>atuin 提供了一份默认配置，可以通过 <code>atuin init zsh</code> 获得，但不怎么好用，我得改一下。</p>
+<h3 id="ctrl-r">ctrl-r</h3>
+<p>我不喜欢 atuin 的界面，花里胡哨，而且还不是异步加载的，在我的 26 万行历史上，体感需要 ~300ms 左右才能打开，而且候选列表很多的时候输入都卡卡的。</p>
+<p>甚至还把我的 <kbd>Up</kbd> 改了，真是岂有此理。全部删掉！只留下 <kbd>C-r</kbd>。</p>
+<p>当然  <kbd>C-r</kbd> 也要改，就像前面说的我不喜欢 atuin 的界面，直接改成这样：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">_atuin_histdb_init<span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">((</span> $+_autin_histdb <span class="o">))</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">        zsqlite_open -r _autin_histdb ~/.local/share/atuin/history.db
+</span></span><span class="line"><span class="cl">    <span class="k">fi</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">_atuin_search<span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    emulate -L zsh
+</span></span><span class="line"><span class="cl">    _atuin_histdb_init
+</span></span><span class="line"><span class="cl">    <span class="nb">local</span> <span class="nv">query</span><span class="o">=</span><span class="s2">&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">SELECT DISTINCT command
+</span></span></span><span class="line"><span class="cl"><span class="s2">FROM history
+</span></span></span><span class="line"><span class="cl"><span class="s2">WHERE command LIKE ?
+</span></span></span><span class="line"><span class="cl"><span class="s2">ORDER BY cwd = ? DESC, timestamp DESC
+</span></span></span><span class="line"><span class="cl"><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">local</span> <span class="nv">output</span><span class="o">=</span><span class="k">$(</span>zsqlite_exec -q _autin_histdb <span class="nv">$query</span> <span class="si">${</span><span class="nv">LBUFFER</span><span class="si">}</span>% <span class="nv">$PWD</span> <span class="p">|</span> ftb-tmux-popup --tiebreak<span class="o">=</span>index --prompt<span class="o">=</span><span class="s2">&#34;cmd&gt; &#34;</span> <span class="si">${</span><span class="nv">LBUFFER</span><span class="p">:+-q</span><span class="nv">$LBUFFER</span><span class="si">}</span><span class="k">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">BUFFER</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span> <span class="nv">$output</span><span class="k">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">CURSOR</span><span class="o">=</span><span class="nv">$#</span>BUFFER
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><a href="https://github.com/Aloxaf/zsh-sqlite">zsqlite</a> 是我以前为 zsh-histdb 写的一个 zsh 模块，你也可以直接用 sqlite3 命令来查询，但是要注意转义。</p>
+<p><code>ftb-tmux-popup</code> 是 fzf-tab 提供的 tmux popup 版 fzf 脚本，非 tmux&amp;fzf-tab 用户直接改成 fzf 就行。</p>
+<h3 id="与-zsh-autosuggestions-结合">与 zsh-autosuggestions 结合</h3>
+<p>atuin 默认提供了一个 zsh-autosuggestions 策略，这很好。
+但是，默认提供的自动建议只是简单的前缀搜索，这简直是毫无意义……</p>
+<p>zsh-autosuggestions 本身就提供了基于历史记录的建议，而主流的 zsh 配置，都设置了 5 万行内置历史记录大小，用于自动建议绰绰有余。</p>
+<p>改掉！</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">_zsh_autosuggest_strategy_atuin<span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    emulate -L zsh
+</span></span><span class="line"><span class="cl">    _atuin_histdb_init
+</span></span><span class="line"><span class="cl">    <span class="nb">local</span> <span class="nv">reply</span><span class="o">=</span><span class="k">$(</span>zsqlite_exec _autin_histdb <span class="s2">&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">SELECT command FROM (
+</span></span></span><span class="line"><span class="cl"><span class="s2">    SELECT h1.*
+</span></span></span><span class="line"><span class="cl"><span class="s2">    FROM history h1, history h2
+</span></span></span><span class="line"><span class="cl"><span class="s2">    WHERE h1.ROWID = h2.ROWID + 1
+</span></span></span><span class="line"><span class="cl"><span class="s2">        AND h1.session = h2.session
+</span></span></span><span class="line"><span class="cl"><span class="s2">        AND h2.exit = 0
+</span></span></span><span class="line"><span class="cl"><span class="s2">        AND h1.command LIKE ?1
+</span></span></span><span class="line"><span class="cl"><span class="s2">        AND h2.command = ?2
+</span></span></span><span class="line"><span class="cl"><span class="s2">        AND h1.cwd = ?3
+</span></span></span><span class="line"><span class="cl"><span class="s2">    ORDER BY timestamp DESC
+</span></span></span><span class="line"><span class="cl"><span class="s2">    LIMIT 1
+</span></span></span><span class="line"><span class="cl"><span class="s2">)
+</span></span></span><span class="line"><span class="cl"><span class="s2">UNION ALL
+</span></span></span><span class="line"><span class="cl"><span class="s2">SELECT command FROM (
+</span></span></span><span class="line"><span class="cl"><span class="s2">    SELECT * FROM history WHERE cwd = ?3 AND command LIKE ?1 ORDER BY timestamp DESC LIMIT 1
+</span></span></span><span class="line"><span class="cl"><span class="s2">)
+</span></span></span><span class="line"><span class="cl"><span class="s2">UNION ALL
+</span></span></span><span class="line"><span class="cl"><span class="s2">SELECT command FROM (
+</span></span></span><span class="line"><span class="cl"><span class="s2">    SELECT * FROM history WHERE command LIKE ?1 ORDER BY timestamp DESC LIMIT 1
+</span></span></span><span class="line"><span class="cl"><span class="s2">)
+</span></span></span><span class="line"><span class="cl"><span class="s2">LIMIT 1
+</span></span></span><span class="line"><span class="cl"><span class="s2">&#34;</span> <span class="si">${</span><span class="nv">1</span><span class="si">}</span>% <span class="si">${</span><span class="nv">history</span><span class="p">[</span><span class="k">$((</span>HISTCMD-1<span class="k">))</span><span class="p">]</span><span class="si">}</span> <span class="nv">$PWD</span> <span class="k">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">typeset</span> -g <span class="nv">suggestion</span><span class="o">=</span><span class="nv">$reply</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这是一个我在 zsh-histdb 里用了很久的配置，迁移到 atuin 上体验也不错（不得不说，只有一个表的话，查询起来确实方便多了），它的逻辑非常简单：</p>
+<ol>
+<li>优先执行基于上一条命令的匹配，举例来说，如果在当前目录中曾经出现过这样的历史</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">&gt; git add -u
+</span></span><span class="line"><span class="cl">&gt; git commit
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>那么当你第二次输入到这里的时候，它就会直接提示 <code>git commit</code>，而不是傻傻地把你的上一条命令又重复一遍。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">&gt; git add -u
+</span></span><span class="line"><span class="cl">&gt; g
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这是一个受 <a href="https://github.com/cantino/mcfly">mcfly</a> 启发的配置，虽然它没有 mcfly 那么聪明，有时会给出一些莫名其妙的建议，但整体来讲仍然是非常好用，尤其是对于一些关系比较紧密的命令组合，比如 <code>docker start</code> 和 <code>docker attach</code> 之类的。</p>
+<ol start="2">
+<li>
+<p>如果上一个匹配没有结果，则返回当前目录下，最接近的命令</p>
+</li>
+<li>
+<p>如果上一个匹配仍然没有结果，则直接返回历史记录中最接近的命令</p>
+</li>
+</ol>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Aloxaf</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2024-02-06
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a></span>
+  </p>
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/zsh/">zsh</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/2022/01/facenote_thirdparty_app/">
+            <span class="next-text nav-default">掌阅 Facenote 阅读器安装第三方 APP</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  <span id="/2024/02/manage_zsh_shell_with_atuin/" class="leancloud_visitors" data-flag-title="使用 atuin 管理 zsh 命令历史">
+		<span class="post-meta-item-text">文章阅读量 </span>
+		<span class="leancloud-visitors-count">0</span>
+		<p></p>
+	  </span>
+  <div id="vcomments"></div>
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+  <script type="text/javascript">
+    new Valine({
+        el: '#vcomments' ,
+        serverURLs: 'https:\/\/0mqcauyd.api.lncldglobal.com',
+        appId: '0mQCAuYdR6NE9gIVBd6rDEjY-MdYXbMMI',
+        appKey: 'CBACoI7HhLeuROO39gpYpYDl',
+        notify:  false ,
+        verify:  false ,
+        avatar:'mm',
+        placeholder: '妙啊，妙啊',
+        visitor:  true 
+    });
+  </script>
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:aloxafx@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/Aloxaf" class="iconfont icon-github" title="github"></a>
+  <a href="https://www.aloxaf.com/atom.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span><span>Aloxaf</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script async src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script async src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script>
+    var languageCode = "zh".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script>
+
+
+
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+
+
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-123773630-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+</body>
+</html>

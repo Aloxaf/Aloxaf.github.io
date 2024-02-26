@@ -6,96 +6,77 @@
     <description>Recent content in Tags on Aloxaf&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Tue, 04 Jan 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://www.aloxaf.com/tags/atom.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 06 Feb 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://www.aloxaf.com/tags/atom.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>crack</title>
-      <link>https://www.aloxaf.com/tags/crack/</link>
-      <pubDate>Tue, 04 Jan 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.aloxaf.com/tags/crack/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>btrfs</title>
-      <link>https://www.aloxaf.com/tags/btrfs/</link>
-      <pubDate>Tue, 23 Mar 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.aloxaf.com/tags/btrfs/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>filesystem</title>
-      <link>https://www.aloxaf.com/tags/filesystem/</link>
-      <pubDate>Tue, 23 Mar 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.aloxaf.com/tags/filesystem/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>linux</title>
-      <link>https://www.aloxaf.com/tags/linux/</link>
-      <pubDate>Tue, 23 Mar 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.aloxaf.com/tags/linux/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>zsh</title>
+      <title>Zsh</title>
       <link>https://www.aloxaf.com/tags/zsh/</link>
-      <pubDate>Fri, 01 Jan 2021 00:00:00 +0000</pubDate>
-      
+      <pubDate>Tue, 06 Feb 2024 00:00:00 +0000</pubDate>
       <guid>https://www.aloxaf.com/tags/zsh/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>cdda</title>
+      <title>Crack</title>
+      <link>https://www.aloxaf.com/tags/crack/</link>
+      <pubDate>Tue, 04 Jan 2022 00:00:00 +0000</pubDate>
+      <guid>https://www.aloxaf.com/tags/crack/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Filesystem</title>
+      <link>https://www.aloxaf.com/tags/filesystem/</link>
+      <pubDate>Sat, 28 Nov 2020 00:00:00 +0000</pubDate>
+      <guid>https://www.aloxaf.com/tags/filesystem/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Linux</title>
+      <link>https://www.aloxaf.com/tags/linux/</link>
+      <pubDate>Sat, 28 Nov 2020 00:00:00 +0000</pubDate>
+      <guid>https://www.aloxaf.com/tags/linux/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Cdda</title>
       <link>https://www.aloxaf.com/tags/cdda/</link>
       <pubDate>Tue, 17 Nov 2020 00:00:00 +0000</pubDate>
-      
       <guid>https://www.aloxaf.com/tags/cdda/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>glob</title>
+      <title>Glob</title>
       <link>https://www.aloxaf.com/tags/glob/</link>
       <pubDate>Mon, 09 Nov 2020 00:00:00 +0000</pubDate>
-      
       <guid>https://www.aloxaf.com/tags/glob/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>fcitx5</title>
+      <title>Fcitx5</title>
       <link>https://www.aloxaf.com/tags/fcitx5/</link>
       <pubDate>Thu, 24 Sep 2020 21:53:09 +0000</pubDate>
-      
       <guid>https://www.aloxaf.com/tags/fcitx5/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>game</title>
+      <title>Game</title>
       <link>https://www.aloxaf.com/tags/game/</link>
       <pubDate>Mon, 08 Jun 2020 14:10:00 +0000</pubDate>
-      
       <guid>https://www.aloxaf.com/tags/game/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>rust</title>
+      <title>Rust</title>
       <link>https://www.aloxaf.com/tags/rust/</link>
       <pubDate>Wed, 20 Nov 2019 21:55:09 +0000</pubDate>
-      
       <guid>https://www.aloxaf.com/tags/rust/</guid>
       <description></description>
     </item>
-    
+    <item>
+      <title>设计</title>
+      <link>https://www.aloxaf.com/tags/%E8%AE%BE%E8%AE%A1/</link>
+      <pubDate>Wed, 20 Nov 2019 21:55:09 +0000</pubDate>
+      <guid>https://www.aloxaf.com/tags/%E8%AE%BE%E8%AE%A1/</guid>
+      <description></description>
+    </item>
   </channel>
 </rss>

@@ -17,7 +17,42 @@
   
   <url>
     <loc>https://www.aloxaf.com/</loc>
-    <lastmod>2022-02-09T00:00:00+00:00</lastmod>
+    <lastmod>2024-02-06T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.aloxaf.com/post/</loc>
+    <lastmod>2024-02-06T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.aloxaf.com/tags/</loc>
+    <lastmod>2024-02-06T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.aloxaf.com/tags/zsh/</loc>
+    <lastmod>2024-02-06T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.aloxaf.com/2024/02/manage_zsh_shell_with_atuin/</loc>
+    <lastmod>2024-02-06T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.aloxaf.com/draft/</loc>
+    <lastmod>2022-07-20T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -30,57 +65,8 @@
   </url>
   
   <url>
-    <loc>https://www.aloxaf.com/post/</loc>
-    <lastmod>2022-02-09T00:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.aloxaf.com/tags/</loc>
-    <lastmod>2022-02-09T00:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://www.aloxaf.com/2022/01/facenote_thirdparty_app/</loc>
     <lastmod>2022-02-09T00:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.aloxaf.com/tags/btrfs/</loc>
-    <lastmod>2021-03-23T00:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.aloxaf.com/draft/btrfs_note/</loc>
-    <lastmod>2021-03-23T00:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.aloxaf.com/draft/</loc>
-    <lastmod>2021-03-23T00:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.aloxaf.com/tags/filesystem/</loc>
-    <lastmod>2021-03-23T00:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.aloxaf.com/tags/linux/</loc>
-    <lastmod>2021-03-23T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -107,13 +93,6 @@
   </url>
   
   <url>
-    <loc>https://www.aloxaf.com/tags/zsh/</loc>
-    <lastmod>2021-02-08T09:19:20+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://www.aloxaf.com/categories/zsh-%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B/</loc>
     <lastmod>2021-01-01T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -123,6 +102,20 @@
   <url>
     <loc>https://www.aloxaf.com/2020/12/zsh_parameter_expansion/</loc>
     <lastmod>2020-12-01T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.aloxaf.com/tags/filesystem/</loc>
+    <lastmod>2021-03-23T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.aloxaf.com/tags/linux/</loc>
+    <lastmod>2021-03-23T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>

@@ -6,16 +6,14 @@
     <description>Recent content in 译文 on Aloxaf&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Wed, 20 Nov 2019 21:55:09 +0000</lastBuildDate><atom:link href="https://www.aloxaf.com/categories/%E8%AF%91%E6%96%87/atom.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 20 Nov 2019 21:55:09 +0000</lastBuildDate>
+    <atom:link href="https://www.aloxaf.com/categories/%E8%AF%91%E6%96%87/atom.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>【译】设计优雅的 Rust 库 API</title>
       <link>https://www.aloxaf.com/2019/11/elegant_apis_in_rust/</link>
       <pubDate>Wed, 20 Nov 2019 21:55:09 +0000</pubDate>
-      
       <guid>https://www.aloxaf.com/2019/11/elegant_apis_in_rust/</guid>
-      <description>&lt;p&gt;一篇讲述 Rust API 设计原则的经典老文，虽然老但仍然值得阅读。前几天有事情把它从旮旯里翻出来了，虽然是经典老文但我估计很多人都没有读过，最近闲着没事干脆用我的辣鸡英语水平翻译一下，也算为 Rust 中文社区做一点贡献。&lt;/p&gt;
-&lt;p&gt;原文见：https://deterministic.space/elegant-apis-in-rust.html&lt;/p&gt;</description>
+      <description>&lt;p&gt;一篇讲述 Rust API 设计原则的经典老文，虽然老但仍然值得阅读。前几天有事情把它从旮旯里翻出来了，虽然是经典老文但我估计很多人都没有读过，最近闲着没事干脆用我的辣鸡英语水平翻译一下，也算为 Rust 中文社区做一点贡献。&lt;/p&gt;&#xA;&lt;p&gt;原文见：https://deterministic.space/elegant-apis-in-rust.html&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

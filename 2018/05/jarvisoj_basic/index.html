@@ -26,7 +26,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.101.0 with theme even" />
+<meta name="generator" content="Hugo 0.123.3 with theme even" />
 
 
 <link rel="preload" href="/fonts/iconfont/iconfont.woff" as="font" type="font/woff" crossorigin="anonymous">
@@ -105,8 +105,7 @@ hashcat -m 2500 wifi.hccapx 10k_most_common.txt
 "><meta itemprop="datePublished" content="2018-05-17T08:23:16+00:00" />
 <meta itemprop="dateModified" content="2018-08-13T10:04:57+00:00" />
 <meta itemprop="wordCount" content="2652">
-<meta itemprop="keywords" content="ctf,writeup,misc,crypto,reverse," /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Jarvis OJ BASIC 完整writeup"/>
+<meta itemprop="keywords" content="ctf,writeup,misc,crypto,reverse," /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Jarvis OJ BASIC 完整writeup"/>
 <meta name="twitter:description" content="握手包
 
 给你握手包，flag是Flag_is_here这个AP的密码，自己看着办吧。
@@ -456,9 +455,9 @@ hashcat -m 2500 wifi.hccapx 10k_most_common.txt
 </span></span><span class="line"><span class="cl">  <span class="n">v5</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mh">0x54</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">  <span class="n">v5</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="mh">0x35</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">  <span class="n">v5</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="mh">0xEFu</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">  <span class="n">printf</span><span class="p">(</span><span class="s">&#34;Input your password:&#34;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">  <span class="n">_isoc99_scanf</span><span class="p">(</span><span class="s">&#34;%s&#34;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span> <span class="n">strlen</span><span class="p">(</span><span class="n">v6</span><span class="p">)</span> <span class="o">==</span> <span class="mi">26</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;Input your password:&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">_isoc99_scanf</span><span class="p">(</span><span class="s">&#34;%s&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span> <span class="nf">strlen</span><span class="p">(</span><span class="n">v6</span><span class="p">)</span> <span class="o">==</span> <span class="mi">26</span> <span class="p">)</span>
 </span></span><span class="line"><span class="cl">  <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="n">v3</span> <span class="o">=</span> <span class="mi">0LL</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span> <span class="p">(</span><span class="n">v6</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">^</span> <span class="mh">0xAB</span><span class="p">)</span> <span class="o">==</span> <span class="n">list1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">)</span>
@@ -467,13 +466,13 @@ hashcat -m 2500 wifi.hccapx 10k_most_common.txt
 </span></span><span class="line"><span class="cl">      <span class="p">{</span>
 </span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span> <span class="o">++</span><span class="n">v3</span> <span class="o">==</span> <span class="mi">25</span> <span class="p">)</span>
 </span></span><span class="line"><span class="cl">        <span class="p">{</span>
-</span></span><span class="line"><span class="cl">          <span class="n">printf</span><span class="p">(</span><span class="s">&#34;Congratulations!&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">          <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;Congratulations!&#34;</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">          <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">        <span class="p">}</span>
 </span></span><span class="line"><span class="cl">      <span class="p">}</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
-</span></span><span class="line"><span class="cl">  <span class="n">printf</span><span class="p">(</span><span class="s">&#34;Password Wrong!! Please try again.&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;Password Wrong!! Please try again.&#34;</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
@@ -530,7 +529,7 @@ hashcat -m 2500 wifi.hccapx 10k_most_common.txt
 </span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">26</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="kt">char</span> <span class="n">c</span> <span class="o">=</span> <span class="sc">&#39; &#39;</span><span class="p">;</span> <span class="n">c</span> <span class="o">&lt;=</span> <span class="sc">&#39;~&#39;</span><span class="p">;</span> <span class="n">c</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">((</span><span class="n">c</span> <span class="o">^</span> <span class="n">v5</span><span class="p">[</span><span class="n">i</span> <span class="o">%</span> <span class="mi">6</span><span class="p">])</span> <span class="o">==</span> <span class="n">list1</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">                <span class="n">printf</span><span class="p">(</span><span class="s">&#34;%c&#34;</span><span class="p">,</span> <span class="n">c</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;%c&#34;</span><span class="p">,</span> <span class="n">c</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">                <span class="k">break</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">            <span class="p">}</span>
 </span></span><span class="line"><span class="cl">        <span class="p">}</span>
@@ -988,7 +987,7 @@ hashcat -m 2500 wifi.hccapx 10k_most_common.txt
   <span class="copyright-year">
     &copy; 
     2017 - 
-    2022<span class="heart"><i class="iconfont icon-heart"></i></span><span>Aloxaf</span>
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span><span>Aloxaf</span>
   </span>
 </div>
 
@@ -1004,7 +1003,7 @@ hashcat -m 2500 wifi.hccapx 10k_most_common.txt
   <script async src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
-  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+  <script>
     var languageCode = "zh".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
     timeago().render(document.querySelectorAll('.timeago'), languageCode);
     timeago.cancel();  
@@ -1015,7 +1014,7 @@ hashcat -m 2500 wifi.hccapx 10k_most_common.txt
 <script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
 
 
-<script type="application/javascript">
+<script>
 var doNotTrack = false;
 if (!doNotTrack) {
 	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;

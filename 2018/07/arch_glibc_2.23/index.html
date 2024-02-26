@@ -24,7 +24,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.101.0 with theme even" />
+<meta name="generator" content="Hugo 0.123.3 with theme even" />
 
 
 <link rel="preload" href="/fonts/iconfont/iconfont.woff" as="font" type="font/woff" crossorigin="anonymous">
@@ -57,8 +57,7 @@
 (更: 听 M4x 师傅说其实安全性下降了? thread local caching in glibc malloc)"><meta itemprop="datePublished" content="2018-07-14T11:16:09+00:00" />
 <meta itemprop="dateModified" content="2018-08-12T09:23:00+00:00" />
 <meta itemprop="wordCount" content="1061">
-<meta itemprop="keywords" content="linux,pwn," /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="在 Arch Linux 下使用 glibc 2.23 调试程序&amp;使用 pwndbg"/>
+<meta itemprop="keywords" content="linux,pwn," /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="在 Arch Linux 下使用 glibc 2.23 调试程序&amp;使用 pwndbg"/>
 <meta name="twitter:description" content="glibc 2.26开始, 引入了 tcache 技术. 使得对 UAF 漏洞的利用非常困难.
 (更: 听 M4x 师傅说其实安全性下降了? thread local caching in glibc malloc)"/>
 
@@ -215,7 +214,7 @@
 </span></span><span class="line"><span class="cl"><span class="kt">char</span> <span class="o">*</span><span class="n">loc2</span> <span class="nf">__attribute__</span> <span class="p">((</span><span class="n">nocommon</span><span class="p">));</span>
 </span></span><span class="line"><span class="cl"><span class="p">...</span>
 </span></span><span class="line"><span class="cl"><span class="p">...</span>
-</span></span><span class="line"><span class="cl"><span class="kt">char</span> <span class="o">*</span><span class="n">locs</span> <span class="n">__attribute__</span> <span class="p">((</span><span class="n">nocommon</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl"><span class="kt">char</span> <span class="o">*</span><span class="n">locs</span> <span class="nf">__attribute__</span> <span class="p">((</span><span class="n">nocommon</span><span class="p">));</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>PS. 原链接中还多了一个 <code>compat_symbol</code>, 但是我没加也编译过了&hellip;.就不管了</p>
@@ -466,7 +465,7 @@
   <span class="copyright-year">
     &copy; 
     2017 - 
-    2022<span class="heart"><i class="iconfont icon-heart"></i></span><span>Aloxaf</span>
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span><span>Aloxaf</span>
   </span>
 </div>
 
@@ -482,7 +481,7 @@
   <script async src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
-  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+  <script>
     var languageCode = "zh".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
     timeago().render(document.querySelectorAll('.timeago'), languageCode);
     timeago.cancel();  
@@ -493,7 +492,7 @@
 <script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
 
 
-<script type="application/javascript">
+<script>
 var doNotTrack = false;
 if (!doNotTrack) {
 	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
