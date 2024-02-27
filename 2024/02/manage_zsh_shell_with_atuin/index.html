@@ -47,13 +47,13 @@
 <meta property="og:description" content="竟然两年没写博客了，真是自工作以后就越来越懒了。 不行，我不能再这样颓废下去了，我决定定一个小目标——2024 要写 10 篇博客！ 好，现在开始水……" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.aloxaf.com/2024/02/manage_zsh_shell_with_atuin/" /><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2024-02-06T00:00:00+00:00" />
-<meta property="article:modified_time" content="2024-02-06T00:00:00+00:00" />
+<meta property="article:published_time" content="2024-02-26T00:00:00+00:00" />
+<meta property="article:modified_time" content="2024-02-27T00:00:00+00:00" />
 
 <meta itemprop="name" content="使用 atuin 管理 zsh 命令历史">
-<meta itemprop="description" content="竟然两年没写博客了，真是自工作以后就越来越懒了。 不行，我不能再这样颓废下去了，我决定定一个小目标——2024 要写 10 篇博客！ 好，现在开始水……"><meta itemprop="datePublished" content="2024-02-06T00:00:00+00:00" />
-<meta itemprop="dateModified" content="2024-02-06T00:00:00+00:00" />
-<meta itemprop="wordCount" content="1211">
+<meta itemprop="description" content="竟然两年没写博客了，真是自工作以后就越来越懒了。 不行，我不能再这样颓废下去了，我决定定一个小目标——2024 要写 10 篇博客！ 好，现在开始水……"><meta itemprop="datePublished" content="2024-02-26T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2024-02-27T00:00:00+00:00" />
+<meta itemprop="wordCount" content="1241">
 <meta itemprop="keywords" content="zsh," /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="使用 atuin 管理 zsh 命令历史"/>
 <meta name="twitter:description" content="竟然两年没写博客了，真是自工作以后就越来越懒了。 不行，我不能再这样颓废下去了，我决定定一个小目标——2024 要写 10 篇博客！ 好，现在开始水……"/>
 
@@ -129,7 +129,7 @@
       <h1 class="post-title">使用 atuin 管理 zsh 命令历史</h1>
 
       <div class="post-meta">
-        <span class="post-time"> 2024-02-06 </span>
+        <span class="post-time"> 2024-02-26 </span>
         
         
       </div>
@@ -162,7 +162,7 @@
 <p>好，现在开始水……不对！现在开始写第一篇！</p>
 <h2 id="对比-zsh-histdb">对比 zsh-histdb</h2>
 <p>atuin 是一个使用 sqlite 来管理 shell 历史记录的工具。</p>
-<p>原先一直在用 <a href="https://github.com/larkery/zsh-histdb">zsh-histdb</a>，这个工具也很好用，唯一的问题没有同步功能。atuin 这点上就做得很棒，这也是吸引我迁移的主要原因。（注：需要启用 sync v2，不然同步逻想法辑很迷惑）</p>
+<p>原先一直在用 <a href="https://github.com/larkery/zsh-histdb">zsh-histdb</a>，这个工具也很好用，唯一的问题没有同步功能。atuin 这点上就做得很棒，这也是吸引我迁移的主要原因。（注：需要启用 sync v2，不然同步逻辑很迷惑）</p>
 <p>不过 atuin 也有让我觉得不太好的地方，那就是数据全部放在一个表里，这使得数据库的体积膨胀得很快，因为记录了大量重复的命令和路径。</p>
 <h2 id="从-zsh-histdb-迁移">从 zsh-histdb 迁移</h2>
 <p>atuin 提供了从一些常见的历史记录管理插件里迁移的命令。</p>
@@ -205,6 +205,8 @@
 </span><span class="lnt">18
 </span><span class="lnt">19
 </span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">_atuin_histdb_init<span class="o">()</span> <span class="o">{</span>
@@ -224,17 +226,31 @@
 </span></span></span><span class="line"><span class="cl"><span class="s2">ORDER BY cwd = ? DESC, timestamp DESC
 </span></span></span><span class="line"><span class="cl"><span class="s2">&#34;</span>
 </span></span><span class="line"><span class="cl">    <span class="nb">local</span> <span class="nv">output</span><span class="o">=</span><span class="k">$(</span>zsqlite_exec -q _autin_histdb <span class="nv">$query</span> <span class="si">${</span><span class="nv">LBUFFER</span><span class="si">}</span>% <span class="nv">$PWD</span> <span class="p">|</span> ftb-tmux-popup --tiebreak<span class="o">=</span>index --prompt<span class="o">=</span><span class="s2">&#34;cmd&gt; &#34;</span> <span class="si">${</span><span class="nv">LBUFFER</span><span class="p">:+-q</span><span class="nv">$LBUFFER</span><span class="si">}</span><span class="k">)</span>
-</span></span><span class="line"><span class="cl">    <span class="nv">BUFFER</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span> <span class="nv">$output</span><span class="k">)</span>
-</span></span><span class="line"><span class="cl">    <span class="nv">CURSOR</span><span class="o">=</span><span class="nv">$#</span>BUFFER
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">[[</span> <span class="s2">&#34;</span><span class="nv">$output</span><span class="s2">&#34;</span> !<span class="o">=</span> <span class="s2">&#34;&#34;</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">BUFFER</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span> <span class="nv">$output</span><span class="k">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">CURSOR</span><span class="o">=</span><span class="nv">$#</span>BUFFER
+</span></span><span class="line"><span class="cl">    <span class="k">fi</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><a href="https://github.com/Aloxaf/zsh-sqlite">zsqlite</a> 是我以前为 zsh-histdb 写的一个 zsh 模块，你也可以直接用 sqlite3 命令来查询，但是要注意转义。</p>
-<p><code>ftb-tmux-popup</code> 是 fzf-tab 提供的 tmux popup 版 fzf 脚本，非 tmux&amp;fzf-tab 用户直接改成 fzf 就行。</p>
+</div><p><a href="https://github.com/Aloxaf/zsh-sqlite">zsqlite</a> 是我以前为 zsh-histdb 写的一个 zsh 模块，你也可以直接用 sqlite3 命令来查询，但是要注意将参数转义，转义函数参考如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sql_escape<span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    print -r -- <span class="si">${${</span><span class="p">@//</span><span class="se">\&#39;</span><span class="p">/</span><span class="se">\&#39;\&#39;</span><span class="si">}</span><span class="p">//</span><span class="s1">$&#39;\x00&#39;</span><span class="si">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>ftb-tmux-popup</code> 是 fzf-tab 提供的 tmux popup 版 fzf 脚本，非 tmux&amp;fzf-tab 用户直接改成 fzf 就行。</p>
 <h3 id="与-zsh-autosuggestions-结合">与 zsh-autosuggestions 结合</h3>
-<p>atuin 默认提供了一个 zsh-autosuggestions 策略，这很好。
+<p>atuin 自带了一个 zsh-autosuggestions 策略，这很好。
 但是，默认提供的自动建议只是简单的前缀搜索，这简直是毫无意义……</p>
-<p>zsh-autosuggestions 本身就提供了基于历史记录的建议，而主流的 zsh 配置，都设置了 5 万行内置历史记录大小，用于自动建议绰绰有余。</p>
+<p>zsh-autosuggestions 本身就提供了基于历史记录的建议，而主流的 zsh 配置（指 OMZ），都设置了 5 万行内置历史记录大小，用于自动建议绰绰有余。</p>
 <p>改掉！</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -298,7 +314,7 @@
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>这是一个我在 zsh-histdb 里用了很久的配置，迁移到 atuin 上体验也不错（不得不说，只有一个表的话，查询起来确实方便多了），它的逻辑非常简单：</p>
+</div><p>这个配置我在 zsh-histdb 里用了很久，迁移到 atuin 上体验也不错（不得不说，只有一个表的话，查询起来确实方便多了），它的逻辑非常简单：</p>
 <ol>
 <li>优先执行基于上一条命令的匹配，举例来说，如果在当前目录中曾经出现过这样的历史</li>
 </ol>
@@ -323,7 +339,7 @@
 </span></span><span class="line"><span class="cl">&gt; g
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>这是一个受 <a href="https://github.com/cantino/mcfly">mcfly</a> 启发的配置，虽然它没有 mcfly 那么聪明，有时会给出一些莫名其妙的建议，但整体来讲仍然是非常好用，尤其是对于一些关系比较紧密的命令组合，比如 <code>docker start</code> 和 <code>docker attach</code> 之类的。</p>
+</div><p>这是一个受 <a href="https://github.com/cantino/mcfly">mcfly</a> 启发的配置，虽然它没有 mcfly 那么聪明，有时会给出一些莫名其妙的建议，但整体来讲仍然非常好用，尤其是对于一些关系比较紧密的命令组合，比如 <code>docker start</code> 和 <code>docker attach</code> 之类的。</p>
 <ol start="2">
 <li>
 <p>如果上一个匹配没有结果，则返回当前目录下，最接近的命令</p>
@@ -343,7 +359,7 @@
   <p class="copyright-item">
     <span class="item-title">上次更新</span>
     <span class="item-content">
-        2024-02-06
+        2024-02-27
         
     </span>
   </p>
