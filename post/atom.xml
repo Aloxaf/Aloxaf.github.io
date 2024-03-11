@@ -6,8 +6,15 @@
     <description>Recent content in Posts on Aloxaf&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Tue, 27 Feb 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 11 Mar 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://www.aloxaf.com/post/atom.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>KDE6 更新踩坑记录</title>
+      <link>https://www.aloxaf.com/2024/03/fxxk_kde6/</link>
+      <pubDate>Mon, 11 Mar 2024 00:00:00 +0000</pubDate>
+      <guid>https://www.aloxaf.com/2024/03/fxxk_kde6/</guid>
+      <description>我从未想过有一天我的 Linux 桌面会变得如此不可用…… KDE 更新大版本了。以前总是嘲笑 GNOME 用户每次更新不是这里炸了就是那里被砍了，没想到风水轮流转，现在炸</description>
+    </item>
     <item>
       <title>使用 atuin 管理 zsh 命令历史</title>
       <link>https://www.aloxaf.com/2024/02/manage_zsh_shell_with_atuin/</link>
@@ -70,13 +77,6 @@
       <pubDate>Sun, 08 Nov 2020 00:00:00 +0000</pubDate>
       <guid>https://www.aloxaf.com/2020/11/zsh_tutorial_introduce/</guid>
       <description>&lt;p&gt;为什么 zsh 教程这么少！&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>使用 fcitx5-lua 编写 lua 插件</title>
-      <link>https://www.aloxaf.com/2020/09/fcitx5_plugin/</link>
-      <pubDate>Thu, 24 Sep 2020 21:53:09 +0000</pubDate>
-      <guid>https://www.aloxaf.com/2020/09/fcitx5_plugin/</guid>
-      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;突然发现五个月前自己写过一篇 fcitx5-lua 的教程，刚好拿来水一篇&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;fcitx5 终于加上了 lua 支持，可以使用 lua 编写一些简单的插件。但是文档一如既往地非常少，查阅了大量资料并翻看源码以后总算弄懂了插件的编写步骤，记录一下以免忘记，顺便分享给同样需要的人。&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

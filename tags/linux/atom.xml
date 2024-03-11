@@ -6,8 +6,15 @@
     <description>Recent content in Linux on Aloxaf&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Tue, 23 Mar 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 11 Mar 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://www.aloxaf.com/tags/linux/atom.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>KDE6 更新踩坑记录</title>
+      <link>https://www.aloxaf.com/2024/03/fxxk_kde6/</link>
+      <pubDate>Mon, 11 Mar 2024 00:00:00 +0000</pubDate>
+      <guid>https://www.aloxaf.com/2024/03/fxxk_kde6/</guid>
+      <description>我从未想过有一天我的 Linux 桌面会变得如此不可用…… KDE 更新大版本了。以前总是嘲笑 GNOME 用户每次更新不是这里炸了就是那里被砍了，没想到风水轮流转，现在炸</description>
+    </item>
     <item>
       <title>Linux 下如何跟大量小文件打交道</title>
       <link>https://www.aloxaf.com/2020/11/wow_such_linux_many_files_so_small/</link>
@@ -70,13 +77,6 @@
       <pubDate>Sat, 02 Mar 2019 00:02:05 +0000</pubDate>
       <guid>https://www.aloxaf.com/2019/03/powershell_miaoa/</guid>
       <description>我就是饿死, 死外面, 从外面跳下去, 也不会用 M$ 的垃圾 PowerShell ! &amp;hellip; 真香! NOTE: 这是一篇黑 bash 吹 PowerShell(以下简称 pwsh) 的文章, bash 死忠粉以及软黑请退散</description>
-    </item>
-    <item>
-      <title>Arch Linux 杂七杂八的优化</title>
-      <link>https://www.aloxaf.com/2018/11/arch_optimize/</link>
-      <pubDate>Sun, 18 Nov 2018 22:56:27 +0000</pubDate>
-      <guid>https://www.aloxaf.com/2018/11/arch_optimize/</guid>
-      <description>&lt;p&gt;发现无聊时刷 &lt;a href=&#34;https://wiki.archlinux.org/&#34;&gt;Arch Wiki&lt;/a&gt; 也挺有趣的, 记录一下自己干了啥吧. 毕竟有些配置没法放到 dotfiles 里. 记录一下以后翻起来也方便.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

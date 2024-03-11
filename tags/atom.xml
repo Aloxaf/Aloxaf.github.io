@@ -6,8 +6,29 @@
     <description>Recent content in Tags on Aloxaf&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Tue, 27 Feb 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 11 Mar 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://www.aloxaf.com/tags/atom.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>DE</title>
+      <link>https://www.aloxaf.com/tags/de/</link>
+      <pubDate>Mon, 11 Mar 2024 00:00:00 +0000</pubDate>
+      <guid>https://www.aloxaf.com/tags/de/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>KDE</title>
+      <link>https://www.aloxaf.com/tags/kde/</link>
+      <pubDate>Mon, 11 Mar 2024 00:00:00 +0000</pubDate>
+      <guid>https://www.aloxaf.com/tags/kde/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Linux</title>
+      <link>https://www.aloxaf.com/tags/linux/</link>
+      <pubDate>Mon, 11 Mar 2024 00:00:00 +0000</pubDate>
+      <guid>https://www.aloxaf.com/tags/linux/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Zsh</title>
       <link>https://www.aloxaf.com/tags/zsh/</link>
@@ -27,13 +48,6 @@
       <link>https://www.aloxaf.com/tags/filesystem/</link>
       <pubDate>Sat, 28 Nov 2020 00:00:00 +0000</pubDate>
       <guid>https://www.aloxaf.com/tags/filesystem/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Linux</title>
-      <link>https://www.aloxaf.com/tags/linux/</link>
-      <pubDate>Sat, 28 Nov 2020 00:00:00 +0000</pubDate>
-      <guid>https://www.aloxaf.com/tags/linux/</guid>
       <description></description>
     </item>
     <item>
@@ -62,20 +76,6 @@
       <link>https://www.aloxaf.com/tags/game/</link>
       <pubDate>Mon, 08 Jun 2020 14:10:00 +0000</pubDate>
       <guid>https://www.aloxaf.com/tags/game/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Rust</title>
-      <link>https://www.aloxaf.com/tags/rust/</link>
-      <pubDate>Wed, 20 Nov 2019 21:55:09 +0000</pubDate>
-      <guid>https://www.aloxaf.com/tags/rust/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>设计</title>
-      <link>https://www.aloxaf.com/tags/%E8%AE%BE%E8%AE%A1/</link>
-      <pubDate>Wed, 20 Nov 2019 21:55:09 +0000</pubDate>
-      <guid>https://www.aloxaf.com/tags/%E8%AE%BE%E8%AE%A1/</guid>
       <description></description>
     </item>
   </channel>
