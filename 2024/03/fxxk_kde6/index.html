@@ -48,12 +48,12 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.aloxaf.com/2024/03/fxxk_kde6/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2024-03-11T00:00:00+00:00" />
-<meta property="article:modified_time" content="2024-03-11T00:00:00+00:00" />
+<meta property="article:modified_time" content="2024-03-12T00:00:00+00:00" />
 
 <meta itemprop="name" content="KDE6 更新踩坑记录">
 <meta itemprop="description" content="我从未想过有一天我的 Linux 桌面会变得如此不可用…… KDE 更新大版本了。以前总是嘲笑 GNOME 用户每次更新不是这里炸了就是那里被砍了，没想到风水轮流转，现在炸"><meta itemprop="datePublished" content="2024-03-11T00:00:00+00:00" />
-<meta itemprop="dateModified" content="2024-03-11T00:00:00+00:00" />
-<meta itemprop="wordCount" content="1319">
+<meta itemprop="dateModified" content="2024-03-12T00:00:00+00:00" />
+<meta itemprop="wordCount" content="1355">
 <meta itemprop="keywords" content="Linux,KDE,DE," /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="KDE6 更新踩坑记录"/>
 <meta name="twitter:description" content="我从未想过有一天我的 Linux 桌面会变得如此不可用…… KDE 更新大版本了。以前总是嘲笑 GNOME 用户每次更新不是这里炸了就是那里被砍了，没想到风水轮流转，现在炸"/>
 
@@ -147,7 +147,7 @@
         <li><a href="#latte-dock-没了">Latte Dock 没了</a></li>
         <li><a href="#全局菜单点击时消失--任务栏图标点击不了">全局菜单点击时消失 / 任务栏图标点击不了</a></li>
         <li><a href="#clash-verge-开机自动启动失败">clash-verge 开机自动启动失败</a></li>
-        <li><a href="#gtk-程序光标偏移">GTK 程序光标偏移</a></li>
+        <li><a href="#程序光标偏移">程序光标偏移</a></li>
       </ul>
     </li>
   </ul>
@@ -192,12 +192,11 @@
 <h2 id="clash-verge-开机自动启动失败">clash-verge 开机自动启动失败</h2>
 <p>看了下日志是 tauri 的问题，但比较迷惑的是这似乎是个 wayland 下的 BUG（<a href="https://github.com/tauri-apps/tauri/pull/9003">上游已修复</a>）</p>
 <p>难道 SDDM 是在 wayland 中启动的？搞不懂，不了解这些。</p>
-<h2 id="gtk-程序光标偏移">GTK 程序光标偏移</h2>
+<h2 id="程序光标偏移">程序光标偏移</h2>
 <p>一开是用 Firefox 的时候发现的。</p>
 <p>如果 Firefox 窗口有一部分超过了屏幕左侧或者上方，那么光标就会出现大致成正比的偏移。也就是说，你窗口超出屏幕多少，你的光标实际点击位置就会和屏幕显示的所在位置相差多少。</p>
-<p>Firefox 和 KDE 里面其他程序有什么不同呢？它是 GTK 的。果然，所有 GTK 程序都存在这个问题。</p>
-<p>难受，还没找到解决方法。</p>
-<p>未完待续……</p>
+<p>原先以为是 Firefox 的问题，后面以为是 GTK 程序的问题，在后面发现大多数程序都有这个问题，少数才没有。</p>
+<p>这个 BUG 刚修复，似乎是浮点数和无符号整数间的隐式类型转换问题： <a href="https://bugs.kde.org/show_bug.cgi?id=482687">482687 – On X11, pointer position offset after moving window outside the left edge of screen space</a></p>
 
     </div>
 
@@ -209,7 +208,7 @@
   <p class="copyright-item">
     <span class="item-title">上次更新</span>
     <span class="item-content">
-        2024-03-11
+        2024-03-12
         
     </span>
   </p>
