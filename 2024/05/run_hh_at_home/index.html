@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Aloxaf" /><meta name="description" content="最近捡垃圾捡了台 homelab，就寻思着能不能把 H@H 放到这上面跑，这样就可以直接使用 H@H Downloader 直接下载到本地了。 然而测了一下家宽，发现是 NAT4，广" /><meta name="keywords" content="aloxaf, ctf, linux, zsh" />
+<meta name="author" content="Aloxaf" /><meta name="description" content="最近捡垃圾捡了台 homelab，就寻思着能不能把 H@H 放到这上面跑，这样就可以直接使用 H@H Downloader 将画廊直接下载到本地了。 然而测了一下家宽，发现是 NAT" /><meta name="keywords" content="aloxaf, ctf, linux, zsh" />
 
 
 
@@ -46,22 +46,22 @@
 <meta property="og:url" content="https://www.aloxaf.com/2024/05/run_hh_at_home/">
   <meta property="og:site_name" content="Aloxaf&#39;s Blog">
   <meta property="og:title" content="使用代理在家庭宽带下运行 H@H">
-  <meta property="og:description" content="最近捡垃圾捡了台 homelab，就寻思着能不能把 H@H 放到这上面跑，这样就可以直接使用 H@H Downloader 直接下载到本地了。 然而测了一下家宽，发现是 NAT4，广">
+  <meta property="og:description" content="最近捡垃圾捡了台 homelab，就寻思着能不能把 H@H 放到这上面跑，这样就可以直接使用 H@H Downloader 将画廊直接下载到本地了。 然而测了一下家宽，发现是 NAT">
   <meta property="og:locale" content="zh">
   <meta property="og:type" content="article">
     <meta property="article:section" content="post">
     <meta property="article:published_time" content="2024-05-06T00:00:00+00:00">
-    <meta property="article:modified_time" content="2024-05-06T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-05-07T00:00:00+00:00">
     <meta property="article:tag" content="Linux">
     <meta property="article:tag" content="网络">
 
   <meta itemprop="name" content="使用代理在家庭宽带下运行 H@H">
-  <meta itemprop="description" content="最近捡垃圾捡了台 homelab，就寻思着能不能把 H@H 放到这上面跑，这样就可以直接使用 H@H Downloader 直接下载到本地了。 然而测了一下家宽，发现是 NAT4，广">
+  <meta itemprop="description" content="最近捡垃圾捡了台 homelab，就寻思着能不能把 H@H 放到这上面跑，这样就可以直接使用 H@H Downloader 将画廊直接下载到本地了。 然而测了一下家宽，发现是 NAT">
   <meta itemprop="datePublished" content="2024-05-06T00:00:00+00:00">
-  <meta itemprop="dateModified" content="2024-05-06T00:00:00+00:00">
-  <meta itemprop="wordCount" content="480">
+  <meta itemprop="dateModified" content="2024-05-07T00:00:00+00:00">
+  <meta itemprop="wordCount" content="893">
   <meta itemprop="keywords" content="Linux,网络"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="使用代理在家庭宽带下运行 H@H">
-<meta name="twitter:description" content="最近捡垃圾捡了台 homelab，就寻思着能不能把 H@H 放到这上面跑，这样就可以直接使用 H@H Downloader 直接下载到本地了。 然而测了一下家宽，发现是 NAT4，广">
+<meta name="twitter:description" content="最近捡垃圾捡了台 homelab，就寻思着能不能把 H@H 放到这上面跑，这样就可以直接使用 H@H Downloader 将画廊直接下载到本地了。 然而测了一下家宽，发现是 NAT">
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -150,6 +150,7 @@
       <ul>
         <li><a href="#服务器配置">服务器配置</a></li>
         <li><a href="#本地配置">本地配置</a></li>
+        <li><a href="#分流">分流</a></li>
       </ul>
     </li>
   </ul>
@@ -157,7 +158,7 @@
   </div>
 </div>
     <div class="post-content">
-      <p>最近捡垃圾捡了台 homelab，就寻思着能不能把 H@H 放到这上面跑，这样就可以直接使用 H@H Downloader 直接下载到本地了。</p>
+      <p>最近捡垃圾捡了台 homelab，就寻思着能不能把 H@H 放到这上面跑，这样就可以直接使用 H@H Downloader 将画廊直接下载到本地了。</p>
 <p>然而测了一下家宽，发现是 NAT4，广东广电真是有够烂的，只能用公网服务器来转发了。研究了一下，确实可行，前提是这台服务器<strong>允许非备案域名的非标准端口访问</strong>。</p>
 <p>以下为配置步骤，仅供参考。</p>
 <h2 id="服务器配置">服务器配置</h2>
@@ -174,7 +175,7 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker run -d --network<span class="o">=</span>host --name gost ginuerzh/gost -L<span class="o">=</span>username:password@:3456
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker run -d --restart<span class="o">=</span>always --network<span class="o">=</span>host --name gost ginuerzh/gost -L<span class="o">=</span>username:password@:3456
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>frp 的配置也没什么难度：</p>
@@ -210,17 +211,17 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker run -d --network<span class="o">=</span>host -v <span class="nv">$PWD</span>/frps.toml:/etc/frp/frps.toml --name frps snowdreamtech/frps
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker run -d --restart<span class="o">=</span>always --network<span class="o">=</span>host -v <span class="nv">$PWD</span>/frps.toml:/etc/frp/frps.toml --name frps snowdreamtech/frps
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="本地配置">本地配置</h2>
-<p>辣鸡 java 竟然没有办法指定需要验证的 socks5 代理，因此需要在本地再启动一个 gost 转发一下我们的代理：</p>
+<p>辣鸡 java 竟然没有办法指定需要认证的 socks5 代理，因此需要在本地再启动一个 gost 转发一下我们的代理，去掉认证：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker run --name<span class="o">=</span>gost -d --network<span class="o">=</span>host ginuerzh/gost -L<span class="o">=</span>:2345 -F<span class="o">=</span>socks5://username:password@1.2.3.4:2345
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker run --name<span class="o">=</span>gost -d --restart<span class="o">=</span>always --network<span class="o">=</span>host ginuerzh/gost -L<span class="o">=</span>:2345 -F<span class="o">=</span>socks5://username:password@1.2.3.4:2345
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>然后再配置一下 frp，将本地的 H@H 端口映射出去：</p>
@@ -262,7 +263,7 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker run --network<span class="o">=</span>host -d -v <span class="nv">$PWD</span>/frpc.toml:/etc/frp/frpc.toml --name frpc snowdreamtech/frpc
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker run --network<span class="o">=</span>host -d --restart<span class="o">=</span>always -v <span class="nv">$PWD</span>/frpc.toml:/etc/frp/frpc.toml --name frpc snowdreamtech/frpc
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>最后，启动 H@H：</p>
@@ -274,7 +275,59 @@
 <pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">java -DsocksProxyHost<span class="o">=</span>127.0.0.1 -DsocksProxyPort<span class="o">=</span><span class="m">3456</span> -jar HentaiAtHome.jar --disable-ip-origin-check
 </span></span></code></pre></td></tr></table>
 </div>
+</div><h2 id="分流">分流</h2>
+<p>跑了一段时间，发现不是很顺畅，因为中转服务在国内，但是 H@H 下载时常常会连到国外的节点，然后就卡在那里反复重试。</p>
+<p>那能不能分流呢？注意到H@H 网络中的节点基本上在 <code>.hath.network</code> 这个域名下，于是立马想到根据域名分流——然后就浪费了我半天时间，还踩了 gost 的镜像是 v2 但文档是 v3 的坑。</p>
+<p>这辣鸡 java 设置的代理竟然不支持转发 dns 请求，代理根本拿不到域名！不支持认证，也不能转发 DNS 请求，这代理功能简直就是个残废，java 印象&ndash;。</p>
+<p>最后没办法，只能改 H@H 源码了。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-diff" data-lang="diff"><span class="line"><span class="cl"><span class="gh">diff --git a/src/hath/base/FileDownloader.java b/src/hath/base/FileDownloader.java
+</span></span></span><span class="line"><span class="cl"><span class="gh">index d174c05..536f0e8 100644
+</span></span></span><span class="line"><span class="cl"><span class="gh"></span><span class="gd">--- a/src/hath/base/FileDownloader.java
+</span></span></span><span class="line"><span class="cl"><span class="gd"></span><span class="gi">+++ b/src/hath/base/FileDownloader.java
+</span></span></span><span class="line"><span class="cl"><span class="gi"></span><span class="gu">@@ -151,7 +151,13 @@ public class FileDownloader implements Runnable {
+</span></span></span><span class="line"><span class="cl"><span class="gu"></span>                                        Out.debug(&#34;Connecting to &#34; + source.getHost() + &#34;...&#34;);
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                                        // should return a HttpURLConnection for http and HttpsURLConnection for https
+</span></span><span class="line"><span class="cl"><span class="gd">-                                       URLConnection connection = source.openConnection();
+</span></span></span><span class="line"><span class="cl"><span class="gd"></span><span class="gi">+                                       URLConnection connection;
+</span></span></span><span class="line"><span class="cl"><span class="gi">+                                       if (source.getPath().endsWith(&#34;/hathdl&#34;)) {
+</span></span></span><span class="line"><span class="cl"><span class="gi">+                                               Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(&#34;127.0.0.1&#34;, 8081));
+</span></span></span><span class="line"><span class="cl"><span class="gi">+                                               connection = source.openConnection(proxy);
+</span></span></span><span class="line"><span class="cl"><span class="gi">+                                       } else {
+</span></span></span><span class="line"><span class="cl"><span class="gi">+                                               connection = source.openConnection();
+</span></span></span><span class="line"><span class="cl"><span class="gi">+                                       }
+</span></span></span><span class="line"><span class="cl"><span class="gi"></span>
+</span></span><span class="line"><span class="cl">                                        connection.setConnectTimeout(5000);
+</span></span></code></pre></td></tr></table>
 </div>
+</div><p>两个坑点：</p>
+<ol>
+<li>使用了请求路径来判断是否需要代理，因为有些节点没有域名，估计是源站。</li>
+<li>尽管这里看上去就是专门下载文件的模块，但实际上它还会用于首次启动时向服务端汇报 ip，所以不能代理所有请求。</li>
+</ol>
+
     </div>
 
     <div class="post-copyright">
@@ -285,7 +338,7 @@
   <p class="copyright-item">
     <span class="item-title">上次更新</span>
     <span class="item-content">
-        2024-05-06
+        2024-05-07
         
     </span>
   </p>
