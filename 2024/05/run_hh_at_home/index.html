@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>使用代理在家庭宽带下运行 H@H - Aloxaf&#39;s Blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Aloxaf" /><meta name="description" content="最近捡垃圾捡了台 homelab，就寻思着能不能把 H@H 放到这上面跑，这样就可以直接使用 H@H Downloader 直接下载到本地了。 然而测了一下家宽，发现是 NAT4，广" /><meta name="keywords" content="aloxaf, ctf, linux, zsh" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.125.5 with theme even" />
+
+
+<link rel="preload" href="/fonts/iconfont/iconfont.woff" as="font" type="font/woff" crossorigin="anonymous">
+<link rel="preload" href="/fonts/FiraCode/FiraCode-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+
+
+<link rel="canonical" href="https://www.aloxaf.com/2024/05/run_hh_at_home/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.6e68329c1369b8a285a4985e6b6efdb778e12c12b24e8b3fcdd6c5af778d414e.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:url" content="https://www.aloxaf.com/2024/05/run_hh_at_home/">
+  <meta property="og:site_name" content="Aloxaf&#39;s Blog">
+  <meta property="og:title" content="使用代理在家庭宽带下运行 H@H">
+  <meta property="og:description" content="最近捡垃圾捡了台 homelab，就寻思着能不能把 H@H 放到这上面跑，这样就可以直接使用 H@H Downloader 直接下载到本地了。 然而测了一下家宽，发现是 NAT4，广">
+  <meta property="og:locale" content="zh">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2024-05-06T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-05-06T00:00:00+00:00">
+    <meta property="article:tag" content="Linux">
+    <meta property="article:tag" content="网络">
+
+  <meta itemprop="name" content="使用代理在家庭宽带下运行 H@H">
+  <meta itemprop="description" content="最近捡垃圾捡了台 homelab，就寻思着能不能把 H@H 放到这上面跑，这样就可以直接使用 H@H Downloader 直接下载到本地了。 然而测了一下家宽，发现是 NAT4，广">
+  <meta itemprop="datePublished" content="2024-05-06T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2024-05-06T00:00:00+00:00">
+  <meta itemprop="wordCount" content="480">
+  <meta itemprop="keywords" content="Linux,网络"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="使用代理在家庭宽带下运行 H@H">
+<meta name="twitter:description" content="最近捡垃圾捡了台 homelab，就寻思着能不能把 H@H 放到这上面跑，这样就可以直接使用 H@H Downloader 直接下载到本地了。 然而测了一下家宽，发现是 NAT4，广">
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Aloxaf&#39;s Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于</li>
+      </a><a href="/friend/">
+        <li class="mobile-menu-item">友链</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Aloxaf&#39;s Blog</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">关于</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/friend/">友链</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">使用代理在家庭宽带下运行 H@H</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2024-05-06 </span>
+        
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#服务器配置">服务器配置</a></li>
+        <li><a href="#本地配置">本地配置</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>最近捡垃圾捡了台 homelab，就寻思着能不能把 H@H 放到这上面跑，这样就可以直接使用 H@H Downloader 直接下载到本地了。</p>
+<p>然而测了一下家宽，发现是 NAT4，广东广电真是有够烂的，只能用公网服务器来转发了。研究了一下，确实可行，前提是这台服务器<strong>允许非备案域名的非标准端口访问</strong>。</p>
+<p>以下为配置步骤，仅供参考。</p>
+<h2 id="服务器配置">服务器配置</h2>
+<p>服务器上我选择使用 gost 搭建一个 socks5 代理，用于代理内网的 H@H 请求，再用 frp 搭建一个反向代理，用于将服务器上接受到的请求转发回内网的 H@H。</p>
+<p>总共需放行三个端口：</p>
+<ul>
+<li>frp 服务器端口：1234</li>
+<li>H@H 监听端口：2345</li>
+<li>socks5 代理端口：3456</li>
+</ul>
+<p>gost 的启动非常简单：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker run -d --network<span class="o">=</span>host --name gost ginuerzh/gost -L<span class="o">=</span>username:password@:3456
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>frp 的配置也没什么难度：</p>
+<p><strong>frps.toml</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="c"># 你的 frp 端口</span>
+</span></span><span class="line"><span class="cl"><span class="nx">bindPort</span> <span class="p">=</span> <span class="mi">1234</span>
+</span></span><span class="line"><span class="cl"><span class="c"># 你的 H@H 端口</span>
+</span></span><span class="line"><span class="cl"><span class="nx">allowPorts</span> <span class="p">=</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span> <span class="nx">single</span> <span class="p">=</span> <span class="mi">2345</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">auth</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">method</span> <span class="p">=</span> <span class="s2">&#34;token&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">token</span> <span class="p">=</span> <span class="s2">&#34;your_secret_token&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker run -d --network<span class="o">=</span>host -v <span class="nv">$PWD</span>/frps.toml:/etc/frp/frps.toml --name frps snowdreamtech/frps
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="本地配置">本地配置</h2>
+<p>辣鸡 java 竟然没有办法指定需要验证的 socks5 代理，因此需要在本地再启动一个 gost 转发一下我们的代理：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker run --name<span class="o">=</span>gost -d --network<span class="o">=</span>host ginuerzh/gost -L<span class="o">=</span>:2345 -F<span class="o">=</span>socks5://username:password@1.2.3.4:2345
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>然后再配置一下 frp，将本地的 H@H 端口映射出去：</p>
+<p><strong>frpc.toml</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="nx">ServerAddr</span> <span class="p">=</span> <span class="s2">&#34;1.2.3.4&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">serverPort</span> <span class="p">=</span> <span class="mi">1234</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">auth</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">method</span> <span class="p">=</span> <span class="s2">&#34;token&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">token</span> <span class="p">=</span> <span class="s2">&#34;your_secret_token&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">proxies</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;hath&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">type</span> <span class="p">=</span> <span class="s2">&#34;tcp&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">localIP</span> <span class="p">=</span> <span class="s2">&#34;127.0.0.1&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">localPort</span> <span class="p">=</span> <span class="mi">2345</span>
+</span></span><span class="line"><span class="cl"><span class="nx">remotePort</span> <span class="p">=</span> <span class="mi">2345</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker run --network<span class="o">=</span>host -d -v <span class="nv">$PWD</span>/frpc.toml:/etc/frp/frpc.toml --name frpc snowdreamtech/frpc
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>最后，启动 H@H：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">java -DsocksProxyHost<span class="o">=</span>127.0.0.1 -DsocksProxyPort<span class="o">=</span><span class="m">3456</span> -jar HentaiAtHome.jar --disable-ip-origin-check
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Aloxaf</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2024-05-06
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a></span>
+  </p>
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/linux/">Linux</a>
+          <a href="/tags/%E7%BD%91%E7%BB%9C/">网络</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/2024/03/fxxk_kde6/">
+            <span class="next-text nav-default">KDE6 更新踩坑记录</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  <span id="/2024/05/run_hh_at_home/" class="leancloud_visitors" data-flag-title="使用代理在家庭宽带下运行 H@H">
+		<span class="post-meta-item-text">文章阅读量 </span>
+		<span class="leancloud-visitors-count">0</span>
+		<p></p>
+	  </span>
+  <div id="vcomments"></div>
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+  <script type="text/javascript">
+    new Valine({
+        el: '#vcomments' ,
+        serverURLs: 'https:\/\/0mqcauyd.api.lncldglobal.com',
+        appId: '0mQCAuYdR6NE9gIVBd6rDEjY-MdYXbMMI',
+        appKey: 'CBACoI7HhLeuROO39gpYpYDl',
+        notify:  false ,
+        verify:  false ,
+        avatar:'mm',
+        placeholder: '妙啊，妙啊',
+        visitor:  true 
+    });
+  </script>
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:aloxafx@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/Aloxaf" class="iconfont icon-github" title="github"></a>
+  <a href="https://www.aloxaf.com/atom.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span><span>Aloxaf</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script async src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script async src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script>
+    var languageCode = "zh".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script>
+
+
+
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

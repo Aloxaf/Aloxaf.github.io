@@ -4,10 +4,17 @@
     <title>Linux on Aloxaf&#39;s Blog</title>
     <link>https://www.aloxaf.com/tags/linux/</link>
     <description>Recent content in Linux on Aloxaf&#39;s Blog</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>zh</language>
-    <lastBuildDate>Mon, 11 Mar 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 06 May 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://www.aloxaf.com/tags/linux/atom.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>使用代理在家庭宽带下运行 H@H</title>
+      <link>https://www.aloxaf.com/2024/05/run_hh_at_home/</link>
+      <pubDate>Mon, 06 May 2024 00:00:00 +0000</pubDate>
+      <guid>https://www.aloxaf.com/2024/05/run_hh_at_home/</guid>
+      <description>最近捡垃圾捡了台 homelab，就寻思着能不能把 H@H 放到这上面跑，这样就可以直接使用 H@H Downloader 直接下载到本地了。 然而测了一下家宽，发现是 NAT4，广</description>
+    </item>
     <item>
       <title>KDE6 更新踩坑记录</title>
       <link>https://www.aloxaf.com/2024/03/fxxk_kde6/</link>
@@ -70,13 +77,6 @@
       <pubDate>Wed, 03 Apr 2019 17:31:49 +0000</pubDate>
       <guid>https://www.aloxaf.com/2019/04/alacritty_hidpi/</guid>
       <description>为啥要折腾 Alacritty 呢, 因为 Konsole 有点小问题: https://bugs.kde.org/show_bug.cgi?id=401298 (不过这个问题已经 fix 了, 下个版本应该就没有了, 我大概又会滚回 Konsole, 毕竟有 blur 和 ligatures), 阻碍我使用棒棒的 lsd. 问题表现 具体</description>
-    </item>
-    <item>
-      <title>PowerShell 真香</title>
-      <link>https://www.aloxaf.com/2019/03/powershell_miaoa/</link>
-      <pubDate>Sat, 02 Mar 2019 00:02:05 +0000</pubDate>
-      <guid>https://www.aloxaf.com/2019/03/powershell_miaoa/</guid>
-      <description>我就是饿死, 死外面, 从外面跳下去, 也不会用 M$ 的垃圾 PowerShell ! &amp;hellip; 真香! NOTE: 这是一篇黑 bash 吹 PowerShell(以下简称 pwsh) 的文章, bash 死忠粉以及软黑请退散</description>
     </item>
   </channel>
 </rss>

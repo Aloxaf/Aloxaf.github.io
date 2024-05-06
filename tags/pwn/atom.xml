@@ -4,14 +4,14 @@
     <title>Pwn on Aloxaf&#39;s Blog</title>
     <link>https://www.aloxaf.com/tags/pwn/</link>
     <description>Recent content in Pwn on Aloxaf&#39;s Blog</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>zh</language>
     <lastBuildDate>Mon, 20 Aug 2018 21:37:00 +0000</lastBuildDate>
     <atom:link href="https://www.aloxaf.com/tags/pwn/atom.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>hackme.inndy 部分writeup</title>
       <link>https://www.aloxaf.com/2018/08/hackme_inndy/</link>
-      <pubDate>Mon, 20 Aug 2018 21:37:00 +0000</pubDate>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://www.aloxaf.com/2018/08/hackme_inndy/</guid>
       <description>&lt;p&gt;听奥博大佬说对新手很友好, 来试试&lt;/p&gt;&#xA;&lt;p&gt;官方不建议直接给出 flag, 就不放 flag 了&lt;/p&gt;</description>
     </item>

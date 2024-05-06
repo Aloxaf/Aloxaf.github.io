@@ -4,9 +4,9 @@
     <title>Aloxaf&#39;s Blog</title>
     <link>https://www.aloxaf.com/</link>
     <description>Recent content on Aloxaf&#39;s Blog</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>zh</language>
-    <lastBuildDate>Mon, 11 Mar 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 06 May 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://www.aloxaf.com/atom.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>友链</title>
@@ -21,6 +21,13 @@
       <pubDate>Sat, 11 Aug 2018 09:05:04 +0000</pubDate>
       <guid>https://www.aloxaf.com/about/</guid>
       <description>游戏 懒军, 玩成养桶游戏的那种 曾经的目标是成为 glyph 大师 悲，红桶没了 当过舰长, 指挥官, 后来觉得还是 Agent 好 还是提督好 还是骑士君好 还是 sensei 好 RPG 小黄油大师 宗</description>
+    </item>
+    <item>
+      <title>使用代理在家庭宽带下运行 H@H</title>
+      <link>https://www.aloxaf.com/2024/05/run_hh_at_home/</link>
+      <pubDate>Mon, 06 May 2024 00:00:00 +0000</pubDate>
+      <guid>https://www.aloxaf.com/2024/05/run_hh_at_home/</guid>
+      <description>最近捡垃圾捡了台 homelab，就寻思着能不能把 H@H 放到这上面跑，这样就可以直接使用 H@H Downloader 直接下载到本地了。 然而测了一下家宽，发现是 NAT4，广</description>
     </item>
     <item>
       <title>KDE6 更新踩坑记录</title>
@@ -70,13 +77,6 @@
       <pubDate>Sat, 28 Nov 2020 00:00:00 +0000</pubDate>
       <guid>https://www.aloxaf.com/2020/11/wow_such_linux_many_files_so_small/</guid>
       <description>&lt;p&gt;首先声明一点，本文探讨的不是如何在生产环境中高效存储百万量级的小文件，而是在日常生活中该如何处理那些包含上万个小文件的情景。&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>CDDA 安卓版编译指南</title>
-      <link>https://www.aloxaf.com/2020/11/cdda_compile_android/</link>
-      <pubDate>Tue, 17 Nov 2020 00:00:00 +0000</pubDate>
-      <guid>https://www.aloxaf.com/2020/11/cdda_compile_android/</guid>
-      <description>&lt;p&gt;对于没有 Android 开发经验的我来讲这是值得记录一下的事情……&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

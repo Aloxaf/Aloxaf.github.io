@@ -25,7 +25,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.123.7 with theme even" />
+<meta name="generator" content="Hugo 0.125.5 with theme even" />
 
 
 <link rel="preload" href="/fonts/iconfont/iconfont.woff" as="font" type="font/woff" crossorigin="anonymous">
@@ -45,22 +45,27 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
-<meta property="og:title" content="优化 Rust 程序编译体积" />
-<meta property="og:description" content="体积狂魔の执念，记录一下以免忘记。
-2019-11-12 更新： 自这篇文章发表后已经过了一年，Rust 发生了许多变化，比如不再自带 Jemalloc 作为内存分配器。因此更新一下文章，参考了一个新项目 min-sized-rust 进行了更多的优化。" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.aloxaf.com/2018/09/reduce_rust_size/" /><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2018-09-07T12:27:05+00:00" />
-<meta property="article:modified_time" content="2019-11-22T13:51:55+00:00" />
+<meta property="og:url" content="https://www.aloxaf.com/2018/09/reduce_rust_size/">
+  <meta property="og:site_name" content="Aloxaf&#39;s Blog">
+  <meta property="og:title" content="优化 Rust 程序编译体积">
+  <meta property="og:description" content="体积狂魔の执念，记录一下以免忘记。
+2019-11-12 更新： 自这篇文章发表后已经过了一年，Rust 发生了许多变化，比如不再自带 Jemalloc 作为内存分配器。因此更新一下文章，参考了一个新项目 min-sized-rust 进行了更多的优化。">
+  <meta property="og:locale" content="zh">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2018-09-07T12:27:05+00:00">
+    <meta property="article:modified_time" content="2019-11-22T13:51:55+00:00">
+    <meta property="article:tag" content="Rust">
 
-<meta itemprop="name" content="优化 Rust 程序编译体积">
-<meta itemprop="description" content="体积狂魔の执念，记录一下以免忘记。
-2019-11-12 更新： 自这篇文章发表后已经过了一年，Rust 发生了许多变化，比如不再自带 Jemalloc 作为内存分配器。因此更新一下文章，参考了一个新项目 min-sized-rust 进行了更多的优化。"><meta itemprop="datePublished" content="2018-09-07T12:27:05+00:00" />
-<meta itemprop="dateModified" content="2019-11-22T13:51:55+00:00" />
-<meta itemprop="wordCount" content="2976">
-<meta itemprop="keywords" content="rust," /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="优化 Rust 程序编译体积"/>
+  <meta itemprop="name" content="优化 Rust 程序编译体积">
+  <meta itemprop="description" content="体积狂魔の执念，记录一下以免忘记。
+2019-11-12 更新： 自这篇文章发表后已经过了一年，Rust 发生了许多变化，比如不再自带 Jemalloc 作为内存分配器。因此更新一下文章，参考了一个新项目 min-sized-rust 进行了更多的优化。">
+  <meta itemprop="datePublished" content="2018-09-07T12:27:05+00:00">
+  <meta itemprop="dateModified" content="2019-11-22T13:51:55+00:00">
+  <meta itemprop="wordCount" content="2976">
+  <meta itemprop="keywords" content="Rust"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="优化 Rust 程序编译体积">
 <meta name="twitter:description" content="体积狂魔の执念，记录一下以免忘记。
-2019-11-12 更新： 自这篇文章发表后已经过了一年，Rust 发生了许多变化，比如不再自带 Jemalloc 作为内存分配器。因此更新一下文章，参考了一个新项目 min-sized-rust 进行了更多的优化。"/>
+2019-11-12 更新： 自这篇文章发表后已经过了一年，Rust 发生了许多变化，比如不再自带 Jemalloc 作为内存分配器。因此更新一下文章，参考了一个新项目 min-sized-rust 进行了更多的优化。">
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -959,17 +964,6 @@
 
 <script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
 
-
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'UA-123773630-1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
 

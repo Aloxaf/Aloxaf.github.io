@@ -26,7 +26,7 @@ Arch Support - Roadmap 搁了快一年的问题, 主要是 Arch 下没有 libc6-
 
 
 
-<meta name="generator" content="Hugo 0.123.7 with theme even" />
+<meta name="generator" content="Hugo 0.125.5 with theme even" />
 
 
 <link rel="preload" href="/fonts/iconfont/iconfont.woff" as="font" type="font/woff" crossorigin="anonymous">
@@ -46,37 +46,38 @@ Arch Support - Roadmap 搁了快一年的问题, 主要是 Arch 下没有 libc6-
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
-<meta property="og:title" content="Arch Linux 下使用 pwndbg" />
-<meta property="og:description" content="pwndbg 的安装: pacman -S pwndbg 然后添加 source /usr/share/pwndbg/gdbinit.py 到 ~/.gdbinit
+<meta property="og:url" content="https://www.aloxaf.com/2018/10/arch_pwndbg/">
+  <meta property="og:site_name" content="Aloxaf&#39;s Blog">
+  <meta property="og:title" content="Arch Linux 下使用 pwndbg">
+  <meta property="og:description" content="pwndbg 的安装: pacman -S pwndbg 然后添加 source /usr/share/pwndbg/gdbinit.py 到 ~/.gdbinit
+然而要在 Arch Linux 下愉快地使用 pwndbg, 还要解决以下问题:
+Arch Support - Roadmap 搁了快一年的问题, 主要是 Arch 下没有 libc6-dbg 这种包, 要调试符号只能自己编译… Python exception under gdb-8.2-2 上游 gdb 的问题, 8.3 应该会修复, 不过可以按链接所示的方法临时 patch 一下 gdb 8.2.1 已 fix 这里解决第一个问题, 利用棒棒的 ABS (Arch Build System)">
+  <meta property="og:locale" content="zh">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2018-10-19T13:47:04+00:00">
+    <meta property="article:modified_time" content="2019-01-05T17:29:00+00:00">
+    <meta property="article:tag" content="Linux">
+
+  <meta itemprop="name" content="Arch Linux 下使用 pwndbg">
+  <meta itemprop="description" content="pwndbg 的安装: pacman -S pwndbg 然后添加 source /usr/share/pwndbg/gdbinit.py 到 ~/.gdbinit
 然而要在 Arch Linux 下愉快地使用 pwndbg, 还要解决以下问题:
 
 Arch Support - Roadmap 搁了快一年的问题, 主要是 Arch 下没有 libc6-dbg 这种包, 要调试符号只能自己编译&hellip;
 Python exception under gdb-8.2-2 上游 gdb 的问题, 8.3 应该会修复, 不过可以按链接所示的方法临时 patch 一下 gdb 8.2.1 已 fix
 
-这里解决第一个问题, 利用棒棒的 ABS (Arch Build System)" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.aloxaf.com/2018/10/arch_pwndbg/" /><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2018-10-19T13:47:04+00:00" />
-<meta property="article:modified_time" content="2019-01-05T17:29:00+00:00" />
-
-<meta itemprop="name" content="Arch Linux 下使用 pwndbg">
-<meta itemprop="description" content="pwndbg 的安装: pacman -S pwndbg 然后添加 source /usr/share/pwndbg/gdbinit.py 到 ~/.gdbinit
-然而要在 Arch Linux 下愉快地使用 pwndbg, 还要解决以下问题:
-
-Arch Support - Roadmap 搁了快一年的问题, 主要是 Arch 下没有 libc6-dbg 这种包, 要调试符号只能自己编译&hellip;
-Python exception under gdb-8.2-2 上游 gdb 的问题, 8.3 应该会修复, 不过可以按链接所示的方法临时 patch 一下 gdb 8.2.1 已 fix
-
-这里解决第一个问题, 利用棒棒的 ABS (Arch Build System)"><meta itemprop="datePublished" content="2018-10-19T13:47:04+00:00" />
-<meta itemprop="dateModified" content="2019-01-05T17:29:00+00:00" />
-<meta itemprop="wordCount" content="521">
-<meta itemprop="keywords" content="linux," /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Arch Linux 下使用 pwndbg"/>
+这里解决第一个问题, 利用棒棒的 ABS (Arch Build System)">
+  <meta itemprop="datePublished" content="2018-10-19T13:47:04+00:00">
+  <meta itemprop="dateModified" content="2019-01-05T17:29:00+00:00">
+  <meta itemprop="wordCount" content="521">
+  <meta itemprop="keywords" content="Linux"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Arch Linux 下使用 pwndbg">
 <meta name="twitter:description" content="pwndbg 的安装: pacman -S pwndbg 然后添加 source /usr/share/pwndbg/gdbinit.py 到 ~/.gdbinit
 然而要在 Arch Linux 下愉快地使用 pwndbg, 还要解决以下问题:
 
 Arch Support - Roadmap 搁了快一年的问题, 主要是 Arch 下没有 libc6-dbg 这种包, 要调试符号只能自己编译&hellip;
 Python exception under gdb-8.2-2 上游 gdb 的问题, 8.3 应该会修复, 不过可以按链接所示的方法临时 patch 一下 gdb 8.2.1 已 fix
 
-这里解决第一个问题, 利用棒棒的 ABS (Arch Build System)"/>
+这里解决第一个问题, 利用棒棒的 ABS (Arch Build System)">
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -340,17 +341,6 @@ Python exception under gdb-8.2-2 上游 gdb 的问题, 8.3 应该会修复, 不�
 
 <script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
 
-
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'UA-123773630-1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
 

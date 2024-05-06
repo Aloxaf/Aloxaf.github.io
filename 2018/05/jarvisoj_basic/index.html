@@ -26,7 +26,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.123.7 with theme even" />
+<meta name="generator" content="Hugo 0.125.5 with theme even" />
 
 
 <link rel="preload" href="/fonts/iconfont/iconfont.woff" as="font" type="font/woff" crossorigin="anonymous">
@@ -46,8 +46,26 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
-<meta property="og:title" content="Jarvis OJ BASIC 完整writeup" />
-<meta property="og:description" content="握手包
+<meta property="og:url" content="https://www.aloxaf.com/2018/05/jarvisoj_basic/">
+  <meta property="og:site_name" content="Aloxaf&#39;s Blog">
+  <meta property="og:title" content="Jarvis OJ BASIC 完整writeup">
+  <meta property="og:description" content="握手包 给你握手包，flag是Flag_is_here这个AP的密码，自己看着办吧。
+提交格式：flag{WIFI密码}
+利用 hashcat 爆破, 以 Arch Linux 为例
+1 2 3 4 5 6 # 安装必要工具 sudo pacman -S hashcat hashcat-utils # 格式转换 cap2hccapx wifi.cap wifi.hccapx # 用字典爆破 hashcat -m 2500 wifi.hccapx 10k_most_common.txt ">
+  <meta property="og:locale" content="zh">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2018-05-17T08:23:16+00:00">
+    <meta property="article:modified_time" content="2018-08-13T10:04:57+00:00">
+    <meta property="article:tag" content="Ctf">
+    <meta property="article:tag" content="Writeup">
+    <meta property="article:tag" content="Misc">
+    <meta property="article:tag" content="Crypto">
+    <meta property="article:tag" content="Reverse">
+
+  <meta itemprop="name" content="Jarvis OJ BASIC 完整writeup">
+  <meta itemprop="description" content="握手包
 
 给你握手包，flag是Flag_is_here这个AP的密码，自己看着办吧。
 提交格式：flag{WIFI密码}
@@ -71,41 +89,11 @@ cap2hccapx wifi.cap wifi.hccapx
 hashcat -m 2500 wifi.hccapx 10k_most_common.txt
 
 
-" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.aloxaf.com/2018/05/jarvisoj_basic/" /><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2018-05-17T08:23:16+00:00" />
-<meta property="article:modified_time" content="2018-08-13T10:04:57+00:00" />
-
-<meta itemprop="name" content="Jarvis OJ BASIC 完整writeup">
-<meta itemprop="description" content="握手包
-
-给你握手包，flag是Flag_is_here这个AP的密码，自己看着办吧。
-提交格式：flag{WIFI密码}
-
-利用 hashcat 爆破, 以 Arch Linux 为例
-
-
-1
-2
-3
-4
-5
-6
-
-
-# 安装必要工具
-sudo pacman -S hashcat hashcat-utils
-# 格式转换
-cap2hccapx wifi.cap wifi.hccapx
-# 用字典爆破
-hashcat -m 2500 wifi.hccapx 10k_most_common.txt
-
-
-"><meta itemprop="datePublished" content="2018-05-17T08:23:16+00:00" />
-<meta itemprop="dateModified" content="2018-08-13T10:04:57+00:00" />
-<meta itemprop="wordCount" content="2652">
-<meta itemprop="keywords" content="ctf,writeup,misc,crypto,reverse," /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Jarvis OJ BASIC 完整writeup"/>
+">
+  <meta itemprop="datePublished" content="2018-05-17T08:23:16+00:00">
+  <meta itemprop="dateModified" content="2018-08-13T10:04:57+00:00">
+  <meta itemprop="wordCount" content="2652">
+  <meta itemprop="keywords" content="Ctf,Writeup,Misc,Crypto,Reverse"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Jarvis OJ BASIC 完整writeup">
 <meta name="twitter:description" content="握手包
 
 给你握手包，flag是Flag_is_here这个AP的密码，自己看着办吧。
@@ -130,7 +118,7 @@ cap2hccapx wifi.cap wifi.hccapx
 hashcat -m 2500 wifi.hccapx 10k_most_common.txt
 
 
-"/>
+">
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -1013,17 +1001,6 @@ hashcat -m 2500 wifi.hccapx 10k_most_common.txt
 
 <script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
 
-
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'UA-123773630-1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
 
