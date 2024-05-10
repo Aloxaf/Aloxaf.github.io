@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Web on Aloxaf&#39;s Blog</title>
-    <link>https://www.aloxaf.com/tags/web/</link>
+    <link>http://localhost:1313/tags/web/</link>
     <description>Recent content in Web on Aloxaf&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>zh</language>
     <lastBuildDate>Mon, 20 Aug 2018 21:37:00 +0000</lastBuildDate>
-    <atom:link href="https://www.aloxaf.com/tags/web/atom.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/web/atom.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>hackme.inndy 部分writeup</title>
-      <link>https://www.aloxaf.com/2018/08/hackme_inndy/</link>
+      <link>http://localhost:1313/2018/08/hackme_inndy/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://www.aloxaf.com/2018/08/hackme_inndy/</guid>
+      <guid>http://localhost:1313/2018/08/hackme_inndy/</guid>
       <description>&lt;p&gt;听奥博大佬说对新手很友好, 来试试&lt;/p&gt;&#xA;&lt;p&gt;官方不建议直接给出 flag, 就不放 flag 了&lt;/p&gt;</description>
     </item>
   </channel>

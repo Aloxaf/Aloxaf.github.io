@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Filesystem on Aloxaf&#39;s Blog</title>
-    <link>https://www.aloxaf.com/tags/filesystem/</link>
+    <link>http://localhost:1313/tags/filesystem/</link>
     <description>Recent content in Filesystem on Aloxaf&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>zh</language>
     <lastBuildDate>Tue, 23 Mar 2021 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://www.aloxaf.com/tags/filesystem/atom.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/filesystem/atom.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Linux 下如何跟大量小文件打交道</title>
-      <link>https://www.aloxaf.com/2020/11/wow_such_linux_many_files_so_small/</link>
+      <link>http://localhost:1313/2020/11/wow_such_linux_many_files_so_small/</link>
       <pubDate>Sat, 28 Nov 2020 00:00:00 +0000</pubDate>
-      <guid>https://www.aloxaf.com/2020/11/wow_such_linux_many_files_so_small/</guid>
+      <guid>http://localhost:1313/2020/11/wow_such_linux_many_files_so_small/</guid>
       <description>&lt;p&gt;首先声明一点，本文探讨的不是如何在生产环境中高效存储百万量级的小文件，而是在日常生活中该如何处理那些包含上万个小文件的情景。&lt;/p&gt;</description>
     </item>
   </channel>
