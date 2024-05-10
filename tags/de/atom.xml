@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>DE on Aloxaf&#39;s Blog</title>
-    <link>http://localhost:1313/tags/de/</link>
+    <link>https://www.aloxaf.com/tags/de/</link>
     <description>Recent content in DE on Aloxaf&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>zh</language>
     <lastBuildDate>Tue, 12 Mar 2024 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/de/atom.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://www.aloxaf.com/tags/de/atom.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>KDE6 更新踩坑记录</title>
-      <link>http://localhost:1313/2024/03/fxxk_kde6/</link>
+      <link>https://www.aloxaf.com/2024/03/fxxk_kde6/</link>
       <pubDate>Mon, 11 Mar 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/2024/03/fxxk_kde6/</guid>
+      <guid>https://www.aloxaf.com/2024/03/fxxk_kde6/</guid>
       <description>我从未想过有一天我的 Linux 桌面会变得如此不可用…… KDE 更新大版本了。以前总是嘲笑 GNOME 用户每次更新不是这里炸了就是那里被砍了，没想到风水轮流转，现在炸</description>
     </item>
   </channel>

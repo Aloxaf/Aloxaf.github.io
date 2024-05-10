@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Ipv6 on Aloxaf&#39;s Blog</title>
-    <link>http://localhost:1313/tags/ipv6/</link>
+    <link>https://www.aloxaf.com/tags/ipv6/</link>
     <description>Recent content in Ipv6 on Aloxaf&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>zh</language>
     <lastBuildDate>Fri, 10 May 2024 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/ipv6/atom.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://www.aloxaf.com/tags/ipv6/atom.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>使用 ipv6 &#43; nginx 反向代理绕过网站速率限制</title>
-      <link>http://localhost:1313/2024/05/pass_ratelimiter_with_ipv6_and_nginx/</link>
+      <link>https://www.aloxaf.com/2024/05/pass_ratelimiter_with_ipv6_and_nginx/</link>
       <pubDate>Fri, 10 May 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/2024/05/pass_ratelimiter_with_ipv6_and_nginx/</guid>
+      <guid>https://www.aloxaf.com/2024/05/pass_ratelimiter_with_ipv6_and_nginx/</guid>
       <description>前段时间有个小币种挖矿项目，有几百台机器需要接入某矿池。这原本没有任何难度，直到我批量部署完以后，一看网站后台——怎么回事，竟然只有几十台在</description>
     </item>
   </channel>

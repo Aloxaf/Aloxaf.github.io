@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Crack on Aloxaf&#39;s Blog</title>
-    <link>http://localhost:1313/tags/crack/</link>
+    <link>https://www.aloxaf.com/tags/crack/</link>
     <description>Recent content in Crack on Aloxaf&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>zh</language>
     <lastBuildDate>Wed, 09 Feb 2022 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/crack/atom.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://www.aloxaf.com/tags/crack/atom.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>掌阅 Facenote 阅读器安装第三方 APP</title>
-      <link>http://localhost:1313/2022/01/facenote_thirdparty_app/</link>
+      <link>https://www.aloxaf.com/2022/01/facenote_thirdparty_app/</link>
       <pubDate>Tue, 04 Jan 2022 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/2022/01/facenote_thirdparty_app/</guid>
+      <guid>https://www.aloxaf.com/2022/01/facenote_thirdparty_app/</guid>
       <description>&lt;p&gt;竟然快一年没写博客了&lt;/p&gt;</description>
     </item>
   </channel>

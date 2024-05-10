@@ -2,80 +2,80 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Aloxaf&#39;s Blog</title>
-    <link>http://localhost:1313/tags/</link>
+    <link>https://www.aloxaf.com/tags/</link>
     <description>Recent content in Tags on Aloxaf&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>zh</language>
     <lastBuildDate>Fri, 10 May 2024 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/atom.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://www.aloxaf.com/tags/atom.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Ipv6</title>
-      <link>http://localhost:1313/tags/ipv6/</link>
+      <link>https://www.aloxaf.com/tags/ipv6/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/ipv6/</guid>
+      <guid>https://www.aloxaf.com/tags/ipv6/</guid>
       <description></description>
     </item>
     <item>
       <title>Nginx</title>
-      <link>http://localhost:1313/tags/nginx/</link>
+      <link>https://www.aloxaf.com/tags/nginx/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/nginx/</guid>
+      <guid>https://www.aloxaf.com/tags/nginx/</guid>
       <description></description>
     </item>
     <item>
       <title>Linux</title>
-      <link>http://localhost:1313/tags/linux/</link>
+      <link>https://www.aloxaf.com/tags/linux/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/linux/</guid>
+      <guid>https://www.aloxaf.com/tags/linux/</guid>
       <description></description>
     </item>
     <item>
       <title>网络</title>
-      <link>http://localhost:1313/tags/%E7%BD%91%E7%BB%9C/</link>
+      <link>https://www.aloxaf.com/tags/%E7%BD%91%E7%BB%9C/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/%E7%BD%91%E7%BB%9C/</guid>
+      <guid>https://www.aloxaf.com/tags/%E7%BD%91%E7%BB%9C/</guid>
       <description></description>
     </item>
     <item>
       <title>DE</title>
-      <link>http://localhost:1313/tags/de/</link>
+      <link>https://www.aloxaf.com/tags/de/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/de/</guid>
+      <guid>https://www.aloxaf.com/tags/de/</guid>
       <description></description>
     </item>
     <item>
       <title>KDE</title>
-      <link>http://localhost:1313/tags/kde/</link>
+      <link>https://www.aloxaf.com/tags/kde/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/kde/</guid>
+      <guid>https://www.aloxaf.com/tags/kde/</guid>
       <description></description>
     </item>
     <item>
       <title>Zsh</title>
-      <link>http://localhost:1313/tags/zsh/</link>
+      <link>https://www.aloxaf.com/tags/zsh/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/zsh/</guid>
+      <guid>https://www.aloxaf.com/tags/zsh/</guid>
       <description></description>
     </item>
     <item>
       <title>Crack</title>
-      <link>http://localhost:1313/tags/crack/</link>
+      <link>https://www.aloxaf.com/tags/crack/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/crack/</guid>
+      <guid>https://www.aloxaf.com/tags/crack/</guid>
       <description></description>
     </item>
     <item>
       <title>Filesystem</title>
-      <link>http://localhost:1313/tags/filesystem/</link>
+      <link>https://www.aloxaf.com/tags/filesystem/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/filesystem/</guid>
+      <guid>https://www.aloxaf.com/tags/filesystem/</guid>
       <description></description>
     </item>
     <item>
       <title>Cdda</title>
-      <link>http://localhost:1313/tags/cdda/</link>
+      <link>https://www.aloxaf.com/tags/cdda/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/cdda/</guid>
+      <guid>https://www.aloxaf.com/tags/cdda/</guid>
       <description></description>
     </item>
   </channel>

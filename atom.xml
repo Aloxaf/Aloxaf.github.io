@@ -2,80 +2,80 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Aloxaf&#39;s Blog</title>
-    <link>http://localhost:1313/</link>
+    <link>https://www.aloxaf.com/</link>
     <description>Recent content on Aloxaf&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>zh</language>
     <lastBuildDate>Fri, 10 May 2024 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/atom.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://www.aloxaf.com/atom.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>友链</title>
-      <link>http://localhost:1313/friend/</link>
+      <link>https://www.aloxaf.com/friend/</link>
       <pubDate>Mon, 17 Sep 2018 11:41:00 +0000</pubDate>
-      <guid>http://localhost:1313/friend/</guid>
+      <guid>https://www.aloxaf.com/friend/</guid>
       <description>施工中的友链 我也想搞一个友链，但是不会写样式，我也不想学，就这么放着吧 (能点就行 98年生的猫 Byaidu FKY iseki L1b0 M4x OURONGXING</description>
     </item>
     <item>
       <title>关于</title>
-      <link>http://localhost:1313/about/</link>
+      <link>https://www.aloxaf.com/about/</link>
       <pubDate>Sat, 11 Aug 2018 09:05:04 +0000</pubDate>
-      <guid>http://localhost:1313/about/</guid>
+      <guid>https://www.aloxaf.com/about/</guid>
       <description>游戏 懒军, 玩成养桶游戏的那种 曾经的目标是成为 glyph 大师 悲，红桶没了 当过舰长, 指挥官, 后来觉得还是 Agent 好 还是提督好 还是骑士君好 还是 sensei 好 RPG 小黄油大师 宗</description>
     </item>
     <item>
       <title>使用 ipv6 &#43; nginx 反向代理绕过网站速率限制</title>
-      <link>http://localhost:1313/2024/05/pass_ratelimiter_with_ipv6_and_nginx/</link>
+      <link>https://www.aloxaf.com/2024/05/pass_ratelimiter_with_ipv6_and_nginx/</link>
       <pubDate>Fri, 10 May 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/2024/05/pass_ratelimiter_with_ipv6_and_nginx/</guid>
+      <guid>https://www.aloxaf.com/2024/05/pass_ratelimiter_with_ipv6_and_nginx/</guid>
       <description>前段时间有个小币种挖矿项目，有几百台机器需要接入某矿池。这原本没有任何难度，直到我批量部署完以后，一看网站后台——怎么回事，竟然只有几十台在</description>
     </item>
     <item>
       <title>使用代理在家庭宽带下运行 H@H</title>
-      <link>http://localhost:1313/2024/05/run_hh_at_home/</link>
+      <link>https://www.aloxaf.com/2024/05/run_hh_at_home/</link>
       <pubDate>Mon, 06 May 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/2024/05/run_hh_at_home/</guid>
+      <guid>https://www.aloxaf.com/2024/05/run_hh_at_home/</guid>
       <description>最近捡垃圾捡了台 homelab，就寻思着能不能把 H@H 放到这上面跑，这样就可以直接使用 H@H Downloader 将画廊直接下载到本地了。 然而测了一下家宽，发现是 NAT</description>
     </item>
     <item>
       <title>KDE6 更新踩坑记录</title>
-      <link>http://localhost:1313/2024/03/fxxk_kde6/</link>
+      <link>https://www.aloxaf.com/2024/03/fxxk_kde6/</link>
       <pubDate>Mon, 11 Mar 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/2024/03/fxxk_kde6/</guid>
+      <guid>https://www.aloxaf.com/2024/03/fxxk_kde6/</guid>
       <description>我从未想过有一天我的 Linux 桌面会变得如此不可用…… KDE 更新大版本了。以前总是嘲笑 GNOME 用户每次更新不是这里炸了就是那里被砍了，没想到风水轮流转，现在炸</description>
     </item>
     <item>
       <title>使用 atuin 管理 zsh 命令历史</title>
-      <link>http://localhost:1313/2024/02/manage_zsh_shell_with_atuin/</link>
+      <link>https://www.aloxaf.com/2024/02/manage_zsh_shell_with_atuin/</link>
       <pubDate>Mon, 26 Feb 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/2024/02/manage_zsh_shell_with_atuin/</guid>
+      <guid>https://www.aloxaf.com/2024/02/manage_zsh_shell_with_atuin/</guid>
       <description>竟然两年没写博客了，真是自工作以后就越来越懒了。 不行，我不能再这样颓废下去了，我决定定一个小目标——2024 要写 10 篇博客！ 好，现在开始水……</description>
     </item>
     <item>
       <title>掌阅 Facenote 阅读器安装第三方 APP</title>
-      <link>http://localhost:1313/2022/01/facenote_thirdparty_app/</link>
+      <link>https://www.aloxaf.com/2022/01/facenote_thirdparty_app/</link>
       <pubDate>Tue, 04 Jan 2022 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/2022/01/facenote_thirdparty_app/</guid>
+      <guid>https://www.aloxaf.com/2022/01/facenote_thirdparty_app/</guid>
       <description>&lt;p&gt;竟然快一年没写博客了&lt;/p&gt;</description>
     </item>
     <item>
       <title>BOOKWALKER 在线阅读器图片提取笔记</title>
-      <link>http://localhost:1313/2021/03/bookwalker_image_extract/</link>
+      <link>https://www.aloxaf.com/2021/03/bookwalker_image_extract/</link>
       <pubDate>Mon, 08 Mar 2021 22:48:00 +0000</pubDate>
-      <guid>http://localhost:1313/2021/03/bookwalker_image_extract/</guid>
+      <guid>https://www.aloxaf.com/2021/03/bookwalker_image_extract/</guid>
       <description>&lt;p&gt;好久没写博客了，水一篇文章&lt;/p&gt;</description>
     </item>
     <item>
       <title>【ZSH 系列教程】参数扩展（下）</title>
-      <link>http://localhost:1313/2021/01/zsh_parameter_expansion_flags/</link>
+      <link>https://www.aloxaf.com/2021/01/zsh_parameter_expansion_flags/</link>
       <pubDate>Fri, 01 Jan 2021 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/2021/01/zsh_parameter_expansion_flags/</guid>
+      <guid>https://www.aloxaf.com/2021/01/zsh_parameter_expansion_flags/</guid>
       <description>&lt;p&gt;本文介绍 ZSH 参数扩展的另一个重要内容——参数扩展标记（Parameter Expansion Flags）。&lt;/p&gt;</description>
     </item>
     <item>
       <title>【ZSH 系列教程】参数扩展（上）</title>
-      <link>http://localhost:1313/2020/12/zsh_parameter_expansion/</link>
+      <link>https://www.aloxaf.com/2020/12/zsh_parameter_expansion/</link>
       <pubDate>Tue, 01 Dec 2020 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/2020/12/zsh_parameter_expansion/</guid>
+      <guid>https://www.aloxaf.com/2020/12/zsh_parameter_expansion/</guid>
       <description>&lt;p&gt;zsh 的参数扩展相比 bash 而言强大了不止一星半点，它让 zsh 无需借助外部命令就能完成大量操作，是写出一个&lt;s&gt;复杂的&lt;/s&gt;流畅的 zsh 插件的必备技能之一。&lt;/p&gt;&#xA;&lt;p&gt;这也是一个区分“zsh 用户”和“用 zsh 作为交互式 shell 的 bash 用户”的有效手段。&lt;/p&gt;</description>
     </item>
   </channel>

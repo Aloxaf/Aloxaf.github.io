@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Egg_pain on Aloxaf&#39;s Blog</title>
-    <link>http://localhost:1313/tags/egg_pain/</link>
+    <link>https://www.aloxaf.com/tags/egg_pain/</link>
     <description>Recent content in Egg_pain on Aloxaf&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>zh</language>
     <lastBuildDate>Sun, 28 Oct 2018 21:08:33 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/egg_pain/atom.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://www.aloxaf.com/tags/egg_pain/atom.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>如何在 Python3 中让 &#39;a&#39; is &#39;b&#39; 为 True</title>
-      <link>http://localhost:1313/2018/10/egg_pain_python/</link>
+      <link>https://www.aloxaf.com/2018/10/egg_pain_python/</link>
       <pubDate>Sun, 28 Oct 2018 14:24:05 +0000</pubDate>
-      <guid>http://localhost:1313/2018/10/egg_pain_python/</guid>
+      <guid>https://www.aloxaf.com/2018/10/egg_pain_python/</guid>
       <description>&lt;h1 id=&#34;前言&#34;&gt;前言&lt;/h1&gt;&#xA;&lt;p&gt;这是一篇闲蛋疼的文章, 讲述了闲蛋疼的我是如何&lt;del&gt;历经千辛万苦终于&lt;/del&gt;在 Python 中让 &lt;code&gt;&#39;a&#39; is &#39;b&#39;&lt;/code&gt; 得到 &lt;code&gt;True&lt;/code&gt;.&lt;/p&gt;&#xA;&lt;p&gt;&lt;del&gt;(虽然这件事情毫无意义)&lt;/del&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;del&gt;(不过拿来坑下一任或许是个好主意呢)&lt;/del&gt;&lt;/p&gt;</description>
     </item>
   </channel>
