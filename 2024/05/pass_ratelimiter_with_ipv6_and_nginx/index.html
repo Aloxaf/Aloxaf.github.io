@@ -16,14 +16,15 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Aloxaf" /><meta name="description" content="前段时间有个小币种挖矿项目，有几百台机器需要接入某矿池。这原本没有任何难度，直到我批量部署完以后，一看网站后台——怎么回事，竟然只有几十台在" /><meta name="keywords" content="aloxaf, ctf, linux, zsh" />
+<meta name="author" content="" /><meta name="description" content="前段时间有个小币种挖矿项目，有几百台机器需要接入某矿池。这原本没有任何难度，直到我批量部署完以后，一看网站后台——怎么回事，竟然只有几十台在线？
+" /><meta name="keywords" content="aloxaf, ctf, linux, zsh" />
 
 
 
 
 
 
-<meta name="generator" content="Hugo 0.125.5 with theme even" />
+<meta name="generator" content="Hugo 0.136.5 with theme even" />
 
 
 <link rel="preload" href="/fonts/iconfont/iconfont.woff" as="font" type="font/woff" crossorigin="anonymous">
@@ -39,14 +40,14 @@
 
 
 
-<link href="/sass/main.min.6e68329c1369b8a285a4985e6b6efdb778e12c12b24e8b3fcdd6c5af778d414e.css" rel="stylesheet">
+<link href="/sass/main.min.b8ff8f6ae815afd22fe55d59dcb2a03ea26d91c49c77a2d29e82aa121cc7d820.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
 <meta property="og:url" content="https://www.aloxaf.com/2024/05/pass_ratelimiter_with_ipv6_and_nginx/">
   <meta property="og:site_name" content="Aloxaf&#39;s Blog">
   <meta property="og:title" content="使用 ipv6 &#43; nginx 反向代理绕过网站速率限制">
-  <meta property="og:description" content="前段时间有个小币种挖矿项目，有几百台机器需要接入某矿池。这原本没有任何难度，直到我批量部署完以后，一看网站后台——怎么回事，竟然只有几十台在">
+  <meta property="og:description" content="前段时间有个小币种挖矿项目，有几百台机器需要接入某矿池。这原本没有任何难度，直到我批量部署完以后，一看网站后台——怎么回事，竟然只有几十台在线？">
   <meta property="og:locale" content="zh">
   <meta property="og:type" content="article">
     <meta property="article:section" content="post">
@@ -56,12 +57,14 @@
     <meta property="article:tag" content="Ipv6">
 
   <meta itemprop="name" content="使用 ipv6 &#43; nginx 反向代理绕过网站速率限制">
-  <meta itemprop="description" content="前段时间有个小币种挖矿项目，有几百台机器需要接入某矿池。这原本没有任何难度，直到我批量部署完以后，一看网站后台——怎么回事，竟然只有几十台在">
+  <meta itemprop="description" content="前段时间有个小币种挖矿项目，有几百台机器需要接入某矿池。这原本没有任何难度，直到我批量部署完以后，一看网站后台——怎么回事，竟然只有几十台在线？">
   <meta itemprop="datePublished" content="2024-05-10T00:00:00+00:00">
   <meta itemprop="dateModified" content="2024-05-10T00:00:00+00:00">
   <meta itemprop="wordCount" content="1527">
-  <meta itemprop="keywords" content="Nginx,Ipv6"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="使用 ipv6 &#43; nginx 反向代理绕过网站速率限制">
-<meta name="twitter:description" content="前段时间有个小币种挖矿项目，有几百台机器需要接入某矿池。这原本没有任何难度，直到我批量部署完以后，一看网站后台——怎么回事，竟然只有几十台在">
+  <meta itemprop="keywords" content="Nginx,Ipv6">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="使用 ipv6 &#43; nginx 反向代理绕过网站速率限制">
+  <meta name="twitter:description" content="前段时间有个小币种挖矿项目，有几百台机器需要接入某矿池。这原本没有任何难度，直到我批量部署完以后，一看网站后台——怎么回事，竟然只有几十台在线？">
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -155,6 +158,11 @@
 </nav>
   </div>
 </div>
+  <div class="post-outdated">
+    <div class="hint">
+      <p>【注】本文最后更新于 <span class="timeago" datetime="2024-05-10T00:00:00" title="May 10, 2024">May 10, 2024</span>，文中内容可能已经过时。</p>
+    </div>
+  </div>
     <div class="post-content">
       <p>前段时间有个小币种挖矿项目，有几百台机器需要接入某矿池。这原本没有任何难度，直到我批量部署完以后，一看网站后台——怎么回事，竟然只有几十台在线？</p>
 <p>一脸懵逼的我找了台不在线的机器登上去，一看日志，大片的 HTTP 429 Too Many Requests。稍加思索后我明白了，一定是因为这个出口下面的机器太多了，触发了 API 限速。明白这一切后我更无语了，你一个矿池还搞 API 限速……</p>
@@ -314,7 +322,7 @@
     <div class="post-copyright">
   <p class="copyright-item">
     <span class="item-title">文章作者</span>
-    <span class="item-content">Aloxaf</span>
+    <span class="item-content"></span>
   </p>
   <p class="copyright-item">
     <span class="item-title">上次更新</span>
@@ -335,7 +343,11 @@
           <a href="/tags/ipv6/">ipv6</a>
           </div>
       <nav class="post-nav">
-        
+        <a class="prev" href="/2024/11/apt_install_in_docker_slow/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">低版本 ubuntu 镜像在 docker 中 apt install 过慢的问题</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
         <a class="next" href="/2024/05/run_hh_at_home/">
             <span class="next-text nav-default">使用代理在家庭宽带下运行 H@H</span>
             <span class="next-text nav-mobile">下一篇</span>
@@ -378,7 +390,7 @@
       <div class="social-links">
       <a href="mailto:aloxafx@gmail.com" class="iconfont icon-email" title="email"></a>
       <a href="https://github.com/Aloxaf" class="iconfont icon-github" title="github"></a>
-  <a href="https://www.aloxaf.com/atom.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+  <a href="/2024/05/pass_ratelimiter_with_ipv6_and_nginx/" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
 </div>
 
 <div class="copyright">
@@ -396,7 +408,7 @@
   <span class="copyright-year">
     &copy; 
     2017 - 
-    2024<span class="heart"><i class="iconfont icon-heart"></i></span><span>Aloxaf</span>
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span><span></span>
   </span>
 </div>
 

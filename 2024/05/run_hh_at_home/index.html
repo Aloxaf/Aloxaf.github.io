@@ -16,14 +16,16 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Aloxaf" /><meta name="description" content="最近捡垃圾捡了台 homelab，就寻思着能不能把 H@H 放到这上面跑，这样就可以直接使用 H@H Downloader 将画廊直接下载到本地了。 然而测了一下家宽，发现是 NAT" /><meta name="keywords" content="aloxaf, ctf, linux, zsh" />
+<meta name="author" content="" /><meta name="description" content="最近捡垃圾捡了台 homelab，就寻思着能不能把 H@H 放到这上面跑，这样就可以直接使用 H@H Downloader 将画廊直接下载到本地了。
+然而测了一下家宽，发现是 NAT4，广东广电真是有够烂的，只能用公网服务器来转发了。研究了一下，确实可行，前提是这台服务器允许非备案域名的非标准端口访问。
+" /><meta name="keywords" content="aloxaf, ctf, linux, zsh" />
 
 
 
 
 
 
-<meta name="generator" content="Hugo 0.125.5 with theme even" />
+<meta name="generator" content="Hugo 0.136.5 with theme even" />
 
 
 <link rel="preload" href="/fonts/iconfont/iconfont.woff" as="font" type="font/woff" crossorigin="anonymous">
@@ -39,14 +41,15 @@
 
 
 
-<link href="/sass/main.min.6e68329c1369b8a285a4985e6b6efdb778e12c12b24e8b3fcdd6c5af778d414e.css" rel="stylesheet">
+<link href="/sass/main.min.b8ff8f6ae815afd22fe55d59dcb2a03ea26d91c49c77a2d29e82aa121cc7d820.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
 <meta property="og:url" content="https://www.aloxaf.com/2024/05/run_hh_at_home/">
   <meta property="og:site_name" content="Aloxaf&#39;s Blog">
   <meta property="og:title" content="使用代理在家庭宽带下运行 H@H">
-  <meta property="og:description" content="最近捡垃圾捡了台 homelab，就寻思着能不能把 H@H 放到这上面跑，这样就可以直接使用 H@H Downloader 将画廊直接下载到本地了。 然而测了一下家宽，发现是 NAT">
+  <meta property="og:description" content="最近捡垃圾捡了台 homelab，就寻思着能不能把 H@H 放到这上面跑，这样就可以直接使用 H@H Downloader 将画廊直接下载到本地了。
+然而测了一下家宽，发现是 NAT4，广东广电真是有够烂的，只能用公网服务器来转发了。研究了一下，确实可行，前提是这台服务器允许非备案域名的非标准端口访问。">
   <meta property="og:locale" content="zh">
   <meta property="og:type" content="article">
     <meta property="article:section" content="post">
@@ -56,12 +59,16 @@
     <meta property="article:tag" content="网络">
 
   <meta itemprop="name" content="使用代理在家庭宽带下运行 H@H">
-  <meta itemprop="description" content="最近捡垃圾捡了台 homelab，就寻思着能不能把 H@H 放到这上面跑，这样就可以直接使用 H@H Downloader 将画廊直接下载到本地了。 然而测了一下家宽，发现是 NAT">
+  <meta itemprop="description" content="最近捡垃圾捡了台 homelab，就寻思着能不能把 H@H 放到这上面跑，这样就可以直接使用 H@H Downloader 将画廊直接下载到本地了。
+然而测了一下家宽，发现是 NAT4，广东广电真是有够烂的，只能用公网服务器来转发了。研究了一下，确实可行，前提是这台服务器允许非备案域名的非标准端口访问。">
   <meta itemprop="datePublished" content="2024-05-06T00:00:00+00:00">
   <meta itemprop="dateModified" content="2024-05-07T00:00:00+00:00">
   <meta itemprop="wordCount" content="893">
-  <meta itemprop="keywords" content="Linux,网络"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="使用代理在家庭宽带下运行 H@H">
-<meta name="twitter:description" content="最近捡垃圾捡了台 homelab，就寻思着能不能把 H@H 放到这上面跑，这样就可以直接使用 H@H Downloader 将画廊直接下载到本地了。 然而测了一下家宽，发现是 NAT">
+  <meta itemprop="keywords" content="Linux,网络">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="使用代理在家庭宽带下运行 H@H">
+  <meta name="twitter:description" content="最近捡垃圾捡了台 homelab，就寻思着能不能把 H@H 放到这上面跑，这样就可以直接使用 H@H Downloader 将画廊直接下载到本地了。
+然而测了一下家宽，发现是 NAT4，广东广电真是有够烂的，只能用公网服务器来转发了。研究了一下，确实可行，前提是这台服务器允许非备案域名的非标准端口访问。">
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -157,6 +164,11 @@
 </nav>
   </div>
 </div>
+  <div class="post-outdated">
+    <div class="hint">
+      <p>【注】本文最后更新于 <span class="timeago" datetime="2024-05-07T00:00:00" title="May 7, 2024">May 7, 2024</span>，文中内容可能已经过时。</p>
+    </div>
+  </div>
     <div class="post-content">
       <p>最近捡垃圾捡了台 homelab，就寻思着能不能把 H@H 放到这上面跑，这样就可以直接使用 H@H Downloader 将画廊直接下载到本地了。</p>
 <p>然而测了一下家宽，发现是 NAT4，广东广电真是有够烂的，只能用公网服务器来转发了。研究了一下，确实可行，前提是这台服务器<strong>允许非备案域名的非标准端口访问</strong>。</p>
@@ -333,7 +345,7 @@
     <div class="post-copyright">
   <p class="copyright-item">
     <span class="item-title">文章作者</span>
-    <span class="item-content">Aloxaf</span>
+    <span class="item-content"></span>
   </p>
   <p class="copyright-item">
     <span class="item-title">上次更新</span>
@@ -401,7 +413,7 @@
       <div class="social-links">
       <a href="mailto:aloxafx@gmail.com" class="iconfont icon-email" title="email"></a>
       <a href="https://github.com/Aloxaf" class="iconfont icon-github" title="github"></a>
-  <a href="https://www.aloxaf.com/atom.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+  <a href="/2024/05/run_hh_at_home/" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
 </div>
 
 <div class="copyright">
@@ -419,7 +431,7 @@
   <span class="copyright-year">
     &copy; 
     2017 - 
-    2024<span class="heart"><i class="iconfont icon-heart"></i></span><span>Aloxaf</span>
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span><span></span>
   </span>
 </div>
 

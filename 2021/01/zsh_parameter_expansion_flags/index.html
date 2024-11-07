@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Aloxaf" /><meta name="description" content="本文介绍 ZSH 参数扩展的另一个重要内容——参数扩展标记（Parameter Expansion Flags）。
+<meta name="author" content="" /><meta name="description" content="本文介绍 ZSH 参数扩展的另一个重要内容——参数扩展标记（Parameter Expansion Flags）。
 " /><meta name="keywords" content="aloxaf, ctf, linux, zsh" />
 
 
@@ -24,7 +24,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.125.5 with theme even" />
+<meta name="generator" content="Hugo 0.136.5 with theme even" />
 
 
 <link rel="preload" href="/fonts/iconfont/iconfont.woff" as="font" type="font/woff" crossorigin="anonymous">
@@ -40,7 +40,7 @@
 
 
 
-<link href="/sass/main.min.6e68329c1369b8a285a4985e6b6efdb778e12c12b24e8b3fcdd6c5af778d414e.css" rel="stylesheet">
+<link href="/sass/main.min.b8ff8f6ae815afd22fe55d59dcb2a03ea26d91c49c77a2d29e82aa121cc7d820.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
@@ -60,8 +60,10 @@
   <meta itemprop="datePublished" content="2021-01-01T00:00:00+00:00">
   <meta itemprop="dateModified" content="2021-01-01T00:00:00+00:00">
   <meta itemprop="wordCount" content="2771">
-  <meta itemprop="keywords" content="Zsh"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="【ZSH 系列教程】参数扩展（下）">
-<meta name="twitter:description" content="本文介绍 ZSH 参数扩展的另一个重要内容——参数扩展标记（Parameter Expansion Flags）。">
+  <meta itemprop="keywords" content="Zsh">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="【ZSH 系列教程】参数扩展（下）">
+  <meta name="twitter:description" content="本文介绍 ZSH 参数扩展的另一个重要内容——参数扩展标记（Parameter Expansion Flags）。">
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -160,130 +162,130 @@
 <p>这个部分比较复杂，表格里无法三言两语讲清楚。本来打算不用表格，但是考虑到表格方便查阅，因此还是决定以表格形式为主辅以一些例子帮助理解。</p>
 <p>首先是一些比较常用的，数组和字符串都能使用的 flag。它们用于数组时会单独应用到每个元素上。</p>
 <table>
-<thead>
-<tr>
-<th>flag</th>
-<th>作用</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>#</code></td>
-<td>将字符串作为数学表达式求值，并将结果作为 ASCII/Unicode 码替换为对应字符，相当于 chr 函数</td>
-</tr>
-<tr>
-<td><code>%</code></td>
-<td>对结果进行 Prompt Expansion，相当于 <code>print -P</code></td>
-</tr>
-<tr>
-<td><code>A</code></td>
-<td>赋值时将结果转换为数组，写成 <code>AA</code> 则转换为关联数组</td>
-</tr>
-<tr>
-<td><code>D</code></td>
-<td>上文中提到的 <code>${~var}</code> 展开的逆运算，不要再用 <code>${var/$HOME/\~}</code> 了</td>
-</tr>
-<tr>
-<td><code>e</code></td>
-<td>对结果进行参数扩展、命令替换、算术扩展，有点类似 eval</td>
-</tr>
-<tr>
-<td><code>g:opts:</code></td>
-<td>将结果中的转义序列进行展开，<code>opts</code> 为空时行为类似不带参数的 echo，可以使用 <code>o</code>、<code>c</code>、<code>e</code> 开关来允许忽略八进制前导0、转义 <code>^M</code> 格式、转义 <code>\M-t</code> 格式的转义序列</td>
-</tr>
-<tr>
-<td><code>P</code></td>
-<td>将展开结果作为变量名再次展开，类似 bash 的 <code>${!var}</code></td>
-</tr>
-<tr>
-<td><code>b</code></td>
-<td>将结果中模式匹配的元字符进行转义</td>
-</tr>
-<tr>
-<td><code>q</code></td>
-<td>将展开结果转义，可以重复最多四次来达到不同的转义效果</td>
-</tr>
-<tr>
-<td><code>Q</code></td>
-<td>移除一层转义</td>
-</tr>
-<tr>
-<td><code>V</code></td>
-<td>将特殊字符转义为 <code>^M</code> 的形式</td>
-</tr>
-<tr>
-<td><code>t</code></td>
-<td>输出变量的类型</td>
-</tr>
-<tr>
-<td><code>C</code></td>
-<td>将每个<strong>单词</strong>的首字母大写</td>
-</tr>
-<tr>
-<td><code>L</code></td>
-<td>将结果转换为小写</td>
-</tr>
-<tr>
-<td><code>U</code></td>
-<td>将结果转换为大写</td>
-</tr>
-<tr>
-<td><code>c</code></td>
-<td>用于修饰 <code>${#var}</code>，可以统计字符串或数组中所有元素的长度，相邻元素之间视为填充空格</td>
-</tr>
-<tr>
-<td><code>w</code></td>
-<td>用于修饰 <code>${#var}</code>，统计数组或字符串中词的个数，可以使用 <code>s</code> flag 来指定空格以外的分隔符</td>
-</tr>
-<tr>
-<td><code>W</code></td>
-<td>和 <code>w</code> 类似，不过两个连续分隔符之间会视为存在一个空字符串，也会统计到长度中</td>
-</tr>
-<tr>
-<td><code>X</code></td>
-<td><code>Q</code>、<code>e</code>、<code>#</code> 时遇到错误则立即报错</td>
-</tr>
-<tr>
-<td><code>f</code></td>
-<td>将结果按行分割为数组，相当于 <code>ps:\n:</code></td>
-</tr>
-<tr>
-<td><code>s:str:</code></td>
-<td>以 str 为分隔符将字符串分割为数组</td>
-</tr>
-<tr>
-<td><code>z</code></td>
-<td>以 shell 解析规则将字符串分隔为数组</td>
-</tr>
-<tr>
-<td><code>0</code></td>
-<td>以 NULL 为分隔符分割字符串</td>
-</tr>
-<tr>
-<td><code>p</code></td>
-<td>用于与其他 flag 组合，允许对其他 flag 的参数进行 \n 等转义序列的展开</td>
-</tr>
-<tr>
-<td><code>~</code></td>
-<td>用于与其他 flag 组合，将其他 flag 的参数视为 pattern。</td>
-</tr>
-<tr>
-<td><code>Z:opts:</code></td>
-<td>和 <code>z</code> 类似但允许更多参数，带 <code>c</code> 参数可以正确解析注释，带 <code>C</code> 参数可以将注释去掉，<code>n</code> 参数可以让换行符被视为空白</td>
-</tr>
-<tr>
-<td><code>l:expr::s1::s2</code></td>
-<td>在左侧填充 s1（默认空格）直到长度为 expr，如果指定了 s2 ，则 s2 会被填充一次</td>
-</tr>
-<tr>
-<td><code>r:expr::s1::s2</code></td>
-<td>和 <code>l</code> 类似，不过是在右侧填充</td>
-</tr>
-<tr>
-<td><code>m</code></td>
-<td>用在 <code>l</code>, <code>r</code>, <code>#</code> 中，判断长度时不使用字符数而是实际占用的长度</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>flag</th>
+          <th>作用</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>#</code></td>
+          <td>将字符串作为数学表达式求值，并将结果作为 ASCII/Unicode 码替换为对应字符，相当于 chr 函数</td>
+      </tr>
+      <tr>
+          <td><code>%</code></td>
+          <td>对结果进行 Prompt Expansion，相当于 <code>print -P</code></td>
+      </tr>
+      <tr>
+          <td><code>A</code></td>
+          <td>赋值时将结果转换为数组，写成 <code>AA</code> 则转换为关联数组</td>
+      </tr>
+      <tr>
+          <td><code>D</code></td>
+          <td>上文中提到的 <code>${~var}</code> 展开的逆运算，不要再用 <code>${var/$HOME/\~}</code> 了</td>
+      </tr>
+      <tr>
+          <td><code>e</code></td>
+          <td>对结果进行参数扩展、命令替换、算术扩展，有点类似 eval</td>
+      </tr>
+      <tr>
+          <td><code>g:opts:</code></td>
+          <td>将结果中的转义序列进行展开，<code>opts</code> 为空时行为类似不带参数的 echo，可以使用 <code>o</code>、<code>c</code>、<code>e</code> 开关来允许忽略八进制前导0、转义 <code>^M</code> 格式、转义 <code>\M-t</code> 格式的转义序列</td>
+      </tr>
+      <tr>
+          <td><code>P</code></td>
+          <td>将展开结果作为变量名再次展开，类似 bash 的 <code>${!var}</code></td>
+      </tr>
+      <tr>
+          <td><code>b</code></td>
+          <td>将结果中模式匹配的元字符进行转义</td>
+      </tr>
+      <tr>
+          <td><code>q</code></td>
+          <td>将展开结果转义，可以重复最多四次来达到不同的转义效果</td>
+      </tr>
+      <tr>
+          <td><code>Q</code></td>
+          <td>移除一层转义</td>
+      </tr>
+      <tr>
+          <td><code>V</code></td>
+          <td>将特殊字符转义为 <code>^M</code> 的形式</td>
+      </tr>
+      <tr>
+          <td><code>t</code></td>
+          <td>输出变量的类型</td>
+      </tr>
+      <tr>
+          <td><code>C</code></td>
+          <td>将每个<strong>单词</strong>的首字母大写</td>
+      </tr>
+      <tr>
+          <td><code>L</code></td>
+          <td>将结果转换为小写</td>
+      </tr>
+      <tr>
+          <td><code>U</code></td>
+          <td>将结果转换为大写</td>
+      </tr>
+      <tr>
+          <td><code>c</code></td>
+          <td>用于修饰 <code>${#var}</code>，可以统计字符串或数组中所有元素的长度，相邻元素之间视为填充空格</td>
+      </tr>
+      <tr>
+          <td><code>w</code></td>
+          <td>用于修饰 <code>${#var}</code>，统计数组或字符串中词的个数，可以使用 <code>s</code> flag 来指定空格以外的分隔符</td>
+      </tr>
+      <tr>
+          <td><code>W</code></td>
+          <td>和 <code>w</code> 类似，不过两个连续分隔符之间会视为存在一个空字符串，也会统计到长度中</td>
+      </tr>
+      <tr>
+          <td><code>X</code></td>
+          <td><code>Q</code>、<code>e</code>、<code>#</code> 时遇到错误则立即报错</td>
+      </tr>
+      <tr>
+          <td><code>f</code></td>
+          <td>将结果按行分割为数组，相当于 <code>ps:\n:</code></td>
+      </tr>
+      <tr>
+          <td><code>s:str:</code></td>
+          <td>以 str 为分隔符将字符串分割为数组</td>
+      </tr>
+      <tr>
+          <td><code>z</code></td>
+          <td>以 shell 解析规则将字符串分隔为数组</td>
+      </tr>
+      <tr>
+          <td><code>0</code></td>
+          <td>以 NULL 为分隔符分割字符串</td>
+      </tr>
+      <tr>
+          <td><code>p</code></td>
+          <td>用于与其他 flag 组合，允许对其他 flag 的参数进行 \n 等转义序列的展开</td>
+      </tr>
+      <tr>
+          <td><code>~</code></td>
+          <td>用于与其他 flag 组合，将其他 flag 的参数视为 pattern。</td>
+      </tr>
+      <tr>
+          <td><code>Z:opts:</code></td>
+          <td>和 <code>z</code> 类似但允许更多参数，带 <code>c</code> 参数可以正确解析注释，带 <code>C</code> 参数可以将注释去掉，<code>n</code> 参数可以让换行符被视为空白</td>
+      </tr>
+      <tr>
+          <td><code>l:expr::s1::s2</code></td>
+          <td>在左侧填充 s1（默认空格）直到长度为 expr，如果指定了 s2 ，则 s2 会被填充一次</td>
+      </tr>
+      <tr>
+          <td><code>r:expr::s1::s2</code></td>
+          <td>和 <code>l</code> 类似，不过是在右侧填充</td>
+      </tr>
+      <tr>
+          <td><code>m</code></td>
+          <td>用在 <code>l</code>, <code>r</code>, <code>#</code> 中，判断长度时不使用字符数而是实际占用的长度</td>
+      </tr>
+  </tbody>
 </table>
 <p>注：flag 中的冒号可以替换为任意字符，或者成对的括号例如 <code>(...)</code>、<code>{...}</code>、<code>[...]</code>、<code>&lt;...&gt;</code>。</p>
 <p>例子：</p>
@@ -590,58 +592,58 @@
 </div><hr>
 <p>以下 flag 仅用于数组</p>
 <table>
-<thead>
-<tr>
-<th>flag</th>
-<th>含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>@</code></td>
-<td><code>&quot;${(@)var}&quot;</code> 等效于 <code>&quot;${var[@]}&quot;</code>，<code>&quot;${(@)var[1,2]}&quot;</code> 等效于 <code>&quot;${var[1]}&quot; &quot;${var[2]}&quot;</code></td>
-</tr>
-<tr>
-<td><code>a</code></td>
-<td>和 <code>O</code> flag 一起使用可以将数组逆序</td>
-</tr>
-<tr>
-<td><code>i</code></td>
-<td>排序时忽略大小写</td>
-</tr>
-<tr>
-<td><code>n</code></td>
-<td>排序时按数字大小比较</td>
-</tr>
-<tr>
-<td><code>o</code></td>
-<td>递增排序，可以与 &lsquo;a&rsquo;, &lsquo;i&rsquo;, &rsquo;n&rsquo; 组合使用</td>
-</tr>
-<tr>
-<td><code>O</code></td>
-<td>递减排序，可以与 &lsquo;a&rsquo;, &lsquo;i&rsquo;, &rsquo;n&rsquo; 组合使用</td>
-</tr>
-<tr>
-<td><code>F</code></td>
-<td>将数组按行合并为字符串，相当于 <code>pj:\n:</code></td>
-</tr>
-<tr>
-<td><code>j:str:</code></td>
-<td>用 str 作为分隔符拼接字符串，此处的 <code>:</code> 可以替换为其他字符</td>
-</tr>
-<tr>
-<td><code>k</code></td>
-<td>取出关联数组的 key</td>
-</tr>
-<tr>
-<td><code>v</code></td>
-<td>取出关联数组的 value</td>
-</tr>
-<tr>
-<td><code>u</code></td>
-<td>数组去重</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>flag</th>
+          <th>含义</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>@</code></td>
+          <td><code>&quot;${(@)var}&quot;</code> 等效于 <code>&quot;${var[@]}&quot;</code>，<code>&quot;${(@)var[1,2]}&quot;</code> 等效于 <code>&quot;${var[1]}&quot; &quot;${var[2]}&quot;</code></td>
+      </tr>
+      <tr>
+          <td><code>a</code></td>
+          <td>和 <code>O</code> flag 一起使用可以将数组逆序</td>
+      </tr>
+      <tr>
+          <td><code>i</code></td>
+          <td>排序时忽略大小写</td>
+      </tr>
+      <tr>
+          <td><code>n</code></td>
+          <td>排序时按数字大小比较</td>
+      </tr>
+      <tr>
+          <td><code>o</code></td>
+          <td>递增排序，可以与 &lsquo;a&rsquo;, &lsquo;i&rsquo;, &rsquo;n&rsquo; 组合使用</td>
+      </tr>
+      <tr>
+          <td><code>O</code></td>
+          <td>递减排序，可以与 &lsquo;a&rsquo;, &lsquo;i&rsquo;, &rsquo;n&rsquo; 组合使用</td>
+      </tr>
+      <tr>
+          <td><code>F</code></td>
+          <td>将数组按行合并为字符串，相当于 <code>pj:\n:</code></td>
+      </tr>
+      <tr>
+          <td><code>j:str:</code></td>
+          <td>用 str 作为分隔符拼接字符串，此处的 <code>:</code> 可以替换为其他字符</td>
+      </tr>
+      <tr>
+          <td><code>k</code></td>
+          <td>取出关联数组的 key</td>
+      </tr>
+      <tr>
+          <td><code>v</code></td>
+          <td>取出关联数组的 value</td>
+      </tr>
+      <tr>
+          <td><code>u</code></td>
+          <td>数组去重</td>
+      </tr>
+  </tbody>
 </table>
 <p>继续举几个例子：</p>
 <div class="highlight"><div class="chroma">
@@ -711,42 +713,42 @@
 </div><hr>
 <p>以下 flag 仅用于 <code>${...#..}</code> 和 <code>${...%...}</code>，除了 <code>S</code>、<code>l</code> 也可以用于 <code>${.../...}</code>。</p>
 <table>
-<thead>
-<tr>
-<th>flag</th>
-<th>含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>S</code></td>
-<td>用于 <code>#</code>、<code>%</code> 时允许搜索子字符串，用于 <code>/</code> 时启用非贪婪匹配</td>
-</tr>
-<tr>
-<td><code>I:expr:</code></td>
-<td>搜索第 expr 个匹配</td>
-</tr>
-<tr>
-<td><code>B</code></td>
-<td>展开为匹配结果开头的下标</td>
-</tr>
-<tr>
-<td><code>E</code></td>
-<td>展开为匹配结果结尾的下标</td>
-</tr>
-<tr>
-<td><code>M</code></td>
-<td>展开为匹配部分</td>
-</tr>
-<tr>
-<td><code>N</code></td>
-<td>展开为匹配部分的长度</td>
-</tr>
-<tr>
-<td><code>R</code></td>
-<td>展开为未匹配的部分</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>flag</th>
+          <th>含义</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>S</code></td>
+          <td>用于 <code>#</code>、<code>%</code> 时允许搜索子字符串，用于 <code>/</code> 时启用非贪婪匹配</td>
+      </tr>
+      <tr>
+          <td><code>I:expr:</code></td>
+          <td>搜索第 expr 个匹配</td>
+      </tr>
+      <tr>
+          <td><code>B</code></td>
+          <td>展开为匹配结果开头的下标</td>
+      </tr>
+      <tr>
+          <td><code>E</code></td>
+          <td>展开为匹配结果结尾的下标</td>
+      </tr>
+      <tr>
+          <td><code>M</code></td>
+          <td>展开为匹配部分</td>
+      </tr>
+      <tr>
+          <td><code>N</code></td>
+          <td>展开为匹配部分的长度</td>
+      </tr>
+      <tr>
+          <td><code>R</code></td>
+          <td>展开为未匹配的部分</td>
+      </tr>
+  </tbody>
 </table>
 <p>例子例子：</p>
 <div class="highlight"><div class="chroma">
@@ -779,7 +781,7 @@
     <div class="post-copyright">
   <p class="copyright-item">
     <span class="item-title">文章作者</span>
-    <span class="item-content">Aloxaf</span>
+    <span class="item-content"></span>
   </p>
   <p class="copyright-item">
     <span class="item-title">上次更新</span>
@@ -846,7 +848,7 @@
       <div class="social-links">
       <a href="mailto:aloxafx@gmail.com" class="iconfont icon-email" title="email"></a>
       <a href="https://github.com/Aloxaf" class="iconfont icon-github" title="github"></a>
-  <a href="https://www.aloxaf.com/atom.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+  <a href="/2021/01/zsh_parameter_expansion_flags/" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
 </div>
 
 <div class="copyright">
@@ -864,7 +866,7 @@
   <span class="copyright-year">
     &copy; 
     2017 - 
-    2024<span class="heart"><i class="iconfont icon-heart"></i></span><span>Aloxaf</span>
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span><span></span>
   </span>
 </div>
 

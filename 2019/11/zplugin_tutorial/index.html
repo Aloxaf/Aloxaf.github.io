@@ -38,7 +38,7 @@ Zplugin 已改名 Zinit，不过教程中的内容仍然适用。 阅读时请�
 
 
 
-<meta name="generator" content="Hugo 0.125.5 with theme even" />
+<meta name="generator" content="Hugo 0.136.5 with theme even" />
 
 
 <link rel="preload" href="/fonts/iconfont/iconfont.woff" as="font" type="font/woff" crossorigin="anonymous">
@@ -54,7 +54,7 @@ Zplugin 已改名 Zinit，不过教程中的内容仍然适用。 阅读时请�
 
 
 
-<link href="/sass/main.min.6e68329c1369b8a285a4985e6b6efdb778e12c12b24e8b3fcdd6c5af778d414e.css" rel="stylesheet">
+<link href="/sass/main.min.b8ff8f6ae815afd22fe55d59dcb2a03ea26d91c49c77a2d29e82aa121cc7d820.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
@@ -87,51 +87,39 @@ Zplugin 已改名 Zinit，不过教程中的内容仍然适用。 阅读时请�
 
   <meta itemprop="name" content="加速你的 zsh —— 最强 zsh 插件管理器 zplugin/zinit 教程">
   <meta itemprop="description" content="2020-01-26 更新：
-Zplugin 已改名 Zinit，不过教程中的内容仍然适用。
-阅读时请自行在脑中替换 （
+Zplugin 已改名 Zinit，不过教程中的内容仍然适用。 阅读时请自行在脑中替换 （
 2020-01-14 更新：
-博主已经叛逃 powerlevel10k 了（注意是 10k 不是 9k）。
-p10k 的 Instant Prompt 功能非常好用，它可以在其他插件的加载过程中提供一个精简的 prompt 供使用，相当于后台加载。
+博主已经叛逃 powerlevel10k 了（注意是 10k 不是 9k）。 p10k 的 Instant Prompt 功能非常好用，它可以在其他插件的加载过程中提供一个精简的 prompt 供使用，相当于后台加载。
 这个功能并不能加快实际的加载速度， 比如 time zsh -ic &#39;exit&#39; 的结果仍然不会变，但是使用体验提升巨大（体验上几乎是瞬间加载）！
 读到这里的读者建议先尝试一下 p10k（如果很满意就不用往下看了）。
-我已经去掉了配置文件中所有的 zinit 延迟加载语句，不过 zinit 即使去掉延迟加载功能仍然十分强大，我还是选择继续使用 zinit。
-而且如果加载了特别耗时的插件的话，zinit 仍然是有用的。
-前言
-Zinit 是个冷门但是却强大无比的 zsh 插件管理器，它拥有一个 killer feature —— Turbo mode，可以让插件在后台加载。这意味这你可以先加载最重要的插件，比如语法高亮和自动建议，剩下的可以统统放到后台加载，让你的 zsh 尽快进入可用状态。
+我已经去掉了配置文件中所有的 zinit 延迟加载语句，不过 zinit 即使去掉延迟加载功能仍然十分强大，我还是选择继续使用 zinit。 而且如果加载了特别耗时的插件的话，zinit 仍然是有用的。
+前言 Zinit 是个冷门但是却强大无比的 zsh 插件管理器，它拥有一个 killer feature —— Turbo mode，可以让插件在后台加载。这意味这你可以先加载最重要的插件，比如语法高亮和自动建议，剩下的可以统统放到后台加载，让你的 zsh 尽快进入可用状态。
 利用这个机制，zinit 可以将 zsh 的启动时间缩短到几十毫秒——以我的配置为例，只需要 35 毫秒左右。而使用传统的插件管理器比如 antigen，需要近 200 毫秒才能加载完成。
 这里有一张图，对比了不同插件管理器的速度（来源：Comparison of ZSH frameworks and plugin managers）
-
-可以看到 zinit 在插件数目变多时速度……似乎更快了？？？
-什么鬼，这个大概是实验误差吧，也有可能是第一次启动时编译了自身所以后面变快了。不过 zinit 的速度是毋庸置疑的，哪怕这个插件需要数十秒来加载，只要放在后台加载，一样不影响你的 zsh 启动。
+可以看到 zinit 在插件数目变多时速度……似乎更快了？？？ 什么鬼，这个大概是实验误差吧，也有可能是第一次启动时编译了自身所以后面变快了。不过 zinit 的速度是毋庸置疑的，哪怕这个插件需要数十秒来加载，只要放在后台加载，一样不影响你的 zsh 启动。
 然而！！这个工具虽然强大，却没多少名气，让人倍感惋惜。
-所以写下这篇文章，希望能有更多人了解到这个工具。
-不过本文只涉及了它强大功能的冰山一角，深入研究推荐阅读 Zinit Wiki 和 Zinit 的 README。
+所以写下这篇文章，希望能有更多人了解到这个工具。 不过本文只涉及了它强大功能的冰山一角，深入研究推荐阅读 Zinit Wiki 和 Zinit 的 README。
 （虽然说是冰山一角，本文的内容也足以覆盖绝大多数情况了）
 （如果你很懒不想研究的话，文末还有一份完整的示例配置，安装完成后可以直接使用）">
   <meta itemprop="datePublished" content="2019-11-10T13:43:26+00:00">
   <meta itemprop="dateModified" content="2020-01-26T18:50:36+00:00">
   <meta itemprop="wordCount" content="6626">
-  <meta itemprop="keywords" content="Linux,Zsh,教程"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="加速你的 zsh —— 最强 zsh 插件管理器 zplugin/zinit 教程">
-<meta name="twitter:description" content="2020-01-26 更新：
-Zplugin 已改名 Zinit，不过教程中的内容仍然适用。
-阅读时请自行在脑中替换 （
+  <meta itemprop="keywords" content="Linux,Zsh,教程">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="加速你的 zsh —— 最强 zsh 插件管理器 zplugin/zinit 教程">
+  <meta name="twitter:description" content="2020-01-26 更新：
+Zplugin 已改名 Zinit，不过教程中的内容仍然适用。 阅读时请自行在脑中替换 （
 2020-01-14 更新：
-博主已经叛逃 powerlevel10k 了（注意是 10k 不是 9k）。
-p10k 的 Instant Prompt 功能非常好用，它可以在其他插件的加载过程中提供一个精简的 prompt 供使用，相当于后台加载。
+博主已经叛逃 powerlevel10k 了（注意是 10k 不是 9k）。 p10k 的 Instant Prompt 功能非常好用，它可以在其他插件的加载过程中提供一个精简的 prompt 供使用，相当于后台加载。
 这个功能并不能加快实际的加载速度， 比如 time zsh -ic &#39;exit&#39; 的结果仍然不会变，但是使用体验提升巨大（体验上几乎是瞬间加载）！
 读到这里的读者建议先尝试一下 p10k（如果很满意就不用往下看了）。
-我已经去掉了配置文件中所有的 zinit 延迟加载语句，不过 zinit 即使去掉延迟加载功能仍然十分强大，我还是选择继续使用 zinit。
-而且如果加载了特别耗时的插件的话，zinit 仍然是有用的。
-前言
-Zinit 是个冷门但是却强大无比的 zsh 插件管理器，它拥有一个 killer feature —— Turbo mode，可以让插件在后台加载。这意味这你可以先加载最重要的插件，比如语法高亮和自动建议，剩下的可以统统放到后台加载，让你的 zsh 尽快进入可用状态。
+我已经去掉了配置文件中所有的 zinit 延迟加载语句，不过 zinit 即使去掉延迟加载功能仍然十分强大，我还是选择继续使用 zinit。 而且如果加载了特别耗时的插件的话，zinit 仍然是有用的。
+前言 Zinit 是个冷门但是却强大无比的 zsh 插件管理器，它拥有一个 killer feature —— Turbo mode，可以让插件在后台加载。这意味这你可以先加载最重要的插件，比如语法高亮和自动建议，剩下的可以统统放到后台加载，让你的 zsh 尽快进入可用状态。
 利用这个机制，zinit 可以将 zsh 的启动时间缩短到几十毫秒——以我的配置为例，只需要 35 毫秒左右。而使用传统的插件管理器比如 antigen，需要近 200 毫秒才能加载完成。
 这里有一张图，对比了不同插件管理器的速度（来源：Comparison of ZSH frameworks and plugin managers）
-
-可以看到 zinit 在插件数目变多时速度……似乎更快了？？？
-什么鬼，这个大概是实验误差吧，也有可能是第一次启动时编译了自身所以后面变快了。不过 zinit 的速度是毋庸置疑的，哪怕这个插件需要数十秒来加载，只要放在后台加载，一样不影响你的 zsh 启动。
+可以看到 zinit 在插件数目变多时速度……似乎更快了？？？ 什么鬼，这个大概是实验误差吧，也有可能是第一次启动时编译了自身所以后面变快了。不过 zinit 的速度是毋庸置疑的，哪怕这个插件需要数十秒来加载，只要放在后台加载，一样不影响你的 zsh 启动。
 然而！！这个工具虽然强大，却没多少名气，让人倍感惋惜。
-所以写下这篇文章，希望能有更多人了解到这个工具。
-不过本文只涉及了它强大功能的冰山一角，深入研究推荐阅读 Zinit Wiki 和 Zinit 的 README。
+所以写下这篇文章，希望能有更多人了解到这个工具。 不过本文只涉及了它强大功能的冰山一角，深入研究推荐阅读 Zinit Wiki 和 Zinit 的 README。
 （虽然说是冰山一角，本文的内容也足以覆盖绝大多数情况了）
 （如果你很懒不想研究的话，文末还有一份完整的示例配置，安装完成后可以直接使用）">
 
@@ -1053,7 +1041,7 @@ p10k 的 Instant Prompt 功能非常好用，它可以在其他插件的加载�
       <div class="social-links">
       <a href="mailto:aloxafx@gmail.com" class="iconfont icon-email" title="email"></a>
       <a href="https://github.com/Aloxaf" class="iconfont icon-github" title="github"></a>
-  <a href="https://www.aloxaf.com/atom.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+  <a href="/2019/11/zplugin_tutorial/" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
 </div>
 
 <div class="copyright">
@@ -1071,7 +1059,7 @@ p10k 的 Instant Prompt 功能非常好用，它可以在其他插件的加载�
   <span class="copyright-year">
     &copy; 
     2017 - 
-    2024<span class="heart"><i class="iconfont icon-heart"></i></span><span>Aloxaf</span>
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span><span></span>
   </span>
 </div>
 

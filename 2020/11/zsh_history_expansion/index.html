@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Aloxaf" /><meta name="description" content="本文将介绍 zsh 的历史扩展（History Expansion）与修饰符（Modifiers）的用法。
+<meta name="author" content="" /><meta name="description" content="本文将介绍 zsh 的历史扩展（History Expansion）与修饰符（Modifiers）的用法。
 历史扩展允许你复用历史记录中的命令的整体或者某个部分，提高了修改拼写错误和复杂命令时的体验。
 修饰符是一套用于修饰扩展结果的规则，它发源于历史扩展，但也适用于参数扩展（parameter expansion）和文件名扩展（filename generation）。
 " /><meta name="keywords" content="aloxaf, ctf, linux, zsh" />
@@ -26,7 +26,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.125.5 with theme even" />
+<meta name="generator" content="Hugo 0.136.5 with theme even" />
 
 
 <link rel="preload" href="/fonts/iconfont/iconfont.woff" as="font" type="font/woff" crossorigin="anonymous">
@@ -42,7 +42,7 @@
 
 
 
-<link href="/sass/main.min.6e68329c1369b8a285a4985e6b6efdb778e12c12b24e8b3fcdd6c5af778d414e.css" rel="stylesheet">
+<link href="/sass/main.min.b8ff8f6ae815afd22fe55d59dcb2a03ea26d91c49c77a2d29e82aa121cc7d820.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
@@ -67,8 +67,10 @@
   <meta itemprop="datePublished" content="2020-11-09T00:00:00+00:00">
   <meta itemprop="dateModified" content="2020-11-09T00:00:00+00:00">
   <meta itemprop="wordCount" content="2517">
-  <meta itemprop="keywords" content="Zsh,Glob"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="【ZSH 系列教程】历史扩展与修饰符">
-<meta name="twitter:description" content="本文将介绍 zsh 的历史扩展（History Expansion）与修饰符（Modifiers）的用法。
+  <meta itemprop="keywords" content="Zsh,Glob">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="【ZSH 系列教程】历史扩展与修饰符">
+  <meta name="twitter:description" content="本文将介绍 zsh 的历史扩展（History Expansion）与修饰符（Modifiers）的用法。
 历史扩展允许你复用历史记录中的命令的整体或者某个部分，提高了修改拼写错误和复杂命令时的体验。
 修饰符是一套用于修饰扩展结果的规则，它发源于历史扩展，但也适用于参数扩展（parameter expansion）和文件名扩展（filename generation）。">
 
@@ -242,93 +244,93 @@
 </div><h2 id="条目标识符">条目标识符</h2>
 <p>条目标识符用于在历史记录中指定一条历史记录。以下为可用的事件标识符：</p>
 <table>
-<thead>
-<tr>
-<th>标识符</th>
-<th>含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>!</code></td>
-<td>开始一个历史扩展表达式，除非后面是空格、换行、&quot;=&quot; 和 &ldquo;(&quot;。</td>
-</tr>
-<tr>
-<td><code>!!</code></td>
-<td>上一条命令</td>
-</tr>
-<tr>
-<td><code>!n</code></td>
-<td>编号为 n 的命令</td>
-</tr>
-<tr>
-<td><code>!-n</code></td>
-<td>编号为倒数第 n 条的命令</td>
-</tr>
-<tr>
-<td><code>!str</code></td>
-<td>以 str 开头的最近一条命令</td>
-</tr>
-<tr>
-<td><code>!?str[?]</code></td>
-<td>包含 str 的最近一条命令。最后一个 <code>?</code> 起分隔作用，可以省略。</td>
-</tr>
-<tr>
-<td><code>!#</code></td>
-<td>当前输入的字符串</td>
-</tr>
-<tr>
-<td><code>!{...}</code></td>
-<td>起分隔作用，内部可以放其他标识符。作用类似 <code>${variable}</code> 中的大括号。</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>标识符</th>
+          <th>含义</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>!</code></td>
+          <td>开始一个历史扩展表达式，除非后面是空格、换行、&quot;=&quot; 和 &ldquo;(&quot;。</td>
+      </tr>
+      <tr>
+          <td><code>!!</code></td>
+          <td>上一条命令</td>
+      </tr>
+      <tr>
+          <td><code>!n</code></td>
+          <td>编号为 n 的命令</td>
+      </tr>
+      <tr>
+          <td><code>!-n</code></td>
+          <td>编号为倒数第 n 条的命令</td>
+      </tr>
+      <tr>
+          <td><code>!str</code></td>
+          <td>以 str 开头的最近一条命令</td>
+      </tr>
+      <tr>
+          <td><code>!?str[?]</code></td>
+          <td>包含 str 的最近一条命令。最后一个 <code>?</code> 起分隔作用，可以省略。</td>
+      </tr>
+      <tr>
+          <td><code>!#</code></td>
+          <td>当前输入的字符串</td>
+      </tr>
+      <tr>
+          <td><code>!{...}</code></td>
+          <td>起分隔作用，内部可以放其他标识符。作用类似 <code>${variable}</code> 中的大括号。</td>
+      </tr>
+  </tbody>
 </table>
 <h2 id="词标识符">词标识符</h2>
 <table>
-<thead>
-<tr>
-<th>标识符</th>
-<th>含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>0</code></td>
-<td>第一个词（我们假设它是命令</td>
-</tr>
-<tr>
-<td><code>n</code></td>
-<td>该命令的第 n 个参数</td>
-</tr>
-<tr>
-<td><code>^</code></td>
-<td>第 1 个参数</td>
-</tr>
-<tr>
-<td><code>$</code></td>
-<td>最后一个参数</td>
-</tr>
-<tr>
-<td><code>%</code></td>
-<td>最近一个 <code>?str</code> 匹配的词</td>
-</tr>
-<tr>
-<td><code>x-y</code></td>
-<td>指定一个系列词的范围</td>
-</tr>
-<tr>
-<td><code>*</code></td>
-<td>所有参数</td>
-</tr>
-<tr>
-<td><code>x*</code></td>
-<td>等效于 <code>x-$</code></td>
-</tr>
-<tr>
-<td><code>x-</code></td>
-<td>和 <code>x*</code> 类似但不包括最后一个词</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>标识符</th>
+          <th>含义</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>0</code></td>
+          <td>第一个词（我们假设它是命令</td>
+      </tr>
+      <tr>
+          <td><code>n</code></td>
+          <td>该命令的第 n 个参数</td>
+      </tr>
+      <tr>
+          <td><code>^</code></td>
+          <td>第 1 个参数</td>
+      </tr>
+      <tr>
+          <td><code>$</code></td>
+          <td>最后一个参数</td>
+      </tr>
+      <tr>
+          <td><code>%</code></td>
+          <td>最近一个 <code>?str</code> 匹配的词</td>
+      </tr>
+      <tr>
+          <td><code>x-y</code></td>
+          <td>指定一个系列词的范围</td>
+      </tr>
+      <tr>
+          <td><code>*</code></td>
+          <td>所有参数</td>
+      </tr>
+      <tr>
+          <td><code>x*</code></td>
+          <td>等效于 <code>x-$</code></td>
+      </tr>
+      <tr>
+          <td><code>x-</code></td>
+          <td>和 <code>x*</code> 类似但不包括最后一个词</td>
+      </tr>
+  </tbody>
 </table>
 <p>注意 <code>%</code> 标识符只能以 <code>!%</code>、<code>!:%</code>和 <code>!?str?:%</code> 的形式使用，并且要求先前已经使用过了 <code>!?</code> 表达式。</p>
 <h1 id="修饰符">修饰符</h1>
@@ -363,78 +365,78 @@
 </div>
 </div><p>很简单，但也很强大。以下为完整的修饰符列表：</p>
 <table>
-<thead>
-<tr>
-<th>修饰符</th>
-<th>含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>a</code></td>
-<td>展开为绝对路径，将会移除 <code>.</code> 和 <code>..</code>。注意这个展开不会检测路径是否有效。</td>
-</tr>
-<tr>
-<td><code>A</code></td>
-<td>展开为绝对路径，同时用 <code>realpath(3)</code> 库函数展开符号链接。</td>
-</tr>
-<tr>
-<td><code>c</code></td>
-<td>在 PATH 中搜索并展开为该命令的绝对路径</td>
-</tr>
-<tr>
-<td><code>e</code></td>
-<td>只保留文件扩展名</td>
-</tr>
-<tr>
-<td><code>h</code></td>
-<td>只保留路径（类似 <code>dirname</code>）</td>
-</tr>
-<tr>
-<td><code>l</code></td>
-<td>转为小写</td>
-</tr>
-<tr>
-<td><code>p</code></td>
-<td>只打印而不必执行命令。仅用于历史扩展。</td>
-</tr>
-<tr>
-<td><code>P</code></td>
-<td>和 <code>A</code> 功能相同，但是语义和 <code>realpath(3)</code> 更一致</td>
-</tr>
-<tr>
-<td><code>q</code></td>
-<td>将展开结果中的每一个词转义。仅用于历史扩展和变量扩展。</td>
-</tr>
-<tr>
-<td><code>Q</code></td>
-<td>移除一层转义</td>
-</tr>
-<tr>
-<td><code>r</code></td>
-<td>移除文件扩展名</td>
-</tr>
-<tr>
-<td><code>s/l/r[/]</code></td>
-<td>将 l 替换为 r。对于数组和文件展开，这个替换会应用到每个元素上。默认只替换第一个，可以使用 <code>gs/l/r</code> 或 <code>s/l/r/:G</code> 来进行全局替换。</td>
-</tr>
-<tr>
-<td><code>&amp;</code></td>
-<td>重复先前的 <code>s</code> 替换</td>
-</tr>
-<tr>
-<td><code>t</code></td>
-<td>去除路径，只保留文件全名。类似 <code>basename</code></td>
-</tr>
-<tr>
-<td><code>u</code></td>
-<td>转为大写</td>
-</tr>
-<tr>
-<td><code>x</code></td>
-<td>和 q 类似，不过是按空格分割词。不适用于变量扩展</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>修饰符</th>
+          <th>含义</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>a</code></td>
+          <td>展开为绝对路径，将会移除 <code>.</code> 和 <code>..</code>。注意这个展开不会检测路径是否有效。</td>
+      </tr>
+      <tr>
+          <td><code>A</code></td>
+          <td>展开为绝对路径，同时用 <code>realpath(3)</code> 库函数展开符号链接。</td>
+      </tr>
+      <tr>
+          <td><code>c</code></td>
+          <td>在 PATH 中搜索并展开为该命令的绝对路径</td>
+      </tr>
+      <tr>
+          <td><code>e</code></td>
+          <td>只保留文件扩展名</td>
+      </tr>
+      <tr>
+          <td><code>h</code></td>
+          <td>只保留路径（类似 <code>dirname</code>）</td>
+      </tr>
+      <tr>
+          <td><code>l</code></td>
+          <td>转为小写</td>
+      </tr>
+      <tr>
+          <td><code>p</code></td>
+          <td>只打印而不必执行命令。仅用于历史扩展。</td>
+      </tr>
+      <tr>
+          <td><code>P</code></td>
+          <td>和 <code>A</code> 功能相同，但是语义和 <code>realpath(3)</code> 更一致</td>
+      </tr>
+      <tr>
+          <td><code>q</code></td>
+          <td>将展开结果中的每一个词转义。仅用于历史扩展和变量扩展。</td>
+      </tr>
+      <tr>
+          <td><code>Q</code></td>
+          <td>移除一层转义</td>
+      </tr>
+      <tr>
+          <td><code>r</code></td>
+          <td>移除文件扩展名</td>
+      </tr>
+      <tr>
+          <td><code>s/l/r[/]</code></td>
+          <td>将 l 替换为 r。对于数组和文件展开，这个替换会应用到每个元素上。默认只替换第一个，可以使用 <code>gs/l/r</code> 或 <code>s/l/r/:G</code> 来进行全局替换。</td>
+      </tr>
+      <tr>
+          <td><code>&amp;</code></td>
+          <td>重复先前的 <code>s</code> 替换</td>
+      </tr>
+      <tr>
+          <td><code>t</code></td>
+          <td>去除路径，只保留文件全名。类似 <code>basename</code></td>
+      </tr>
+      <tr>
+          <td><code>u</code></td>
+          <td>转为大写</td>
+      </tr>
+      <tr>
+          <td><code>x</code></td>
+          <td>和 q 类似，不过是按空格分割词。不适用于变量扩展</td>
+      </tr>
+  </tbody>
 </table>
 <p><code>s/l/r/</code> 是个有点复杂的玩意儿，在这里详细介绍一下：</p>
 <p>首先它的工作方式如下：</p>
@@ -466,37 +468,37 @@
 <p>除此之外，如果设置了 <code>HIST_SUBST_PATTERN</code> 开关，<code>l</code> 会被识别为模式而不是纯字符串。而且 <code>l</code> 可以以 <code>#</code>/<code>%</code> 开头来限定只能匹配字符串的开头/结尾。两者可以也一起使用。</p>
 <p>剩下还有一些仅适用于参数扩展和文件名扩展的修饰符，</p>
 <table>
-<thead>
-<tr>
-<th>修饰词</th>
-<th>含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>f</code></td>
-<td>反复应用后面紧跟着的修饰符（中间不需要加 <code>:</code>），直到结果不再改变</td>
-</tr>
-<tr>
-<td><code>F:expr:</code></td>
-<td>和 <code>f</code> 类似但是只重复最多 expr 次。expr 是一个可以进行运算的表达式</td>
-</tr>
-<tr>
-<td><code>w</code></td>
-<td>让后面紧跟着的修饰词作用于字符串中每个词而不是整个字符串</td>
-</tr>
-<tr>
-<td><code>W:sep:</code></td>
-<td>和 <code>w</code> 类似，但是允许指定词分隔符。这里的 <code>:</code> 可以替换为其他字符，但要前后保持一致。</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>修饰词</th>
+          <th>含义</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>f</code></td>
+          <td>反复应用后面紧跟着的修饰符（中间不需要加 <code>:</code>），直到结果不再改变</td>
+      </tr>
+      <tr>
+          <td><code>F:expr:</code></td>
+          <td>和 <code>f</code> 类似但是只重复最多 expr 次。expr 是一个可以进行运算的表达式</td>
+      </tr>
+      <tr>
+          <td><code>w</code></td>
+          <td>让后面紧跟着的修饰词作用于字符串中每个词而不是整个字符串</td>
+      </tr>
+      <tr>
+          <td><code>W:sep:</code></td>
+          <td>和 <code>w</code> 类似，但是允许指定词分隔符。这里的 <code>:</code> 可以替换为其他字符，但要前后保持一致。</td>
+      </tr>
+  </tbody>
 </table>
     </div>
 
     <div class="post-copyright">
   <p class="copyright-item">
     <span class="item-title">文章作者</span>
-    <span class="item-content">Aloxaf</span>
+    <span class="item-content"></span>
   </p>
   <p class="copyright-item">
     <span class="item-title">上次更新</span>
@@ -564,7 +566,7 @@
       <div class="social-links">
       <a href="mailto:aloxafx@gmail.com" class="iconfont icon-email" title="email"></a>
       <a href="https://github.com/Aloxaf" class="iconfont icon-github" title="github"></a>
-  <a href="https://www.aloxaf.com/atom.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+  <a href="/2020/11/zsh_history_expansion/" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
 </div>
 
 <div class="copyright">
@@ -582,7 +584,7 @@
   <span class="copyright-year">
     &copy; 
     2017 - 
-    2024<span class="heart"><i class="iconfont icon-heart"></i></span><span>Aloxaf</span>
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span><span></span>
   </span>
 </div>
 

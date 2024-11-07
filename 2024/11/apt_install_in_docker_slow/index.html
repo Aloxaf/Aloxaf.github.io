@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>低版本 ubuntu 镜像在 docker 中 apt install 过慢的问题 - Aloxaf&#39;s Blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="" /><meta name="description" content="只有两个月了，今年还有 6 篇博客没有完成！
+水一个曾经困扰了我很久的问题——某天，我在构建基于 ubuntu 18.04 的 docker 镜像时，发现 apt install 变得特别特别特别特别特别慢，可能需要花几十分钟才能构建完成。
+" /><meta name="keywords" content="aloxaf, ctf, linux, zsh" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.136.5 with theme even" />
+
+
+<link rel="preload" href="/fonts/iconfont/iconfont.woff" as="font" type="font/woff" crossorigin="anonymous">
+<link rel="preload" href="/fonts/FiraCode/FiraCode-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+
+
+<link rel="canonical" href="https://www.aloxaf.com/2024/11/apt_install_in_docker_slow/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.b8ff8f6ae815afd22fe55d59dcb2a03ea26d91c49c77a2d29e82aa121cc7d820.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:url" content="https://www.aloxaf.com/2024/11/apt_install_in_docker_slow/">
+  <meta property="og:site_name" content="Aloxaf&#39;s Blog">
+  <meta property="og:title" content="低版本 ubuntu 镜像在 docker 中 apt install 过慢的问题">
+  <meta property="og:description" content="只有两个月了，今年还有 6 篇博客没有完成！
+水一个曾经困扰了我很久的问题——某天，我在构建基于 ubuntu 18.04 的 docker 镜像时，发现 apt install 变得特别特别特别特别特别慢，可能需要花几十分钟才能构建完成。">
+  <meta property="og:locale" content="zh">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2024-11-05T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-11-05T00:00:00+00:00">
+    <meta property="article:tag" content="Docker">
+    <meta property="article:tag" content="Ulimit">
+
+  <meta itemprop="name" content="低版本 ubuntu 镜像在 docker 中 apt install 过慢的问题">
+  <meta itemprop="description" content="只有两个月了，今年还有 6 篇博客没有完成！
+水一个曾经困扰了我很久的问题——某天，我在构建基于 ubuntu 18.04 的 docker 镜像时，发现 apt install 变得特别特别特别特别特别慢，可能需要花几十分钟才能构建完成。">
+  <meta itemprop="datePublished" content="2024-11-05T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2024-11-05T00:00:00+00:00">
+  <meta itemprop="wordCount" content="582">
+  <meta itemprop="keywords" content="Docker,Ulimit">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="低版本 ubuntu 镜像在 docker 中 apt install 过慢的问题">
+  <meta name="twitter:description" content="只有两个月了，今年还有 6 篇博客没有完成！
+水一个曾经困扰了我很久的问题——某天，我在构建基于 ubuntu 18.04 的 docker 镜像时，发现 apt install 变得特别特别特别特别特别慢，可能需要花几十分钟才能构建完成。">
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Aloxaf&#39;s Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于</li>
+      </a><a href="/friend/">
+        <li class="mobile-menu-item">友链</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Aloxaf&#39;s Blog</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">关于</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/friend/">友链</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">低版本 ubuntu 镜像在 docker 中 apt install 过慢的问题</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2024-11-05 </span>
+        
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#解决方案">解决方案</a></li>
+        <li><a href="#参考">参考</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>只有两个月了，今年还有 6 篇博客没有完成！</p>
+<p>水一个曾经困扰了我很久的问题——某天，我在构建基于 ubuntu 18.04 的 docker 镜像时，发现 apt install 变得特别特别特别特别特别慢，可能需要花几十分钟才能构建完成。</p>
+<p>解决这个问题花费了我不少时间，因为相关搜索结果基本上被「配置 docker 代理」的文章占据了，可惜我很清楚这不是代理的问题。一通搜索后，我最终在一个 GitHub issue 上找到了罪魁祸首[^1]——nofile。</p>
+<p>nofile 限制了一个进程能打开的文件描述符最大数量，这个值通常是 1023，数据库之类的重 IO 应用会建议你使用 <code>ulimit -n 65535</code> 甚至 <code>ulimit -n unlimited</code> 来设置一个超大值（测试结果为 $2^{19}$）。而在 systemd 下，你可以使用 <code>LimitNOFILE=infinity</code> 来获得一个更大值（测试结果为 $2^{30}$）。但是，事实证明，对某些程序来说，$2^{30}$ 这个值有点太极端了……</p>
+<p>fakeroot 是一个构建软件包时的常用工具，它可以在普通用户下模拟 root 用户。然而低版本的 fakeroot 有这么一个行为，会把所有的文件描述符都遍历一遍 [^2]：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl">  <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">foreground</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="cm">/* literally copied from the linux klogd code, go
+</span></span></span><span class="line"><span class="cl"><span class="cm">to background */</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">((</span><span class="n">pid</span><span class="o">=</span><span class="nf">fork</span><span class="p">())</span> <span class="o">==</span> <span class="mi">0</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">      <span class="kt">int</span> <span class="n">fl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="kt">int</span> <span class="n">num_fds</span> <span class="o">=</span> <span class="nf">getdtablesize</span><span class="p">();</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">      <span class="nf">fflush</span><span class="p">(</span><span class="n">stdout</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="cm">/* This is the child closing its file descriptors. */</span>
+</span></span><span class="line"><span class="cl">      <span class="k">for</span> <span class="p">(</span><span class="n">fl</span><span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">fl</span> <span class="o">&lt;=</span> <span class="n">num_fds</span><span class="p">;</span> <span class="o">++</span><span class="n">fl</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="cp">#ifdef FAKEROOT_FAKENET
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>        <span class="k">if</span> <span class="p">(</span><span class="n">fl</span> <span class="o">!=</span> <span class="n">sd</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="cp">#endif </span><span class="cm">/* FAKEROOT_FAKENET */</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>          <span class="nf">close</span><span class="p">(</span><span class="n">fl</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>显然，当 nofile 为 $2^{30}$ 时，遍历所有文件描述符会非常耗时，这也是为什么 apt install 会卡在安装步骤上……</p>
+<h2 id="解决方案">解决方案</h2>
+<p>覆盖 containerd 和 docker 服务的 LimitNOFILE 配置，设置为一个够大，但是不至于太大的值。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">systemctl edit containerd.service --drop-in<span class="o">=</span>ulimit.conf
+</span></span><span class="line"><span class="cl">systemctl edit docker.service --drop-in<span class="o">=</span>ulimit.conf
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">Service</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">LimitNOFILE</span><span class="p">=</span><span class="mi">1048576</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="参考">参考</h2>
+<ul>
+<li><a href="https://github.com/docker/for-win/issues/13270">apt update takes AGES on ubuntu 16.04 · Issue #13270 · docker/for-win</a> [^1]</li>
+<li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=920913">#920913 - fakeroot hangs when nofile limit is large - Debian Bug report logs</a> [^2]</li>
+</ul>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content"></span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2024-11-05
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a></span>
+  </p>
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/docker/">docker</a>
+          <a href="/tags/ulimit/">ulimit</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/2024/05/pass_ratelimiter_with_ipv6_and_nginx/">
+            <span class="next-text nav-default">使用 ipv6 &#43; nginx 反向代理绕过网站速率限制</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  <span id="/2024/11/apt_install_in_docker_slow/" class="leancloud_visitors" data-flag-title="低版本 ubuntu 镜像在 docker 中 apt install 过慢的问题">
+		<span class="post-meta-item-text">文章阅读量 </span>
+		<span class="leancloud-visitors-count">0</span>
+		<p></p>
+	  </span>
+  <div id="vcomments"></div>
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+  <script type="text/javascript">
+    new Valine({
+        el: '#vcomments' ,
+        serverURLs: 'https:\/\/0mqcauyd.api.lncldglobal.com',
+        appId: '0mQCAuYdR6NE9gIVBd6rDEjY-MdYXbMMI',
+        appKey: 'CBACoI7HhLeuROO39gpYpYDl',
+        notify:  false ,
+        verify:  false ,
+        avatar:'mm',
+        placeholder: '妙啊，妙啊',
+        visitor:  true 
+    });
+  </script>
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:aloxafx@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/Aloxaf" class="iconfont icon-github" title="github"></a>
+  <a href="/2024/11/apt_install_in_docker_slow/" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span><span></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script async src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script async src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script>
+    var languageCode = "zh".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script>
+
+
+
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -6,7 +6,7 @@
     <description>Recent content in Linux on Aloxaf&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>zh</language>
-    <lastBuildDate>Wed, 24 Jun 2020 08:43:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 07 Nov 2020 23:50:00 +0000</lastBuildDate>
     <atom:link href="https://www.aloxaf.com/categories/linux/atom.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>利用 GitHub Actions 编译 AUR 包并建立自己的软件源</title>
@@ -20,21 +20,21 @@
       <link>https://www.aloxaf.com/2019/04/fxxk_jetbrains_font_linux/</link>
       <pubDate>Wed, 03 Apr 2019 17:44:44 +0000</pubDate>
       <guid>https://www.aloxaf.com/2019/04/fxxk_jetbrains_font_linux/</guid>
-      <description>JetBrains 家的 IDE 在 Linux 下会有一些奇怪的问题: 如字体很丑(没开抗锯齿一样), 字体过小(目测是 HiDPI 下的问题), 最近更新了一下 PyCharm 2019 又出现了这个问题, 解决问题以</description>
+      <description>&lt;p&gt;JetBrains 家的 IDE 在 Linux 下会有一些奇怪的问题: 如字体很丑(没开抗锯齿一样), 字体过小(目测是 HiDPI 下的问题), 最近更新了一下 PyCharm 2019 又出现了这个问题, 解决问题以后记录一下方案, 造福广大 JetBrains 信徒&lt;/p&gt;</description>
     </item>
     <item>
       <title>Alacritty HiDPI 下的坑</title>
       <link>https://www.aloxaf.com/2019/04/alacritty_hidpi/</link>
       <pubDate>Wed, 03 Apr 2019 17:31:49 +0000</pubDate>
       <guid>https://www.aloxaf.com/2019/04/alacritty_hidpi/</guid>
-      <description>为啥要折腾 Alacritty 呢, 因为 Konsole 有点小问题: https://bugs.kde.org/show_bug.cgi?id=401298 (不过这个问题已经 fix 了, 下个版本应该就没有了, 我大概又会滚回 Konsole, 毕竟有 blur 和 ligatures), 阻碍我使用棒棒的 lsd. 问题表现 具体</description>
+      <description>&lt;p&gt;为啥要折腾 Alacritty 呢, 因为 Konsole 有点小问题: &lt;a href=&#34;https://bugs.kde.org/show_bug.cgi?id=401298&#34;&gt;https://bugs.kde.org/show_bug.cgi?id=401298&lt;/a&gt; (不过这个问题已经 fix 了, 下个版本应该就没有了, 我大概又会滚回 Konsole, 毕竟有 blur 和 ligatures), 阻碍我使用棒棒的 &lt;a href=&#34;https://github.com/Peltoche/lsd/issues/118&#34;&gt;lsd&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;h2 id=&#34;问题表现&#34;&gt;问题表现&lt;/h2&gt;&#xA;&lt;p&gt;具体表现为布局问题, 无视配置文件, 如&lt;/p&gt;</description>
     </item>
     <item>
       <title>PowerShell 真香</title>
       <link>https://www.aloxaf.com/2019/03/powershell_miaoa/</link>
       <pubDate>Sat, 02 Mar 2019 00:02:05 +0000</pubDate>
       <guid>https://www.aloxaf.com/2019/03/powershell_miaoa/</guid>
-      <description>我就是饿死, 死外面, 从外面跳下去, 也不会用 M$ 的垃圾 PowerShell ! &amp;hellip; 真香! NOTE: 这是一篇黑 bash 吹 PowerShell(以下简称 pwsh) 的文章, bash 死忠粉以及软黑请退散</description>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;我就是饿死, 死外面, 从外面跳下去, 也不会用 M$ 的垃圾 PowerShell !&lt;/p&gt;&#xA;&lt;p&gt;&amp;hellip;&lt;/p&gt;&#xA;&lt;p&gt;真香!&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;&lt;strong&gt;NOTE: 这是一篇黑 bash 吹 PowerShell(以下简称 pwsh) 的文章, bash 死忠粉以及软黑请退散.&lt;/strong&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>Arch Linux 杂七杂八的优化</title>
@@ -76,7 +76,7 @@
       <link>https://www.aloxaf.com/2018/07/java_ugly_font/</link>
       <pubDate>Mon, 30 Jul 2018 12:34:48 +0000</pubDate>
       <guid>https://www.aloxaf.com/2018/07/java_ugly_font/</guid>
-      <description>好像很多 Java 程序都有这个毛病. 查了半天 Arch Wiki, 终于找到了: Java Runtime Environment fonts 解决方案: 设置环境变量 _JAVA_OPTIONS=&#39;-Dawt.useSystemAAFontSettings=on&#39; (这么重要的东西怎么还要手动开启??) 直接在 /etc/environment 里加入这句</description>
+      <description>&lt;p&gt;好像很多 Java 程序都有这个毛病.&#xA;查了半天 Arch Wiki, 终于找到了: &lt;a href=&#34;https://wiki.archlinux.org/index.php/Java_Runtime_Environment_fonts#Anti-aliasing&#34;&gt;Java Runtime Environment fonts&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;解决方案: 设置环境变量 &lt;code&gt;_JAVA_OPTIONS=&#39;-Dawt.useSystemAAFontSettings=on&#39;&lt;/code&gt;&#xA;(这么重要的东西怎么还要手动开启??)&lt;/p&gt;&#xA;&lt;p&gt;直接在 &lt;code&gt;/etc/environment&lt;/code&gt; 里加入这句然后重启即可&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

@@ -6,35 +6,42 @@
     <description>Recent content in Posts on Aloxaf&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>zh</language>
-    <lastBuildDate>Fri, 10 May 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 05 Nov 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://www.aloxaf.com/post/atom.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>低版本 ubuntu 镜像在 docker 中 apt install 过慢的问题</title>
+      <link>https://www.aloxaf.com/2024/11/apt_install_in_docker_slow/</link>
+      <pubDate>Tue, 05 Nov 2024 00:00:00 +0000</pubDate>
+      <guid>https://www.aloxaf.com/2024/11/apt_install_in_docker_slow/</guid>
+      <description>&lt;p&gt;只有两个月了，今年还有 6 篇博客没有完成！&lt;/p&gt;&#xA;&lt;p&gt;水一个曾经困扰了我很久的问题——某天，我在构建基于 ubuntu 18.04 的 docker 镜像时，发现 apt install 变得特别特别特别特别特别慢，可能需要花几十分钟才能构建完成。&lt;/p&gt;</description>
+    </item>
     <item>
       <title>使用 ipv6 &#43; nginx 反向代理绕过网站速率限制</title>
       <link>https://www.aloxaf.com/2024/05/pass_ratelimiter_with_ipv6_and_nginx/</link>
       <pubDate>Fri, 10 May 2024 00:00:00 +0000</pubDate>
       <guid>https://www.aloxaf.com/2024/05/pass_ratelimiter_with_ipv6_and_nginx/</guid>
-      <description>前段时间有个小币种挖矿项目，有几百台机器需要接入某矿池。这原本没有任何难度，直到我批量部署完以后，一看网站后台——怎么回事，竟然只有几十台在</description>
+      <description>&lt;p&gt;前段时间有个小币种挖矿项目，有几百台机器需要接入某矿池。这原本没有任何难度，直到我批量部署完以后，一看网站后台——怎么回事，竟然只有几十台在线？&lt;/p&gt;</description>
     </item>
     <item>
       <title>使用代理在家庭宽带下运行 H@H</title>
       <link>https://www.aloxaf.com/2024/05/run_hh_at_home/</link>
       <pubDate>Mon, 06 May 2024 00:00:00 +0000</pubDate>
       <guid>https://www.aloxaf.com/2024/05/run_hh_at_home/</guid>
-      <description>最近捡垃圾捡了台 homelab，就寻思着能不能把 H@H 放到这上面跑，这样就可以直接使用 H@H Downloader 将画廊直接下载到本地了。 然而测了一下家宽，发现是 NAT</description>
+      <description>&lt;p&gt;最近捡垃圾捡了台 homelab，就寻思着能不能把 H@H 放到这上面跑，这样就可以直接使用 H@H Downloader 将画廊直接下载到本地了。&lt;/p&gt;&#xA;&lt;p&gt;然而测了一下家宽，发现是 NAT4，广东广电真是有够烂的，只能用公网服务器来转发了。研究了一下，确实可行，前提是这台服务器&lt;strong&gt;允许非备案域名的非标准端口访问&lt;/strong&gt;。&lt;/p&gt;</description>
     </item>
     <item>
       <title>KDE6 更新踩坑记录</title>
       <link>https://www.aloxaf.com/2024/03/fxxk_kde6/</link>
       <pubDate>Mon, 11 Mar 2024 00:00:00 +0000</pubDate>
       <guid>https://www.aloxaf.com/2024/03/fxxk_kde6/</guid>
-      <description>我从未想过有一天我的 Linux 桌面会变得如此不可用…… KDE 更新大版本了。以前总是嘲笑 GNOME 用户每次更新不是这里炸了就是那里被砍了，没想到风水轮流转，现在炸</description>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;我从未想过有一天我的 Linux 桌面会变得如此不可用……&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;KDE 更新大版本了。以前总是嘲笑 GNOME 用户每次更新不是这里炸了就是那里被砍了，没想到风水轮流转，现在炸到自己头上了。&lt;/p&gt;</description>
     </item>
     <item>
       <title>使用 atuin 管理 zsh 命令历史</title>
       <link>https://www.aloxaf.com/2024/02/manage_zsh_shell_with_atuin/</link>
       <pubDate>Mon, 26 Feb 2024 00:00:00 +0000</pubDate>
       <guid>https://www.aloxaf.com/2024/02/manage_zsh_shell_with_atuin/</guid>
-      <description>竟然两年没写博客了，真是自工作以后就越来越懒了。 不行，我不能再这样颓废下去了，我决定定一个小目标——2024 要写 10 篇博客！ 好，现在开始水……</description>
+      <description>&lt;p&gt;竟然两年没写博客了，真是自工作以后就越来越懒了。&lt;/p&gt;&#xA;&lt;p&gt;不行，我不能再这样颓废下去了，我决定定一个小目标——2024 要写 10 篇博客！&lt;/p&gt;&#xA;&lt;p&gt;好，现在开始水……不对！现在开始写第一篇！&lt;/p&gt;</description>
     </item>
     <item>
       <title>掌阅 Facenote 阅读器安装第三方 APP</title>
@@ -70,13 +77,6 @@
       <pubDate>Sat, 28 Nov 2020 00:00:00 +0000</pubDate>
       <guid>https://www.aloxaf.com/2020/11/wow_such_linux_many_files_so_small/</guid>
       <description>&lt;p&gt;首先声明一点，本文探讨的不是如何在生产环境中高效存储百万量级的小文件，而是在日常生活中该如何处理那些包含上万个小文件的情景。&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>CDDA 安卓版编译指南</title>
-      <link>https://www.aloxaf.com/2020/11/cdda_compile_android/</link>
-      <pubDate>Tue, 17 Nov 2020 00:00:00 +0000</pubDate>
-      <guid>https://www.aloxaf.com/2020/11/cdda_compile_android/</guid>
-      <description>&lt;p&gt;对于没有 Android 开发经验的我来讲这是值得记录一下的事情……&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

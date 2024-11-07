@@ -13,7 +13,7 @@
       <link>https://www.aloxaf.com/2024/05/run_hh_at_home/</link>
       <pubDate>Mon, 06 May 2024 00:00:00 +0000</pubDate>
       <guid>https://www.aloxaf.com/2024/05/run_hh_at_home/</guid>
-      <description>最近捡垃圾捡了台 homelab，就寻思着能不能把 H@H 放到这上面跑，这样就可以直接使用 H@H Downloader 将画廊直接下载到本地了。 然而测了一下家宽，发现是 NAT</description>
+      <description>&lt;p&gt;最近捡垃圾捡了台 homelab，就寻思着能不能把 H@H 放到这上面跑，这样就可以直接使用 H@H Downloader 将画廊直接下载到本地了。&lt;/p&gt;&#xA;&lt;p&gt;然而测了一下家宽，发现是 NAT4，广东广电真是有够烂的，只能用公网服务器来转发了。研究了一下，确实可行，前提是这台服务器&lt;strong&gt;允许非备案域名的非标准端口访问&lt;/strong&gt;。&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

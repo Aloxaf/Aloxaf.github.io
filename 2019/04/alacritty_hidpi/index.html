@@ -16,14 +16,16 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="aloxaf" /><meta name="description" content="为啥要折腾 Alacritty 呢, 因为 Konsole 有点小问题: https://bugs.kde.org/show_bug.cgi?id=401298 (不过这个问题已经 fix 了, 下个版本应该就没有了, 我大概又会滚回 Konsole, 毕竟有 blur 和 ligatures), 阻碍我使用棒棒的 lsd. 问题表现 具体" /><meta name="keywords" content="aloxaf, ctf, linux, zsh" />
+<meta name="author" content="aloxaf" /><meta name="description" content="为啥要折腾 Alacritty 呢, 因为 Konsole 有点小问题: https://bugs.kde.org/show_bug.cgi?id=401298 (不过这个问题已经 fix 了, 下个版本应该就没有了, 我大概又会滚回 Konsole, 毕竟有 blur 和 ligatures), 阻碍我使用棒棒的 lsd.
+问题表现 具体表现为布局问题, 无视配置文件, 如
+" /><meta name="keywords" content="aloxaf, ctf, linux, zsh" />
 
 
 
 
 
 
-<meta name="generator" content="Hugo 0.125.5 with theme even" />
+<meta name="generator" content="Hugo 0.136.5 with theme even" />
 
 
 <link rel="preload" href="/fonts/iconfont/iconfont.woff" as="font" type="font/woff" crossorigin="anonymous">
@@ -39,14 +41,15 @@
 
 
 
-<link href="/sass/main.min.6e68329c1369b8a285a4985e6b6efdb778e12c12b24e8b3fcdd6c5af778d414e.css" rel="stylesheet">
+<link href="/sass/main.min.b8ff8f6ae815afd22fe55d59dcb2a03ea26d91c49c77a2d29e82aa121cc7d820.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
 <meta property="og:url" content="https://www.aloxaf.com/2019/04/alacritty_hidpi/">
   <meta property="og:site_name" content="Aloxaf&#39;s Blog">
   <meta property="og:title" content="Alacritty HiDPI 下的坑">
-  <meta property="og:description" content="为啥要折腾 Alacritty 呢, 因为 Konsole 有点小问题: https://bugs.kde.org/show_bug.cgi?id=401298 (不过这个问题已经 fix 了, 下个版本应该就没有了, 我大概又会滚回 Konsole, 毕竟有 blur 和 ligatures), 阻碍我使用棒棒的 lsd. 问题表现 具体">
+  <meta property="og:description" content="为啥要折腾 Alacritty 呢, 因为 Konsole 有点小问题: https://bugs.kde.org/show_bug.cgi?id=401298 (不过这个问题已经 fix 了, 下个版本应该就没有了, 我大概又会滚回 Konsole, 毕竟有 blur 和 ligatures), 阻碍我使用棒棒的 lsd.
+问题表现 具体表现为布局问题, 无视配置文件, 如">
   <meta property="og:locale" content="zh">
   <meta property="og:type" content="article">
     <meta property="article:section" content="post">
@@ -55,12 +58,16 @@
     <meta property="article:tag" content="Linux">
 
   <meta itemprop="name" content="Alacritty HiDPI 下的坑">
-  <meta itemprop="description" content="为啥要折腾 Alacritty 呢, 因为 Konsole 有点小问题: https://bugs.kde.org/show_bug.cgi?id=401298 (不过这个问题已经 fix 了, 下个版本应该就没有了, 我大概又会滚回 Konsole, 毕竟有 blur 和 ligatures), 阻碍我使用棒棒的 lsd. 问题表现 具体">
+  <meta itemprop="description" content="为啥要折腾 Alacritty 呢, 因为 Konsole 有点小问题: https://bugs.kde.org/show_bug.cgi?id=401298 (不过这个问题已经 fix 了, 下个版本应该就没有了, 我大概又会滚回 Konsole, 毕竟有 blur 和 ligatures), 阻碍我使用棒棒的 lsd.
+问题表现 具体表现为布局问题, 无视配置文件, 如">
   <meta itemprop="datePublished" content="2019-04-03T17:31:49+00:00">
   <meta itemprop="dateModified" content="2019-04-03T17:31:49+00:00">
   <meta itemprop="wordCount" content="121">
-  <meta itemprop="keywords" content="Linux"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Alacritty HiDPI 下的坑">
-<meta name="twitter:description" content="为啥要折腾 Alacritty 呢, 因为 Konsole 有点小问题: https://bugs.kde.org/show_bug.cgi?id=401298 (不过这个问题已经 fix 了, 下个版本应该就没有了, 我大概又会滚回 Konsole, 毕竟有 blur 和 ligatures), 阻碍我使用棒棒的 lsd. 问题表现 具体">
+  <meta itemprop="keywords" content="Linux">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Alacritty HiDPI 下的坑">
+  <meta name="twitter:description" content="为啥要折腾 Alacritty 呢, 因为 Konsole 有点小问题: https://bugs.kde.org/show_bug.cgi?id=401298 (不过这个问题已经 fix 了, 下个版本应该就没有了, 我大概又会滚回 Konsole, 毕竟有 blur 和 ligatures), 阻碍我使用棒棒的 lsd.
+问题表现 具体表现为布局问题, 无视配置文件, 如">
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -246,7 +253,7 @@
       <div class="social-links">
       <a href="mailto:aloxafx@gmail.com" class="iconfont icon-email" title="email"></a>
       <a href="https://github.com/Aloxaf" class="iconfont icon-github" title="github"></a>
-  <a href="https://www.aloxaf.com/atom.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+  <a href="/2019/04/alacritty_hidpi/" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
 </div>
 
 <div class="copyright">
@@ -264,7 +271,7 @@
   <span class="copyright-year">
     &copy; 
     2017 - 
-    2024<span class="heart"><i class="iconfont icon-heart"></i></span><span>Aloxaf</span>
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span><span></span>
   </span>
 </div>
 

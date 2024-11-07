@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Aloxaf" /><meta name="description" content=" 突然发现五个月前自己写过一篇 fcitx5-lua 的教程，刚好拿来水一篇
+<meta name="author" content="" /><meta name="description" content=" 突然发现五个月前自己写过一篇 fcitx5-lua 的教程，刚好拿来水一篇
 fcitx5 终于加上了 lua 支持，可以使用 lua 编写一些简单的插件。但是文档一如既往地非常少，查阅了大量资料并翻看源码以后总算弄懂了插件的编写步骤，记录一下以免忘记，顺便分享给同样需要的人。
 " /><meta name="keywords" content="aloxaf, ctf, linux, zsh" />
 
@@ -25,7 +25,7 @@ fcitx5 终于加上了 lua 支持，可以使用 lua 编写一些简单的插件
 
 
 
-<meta name="generator" content="Hugo 0.125.5 with theme even" />
+<meta name="generator" content="Hugo 0.136.5 with theme even" />
 
 
 <link rel="preload" href="/fonts/iconfont/iconfont.woff" as="font" type="font/woff" crossorigin="anonymous">
@@ -41,14 +41,14 @@ fcitx5 终于加上了 lua 支持，可以使用 lua 编写一些简单的插件
 
 
 
-<link href="/sass/main.min.6e68329c1369b8a285a4985e6b6efdb778e12c12b24e8b3fcdd6c5af778d414e.css" rel="stylesheet">
+<link href="/sass/main.min.b8ff8f6ae815afd22fe55d59dcb2a03ea26d91c49c77a2d29e82aa121cc7d820.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
 <meta property="og:url" content="https://www.aloxaf.com/2020/09/fcitx5_plugin/">
   <meta property="og:site_name" content="Aloxaf&#39;s Blog">
   <meta property="og:title" content="使用 fcitx5-lua 编写 lua 插件">
-  <meta property="og:description" content=" 突然发现五个月前自己写过一篇 fcitx5-lua 的教程，刚好拿来水一篇
+  <meta property="og:description" content="突然发现五个月前自己写过一篇 fcitx5-lua 的教程，刚好拿来水一篇
 fcitx5 终于加上了 lua 支持，可以使用 lua 编写一些简单的插件。但是文档一如既往地非常少，查阅了大量资料并翻看源码以后总算弄懂了插件的编写步骤，记录一下以免忘记，顺便分享给同样需要的人。">
   <meta property="og:locale" content="zh">
   <meta property="og:type" content="article">
@@ -59,17 +59,15 @@ fcitx5 终于加上了 lua 支持，可以使用 lua 编写一些简单的插件
     <meta property="article:tag" content="Fcitx5">
 
   <meta itemprop="name" content="使用 fcitx5-lua 编写 lua 插件">
-  <meta itemprop="description" content="
-突然发现五个月前自己写过一篇 fcitx5-lua 的教程，刚好拿来水一篇
-
+  <meta itemprop="description" content="突然发现五个月前自己写过一篇 fcitx5-lua 的教程，刚好拿来水一篇
 fcitx5 终于加上了 lua 支持，可以使用 lua 编写一些简单的插件。但是文档一如既往地非常少，查阅了大量资料并翻看源码以后总算弄懂了插件的编写步骤，记录一下以免忘记，顺便分享给同样需要的人。">
   <meta itemprop="datePublished" content="2020-09-24T21:53:09+00:00">
   <meta itemprop="dateModified" content="2020-09-24T21:53:09+00:00">
   <meta itemprop="wordCount" content="2064">
-  <meta itemprop="keywords" content="Linux,Fcitx5"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="使用 fcitx5-lua 编写 lua 插件">
-<meta name="twitter:description" content="
-突然发现五个月前自己写过一篇 fcitx5-lua 的教程，刚好拿来水一篇
-
+  <meta itemprop="keywords" content="Linux,Fcitx5">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="使用 fcitx5-lua 编写 lua 插件">
+  <meta name="twitter:description" content="突然发现五个月前自己写过一篇 fcitx5-lua 的教程，刚好拿来水一篇
 fcitx5 终于加上了 lua 支持，可以使用 lua 编写一些简单的插件。但是文档一如既往地非常少，查阅了大量资料并翻看源码以后总算弄懂了插件的编写步骤，记录一下以免忘记，顺便分享给同样需要的人。">
 
 <!--[if lte IE 9]>
@@ -460,7 +458,7 @@ fcitx5 终于加上了 lua 支持，可以使用 lua 编写一些简单的插件
     <div class="post-copyright">
   <p class="copyright-item">
     <span class="item-title">文章作者</span>
-    <span class="item-content">Aloxaf</span>
+    <span class="item-content"></span>
   </p>
   <p class="copyright-item">
     <span class="item-title">上次更新</span>
@@ -528,7 +526,7 @@ fcitx5 终于加上了 lua 支持，可以使用 lua 编写一些简单的插件
       <div class="social-links">
       <a href="mailto:aloxafx@gmail.com" class="iconfont icon-email" title="email"></a>
       <a href="https://github.com/Aloxaf" class="iconfont icon-github" title="github"></a>
-  <a href="https://www.aloxaf.com/atom.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+  <a href="/2020/09/fcitx5_plugin/" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
 </div>
 
 <div class="copyright">
@@ -546,7 +544,7 @@ fcitx5 终于加上了 lua 支持，可以使用 lua 编写一些简单的插件
   <span class="copyright-year">
     &copy; 
     2017 - 
-    2024<span class="heart"><i class="iconfont icon-heart"></i></span><span>Aloxaf</span>
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span><span></span>
   </span>
 </div>
 

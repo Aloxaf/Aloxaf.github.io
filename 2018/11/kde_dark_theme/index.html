@@ -19,14 +19,14 @@
 <meta name="author" content="aloxaf" /><meta name="description" content="这是一个比较迷的 bug, 困扰了我很久, 然而又不知道为什么.
 今天在群里看到有人提到了这个问题, 简单地讲就是程序只有一部分跟随系统主题, 然后就会产生各种诡异的效果.
 比如
-搜狗, 字体跟随系统变成浅色, 背景没有变, 变成浅色背景&#43;浅色字体, 亮瞎眼组合 WPS 表格, 表格背景是黑的&amp;hellip;.究极の难看 WPS 文字, 字体也变浅色了, 不仅亮瞎眼. 如果强行调成黑色的话, 在 Windows 上就会变亮瞎眼&amp;hellip; " /><meta name="keywords" content="aloxaf, ctf, linux, zsh" />
+搜狗, 字体跟随系统变成浅色, 背景没有变, 变成浅色背景&#43;浅色字体, 亮瞎眼组合 WPS 表格, 表格背景是黑的&hellip;.究极の难看 WPS 文字, 字体也变浅色了, 不仅亮瞎眼. 如果强行调成黑色的话, 在 Windows 上就会变亮瞎眼&hellip; " /><meta name="keywords" content="aloxaf, ctf, linux, zsh" />
 
 
 
 
 
 
-<meta name="generator" content="Hugo 0.125.5 with theme even" />
+<meta name="generator" content="Hugo 0.136.5 with theme even" />
 
 
 <link rel="preload" href="/fonts/iconfont/iconfont.woff" as="font" type="font/woff" crossorigin="anonymous">
@@ -42,17 +42,17 @@
 
 
 
-<link href="/sass/main.min.6e68329c1369b8a285a4985e6b6efdb778e12c12b24e8b3fcdd6c5af778d414e.css" rel="stylesheet">
+<link href="/sass/main.min.b8ff8f6ae815afd22fe55d59dcb2a03ea26d91c49c77a2d29e82aa121cc7d820.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
 <meta property="og:url" content="https://www.aloxaf.com/2018/11/kde_dark_theme/">
   <meta property="og:site_name" content="Aloxaf&#39;s Blog">
-  <meta property="og:title" content="解决 KDE 暗色主题下 WPS &amp; 搜狗拼音设置字体颜色不正常的问题">
+  <meta property="og:title" content="解决 KDE 暗色主题下 WPS & 搜狗拼音设置字体颜色不正常的问题">
   <meta property="og:description" content="这是一个比较迷的 bug, 困扰了我很久, 然而又不知道为什么.
 今天在群里看到有人提到了这个问题, 简单地讲就是程序只有一部分跟随系统主题, 然后就会产生各种诡异的效果.
 比如
-搜狗, 字体跟随系统变成浅色, 背景没有变, 变成浅色背景&#43;浅色字体, 亮瞎眼组合 WPS 表格, 表格背景是黑的….究极の难看 WPS 文字, 字体也变浅色了, 不仅亮瞎眼. 如果强行调成黑色的话, 在 Windows 上就会变亮瞎眼… ">
+搜狗, 字体跟随系统变成浅色, 背景没有变, 变成浅色背景&#43;浅色字体, 亮瞎眼组合 WPS 表格, 表格背景是黑的….究极の难看 WPS 文字, 字体也变浅色了, 不仅亮瞎眼. 如果强行调成黑色的话, 在 Windows 上就会变亮瞎眼…">
   <meta property="og:locale" content="zh">
   <meta property="og:type" content="article">
     <meta property="article:section" content="post">
@@ -60,27 +60,21 @@
     <meta property="article:modified_time" content="2018-11-14T20:58:52+00:00">
     <meta property="article:tag" content="Linux">
 
-  <meta itemprop="name" content="解决 KDE 暗色主题下 WPS &amp; 搜狗拼音设置字体颜色不正常的问题">
+  <meta itemprop="name" content="解决 KDE 暗色主题下 WPS & 搜狗拼音设置字体颜色不正常的问题">
   <meta itemprop="description" content="这是一个比较迷的 bug, 困扰了我很久, 然而又不知道为什么.
 今天在群里看到有人提到了这个问题, 简单地讲就是程序只有一部分跟随系统主题, 然后就会产生各种诡异的效果.
 比如
-
-搜狗, 字体跟随系统变成浅色, 背景没有变, 变成浅色背景&#43;浅色字体, 亮瞎眼组合
-WPS 表格, 表格背景是黑的&hellip;.究极の难看
-WPS 文字, 字体也变浅色了, 不仅亮瞎眼. 如果强行调成黑色的话, 在 Windows 上就会变亮瞎眼&hellip;
-">
+搜狗, 字体跟随系统变成浅色, 背景没有变, 变成浅色背景&#43;浅色字体, 亮瞎眼组合 WPS 表格, 表格背景是黑的….究极の难看 WPS 文字, 字体也变浅色了, 不仅亮瞎眼. 如果强行调成黑色的话, 在 Windows 上就会变亮瞎眼…">
   <meta itemprop="datePublished" content="2018-11-14T20:58:52+00:00">
   <meta itemprop="dateModified" content="2018-11-14T20:58:52+00:00">
   <meta itemprop="wordCount" content="275">
-  <meta itemprop="keywords" content="Linux"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="解决 KDE 暗色主题下 WPS &amp; 搜狗拼音设置字体颜色不正常的问题">
-<meta name="twitter:description" content="这是一个比较迷的 bug, 困扰了我很久, 然而又不知道为什么.
+  <meta itemprop="keywords" content="Linux">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="解决 KDE 暗色主题下 WPS & 搜狗拼音设置字体颜色不正常的问题">
+  <meta name="twitter:description" content="这是一个比较迷的 bug, 困扰了我很久, 然而又不知道为什么.
 今天在群里看到有人提到了这个问题, 简单地讲就是程序只有一部分跟随系统主题, 然后就会产生各种诡异的效果.
 比如
-
-搜狗, 字体跟随系统变成浅色, 背景没有变, 变成浅色背景&#43;浅色字体, 亮瞎眼组合
-WPS 表格, 表格背景是黑的&hellip;.究极の难看
-WPS 文字, 字体也变浅色了, 不仅亮瞎眼. 如果强行调成黑色的话, 在 Windows 上就会变亮瞎眼&hellip;
-">
+搜狗, 字体跟随系统变成浅色, 背景没有变, 变成浅色背景&#43;浅色字体, 亮瞎眼组合 WPS 表格, 表格背景是黑的….究极の难看 WPS 文字, 字体也变浅色了, 不仅亮瞎眼. 如果强行调成黑色的话, 在 Windows 上就会变亮瞎眼…">
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -276,7 +270,7 @@ WPS 文字, 字体也变浅色了, 不仅亮瞎眼. 如果强行调成黑色的�
       <div class="social-links">
       <a href="mailto:aloxafx@gmail.com" class="iconfont icon-email" title="email"></a>
       <a href="https://github.com/Aloxaf" class="iconfont icon-github" title="github"></a>
-  <a href="https://www.aloxaf.com/atom.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+  <a href="/2018/11/kde_dark_theme/" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
 </div>
 
 <div class="copyright">
@@ -294,7 +288,7 @@ WPS 文字, 字体也变浅色了, 不仅亮瞎眼. 如果强行调成黑色的�
   <span class="copyright-year">
     &copy; 
     2017 - 
-    2024<span class="heart"><i class="iconfont icon-heart"></i></span><span>Aloxaf</span>
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span><span></span>
   </span>
 </div>
 

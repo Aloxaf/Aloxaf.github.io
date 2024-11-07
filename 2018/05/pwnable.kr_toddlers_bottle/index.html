@@ -16,9 +16,9 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Aloxaf" /><meta name="description" content="Toddler&amp;rsquo;s Bottle vey
-包含了 Toddler&amp;rsquo;s Bottle 这一节的除了 UAF 和 unlink 以外的 writeup. (一看就知道还不会利用堆漏洞)
-更: 又多了 blukat 和 horcruses&amp;hellip;&amp;hellip;
+<meta name="author" content="" /><meta name="description" content="Toddler&rsquo;s Bottle vey
+包含了 Toddler&rsquo;s Bottle 这一节的除了 UAF 和 unlink 以外的 writeup. (一看就知道还不会利用堆漏洞)
+更: 又多了 blukat 和 horcruses&hellip;&hellip;
 " /><meta name="keywords" content="aloxaf, ctf, linux, zsh" />
 
 
@@ -26,7 +26,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.125.5 with theme even" />
+<meta name="generator" content="Hugo 0.136.5 with theme even" />
 
 
 <link rel="preload" href="/fonts/iconfont/iconfont.woff" as="font" type="font/woff" crossorigin="anonymous">
@@ -42,7 +42,7 @@
 
 
 
-<link href="/sass/main.min.6e68329c1369b8a285a4985e6b6efdb778e12c12b24e8b3fcdd6c5af778d414e.css" rel="stylesheet">
+<link href="/sass/main.min.b8ff8f6ae815afd22fe55d59dcb2a03ea26d91c49c77a2d29e82aa121cc7d820.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
@@ -56,24 +56,24 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="post">
     <meta property="article:published_time" content="2018-05-04T10:19:12+00:00">
-    <meta property="article:modified_time" content="2018-05-04T10:19:12+00:00">
+    <meta property="article:modified_time" content="2018-08-16T19:18:00+00:00">
     <meta property="article:tag" content="Ctf">
     <meta property="article:tag" content="Writeup">
     <meta property="article:tag" content="Pwn">
 
   <meta itemprop="name" content="pwnable.kr - Toddler&#39;s Bottle 部分writeup">
-  <meta itemprop="description" content="Toddler&rsquo;s Bottle vey
-包含了 Toddler&rsquo;s Bottle 这一节的除了 UAF 和 unlink 以外的 writeup.
-(一看就知道还不会利用堆漏洞)
-更: 又多了 blukat 和 horcruses&hellip;&hellip;">
+  <meta itemprop="description" content="Toddler’s Bottle vey
+包含了 Toddler’s Bottle 这一节的除了 UAF 和 unlink 以外的 writeup. (一看就知道还不会利用堆漏洞)
+更: 又多了 blukat 和 horcruses……">
   <meta itemprop="datePublished" content="2018-05-04T10:19:12+00:00">
-  <meta itemprop="dateModified" content="2018-05-04T10:19:12+00:00">
+  <meta itemprop="dateModified" content="2018-08-16T19:18:00+00:00">
   <meta itemprop="wordCount" content="11563">
-  <meta itemprop="keywords" content="Ctf,Writeup,Pwn"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="pwnable.kr - Toddler&#39;s Bottle 部分writeup">
-<meta name="twitter:description" content="Toddler&rsquo;s Bottle vey
-包含了 Toddler&rsquo;s Bottle 这一节的除了 UAF 和 unlink 以外的 writeup.
-(一看就知道还不会利用堆漏洞)
-更: 又多了 blukat 和 horcruses&hellip;&hellip;">
+  <meta itemprop="keywords" content="Ctf,Writeup,Pwn">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="pwnable.kr - Toddler&#39;s Bottle 部分writeup">
+  <meta name="twitter:description" content="Toddler’s Bottle vey
+包含了 Toddler’s Bottle 这一节的除了 UAF 和 unlink 以外的 writeup. (一看就知道还不会利用堆漏洞)
+更: 又多了 blukat 和 horcruses……">
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -207,7 +207,7 @@
 </div>
   <div class="post-outdated">
     <div class="warn">
-      <p>【注】本文最后更新于 <span class="timeago" datetime="2018-05-04T10:19:12" title="May 4, 2018">May 4, 2018</span>，文中内容可能已经过时。</p>
+      <p>【注】本文最后更新于 <span class="timeago" datetime="2018-08-16T19:18:00" title="August 16, 2018">August 16, 2018</span>，文中内容可能已经过时。</p>
     </div>
   </div>
     <div class="post-content">
@@ -292,26 +292,26 @@
 <p>再判断该字符串是否与 LETMEWIN 相等</p>
 <p>Google 一下获知以下内容</p>
 <table>
-<thead>
-<tr>
-<th>value</th>
-<th>name</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>0</td>
-<td>stdin</td>
-</tr>
-<tr>
-<td>1</td>
-<td>stdout</td>
-</tr>
-<tr>
-<td>2</td>
-<td>stderr</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>value</th>
+          <th>name</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>0</td>
+          <td>stdin</td>
+      </tr>
+      <tr>
+          <td>1</td>
+          <td>stdout</td>
+      </tr>
+      <tr>
+          <td>2</td>
+          <td>stderr</td>
+      </tr>
+  </tbody>
 </table>
 <p>那么 n 应该为 0 + 0x1234 = 4660</p>
 <div class="highlight example"><div class="chroma">
@@ -3082,34 +3082,34 @@ after that, flag is yours.</p>
 </div><p>Google movntps指令, 发现了在保护模式下可能出现的几种异常</p>
 <p><a href="http://www.jaist.ac.jp/iscenter-new/mpc/altix/altixdata/opt/intel/vtune/doc/users_guide/mergedProjects/analyzer_ec/mergedProjects/reference_olh/mergedProjects/instructions/instruct32_hh/vc197.htm">MOVNTPS&ndash;Move Aligned Four Packed Single-FP Non Temporal</a></p>
 <table>
-<thead>
-<tr>
-<th>错误码</th>
-<th>原因</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>#GP(0)</td>
-<td>For an illegal memory operand effective address in the CS, DS, ES, FS or GS segments. If memory operand is not aligned on a 16-byte boundary, regardless of segment.</td>
-</tr>
-<tr>
-<td>#SS(0)</td>
-<td>For an illegal address in the SS segment.</td>
-</tr>
-<tr>
-<td>#PF(fault-code)</td>
-<td>For a page fault.</td>
-</tr>
-<tr>
-<td>#NM</td>
-<td>If TS in CR0 is set</td>
-</tr>
-<tr>
-<td>#UD</td>
-<td>If EM in CR0 is set. If OSFXSR in CR4 is 0. If CPUID feature flag SSE is 0.</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>错误码</th>
+          <th>原因</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>#GP(0)</td>
+          <td>For an illegal memory operand effective address in the CS, DS, ES, FS or GS segments. If memory operand is not aligned on a 16-byte boundary, regardless of segment.</td>
+      </tr>
+      <tr>
+          <td>#SS(0)</td>
+          <td>For an illegal address in the SS segment.</td>
+      </tr>
+      <tr>
+          <td>#PF(fault-code)</td>
+          <td>For a page fault.</td>
+      </tr>
+      <tr>
+          <td>#NM</td>
+          <td>If TS in CR0 is set</td>
+      </tr>
+      <tr>
+          <td>#UD</td>
+          <td>If EM in CR0 is set. If OSFXSR in CR4 is 0. If CPUID feature flag SSE is 0.</td>
+      </tr>
+  </tbody>
 </table>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -3983,12 +3983,12 @@ author: jiwon choi</p>
     <div class="post-copyright">
   <p class="copyright-item">
     <span class="item-title">文章作者</span>
-    <span class="item-content">Aloxaf</span>
+    <span class="item-content"></span>
   </p>
   <p class="copyright-item">
     <span class="item-title">上次更新</span>
     <span class="item-content">
-        2018-05-04
+        2018-08-16
         
     </span>
   </p>
@@ -4052,7 +4052,7 @@ author: jiwon choi</p>
       <div class="social-links">
       <a href="mailto:aloxafx@gmail.com" class="iconfont icon-email" title="email"></a>
       <a href="https://github.com/Aloxaf" class="iconfont icon-github" title="github"></a>
-  <a href="https://www.aloxaf.com/atom.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+  <a href="/2018/05/pwnable.kr_toddlers_bottle/" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
 </div>
 
 <div class="copyright">
@@ -4070,7 +4070,7 @@ author: jiwon choi</p>
   <span class="copyright-year">
     &copy; 
     2017 - 
-    2024<span class="heart"><i class="iconfont icon-heart"></i></span><span>Aloxaf</span>
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span><span></span>
   </span>
 </div>
 

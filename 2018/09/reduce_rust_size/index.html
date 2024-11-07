@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Aloxaf" /><meta name="description" content="体积狂魔の执念，记录一下以免忘记。
+<meta name="author" content="" /><meta name="description" content="体积狂魔の执念，记录一下以免忘记。
 2019-11-12 更新： 自这篇文章发表后已经过了一年，Rust 发生了许多变化，比如不再自带 Jemalloc 作为内存分配器。因此更新一下文章，参考了一个新项目 min-sized-rust 进行了更多的优化。
 " /><meta name="keywords" content="aloxaf, ctf, linux, zsh" />
 
@@ -25,7 +25,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.125.5 with theme even" />
+<meta name="generator" content="Hugo 0.136.5 with theme even" />
 
 
 <link rel="preload" href="/fonts/iconfont/iconfont.woff" as="font" type="font/woff" crossorigin="anonymous">
@@ -41,7 +41,7 @@
 
 
 
-<link href="/sass/main.min.6e68329c1369b8a285a4985e6b6efdb778e12c12b24e8b3fcdd6c5af778d414e.css" rel="stylesheet">
+<link href="/sass/main.min.b8ff8f6ae815afd22fe55d59dcb2a03ea26d91c49c77a2d29e82aa121cc7d820.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
@@ -63,8 +63,10 @@
   <meta itemprop="datePublished" content="2018-09-07T12:27:05+00:00">
   <meta itemprop="dateModified" content="2019-11-22T13:51:55+00:00">
   <meta itemprop="wordCount" content="2976">
-  <meta itemprop="keywords" content="Rust"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="优化 Rust 程序编译体积">
-<meta name="twitter:description" content="体积狂魔の执念，记录一下以免忘记。
+  <meta itemprop="keywords" content="Rust">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="优化 Rust 程序编译体积">
+  <meta name="twitter:description" content="体积狂魔の执念，记录一下以免忘记。
 2019-11-12 更新： 自这篇文章发表后已经过了一年，Rust 发生了许多变化，比如不再自带 Jemalloc 作为内存分配器。因此更新一下文章，参考了一个新项目 min-sized-rust 进行了更多的优化。">
 
 <!--[if lte IE 9]>
@@ -208,25 +210,25 @@
 </div>
 </div><p>最基本的优化体积方式之一，大家都懂的。Cargo 默认的编译模式是 dev ，该下没有进行任何优化，而且附带了大量调试信息。dev 模式下的程序别说几十兆，上百兆都是有可能的……</p>
 <table>
-<thead>
-<tr>
-<th>编译模式</th>
-<th>体积</th>
-<th>减少量</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>dev</td>
-<td>26.5M</td>
-<td>100%</td>
-</tr>
-<tr>
-<td>release</td>
-<td>4.70M</td>
-<td>17.7%</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>编译模式</th>
+          <th>体积</th>
+          <th>减少量</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>dev</td>
+          <td>26.5M</td>
+          <td>100%</td>
+      </tr>
+      <tr>
+          <td>release</td>
+          <td>4.70M</td>
+          <td>17.7%</td>
+      </tr>
+  </tbody>
 </table>
 <p>可以看到 dev 和 release 两者差距非常大，没有特殊说明的话，后文就采用 release 模式下的 4.70M 作为基准来进行对比了</p>
 <h1 id="使用-strip">使用 strip</h1>
@@ -240,25 +242,25 @@
 </div>
 </div><p>最基本的优化体积方式之二，可以去除（对正常运行）无用的符号信息</p>
 <table>
-<thead>
-<tr>
-<th>优化方式</th>
-<th>体积</th>
-<th>减少量</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>无</td>
-<td>4.70M</td>
-<td>100%</td>
-</tr>
-<tr>
-<td>strip</td>
-<td>2.11M</td>
-<td>44.9%</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>优化方式</th>
+          <th>体积</th>
+          <th>减少量</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>无</td>
+          <td>4.70M</td>
+          <td>100%</td>
+      </tr>
+      <tr>
+          <td>strip</td>
+          <td>2.11M</td>
+          <td>44.9%</td>
+      </tr>
+  </tbody>
 </table>
 <p>效果同样非常明显，直接减少了一半。</p>
 <h1 id="调整优化等级">调整优化等级</h1>
@@ -274,35 +276,35 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><table>
-<thead>
-<tr>
-<th>优化方式</th>
-<th>体积</th>
-<th>变化</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>无</td>
-<td>4.70M</td>
-<td>100%</td>
-</tr>
-<tr>
-<td>strip</td>
-<td>2.11M</td>
-<td>44.9%</td>
-</tr>
-<tr>
-<td><code>opt-level = 'z'</code></td>
-<td>4.84M</td>
-<td>103%</td>
-</tr>
-<tr>
-<td><code>opt-level = 'z'</code> + strip</td>
-<td>1.96M</td>
-<td>41.7%</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>优化方式</th>
+          <th>体积</th>
+          <th>变化</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>无</td>
+          <td>4.70M</td>
+          <td>100%</td>
+      </tr>
+      <tr>
+          <td>strip</td>
+          <td>2.11M</td>
+          <td>44.9%</td>
+      </tr>
+      <tr>
+          <td><code>opt-level = 'z'</code></td>
+          <td>4.84M</td>
+          <td>103%</td>
+      </tr>
+      <tr>
+          <td><code>opt-level = 'z'</code> + strip</td>
+          <td>1.96M</td>
+          <td>41.7%</td>
+      </tr>
+  </tbody>
 </table>
 <p>emmm 非常尴尬的是未 strip 时的体积竟然略有增加，不过 strip 后体积确实再次减少了一点点，聊胜于无吧。</p>
 <h1 id="开启-lto">开启 LTO</h1>
@@ -318,45 +320,45 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><table>
-<thead>
-<tr>
-<th>优化方式</th>
-<th>体积</th>
-<th>变化</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>无</td>
-<td>4.70M</td>
-<td>100%</td>
-</tr>
-<tr>
-<td>strip</td>
-<td>2.11M</td>
-<td>44.9%</td>
-</tr>
-<tr>
-<td><code>opt-level = 'z'</code></td>
-<td>4.84M</td>
-<td>103%</td>
-</tr>
-<tr>
-<td><code>opt-level = 'z'</code> + strip</td>
-<td>1.96M</td>
-<td>41.7%</td>
-</tr>
-<tr>
-<td><code>opt-level = 'z'</code> + LTO</td>
-<td>2.79M</td>
-<td>59.4%</td>
-</tr>
-<tr>
-<td><code>opt-level = 'z'</code> + LTO + strip</td>
-<td>1.56M</td>
-<td>33.2%</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>优化方式</th>
+          <th>体积</th>
+          <th>变化</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>无</td>
+          <td>4.70M</td>
+          <td>100%</td>
+      </tr>
+      <tr>
+          <td>strip</td>
+          <td>2.11M</td>
+          <td>44.9%</td>
+      </tr>
+      <tr>
+          <td><code>opt-level = 'z'</code></td>
+          <td>4.84M</td>
+          <td>103%</td>
+      </tr>
+      <tr>
+          <td><code>opt-level = 'z'</code> + strip</td>
+          <td>1.96M</td>
+          <td>41.7%</td>
+      </tr>
+      <tr>
+          <td><code>opt-level = 'z'</code> + LTO</td>
+          <td>2.79M</td>
+          <td>59.4%</td>
+      </tr>
+      <tr>
+          <td><code>opt-level = 'z'</code> + LTO + strip</td>
+          <td>1.56M</td>
+          <td>33.2%</td>
+      </tr>
+  </tbody>
 </table>
 <p>体积减小非常明显！</p>
 <h1 id="调整并行代码生成单元数量">调整并行代码生成单元数量</h1>
@@ -372,45 +374,45 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><table>
-<thead>
-<tr>
-<th>优化方式</th>
-<th>体积</th>
-<th>变化</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>无</td>
-<td>4.70M</td>
-<td>100%</td>
-</tr>
-<tr>
-<td>strip</td>
-<td>2.11M</td>
-<td>44.9%</td>
-</tr>
-<tr>
-<td>前文步骤</td>
-<td>2.79M</td>
-<td>59.4%</td>
-</tr>
-<tr>
-<td>前文步骤 + strip</td>
-<td>1.56M</td>
-<td>33.2%</td>
-</tr>
-<tr>
-<td>前文步骤 + <code>codegen-units = 1</code></td>
-<td>2.62M</td>
-<td>55.7%</td>
-</tr>
-<tr>
-<td>前文步骤 + <code>codegen-units = 1</code> + strip</td>
-<td>1.49M</td>
-<td>31.7%</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>优化方式</th>
+          <th>体积</th>
+          <th>变化</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>无</td>
+          <td>4.70M</td>
+          <td>100%</td>
+      </tr>
+      <tr>
+          <td>strip</td>
+          <td>2.11M</td>
+          <td>44.9%</td>
+      </tr>
+      <tr>
+          <td>前文步骤</td>
+          <td>2.79M</td>
+          <td>59.4%</td>
+      </tr>
+      <tr>
+          <td>前文步骤 + strip</td>
+          <td>1.56M</td>
+          <td>33.2%</td>
+      </tr>
+      <tr>
+          <td>前文步骤 + <code>codegen-units = 1</code></td>
+          <td>2.62M</td>
+          <td>55.7%</td>
+      </tr>
+      <tr>
+          <td>前文步骤 + <code>codegen-units = 1</code> + strip</td>
+          <td>1.49M</td>
+          <td>31.7%</td>
+      </tr>
+  </tbody>
 </table>
 <h1 id="panic-时立刻终止">Panic 时立刻终止</h1>
 <blockquote>
@@ -428,52 +430,52 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><table>
-<thead>
-<tr>
-<th>编译方式</th>
-<th>优化方式</th>
-<th>体积</th>
-<th>变化</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>release</td>
-<td>无</td>
-<td>4.70M</td>
-<td>100%</td>
-</tr>
-<tr>
-<td>release</td>
-<td>strip</td>
-<td>2.11M</td>
-<td>44.9%</td>
-</tr>
-<tr>
-<td>release</td>
-<td>前文步骤</td>
-<td>2.62M</td>
-<td>55.7%</td>
-</tr>
-<tr>
-<td>release</td>
-<td>前文步骤 + strip</td>
-<td>1.49M</td>
-<td>31.7%</td>
-</tr>
-<tr>
-<td>release</td>
-<td>前文步骤 + <code>panic = 'abort'</code></td>
-<td>2.44M</td>
-<td>52.0%</td>
-</tr>
-<tr>
-<td>release</td>
-<td>前文步骤 + <code>panic = 'abort'</code> + strip</td>
-<td>1.40M</td>
-<td>29.8%</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>编译方式</th>
+          <th>优化方式</th>
+          <th>体积</th>
+          <th>变化</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>release</td>
+          <td>无</td>
+          <td>4.70M</td>
+          <td>100%</td>
+      </tr>
+      <tr>
+          <td>release</td>
+          <td>strip</td>
+          <td>2.11M</td>
+          <td>44.9%</td>
+      </tr>
+      <tr>
+          <td>release</td>
+          <td>前文步骤</td>
+          <td>2.62M</td>
+          <td>55.7%</td>
+      </tr>
+      <tr>
+          <td>release</td>
+          <td>前文步骤 + strip</td>
+          <td>1.49M</td>
+          <td>31.7%</td>
+      </tr>
+      <tr>
+          <td>release</td>
+          <td>前文步骤 + <code>panic = 'abort'</code></td>
+          <td>2.44M</td>
+          <td>52.0%</td>
+      </tr>
+      <tr>
+          <td>release</td>
+          <td>前文步骤 + <code>panic = 'abort'</code> + strip</td>
+          <td>1.40M</td>
+          <td>29.8%</td>
+      </tr>
+  </tbody>
 </table>
 <p>又减小了一点点</p>
 <h1 id="最小化依赖">最小化依赖</h1>
@@ -562,46 +564,46 @@
 <p>考虑到这个工具的命令行参数并不复杂，并不需要使用 clap 这种庞大的命令行参数解析库。所以要做的首先就是将 clap 去掉，换成更基础的 <a href="https://crates.io/crates/getopts">getopts</a>。</p>
 <p>换成 getopts 后再编译，体积再次小幅减小！</p>
 <table>
-<thead>
-<tr>
-<th>编译方式</th>
-<th>优化方式</th>
-<th>体积</th>
-<th>变化</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>release</td>
-<td>无</td>
-<td>4.70M</td>
-<td>100%</td>
-</tr>
-<tr>
-<td>release</td>
-<td>前文步骤</td>
-<td>2.44M</td>
-<td>52.0%</td>
-</tr>
-<tr>
-<td>release</td>
-<td>前文步骤 + strip</td>
-<td>1.40M</td>
-<td>29.8%</td>
-</tr>
-<tr>
-<td>release</td>
-<td>前文步骤 + 去掉 clap</td>
-<td>1.96M</td>
-<td>41.8%</td>
-</tr>
-<tr>
-<td>release</td>
-<td>前文步骤 + 去掉 clap + strip</td>
-<td>1.06M</td>
-<td>22.6%</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>编译方式</th>
+          <th>优化方式</th>
+          <th>体积</th>
+          <th>变化</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>release</td>
+          <td>无</td>
+          <td>4.70M</td>
+          <td>100%</td>
+      </tr>
+      <tr>
+          <td>release</td>
+          <td>前文步骤</td>
+          <td>2.44M</td>
+          <td>52.0%</td>
+      </tr>
+      <tr>
+          <td>release</td>
+          <td>前文步骤 + strip</td>
+          <td>1.40M</td>
+          <td>29.8%</td>
+      </tr>
+      <tr>
+          <td>release</td>
+          <td>前文步骤 + 去掉 clap</td>
+          <td>1.96M</td>
+          <td>41.8%</td>
+      </tr>
+      <tr>
+          <td>release</td>
+          <td>前文步骤 + 去掉 clap + strip</td>
+          <td>1.06M</td>
+          <td>22.6%</td>
+      </tr>
+  </tbody>
 </table>
 <h2 id="禁用不必要的-feature">禁用不必要的 feature</h2>
 <p>这是不少人都会忽略的一点，很多 crate 默认会启用不少 feature。有些功能可能你根本没有用到，却被引入了。（这也是 cargo-deps 存在的意义）</p>
@@ -627,46 +629,46 @@
 </div>
 </div><p>此时再编译</p>
 <table>
-<thead>
-<tr>
-<th>编译方式</th>
-<th>优化方式</th>
-<th>体积</th>
-<th>变化</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>release</td>
-<td>无</td>
-<td>4.70M</td>
-<td>100%</td>
-</tr>
-<tr>
-<td>release</td>
-<td>前文步骤</td>
-<td>1.96M</td>
-<td>41.8%</td>
-</tr>
-<tr>
-<td>release</td>
-<td>前文步骤  + strip</td>
-<td>1.06M</td>
-<td>22.6%</td>
-</tr>
-<tr>
-<td>release</td>
-<td>前文步骤 + 禁用 feature</td>
-<td>1.26M</td>
-<td>26.8%</td>
-</tr>
-<tr>
-<td>release</td>
-<td>前文步骤 + 禁用 feature + strip</td>
-<td>0.42M</td>
-<td>8.94%</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>编译方式</th>
+          <th>优化方式</th>
+          <th>体积</th>
+          <th>变化</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>release</td>
+          <td>无</td>
+          <td>4.70M</td>
+          <td>100%</td>
+      </tr>
+      <tr>
+          <td>release</td>
+          <td>前文步骤</td>
+          <td>1.96M</td>
+          <td>41.8%</td>
+      </tr>
+      <tr>
+          <td>release</td>
+          <td>前文步骤  + strip</td>
+          <td>1.06M</td>
+          <td>22.6%</td>
+      </tr>
+      <tr>
+          <td>release</td>
+          <td>前文步骤 + 禁用 feature</td>
+          <td>1.26M</td>
+          <td>26.8%</td>
+      </tr>
+      <tr>
+          <td>release</td>
+          <td>前文步骤 + 禁用 feature + strip</td>
+          <td>0.42M</td>
+          <td>8.94%</td>
+      </tr>
+  </tbody>
 </table>
 <p>巨大进步！strip 后的程序体积终于降低到了 KB 级别！！</p>
 <h1 id="libstd-优化">libstd 优化</h1>
@@ -701,46 +703,46 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><table>
-<thead>
-<tr>
-<th>编译方式</th>
-<th>优化方式</th>
-<th>体积</th>
-<th>变化</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>release</td>
-<td>无</td>
-<td>4.70M</td>
-<td>100%</td>
-</tr>
-<tr>
-<td>release</td>
-<td>前文步骤</td>
-<td>1.26M</td>
-<td>26.8%</td>
-</tr>
-<tr>
-<td>release</td>
-<td>前文步骤  + strip</td>
-<td>0.42M</td>
-<td>8.94%</td>
-</tr>
-<tr>
-<td>release</td>
-<td>前文步骤 + 裁剪 std</td>
-<td>378KB</td>
-<td>7.85%</td>
-</tr>
-<tr>
-<td>release</td>
-<td>前文步骤 + 裁剪 std  + strip</td>
-<td>266KB</td>
-<td>5.53%</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>编译方式</th>
+          <th>优化方式</th>
+          <th>体积</th>
+          <th>变化</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>release</td>
+          <td>无</td>
+          <td>4.70M</td>
+          <td>100%</td>
+      </tr>
+      <tr>
+          <td>release</td>
+          <td>前文步骤</td>
+          <td>1.26M</td>
+          <td>26.8%</td>
+      </tr>
+      <tr>
+          <td>release</td>
+          <td>前文步骤  + strip</td>
+          <td>0.42M</td>
+          <td>8.94%</td>
+      </tr>
+      <tr>
+          <td>release</td>
+          <td>前文步骤 + 裁剪 std</td>
+          <td>378KB</td>
+          <td>7.85%</td>
+      </tr>
+      <tr>
+          <td>release</td>
+          <td>前文步骤 + 裁剪 std  + strip</td>
+          <td>266KB</td>
+          <td>5.53%</td>
+      </tr>
+  </tbody>
 </table>
 <p>再次获得了不小的进步</p>
 <h2 id="移除-panic-相关字符串">移除 <code>panic</code> 相关字符串</h2>
@@ -756,46 +758,46 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><table>
-<thead>
-<tr>
-<th>编译方式</th>
-<th>优化方式</th>
-<th>体积</th>
-<th>变化</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>release</td>
-<td>无</td>
-<td>4.70M</td>
-<td>100%</td>
-</tr>
-<tr>
-<td>release</td>
-<td>前文步骤</td>
-<td>378KB</td>
-<td>7.85%</td>
-</tr>
-<tr>
-<td>release</td>
-<td>前文步骤 + strip</td>
-<td>266KB</td>
-<td>5.53%</td>
-</tr>
-<tr>
-<td>release</td>
-<td>前文步骤 + <code>panic_immediate_abort</code></td>
-<td>293KB</td>
-<td>6.09%</td>
-</tr>
-<tr>
-<td>release</td>
-<td>前文步骤 + <code>panic_immediate_abort</code>+ strip</td>
-<td>210KB</td>
-<td>4.36%</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>编译方式</th>
+          <th>优化方式</th>
+          <th>体积</th>
+          <th>变化</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>release</td>
+          <td>无</td>
+          <td>4.70M</td>
+          <td>100%</td>
+      </tr>
+      <tr>
+          <td>release</td>
+          <td>前文步骤</td>
+          <td>378KB</td>
+          <td>7.85%</td>
+      </tr>
+      <tr>
+          <td>release</td>
+          <td>前文步骤 + strip</td>
+          <td>266KB</td>
+          <td>5.53%</td>
+      </tr>
+      <tr>
+          <td>release</td>
+          <td>前文步骤 + <code>panic_immediate_abort</code></td>
+          <td>293KB</td>
+          <td>6.09%</td>
+      </tr>
+      <tr>
+          <td>release</td>
+          <td>前文步骤 + <code>panic_immediate_abort</code>+ strip</td>
+          <td>210KB</td>
+          <td>4.36%</td>
+      </tr>
+  </tbody>
 </table>
 <p>再次进步了一点点</p>
 <h1 id="upx-压缩">UPX 压缩</h1>
@@ -809,40 +811,40 @@
 </div>
 </div><p>都懂的 XD</p>
 <table>
-<thead>
-<tr>
-<th>编译方式</th>
-<th>优化方式</th>
-<th>体积</th>
-<th>变化</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>release</td>
-<td>无</td>
-<td>4.70M</td>
-<td>100%</td>
-</tr>
-<tr>
-<td>release</td>
-<td>前文步骤</td>
-<td>293KB</td>
-<td>6.09%</td>
-</tr>
-<tr>
-<td>release</td>
-<td>前文步骤 + strip</td>
-<td>210KB</td>
-<td>4.36%</td>
-</tr>
-<tr>
-<td>release</td>
-<td>前文步骤 + strip + upx</td>
-<td>98.8KB</td>
-<td>2.06%</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>编译方式</th>
+          <th>优化方式</th>
+          <th>体积</th>
+          <th>变化</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>release</td>
+          <td>无</td>
+          <td>4.70M</td>
+          <td>100%</td>
+      </tr>
+      <tr>
+          <td>release</td>
+          <td>前文步骤</td>
+          <td>293KB</td>
+          <td>6.09%</td>
+      </tr>
+      <tr>
+          <td>release</td>
+          <td>前文步骤 + strip</td>
+          <td>210KB</td>
+          <td>4.36%</td>
+      </tr>
+      <tr>
+          <td>release</td>
+          <td>前文步骤 + strip + upx</td>
+          <td>98.8KB</td>
+          <td>2.06%</td>
+      </tr>
+  </tbody>
 </table>
 <p>体积再次大幅减小！</p>
 <h1 id="结尾">结尾</h1>
@@ -853,7 +855,7 @@
     <div class="post-copyright">
   <p class="copyright-item">
     <span class="item-title">文章作者</span>
-    <span class="item-content">Aloxaf</span>
+    <span class="item-content"></span>
   </p>
   <p class="copyright-item">
     <span class="item-title">上次更新</span>
@@ -878,8 +880,8 @@
             <span class="prev-text nav-default">ZIP 明文攻击工具</span>
             <span class="prev-text nav-mobile">上一篇</span>
           </a>
-        <a class="next" href="/2018/08/hackme_inndy/">
-            <span class="next-text nav-default">hackme.inndy 部分writeup</span>
+        <a class="next" href="/2018/08/tjctf_pythonjail/">
+            <span class="next-text nav-default">TJCTF 2018 中两道 Python Jail 的解法</span>
             <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
           </a>
@@ -920,7 +922,7 @@
       <div class="social-links">
       <a href="mailto:aloxafx@gmail.com" class="iconfont icon-email" title="email"></a>
       <a href="https://github.com/Aloxaf" class="iconfont icon-github" title="github"></a>
-  <a href="https://www.aloxaf.com/atom.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+  <a href="/2018/09/reduce_rust_size/" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
 </div>
 
 <div class="copyright">
@@ -938,7 +940,7 @@
   <span class="copyright-year">
     &copy; 
     2017 - 
-    2024<span class="heart"><i class="iconfont icon-heart"></i></span><span>Aloxaf</span>
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span><span></span>
   </span>
 </div>
 

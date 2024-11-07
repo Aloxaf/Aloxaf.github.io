@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Aloxaf" /><meta name="description" content="一篇讲述 Rust API 设计原则的经典老文，虽然老但仍然值得阅读。前几天有事情把它从旮旯里翻出来了，虽然是经典老文但我估计很多人都没有读过，最近闲着没事干脆用我的辣鸡英语水平翻译一下，也算为 Rust 中文社区做一点贡献。
+<meta name="author" content="" /><meta name="description" content="一篇讲述 Rust API 设计原则的经典老文，虽然老但仍然值得阅读。前几天有事情把它从旮旯里翻出来了，虽然是经典老文但我估计很多人都没有读过，最近闲着没事干脆用我的辣鸡英语水平翻译一下，也算为 Rust 中文社区做一点贡献。
 原文见：https://deterministic.space/elegant-apis-in-rust.html
 " /><meta name="keywords" content="aloxaf, ctf, linux, zsh" />
 
@@ -25,7 +25,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.125.5 with theme even" />
+<meta name="generator" content="Hugo 0.136.5 with theme even" />
 
 
 <link rel="preload" href="/fonts/iconfont/iconfont.woff" as="font" type="font/woff" crossorigin="anonymous">
@@ -41,7 +41,7 @@
 
 
 
-<link href="/sass/main.min.6e68329c1369b8a285a4985e6b6efdb778e12c12b24e8b3fcdd6c5af778d414e.css" rel="stylesheet">
+<link href="/sass/main.min.b8ff8f6ae815afd22fe55d59dcb2a03ea26d91c49c77a2d29e82aa121cc7d820.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
@@ -65,8 +65,10 @@
   <meta itemprop="datePublished" content="2019-11-20T21:55:09+00:00">
   <meta itemprop="dateModified" content="2019-11-20T21:55:09+00:00">
   <meta itemprop="wordCount" content="7585">
-  <meta itemprop="keywords" content="Rust,译文,设计"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="【译】设计优雅的 Rust 库 API">
-<meta name="twitter:description" content="一篇讲述 Rust API 设计原则的经典老文，虽然老但仍然值得阅读。前几天有事情把它从旮旯里翻出来了，虽然是经典老文但我估计很多人都没有读过，最近闲着没事干脆用我的辣鸡英语水平翻译一下，也算为 Rust 中文社区做一点贡献。
+  <meta itemprop="keywords" content="Rust,译文,设计">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="【译】设计优雅的 Rust 库 API">
+  <meta name="twitter:description" content="一篇讲述 Rust API 设计原则的经典老文，虽然老但仍然值得阅读。前几天有事情把它从旮旯里翻出来了，虽然是经典老文但我估计很多人都没有读过，最近闲着没事干脆用我的辣鸡英语水平翻译一下，也算为 Rust 中文社区做一点贡献。
 原文见：https://deterministic.space/elegant-apis-in-rust.html">
 
 <!--[if lte IE 9]>
@@ -226,64 +228,64 @@
 <h4 id="更多的方法名称约定">更多的方法名称约定</h4>
 <p>除了 <a href="https://github.com/rust-lang/rfcs/blob/1f5d3a9512ba08390a2226aa71a5fe9e277954fb/text/0199-ownership-variants.md">RFC 199</a> 和 <a href="https://github.com/rust-lang/rfcs/blob/1f5d3a9512ba08390a2226aa71a5fe9e277954fb/text/0344-conventions-galore.md">RFC 344</a> （见上）规定的以外，还有一些其他的关于如何选择方法名称的约定，目前还没有在 RFC 中提及。这些约定大部分都在<a href="https://doc.rust-lang.org/1.12.0/style/style/naming/conversions.html">旧的 Rust 风格指南</a>和 <a href="https://twitter.com/llogiq">@llogiq</a> 的文章 <a href="https://llogiq.github.io/2016/02/11/rustic.html">Rustic Bits</a> 以及 <a href="https://github.com/Manishearth/rust-clippy">clippy</a> 的 <a href="https://github.com/Manishearth/rust-clippy/blob/55e67bfc105ef6abf0997584e0e84cc939f35dc6/clippy_lints/src/methods.rs#L88-L110"><code>wrong_self_convention</code></a> 检测项中提到了。这里总结一下。</p>
 <table>
-<thead>
-<tr>
-<th>方法名称</th>
-<th>参数</th>
-<th>备注</th>
-<th>举例</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>new</code></td>
-<td>无 self，通常 &gt;= 1 <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></td>
-<td>构造器，另参见 <a href="https://doc.rust-lang.org/std/default/trait.Default.html"><code>Default</code></a></td>
-<td><code>Box::new</code>、<code>std::net::Ipv4Addr::new</code></td>
-</tr>
-<tr>
-<td><code>with_...</code></td>
-<td>无 self，&gt;= 1</td>
-<td>其他构造器</td>
-<td><code>Vec::with_capacity</code>、<code>regex::Regex::with_size_limit</code></td>
-</tr>
-<tr>
-<td><code>from_...</code></td>
-<td>1</td>
-<td>参见<a href="#%E4%BD%BF%E7%94%A8%E8%BD%AC%E6%8D%A2-trait">转换 trait（conversion traits）</a></td>
-<td><code>String::from_utf8_lossy</code></td>
-</tr>
-<tr>
-<td><code>as_...</code></td>
-<td><code>&amp;self</code></td>
-<td>无开销的转换，返回数据的一个视图（view）</td>
-<td><code>str::as_bytes</code>、<code>uuid::Uuid::as_bytes</code></td>
-</tr>
-<tr>
-<td><code>to_...</code></td>
-<td><code>&amp;self</code></td>
-<td>昂贵（高开销）的转换</td>
-<td><code>str::to_string</code>、<code>std::path::Path::to_str</code></td>
-</tr>
-<tr>
-<td><code>into_...</code></td>
-<td><code>self</code>（消耗）</td>
-<td>可能昂贵的转换，参见 <a href="#%E4%BD%BF%E7%94%A8%E8%BD%AC%E6%8D%A2-trait">转换 trait（conversion traits）</a></td>
-<td><code>std::fs::File::into_raw_fd</code></td>
-</tr>
-<tr>
-<td><code>is_...</code></td>
-<td><code>&amp;self</code>（或无）</td>
-<td>期望返回 <code>bool</code></td>
-<td><code>slice::is_empty</code>、<code>Result::is_ok</code>、<code>std::path::Path::is_file</code></td>
-</tr>
-<tr>
-<td><code>has_...</code></td>
-<td><code>&amp;self</code> （或无）</td>
-<td>期望返回 <code>bool</code></td>
-<td><code>regex_syntax::Expr::has_bytes</code></td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>方法名称</th>
+          <th>参数</th>
+          <th>备注</th>
+          <th>举例</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>new</code></td>
+          <td>无 self，通常 &gt;= 1 <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></td>
+          <td>构造器，另参见 <a href="https://doc.rust-lang.org/std/default/trait.Default.html"><code>Default</code></a></td>
+          <td><code>Box::new</code>、<code>std::net::Ipv4Addr::new</code></td>
+      </tr>
+      <tr>
+          <td><code>with_...</code></td>
+          <td>无 self，&gt;= 1</td>
+          <td>其他构造器</td>
+          <td><code>Vec::with_capacity</code>、<code>regex::Regex::with_size_limit</code></td>
+      </tr>
+      <tr>
+          <td><code>from_...</code></td>
+          <td>1</td>
+          <td>参见<a href="#%E4%BD%BF%E7%94%A8%E8%BD%AC%E6%8D%A2-trait">转换 trait（conversion traits）</a></td>
+          <td><code>String::from_utf8_lossy</code></td>
+      </tr>
+      <tr>
+          <td><code>as_...</code></td>
+          <td><code>&amp;self</code></td>
+          <td>无开销的转换，返回数据的一个视图（view）</td>
+          <td><code>str::as_bytes</code>、<code>uuid::Uuid::as_bytes</code></td>
+      </tr>
+      <tr>
+          <td><code>to_...</code></td>
+          <td><code>&amp;self</code></td>
+          <td>昂贵（高开销）的转换</td>
+          <td><code>str::to_string</code>、<code>std::path::Path::to_str</code></td>
+      </tr>
+      <tr>
+          <td><code>into_...</code></td>
+          <td><code>self</code>（消耗）</td>
+          <td>可能昂贵的转换，参见 <a href="#%E4%BD%BF%E7%94%A8%E8%BD%AC%E6%8D%A2-trait">转换 trait（conversion traits）</a></td>
+          <td><code>std::fs::File::into_raw_fd</code></td>
+      </tr>
+      <tr>
+          <td><code>is_...</code></td>
+          <td><code>&amp;self</code>（或无）</td>
+          <td>期望返回 <code>bool</code></td>
+          <td><code>slice::is_empty</code>、<code>Result::is_ok</code>、<code>std::path::Path::is_file</code></td>
+      </tr>
+      <tr>
+          <td><code>has_...</code></td>
+          <td><code>&amp;self</code> （或无）</td>
+          <td>期望返回 <code>bool</code></td>
+          <td><code>regex_syntax::Expr::has_bytes</code></td>
+      </tr>
+  </tbody>
 </table>
 <h3 id="文档测试">文档测试</h3>
 <p>编写带有示例代码的文档可以展示 API 的用法而且还能获得自动测试——一石二鸟。详见第一版 TRPL（The Rust Programming Language）的<a href="https://kaisery.gitbooks.io/rust-book-chinese/content/content/Documentation%20%E6%96%87%E6%A1%A3.html#%E7%94%A8%E4%BD%9C%E6%B5%8B%E8%AF%95%E7%9A%84%E6%96%87%E6%A1%A3">文档</a>一节。</p>
@@ -467,26 +469,26 @@
 <p>如果你需要处理很多不确定是否需要进行分配（allocate）的东西，你应该使用<a href="https://doc.rust-lang.org/std/borrow/enum.Cow.html"><code>Cow&lt;'a, B&gt;</code></a>，它可以让你抽象借用和拥有所有权的数据。</p>
 <h4 id="例stdconvertintohttpsdocrust-langorgstdconverttraitintohtml">例：<a href="https://doc.rust-lang.org/std/convert/trait.Into.html"><code>std::convert::Into</code></a></h4>
 <table>
-<thead>
-<tr>
-<th><code>fn foo(p: PathBuf)</code></th>
-<th><code>fn foo&lt;P: Into&lt;PathBuf&gt;&gt;(p: P)</code></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>用户需要把数据转为 <code>PathBuf</code></td>
-<td>由库来调用 <code>.into()</code> 进行转换</td>
-</tr>
-<tr>
-<td>用户进行分配</td>
-<td>看不出：库可能进行分配</td>
-</tr>
-<tr>
-<td>用户需要关心 <code>PathBuf</code> 是什么、如何创建</td>
-<td>用户可以传递 <code>String</code> 、<code>OsString</code>，或者 <code>PathBuf</code> 都行</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th><code>fn foo(p: PathBuf)</code></th>
+          <th><code>fn foo&lt;P: Into&lt;PathBuf&gt;&gt;(p: P)</code></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>用户需要把数据转为 <code>PathBuf</code></td>
+          <td>由库来调用 <code>.into()</code> 进行转换</td>
+      </tr>
+      <tr>
+          <td>用户进行分配</td>
+          <td>看不出：库可能进行分配</td>
+      </tr>
+      <tr>
+          <td>用户需要关心 <code>PathBuf</code> 是什么、如何创建</td>
+          <td>用户可以传递 <code>String</code> 、<code>OsString</code>，或者 <code>PathBuf</code> 都行</td>
+      </tr>
+  </tbody>
 </table>
 <h4 id="intooption_"><code>Into&lt;Option&lt;_&gt;&gt;</code></h4>
 <p><a href="https://github.com/rust-lang/rust/pull/34828">这个 PR</a> 添加了一个 <code>impl&lt;T&gt; From&lt;T&gt; for Option&lt;T&gt;</code>，在 Rust 1.12 中正式实装。寥寥几行代码赋予了你编写可以被直接调用而不需要写一大堆 <code>Some(...)</code> 的 API 的能力。</p>
@@ -814,7 +816,7 @@
     <div class="post-copyright">
   <p class="copyright-item">
     <span class="item-title">文章作者</span>
-    <span class="item-content">Aloxaf</span>
+    <span class="item-content"></span>
   </p>
   <p class="copyright-item">
     <span class="item-title">上次更新</span>
@@ -883,7 +885,7 @@
       <div class="social-links">
       <a href="mailto:aloxafx@gmail.com" class="iconfont icon-email" title="email"></a>
       <a href="https://github.com/Aloxaf" class="iconfont icon-github" title="github"></a>
-  <a href="https://www.aloxaf.com/atom.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+  <a href="/2019/11/elegant_apis_in_rust/" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
 </div>
 
 <div class="copyright">
@@ -901,7 +903,7 @@
   <span class="copyright-year">
     &copy; 
     2017 - 
-    2024<span class="heart"><i class="iconfont icon-heart"></i></span><span>Aloxaf</span>
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span><span></span>
   </span>
 </div>
 

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ulimit on Aloxaf&#39;s Blog</title>
+    <link>https://www.aloxaf.com/tags/ulimit/</link>
+    <description>Recent content in Ulimit on Aloxaf&#39;s Blog</description>
+    <generator>Hugo</generator>
+    <language>zh</language>
+    <lastBuildDate>Tue, 05 Nov 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://www.aloxaf.com/tags/ulimit/atom.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>低版本 ubuntu 镜像在 docker 中 apt install 过慢的问题</title>
+      <link>https://www.aloxaf.com/2024/11/apt_install_in_docker_slow/</link>
+      <pubDate>Tue, 05 Nov 2024 00:00:00 +0000</pubDate>
+      <guid>https://www.aloxaf.com/2024/11/apt_install_in_docker_slow/</guid>
+      <description>&lt;p&gt;只有两个月了，今年还有 6 篇博客没有完成！&lt;/p&gt;&#xA;&lt;p&gt;水一个曾经困扰了我很久的问题——某天，我在构建基于 ubuntu 18.04 的 docker 镜像时，发现 apt install 变得特别特别特别特别特别慢，可能需要花几十分钟才能构建完成。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

@@ -13,7 +13,7 @@
       <link>https://www.aloxaf.com/2024/05/pass_ratelimiter_with_ipv6_and_nginx/</link>
       <pubDate>Fri, 10 May 2024 00:00:00 +0000</pubDate>
       <guid>https://www.aloxaf.com/2024/05/pass_ratelimiter_with_ipv6_and_nginx/</guid>
-      <description>前段时间有个小币种挖矿项目，有几百台机器需要接入某矿池。这原本没有任何难度，直到我批量部署完以后，一看网站后台——怎么回事，竟然只有几十台在</description>
+      <description>&lt;p&gt;前段时间有个小币种挖矿项目，有几百台机器需要接入某矿池。这原本没有任何难度，直到我批量部署完以后，一看网站后台——怎么回事，竟然只有几十台在线？&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

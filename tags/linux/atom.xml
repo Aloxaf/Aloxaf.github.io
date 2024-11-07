@@ -13,14 +13,14 @@
       <link>https://www.aloxaf.com/2024/05/run_hh_at_home/</link>
       <pubDate>Mon, 06 May 2024 00:00:00 +0000</pubDate>
       <guid>https://www.aloxaf.com/2024/05/run_hh_at_home/</guid>
-      <description>最近捡垃圾捡了台 homelab，就寻思着能不能把 H@H 放到这上面跑，这样就可以直接使用 H@H Downloader 将画廊直接下载到本地了。 然而测了一下家宽，发现是 NAT</description>
+      <description>&lt;p&gt;最近捡垃圾捡了台 homelab，就寻思着能不能把 H@H 放到这上面跑，这样就可以直接使用 H@H Downloader 将画廊直接下载到本地了。&lt;/p&gt;&#xA;&lt;p&gt;然而测了一下家宽，发现是 NAT4，广东广电真是有够烂的，只能用公网服务器来转发了。研究了一下，确实可行，前提是这台服务器&lt;strong&gt;允许非备案域名的非标准端口访问&lt;/strong&gt;。&lt;/p&gt;</description>
     </item>
     <item>
       <title>KDE6 更新踩坑记录</title>
       <link>https://www.aloxaf.com/2024/03/fxxk_kde6/</link>
       <pubDate>Mon, 11 Mar 2024 00:00:00 +0000</pubDate>
       <guid>https://www.aloxaf.com/2024/03/fxxk_kde6/</guid>
-      <description>我从未想过有一天我的 Linux 桌面会变得如此不可用…… KDE 更新大版本了。以前总是嘲笑 GNOME 用户每次更新不是这里炸了就是那里被砍了，没想到风水轮流转，现在炸</description>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;我从未想过有一天我的 Linux 桌面会变得如此不可用……&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;KDE 更新大版本了。以前总是嘲笑 GNOME 用户每次更新不是这里炸了就是那里被砍了，没想到风水轮流转，现在炸到自己头上了。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Linux 下如何跟大量小文件打交道</title>
@@ -69,14 +69,14 @@
       <link>https://www.aloxaf.com/2019/04/fxxk_jetbrains_font_linux/</link>
       <pubDate>Wed, 03 Apr 2019 17:44:44 +0000</pubDate>
       <guid>https://www.aloxaf.com/2019/04/fxxk_jetbrains_font_linux/</guid>
-      <description>JetBrains 家的 IDE 在 Linux 下会有一些奇怪的问题: 如字体很丑(没开抗锯齿一样), 字体过小(目测是 HiDPI 下的问题), 最近更新了一下 PyCharm 2019 又出现了这个问题, 解决问题以</description>
+      <description>&lt;p&gt;JetBrains 家的 IDE 在 Linux 下会有一些奇怪的问题: 如字体很丑(没开抗锯齿一样), 字体过小(目测是 HiDPI 下的问题), 最近更新了一下 PyCharm 2019 又出现了这个问题, 解决问题以后记录一下方案, 造福广大 JetBrains 信徒&lt;/p&gt;</description>
     </item>
     <item>
       <title>Alacritty HiDPI 下的坑</title>
       <link>https://www.aloxaf.com/2019/04/alacritty_hidpi/</link>
       <pubDate>Wed, 03 Apr 2019 17:31:49 +0000</pubDate>
       <guid>https://www.aloxaf.com/2019/04/alacritty_hidpi/</guid>
-      <description>为啥要折腾 Alacritty 呢, 因为 Konsole 有点小问题: https://bugs.kde.org/show_bug.cgi?id=401298 (不过这个问题已经 fix 了, 下个版本应该就没有了, 我大概又会滚回 Konsole, 毕竟有 blur 和 ligatures), 阻碍我使用棒棒的 lsd. 问题表现 具体</description>
+      <description>&lt;p&gt;为啥要折腾 Alacritty 呢, 因为 Konsole 有点小问题: &lt;a href=&#34;https://bugs.kde.org/show_bug.cgi?id=401298&#34;&gt;https://bugs.kde.org/show_bug.cgi?id=401298&lt;/a&gt; (不过这个问题已经 fix 了, 下个版本应该就没有了, 我大概又会滚回 Konsole, 毕竟有 blur 和 ligatures), 阻碍我使用棒棒的 &lt;a href=&#34;https://github.com/Peltoche/lsd/issues/118&#34;&gt;lsd&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;h2 id=&#34;问题表现&#34;&gt;问题表现&lt;/h2&gt;&#xA;&lt;p&gt;具体表现为布局问题, 无视配置文件, 如&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
