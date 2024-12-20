@@ -6,8 +6,15 @@
     <description>Recent content in Posts on Aloxaf&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>zh</language>
-    <lastBuildDate>Tue, 05 Nov 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 20 Dec 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://www.aloxaf.com/post/atom.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Kagi 搜索引擎半年使用体验</title>
+      <link>https://www.aloxaf.com/2024/12/kagi_experience/</link>
+      <pubDate>Fri, 20 Dec 2024 00:00:00 +0000</pubDate>
+      <guid>https://www.aloxaf.com/2024/12/kagi_experience/</guid>
+      <description>&lt;p&gt;半年前，在机缘巧合之下，我决定抛弃谷歌搜索，一番调查试用之后，我开始使用 Kagi —— 一个付费搜索引擎。&lt;/p&gt;&#xA;&lt;p&gt;一开始是抱着试试看的态度注册了免费账号，用完 100 次搜索额度后觉得不错，决定开个 $5/月 的基础套餐用一段时间看看，结果发现 300 次搜索根本不够用，于是又开了个 $10/月 的无限次搜索高级套餐（然后才发现我平均每个月会进行 2000+ 次搜索……&lt;/p&gt;</description>
+    </item>
     <item>
       <title>低版本 ubuntu 镜像在 docker 中 apt install 过慢的问题</title>
       <link>https://www.aloxaf.com/2024/11/apt_install_in_docker_slow/</link>
@@ -70,13 +77,6 @@
       <pubDate>Tue, 01 Dec 2020 00:00:00 +0000</pubDate>
       <guid>https://www.aloxaf.com/2020/12/zsh_parameter_expansion/</guid>
       <description>&lt;p&gt;zsh 的参数扩展相比 bash 而言强大了不止一星半点，它让 zsh 无需借助外部命令就能完成大量操作，是写出一个&lt;s&gt;复杂的&lt;/s&gt;流畅的 zsh 插件的必备技能之一。&lt;/p&gt;&#xA;&lt;p&gt;这也是一个区分“zsh 用户”和“用 zsh 作为交互式 shell 的 bash 用户”的有效手段。&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Linux 下如何跟大量小文件打交道</title>
-      <link>https://www.aloxaf.com/2020/11/wow_such_linux_many_files_so_small/</link>
-      <pubDate>Sat, 28 Nov 2020 00:00:00 +0000</pubDate>
-      <guid>https://www.aloxaf.com/2020/11/wow_such_linux_many_files_so_small/</guid>
-      <description>&lt;p&gt;首先声明一点，本文探讨的不是如何在生产环境中高效存储百万量级的小文件，而是在日常生活中该如何处理那些包含上万个小文件的情景。&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

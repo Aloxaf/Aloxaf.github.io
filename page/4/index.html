@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.136.5 with theme even" />
+<meta name="generator" content="Hugo 0.139.3 with theme even" />
 
 
 <link rel="preload" href="/fonts/iconfont/iconfont.woff" as="font" type="font/woff" crossorigin="anonymous">
@@ -54,8 +54,8 @@
 
   <meta itemprop="name" content="Aloxaf&#39;s Blog">
   <meta itemprop="description" content="一只咸鱼的咸鱼博客">
-  <meta itemprop="datePublished" content="2024-11-05T00:00:00+00:00">
-  <meta itemprop="dateModified" content="2024-11-05T00:00:00+00:00">
+  <meta itemprop="datePublished" content="2024-12-20T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2024-12-20T00:00:00+00:00">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Aloxaf&#39;s Blog">
   <meta name="twitter:description" content="一只咸鱼的咸鱼博客">
@@ -127,6 +127,33 @@
       <div class="content-wrapper">
         <div id="content" class="content">
           <section id="posts" class="posts">
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/2018/10/arch_pwndbg/">Arch Linux 下使用 pwndbg</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2018-10-19 </span>
+      <div class="post-category">
+          <a href="/categories/linux/"> linux </a>
+          </div>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      <p>pwndbg 的安装: <code>pacman -S pwndbg</code> 然后添加 <code>source /usr/share/pwndbg/gdbinit.py</code> 到 <code>~/.gdbinit</code></p>
+<p>然而要在 Arch Linux 下愉快地使用 pwndbg, 还要解决以下问题:</p>
+<ul>
+<li><a href="https://github.com/pwndbg/pwndbg/issues/340">Arch Support - Roadmap</a> 搁了快一年的问题, 主要是 Arch 下没有 libc6-dbg 这种包, 要调试符号只能自己编译&hellip;</li>
+<li><s><a href="https://github.com/pwndbg/pwndbg/issues/523#issuecomment-425673020">Python exception under gdb-8.2-2</a> 上游 gdb 的问题, 8.3 应该会修复, 不过可以按链接所示的方法临时 patch 一下</s> gdb 8.2.1 已 fix</li>
+</ul>
+<p>这里解决第一个问题, 利用棒棒的 ABS (Arch Build System)</p>
+    </div>
+    <div class="read-more">
+      <a href="/2018/10/arch_pwndbg/" class="read-more-link">阅读更多</a>
+    </div>
+  </div>
+</article>
+
     <article class="post">
   <header class="post-header">
     <h1 class="post-title"><a class="post-link" href="/2018/10/arch_git/">加速 AUR 软件安装速度</a></h1>
@@ -326,51 +353,6 @@
     </div>
     <div class="read-more">
       <a href="/2018/07/arch_glibc_2.23/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2018/05/jarvisoj_basic/">Jarvis OJ BASIC 完整writeup</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2018-05-17 </span>
-      <div class="post-category">
-          <a href="/categories/ctf/"> ctf </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      <h1 id="握手包">握手包</h1>
-<blockquote>
-<p>给你握手包，flag是Flag_is_here这个AP的密码，自己看着办吧。</p>
-<p>提交格式：flag{WIFI密码}</p>
-</blockquote>
-<p>利用 hashcat 爆破, 以 Arch Linux 为例</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 安装必要工具</span>
-</span></span><span class="line"><span class="cl">sudo pacman -S hashcat hashcat-utils
-</span></span><span class="line"><span class="cl"><span class="c1"># 格式转换</span>
-</span></span><span class="line"><span class="cl">cap2hccapx wifi.cap wifi.hccapx
-</span></span><span class="line"><span class="cl"><span class="c1"># 用字典爆破</span>
-</span></span><span class="line"><span class="cl">hashcat -m <span class="m">2500</span> wifi.hccapx 10k_most_common.txt
-</span></span></code></pre></td></tr></table>
-</div>
-</div>
-    </div>
-    <div class="read-more">
-      <a href="/2018/05/jarvisoj_basic/" class="read-more-link">阅读更多</a>
     </div>
   </div>
 </article>

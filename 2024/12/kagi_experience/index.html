@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Kagi 搜索引擎半年使用体验 - Aloxaf&#39;s Blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="" /><meta name="description" content="半年前，在机缘巧合之下，我决定抛弃谷歌搜索，一番调查试用之后，我开始使用 Kagi —— 一个付费搜索引擎。
+一开始是抱着试试看的态度注册了免费账号，用完 100 次搜索额度后觉得不错，决定开个 $5/月 的基础套餐用一段时间看看，结果发现 300 次搜索根本不够用，于是又开了个 $10/月 的无限次搜索高级套餐（然后才发现我平均每个月会进行 2000&#43; 次搜索……
+" /><meta name="keywords" content="aloxaf, ctf, linux, zsh" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.139.3 with theme even" />
+
+
+<link rel="preload" href="/fonts/iconfont/iconfont.woff" as="font" type="font/woff" crossorigin="anonymous">
+<link rel="preload" href="/fonts/FiraCode/FiraCode-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+
+
+<link rel="canonical" href="https://www.aloxaf.com/2024/12/kagi_experience/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.b8ff8f6ae815afd22fe55d59dcb2a03ea26d91c49c77a2d29e82aa121cc7d820.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:url" content="https://www.aloxaf.com/2024/12/kagi_experience/">
+  <meta property="og:site_name" content="Aloxaf&#39;s Blog">
+  <meta property="og:title" content="Kagi 搜索引擎半年使用体验">
+  <meta property="og:description" content="半年前，在机缘巧合之下，我决定抛弃谷歌搜索，一番调查试用之后，我开始使用 Kagi —— 一个付费搜索引擎。
+一开始是抱着试试看的态度注册了免费账号，用完 100 次搜索额度后觉得不错，决定开个 $5/月 的基础套餐用一段时间看看，结果发现 300 次搜索根本不够用，于是又开了个 $10/月 的无限次搜索高级套餐（然后才发现我平均每个月会进行 2000&#43; 次搜索……">
+  <meta property="og:locale" content="zh">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2024-12-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-12-20T00:00:00+00:00">
+
+  <meta itemprop="name" content="Kagi 搜索引擎半年使用体验">
+  <meta itemprop="description" content="半年前，在机缘巧合之下，我决定抛弃谷歌搜索，一番调查试用之后，我开始使用 Kagi —— 一个付费搜索引擎。
+一开始是抱着试试看的态度注册了免费账号，用完 100 次搜索额度后觉得不错，决定开个 $5/月 的基础套餐用一段时间看看，结果发现 300 次搜索根本不够用，于是又开了个 $10/月 的无限次搜索高级套餐（然后才发现我平均每个月会进行 2000&#43; 次搜索……">
+  <meta itemprop="datePublished" content="2024-12-20T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2024-12-20T00:00:00+00:00">
+  <meta itemprop="wordCount" content="2772">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Kagi 搜索引擎半年使用体验">
+  <meta name="twitter:description" content="半年前，在机缘巧合之下，我决定抛弃谷歌搜索，一番调查试用之后，我开始使用 Kagi —— 一个付费搜索引擎。
+一开始是抱着试试看的态度注册了免费账号，用完 100 次搜索额度后觉得不错，决定开个 $5/月 的基础套餐用一段时间看看，结果发现 300 次搜索根本不够用，于是又开了个 $10/月 的无限次搜索高级套餐（然后才发现我平均每个月会进行 2000&#43; 次搜索……">
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Aloxaf&#39;s Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于</li>
+      </a><a href="/friend/">
+        <li class="mobile-menu-item">友链</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Aloxaf&#39;s Blog</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">关于</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/friend/">友链</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Kagi 搜索引擎半年使用体验</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2024-12-20 </span>
+        
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#搜索质量">搜索质量</a></li>
+        <li><a href="#ai-搜索">AI 搜索</a></li>
+        <li><a href="#网站偏好">网站偏好</a></li>
+        <li><a href="#网站重定向">网站重定向</a></li>
+        <li><a href="#bangs">Bangs</a></li>
+        <li><a href="#快捷键">快捷键</a></li>
+        <li><a href="#lens">Lens</a></li>
+        <li><a href="#各种不怎么常用的小功能">各种不怎么常用的小功能</a></li>
+        <li><a href="#总结">总结</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>半年前，在机缘巧合之下，我决定抛弃谷歌搜索，一番调查试用之后，我开始使用 Kagi —— 一个付费搜索引擎。</p>
+<p>一开始是抱着试试看的态度注册了免费账号，用完 100 次搜索额度后觉得不错，决定开个 $5/月 的基础套餐用一段时间看看，结果发现 300 次搜索根本不够用，于是又开了个 $10/月 的无限次搜索高级套餐（然后才发现我平均每个月会进行 2000+ 次搜索……</p>
+<p>虽然「付费搜索」看着像是技术文青才会喜欢的东西，但用着用着发现，Kagi 在某些方面确实很对我胃口，遂决定写篇文章介绍一下，说不定你也会喜欢。</p>
+<p>基础的东西就不谈了，比如什么隐私啊、无广告啊那都是小众搜索引擎的必备卖点了。</p>
+<h2 id="搜索质量">搜索质量</h2>
+<p>搜索引擎首先得干好搜索工作。</p>
+<p>在这方面，基本上市场占用率=~搜索质量（不考虑套壳），毕竟有些网站 robots 协议压根不考虑冷门爬虫。</p>
+<p>所以 Brave 这种号称自建索引的，虽然勇气可嘉，但结果实在不忍直视，搜中文更是完全不具备可用性。（往好点想，至少它真的自建了）</p>
+<p>Bing &amp; DuckDuckGo，这两结果都差不多，后者用了前者的服务。能用，但感觉排名算法不太行，比如搜某些神秘代码，Google 第一个结果就是我想要的，但 Bing 第二页才有。</p>
+<p>Google &amp; Kagi，质量最高的一档，同样后者用了前者的服务。</p>
+<p>Kagi 在「摘要」功能上不如谷歌，但一些细节处做得比谷歌好。</p>
+<p>比如同样搜索一串英文关键词，由于我的地区为中国，Kagi 会将中英文内容混合排名，因此一些中文文档也会出现在结果中（猜测 Kagi 后台应该用不同参数进行了多次搜索再整合）；而谷歌几乎只会给英文结果，偶尔夹杂梯子所在地的结果；如果给谷歌限制简体中文，又只有简体中文结果……</p>
+<h2 id="ai-搜索">AI 搜索</h2>
+<p>Kagi 的「摘要」不太行，但「AI 搜索」做得不错，而且这也是我认为最值回票价的功能之一。</p>
+<p>自 ChatGPT 问世后，什么「AI 搜索革了传统搜索引擎的命」之类的言论就层出不穷，还有如雨后春笋般冒出来的 AI 搜索产品。</p>
+<p>但我对此一贯嗤之以鼻：那些所谓「AI 搜索引擎」，最大的意义就是能让大量<strong>不会搜索的人</strong>获得基本的信息检索能力。但是连搜索都不会的人，又有多少有见识、有意愿为搜索付费呢？如果不愿意付费，AI 搜索高昂的成本该由谁来承担呢？</p>
+<p>在我看来，AI 搜索的最佳形态应该是传统搜索引擎的补充，而不是一个全新的产品。在这点上 Kagi 的哲学与我不谋而合——<strong>AI 应该用于增强搜索体验，而不是创造或者替代它</strong>。</p>
+<p>Kagi 的 AI 搜索被称为「快速回答」，可以让 AI 总结当前页面的搜索结果，你可以通过点击「快速回答」按钮、在搜索词末尾加上问号（全角也行）、或者按 q 来触发。</p>
+<p>这个设计深得我心，一看就知道 Kagi 团队是真的「会搜索」：</p>
+<ol>
+<li>当我需要传统搜索引擎「门户」的功能时，如搜索「国家知识产权局」的官网，我不需要 AI 的介入，这纯粹是浪费我的时间，因为我要的结果大概率就是第一个。</li>
+<li>当我想要通过搜索引擎了解一些简单的信息，比如我突然想了解「布料等级」，我只需要简单地加个问号，就能触发 AI 总结。如果我对 AI 的回答不满意，或者想进一步了解，直接下滑就能翻阅正常的搜索结果。</li>
+</ol>
+<p>反观不少 AI 搜索引擎，基本就是复刻了一遍 ChatGPT，充其量叫「AI 联网问答」，只能满足连关键词搜索法都不会的人的需求。</p>
+<p>Kagi 的细节上也做得相当好：</p>
+<ol>
+<li>支持全角问号。</li>
+<li>由于我的语言设置是中文，所以即便搜索结果全部是英文，它大多数时候也会使用中文来进行总结。</li>
+</ol>
+<p>一个美国人做的小众产品，竟然能意识到并不是世界上所有人都在说英文！？它真的我哭死（</p>
+<h2 id="网站偏好">网站偏好</h2>
+<p>传统搜索引擎的排名无法自由调整，最多提供一个黑箱式的「个性化搜索」供你选择。</p>
+<p>Kagi 就不一样，你可以直接在搜索结果中调整你对这个网站的偏好：封锁、减少、增多或置顶。</p>
+<p>比如维基百科权重比萌娘百科高，但如果这两个网站同时出现在了我的搜索结果中，那我大概率想要的是萌娘百科的结果，于是直接置顶萌娘百科。</p>
+<p>比如不想看到 CSDN 结果？直接「减少」或「封锁」。更推荐减少，毕竟 CSDN 上确实也存在微量原创内容。</p>
+<p>Kagi 还提供了一个<a href="https://kagi.com/stats?stat=leaderboard&amp;k=2">统计页面</a>，可以查看大家对域名的调整情况，数据很有意思，可以去看看。</p>
+<h2 id="网站重定向">网站重定向</h2>
+<p>我一直隐约感觉自己需要一个类似的功能，但没想到 Kagi 已经替我实现了。</p>
+<p>网站重定向可以让你直接修改结果中的链接地址，举两个例子就明白应用场景了。</p>
+<p>规则 1：
+<code>^https://(c.tieba|tiebac|ala|wefan).baidu.com|tieba.baidu.com</code></p>
+<p>它的作用是把各种乱七八糟的百度贴吧域名替换成百度贴吧的最常用域名。不会点进去发现「诶怎么图片加载不出来」，「诶怎么我没登陆」的问题。</p>
+<p>规则 2：
+<code>^https://developer.mozilla.org/en-US/(.*)|https://developer.mozilla.org/zh-CN/$1</code></p>
+<p>MDN 的汉化程度很高，但由于搜索时用的是英文关键词，结果都是英文页面，还得手动切换到中文。这个重定向规则就能省下我切换的功夫。</p>
+<p>顺带一提，快速回答中 AI 引用的链接也会对应地进行重定向，细节再次加分</p>
+<h2 id="bangs">Bangs</h2>
+<p>这个功能好像最早是 DDG 引入的，它可以通过在搜索词中使用 <code>!xxx</code> 这样的简写，直接跳转到另一个网站进行搜索。</p>
+<p>比如 <code>!arch btrfs</code> 就能直接跳转到 arch wiki 的 btrfs 页面、<code>!zhihu 汽车</code> 就能跳转到知乎。</p>
+<p>但有时候我并不想跳转，因为跳转过去后，就没办法进行后续的搜索了。</p>
+<p>Kagi 额外扩展了 <code>@xxx</code> 语法，不进行跳转，而是直接转化为 <code>site:xxx.com</code> 进行搜索。我用谷歌时就很喜欢用 <code>site:</code> 来进行搜索，这个功能真是加在我心坎上。</p>
+<h2 id="快捷键">快捷键</h2>
+<p>在任意搜索页面按 <kbd>?</kbd>，可以调出 Kagi 的帮助界面，展示了 Kagi 支持的搜索语法和快捷键。</p>
+<p>Kagi 的细节做的真的好，我完全是抱着试试看的态度按下了 <code>?</code>，没想到真的有帮助弹出来了……</p>
+<p>忘记搜索语法可以随时查看，不过我早就烂熟于心了。</p>
+<h2 id="lens">Lens</h2>
+<p>翻译过来应该是「聚光镜」？功能很简单，就是预设了参数的搜索。</p>
+<p>如果你常常需要固定进行一些参数复杂的搜索，比如限制了网站、日期、地区、关键词排除等等，那这个功能倒是挺适合你，省得每次输入一大堆参数。</p>
+<p>我最常用的只有是 <code>!pdf</code></p>
+<h2 id="各种不怎么常用的小功能">各种不怎么常用的小功能</h2>
+<p>再往下的一些功能，我自己是不怎么用了，也许其他人会喜欢</p>
+<p><strong>网页总结</strong></p>
+<p>可以通过 <code>!sum</code> 或者手动点击触发，让 AI 为你总结这个页面的内容。</p>
+<p>评价：速度太慢了，等它总结的功夫我都看完了，基本不用。</p>
+<p><strong>文档对话</strong></p>
+<p>在搜索结果页面点击触发，可以向 AI 询问这个页面的内容，PDF 文档也行。</p>
+<p>评价：相当于网页总结的加强版，但是同样太慢了，不如我自己看。如果能支持上传本地文档倒是个不错的功能，可惜传不得。</p>
+<p><strong>AI 翻译</strong></p>
+<p>AI 翻译产品市面上已经一抓一大把了。</p>
+<p><strong>AI 助手</strong></p>
+<p>你可以理解就是 ChatGPT Assistant——能联网、能切换模型、能上传文档……</p>
+<p>你问我为什么不用？因为这玩意儿要终极订阅才能用，$25/月！</p>
+<p>如果确实有这个需求，它的性价比还算可以，就当 $25 开了个 ChatGPT Plus 顺带送了你一个 Kagi 会员。</p>
+<p><strong>Small Web</strong></p>
+<p>聚焦于主流视角之外的网站，比如冷门领域的个人博客、大平台上的新人作者……</p>
+<p>这个想法很好，可惜只支持英文，而且我基本只搜技术问题，这方面冷门网站能得到回答的概率实在有点小。</p>
+<p><strong>自定义 CSS</strong></p>
+<p>很有意思的功能，但也仅限于有意思。默认主题已经很好看了，而且常见的搜索结果风格 Kagi 也直接提供了开关（控制图标位置、URL 位置、URL 拆分）</p>
+<h2 id="总结">总结</h2>
+<p>Kagi 整体感觉是一个更好用的谷歌，当然为此付出 $10 值不值就见仁见智了。</p>
+<p>我也很难说值不值，但考虑到我的搜索次数，我就算亏，亏得也比绝大多数用户少（</p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content"></span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2024-12-20
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a></span>
+  </p>
+</div>
+<footer class="post-footer">
+      
+      <nav class="post-nav">
+        
+        <a class="next" href="/2024/11/apt_install_in_docker_slow/">
+            <span class="next-text nav-default">低版本 ubuntu 镜像在 docker 中 apt install 过慢的问题</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  <span id="/2024/12/kagi_experience/" class="leancloud_visitors" data-flag-title="Kagi 搜索引擎半年使用体验">
+		<span class="post-meta-item-text">文章阅读量 </span>
+		<span class="leancloud-visitors-count">0</span>
+		<p></p>
+	  </span>
+  <div id="vcomments"></div>
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+  <script type="text/javascript">
+    new Valine({
+        el: '#vcomments' ,
+        serverURLs: 'https:\/\/0mqcauyd.api.lncldglobal.com',
+        appId: '0mQCAuYdR6NE9gIVBd6rDEjY-MdYXbMMI',
+        appKey: 'CBACoI7HhLeuROO39gpYpYDl',
+        notify:  false ,
+        verify:  false ,
+        avatar:'mm',
+        placeholder: '妙啊，妙啊',
+        visitor:  true 
+    });
+  </script>
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:aloxafx@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/Aloxaf" class="iconfont icon-github" title="github"></a>
+  <a href="/2024/12/kagi_experience/" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span><span></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script async src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script async src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script>
+    var languageCode = "zh".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script>
+
+
+
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>
