@@ -6,7 +6,7 @@
     <description>Recent content on Aloxaf&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>zh</language>
-    <lastBuildDate>Fri, 20 Dec 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 03 Jan 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://www.aloxaf.com/atom.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>友链</title>
@@ -21,6 +21,13 @@
       <pubDate>Sat, 11 Aug 2018 09:05:04 +0000</pubDate>
       <guid>https://www.aloxaf.com/about/</guid>
       <description>&lt;h1 id=&#34;游戏&#34;&gt;游戏&lt;/h1&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;懒军, 玩成养桶游戏的那种  &lt;span style=&#34;background-color: #34495e;&#34; title=&#34;你知道的太多了&#34;&gt;曾经的目标是成为 glyph 大师&lt;/span&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;悲，红桶没了&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&lt;del&gt;当过舰长, 指挥官, 后来觉得还是 Agent 好&lt;/del&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;del&gt;还是提督好&lt;/del&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;del&gt;还是骑士君好&lt;/del&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;还是 sensei 好&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;RPG 小黄油大师&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h1 id=&#34;宗教&#34;&gt;宗教&lt;/h1&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Arch Linux &lt;span style=&#34;background-color: #34495e;&#34;&gt;邪&lt;/span&gt;教教徒&lt;/li&gt;&#xA;&lt;li&gt;到处使用 Emacs 风格快捷键，但是就是不使用 emacs&lt;/li&gt;&#xA;&lt;li&gt;zsh 大法好&lt;/li&gt;&#xA;&lt;li&gt;KDE 妙啊&lt;/li&gt;&#xA;&lt;li&gt;空格缩进党，宽度为 2/4&lt;/li&gt;&#xA;&lt;li&gt;大括号通常不换行&lt;/li&gt;&#xA;&lt;li&gt;FFF 团成员&lt;/li&gt;&#xA;&lt;li&gt;&lt;del&gt;无可奉告&lt;/del&gt; &lt;span style=&#34;background-color: #34495e;&#34; title=&#34;naïve!&#34;&gt;-     ⃢    —    ⃢     - &lt;/span&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h1 id=&#34;主要成就&#34;&gt;主要成就&lt;/h1&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;存活了 24 年&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
+    </item>
+    <item>
+      <title>在 Cloudflare Workers 中调用 wasm 模块</title>
+      <link>https://www.aloxaf.com/2025/01/wasm_in_cloudflare_workers/</link>
+      <pubDate>Fri, 03 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>https://www.aloxaf.com/2025/01/wasm_in_cloudflare_workers/</guid>
+      <description>&lt;p&gt;年末闲着没事折腾 Cloudflare Workers，发现这玩意儿的运行时对 wasm 模块进行了一些限制，导致用起来很蛋疼，没刻意适配过的库基本上是没办法直接使用的。&lt;/p&gt;&#xA;&lt;h2 id=&#34;wasm-的正常加载方法&#34;&gt;WASM 的正常加载方法&lt;/h2&gt;&#xA;&lt;p&gt;正常情况下，WASM 模块的加载方法可以分为动态和静态两类&lt;/p&gt;</description>
     </item>
     <item>
       <title>Kagi 搜索引擎半年使用体验</title>
@@ -70,13 +77,6 @@
       <pubDate>Tue, 04 Jan 2022 00:00:00 +0000</pubDate>
       <guid>https://www.aloxaf.com/2022/01/facenote_thirdparty_app/</guid>
       <description>&lt;p&gt;竟然快一年没写博客了&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>BOOKWALKER 在线阅读器图片提取笔记</title>
-      <link>https://www.aloxaf.com/2021/03/bookwalker_image_extract/</link>
-      <pubDate>Mon, 08 Mar 2021 22:48:00 +0000</pubDate>
-      <guid>https://www.aloxaf.com/2021/03/bookwalker_image_extract/</guid>
-      <description>&lt;p&gt;好久没写博客了，水一篇文章&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

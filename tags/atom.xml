@@ -6,8 +6,29 @@
     <description>Recent content in Tags on Aloxaf&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>zh</language>
-    <lastBuildDate>Tue, 05 Nov 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 03 Jan 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://www.aloxaf.com/tags/atom.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Cloudflare</title>
+      <link>https://www.aloxaf.com/tags/cloudflare/</link>
+      <pubDate>Fri, 03 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>https://www.aloxaf.com/tags/cloudflare/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Js</title>
+      <link>https://www.aloxaf.com/tags/js/</link>
+      <pubDate>Fri, 03 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>https://www.aloxaf.com/tags/js/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Wasm</title>
+      <link>https://www.aloxaf.com/tags/wasm/</link>
+      <pubDate>Fri, 03 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>https://www.aloxaf.com/tags/wasm/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Docker</title>
       <link>https://www.aloxaf.com/tags/docker/</link>
@@ -55,27 +76,6 @@
       <link>https://www.aloxaf.com/tags/de/</link>
       <pubDate>Mon, 11 Mar 2024 00:00:00 +0000</pubDate>
       <guid>https://www.aloxaf.com/tags/de/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>KDE</title>
-      <link>https://www.aloxaf.com/tags/kde/</link>
-      <pubDate>Mon, 11 Mar 2024 00:00:00 +0000</pubDate>
-      <guid>https://www.aloxaf.com/tags/kde/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Zsh</title>
-      <link>https://www.aloxaf.com/tags/zsh/</link>
-      <pubDate>Mon, 26 Feb 2024 00:00:00 +0000</pubDate>
-      <guid>https://www.aloxaf.com/tags/zsh/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Crack</title>
-      <link>https://www.aloxaf.com/tags/crack/</link>
-      <pubDate>Tue, 04 Jan 2022 00:00:00 +0000</pubDate>
-      <guid>https://www.aloxaf.com/tags/crack/</guid>
       <description></description>
     </item>
   </channel>

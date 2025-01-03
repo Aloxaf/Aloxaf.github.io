@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Js on Aloxaf&#39;s Blog</title>
+    <link>https://www.aloxaf.com/tags/js/</link>
+    <description>Recent content in Js on Aloxaf&#39;s Blog</description>
+    <generator>Hugo</generator>
+    <language>zh</language>
+    <lastBuildDate>Fri, 03 Jan 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://www.aloxaf.com/tags/js/atom.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>在 Cloudflare Workers 中调用 wasm 模块</title>
+      <link>https://www.aloxaf.com/2025/01/wasm_in_cloudflare_workers/</link>
+      <pubDate>Fri, 03 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>https://www.aloxaf.com/2025/01/wasm_in_cloudflare_workers/</guid>
+      <description>&lt;p&gt;年末闲着没事折腾 Cloudflare Workers，发现这玩意儿的运行时对 wasm 模块进行了一些限制，导致用起来很蛋疼，没刻意适配过的库基本上是没办法直接使用的。&lt;/p&gt;&#xA;&lt;h2 id=&#34;wasm-的正常加载方法&#34;&gt;WASM 的正常加载方法&lt;/h2&gt;&#xA;&lt;p&gt;正常情况下，WASM 模块的加载方法可以分为动态和静态两类&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

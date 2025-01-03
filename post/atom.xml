@@ -6,8 +6,15 @@
     <description>Recent content in Posts on Aloxaf&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>zh</language>
-    <lastBuildDate>Fri, 20 Dec 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 03 Jan 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://www.aloxaf.com/post/atom.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>在 Cloudflare Workers 中调用 wasm 模块</title>
+      <link>https://www.aloxaf.com/2025/01/wasm_in_cloudflare_workers/</link>
+      <pubDate>Fri, 03 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>https://www.aloxaf.com/2025/01/wasm_in_cloudflare_workers/</guid>
+      <description>&lt;p&gt;年末闲着没事折腾 Cloudflare Workers，发现这玩意儿的运行时对 wasm 模块进行了一些限制，导致用起来很蛋疼，没刻意适配过的库基本上是没办法直接使用的。&lt;/p&gt;&#xA;&lt;h2 id=&#34;wasm-的正常加载方法&#34;&gt;WASM 的正常加载方法&lt;/h2&gt;&#xA;&lt;p&gt;正常情况下，WASM 模块的加载方法可以分为动态和静态两类&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Kagi 搜索引擎半年使用体验</title>
       <link>https://www.aloxaf.com/2024/12/kagi_experience/</link>
@@ -70,13 +77,6 @@
       <pubDate>Fri, 01 Jan 2021 00:00:00 +0000</pubDate>
       <guid>https://www.aloxaf.com/2021/01/zsh_parameter_expansion_flags/</guid>
       <description>&lt;p&gt;本文介绍 ZSH 参数扩展的另一个重要内容——参数扩展标记（Parameter Expansion Flags）。&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>【ZSH 系列教程】参数扩展（上）</title>
-      <link>https://www.aloxaf.com/2020/12/zsh_parameter_expansion/</link>
-      <pubDate>Tue, 01 Dec 2020 00:00:00 +0000</pubDate>
-      <guid>https://www.aloxaf.com/2020/12/zsh_parameter_expansion/</guid>
-      <description>&lt;p&gt;zsh 的参数扩展相比 bash 而言强大了不止一星半点，它让 zsh 无需借助外部命令就能完成大量操作，是写出一个&lt;s&gt;复杂的&lt;/s&gt;流畅的 zsh 插件的必备技能之一。&lt;/p&gt;&#xA;&lt;p&gt;这也是一个区分“zsh 用户”和“用 zsh 作为交互式 shell 的 bash 用户”的有效手段。&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
