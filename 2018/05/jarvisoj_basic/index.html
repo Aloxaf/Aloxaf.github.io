@@ -26,7 +26,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.140.2 with theme even" />
+<meta name="generator" content="Hugo 0.145.0 with theme even" />
 
 
 <link rel="preload" href="/fonts/iconfont/iconfont.woff" as="font" type="font/woff" crossorigin="anonymous">
@@ -42,7 +42,7 @@
 
 
 
-<link href="/sass/main.min.b8ff8f6ae815afd22fe55d59dcb2a03ea26d91c49c77a2d29e82aa121cc7d820.css" rel="stylesheet">
+<link href="/sass/main.min.4239da8be5d6b3c3a4e298a01dad493e86024d2cefc2b1385e017fb0ee96d262.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
@@ -208,8 +208,7 @@
       <h1 id="握手包">握手包</h1>
 <blockquote>
 <p>给你握手包，flag是Flag_is_here这个AP的密码，自己看着办吧。</p>
-<p>提交格式：flag{WIFI密码}</p>
-</blockquote>
+<p>提交格式：flag{WIFI密码}</p></blockquote>
 <p>利用 hashcat 爆破, 以 Arch Linux 为例</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -234,8 +233,7 @@
 <p>flag 为 <code>flag{11223344}</code></p>
 <h1 id="德军的密码">德军的密码</h1>
 <blockquote>
-<p>已知将一个flag以一种加密形式为使用密钥进行加密，使用密钥WELCOMETOCFF加密后密文为000000000000000000000000000000000000000000000000000101110000110001000000101000000001 请分析出flag。Flag为12位大写字母 题目来源：CFF2016</p>
-</blockquote>
+<p>已知将一个flag以一种加密形式为使用密钥进行加密，使用密钥WELCOMETOCFF加密后密文为000000000000000000000000000000000000000000000000000101110000110001000000101000000001 请分析出flag。Flag为12位大写字母 题目来源：CFF2016</p></blockquote>
 <p>密钥长度 12 位, 密文长度 84 位. 初步推断密文七位一组.</p>
 <p>尝试将密文七位一组转成数字以后与密钥进行各种运算, 最终试出 flag 是异或得到的 <code>WELCOMECISRG </code></p>
 <p>(查了一下这种密码其实叫 <a href="https://baike.baidu.com/item/%E8%B4%B9%E7%BA%B3%E5%A7%86%E5%AF%86%E7%A0%81">费纳姆密码 </a>)</p>
@@ -244,22 +242,18 @@
 <p>请选手观察以下密文并转换成flag形式</p>
 <p>..-. .-.. .- &ndash;. &hellip;.. ..&mdash; ..&mdash; &mdash;&ndash; .&mdash;- &mdash;.. -.. -&hellip;. -&hellip;. &hellip;.. &hellip;&ndash; &mdash;.. &ndash;&hellip; -.. .&mdash;- -.. .- &mdash;-. &hellip;&ndash; .&mdash;- &mdash;.. .&mdash;- ..&mdash; -&hellip; &ndash;&hellip; &ndash;&hellip; &ndash;&hellip; -&hellip;. &hellip;&ndash; &hellip;.- .&mdash;- &mdash;&ndash;</p>
 <p>flag形式为32位大写md5</p>
-<p>题目来源：CFF2016</p>
-</blockquote>
+<p>题目来源：CFF2016</p></blockquote>
 <p>摩斯密码, 解码后得到 <code>FLAG522018D665387D1DA931812B77763410 </code></p>
 <h1 id="a-piece-of-cake">A Piece Of Cake</h1>
 <blockquote>
-<p>nit yqmg mqrqn bxw mtjtm nq rqni fiklvbxu mqrqnl xwg dvmnzxu lqjnyxmt xatwnl, rzn nit uxnntm xmt zlzxuuk mtjtmmtg nq xl rqnl. nitmt vl wq bqwltwlzl qw yivbi exbivwtl pzxuvjk xl mqrqnl rzn nitmt vl atwtmxu xamttetwn xeqwa tsftmnl, xwg nit fzruvb, nixn mqrqnl ntwg nq gq lqet qm xuu qj nit jquuqyvwa: xbbtfn tutbnmqwvb fmqamxeevwa, fmqbtll gxnx qm fiklvbxu ftmbtfnvqwl tutbnmqwvbxuuk, qftmxnt xznqwqeqzluk nq lqet gtamtt, eqdt xmqzwg, qftmxnt fiklvbxu fxmnl qj vnltuj qm fiklvbxu fmqbtlltl, ltwlt xwg exwvfzuxnt nitvm twdvmqwetwn, xwg tsivrvn vwntuuvatwn rtixdvqm - tlftbvxuuk rtixdvqm yivbi evevbl izexwl qm qnitm xwvexul. juxa vl lzrlnvnzntfxllvldtmktxlkkqzaqnvn. buqltuk mtuxntg nq nit bqwbtfn qj x mqrqn vl nit jvtug qj lkwnitnvb rvquqak, yivbi lnzgvtl twnvnvtl yiqlt wxnzmt vl eqmt bqefxmxrut nq rtvwal nixw nq exbivwtl.</p>
-</blockquote>
+<p>nit yqmg mqrqn bxw mtjtm nq rqni fiklvbxu mqrqnl xwg dvmnzxu lqjnyxmt xatwnl, rzn nit uxnntm xmt zlzxuuk mtjtmmtg nq xl rqnl. nitmt vl wq bqwltwlzl qw yivbi exbivwtl pzxuvjk xl mqrqnl rzn nitmt vl atwtmxu xamttetwn xeqwa tsftmnl, xwg nit fzruvb, nixn mqrqnl ntwg nq gq lqet qm xuu qj nit jquuqyvwa: xbbtfn tutbnmqwvb fmqamxeevwa, fmqbtll gxnx qm fiklvbxu ftmbtfnvqwl tutbnmqwvbxuuk, qftmxnt xznqwqeqzluk nq lqet gtamtt, eqdt xmqzwg, qftmxnt fiklvbxu fxmnl qj vnltuj qm fiklvbxu fmqbtlltl, ltwlt xwg exwvfzuxnt nitvm twdvmqwetwn, xwg tsivrvn vwntuuvatwn rtixdvqm - tlftbvxuuk rtixdvqm yivbi evevbl izexwl qm qnitm xwvexul. juxa vl lzrlnvnzntfxllvldtmktxlkkqzaqnvn. buqltuk mtuxntg nq nit bqwbtfn qj x mqrqn vl nit jvtug qj lkwnitnvb rvquqak, yivbi lnzgvtl twnvnvtl yiqlt wxnzmt vl eqmt bqefxmxrut nq rtvwal nixw nq exbivwtl.</p></blockquote>
 <p>一堆看不懂的玩意儿, 可能是凯撒或者替代密码之类的</p>
 <p>找各种网站试试, 最后试出来是替代密码, 解密网站: <a href="https://quipqiup.com/">https://quipqiup.com/</a></p>
 <p>解密结果</p>
 <blockquote>
-<p>​    the word robot can refer to both physical robots and virtual software agents, but the latter are usually referred to as bots. there is no consensus on which machines qualify as robots but there is general agreement among experts, and the public, that robots tend to do some or all of the following: accept electronic programming, process data or physical perceptions electronically, operate autonomously to some degree, move around, operate physical parts of itself or physical processes, sense and manipulate their environment, and exhibit intelligent behavior - especially behavior which mimics humans or other animals. flag is substitutepassisveryeasyyougotit. closely related to the concept of a robot is the field of synthetic biology, which studies entities whose nature is more comparable to beings than to machines.</p>
-</blockquote>
+<p>​    the word robot can refer to both physical robots and virtual software agents, but the latter are usually referred to as bots. there is no consensus on which machines qualify as robots but there is general agreement among experts, and the public, that robots tend to do some or all of the following: accept electronic programming, process data or physical perceptions electronically, operate autonomously to some degree, move around, operate physical parts of itself or physical processes, sense and manipulate their environment, and exhibit intelligent behavior - especially behavior which mimics humans or other animals. flag is substitutepassisveryeasyyougotit. closely related to the concept of a robot is the field of synthetic biology, which studies entities whose nature is more comparable to beings than to machines.</p></blockquote>
 <blockquote>
-<p>flag is substitutepassisveryeasyyougotit</p>
-</blockquote>
+<p>flag is substitutepassisveryeasyyougotit</p></blockquote>
 <h1 id="shellcode">Shellcode</h1>
 <p>啥鬼畜题目&hellip;</p>
 <p>在 Windows 用 <a href="https://github.com/inquisb/shellcodeexec">shellcodeexec</a> 跑一下得到结果&hellip;</p>
@@ -697,8 +691,7 @@
 <blockquote>
 <p>请计算1000000000以内3或5的倍数之和。</p>
 <p>如：10以内这样的数有3,5,6,9，和是23</p>
-<p>请提交PCTF{你的答案}</p>
-</blockquote>
+<p>请提交PCTF{你的答案}</p></blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -716,8 +709,7 @@
 </div><p>注意是 1000000000 <strong>以内</strong></p>
 <h1 id="神秘的文件">神秘的文件</h1>
 <blockquote>
-<p>出题人太懒，还是就丢 了个文件就走了，你能发现里面的秘密吗？</p>
-</blockquote>
+<p>出题人太懒，还是就丢 了个文件就走了，你能发现里面的秘密吗？</p></blockquote>
 <p>file 一下.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -760,8 +752,7 @@
 <p>p = 3487583947589437589237958723892346254777 q = 8767867843568934765983476584376578389</p>
 <p>e = 65537</p>
 <p>求d =</p>
-<p>请提交PCTF{d}</p>
-</blockquote>
+<p>请提交PCTF{d}</p></blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -780,31 +771,27 @@
 </div>
 </div><h1 id="美丽的实验室logo">美丽的实验室logo</h1>
 <blockquote>
-<p>出题人丢下个logo就走了，大家自己看着办吧</p>
-</blockquote>
+<p>出题人丢下个logo就走了，大家自己看着办吧</p></blockquote>
 <p>拖到 StegSolve 里用 Frame Browser&hellip;&hellip;</p>
 <p>还行&hellip;&hellip;</p>
 <h1 id="手贱">手贱</h1>
 <blockquote>
 <p>某天A君的网站被日，管理员密码被改，死活登不上，去数据库一看，啥，这密码md5不是和原来一样吗？为啥登不上咧？</p>
 <p>d78b6f302l25cdc811adfe8d4e7c9fd34</p>
-<p>请提交PCTF{原来的管理员密码}</p>
-</blockquote>
+<p>请提交PCTF{原来的管理员密码}</p></blockquote>
 <p>多了一位, 某个不属于 hexdigits  的字符混进来了</p>
 <h1 id="段子">段子</h1>
 <blockquote>
 <p>程序猿圈子里有个非常著名的段子：</p>
 <p>手持两把锟斤拷，口中疾呼烫烫烫。</p>
 <p>请提交其中&quot;锟斤拷&quot;的十六进制编码。(大写)</p>
-<p>FLAG: PCTF{你的答案}</p>
-</blockquote>
+<p>FLAG: PCTF{你的答案}</p></blockquote>
 <h1 id="段子-1">段子</h1>
 <blockquote>
 <p>程序猿圈子里有个非常著名的段子：</p>
 <p>手持两把锟斤拷，口中疾呼烫烫烫。</p>
 <p>请提交其中&quot;锟斤拷&quot;的十六进制编码。(大写)</p>
-<p>FLAG: PCTF{你的答案}</p>
-</blockquote>
+<p>FLAG: PCTF{你的答案}</p></blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -815,8 +802,7 @@
 </div>
 </div><h1 id="veryeasy">veryeasy</h1>
 <blockquote>
-<p>使用基本命令获取flag</p>
-</blockquote>
+<p>使用基本命令获取flag</p></blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -832,13 +818,11 @@
 </div><p>PCTF{strings_i5_3asy_isnt_i7}</p>
 <h1 id="关于uss-lab">关于USS Lab.</h1>
 <blockquote>
-<p>USS的英文全称是什么，请全部小写并使用下划线连接_，并在外面加上PCTF{}之后提交</p>
-</blockquote>
+<p>USS的英文全称是什么，请全部小写并使用下划线连接_，并在外面加上PCTF{}之后提交</p></blockquote>
 <p><code>PCTF{ubiquitous_system_security}</code></p>
 <h1 id="base64">base64?</h1>
 <blockquote>
-<p>GUYDIMZVGQ2DMN3CGRQTONJXGM3TINLGG42DGMZXGM3TINLGGY4DGNBXGYZTGNLGGY3DGNBWMU3WI===</p>
-</blockquote>
+<p>GUYDIMZVGQ2DMN3CGRQTONJXGM3TINLGG42DGMZXGM3TINLGGY4DGNBXGYZTGNLGGY3DGNBWMU3WI===</p></blockquote>
 <p>base32 再转 ASCII: <code>rax2 -s $(base32 -d) </code></p>
 <p>结果 <code>PCTF{Just_t3st_h4v3_f4n} </code></p>
     </div>
@@ -967,6 +951,9 @@
 
 
 
+
+
+  
 
 </body>
 </html>

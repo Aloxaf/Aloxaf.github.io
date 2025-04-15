@@ -25,7 +25,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.140.2 with theme even" />
+<meta name="generator" content="Hugo 0.145.0 with theme even" />
 
 
 <link rel="preload" href="/fonts/iconfont/iconfont.woff" as="font" type="font/woff" crossorigin="anonymous">
@@ -41,7 +41,7 @@
 
 
 
-<link href="/sass/main.min.b8ff8f6ae815afd22fe55d59dcb2a03ea26d91c49c77a2d29e82aa121cc7d820.css" rel="stylesheet">
+<link href="/sass/main.min.4239da8be5d6b3c3a4e298a01dad493e86024d2cefc2b1385e017fb0ee96d262.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
@@ -467,7 +467,7 @@
 <p>你可能也会喜欢<a href="https://ricardomartins.cc/2016/08/03/convenient_and_idiomatic_conversions_in_rust">这篇关于如何在 Rust 中进行方便地道的转换的文章</a>.</p>
 <h4 id="cow">Cow</h4>
 <p>如果你需要处理很多不确定是否需要进行分配（allocate）的东西，你应该使用<a href="https://doc.rust-lang.org/std/borrow/enum.Cow.html"><code>Cow&lt;'a, B&gt;</code></a>，它可以让你抽象借用和拥有所有权的数据。</p>
-<h4 id="例stdconvertintohttpsdocrust-langorgstdconverttraitintohtml">例：<a href="https://doc.rust-lang.org/std/convert/trait.Into.html"><code>std::convert::Into</code></a></h4>
+<h4 id="例stdconvertinto">例：<a href="https://doc.rust-lang.org/std/convert/trait.Into.html"><code>std::convert::Into</code></a></h4>
 <table>
   <thead>
       <tr>
@@ -590,8 +590,7 @@
 <p>使用迭代器作为输入可能会让你的 API 更加难以阅读（<code>T: Iterator&lt;Item=Thingy&gt;</code> vs <code>&amp;[Thingy]</code>），但是可以让用户避免内存分配。</p>
 <p>不过，<strong>事实上</strong>，你可能也并不想接受一个宽泛的 <code>Iterator</code>：而是使用 <a href="https://doc.rust-lang.org/std/iter/trait.IntoIterator.html"><code>IntoIterator</code></a> 。这样你就可以得到一个通过调用 <code>.into_iter()</code> 就能轻松转换为迭代器的类型。判断哪些类型实现了 <code>IntoIterator</code> 也很简单——就如文档中所说的：</p>
 <blockquote>
-<p>实现 IntoIterator 的好处之一就是你的类型将适用于 Rust 的 for 循环。</p>
-</blockquote>
+<p>实现 IntoIterator 的好处之一就是你的类型将适用于 Rust 的 for 循环。</p></blockquote>
 <p>也就说是，任何可以在 <code>for</code> 循环中使用的类型，都可以被传递给你的函数。</p>
 <h5 id="返回实现迭代器">返回/实现迭代器</h5>
 <p>如果你想返回一些你的用户可以当做迭代器来使用的东西，最好的方式是定义一个实现了 <code>Iterator</code> 的新类型。当 <code>impl Trait</code> 稳定以后（见<a href="https://github.com/rust-lang/rust/issues/34511">这个跟踪 issue</a>）（译注：已稳定）可能会更简单。你可以在这篇<a href="https://github.com/alexcrichton/futures-rs/blob/f78905e584d06e69e5237ca12745ccd3d6f4a73a/TUTORIAL.md#returning-futures"><code>futures</code> 教程</a>中找到更多信息（返回 <code>Future</code> 和返回 <code>Iterator</code> 是类似的）。</p>
@@ -634,7 +633,7 @@
 </ul>
 <h3 id="为输入参数实现自定义-trait">为输入参数实现自定义 trait</h3>
 <p>Rust 中实现某种 “函数重载” 的方式是为参数指定一个泛型 trait <code>T</code>，然后对参数的可能的所有类型都实现 <code>T</code>。</p>
-<h4 id="例strfindhttpsdocrust-langorgstdprimitivestrhtmlmethodfind">例：<a href="https://doc.rust-lang.org/std/primitive.str.html#method.find"><code>str::find</code></a></h4>
+<h4 id="例strfind">例：<a href="https://doc.rust-lang.org/std/primitive.str.html#method.find"><code>str::find</code></a></h4>
 <p><code>str::find&lt;P: Pattern&gt;(p: P)</code> 接受一个<a href="https://doc.rust-lang.org/std/str/pattern/trait.Pattern.html"><code>Pattern</code></a>作为输入，<code>char</code>、<code>str</code>、<code>FnMut(char) -&gt; bool</code> 等类型都实现了这个 trait</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -715,7 +714,7 @@
 <p>到目前为止，我们已经通过定义并实现自己的 trait 扩展了类型上的可用方法。但你还可以定义<strong>扩展其他 trait</strong> 的 trait（<code>trait MyTrait: BufRead + Debug {}</code>）。最突出的例子是 <a href="https://crates.io/crates/itertools">itertools</a> crate，它为 <code>std</code> 的迭代器添加了一大堆方法。</p>
 <h3 id="建造者模式">建造者模式</h3>
 <p>通过将一堆小方法串联在一起你可以让复杂的 API 更加易于调用。这个和 Session Type 非常搭（稍后会提到）。<a href="https://crates.io/crates/derive_builder"><code>derive_builder</code></a> crate 可以用来为自定义的 struct 自动生成（简单的）Builder</p>
-<h4 id="例-stdfsopenoptionshttpsdocrust-langorgstdfsstructopenoptionshtml">例： <a href="https://doc.rust-lang.org/std/fs/struct.OpenOptions.html"><code>std::fs::OpenOptions</code></a></h4>
+<h4 id="例-stdfsopenoptions">例： <a href="https://doc.rust-lang.org/std/fs/struct.OpenOptions.html"><code>std::fs::OpenOptions</code></a></h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -761,8 +760,7 @@
 </div>
 </div><p>一个很好的实际例子是 /u/ssokolow <a href="https://www.reddit.com/r/rust/comments/568yvh/typesafe_unions_in_c_and_rust/d8hcwfs">在 /r/rust 的这个帖子</a> 中给出的：</p>
 <blockquote>
-<p>Hyper 使用这个方法来在编译时保证，你不可能做出诸如 “在请求/响应主体已经开始后又来设置 HTTP 头” 这种经常在 PHP 网站上看到的事。（编译器可以捕获这个错误，因为在该状态下的连接上没有 “set header” 方法，并且由于过时引用会失效，所以被引用的一定是正确的状态。）</p>
-</blockquote>
+<p>Hyper 使用这个方法来在编译时保证，你不可能做出诸如 “在请求/响应主体已经开始后又来设置 HTTP 头” 这种经常在 PHP 网站上看到的事。（编译器可以捕获这个错误，因为在该状态下的连接上没有 “set header” 方法，并且由于过时引用会失效，所以被引用的一定是正确的状态。）</p></blockquote>
 <p><a href="http://hyper.rs/hyper/v0.9.10/hyper/server/index.html#an-aside-write-status"><code>hyper::server</code> 文档</a>中更详细地解释了这是如何实现的。另一个有趣的想法<a href="https://github.com/skade/lazers/blob/96efff493be9312ffc70eac5a04b441952e089eb/lazers-replicator/src/lib.md#verify-peers">可以在 lazers-replicator crate 中找到</a>：它使用 <code>std::convert::From</code>来在状态中转换。</p>
 <p>更多信息：</p>
 <ul>
@@ -935,6 +933,9 @@
 
 
 
+
+
+  
 
 </body>
 </html>

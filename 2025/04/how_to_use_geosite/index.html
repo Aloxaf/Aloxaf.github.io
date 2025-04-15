@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Clash 中 GeoSite 分流的正确使用方式 - Aloxaf&#39;s Blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="" /><meta name="description" content="因为觉得写 ruleset 太麻烦，研究了一下 GeoSite，发现其实在「正确的配置」下，只靠 GeoSite 就能满足绝大部分的分流需求。这方面的文章好像很少，写一篇分享一下折腾经验。
+" /><meta name="keywords" content="aloxaf, ctf, linux, zsh" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.145.0 with theme even" />
+
+
+<link rel="preload" href="/fonts/iconfont/iconfont.woff" as="font" type="font/woff" crossorigin="anonymous">
+<link rel="preload" href="/fonts/FiraCode/FiraCode-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+
+
+<link rel="canonical" href="https://www.aloxaf.com/2025/04/how_to_use_geosite/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.4239da8be5d6b3c3a4e298a01dad493e86024d2cefc2b1385e017fb0ee96d262.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:url" content="https://www.aloxaf.com/2025/04/how_to_use_geosite/">
+  <meta property="og:site_name" content="Aloxaf&#39;s Blog">
+  <meta property="og:title" content="Clash 中 GeoSite 分流的正确使用方式">
+  <meta property="og:description" content="因为觉得写 ruleset 太麻烦，研究了一下 GeoSite，发现其实在「正确的配置」下，只靠 GeoSite 就能满足绝大部分的分流需求。这方面的文章好像很少，写一篇分享一下折腾经验。">
+  <meta property="og:locale" content="zh">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2025-04-15T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-04-15T00:00:00+00:00">
+    <meta property="article:tag" content="Clash">
+    <meta property="article:tag" content="网络">
+
+  <meta itemprop="name" content="Clash 中 GeoSite 分流的正确使用方式">
+  <meta itemprop="description" content="因为觉得写 ruleset 太麻烦，研究了一下 GeoSite，发现其实在「正确的配置」下，只靠 GeoSite 就能满足绝大部分的分流需求。这方面的文章好像很少，写一篇分享一下折腾经验。">
+  <meta itemprop="datePublished" content="2025-04-15T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2025-04-15T00:00:00+00:00">
+  <meta itemprop="wordCount" content="3776">
+  <meta itemprop="keywords" content="Clash,网络">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Clash 中 GeoSite 分流的正确使用方式">
+  <meta name="twitter:description" content="因为觉得写 ruleset 太麻烦，研究了一下 GeoSite，发现其实在「正确的配置」下，只靠 GeoSite 就能满足绝大部分的分流需求。这方面的文章好像很少，写一篇分享一下折腾经验。">
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Aloxaf&#39;s Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于</li>
+      </a><a href="/friend/">
+        <li class="mobile-menu-item">友链</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Aloxaf&#39;s Blog</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">关于</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/friend/">友链</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Clash 中 GeoSite 分流的正确使用方式</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2025-04-15 </span>
+        
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#geosite-是啥">GeoSite 是啥</a></li>
+        <li><a href="#geosite-规则现状及问题">GeoSite 规则现状及问题</a>
+          <ul>
+            <li><a href="#v2flydomain-list-community"><a href="https://github.com/v2fly/domain-list-community">v2fly/domain-list-community</a></a></li>
+            <li><a href="#loyalsoldierv2ray-rules-dat"><a href="Loyalsoldier/v2ray-rules-dat">Loyalsoldier/v2ray-rules-dat</a></a></li>
+          </ul>
+        </li>
+        <li><a href="#正确用法">正确用法</a>
+          <ul>
+            <li><a href="#流量分流">流量分流</a></li>
+            <li><a href="#fake-ip-filter">fake-ip-filter</a></li>
+            <li><a href="#dns-分流">DNS 分流</a></li>
+            <li><a href="#引入其他规则">引入其他规则</a></li>
+            <li><a href="#尽量避免使用-classical-规则">尽量避免使用 classical 规则</a></li>
+          </ul>
+        </li>
+        <li><a href="#杂七杂八">杂七杂八</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>因为觉得写 ruleset 太麻烦，研究了一下 GeoSite，发现其实在「正确的配置」下，只靠 GeoSite 就能满足绝大部分的分流需求。这方面的文章好像很少，写一篇分享一下折腾经验。</p>
+<h2 id="geosite-是啥">GeoSite 是啥</h2>
+<p>GeoSite 也是一组规则列表，很多配置文件中都有用到它，只不过用的不多。</p>
+<p>随便找了个例子，下面的 <code>geosite:cn,private</code> 和 <code>GEOSITE,cn</code> 都是在引用 GeoSite 规则。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">dns</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">nameserver-policy</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c"># 此处引用了 geosite 中的 cn 和 private 分组</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="s2">&#34;geosite:cn,private&#34;</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">https://223.5.5.5/dns-query</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">rules</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c"># 此处也是引用 geosite 的 cn 和 private 分组</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">GEOSITE,private,DIRECT</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">GEOSITE,cn,DIRECT</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>和普通的规则集相比，GeoSite 有哪些不同呢？</p>
+<p><strong>使用简单</strong></p>
+<p>绝大多数工具都内置了对 GeoX 系列的支持，有些工具甚至不用特地引入，默认就给你带上了，直接写就行，就像上面的配置一样。</p>
+<p><strong>树形规则</strong></p>
+<p>GeoSite 底层是一系列小规则，这些小规则又组成更大的规则，最终汇总到几个大分组上，因此可以通过指定不同的分组来实现灵活的分流。</p>
+<pre class="mermaid">
+  graph LR
+    cn --&gt; category-games;
+    cn --&gt; category-bank;
+    category-games --&gt; mihoyo;
+    category-games --&gt; tencent-games;
+    mihoyo --&gt; mihoyo.com
+    mihoyo --&gt; mihoyogift.com
+</pre>
+<p>而 ruleset 只有一个层级，只能把它当成一个整体使用。</p>
+<p><strong>属性过过滤</strong></p>
+<p>GeoSite 支持 @attr 来进一步筛选分组中的规则，灵活程度更上一层楼。</p>
+<p>比如 <code>steam@cn</code> 可以过滤出国内直连的 steam 域名。</p>
+<p>又比如 <code>jd@!cn</code> 可以过滤出 jd 的国际域名。</p>
+<h2 id="geosite-规则现状及问题">GeoSite 规则现状及问题</h2>
+<h3 id="v2flydomain-list-community"><a href="https://github.com/v2fly/domain-list-community">v2fly/domain-list-community</a></h3>
+<p>这是目前 GeoSite 最上游项目，由 v2fly 进行维护。</p>
+<p>它的问题在于分组规则很迷惑，很多域名会同时归属两个截然相反的规则（我也说不好算是 bug 还是 feature）。</p>
+<p>像 <code>geolocation-cn</code> 和 <code>geolocation-!cn</code>，从字面意思上看，应该分别是国内和国外域名，但实际上里面有大量重叠域名。</p>
+
+          <link rel="stylesheet" href="/css/vendors/admonitions.5c73bad2903e7d2d44ad118370ebd8c2cf5f239d4d93c283e55c00f2f8d30746.css" integrity="sha256-XHO60pA&#43;fS1ErRGDcOvYws9fI51Nk8KD5VwA8vjTB0Y=" crossorigin="anonymous">
+  <div class="admonition note">
+    <div class="admonition-header">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M0 64C0 28.7 28.7 0 64 0L224 0l0 128c0 17.7 14.3 32 32 32l128 0 0 125.7-86.8 86.8c-10.3 10.3-17.5 23.1-21 37.2l-18.7 74.9c-2.3 9.2-1.8 18.8 1.3 27.5L64 512c-35.3 0-64-28.7-64-64L0 64zm384 64l-128 0L256 0 384 128zM549.8 235.7l14.4 14.4c15.6 15.6 15.6 40.9 0 56.6l-29.4 29.4-71-71 29.4-29.4c15.6-15.6 40.9-15.6 56.6 0zM311.9 417L441.1 287.8l71 71L382.9 487.9c-4.1 4.1-9.2 7-14.9 8.4l-60.1 15c-5.5 1.4-11.2-.2-15.2-4.2s-5.6-9.7-4.2-15.2l15-60.1c1.4-5.6 4.3-10.8 8.4-14.9z"/></svg>
+      <span>Note</span>
+    </div>
+      <div class="admonition-content">
+        <p>大部分人更常用的是 cn 规则，它由 geolocation-cn 和 tld-cn 组成。我喜欢拆开写，这样看起来整齐一点（</p>
+      </div>
+  </div>
+<p>如 <code>steampowered.com.8686c.com</code> 这个应该<strong>直连</strong>的域名，同时归属 <code>geolocation-cn</code> 和 <code>geolocation-!cn</code>，一旦你这么写规则，就会因为匹配到 <code>geolocation-!cn</code> 而走代理浪费流量。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">- GEOSITE,geolocation-!cn,PROXY
+</span></span><span class="line"><span class="cl">- GEOSITE,geolocation-cn,DIRECT
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>那是不是把 <code>geolocation-cn</code> 规则放到前面就行了呢？也不行，<code>tiktok.com</code> 也归属这两个分组，但是它应该走代理，如果先匹配到 <code>geolocation-cn</code> 就会变成直连。</p>
+<p>这个看起来无解（其实并不）的问题导致很多人，甚至官方维护者，都建议使用下游规则<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>。</p>
+<h3 id="loyalsoldierv2ray-rules-dat"><a href="Loyalsoldier/v2ray-rules-dat">Loyalsoldier/v2ray-rules-dat</a></h3>
+<p>这应该是目前使用最广泛的 GeoSite 分支了，其他分支基本上都是在这上面小修小补，它有两大特点：</p>
+<ol>
+<li>修复了原始项目的分组问题，从<code>geolocation-cn</code> 和 <code>geolocation-!cn</code> 剔除了 <code>@!cn</code> 和 <code>@cn</code> 域名，防止冲突。</li>
+<li>引入了大量其他规则作为补充。</li>
+</ol>
+<p>相比<strong>默认配置</strong>的 GeoSite，这个版本绝大多数情况下确实工作得更好，但是，仍然存在一定的问题，而且恰恰也是这两点导致的。</p>
+<p><strong>域名分组缺失</strong></p>
+<p>首先，剔除掉 <code>@cn</code> 和 <code>@!cn</code> 后，确实不会「误分流」了，但是变成「漏分流」了。因为它们既不在 <code>geolocation-cn</code> 中也不在 <code>geolocation-!cn</code> 中，如果你不用 cn 分组就匹配不到它们，很难说究竟和原版相比哪个更符合直觉。</p>
+<p>比如域名 <code>gstore.val.manlaxy.com</code>，既不在 <code>geolocation-cn</code> 也不在 <code>geolocation-!cn</code>，只能用 <code>steam@cn</code> 来引用它 。但问题就在于——我不知道究竟哪些域名是漏网之鱼，总不能把所有 <code>category-x@cn</code> 分类都写一次吧……</p>
+<p><strong>过于宽泛的 CN 规则</strong></p>
+<p>可能是为了弥补第一点造成的问题，项目额外引入了 <a href="https://github.com/felixonmars/dnsmasq-china-list/blob/master/accelerated-domains.china.conf">dnsmasq-china-list/accelerated-domains.china.conf</a> 补充到了 CN 规则中。</p>
+<blockquote>
+<p>吐槽一下，这个做法导致了 geolocation-cn + tld-cn != cn，也很反直觉，会坑到一些用户</p></blockquote>
+<p>乍一看很好，但实际上 accelerated-domains.china.conf 并不代表能国内直连的域名 ，它的收录标准（之一）是<strong>是否有中国 NS 服务器</strong>，而不是域名解析结果是否在中国，导致了一些错误的分流结果<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>。</p>
+<p>甚至在 dnsmasq-china-list 2023 年的一个 issue <sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup>中，有人使用脚本进行筛选，发现这个列表中有 43% 的域名解析结果都不在中国。虽然不在中国并不意味着不能直连，但肯定是起不到到加速效果的。</p>
+<p><strong>仍然存在的冲突分组</strong></p>
+<p>继上面的问题，由于 cn 分组中添加了其他规则，又再次导致了某些域名同时出现了两个冲突的分组中。</p>
+<p>比如 <code>vscode.download.prss.microsoft.com</code>，既在 <code>geolocation-!cn</code> 分组，也在 <code>cn</code> 分组中，如果没用 <code>microsft@cn</code> 指定它直连，就会走代理浪费流量。</p>
+<h2 id="正确用法">正确用法</h2>
+<h3 id="流量分流">流量分流</h3>
+<p>经过一番研究之后，我认为最好还是使用原版 GeoSite 作为基础，再此基础上再搭配其他规则进行分流。</p>
+<p>至于原版规则存在的问题，其实规避起来非常简单。使用  <code>@cn</code> 和 <code>@!cn</code> 属性搭配如下写法，就能避免原版规则中存在的问题，实现正确的分流：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">geox-url</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">geosite</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;https://testingcf.jsdelivr.net/gh/v2fly/domain-list-community@release/dlc.dat&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">rules</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">GEOSITE,geolocation-!cn@cn,DIRECT</span><span class="w"> </span><span class="c"># DIRECT 为直连分组，可以改为你自己的分组</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">GEOSITE,geolocation-!cn,PROXY    </span><span class="w"> </span><span class="c"># PROXY 为代理分组，可以改为你自己的分组</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">GEOSITE,geolocation-cn@!cn,PROXY</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">GEOSITE,geolocation-cn,DIRECT</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">GEOSITE,tld-cn,DIRECT</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>—— geolocation-!cn 整体是国外网站，只是存在一些国内加速域名，那就先使用 @cn 筛选出这些域名进行直连，剩下的再走代理。如 alibaba.cdn.steampipe.steamcontent.com 之于 steam 分组。</p>
+<p>—— geolocation-cn 整体是国内网站，只是存在一些只能在国外访问的域名，那就先使用 @!cn 筛选出这些域名进行代理，剩下的走直连如 jd.hk 之于 jd 分组。</p>
+<p>由于 <code>geolocation-!cn@cn</code> 已经包含了诸如 <code>steam@cn</code> 这样的子分组规则，不需要额外设置就可以实现绝大部分域名的正确分流，劣势瞬间变成了优势。但在 Loyalsoldier 分支就无法这么写，因为它不存在 <code>geolocation-cn@!cn</code> 和 <code>geolocation-!cn@cn</code> 分组，必须手动写 <code>steam@cn</code> 这样的子分组名称。</p>
+
+  <div class="admonition note">
+    <div class="admonition-header">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M0 64C0 28.7 28.7 0 64 0L224 0l0 128c0 17.7 14.3 32 32 32l128 0 0 125.7-86.8 86.8c-10.3 10.3-17.5 23.1-21 37.2l-18.7 74.9c-2.3 9.2-1.8 18.8 1.3 27.5L64 512c-35.3 0-64-28.7-64-64L0 64zm384 64l-128 0L256 0 384 128zM549.8 235.7l14.4 14.4c15.6 15.6 15.6 40.9 0 56.6l-29.4 29.4-71-71 29.4-29.4c15.6-15.6 40.9-15.6 56.6 0zM311.9 417L441.1 287.8l71 71L382.9 487.9c-4.1 4.1-9.2 7-14.9 8.4l-60.1 15c-5.5 1.4-11.2-.2-15.2-4.2s-5.6-9.7-4.2-15.2l15-60.1c1.4-5.6 4.3-10.8 8.4-14.9z"/></svg>
+      <span>Tips</span>
+    </div>
+      <div class="admonition-content">
+        <p>steam 直连其实还需要额外设置 steamserver.net 为直连，否则 steam 进行测速后还是会从国外 CDN 下载游戏，此时还是会走代理。<sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup></p>
+      </div>
+  </div>
+<h3 id="fake-ip-filter">fake-ip-filter</h3>
+<p>众所周知，fake-ip 模式有个问题，就是域名 ping 不通，这会导致一些程序错误地认为自己没有联网（比如 Windows）。</p>
+<p>常见的解法是把 msftconnecttest.com 和 msftncsi.com 加入 fake-ip-filter，但这只解决了 Windows 的问题。</p>
+<p>更好的方法是使用 <code>geosite:connectivity-check</code> 分组，这里面包含了安卓、苹果、Windows、华为、KDE、Arch Linux ……的连通性检查域名，一劳永逸。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">dns</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">fake-ip-filter</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="s1">&#39;geosite:connectivity-check&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="s1">&#39;geosite:private&#39;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="dns-分流">DNS 分流</h3>
+<p>完美了吗？还没有。除了流量分流以外，DNS 分流也很重要。像 fonts.googleapis.com 这样的域名，虽然没有被墙，但是如果使用国外 DNS 解析，也会造成访问非常缓慢。</p>
+<p>如果发现「明明设置了直连，但是反而更慢了？」，大概率就是没有配置 DNS 分流，导致直连的其实是国外 IP。</p>
+<p>Clash 中的 DNS 配置策略有挺多的，这里采用最简单的一种：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">dns</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">enable</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">ipv6</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">enhanced-mode</span><span class="p">:</span><span class="w"> </span><span class="l">fake-ip</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">fake-ip-range</span><span class="p">:</span><span class="w"> </span><span class="m">198.18.0.1</span><span class="l">/16</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">fake-ip-filter</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="s1">&#39;geosite:connectivity-check&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="s1">&#39;geosite:private&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">default-nameserver</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="m">223.5.5.5</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">proxy-server-nameserver</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="m">223.5.5.5</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">direct-nameserver</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">https://doh.pub/dns-query</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">https://223.5.5.5/dns-query</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">https://doh.360.cn/dns-query</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c"># 由于国外 DoH 大部分都被墙了，这里采用代理来进行国外 DNS 查询</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c"># PROXY 可以改为你自己的代理分组</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">nameserver</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">https://1.1.1.8/dns-query#PROXY</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">https://8.8.8.8/dns-query#PROXY</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>解释一下这一堆 nameserver 的作用：</p>
+<p><strong>default-nameserver</strong></p>
+<p>用来解析「DNS 服务器域名」的 DNS，需要直接使用 IP</p>
+<p><strong>proxy-server-nameserver</strong></p>
+<p>用来解析「代理服务器域名」，防止 nameserver 无法访问导致连不上代理。
+比如上个月国外 DoH 大规模被墙，很多 nameserver 设置为国外 DoH，又没有设置 proxy-server-nameserver 的人就连不上代理了（我自己就是）。</p>
+<p><strong>direct-nameserver</strong></p>
+<p>「直连」域名的解析，这里用了 DoH 来防止劫持。直接用运营商的 DNS 也行，愿意自建 smartdns / adgurad home 等服务效果更好。</p>
+<p><strong>nameserver</strong></p>
+<p>用来解析没有匹配到任何「域名规则」的域名，通常是国外域名，建议使用国外 DoH 防止污染。
+但这个解析结果并不会用来发起连接，所以为了追求速度不使用 DoH 或直接使用国内 DNS 也行。</p>
+<p>nameserver + direct-nameserver 的解析流程非常清晰，没有弯弯绕——</p>
+<pre class="mermaid">
+  flowchart TD
+  Rule[匹配规则]
+  Domain[匹配到域名规则]
+  IP[匹配到目标 IP 规则]
+
+  NameServer[使用 nameserver 查询]
+  DirectNS[使用 direct-nameserver 重新解析]
+
+  Proxy[发送域名给代理]
+  Direct[使用 IP 直接连接]
+
+  Rule --&gt;  Domain
+  Rule --&gt; IP
+
+  Domain -- 域名匹配到直连 --&gt; DirectNS
+
+  IP --&gt; NameServer
+  
+  NameServer -- IP 匹配到直连 --&gt; DirectNS
+  DirectNS --&gt; Direct
+
+  NameServer -- IP 匹配到代理 --&gt; Proxy[发送域名给代理]
+  Domain -- 域名匹配到代理 --&gt; Proxy
+</pre>
+<p>另一个常用方案 nameserver-policy 也可以达到同样的效果，但 nameserver-policy 的配置比较复杂，没配置好反而会适得其反。</p>
+<p>举例来说，很多人在更新 rules 时并不会更新 nameserver-policy。比如发现 download.org 有国内节点，可以直连，于是就写下了：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">rules</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c"># 插入了一条新的直连规则</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">DOMAIN,download.org,DIRECT</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">GEOSITE,geolocation-!cn,PROXY</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">GEOSITE,cn,DIRECT</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">dns</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">nameserver</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="m">8.8.8.8</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">nameserver-policy</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c"># 但是 nameserver-policy 没有增加这条规则</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">&#39;geosite:cn,private&#39;</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="m">223.5.5.5</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>这个写法问题在于一旦 <code>geosite:cn</code> 没有匹配到 <code>download.org</code>，clash 就会使用 nameserver 来解析，结果通常是一个国外 IP，效果适得其反。</p>
+<p>相比之下 direct-nameserver 就简单多了，只要是直连规则，一定会使用它来解析，免去手动配置的麻烦。</p>
+<h3 id="引入其他规则">引入其他规则</h3>
+<p>Loyalsoldier/v2ray-rules-dat 引入的很多规则确实很强大，比如去广告就比原版分支强多了。幸运的是 Loyalsoldier 提供了 <a href="https://github.com/Loyalsoldier/v2ray-rules-dat?tab=readme-ov-file#%E8%A7%84%E5%88%99%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD%E5%9C%B0%E5%9D%80">txt</a>  格式的域名集合，可以直接在 Clash 中导入。</p>
+<p>例子：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># 使用锚点简化配置</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">domain_rule</span><span class="p">:</span><span class="w"> </span><span class="cp">&amp;domain_rule</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">http</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">behavior</span><span class="p">:</span><span class="w"> </span><span class="l">domain</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">format</span><span class="p">:</span><span class="w"> </span><span class="l">text</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">interval</span><span class="p">:</span><span class="w"> </span><span class="m">86400</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">ruleset</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">reject-list</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">&lt;&lt;</span><span class="p">:</span><span class="w"> </span><span class="cp">*domain_rule</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l">https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/reject-list.txt</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l">./v2ray-rules-dat/reject-list.txt</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">china-list</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">&lt;&lt;</span><span class="p">:</span><span class="w"> </span><span class="cp">*domain_rule</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l">https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/ChinaMax/ChinaMax_Domain_For_Clash.txt</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l">./ios_rule_script/ChinaMax_Domain_For_Clash.txt</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">rules</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">RULE-SET,reject-list,REJECT</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">RULE-SET,china-list,DIRECT</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="尽量避免使用-classical-规则">尽量避免使用 classical 规则</h3>
+<p>引入第三方规则时，注意尽量不要使用 behavior  为 classical 的规则，理由如下：</p>
+<p><strong>1. 性能</strong></p>
+<p>ruleset 的 behavior 支持 domain、ipcidr 和 classical 三种。</p>
+<p>前两种只能进行域名/IPCIDR的匹配，优化更好；后者则是支持完整语法的 clash 规则，但资源消耗更大。对于大型规则，最好是选用 domain/ipcidr 格式来降低资源占用。</p>
+<p><strong>2. 优化 DNS 查询</strong></p>
+<p>正常情况下，一个匹配到域名规则的网站应该直接走直连/代理。</p>
+<p>但如果在域名规则之前存在不带 no-resolve 的 IP 规则，clash 会立即进行 DNS 查询。这不仅浪费时间，根据不同的配置也可能出现 DNS 泄漏风险甚至分流错误。</p>
+<p>这里最大的坑点在于某些 classical 规则里也会有 IP 规则，没注意就可能掉坑里。</p>
+<h2 id="杂七杂八">杂七杂八</h2>
+<p><a href="https://github.com/snowie2000/geoview">GitHub - snowie2000/geoview: A handy tool to extract information from geosite/geoip</a></p>
+<p>每个人都有不同的需求，因此没有什么规则是完美的。</p>
+<p>在研究过程中，我发现 geoview 这个工具非常好用，它在查询域名时可以把属性也列出来，可以有效帮助你制定更细化的分流规则。</p>
+<p>比如在 BT 下载时发现 tracker 竟然在走代理，但我希望它直连，于是就可以查询 tracker 域名属于哪个分组</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">❯ geoview -type geosite -input /etc/mihomo/GeoSite.dat -action lookup -value tracker.opentrackr.org
+</span></span><span class="line"><span class="cl">CATEGORY-PUBLIC-TRACKER
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>通过查询结果可以发现 tracker 原来不在 <code>cn</code> 或 <code>!cn</code> 分组中，而是单独的「顶级分组」 category-public-tracker。</p>
+<p>我顺便用脚本查询了 GeoSite 中的所有「顶级分组」，可以按需取用确保规则覆盖完全。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">2ch
+</span></span><span class="line"><span class="cl">annas-archive
+</span></span><span class="line"><span class="cl">apple-intelligence
+</span></span><span class="line"><span class="cl">category-ads-all
+</span></span><span class="line"><span class="cl">category-ai-chat-!cn
+</span></span><span class="line"><span class="cl">category-bank-jp
+</span></span><span class="line"><span class="cl">category-httpdns-cn
+</span></span><span class="line"><span class="cl">category-ir
+</span></span><span class="line"><span class="cl">category-number-verification-cn
+</span></span><span class="line"><span class="cl">category-pt
+</span></span><span class="line"><span class="cl">category-public-tracker
+</span></span><span class="line"><span class="cl">category-ru
+</span></span><span class="line"><span class="cl">category-speedtest
+</span></span><span class="line"><span class="cl">cn
+</span></span><span class="line"><span class="cl">connectivity-check
+</span></span><span class="line"><span class="cl">flibusta
+</span></span><span class="line"><span class="cl">geolocation-!cn
+</span></span><span class="line"><span class="cl">meduza
+</span></span><span class="line"><span class="cl">meta-ads
+</span></span><span class="line"><span class="cl">private
+</span></span><span class="line"><span class="cl">speedtest
+</span></span><span class="line"><span class="cl">test
+</span></span><span class="line"><span class="cl">tld-!cn
+</span></span><span class="line"><span class="cl">tld-opennic
+</span></span><span class="line"><span class="cl">tor
+</span></span><span class="line"><span class="cl">x
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p><a href="https://github.com/v2fly/domain-list-community/issues/1585">tiktok.com为什么归到cn? · Issue #1585 · v2fly/domain-list-community · GitHub</a>&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2">
+<p><a href="https://github.com/Loyalsoldier/v2ray-rules-dat/issues/399">accelerated-domains.china.conf 不应作为 geosite:cn 的上游 · Issue #399 · Loyalsoldier/v2ray-rules-dat · GitHub</a>&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:3">
+<p><a href="https://github.com/felixonmars/dnsmasq-china-list/issues/483">存在多条冗余域名，筛除脚本可能有 bug · Issue #483 · felixonmars/dnsmasq-china-list · GitHub</a>&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:4">
+<p><a href="https://github.com/Loyalsoldier/v2ray-rules-dat/issues/254">是否可以添加steam@cn对下载时的支持 · Issue #254 · Loyalsoldier/v2ray-rules-dat · GitHub</a>&#160;<a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content"></span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2025-04-15
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a></span>
+  </p>
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/clash/">clash</a>
+          <a href="/tags/%E7%BD%91%E7%BB%9C/">网络</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/2025/01/wasm_in_cloudflare_workers/">
+            <span class="next-text nav-default">在 Cloudflare Workers 中调用 wasm 模块</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  <span id="/2025/04/how_to_use_geosite/" class="leancloud_visitors" data-flag-title="Clash 中 GeoSite 分流的正确使用方式">
+		<span class="post-meta-item-text">文章阅读量 </span>
+		<span class="leancloud-visitors-count">0</span>
+		<p></p>
+	  </span>
+  <div id="vcomments"></div>
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+  <script type="text/javascript">
+    new Valine({
+        el: '#vcomments' ,
+        serverURLs: 'https:\/\/0mqcauyd.api.lncldglobal.com',
+        appId: '0mQCAuYdR6NE9gIVBd6rDEjY-MdYXbMMI',
+        appKey: 'CBACoI7HhLeuROO39gpYpYDl',
+        notify:  false ,
+        verify:  false ,
+        avatar:'mm',
+        placeholder: '妙啊，妙啊',
+        visitor:  true 
+    });
+  </script>
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:aloxafx@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/Aloxaf" class="iconfont icon-github" title="github"></a>
+  <a href="/2025/04/how_to_use_geosite/" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2025<span class="heart"><i class="iconfont icon-heart"></i></span><span></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script async src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script async src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script>
+    var languageCode = "zh".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script>
+
+
+
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+
+
+
+
+
+
+
+
+
+  
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true });
+  </script>
+  
+
+</body>
+</html>

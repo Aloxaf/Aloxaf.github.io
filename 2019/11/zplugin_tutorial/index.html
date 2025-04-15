@@ -38,7 +38,7 @@ Zplugin 已改名 Zinit，不过教程中的内容仍然适用。 阅读时请�
 
 
 
-<meta name="generator" content="Hugo 0.140.2 with theme even" />
+<meta name="generator" content="Hugo 0.145.0 with theme even" />
 
 
 <link rel="preload" href="/fonts/iconfont/iconfont.woff" as="font" type="font/woff" crossorigin="anonymous">
@@ -54,7 +54,7 @@ Zplugin 已改名 Zinit，不过教程中的内容仍然适用。 阅读时请�
 
 
 
-<link href="/sass/main.min.b8ff8f6ae815afd22fe55d59dcb2a03ea26d91c49c77a2d29e82aa121cc7d820.css" rel="stylesheet">
+<link href="/sass/main.min.4239da8be5d6b3c3a4e298a01dad493e86024d2cefc2b1385e017fb0ee96d262.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
@@ -333,8 +333,7 @@ p10k 的 Instant Prompt 功能非常好用，它可以在其他插件的加载�
 </div><p>安装完成，非常简单。</p>
 <h1 id="配置">配置</h1>
 <blockquote>
-<p>我本打算从头写一篇教程，但是感觉自己要么讲得太多了，要么又讲得太少了。干脆直接翻译一下文档的 Introduction 部分吧（</p>
-</blockquote>
+<p>我本打算从头写一篇教程，但是感觉自己要么讲得太多了，要么又讲得太少了。干脆直接翻译一下文档的 Introduction 部分吧（</p></blockquote>
 <p>在本篇文档中，你将学会如何：</p>
 <ul>
 <li>在 Zplugin 中使用 Oh My Zsh 和 Prezto 框架</li>
@@ -360,8 +359,7 @@ p10k 的 Instant Prompt 功能非常好用，它可以在其他插件的加载�
 <li><code>light</code>不会跟踪加载过程，可以提升加载速度，但是会导致失去查看插件报告和动态卸载插件的能力。</li>
 </ul>
 <blockquote>
-<p>开启 Turbo mode 后跟踪插件所耗费的时间可以忽略不计</p>
-</blockquote>
+<p>开启 Turbo mode 后跟踪插件所耗费的时间可以忽略不计</p></blockquote>
 <h2 id="使用-oh-my-zsh--prezto">使用 Oh My Zsh &amp; Prezto</h2>
 <p>为了加载 Oh My Zsh 和 Prezto 插件，可以使用 <code>snippet</code> 功能加载代码片段。代码片段是指通过 <code>curl</code>、<code>wget</code> 等工具下载的单个文件。后面直接跟 URL 即可（会自动判断下载工具）。举例：</p>
 <div class="highlight"><div class="chroma">
@@ -428,8 +426,7 @@ p10k 的 Instant Prompt 功能非常好用，它可以在其他插件的加载�
 </div>
 </div><p>上面的代码会将插件目录添加到 <code>$PATH</code> 中，并复制文件 <code>httpstat.sh</code> 为 <code>httpstat</code> ，并为 <code>pick</code> 选中的文件（本例中为 <code>httpstat</code>） 添加正确的可执行权限（<code>+x</code>）。还有一个修饰词 <code>mv</code>，它和 <code>cp</code> 的工作方式类似，只不过是移动文件而不是复制。<code>mv</code>的优先级比<code>cp</code>低。</p>
 <blockquote>
-<p><code>cp</code> 和 <code>mv</code> ice （还有其它的比如 <code>atclone</code>）只会在插件（或代码片段）被安装的时候运行。要想再次运行它们的话需要先使用 <code>zinit delete PZT::modules/osx</code> 这类命令来删除插件）</p>
-</blockquote>
+<p><code>cp</code> 和 <code>mv</code> ice （还有其它的比如 <code>atclone</code>）只会在插件（或代码片段）被安装的时候运行。要想再次运行它们的话需要先使用 <code>zinit delete PZT::modules/osx</code> 这类命令来删除插件）</p></blockquote>
 <h2 id="atpull">atpull&quot;&hellip;&quot;</h2>
 <p>复制文件相比移动来说是个更佳选择，它便于进行后续更新——因为 repo 中的原始文件并不会被修改，所以 <code>git</code> 不会报告冲突。不过，要想使用 <code>mv</code> 也是可以的，只要你正确使用了 <code>atpull</code> （一个在插件更新（update）的时候被调用的 ice）：</p>
 <div class="highlight"><div class="chroma">
@@ -447,8 +444,7 @@ p10k 的 Instant Prompt 功能非常好用，它可以在其他插件的加载�
 </div><p><code>atpull</code> 后面的命令以感叹号开头，意味着它会在 <code>git pull</code> 和 <code>mv</code> 之前被执行。此外 <code>atpull</code>, <code>mv</code>, <code>cp</code> 都只会在获取到新的提交的时候被执行。</p>
 <p>总而言之，当用户执行 <code>zinit update b4b4r07/httpstat</code> 来升级这个插件的时候，如果有新 commit，首先执行的是 <code>git reset --hard</code>——它会恢复原来的 <code>httpstat.sh</code>，然后 <code>git pull</code>被执行并拉取新的 commit（进行快进），然后 <code>mv</code> 再次被执行将命令名称修改为 <code>httpstat</code> 而不是 <code>httpstat.sh</code>。这样 <code>mv</code> 可以用于永久性更新插件的内容而且不会阻碍插件使用 <code>git</code> （或 <code>subversion</code> ）更新。</p>
 <blockquote>
-<p>在 zsh 的交互式会话中，为了避免感叹号被展开，请使用 <code>'...'</code> 而不是 <code>&quot;...&quot;</code> 来包裹 <code>atpull</code> ice 的内容</p>
-</blockquote>
+<p>在 zsh 的交互式会话中，为了避免感叹号被展开，请使用 <code>'...'</code> 而不是 <code>&quot;...&quot;</code> 来包裹 <code>atpull</code> ice 的内容</p></blockquote>
 <h2 id="通过-snippet-安装命令">通过 snippet 安装命令</h2>
 <p>也可以使用 snippet 添加命令。比如：</p>
 <div class="highlight"><div class="chroma">
@@ -503,8 +499,7 @@ p10k 的 Instant Prompt 功能非常好用，它可以在其他插件的加载�
 </div>
 </div><h3 id="列出补全">列出补全</h3>
 <blockquote>
-<p>注： <code>zi</code> 是一个可以在交互式会话中使用的别名</p>
-</blockquote>
+<p>注： <code>zi</code> 是一个可以在交互式会话中使用的别名</p></blockquote>
 <p>要以表格形式查看每个插件都提供哪些补全和插件的名字，请使用</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -592,8 +587,7 @@ p10k 的 Instant Prompt 功能非常好用，它可以在其他插件的加载�
 <p><code>wait</code> ice 允许你将插件的加载过程延迟到 <code>.zshrc</code> 加载完成并且 prompt 已经显示出来以后。就像 Windows 一样——在启动过程中，即使后台依然在加载数据，它也会显示桌面。尽管这有缺点，不过总比黑屏十分钟要好。
 然而，在 Zplugin 中，这个方法没有缺点——窗口不会延迟、冻结等等——在插件被加载的过程中，你的命令行完全处于可用状态，即使插件数量有十多二十个。</p>
 <blockquote>
-<p>Turbo mode 将会加速 zsh 的启动过程 50%～73% 之多。比如原先是 200ms，现在就只需要 50ms！</p>
-</blockquote>
+<p>Turbo mode 将会加速 zsh 的启动过程 50%～73% 之多。比如原先是 200ms，现在就只需要 50ms！</p></blockquote>
 <p>这个功能需要 Zsh 5.3 及以上版本。为了使用 Turbo mode，可以参照以下方式为你的插件添加 <code>wait</code> ice：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -690,8 +684,7 @@ p10k 的 Instant Prompt 功能非常好用，它可以在其他插件的加载�
 </div>
 </div><p>两个命令提示符，每个都在不同的目录下生效，这个技术可以用来定义不同的插件组，比如定义一个 <code>$PLUGINS</code> 和可能的值比如 <code>cpp</code>, <code>web</code>, <code>admin</code>，并且设置 <code>load</code>/<code>unload</code> 条件来激活 <code>cpp</code>， <code>web</code> 中不同的插件。</p>
 <blockquote>
-<p><code>load</code>/<code>unload</code>和 <code>wait</code> 的不同之处是它始处于激活状态，而不是只在只在第一次加载时有效。</p>
-</blockquote>
+<p><code>load</code>/<code>unload</code>和 <code>wait</code> 的不同之处是它始处于激活状态，而不是只在只在第一次加载时有效。</p></blockquote>
 <p>需要注意的是，要使卸载插件功能正常工作，你需要跟踪插件的加载过程（所以需要使用 <code>zinit load ...</code> 而不是 <code>zinit light ...</code>）。跟踪过程有轻微的性能损耗，不能在开启了 Turbo mode 后并不后影响 zsh 的启动时间。</p>
 <p>可以参见 WIki 的 <a href="https://zdharma.org/zinit/wiki/Multiple-prompts/">multi prompts</a> 一节，它包含了一个使用多个命令提示符的跟现实的例子，和作者自己目前所使用的类似。</p>
 <h1 id="常见问题">常见问题</h1>
@@ -1091,6 +1084,9 @@ p10k 的 Instant Prompt 功能非常好用，它可以在其他插件的加载�
 
 
 
+
+
+  
 
 </body>
 </html>

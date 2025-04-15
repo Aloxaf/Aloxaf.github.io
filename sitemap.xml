@@ -17,7 +17,42 @@
   
   <url>
     <loc>https://www.aloxaf.com/</loc>
-    <lastmod>2025-01-03T00:00:00+00:00</lastmod>
+    <lastmod>2025-04-15T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.aloxaf.com/tags/clash/</loc>
+    <lastmod>2025-04-15T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.aloxaf.com/2025/04/how_to_use_geosite/</loc>
+    <lastmod>2025-04-15T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.aloxaf.com/post/</loc>
+    <lastmod>2025-04-15T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.aloxaf.com/tags/</loc>
+    <lastmod>2025-04-15T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.aloxaf.com/tags/%E7%BD%91%E7%BB%9C/</loc>
+    <lastmod>2025-04-15T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -31,20 +66,6 @@
   
   <url>
     <loc>https://www.aloxaf.com/tags/js/</loc>
-    <lastmod>2025-01-03T00:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.aloxaf.com/post/</loc>
-    <lastmod>2025-01-03T00:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.aloxaf.com/tags/</loc>
     <lastmod>2025-01-03T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -122,13 +143,6 @@
   
   <url>
     <loc>https://www.aloxaf.com/2024/05/run_hh_at_home/</loc>
-    <lastmod>2024-05-07T00:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.aloxaf.com/tags/%E7%BD%91%E7%BB%9C/</loc>
     <lastmod>2024-05-07T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -366,14 +380,14 @@
   </url>
   
   <url>
-    <loc>https://www.aloxaf.com/tags/%E8%AF%91%E6%96%87/</loc>
+    <loc>https://www.aloxaf.com/categories/%E8%AF%91%E6%96%87/</loc>
     <lastmod>2019-11-20T21:55:09+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://www.aloxaf.com/categories/%E8%AF%91%E6%96%87/</loc>
+    <loc>https://www.aloxaf.com/tags/%E8%AF%91%E6%96%87/</loc>
     <lastmod>2019-11-20T21:55:09+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -485,14 +499,14 @@
   </url>
   
   <url>
-    <loc>https://www.aloxaf.com/tags/egg_pain/</loc>
+    <loc>https://www.aloxaf.com/categories/egg_pain/</loc>
     <lastmod>2018-10-28T21:08:33+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://www.aloxaf.com/categories/egg_pain/</loc>
+    <loc>https://www.aloxaf.com/tags/egg_pain/</loc>
     <lastmod>2018-10-28T21:08:33+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -576,14 +590,14 @@
   </url>
   
   <url>
-    <loc>https://www.aloxaf.com/tags/writeup/</loc>
+    <loc>https://www.aloxaf.com/categories/writeup/</loc>
     <lastmod>2018-08-20T21:37:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://www.aloxaf.com/categories/writeup/</loc>
+    <loc>https://www.aloxaf.com/tags/writeup/</loc>
     <lastmod>2018-08-20T21:37:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>

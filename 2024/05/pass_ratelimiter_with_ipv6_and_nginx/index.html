@@ -24,7 +24,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.140.2 with theme even" />
+<meta name="generator" content="Hugo 0.145.0 with theme even" />
 
 
 <link rel="preload" href="/fonts/iconfont/iconfont.woff" as="font" type="font/woff" crossorigin="anonymous">
@@ -40,7 +40,7 @@
 
 
 
-<link href="/sass/main.min.b8ff8f6ae815afd22fe55d59dcb2a03ea26d91c49c77a2d29e82aa121cc7d820.css" rel="stylesheet">
+<link href="/sass/main.min.4239da8be5d6b3c3a4e298a01dad493e86024d2cefc2b1385e017fb0ee96d262.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
@@ -208,8 +208,7 @@
 </div><p>接下来，就只需要寻找一个支持绑定 IP 的反向代理工具了。</p>
 <p>考虑到这台服务器上原本就部署了一个 caddy，我首先想的是能不能直接用 caddy 实现，可惜的是不能。于是我不得不切换回 nginx，因为 nginx 可以使用 <code>proxy_bind</code> 来绑定地址。</p>
 <blockquote>
-<p>已经有好几次因为 caddy 缺乏某个功能而不得已切回 nginx 的经历了，累觉不爱了</p>
-</blockquote>
+<p>已经有好几次因为 caddy 缺乏某个功能而不得已切回 nginx 的经历了，累觉不爱了</p></blockquote>
 <p>但是，proxy_bind 只能绑定固定的地址，怎么增加一点随机性呢？刚好，原文评论区中有一位叫 @yllhwa 的同学给出了 openresty / lua module 的解法。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -257,8 +256,7 @@
 </div><p>这个报错的意思是，我为这个请求绑定的是 IPv6 地址，但 nginx 尝试访问上游网站的  IPv4 地址，所以报错了。</p>
 <p>怎么会这样呢？翻阅 <a href="http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass">nginx 文档</a> 才发现，proxy_pass 会对上游域名解析出来的所有地址轮换请求：</p>
 <blockquote>
-<p><em>If a domain name resolves to several addresses, all of them will be used in a round-robin fashion. In addition, an address can be specified as a server group.</em></p>
-</blockquote>
+<p><em>If a domain name resolves to several addresses, all of them will be used in a round-robin fashion. In addition, an address can be specified as a server group.</em></p></blockquote>
 <p>嗯，这很负载均衡，唯一的问题是，你们不考虑协议的吗？</p>
 <p>实际上，十年前就有人遇到了类似问题。但IPv6 在那时还是个麻烦制造者，大多数人都没有 IPv6 地址，于是 nginx 为 resolver 加入了 <code>ipv6=off</code> 来关掉对 IPv6 的解析。</p>
 <p>可惜，十年之后的我，遇到的是相反的问题——我想关掉 IPv4。有没有 <code>ipv4=off</code> 呢？</p>
@@ -270,8 +268,7 @@
 <p>更新 nginx 后，这段配置终于成功跑起来了！！但是，报错还是在！！</p>
 <p>为什么呢，如果你再次仔细阅读 nginx 的文档，你还会发现这样一段话：</p>
 <blockquote>
-<p><em>Parameter value can contain variables. In this case, if an address is specified as a domain name, the name is searched among the described server groups, and, if not found, is determined using a resolver.</em></p>
-</blockquote>
+<p><em>Parameter value can contain variables. In this case, if an address is specified as a domain name, the name is searched among the described server groups, and, if not found, is determined using a resolver.</em></p></blockquote>
 <p>原来 resolver 竟然只有在 proxy_pass 参数包含变量的时候才会被使用，否则 nginx 只会在启动时解析一次。好吧，那就增加一个变量，于是最终的配置文件如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -440,6 +437,9 @@
 
 
 
+
+
+  
 
 </body>
 </html>

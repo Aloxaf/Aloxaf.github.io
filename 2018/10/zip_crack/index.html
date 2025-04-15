@@ -25,7 +25,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.140.2 with theme even" />
+<meta name="generator" content="Hugo 0.145.0 with theme even" />
 
 
 <link rel="preload" href="/fonts/iconfont/iconfont.woff" as="font" type="font/woff" crossorigin="anonymous">
@@ -41,7 +41,7 @@
 
 
 
-<link href="/sass/main.min.b8ff8f6ae815afd22fe55d59dcb2a03ea26d91c49c77a2d29e82aa121cc7d820.css" rel="stylesheet">
+<link href="/sass/main.min.4239da8be5d6b3c3a4e298a01dad493e86024d2cefc2b1385e017fb0ee96d262.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
@@ -186,22 +186,18 @@
 <p>给了两个已知明文</p>
 <p>hashcat是一开始随手加进来的, libc是后来为了测试工具随手加进来的</p>
 <p>所以这里没有坑</p>
-<p>PS. 17位大小写数字混合密码, 不用试图爆破&hellip;</p>
-</blockquote>
+<p>PS. 17位大小写数字混合密码, 不用试图爆破&hellip;</p></blockquote>
 <p>cipher.zip 里有4个文件, big_file 和 flag.txt 是等待破解的.</p>
 <p>其中 big_file 压缩前大小高达 4.8 GiB, 使得这个 ZIP 文件包含了 ZIP64 格式.</p>
 <blockquote>
 <p>这个地方没有说这个文件是 ZIP64 格式, 而是说它包含了 ZIP64 格式.
-因为一个 ZIP 文件理论上是可以包含多种压缩算法&amp;格式(好像是这样的), 所以我们可以选择其中的原始 ZIP 格式进行破解.</p>
-</blockquote>
+因为一个 ZIP 文件理论上是可以包含多种压缩算法&amp;格式(好像是这样的), 所以我们可以选择其中的原始 ZIP 格式进行破解.</p></blockquote>
 <p>然而面对这样的一个文件 pkcrack 和 AZPR 都会给出 <code>unknown signature</code> 一类的报错. 直接把路堵死了&hellip;</p>
 <blockquote>
-<p>其实 pkcrack 把报错代码注释掉就能跑了</p>
-</blockquote>
+<p>其实 pkcrack 把报错代码注释掉就能跑了</p></blockquote>
 <p>这个地方我们使用 rbkcrack.</p>
 <blockquote>
-<p>它的前身 bkcrack 其实也能爆破, 不过作者手写的 parser 完全没有考虑 ZIP64 格式, 在面对复杂文件时可能会跪&hellip;</p>
-</blockquote>
+<p>它的前身 bkcrack 其实也能爆破, 不过作者手写的 parser 完全没有考虑 ZIP64 格式, 在面对复杂文件时可能会跪&hellip;</p></blockquote>
 <p>题目给了两个明文, libc 那个比较大, 爆破起来比较快. 于是执行如下命令开始攻击</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -216,13 +212,11 @@
 <p>2019.04.11 更新:</p>
 <p>rbkcrack 0.2.0 增加了自动根据 CRC32 寻找合适文件的功能,
 于是上面的代码可以简写成 <code>rbkcrack -C cipher.zip -P plain2.zip -a</code></p>
-<p>PS. 这个功能最大的用处其实是对付某些 GBK 编码的 zip 文件&hellip;</p>
-</blockquote>
+<p>PS. 这个功能最大的用处其实是对付某些 GBK 编码的 zip 文件&hellip;</p></blockquote>
 <p>PS. 重写完 bkcrack 后我拿一个文件测试了一下, 发现 Rust 版竟然比 C++ 版还快了 15%&hellip;&hellip; (改用 sort_unstabe 以后快了 25%&hellip;&hellip;)</p>
 <blockquote>
 <p>2019.04.11 更新:</p>
-<p>现在一样快了</p>
-</blockquote>
+<p>现在一样快了</p></blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -401,6 +395,9 @@
 
 
 
+
+
+  
 
 </body>
 </html>

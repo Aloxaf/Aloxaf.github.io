@@ -24,7 +24,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.140.2 with theme even" />
+<meta name="generator" content="Hugo 0.145.0 with theme even" />
 
 
 <link rel="preload" href="/fonts/iconfont/iconfont.woff" as="font" type="font/woff" crossorigin="anonymous">
@@ -40,7 +40,7 @@
 
 
 
-<link href="/sass/main.min.b8ff8f6ae815afd22fe55d59dcb2a03ea26d91c49c77a2d29e82aa121cc7d820.css" rel="stylesheet">
+<link href="/sass/main.min.4239da8be5d6b3c3a4e298a01dad493e86024d2cefc2b1385e017fb0ee96d262.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
@@ -159,8 +159,7 @@
 <p>前段时间买了个掌阅的电纸书，由于应用商店有微信读书，所以书籍的阅读体验不错。但是没有 Tachiyomi，所以看漫画很不爽。</p>
 <p>我向来厌恶任何封闭的系统，所以在买它之前我特地其实上网搜了一下，掌阅的系统算是「半开放模式」——不能直接装 app，但是能通过 adb 装。然而当我实操的时候，发现根本没用——根据网上教程的说法，在关机模式下不断执行 <code>adb install xxx.apk</code> 并开机，就能在开机后安装上指定 app。但我实测了几次都没有等到「奇迹出现」，没办法，只能自己动手了。</p>
 <blockquote>
-<p>本来本文已经弃坑了，但是更新博客配置时不小心发了出来……竟然还被人看到了，那没办法，还是简单填一下坑吧</p>
-</blockquote>
+<p>本来本文已经弃坑了，但是更新博客配置时不小心发了出来……竟然还被人看到了，那没办法，还是简单填一下坑吧</p></blockquote>
 <p>掌阅的这个系统，不知道是有意还是无意，它的应用商店竟然没有走 HTTPS，那搞起中间人攻击来可是轻而易举。</p>
 <p>于是我写了一个 <a href="https://github.com/mitmproxy/mitmprox">mitproxy</a> 的脚本，在安装完 mitproxy 后，使用 <code>mitmdump -s facenote.py</code> 启动代理，然后在掌阅系统中设置好无线代理，再打开应用商店，即可看到三个应用，接着按如下顺序安装并设置即可：</p>
 <ol>
@@ -292,6 +291,9 @@
 
 
 
+
+
+  
 
 </body>
 </html>

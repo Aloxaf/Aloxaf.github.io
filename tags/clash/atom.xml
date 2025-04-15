@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Clash on Aloxaf&#39;s Blog</title>
+    <link>https://www.aloxaf.com/tags/clash/</link>
+    <description>Recent content in Clash on Aloxaf&#39;s Blog</description>
+    <generator>Hugo</generator>
+    <language>zh</language>
+    <lastBuildDate>Tue, 15 Apr 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://www.aloxaf.com/tags/clash/atom.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Clash 中 GeoSite 分流的正确使用方式</title>
+      <link>https://www.aloxaf.com/2025/04/how_to_use_geosite/</link>
+      <pubDate>Tue, 15 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>https://www.aloxaf.com/2025/04/how_to_use_geosite/</guid>
+      <description>&lt;p&gt;因为觉得写 ruleset 太麻烦，研究了一下 GeoSite，发现其实在「正确的配置」下，只靠 GeoSite 就能满足绝大部分的分流需求。这方面的文章好像很少，写一篇分享一下折腾经验。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

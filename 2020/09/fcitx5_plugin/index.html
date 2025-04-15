@@ -25,7 +25,7 @@ fcitx5 终于加上了 lua 支持，可以使用 lua 编写一些简单的插件
 
 
 
-<meta name="generator" content="Hugo 0.140.2 with theme even" />
+<meta name="generator" content="Hugo 0.145.0 with theme even" />
 
 
 <link rel="preload" href="/fonts/iconfont/iconfont.woff" as="font" type="font/woff" crossorigin="anonymous">
@@ -41,7 +41,7 @@ fcitx5 终于加上了 lua 支持，可以使用 lua 编写一些简单的插件
 
 
 
-<link href="/sass/main.min.b8ff8f6ae815afd22fe55d59dcb2a03ea26d91c49c77a2d29e82aa121cc7d820.css" rel="stylesheet">
+<link href="/sass/main.min.4239da8be5d6b3c3a4e298a01dad493e86024d2cefc2b1385e017fb0ee96d262.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
@@ -188,8 +188,7 @@ fcitx5 终于加上了 lua 支持，可以使用 lua 编写一些简单的插件
   </div>
     <div class="post-content">
       <blockquote>
-<p>突然发现五个月前自己写过一篇 fcitx5-lua 的教程，刚好拿来水一篇</p>
-</blockquote>
+<p>突然发现五个月前自己写过一篇 fcitx5-lua 的教程，刚好拿来水一篇</p></blockquote>
 <p>fcitx5 终于加上了 lua 支持，可以使用 lua 编写一些简单的插件。但是文档一如既往地非常少，查阅了大量资料并翻看源码以后总算弄懂了插件的编写步骤，记录一下以免忘记，顺便分享给同样需要的人。</p>
 <p>fcitx5-lua 支持两种插件的加载方式，以及对应的两种风格的 API。但实际上两者可以混用，哪个方便用哪个。</p>
 <h1 id="googlepinyin-风格">GooglePinyin 风格</h1>
@@ -203,8 +202,7 @@ fcitx5 终于加上了 lua 支持，可以使用 lua 编写一些简单的插件
 <p>用于注册命令扩展，可以在“快速输入”模式中输入特定的命令时触发指定的函数。</p>
 <p>什么是“快速输入”模式？按下 <kbd>;</kbd> fcitx5 就会进入快速输入模式，你可以在这个模式下使用自定义的特殊词组。比如颜文字、emoji、特殊字符。触发词不要求是合法拼音，如默认的快速输入就提供了 “orz” -&gt; &ldquo;<code>_(:з」∠)_</code> &ldquo;、&ldquo;smile&rdquo;-&gt; &ldquo;☺&rdquo; 这样的映射，可以方便自己输入各种特殊字符。普通词库是无法做到这一点的，因为普通词库要求触发词必须是有效拼音。</p>
 <blockquote>
-<p>Tips: 使用 <kbd>Ctrl+Shift+U</kbd> 可以启用 Unicode 输入功能，可以方便地输入包括 emoji 在内的各种 Unicode 字符。</p>
-</blockquote>
+<p>Tips: 使用 <kbd>Ctrl+Shift+U</kbd> 可以启用 Unicode 输入功能，可以方便地输入包括 emoji 在内的各种 Unicode 字符。</p></blockquote>
 <p>基本格式：<code>register_command (command_name, lua_function_name, description, [leading, help])</code></p>
 <ul>
 <li>command_name：命令名称，即触发词</li>
@@ -576,6 +574,9 @@ fcitx5 终于加上了 lua 支持，可以使用 lua 编写一些简单的插件
 
 
 
+
+
+  
 
 </body>
 </html>

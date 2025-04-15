@@ -26,7 +26,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.140.2 with theme even" />
+<meta name="generator" content="Hugo 0.145.0 with theme even" />
 
 
 <link rel="preload" href="/fonts/iconfont/iconfont.woff" as="font" type="font/woff" crossorigin="anonymous">
@@ -42,7 +42,7 @@
 
 
 
-<link href="/sass/main.min.b8ff8f6ae815afd22fe55d59dcb2a03ea26d91c49c77a2d29e82aa121cc7d820.css" rel="stylesheet">
+<link href="/sass/main.min.4239da8be5d6b3c3a4e298a01dad493e86024d2cefc2b1385e017fb0ee96d262.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
@@ -308,8 +308,7 @@
 <p>比如我曾经实现过的一个小插件, 可以让一个 bytes 不管是否包含可见字符, 都以十六进制的形式输出
 <a href="https://gist.github.com/Aloxaf/de3de8e7c0b8913335847afd3ff76cc7">https://gist.github.com/Aloxaf/de3de8e7c0b8913335847afd3ff76cc7</a></p>
 <p>然而还是没有什么卵用&hellip;bool类型跟开挂一样无视了 ipython formatter</p>
-<p>这个很奇怪, 不过原因以后再找</p>
-</blockquote>
+<p>这个很奇怪, 不过原因以后再找</p></blockquote>
 <h1 id="还是老老实实读源码吧">还是老老实实读源码吧</h1>
 <h2 id="0-搭建调试环境">0. 搭建调试环境</h2>
 <p>这几个月熟悉了一下棒棒的 gdb, 这次要利用起来</p>
@@ -482,8 +481,7 @@
 <blockquote>
 <p>第一次调试到这里的时候我没认真看注释,
 天真地以为通过 <code>memmove(id(True), id(False), sizeof(PyObject))</code> 就能用 True 的内容覆盖掉 False, 事实上 <code>sizeof(PyObject)</code> 根本根本不是 True Object 的真实大小.</p>
-<p>那么, 把 <code>sizeof(PyObject)</code> 改大一点行不行? 其实还是不行, 原因在下面&hellip;</p>
-</blockquote>
+<p>那么, 把 <code>sizeof(PyObject)</code> 改大一点行不行? 其实还是不行, 原因在下面&hellip;</p></blockquote>
 <h2 id="2-py_false-和-_py_falsestruct">2. <code>Py_False</code> 和 <code>_Py_FalseStruct</code></h2>
 <p>那么问题来了, <code>False</code> 这玩意儿真实的(C)类型是什么?</p>
 <p>在 <code>Python/ceval:4686</code> 行可以找到 <code>cmp_outcome</code> 的定义, 结尾是这么写的.</p>
@@ -971,6 +969,9 @@
 
 
 
+
+
+  
 
 </body>
 </html>

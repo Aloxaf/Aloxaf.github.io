@@ -6,7 +6,7 @@
     <description>Recent content on Aloxaf&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>zh</language>
-    <lastBuildDate>Fri, 03 Jan 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 15 Apr 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://www.aloxaf.com/atom.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>友链</title>
@@ -21,6 +21,13 @@
       <pubDate>Sat, 11 Aug 2018 09:05:04 +0000</pubDate>
       <guid>https://www.aloxaf.com/about/</guid>
       <description>&lt;h1 id=&#34;游戏&#34;&gt;游戏&lt;/h1&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;懒军, 玩成养桶游戏的那种  &lt;span style=&#34;background-color: #34495e;&#34; title=&#34;你知道的太多了&#34;&gt;曾经的目标是成为 glyph 大师&lt;/span&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;悲，红桶没了&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&lt;del&gt;当过舰长, 指挥官, 后来觉得还是 Agent 好&lt;/del&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;del&gt;还是提督好&lt;/del&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;del&gt;还是骑士君好&lt;/del&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;还是 sensei 好&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;RPG 小黄油大师&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h1 id=&#34;宗教&#34;&gt;宗教&lt;/h1&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Arch Linux &lt;span style=&#34;background-color: #34495e;&#34;&gt;邪&lt;/span&gt;教教徒&lt;/li&gt;&#xA;&lt;li&gt;到处使用 Emacs 风格快捷键，但是就是不使用 emacs&lt;/li&gt;&#xA;&lt;li&gt;zsh 大法好&lt;/li&gt;&#xA;&lt;li&gt;KDE 妙啊&lt;/li&gt;&#xA;&lt;li&gt;空格缩进党，宽度为 2/4&lt;/li&gt;&#xA;&lt;li&gt;大括号通常不换行&lt;/li&gt;&#xA;&lt;li&gt;FFF 团成员&lt;/li&gt;&#xA;&lt;li&gt;&lt;del&gt;无可奉告&lt;/del&gt; &lt;span style=&#34;background-color: #34495e;&#34; title=&#34;naïve!&#34;&gt;-     ⃢    —    ⃢     - &lt;/span&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h1 id=&#34;主要成就&#34;&gt;主要成就&lt;/h1&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;存活了 24 年&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
+    </item>
+    <item>
+      <title>Clash 中 GeoSite 分流的正确使用方式</title>
+      <link>https://www.aloxaf.com/2025/04/how_to_use_geosite/</link>
+      <pubDate>Tue, 15 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>https://www.aloxaf.com/2025/04/how_to_use_geosite/</guid>
+      <description>&lt;p&gt;因为觉得写 ruleset 太麻烦，研究了一下 GeoSite，发现其实在「正确的配置」下，只靠 GeoSite 就能满足绝大部分的分流需求。这方面的文章好像很少，写一篇分享一下折腾经验。&lt;/p&gt;</description>
     </item>
     <item>
       <title>在 Cloudflare Workers 中调用 wasm 模块</title>
@@ -62,7 +69,7 @@
       <link>https://www.aloxaf.com/2024/03/fxxk_kde6/</link>
       <pubDate>Mon, 11 Mar 2024 00:00:00 +0000</pubDate>
       <guid>https://www.aloxaf.com/2024/03/fxxk_kde6/</guid>
-      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;我从未想过有一天我的 Linux 桌面会变得如此不可用……&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;KDE 更新大版本了。以前总是嘲笑 GNOME 用户每次更新不是这里炸了就是那里被砍了，没想到风水轮流转，现在炸到自己头上了。&lt;/p&gt;</description>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;我从未想过有一天我的 Linux 桌面会变得如此不可用……&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;p&gt;KDE 更新大版本了。以前总是嘲笑 GNOME 用户每次更新不是这里炸了就是那里被砍了，没想到风水轮流转，现在炸到自己头上了。&lt;/p&gt;</description>
     </item>
     <item>
       <title>使用 atuin 管理 zsh 命令历史</title>
@@ -70,13 +77,6 @@
       <pubDate>Mon, 26 Feb 2024 00:00:00 +0000</pubDate>
       <guid>https://www.aloxaf.com/2024/02/manage_zsh_shell_with_atuin/</guid>
       <description>&lt;p&gt;竟然两年没写博客了，真是自工作以后就越来越懒了。&lt;/p&gt;&#xA;&lt;p&gt;不行，我不能再这样颓废下去了，我决定定一个小目标——2024 要写 10 篇博客！&lt;/p&gt;&#xA;&lt;p&gt;好，现在开始水……不对！现在开始写第一篇！&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>掌阅 Facenote 阅读器安装第三方 APP</title>
-      <link>https://www.aloxaf.com/2022/01/facenote_thirdparty_app/</link>
-      <pubDate>Tue, 04 Jan 2022 00:00:00 +0000</pubDate>
-      <guid>https://www.aloxaf.com/2022/01/facenote_thirdparty_app/</guid>
-      <description>&lt;p&gt;竟然快一年没写博客了&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

@@ -25,7 +25,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.140.2 with theme even" />
+<meta name="generator" content="Hugo 0.145.0 with theme even" />
 
 
 <link rel="preload" href="/fonts/iconfont/iconfont.woff" as="font" type="font/woff" crossorigin="anonymous">
@@ -41,7 +41,7 @@
 
 
 
-<link href="/sass/main.min.b8ff8f6ae815afd22fe55d59dcb2a03ea26d91c49c77a2d29e82aa121cc7d820.css" rel="stylesheet">
+<link href="/sass/main.min.4239da8be5d6b3c3a4e298a01dad493e86024d2cefc2b1385e017fb0ee96d262.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
@@ -264,15 +264,13 @@
 <h2 id="flag">flag</h2>
 <blockquote>
 <p>All flags are in this format:
-FLAG{This is flag&rsquo;s format}</p>
-</blockquote>
+FLAG{This is flag&rsquo;s format}</p></blockquote>
 <p>RT</p>
 <h2 id="corgi-can-fly">corgi can fly</h2>
 <blockquote>
 <p>Corgi is cute, right?</p>
 <p>Pillow (Python) and Bitmap (.NET) are your friends.</p>
-<p>(Maybe you can try stegsolve)</p>
-</blockquote>
+<p>(Maybe you can try stegsolve)</p></blockquote>
 <p><code>binwalk</code> 试试没啥玩意儿, <code>hexdump -C</code> 简单看一下,
 发现末尾有一段可疑的base64字符串</p>
 <p><code>echo RGlkIHlvdSB0cmllZCBMU0I/Cg==|base64 -d</code>
@@ -280,13 +278,11 @@ decode 之, 得到字符串 <code>Did you tried LSB?</code></p>
 <p>根据提示 LSB 走起, 得到二维码, 扫描之, 得到 flag</p>
 <h2 id="television">television</h2>
 <blockquote>
-<p>Looks like my television was broken</p>
-</blockquote>
+<p>Looks like my television was broken</p></blockquote>
 <p><code>binwalk</code> 试试没啥玩意儿, <code>hexdump -C</code> 简单看一下, 就发现了flag&hellip;</p>
 <h2 id="meow">meow</h2>
 <blockquote>
-<p>Pusheen is cute!</p>
-</blockquote>
+<p>Pusheen is cute!</p></blockquote>
 <p><code>binwalk</code> 试试好像有点玩意儿, <code>foremost meow.png</code> 提取一下, 得到一个 zip
 和 png, 试着解压发现zip有密码, <code>unzip -v 00000094.zip</code>
 冷静分析一下这个zip</p>
@@ -307,8 +303,7 @@ decode 之, 得到字符串 <code>Did you tried LSB?</code></p>
 </div>
 </div><h2 id="where-is-flag">where is flag</h2>
 <blockquote>
-<p>Do you know regular expression?</p>
-</blockquote>
+<p>Do you know regular expression?</p></blockquote>
 <p>下载得到一个 flag.xz, <code>head -c 100</code> 看看解压得到的 flag 文件</p>
 <p><code>wH3r3isFLAGc1oudyoufindit?qqajslfge7frHKFLAGcuonfsE4iJlrp9mCG[fl@g]eK4xdSgJpNuHP{z0ENPuio59R7nxpVgML</code></p>
 <p>看起来 flag 藏在这个文件里面, 试试 <code>cat flag|grep -oP &quot;FLAG{[^{}]+?}&quot;</code>, 完全看不出flag&hellip;&hellip;</p>
@@ -317,8 +312,7 @@ decode 之, 得到字符串 <code>Did you tried LSB?</code></p>
 <p>暴力找到 flag 后发现其实它还是有特征的 <code>FLAG{[0-9a-zA-Z]+}</code></p>
 <h2 id="encoder">encoder</h2>
 <blockquote>
-<p>Can you decode this?</p>
-</blockquote>
+<p>Can you decode this?</p></blockquote>
 <p>下载解压得到 encoder.py 和 flag.enc, 乍一看怀疑这题目真的没放错区吗</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -456,8 +450,7 @@ decode 之, 得到字符串 <code>Did you tried LSB?</code></p>
 </div><h2 id="slow">slow</h2>
 <blockquote>
 <p>nc hackme.inndy.tw 7708</p>
-<p>OMG, It&rsquo;s slow.</p>
-</blockquote>
+<p>OMG, It&rsquo;s slow.</p></blockquote>
 <p>这道题本来一直都没有头绪, 后来打完 TJCTF 后再看, 才反应过来是时序攻击.
 因为打 TJCTF 的时候也遇到了一道类似的, 体验十分艹蛋&hellip;, 道理我都懂, 可我网络不好啊(摔).
 当时找到了一个轮子 <a href="https://github.com/SakiiR/timeauth">timeauth</a>, 颜值挺高, 不过没有多线程太弱了orz</p>
@@ -531,8 +524,7 @@ decode 之, 得到字符串 <code>Did you tried LSB?</code></p>
 </div><p><del>(考虑到本咸鱼不知道向后兼容为何物, 这份代码说不定现在已经跑不了了)</del></p>
 <h2 id="pusheentxt">pusheen.txt</h2>
 <blockquote>
-<p>Do you think pusheen is cute?</p>
-</blockquote>
+<p>Do you think pusheen is cute?</p></blockquote>
 <p>下载解压得到 pusheen.txt, 里面是一堆不可名状的字符画</p>
 <p>总共就两种, 把这个序列转成二进制, 再转ASCII, 就得到了 flag</p>
 <div class="highlight"><div class="chroma">
@@ -545,8 +537,7 @@ decode 之, 得到字符串 <code>Did you tried LSB?</code></p>
 </div>
 </div><h2 id="big">big</h2>
 <blockquote>
-<p>It&rsquo;s a big file, read the flag.</p>
-</blockquote>
+<p>It&rsquo;s a big file, read the flag.</p></blockquote>
 <p>下载一个 big.xxz, 解压一次得到 big.xz. 里面是个 16G 的 <code>big</code> 文件</p>
 <p>xzcat 看一下前面, 发现都是 <code>THISisNOTFLAG{}</code>, 估计在最末尾&hellip;&hellip;</p>
 <div class="highlight"><div class="chroma">
@@ -570,13 +561,11 @@ decode 之, 得到字符串 <code>Did you tried LSB?</code></p>
 <h1 id="web">Web</h1>
 <h2 id="hide-and-seek">hide and seek</h2>
 <blockquote>
-<p>Can you see me? I&rsquo;m so close to you but you can&rsquo;t see me.</p>
-</blockquote>
+<p>Can you see me? I&rsquo;m so close to you but you can&rsquo;t see me.</p></blockquote>
 <p>在首页</p>
 <h2 id="guestbook">guestbook</h2>
 <blockquote>
-<p>This guestbook sucks. sqlmap is your friend.</p>
-</blockquote>
+<p>This guestbook sucks. sqlmap is your friend.</p></blockquote>
 <p>打开网站, 有三个选项, Home, Message List, 和 New Post. 点击 New Post
 随便发个帖, 然后回到 Message List, 点击即可进入开始发的帖子.</p>
 <p>获得帖子的 url 如下: <code>https://hackme.inndy.tw/gb/?mod=read&amp;id=9</code></p>
@@ -587,14 +576,12 @@ decode 之, 得到字符串 <code>Did you tried LSB?</code></p>
 <h2 id="lfi">LFI</h2>
 <blockquote>
 <p>What this admin&rsquo;s password? That is not important at all, just get the flag.
-Tips: LFI, php://filter</p>
-</blockquote>
+Tips: LFI, php://filter</p></blockquote>
 <p>本地文件包含漏洞. 使用
 <code>php://filter/read=convert.base64-encode/resource=pages/login</code> 读取 login.php 的源码, 得到了管理员用户名和密码的 MD5, 根据 MD5 查到 password, 登录得到flag</p>
 <h2 id="homepage">homepage</h2>
 <blockquote>
-<p>Where is the flag? Did you check the code?</p>
-</blockquote>
+<p>Where is the flag? Did you check the code?</p></blockquote>
 <p>根据提示去找code, 能发现一个 aaencode 过的js, 解密以后得到如下代码</p>
 <p>(值得一提的是 chrome 似乎自带了反混淆功能? 执行混淆后的代码, 在输出中点击 VM374:3 这种, 就会得到非常清晰的代码)</p>
 <div class="highlight"><div class="chroma">
@@ -631,20 +618,17 @@ Tips: LFI, php://filter</p>
 扫描得到flag</p>
 <h2 id="ping">ping</h2>
 <blockquote>
-<p>Can you ping 127.0.0.1?</p>
-</blockquote>
+<p>Can you ping 127.0.0.1?</p></blockquote>
 <p>题目给了源码, 目的是对这个命令注入 <code>ping -c 1 &quot;{$ip}&quot; 2&gt;&amp;1</code></p>
 <p>过滤了 &amp;, |, ; 等字符, 但可以用 $(ls) 这种来替换掉原来的ip, 可以在报错中得到部分信息.</p>
 <p>虽然过滤了 cat, 但 linux 下能读取文件的命令还很多, 至于字符串 flag 被过滤就用通配符来代替即可</p>
 <h2 id="scoreboard">scoreboard</h2>
 <blockquote>
-<p>DO NOT ATTACK or SCAN scoreboard, you don&rsquo;t need to do that.</p>
-</blockquote>
+<p>DO NOT ATTACK or SCAN scoreboard, you don&rsquo;t need to do that.</p></blockquote>
 <p>嗯&hellip;.藏在post的HEADER里</p>
 <h2 id="login-as-admin-0">login as admin 0</h2>
 <blockquote>
-<p>SQL Injection!</p>
-</blockquote>
+<p>SQL Injection!</p></blockquote>
 <p>可以看到源码, SQL语句模板如下
 <code>&quot;SELECT * FROM `user` WHERE `user` = '%s' AND `password` = '%s'&quot;</code>.
 并且网页会在源码中返回 debug 信息, 包含了完整的 SQL 语句.</p>
@@ -669,19 +653,16 @@ Tips: LFI, php://filter</p>
 <p>搜一下能搜到很多.</p>
 <h2 id="dafuq-manager-1">dafuq-manager 1</h2>
 <blockquote>
-<p>Login as guest and find flag 1</p>
-</blockquote>
+<p>Login as guest and find flag 1</p></blockquote>
 <p>篡改cookie的题, 进去后有提示</p>
 <h1 id="reversing">Reversing</h1>
 <h2 id="helloworld">helloworld</h2>
 <blockquote>
-<p>Guess a number please :D</p>
-</blockquote>
+<p>Guess a number please :D</p></blockquote>
 <p>猜数字, 没啥混淆, 直接IDA</p>
 <h2 id="simple">simple</h2>
 <blockquote>
-<p>A little bit harder</p>
-</blockquote>
+<p>A little bit harder</p></blockquote>
 <p>确实很simple</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -703,8 +684,7 @@ Tips: LFI, php://filter</p>
 </div>
 </div><h2 id="pyyy">pyyy</h2>
 <blockquote>
-<p>Can you pass the challenage?</p>
-</blockquote>
+<p>Can you pass the challenage?</p></blockquote>
 <p>uncompyle6 反编译一下就行. 传说中的Y-组合子, 可以实现匿名函数的递归.
 举个例子, 下面代码中的 self 就代表那个匿名函数自身.</p>
 <div class="highlight"><div class="chroma">
@@ -721,32 +701,27 @@ Tips: LFI, php://filter</p>
 <p>那直接加个 print 输出 l 就行.</p>
 <h2 id="accumulator">accumulator</h2>
 <blockquote>
-<p>Reverse this for the flag</p>
-</blockquote>
+<p>Reverse this for the flag</p></blockquote>
 <p>程序接受一个 flag, SHA512 后送入某函数(姑且称之为 check )检查.</p>
 <p>分析check函数可得知验证方法就是把每一位累加, 然后与一个全局数组进行比对.</p>
 <p>提取出全局数组, 然后两两作差即可得到flag</p>
 <h2 id="gccc">GCCC</h2>
 <blockquote>
-<p>Maybe you should try some z3 magic.</p>
-</blockquote>
+<p>Maybe you should try some z3 magic.</p></blockquote>
 <p>一个 .Net 程序, 反编译以后可以发现只要求得一个 uint32 变量的值就能得到flag了.</p>
 <p>验证过程并不耗时, 于是直接爆破, 秒出 flag . (不过我的爆破顺序是从2^32^ -&gt; 1)</p>
 <h2 id="ccc">ccc</h2>
 <blockquote>
-<p>ccc cc</p>
-</blockquote>
+<p>ccc cc</p></blockquote>
 <p>程序接受一个flag, 分别计算前 3, 6, 9, &hellip; 位的crc32值然后与 hashes 数组中的值进行比较.</p>
 <p>每次的爆破量只有三位, 直接爆破就行</p>
 <h2 id="bitx">bitx</h2>
 <blockquote>
-<p>bits?</p>
-</blockquote>
+<p>bits?</p></blockquote>
 <p>这道题可以不逆向直接一位一位爆破&hellip;不知道是故意的还是题目漏洞&hellip;</p>
 <h2 id="2018-rev">2018-rev</h2>
 <blockquote>
-<p>Happy New Year 2018! Can you execute this binary on the right time with the right argv?</p>
-</blockquote>
+<p>Happy New Year 2018! Can you execute this binary on the right time with the right argv?</p></blockquote>
 <p>运行/反编译可以得知, 这个程序需要在 <code>argc == 2018 &amp;&amp; argv[0][0] == 1 &amp;&amp; envp[0][0] == 1</code> 和时间为
 <code>2018-01-01 00:00:00 (UTC)</code> 的情况下才会输出flag.</p>
 <p>argc 直接 <code>./2018.rev {1..2017}</code> 就能满足, argv[0][0] 的话可以建立一个名为 <code>\x01</code> 的文件夹 (ls 看起来是这个样子
@@ -758,8 +733,7 @@ Tips: LFI, php://filter</p>
 <p>(其实一开始想到了这个, 可是觉得改回来会很麻烦就一直没去做, 最后试了才发现这个时间系统秒改回&hellip;完全不用担心把时间弄乱</p>
 <h2 id="what-the-hell">what-the-hell</h2>
 <blockquote>
-<p>Tips: modinv, Something is slow there in my code, make it faster.</p>
-</blockquote>
+<p>Tips: modinv, Something is slow there in my code, make it faster.</p></blockquote>
 <p>这道题真是把我坑到了.</p>
 <p>首先IDA走起, 程序接受两个 uint 数字赋给两个 int 变量. 然后调用
 <code>calc_key3</code> 验证并计算下一步的key.</p>
@@ -806,22 +780,19 @@ Tips: LFI, php://filter</p>
 <p>运行, 输入 key1 key2, 成功得到 flag</p>
 <h2 id="mov">mov</h2>
 <blockquote>
-<p>MOV instruction is turing complete!</p>
-</blockquote>
+<p>MOV instruction is turing complete!</p></blockquote>
 <p>有了 bitx 那道题的经验, 这道题又直接逐位爆破搞了出来&hellip;
 (<del>爆破真是太棒了</del>)</p>
 <h1 id="pwn">Pwn</h1>
 <h2 id="catflag">catflag</h2>
 <blockquote>
 <p>nc hackme.inndy.tw 7709
-Try using nc connect to server!</p>
-</blockquote>
+Try using nc connect to server!</p></blockquote>
 <p>签到题, nc 上去 <code>cat flag</code></p>
 <h2 id="homework">homework</h2>
 <blockquote>
 <p>nc hackme.inndy.tw 7701
-Source Code, Index out bound, Return Address</p>
-</blockquote>
+Source Code, Index out bound, Return Address</p></blockquote>
 <p>给了二进制和源码, 题目其实很简单, 数组下标越界导致了任意位置读写,
 就算开了 canary 也没用.</p>
 <p>直接把 ret 所在位置覆盖为 <code>call_memaybe</code> 函数地址就行了.</p>
@@ -830,8 +801,7 @@ Source Code, Index out bound, Return Address</p>
 <blockquote>
 <p>nc hackme.inndy.tw 7704
 Tips: Buffer Overflow, ROP
-ROP輕鬆談 by L4ys</p>
-</blockquote>
+ROP輕鬆談 by L4ys</p></blockquote>
 <p>首先 checksec 一下, 没有 canary. 一个采用静态链接的巨大程序.</p>
 <p>到题目给出的链接看了一下, 应该是使用 ROPgadget. 试了一下,
 一行代码就找出了 ROP chain, 妙啊. 然后计算好偏移把 ROP chain 写进去就行了.</p>
@@ -845,8 +815,7 @@ ROP輕鬆談 by L4ys</p>
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">nc hackme.inndy.tw 7703
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><code>ROPgadget</code>  not working anymore</p>
-</blockquote>
+</div><p><code>ROPgadget</code>  not working anymore</p></blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -927,23 +896,20 @@ ROP輕鬆談 by L4ys</p>
 </div><h2 id="toooomuch">toooomuch</h2>
 <blockquote>
 <p>nc hackme.inndy.tw 7702
-Can you pass the game?</p>
-</blockquote>
+Can you pass the game?</p></blockquote>
 <p>送分题, 二分法慢慢猜就猜到了</p>
 <h2 id="toooomuch-2">toooomuch-2</h2>
 <blockquote>
 <p>nc hackme.inndy.tw 7702
 Get a shell, please.
-Tips: Buffer overflow, 0x8048560, shellcode</p>
-</blockquote>
+Tips: Buffer overflow, 0x8048560, shellcode</p></blockquote>
 <p>和上一道题几乎一样的二进制文件, 不过把 <code>cat flag</code> 改成了 <code>cat fake_flag</code>.</p>
 <p>先检查一下, 发现什么保护都没开, 然后有个全局变量 password 是可控的</p>
 <p>往这里面写入 shellcode 然后跳转到这儿就能 getshell 了</p>
 <h2 id="echo">echo</h2>
 <blockquote>
 <p>nc hackme.inndy.tw 7711
-Tips: format string vulnerability</p>
-</blockquote>
+Tips: format string vulnerability</p></blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -1073,8 +1039,7 @@ Tips: format string vulnerability</p>
 <h2 id="echo2">echo2</h2>
 <blockquote>
 <p>nc hackme.inndy.tw 7712
-Tips: ASLR enabled</p>
-</blockquote>
+Tips: ASLR enabled</p></blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -1265,8 +1230,7 @@ Tips: ASLR enabled</p>
 <h2 id="smashthestack">smashthestack</h2>
 <blockquote>
 <p>nc hackme.inndy.tw 7717</p>
-<p>Tips: stderr is available, beware of the output</p>
-</blockquote>
+<p>Tips: stderr is available, beware of the output</p></blockquote>
 <p>Canary 和 NX 都开了, <del>本来注意到如下代码, 想着能不能让 buf 为 0xFFFFFFFF 然后一直泄露到堆上.</del></p>
 <p><del>一直失败, 后来冷静分析才意识到这段内存不一定全部都能访问, 而且 0xFFFFFFFF bytes = 4 GiB. 怎么可能这样泄露&hellip;</del></p>
 <div class="highlight"><div class="chroma">
@@ -1322,43 +1286,36 @@ Tips: ASLR enabled</p>
 </div><h1 id="crypto">Crypto</h1>
 <h2 id="easy">easy</h2>
 <blockquote>
-<p>526b78425233745561476c7a49476c7a4947566863336b7349484a705a3268305033303d</p>
-</blockquote>
+<p>526b78425233745561476c7a49476c7a4947566863336b7349484a705a3268305033303d</p></blockquote>
 <p>unhexlify + base64</p>
 <h2 id="r-u-kidding">r u kidding</h2>
 <blockquote>
-<p>EKZF{Hs&rsquo;r snnn dzrx, itrs bzdrzq bhogdq}</p>
-</blockquote>
+<p>EKZF{Hs&rsquo;r snnn dzrx, itrs bzdrzq bhogdq}</p></blockquote>
 <p>凯撒</p>
 <h2 id="not-harder">not harder</h2>
 <blockquote>
 <p>Nm@rmLsBy{Nm5u-K{iZKPgPMzS2I<em>lPc%_SMOjQ#O;uV{MM</em>?PPFhk|Hd;hVPFhq{HaAH&lt;
-Tips: pydoc3 base64</p>
-</blockquote>
+Tips: pydoc3 base64</p></blockquote>
 <p>base85 + base32</p>
 <h2 id="classic-cipher-1">classic cipher 1</h2>
 <blockquote>
 <p>MTHJ{CWTNXRJCUBCGXGUGXWREXIPOYAOEYFIGXWRXCHTKHFCOHCFDUCGTXZOHIXOEOWMEHZO}
-Solve this substitution cipher</p>
-</blockquote>
+Solve this substitution cipher</p></blockquote>
 <p>替代密码, 随便找个网站跑一下, 再冷静分析一下, 应该不成问题</p>
 <h2 id="classic-cipher-2">classic cipher 2</h2>
 <blockquote>
-<p>Solve this vigenere cipher</p>
-</blockquote>
+<p>Solve this vigenere cipher</p></blockquote>
 <p>随便搜一搜找个工具就行了&hellip;.</p>
 <p>开始用自己的工具解, 一直解不出,
 后来才发现自己设的最大秘钥长度刚好比这个秘钥小了一位orz</p>
 <h2 id="easy-aes">easy AES</h2>
 <blockquote>
 <p>Can you encrypt things with AES?
-Tips: What is symmetric cipher?</p>
-</blockquote>
+Tips: What is symmetric cipher?</p></blockquote>
 <p>对称加密, 加解密秘钥是同一个</p>
 <h2 id="one-time-padding">one time padding</h2>
 <blockquote>
-<p>You will never see flag?!</p>
-</blockquote>
+<p>You will never see flag?!</p></blockquote>
 <p>这题目想了半天没想通, 题目采用了随机等长密钥, 使得字频分析失效. 感觉非常牢不可破的样子, 后来去搜 writeup 才明白&hellip;</p>
 <p>注意到一行注释: <code>// X ^ 0 = X, so we want to avoid null byte to keep your secret safe :)</code></p>
 <p>这意味着, 密文中不会出现明文中有的字符&hellip;那么只要收集到足够的密文然后统计就行了</p>
@@ -1407,14 +1364,12 @@ Tips: What is symmetric cipher?</p>
 </div><p>然而很迷的是跑出来的 FLAG 不完整&hellip;好在能够猜出来</p>
 <h2 id="shuffle">shuffle</h2>
 <blockquote>
-<p>I have shuffled my text file, can you recover it?</p>
-</blockquote>
+<p>I have shuffled my text file, can you recover it?</p></blockquote>
 <p>脚本逻辑很简单, 一段明文, 两种加密方式, 一是对明文做一个随机的替代密码存起来, 二是把明文打乱存起来.</p>
 <p>统计字频可以还原出替代密码表, 然后就可以大致还原出明文了(个别符号的出现次数可能相等).</p>
 <h2 id="login-as-admin-2">login as admin 2</h2>
 <blockquote>
-<p>Please login as admin. Tips: length extension attack</p>
-</blockquote>
+<p>Please login as admin. Tips: length extension attack</p></blockquote>
 <p>题目提示是长度扩展攻击</p>
 <p>Google了一下, 原理没看懂, <del>工具倒是找到了</del></p>
 <p>注意到得到 flag 的条件是 <code>$user['admin']</code>为 true, 也就是说对用户名并没有要求</p>
@@ -1520,8 +1475,7 @@ Tips: What is symmetric cipher?</p>
 <li>我们已经知道了包含 key 的一个消息的hash值。</li>
 </ul>
 <p>这样我们就可以得到一对(messge,x)满足x=H(key ∥ message)虽然我们并不清楚key的内容。</p>
-<p>&mdash; CTF Wiki</p>
-</blockquote>
+<p>&mdash; CTF Wiki</p></blockquote>
 <p>简要地讲, 如果已知 <code>$key</code> 的长度和 <code>$mes</code> 的内容和 <code>md5($key.$mes)</code> 的值, 利用 <em>哈希长度扩展攻击</em> , 就可以构造一个 <code>$pad</code>, 使得我们可以获取 <code>md5($key.$mes.$pad.$mes2)</code> 的值, 其中 <code>$mes2</code>是自定义的信息.</p>
 <p>以 hashdump 和马猴烧酒为例, 用如下命令可以得到新的 <code>$sig</code> 和 <code>$serialized</code></p>
 <div class="highlight"><div class="chroma">
@@ -1539,13 +1493,11 @@ Tips: What is symmetric cipher?</p>
 </div><p>比较迷的一点是, 一开始在 Chrome 里直接改 Cookie 然后刷新似乎不行 = =. 最后用 httpie 提交才获得了 flag. orz</p>
 <h2 id="xor">xor</h2>
 <blockquote>
-<p>I&rsquo;ve X0Red some file, could you recover it?</p>
-</blockquote>
+<p>I&rsquo;ve X0Red some file, could you recover it?</p></blockquote>
 <p>以前写过工具, 利用重合指数法攻击</p>
 <h2 id="emoji">emoji</h2>
 <blockquote>
-<p>(´・ω・`)</p>
-</blockquote>
+<p>(´・ω・`)</p></blockquote>
 <p>chrome 直接打开编码有问题, curl 看看.
 然后复制到搜到的解密工具 <a href="https://tool.lu/js/">https://tool.lu/js/</a> 里得到源码).</p>
 <p>代码逻辑不难, 加密部分直接爆破就行. 需要注意的是程序在 nodejs 环境下才能运行.</p>
@@ -1570,8 +1522,7 @@ Tips: What is symmetric cipher?</p>
 </div><p>得到后直接放参数里运行</p>
 <h2 id="ffa">ffa</h2>
 <blockquote>
-<p>finite field arithmetic</p>
-</blockquote>
+<p>finite field arithmetic</p></blockquote>
 <p>有限域算法? 看不懂, 先无脑上z3. 根据代码来看第一步应该是还原出 a, b, c 的值.</p>
 <p>一开始直接用Int类型跑半天没跑出结果, 后来看了 M4x 师傅的博客才知道BitVec更快orz,  算一算最大262位</p>
 <div class="highlight"><div class="chroma">
@@ -1676,8 +1627,7 @@ Tips: What is symmetric cipher?</p>
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">nc hackme.inndy.tw 7707
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>How fast could you be?</p>
-</blockquote>
+</div><p>How fast could you be?</p></blockquote>
 <p>nc 上去后题目会给出 10000 个表达式让你求值, 并且限制了时间.</p>
 <p>这道题要注意的点主要是:</p>
 <ul>
@@ -1762,16 +1712,14 @@ Tips: What is symmetric cipher?</p>
 </div><h1 id="lucky">Lucky</h1>
 <h2 id="you-guess">you-guess</h2>
 <blockquote>
-<p>Can you guess my password?</p>
-</blockquote>
+<p>Can you guess my password?</p></blockquote>
 <p>观察到 <code>'%s really hates her ex.' % password</code> , 密码应该是个女性人名.
 随便找个字典跑就行了
 <a href="http://antirez.com/misc/female-names.txt">female-names</a></p>
 <h1 id="forensic">Forensic</h1>
 <h2 id="easy-pdf">easy pdf</h2>
 <blockquote>
-<p>Find the flag from this PDF document</p>
-</blockquote>
+<p>Find the flag from this PDF document</p></blockquote>
 <p>转成 html</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -1785,8 +1733,7 @@ Tips: What is symmetric cipher?</p>
 </div>
 </div><h2 id="this-is-a-pen">this is a pen</h2>
 <blockquote>
-<p>Find the flag from this pdf</p>
-</blockquote>
+<p>Find the flag from this pdf</p></blockquote>
 <p>和上一题一样</p>
     </div>
 
@@ -1916,6 +1863,9 @@ Tips: What is symmetric cipher?</p>
 
 
 
+
+
+  
 
 </body>
 </html>

@@ -25,7 +25,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.140.2 with theme even" />
+<meta name="generator" content="Hugo 0.145.0 with theme even" />
 
 
 <link rel="preload" href="/fonts/iconfont/iconfont.woff" as="font" type="font/woff" crossorigin="anonymous">
@@ -41,7 +41,7 @@
 
 
 
-<link href="/sass/main.min.b8ff8f6ae815afd22fe55d59dcb2a03ea26d91c49c77a2d29e82aa121cc7d820.css" rel="stylesheet">
+<link href="/sass/main.min.4239da8be5d6b3c3a4e298a01dad493e86024d2cefc2b1385e017fb0ee96d262.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
@@ -416,8 +416,7 @@
 </table>
 <h1 id="panic-时立刻终止">Panic 时立刻终止</h1>
 <blockquote>
-<p><strong>前面的优化对程序的行为都不会产生任何影响，然而这个优化会。</strong></p>
-</blockquote>
+<p><strong>前面的优化对程序的行为都不会产生任何影响，然而这个优化会。</strong></p></blockquote>
 <p>众所周知，Rust 程序在 panic 时会生成栈回溯，方便定位问题。而这个 flag 会禁用这种行为——请自行权衡使用。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -481,8 +480,7 @@
 <h1 id="最小化依赖">最小化依赖</h1>
 <blockquote>
 <p>上面的优化都是只用调整参数就能完成的优化，然而这个优化可能需要你改动源码
-但是，如果做方法得当的话，这个可能会是<strong>效果最明显的方式</strong></p>
-</blockquote>
+但是，如果做方法得当的话，这个可能会是<strong>效果最明显的方式</strong></p></blockquote>
 <p>Rust 的中心化包管理系统用起来爽到不行，但是用外部库用起来太方便也带来了一个问题：一个小程序动不动就会带上上百个依赖……这体积怎么可能不大嘛</p>
 <p>所以最小化你的依赖也是一个减小体积的重要方式</p>
 <p>先看一下这个项目当前的依赖：</p>
@@ -673,8 +671,7 @@
 <p>巨大进步！strip 后的程序体积终于降低到了 KB 级别！！</p>
 <h1 id="libstd-优化">libstd 优化</h1>
 <blockquote>
-<p>终于要对 libstd 下手了</p>
-</blockquote>
+<p>终于要对 libstd 下手了</p></blockquote>
 <p>Rust 的工具链自带了预编译的标准库（libstd)，这样开发者就不用在每次编译 Rust 程序的时候都编译一遍 libstd，而是直接把 libstd 静态链接进去就行。</p>
 <p>好处是很明显的，然而坏处也是很明显的：</p>
 <ol>
@@ -972,6 +969,9 @@
 
 
 
+
+
+  
 
 </body>
 </html>
