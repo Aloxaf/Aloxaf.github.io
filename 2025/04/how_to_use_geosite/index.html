@@ -60,7 +60,7 @@
   <meta itemprop="description" content="因为觉得写 ruleset 太麻烦，研究了一下 GeoSite，发现其实在「正确的配置」下，只靠 GeoSite 就能满足绝大部分的分流需求。这方面的文章好像很少，写一篇分享一下折腾经验。">
   <meta itemprop="datePublished" content="2025-04-15T00:00:00+00:00">
   <meta itemprop="dateModified" content="2025-04-15T00:00:00+00:00">
-  <meta itemprop="wordCount" content="3776">
+  <meta itemprop="wordCount" content="3819">
   <meta itemprop="keywords" content="Clash,网络">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Clash 中 GeoSite 分流的正确使用方式">
@@ -355,9 +355,6 @@
 </span><span class="lnt">16
 </span><span class="lnt">17
 </span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">dns</span><span class="p">:</span><span class="w">
@@ -376,11 +373,8 @@
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">https://doh.pub/dns-query</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">https://223.5.5.5/dns-query</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">https://doh.360.cn/dns-query</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c"># 由于国外 DoH 大部分都被墙了，这里采用代理来进行国外 DNS 查询</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c"># PROXY 可以改为你自己的代理分组</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">nameserver</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">https://1.1.1.8/dns-query#PROXY</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">https://8.8.8.8/dns-query#PROXY</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="s1">&#39;https://8.8.8.8/dns-query#PROXY&amp;ecs=120.76.0.0/14&amp;ecs-override=true&#39;</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>解释一下这一堆 nameserver 的作用：</p>
@@ -392,8 +386,12 @@
 <p><strong>direct-nameserver</strong></p>
 <p>「直连」域名的解析，这里用了 DoH 来防止劫持。直接用运营商的 DNS 也行，愿意自建 smartdns / adgurad home 等服务效果更好。</p>
 <p><strong>nameserver</strong></p>
-<p>用来解析没有匹配到任何「域名规则」的域名，通常是国外域名，建议使用国外 DoH 防止污染。
-但这个解析结果并不会用来发起连接，所以为了追求速度不使用 DoH 或直接使用国内 DNS 也行。</p>
+<p>用来解析没有匹配到任何「域名规则」的域名，通常是国外域名，建议使用国外 DoH 防止污染。但这个解析结果并不会用来发起连接，所以为了追求速度不使用 DoH 或直接使用国内 DNS 也行。</p>
+<p>这里我配置得比较复杂：</p>
+<ul>
+<li>PROXY - 查询时使用的代理接口，如果使用能直连的国外 DoH 也可以省略。</li>
+<li><code>ecs=120.76.0.0/14&amp;ecs-override=true</code> - 使用 ECS 来查询，这样可以尽量避免能直连的网站解析出国外 IP。但是需要注意不是所有 DNS 都支持 ECS。</li>
+</ul>
 <p>nameserver + direct-nameserver 的解析流程非常清晰，没有弯弯绕——</p>
 <pre class="mermaid">
   flowchart TD
